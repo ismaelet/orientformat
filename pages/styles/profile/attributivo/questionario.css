@@ -1,0 +1,116 @@
+#audio {
+	width: 100%;
+	max-width: 30rem;
+}
+
+#questions.completed {
+	pointer-events: none;
+}
+
+.checkbox p {
+	color: var(--fc-700);
+	font-weight: var(--fw-medium);
+}
+
+.question-box.bgr-c1 .question {
+	color: #111;
+}
+.question-box.bgr-c1 .number {
+	color: #fff;
+}
+.question-box.bgr-c1 .good {
+	color: #fff;
+}
+.question-box.bgr-c1 .bad {
+	color: #fff;
+}
+.question-box.bgr-c1 .checkbox-txt {
+	color: #111;
+}
+.question-box.bgr-c1 .checkbox span {
+	border-color: #fff;
+}
+.question-box.bgr-c1 .checkbox span::after {
+	background-color: #fff;
+}
+
+.question-box.bgr-c5 .question {
+	color: #fff;
+}
+.question-box.bgr-c5 .number {
+	color: var(--clr-tertiary-400);
+}
+.question-box.bgr-c5 .good {
+	color: var(--clr-tertiary-400);
+}
+.question-box.bgr-c5 .bad {
+	color: var(--clr-tertiary-400);
+}
+.question-box.bgr-c5 .checkbox-txt {
+	color: #fff;
+}
+.question-box.bgr-c5 .checkbox span {
+	border-color: #fff;
+}
+.question-box.bgr-c5 .checkbox span::after {
+	background-color: #fff;
+}
+
+.question-box.bgr-c4 .question {
+	color: #111;
+}
+.question-box.bgr-c4 .number {
+	color: #fff;
+}
+.question-box.bgr-c4 .good {
+	color: #fff;
+}
+.question-box.bgr-c4 .bad {
+	color: #fff;
+}
+.question-box.bgr-c4 .checkbox-txt {
+	color: #111;
+}
+.question-box.bgr-c4 .checkbox span {
+	border-color: #fff;
+}
+.question-box.bgr-c4 .checkbox span::after {
+	background-color: #fff;
+}
+
+.question-box.bgr-c2 .question {
+	color: var(--clr-tertiary-400);
+}
+.question-box.bgr-c2 .number {
+	color: var(--clr-4);
+}
+.question-box.bgr-c2 .good {
+	color: var(--clr-4);
+}
+.question-box.bgr-c2 .checkbox-txt {
+	color: var(--clr-tertiary-400);
+}
+.question-box.bgr-c2 .checkbox span {
+	border-color: #fff;
+}
+.question-box.bgr-c2 .checkbox span::after {
+	background-color: var(--clr-4);
+}
+
+.checkbox {
+	grid-template-columns: 1.5rem 1fr;
+}
+
+.checkbox span::after {
+	width: 40%;
+	height: 40%;
+}
+
+.checkbox-txt {
+	font-size: 1rem;
+}
+
+input:checked + .checkbox span,
+.checkbox span:hover {
+	border: 1px solid #444;
+}

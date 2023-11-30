@@ -1,0 +1,12 @@
+{
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build"
+	},
+	"dependencies": {
+		"chart.js": "^4.4.0",
+		"leader-line": "^1.0.7"
+	}
+}

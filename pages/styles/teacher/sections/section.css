@@ -1,0 +1,21 @@
+/* Structure */
+.main-wrap {
+	max-width: 1680px;
+}
+
+/* Table */
+.list .field {
+	white-space: normal;
+	text-align: center;
+}
+
+.list .field:nth-child(1) {
+	text-align: left;
+}
+
+/* Responsive */
+@media only print {
+	.view-result {
+		display: none;
+	}
+}

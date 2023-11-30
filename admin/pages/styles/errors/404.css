@@ -1,0 +1,30 @@
+/*
+* Layout
+*/
+main {
+	height: 100vh;
+}
+
+/* Background */
+#background {
+	opacity: 0.3;
+}
+
+/* Body */
+#body {
+	position: relative;
+}
+
+#title {
+	font-size: clamp(4rem, 7vw, 7rem);
+	letter-spacing: 0.05em;
+}
+
+#body .go-back {
+	border-width: 4px;
+	width: auto;
+	padding-inline: 3rem;
+	letter-spacing: 0.07em;
+	cursor: pointer;
+	transition: border 0.4s;
+}

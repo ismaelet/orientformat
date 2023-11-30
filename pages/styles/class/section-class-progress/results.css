@@ -1,0 +1,164 @@
+/*
+* Stili cognitivi
+*/
+[data-section-id='1'] .graph-subcolumn,
+[data-section-id='1'] .graph-info-icon {
+	--_h-base: 230;
+}
+
+/*
+* Resilienza
+*/
+[data-section-id='3'] .graph-column_single,
+[data-section-id='3'] .graph-subcolumn,
+[data-section-id='3'] .graph-info-icon {
+	--_h-base: 10;
+}
+
+/*
+* Risolvere i problemi
+*/
+[data-section-id='5'] .graph-column_single,
+[data-section-id='5'] .graph-subcolumn,
+[data-section-id='5'] .graph-info-icon {
+	--_h-base: 250;
+}
+
+/*
+* Stile attributivo
+*/
+[data-section-id='6'] .graph-column_single,
+[data-section-id='6'] .graph-subcolumn,
+[data-section-id='6'] .graph-info-icon {
+	--_h-base: 320;
+}
+
+[data-section-id='6'] .graph-info_average {
+	display: none;
+}
+
+/*
+* Motivazione
+*/
+[data-section-id='7'] .graph-column_single,
+[data-section-id='7'] .graph-subcolumn,
+[data-section-id='7'] .graph-info-icon {
+	--_h-base: 100;
+}
+
+[data-section-id='7'] .graph-info_average {
+	display: none;
+}
+
+/*
+* Temperamento
+*/
+[data-section-id='8'] .graph-column_single,
+[data-section-id='8'] .graph-subcolumn,
+[data-section-id='8'] .graph-info-icon {
+	--_h-base: 120;
+	--_h-step: 70;
+}
+
+/*
+* Ricordare
+*/
+[data-section-id='10'] .graph-column_single,
+[data-section-id='10'] .graph-subcolumn,
+[data-section-id='10'] .graph-info-icon {
+	--_h-base: 200;
+	--_s-base: 100%;
+	--_l-base: 60%;
+}
+
+[data-section-id='10'] .graph-info_average {
+	display: none;
+}
+
+/*
+* Ascoltare
+*/
+[data-section-id='11'] .graph-column_single,
+[data-section-id='11'] .graph-subcolumn,
+[data-section-id='11'] .graph-info-icon {
+	--_h-base: 120;
+}
+
+[data-section-id='11'] .graph-info_average {
+	display: none;
+}
+
+/*
+* Parlare
+*/
+[data-section-id='12'] .graph-column_single,
+[data-section-id='12'] .graph-subcolumn,
+[data-section-id='12'] .graph-info-icon {
+	--_h-base: 140;
+}
+
+[data-section-id='12'] .graph-info_average {
+	display: none;
+}
+
+/*
+* Leggere
+*/
+[data-section-id='13'] .graph-column_single,
+[data-section-id='13'] .graph-subcolumn,
+[data-section-id='13'] .graph-info-icon {
+	--_h-base: 160;
+}
+
+[data-section-id='13'] .graph-info_average {
+	display: none;
+}
+
+/*
+* Scrivere
+*/
+[data-section-id='14'] .graph-column_single,
+[data-section-id='14'] .graph-subcolumn,
+[data-section-id='14'] .graph-info-icon {
+	--_h-base: 0;
+}
+
+[data-section-id='14'] .graph-info_average {
+	display: none;
+}
+
+/*
+* Ricordare
+*/
+[data-section-id='15'] .graph-column_single,
+[data-section-id='15'] .graph-subcolumn,
+[data-section-id='15'] .graph-info-icon {
+	--_h-base: 200;
+}
+
+[data-section-id='15'] .graph-info_average {
+	display: none;
+}
+
+/*
+* Motivazione
+*/
+[data-section-id='17'] .graph-column_single,
+[data-section-id='17'] .graph-subcolumn,
+[data-section-id='17'] .graph-info-icon {
+	--_h-base: 80;
+}
+
+[data-section-id='17'] .graph-info_average {
+	display: none;
+}
+
+/*
+* Interessi
+*/
+[data-section-id='24'].graph--divided .graph-subcolumn {
+	--_h-base: 200;
+	--_h: calc(var(--_h-base) + (var(--_subcount) - 1) * 12);
+	--_s: 100%;
+	--_l: 50%;
+}

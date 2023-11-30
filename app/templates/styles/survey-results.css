@@ -1,0 +1,127 @@
+/* Grid */
+#grid {
+	grid-template-columns: 20vw auto;
+	grid-row-gap: 4px;
+}
+
+/* Texts */
+.title {
+	padding-bottom: 10px;
+	font-size: 1.5rem;
+	text-align: center;
+}
+
+.question-box {
+	display: grid;
+	padding: 1rem 1rem;
+	align-items: center;
+	position: relative;
+	border: 1px solid var(--clr-tertiary-400);
+}
+
+.question {
+	font-size: 1rem;
+	line-height: 1.2;
+	position: relative;
+}
+
+.question.total {
+	font-size: 1.3rem;
+}
+
+.question-focus {
+	position: absolute;
+	z-index: 1;
+	width: max-content;
+	max-width: calc(100vw - 5rem);
+	min-width: 100%;
+	padding: 0.5rem 1rem;
+	margin-left: 0.5rem;
+	opacity: 0;
+	background: #f3f3f3;
+	box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.2);
+	border-radius: 0.5rem;
+	font-size: 0.9rem;
+	line-height: 1.2;
+	transition: opacity 0.2s;
+	pointer-events: none;
+	text-align: center;
+}
+
+.question:hover + .question-focus,
+.question-focus:hover {
+	opacity: 1;
+	pointer-events: all;
+}
+
+/* Score bars */
+.score-box {
+	border: 1px solid var(--clr-tertiary-400);
+	border-left: none;
+	height: 100%;
+	box-sizing: border-box;
+}
+
+.score {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.left .score {
+	float: right;
+}
+
+.score-gradient {
+	opacity: 1;
+	background: var(--gradient);
+}
+
+.score-gradient::after {
+	content: '';
+	display: block;
+	width: min(calc(100% * (1 - var(--_score) / (var(--_range) - 1))), calc(100% - 5rem));
+	height: 100%;
+	margin-left: auto;
+	background-color: #fff;
+	transition: width 0.5s;
+	transition-delay: var(--_delay);
+}
+
+.score.js-load .score-gradient::after {
+	width: 100%;
+}
+
+.total-num {
+	position: absolute;
+	top: 50%;
+	left: max(calc((var(--_score) / (var(--_range) - 1)) * 100%), 6rem);
+	translate: calc(-100% - 0.5rem) -50%;
+	text-shadow: 1px 2px 1rem rgba(0, 0, 0, 0.5);
+	white-space: nowrap;
+	transition: opacity 0.2s 0.3s, translate 0.2s 0.3s;
+}
+
+.js-load .total-num {
+	opacity: 0;
+	translate: calc(-100% - 3rem) -50%;
+}
+
+#submit {
+	display: block;
+	width: auto !important;
+	min-width: 18rem;
+	padding-inline: 2rem;
+	margin-inline: auto;
+}
+
+/* Responsive */
+@media (max-width: 1440px) {
+	#grid {
+		grid-template-columns: minmax(0, 1fr) 1fr;
+	}
+
+	.question-box {
+		padding: 0.5rem;
+	}
+}

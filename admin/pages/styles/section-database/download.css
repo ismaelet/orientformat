@@ -1,0 +1,43 @@
+/*
+* Layout
+*/
+.panel_title {
+	display: inline-block;
+	font-weight: 600;
+	font-size: 2rem;
+}
+
+.panel_title::after {
+	content: '';
+	display: block;
+	border-bottom: 3px solid var(--clr-2);
+}
+
+.download-buttons {
+	display: grid;
+	gap: 1rem;
+	margin-top: 1rem;
+}
+
+.download-button {
+	--icon-size: 1em;
+	gap: 0.5em;
+	width: fit-content;
+	max-width: 100%;
+	background-color: transparent;
+	border: none;
+	font-family: var(--font-text);
+	font-size: var(--fs-400);
+	text-align: left;
+	cursor: pointer;
+	transition: color 0.2s;
+
+	& svg {
+		flex-shrink: 0;
+		transition: unset;
+	}
+
+	&:hover {
+		color: var(--clr-primary-400);
+	}
+}

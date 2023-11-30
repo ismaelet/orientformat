@@ -1,0 +1,230 @@
+/* Circles */
+#circles {
+	--base-canv: min(800px, 70vw);
+	--base-size: min(5rem, 7vw);
+	width: var(--base-canv);
+	height: var(--base-canv);
+}
+
+.circle {
+	position: absolute;
+	width: var(--size);
+	height: var(--size);
+	top: 50%;
+	left: 50%;
+	transform: translate(calc((var(--canv) - var(--size) / 2) * var(--w) - var(--size) / 2), calc((var(--canv) - var(--size) / 2) * var(--h) - var(--size) / 2));
+	transition: opacity 0.7s;
+}
+
+.circle.blur {
+	opacity: 0.2;
+}
+
+.row1 {
+	--canv: calc(var(--base-canv) / 2);
+	--size: var(--base-size);
+}
+
+.row2 {
+	--canv: calc(var(--base-canv) * 0.75 / 2);
+	--size: calc(var(--base-size) * 0.75);
+}
+
+.row3 {
+	--canv: calc(var(--base-canv) * 0.56 / 2);
+	--size: calc(var(--base-size) * 0.56);
+}
+
+.row4 {
+	--canv: calc(var(--base-canv) * 0.4 / 2);
+	--size: calc(var(--base-size) * 0.4);
+}
+
+.circle .bgr {
+	background-color: var(--clr-tertiary-400);
+	border-radius: 100%;
+	transition: opacity 0.7s, transform 0.7s;
+}
+
+.circle.checked .bgr {
+	background-color: var(--clr-primary-400);
+}
+
+.circle .load {
+	opacity: 0;
+}
+
+.group1 .load {
+	transform: translate(0, 1rem);
+}
+.group2 .load {
+	transform: translate(-0.7rem, 0.7rem);
+}
+.group3 .load {
+	transform: translate(-1rem, 0);
+}
+.group4 .load {
+	transform: translate(-0.7rem, -0.7rem);
+}
+.group5 .load {
+	transform: translate(0, -1rem);
+}
+.group6 .load {
+	transform: translate(0.7rem, -0.7rem);
+}
+.group7 .load {
+	transform: translate(1rem, 0);
+}
+.group8 .load {
+	transform: translate(0.7rem, 0.7rem);
+}
+
+.row1 .bgr {
+	transition-delay: 0.55s;
+}
+.row2 .bgr {
+	transition-delay: 0.45s;
+}
+.row3 .bgr {
+	transition-delay: 0.3s;
+}
+.row4 .bgr {
+	transition-delay: 0.1s;
+}
+
+/* Borders */
+.border {
+	border: 1px dashed #fff;
+	border-radius: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	box-sizing: border-box;
+}
+
+#border1 {
+	width: calc(100% - var(--base-size));
+	height: calc(100% - var(--base-size));
+}
+
+#border2 {
+	width: calc((100% - var(--base-size)) * 0.75);
+	height: calc((100% - var(--base-size)) * 0.75);
+}
+
+#border3 {
+	width: calc((100% - var(--base-size)) * 0.56);
+	height: calc((100% - var(--base-size)) * 0.56);
+}
+
+#border4 {
+	width: calc((100% - var(--base-size)) * 0.4);
+	height: calc((100% - var(--base-size)) * 0.4);
+}
+
+/* Titles */
+#title-center {
+	max-width: 23vw;
+	line-height: 1;
+	font-size: min(2rem, 3vw);
+}
+
+.title-box {
+	position: absolute;
+	padding: 1rem;
+	transition: opacity 0.5s, color 0.5s;
+}
+
+.title-box.focus {
+	color: var(--clr-primary-400);
+}
+.title-box.blur {
+	opacity: 0.2;
+}
+
+#title-box1 {
+	top: 0;
+	left: 50%;
+	transform: translate(-50%, -100%);
+	text-align: center;
+}
+#title-box2 {
+	top: 16%;
+	left: 87%;
+	transform: translate(0, -50%);
+	text-align: left;
+}
+#title-box3 {
+	top: 50%;
+	left: 100%;
+	transform: translate(0, -50%);
+	text-align: left;
+}
+#title-box4 {
+	top: 84%;
+	left: 87%;
+	transform: translate(0, -50%);
+	text-align: left;
+}
+#title-box5 {
+	top: 100%;
+	left: 50%;
+	transform: translate(-50%, 0);
+	text-align: center;
+}
+#title-box6 {
+	top: 84%;
+	left: 13%;
+	transform: translate(-100%, -50%);
+	text-align: right;
+}
+#title-box7 {
+	top: 50%;
+	left: 0;
+	transform: translate(-100%, -50%);
+	text-align: right;
+}
+#title-box8 {
+	top: 16%;
+	left: 13%;
+	transform: translate(-100%, -50%);
+	text-align: right;
+}
+
+.title {
+	color: inherit;
+	transition: opacity 0.7s 0.3s, transform 0.7s 0.3s;
+}
+
+.title.load {
+	opacity: 0;
+}
+
+#title-box1 .title.load {
+	transform: translate(0, 2rem);
+}
+#title-box2 .title.load,
+#title-box3 .title.load,
+#title-box4 .title.load {
+	transform: translate(-2rem, 0);
+}
+#title-box5 .title.load {
+	transform: translate(0, -2rem);
+}
+#title-box6 .title.load,
+#title-box7 .title.load,
+#title-box8 .title.load {
+	transform: translate(2rem, 0);
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+	.title {
+		width: 400px;
+		max-width: 12vw;
+		font-size: 1rem;
+		word-break: break-all;
+		line-height: 1;
+	}
+}

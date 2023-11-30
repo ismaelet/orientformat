@@ -1,0 +1,134 @@
+/*
+* Layout
+*/
+main {
+	--wrap-width: 960px;
+	padding-top: 6rem;
+	padding-bottom: 10rem;
+}
+
+/*
+* List
+*/
+.category-selector_title {
+	font-size: 3rem;
+}
+
+.categories {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+	gap: 2rem;
+	margin-top: 3rem;
+}
+
+.category {
+	--text-color: var(--text-color-strong);
+	display: grid;
+	grid-template-columns: 4rem 1fr;
+	align-items: center;
+	gap: 1rem;
+	padding: 2rem;
+	border-radius: 2rem;
+	border: 1px solid var(--text-color);
+	cursor: pointer;
+	transition: color 0.3s, border 0.3s, background 0.3s, box-shadow 0.3s;
+}
+
+.category:hover {
+	background-color: var(--clr-4);
+	box-shadow: 0.5rem 1rem 2rem hsl(32, 40%, 85%);
+	border-color: var(--clr-4);
+	--text-color: #fff;
+}
+
+.category svg {
+	fill: var(--text-color);
+}
+
+.category_name {
+	color: var(--text-color);
+	font-weight: 500;
+	transition: color 0.3s;
+}
+
+/*
+* Categories
+*/
+.selected-category_head {
+	display: grid;
+	grid-template-columns: 3rem 1fr;
+	align-items: center;
+	gap: 0.5rem 1rem;
+}
+
+.selected-category_icon {
+	--_fill: #fff;
+	width: 100%;
+	aspect-ratio: 1;
+	background-color: var(--text-color-strong);
+	border-radius: var(--border-radius);
+}
+
+.selected-category_icon svg {
+	width: 50%;
+}
+
+.selected-category_subtitle {
+	grid-column: 2;
+	padding-left: 2px;
+}
+
+/*
+* Topics
+*/
+.topics {
+	display: grid;
+	margin-top: 3rem;
+}
+
+.topic_title {
+	border: 1px solid var(--text-color);
+	border-radius: 10rem;
+	padding: 1rem 2rem;
+	cursor: pointer;
+	transition: background 0.3s, border 0.3s, color 0.3s;
+}
+
+.active .topic_title {
+	background-color: var(--clr-tertiary-400);
+	border-color: var(--clr-tertiary-400);
+	color: #fff;
+}
+
+.topic_text {
+	--_content-height: 0;
+	padding-inline: 1rem;
+	margin-block: 1rem;
+	max-height: 0;
+	overflow: hidden;
+	opacity: 0;
+	font-size: 1rem;
+	line-height: 1.8;
+	transition: max-height 0.7s, opacity 0.3s;
+}
+
+.active .topic_text {
+	max-height: 4500px;
+	opacity: 1;
+}
+
+.topic_text a {
+	color: var(--clr-5);
+	font-weight: bold;
+}
+
+.topic_img {
+	display: inline-block;
+	width: 100%;
+	border: 1px solid var(--border-color);
+	cursor: pointer;
+}
+
+.modal-img {
+	cursor: pointer;
+}

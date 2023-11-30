@@ -1,0 +1,198 @@
+/* Structure */
+.main-wrap {
+	max-width: 1600px;
+}
+
+main {
+	--_color-h-base: 100;
+	--_color-h-interval: 30;
+	--_color-s: 75%;
+	--_color-l: 55%;
+	--_color-1: hsl(calc(var(--_color-h-base) + var(--_color-h-interval) * 1), var(--_color-s), var(--_color-l));
+	--_color-2: hsl(calc(var(--_color-h-base) + var(--_color-h-interval) * 2), var(--_color-s), var(--_color-l));
+	--_color-3: hsl(calc(var(--_color-h-base) + var(--_color-h-interval) * 3), var(--_color-s), var(--_color-l));
+	--_color-4: hsl(calc(var(--_color-h-base) + var(--_color-h-interval) * 4), var(--_color-s), var(--_color-l));
+	--_color-5: hsl(calc(var(--_color-h-base) + var(--_color-h-interval) * 5), var(--_color-s), var(--_color-l));
+	--_color-6: hsl(calc(var(--_color-h-base) + var(--_color-h-interval) * 6), var(--_color-s), var(--_color-l));
+	--_color-7: hsl(calc(var(--_color-h-base) + var(--_color-h-interval) * 7), var(--_color-s), var(--_color-l));
+	--_color-8: hsl(calc(var(--_color-h-base) + var(--_color-h-interval) * 8), var(--_color-s), var(--_color-l));
+	--_color-9: hsl(calc(var(--_color-h-base) + var(--_color-h-interval) * 9), var(--_color-s), var(--_color-l));
+}
+
+/* Containers */
+#body {
+	padding-bottom: 5rem;
+}
+
+/* Graphic */
+#graphic {
+	overflow-x: auto;
+}
+
+#graphic-pan {
+	display: grid;
+	grid-template-columns: repeat(9, 1fr);
+}
+
+#graphic .name {
+	writing-mode: vertical-rl;
+	text-orientation: sideways;
+	text-align: center;
+	padding-right: 1rem;
+}
+
+.graph-col {
+	display: grid;
+	grid-template-columns: min(5rem, 20vw) 1fr;
+	justify-items: left;
+	width: 100%;
+
+	&::after {
+		content: '';
+		width: 100%;
+		grid-column: span 2;
+		border-bottom: var(--border);
+	}
+
+	&:last-child::after {
+		grid-column: unset;
+	}
+
+	&#graph-col1 {
+		transition-delay: 0.1s;
+
+		& .graph-ele.active {
+			background-color: var(--_color-1);
+		}
+	}
+	&#graph-col2 {
+		transition-delay: 0.15s;
+
+		& .graph-ele.active {
+			background-color: var(--_color-2);
+		}
+	}
+	&#graph-col3 {
+		transition-delay: 0.2s;
+
+		& .graph-ele.active {
+			background-color: var(--_color-3);
+		}
+	}
+	&#graph-col4 {
+		transition-delay: 0.25s;
+
+		& .graph-ele.active {
+			background-color: var(--_color-4);
+		}
+	}
+	&#graph-col5 {
+		transition-delay: 0.3s;
+
+		& .graph-ele.active {
+			background-color: var(--_color-5);
+		}
+	}
+	&#graph-col6 {
+		transition-delay: 0.35s;
+
+		& .graph-ele.active {
+			background-color: var(--_color-6);
+		}
+	}
+	&#graph-col7 {
+		transition-delay: 0.4s;
+
+		& .graph-ele.active {
+			background-color: var(--_color-7);
+		}
+	}
+	&#graph-col8 {
+		transition-delay: 0.45s;
+
+		& .graph-ele.active {
+			background-color: var(--_color-8);
+		}
+	}
+	&#graph-col9 {
+		transition-delay: 0.5s;
+
+		& .graph-ele.active {
+			background-color: var(--_color-9);
+		}
+	}
+}
+
+.ele-box {
+	width: 100%;
+}
+
+.graph-ele {
+	aspect-ratio: 1;
+	margin-top: 3px;
+	cursor: pointer;
+	position: relative;
+	transition: background-color 0.3s;
+}
+
+.field-info {
+	opacity: 0;
+	translate: 0 var(--animation-movement-intensity);
+	align-content: center;
+	padding: 2rem 3rem;
+	transition: opacity 0.2s, translate 0.2s;
+
+	&[data-id='1'] {
+		background-color: var(--_color-1);
+	}
+	&[data-id='2'] {
+		background-color: var(--_color-2);
+	}
+	&[data-id='3'] {
+		background-color: var(--_color-3);
+	}
+	&[data-id='4'] {
+		background-color: var(--_color-4);
+	}
+	&[data-id='5'] {
+		background-color: var(--_color-5);
+	}
+	&[data-id='6'] {
+		background-color: var(--_color-6);
+	}
+	&[data-id='7'] {
+		background-color: var(--_color-7);
+	}
+	&[data-id='8'] {
+		background-color: var(--_color-8);
+	}
+	&[data-id='9'] {
+		background-color: var(--_color-9);
+	}
+}
+
+.field-info.active {
+	opacity: 1;
+	translate: 0 0;
+}
+
+.score-txt {
+	display: none;
+}
+
+.graph-ele.last .score-txt {
+	display: block;
+}
+
+#desc-pan {
+	opacity: 1;
+	transition: opacity 0.9s, max-height 0.9s;
+}
+
+#desc-pan.active {
+	opacity: 1;
+}
+
+#desc-box {
+	transition: background-color 0.3s, height 0.3s;
+}

@@ -1,0 +1,37 @@
+#text,
+#original {
+	text-align: justify;
+}
+
+#text {
+	line-height: 3;
+}
+
+#original {
+	line-height: 2;
+}
+
+.text-inp {
+	display: inline-block;
+	width: 15rem;
+	color: var(--clr-tertiary-400);
+	font-size: 1rem;
+	line-height: 2;
+}
+
+.text-inp.right,
+.text-inp.wrong {
+	display: inline;
+	padding: 0 1rem;
+	border-bottom: 1px solid #ddd;
+	font-weight: bold;
+}
+
+.text-inp.right {
+	border-color: green;
+	color: green;
+}
+.text-inp.wrong {
+	border-color: red;
+	color: red;
+}

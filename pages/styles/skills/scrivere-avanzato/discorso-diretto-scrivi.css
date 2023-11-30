@@ -1,0 +1,27 @@
+/**
+* Layout
+*/
+.test-text {
+	display: inline;
+}
+
+.test-input {
+	max-width: 100%;
+	width: 40rem;
+	margin-inline: 0.5rem;
+
+	.wrong &,
+	.correct & {
+		pointer-events: none;
+	}
+
+	.wrong & {
+		color: var(--clr-bad-400);
+		border-color: var(--clr-bad-400);
+	}
+
+	.correct & {
+		color: var(--clr-good-400);
+		border-color: var(--clr-good-400);
+	}
+}

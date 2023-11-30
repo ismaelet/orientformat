@@ -1,0 +1,51 @@
+{% block content %}
+
+<h1 class="title">Stili cognitivi</h1>
+
+<h1 class="section-title">La doppia codifica dell’informazione</h1>
+<p class="text">Uno dei primi e più importanti ricercatori che hanno dato l’avvio alla teoria degli stili cognitivi, e ai conseguenti impieghi in ambito didattico, è stato lo psicologo canadese Allan Paivio<sup>1</sup>, il quale, occupandosi della codificazione delle informazioni nella memoria a lungo termine (LTM: Long Time Memory), ha elaborato la Teoria del doppio codice. Secondo questa reoria, esistono due sistemi di codifica dell'informazione, nettamente distinti: il sistema verbale e il sistema non verbale. Le unità di base del primo sono definite logogens (logogeni) e contengono informazioni di cui il soggetto si serve per esprimere parole in modo sequenziale, mentre le unità di base che costituiscono il secondo sistema (non verbale) sono definite imagens (immageni) e permettono di generare immagini mentali. Tra i due sistemi c’è un’interazione continua, per cui un'immagine mentale può condurre ad una descrizione verbale e viceversa. Pur nell’interazione biunivoca tra i due sistemi di codificazione, può prevalere fortemente, in alcuni soggetti, il ricorso ad un sistema invece che all’altro, per cui avremo individui che definiremo visualizzatori (sistema non verbale) e individui che diremo verbalizzatori (sistema verbale). Ciò ci induce a chiederci, più in generale, che cos’è uno stile cognitivo.</p>
+
+<h1 class="section-title">Che cos’è uno stile cognitivo</h1>
+<p class="text">Uno stile è un modo particolare di affrontare problemi e compiti. Nel tentativo di definirlo più precisamente, sono state date molte definizioni. Prendiamo in considerazione quelle che ci sembrano le più chiare.<br>
+	Cornoldi e collaboratori lo definiscono come «una tendenza costante e stabile nel tempo a usare una determinata classe di strategie»<sup>2</sup>. C’è però una differenza importante fra stile e <a href="#g-strategia" class="link">strategia</a>. Mentre le strategie sono controllabili consapevolmente e quindi sono più duttili, flessibili e modificabili, lo stile è da considerare piuttosto come un modo di procedere abitudinario, pigro e quasi cristallizzato che, sottratto com’è ad un esame critico, in molte situazioni può risultare inadeguato e controproducente. Lo stile si differenzia anche dal concetto di abilità. «Non è un’abilità, ma piuttosto un modo preferito di usare le abilità possedute […]. L’abilità si riferisce al grado con cui una persona sa fare qualcosa. Uno stile si riferisce al modo in cui a una persona piace fare qualcosa»<sup>3</sup>. Impiegando una metafora di tipo informatico, si potrebbe collocare lo stile cognitivo nell’architettura del sistema, nell’hardware, e l’abilità nel software che ne realizza, in situazioni date, alcune potenzialità.<br>
+	Nell’accezione più ristretta, lo stile si riferisce alle modalità di elaborazione delle informazioni di tipo cognitivo, per cui lo si definisce appunto “stile cognitivo”. In un’accezione più ampia, che include aspetti relativi alla <a href="#g-personalita" class="link">personalità</a>, quali le <a href="#g-emozione" class="link">emozioni</a>, le decisioni e le azioni, è preferibile parlare di “stili personali” (> Profilo personale > Modi di agire e atteggiamenti). Non c’è tuttavia consenso unanime nel definire ciò che si debba intendere per stile cognitivo o personale. Ciò dipende dal fatto che disponiamo di una grande mole di studi e di dati, che provengono da orizzonti diversi della ricerca psicologica.</p>
+
+<h1 class="section-title">Polare, centrale o versatile?</h1>
+<p class="text">Nonostante l’eterogeneità dei dati disponibili, possiamo individuare una convergenza sul fatto che gli svariati stili individuati hanno tutti una caratterizzazione polare, ossia si prevedono tipi di prestazione che stanno ai due estremi di una scala che ammette molte gradazioni intermedie. Occorre inoltre tenere presente che la maggior parte delle persone tende ad avere stili prevalentemente intermedi, con varie mescolanze degli stili in opposizione. Oltre allo stile “polare” e “centrale”, possiamo individuare il tipo “versatile”, che può utilizzare accentuatamente, secondo i casi e le opportunità, una polarità così come quella opposta. Quest’ultima, naturalmente, è la situazione preferibile, mentre uno stile esclusivamente polare si può rivelare molto utile in alcune circostanze e del tutto inadeguato in altre. È il caso di studenti portatori di stili assolutamente inappropriati per le situazioni di apprendimento scolastico, in misura tanto maggiore quanto meno è flessibile, variegata e ricca l’offerta didattica.</p>
+
+<h1 class="section-title">Rilevare e interpretare il proprio stile cognitivo</h1>
+<p class="text">
+	Come in molti altri ambiti, anche in questo caso il massimo utilizzo delle proprie potenzialità presuppone come punto di partenza il prendere progressivamente consapevolezza degli stili che si impiegano di preferenza, con i vantaggi e gli svantaggi che essi comportano. Il questionario che lo studente ha completato gli ha permesso di individuare, con buona approssimazione, i suoi stili cognitivi. Occorre però avere una chiave per interpretarli.<br><br>
+	<span class="fw-bold">- Analitico/Globale</span><br>
+	Il globale privilegia l’insieme, ha bisogno di inquadrare complessivamente situazioni e problemi, che tenderà a ordinare schematicamente ma in modo approssimato, a ragnatela. Pregio e limite è la sua tendenza alla generalizzazione, all’ipotesi onnicomprensiva, che può risultare però azzardata ed eccessiva. L’analitico al contrario ha bisogno di ancorarsi a singoli dati certi, considerati uno dopo l’altro, in sequenza, estrapolati e catalogati. Ha un approccio tendenzialmente rigoroso, ma che rischia di risultare inconcludente, privo di riferimenti d’insieme, frammentario, disorganico.<br><br>
+	<span class="fw-bold">- Uditivo/Visivo </span><br>
+	Il visivo pensa e ricorda prevalentemente attraverso immagini visive, statiche o in movimento, che colloca agevolmente nello spazio. Nello stile visivo si può fare una distinzione fra il tipo verbale (preferenza per la parola scritta) e non-verbale (preferenza per raffigurazioni sinottiche come schemi, grafici e tabelle). L’uditivo invece privilegia l’ascolto e si trova a suo agio nella conversazione fluida. <br><br>
+	<span class="fw-bold">- Autonomo/Collaborativo </span><br>
+	Il collaborativo presenta una maggiore tendenza esplorativa che si valorizza nelle attività di gruppo, mentre nel lavoro autonomo tende di più a distrarsi o ad annoiarsi. L’autonomo invece ha una maggiore attitudine alla critica, che realizza di preferenza con un lavoro individuale, nel quale riesce ad essere più concentrato ed efficace. Perde però in tal modo tutti i vantaggi che derivano dalla collaborazione con gli altri: pluralità dei punti di vista, negoziazione delle strategie, acquisizione di abilità socio-affettive.<br><br>
+	<span class="fw-bold">- Sistematico/Intuitivo</span><br>
+	Il sistematico vuole far quadrare i conti, predilige la precisione e la completezza, per cui tende a considerare tutte le variabili in gioco e a vagliarle successivamente, una dopo l’altra. E’ un approccio che comporta tempo – non sempre disponibile – e fatica. Inoltre l’accumulo di dati può risultare dispersivo, perdendo di vista l’essenziale. L’intuitivo invece, spesso anche impulsivo, tende a bruciare i tempi, tralasciando tutti i passaggi intermedi, per giungere immediatamente a conclusioni precarie . E’ un aspetto che spesso caratterizza anche i soggetti superdotati (secondo le statistiche, il 20% dei bambini), che, paradossalmente, incontrano enormi difficoltà a scuola.
+</p>
+
+<p class="foot">
+	1 <span class="fy-italic">Cornoldi C., De Beni R. e Gruppo MT,</span> Imparare a studiare 2<span class="fy-italic">, Trento, Erickson, 2001, p. 17.</span><br>
+	2 <span class="fy-italic">Sterberg R. J, 1998,</span> Stili di pensiero<span class="fy-italic">, Trento, Erickson, p. 24.</span><br><br>
+
+	<span class="fw-bold">Bibliografia essenziale</span><br>
+	- Bruner J. S, e Goodnow J. J. e Austin G. A. (1965), <span class="fy-italic">A study of thinking</span>, New York, Wiley<br>
+	- Cornoldi C. (1999), <span class="fy-italic">La diversità come fattore di apprendimento: stili cognitivi e intelligenze</span>, in L. Tuffanelli (a cura di, 1999), <span class="fy-italic">Intelligenze, emozioni e apprendimenti</span>, Trento, Erickson<br>
+	- Cornoldi C. (2007), <span class="fy-italic">L’intelligenza</span>, Il Mulino, Bologna.<br>
+	- Gardner H. (1987), <span class="fy-italic">Formae mentis. Saggio sulla pluralità dell’intelligenza</span>, Milano, Feltrinelli.<br>
+	- Gregoric A. (1985), <span class="fy-italic">Inside styles: Beyond the basics</span>, Maynard, MA, Gabriel Systems<br>
+	- Guilford J. P (1967), <span class="fy-italic">The nature of human intelligence</span>, MsGraw-Hill, New York.<br>
+	- Kagan J. (1966), <span class="fy-italic">Developmental studies in reflection and analysis</span>, in Kind A. e Rivore J. (a cura di), Perceptual development in children, London, Unuversity of London Press<br>
+	- Kelly G. K. (1955), <span class="fy-italic">The psychology of personal construct</span>, New York, Norton<br>
+	- Myers I. B. (1980), <span class="fy-italic">Gifts differing</span>, Palo Alto, Brooks/Cole<br>
+	- Sternberg R. J. e L. Spear-Swerling (1997), <span class="fy-italic">Le tre intelligenze. Come potenziare le capacità analitiche, creative e pratiche</span>, Trento, Erickson.<br>
+	- Thomas L. e Harri-Augustein S. (1985), <span class="fy-italic">Self-organised learning</span>, London, Routledge & Kegan Paul<br>
+	- Thurstone L. L. e Thurstone T. G. (1963), <span class="fy-italic">SRA primary abilities</span>, Chicago, Sciences Research Associates<br>
+	- Tuffanelli L. (a cura di, 1999), <span class="fy-italic">Intelligenze, emozioni e apprendimenti</span>, Trento, Erickson.<br>
+	- Tuffanelli L. (2006), <span class="fy-italic">Le diversità degli alunni. Utilizzare le differenze cognitive e affettive per l’apprendimento</span>, Trento, Erickson
+</p>
+
+
+{% end content %}

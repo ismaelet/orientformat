@@ -1,0 +1,151 @@
+/*
+* Layout
+*/
+.page-content {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	align-items: center;
+}
+
+.checkbox {
+	--border-clr-400: #aaa;
+}
+
+/*
+* Header
+*/
+
+/*
+* Completed
+*/
+.completed {
+	display: grid;
+	align-content: center;
+	justify-items: center;
+	min-height: calc(100vh - 84px);
+}
+
+.success-icon {
+	--icon-size: 70%;
+	width: 6rem;
+	aspect-ratio: 1;
+	border: 0.5rem solid currentColor;
+	border-radius: 50%;
+	color: var(--clr-good-400);
+}
+
+/* Questions */
+.question > .text {
+	gap: 0.5rem;
+	font-weight: 600;
+	font-size: 1rem;
+}
+
+.question > .text .number {
+	display: inline-block;
+	width: max-content;
+	color: var(--clr-secondary-400);
+	line-height: 1.3rem;
+}
+
+.question.question--completed > .text .number {
+	display: none;
+}
+
+.question > .text .icon {
+	display: none;
+	background-color: green;
+	width: 1.5rem;
+	height: 1rem;
+	top: -3px;
+	vertical-align: middle;
+}
+
+.question.question--completed > .text .icon {
+	display: inline-block;
+}
+
+.question .error-warning {
+	display: none;
+}
+
+.review-grid {
+	width: 100%;
+	border: 1px solid #eee;
+	border-width: 1px 0;
+	margin-top: 1rem;
+}
+
+.grid-row {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: minmax(0, 1fr);
+	align-items: center;
+	justify-items: center;
+	padding-block: 0.5rem;
+}
+
+.grid-row--legend {
+	grid-template-columns: 3fr;
+}
+
+.grid-row:nth-child(2n) {
+	background-color: #f6f6f6;
+}
+
+.grid-cell {
+	display: grid;
+	width: 100%;
+	justify-items: center;
+}
+
+.grid-cell--title {
+	justify-content: left;
+	padding-inline: 1rem;
+}
+
+.question .grid-text {
+	font-size: 0.9rem;
+}
+
+.question .grid-text {
+	font-size: 0.9rem;
+}
+
+.grid-row--head .grid-text {
+	font-weight: 600;
+	text-align: center;
+}
+
+.question .grid .cbx-box {
+	margin: 0;
+}
+
+.question .cbx-icon {
+	width: 1.2rem;
+	height: 1.2rem;
+}
+
+.answers--list {
+	display: grid;
+	gap: 0.5rem;
+}
+
+.answers--inputs {
+	display: grid;
+	gap: 1rem;
+}
+
+/*
+* Specific questions
+*/
+#question-s2d3a,
+#question-s2d3b,
+#question-s2d3c,
+#question-s2d3d,
+#question-s6d3,
+#question-s7d3,
+#question-s7d4,
+#question-s7d5 {
+	display: none;
+}

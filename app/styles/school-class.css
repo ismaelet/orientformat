@@ -1,0 +1,10 @@
+/**
+* Responsive
+*/
+@media print {
+	header,
+	footer,
+	.js-print {
+		display: none !important;
+	}
+}

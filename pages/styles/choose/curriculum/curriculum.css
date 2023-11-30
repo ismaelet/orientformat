@@ -1,0 +1,19 @@
+/* Structure */
+main {
+	background-color: #edf0f7;
+}
+
+/* Slider */
+.page__background {
+	background-color: #fff;
+	clip-path: polygon(0 0, 0 93%, 26% 100%, 55% 92%, 80% 100%, 100% 95%, 100% 0);
+	height: 15rem;
+}
+
+.page__background .background {
+	background-size: cover;
+}
+
+.page__content {
+	padding-block: min(10rem, 20vw);
+}

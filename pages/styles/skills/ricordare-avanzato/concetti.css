@@ -1,0 +1,113 @@
+/* Start */
+.completed #start {
+	display: none;
+}
+
+/* Concepts */
+#concepts {
+	display: none;
+
+	&.active {
+		display: block;
+	}
+}
+
+.concept {
+	cursor: default;
+	transition: opacity 0.5s, transform 0.5s;
+	transition-delay: var(--del);
+}
+
+.concept.loadA {
+	opacity: 0;
+	transform: translateY(2rem);
+}
+
+.concept-line {
+	border-bottom: 2px solid var(--clr-secondary-400);
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	transform: scale(0, 1);
+	transition: transform 0.4s;
+}
+
+.concept:hover .concept-line {
+	transform: none;
+}
+
+/* Answers */
+#answers {
+	display: none;
+	gap: 1rem;
+
+	.completed &,
+	&.active {
+		display: grid;
+	}
+}
+
+.answer {
+	position: relative;
+}
+
+.completed .answer {
+	pointer-events: none;
+}
+
+.inp {
+	margin-block: 1rem;
+	font-size: 1rem;
+}
+
+.completed .inp {
+	margin-block: 0.5rem;
+}
+
+.inp.right,
+.inp.wrong {
+	border: none;
+	font-weight: bold;
+}
+
+.inp.right {
+	background-color: green;
+}
+.inp.wrong {
+	background-color: red;
+}
+
+.inp:focus {
+	border: 1px dashed var(--clr-5);
+}
+
+.number {
+	position: absolute;
+	top: 50%;
+	left: 10px;
+	transform: translateY(-50%);
+	transform-origin: left;
+	font-size: 1.5rem;
+	pointer-events: none;
+	transition: transform 0.3s, color 0.3s, scale 0.3s;
+
+	.answer:has(:focus) &,
+	.answer:not(:has(:placeholder-shown)) & {
+		color: var(--clr-primary-400);
+		scale: 0.9;
+		transform: translateY(-3.5rem);
+	}
+}
+
+/**
+* Footer
+*/
+.page-footer {
+	display: none;
+
+	.completed &,
+	&.active {
+		display: grid;
+	}
+}
