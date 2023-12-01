@@ -3,6 +3,7 @@
 namespace app\Models\Activities;
 
 use app\Models\Model;
+use DB;
 
 class Section extends Model {
 	/**
@@ -12,4 +13,11 @@ class Section extends Model {
 	protected const TABLE_LINKS = [
 		Area::class => 'areaId',
 	];
+
+	/**
+	 * Get methods
+	 */
+	public static function newFromSlug(string $slug) {
+		return self::newWhere(['slug' => $slug]);
+	}
 }

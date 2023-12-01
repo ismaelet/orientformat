@@ -40,7 +40,7 @@
 							<?php foreach ($area->getSections($grade->fullId) as $key => $section) { ?>
 
 								<div class="section-wrapper js-load load--fade-in section-color section-color--area-<?= $section->areaId ?>" data-direction="bottom" data-delay="<?= $key % 3 ?>">
-									<a class="section <?= $section->progressPercentage == 100 ? 'completed' : '' ?>" <?= 'href="' . $section->clientUrl . '"' ?>>
+									<a class="section <?= $section->progressPercentage == 100 ? 'completed' : '' ?>" <?= 'href="' . $section->clientUrl . '&slug=' . $section->slug . '"' ?>>
 										<div class="section-img gradient-overlay grid-flow stack-content center-content">
 											<div class="section-img-over"></div>
 											<div class="section__icon">

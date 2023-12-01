@@ -7,11 +7,18 @@ use Exception;
 
 abstract class Model extends DatabaseModel {
 	/**
+	 * Database
+	 */
+	// protected const SETTABLE = ['column' => ['type' => Type, 'link' => ModuleName::class],];
+	protected const SETTABLE = [];
+
+	/**
 	 * Model paramenters
 	 */
 	protected $id;
 	protected $databaseData = [];
-	protected $dynamicData;
+	protected $dynamicData = [];
+	protected $preparedData = [];
 
 	/**
 	 * Initialize
@@ -22,7 +29,9 @@ abstract class Model extends DatabaseModel {
 	}
 
 	function __call($methodName, $arguments) {
-		if (array_key_exists($methodName, $this->databaseData)) {
+		if (strpos($methodName, 'set') === 0) {
+			return $this->set($methodName, $arguments);
+		} else if (array_key_exists($methodName, $this->databaseData)) {
 			return $this->databaseData[$methodName];
 		}
 
@@ -36,19 +45,46 @@ abstract class Model extends DatabaseModel {
 		return $this->id;
 	}
 
+	public static function newEmpty() {
+		return new static(0);
+	}
+
 	/**
 	 * Post methods
 	 */
-	public function post(array $parameters) {
+	public function prepare($property, $arguments) {
+		if (in_array($property, array_keys(static::SETTABLE))) {
+			switch (static::SETTABLE[$property]['type'] ?? null) {
+				case 'bool':
+					$value = $arguments ? 1 : 0;
+					break;
+
+				default:
+					$value = $arguments;
+			}
+		} else {
+			throw new Exception("Property $property can't be set in " . static::class);
+		}
+
+		$this->preparedData[$property] = $value;
+
+		return $this;
+	}
+
+	public function up() {
+		return static::add($this->preparedData);
+	}
+
+	public function post() {
 		// columns
 		$columnQuery = array_map(function ($column) {
 			return $column . ' = ?';
-		}, array_keys($parameters));
+		}, array_keys($this->preparedData));
 
 		$columnQuery = implode(',', $columnQuery);
 
 		// values
-		$values = array_values($parameters);
+		$values = array_values($this->preparedData);
 		array_push($values, $this->id);
 
 		// execute

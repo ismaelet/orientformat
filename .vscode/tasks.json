@@ -1,0 +1,30 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "newFile",
+			"command": "touch ./app/migration/`date +%Y_%m_%d_%H:%M`_${input:fileName}.php",
+			// to create and open this new file use the following instead
+			// "command": "touch `date +%Y%m%d-%H%M`-${input:fileName}.txt; code . `date +%Y%m%d-%H%M`-${input:fileName}.txt",
+			"type": "shell",
+			"problemMatcher": [],
+			"presentation": {
+				"echo": false,
+				"reveal": "silent",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"promptOnClose": false
+		}
+	],
+	"inputs": [
+		{
+			"type": "promptString",
+			"id": "fileName",
+			"description": "Complete my file name.",
+			"default": "add_to_" // make your default text here
+		}
+	]
+}

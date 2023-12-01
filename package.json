@@ -8,5 +8,10 @@
 	"dependencies": {
 		"chart.js": "^4.4.0",
 		"leader-line": "^1.0.7"
+	},
+	"devDependencies": {
+		"prettier": "^3.1.0",
+		"prettier-plugin-tailwindcss": "^0.5.7",
+		"tailwindcss": "^3.3.5"
 	}
 }

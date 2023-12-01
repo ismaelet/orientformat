@@ -36,6 +36,16 @@ function camel_case_to_hyphens(string $string) {
 	return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $string));
 }
 
+function hypens_to_camel_case(string $string, bool $capitalizeFirstCharacter = false) {
+	$string = str_replace('-', '', ucwords($string, '-'));
+
+	if (!$capitalizeFirstCharacter) {
+		$string = lcfirst($string);
+	}
+
+	return $string;
+}
+
 function numberToWord($number, $lang = 'it') {
 	$number = round($number);
 

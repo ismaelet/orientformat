@@ -3,6 +3,7 @@
 namespace app\Http\Controllers\Activities;
 
 use app\Http\Controllers\Controller;
+use app\Models\Activities\Test as TestModel;
 
 class Test extends Controller {
 
@@ -89,8 +90,16 @@ class Test extends Controller {
 	 * Misc
 	 */
 	private static function specificTest(int $id) {
-		$specificTestName = 'app\Http\Controllers\Activities\Tests\Test' . $id;
+		$test = new TestModel($id);
+		$namespace = 'app\Http\Controllers\Activities\Tests';
+		$testController = 'Test' . $test->id();
 
-		return $specificTestName::getInstance();
+		if (!file_exists(__DIR__ . '/Tests/' . $testController . '.php')) {
+			$testController = hypens_to_camel_case($test->section()->slug(), true) . hypens_to_camel_case($test->slug(), true);
+		}
+
+		$fullTestController = $namespace . '\\' . $testController;
+
+		return $fullTestController::getInstance();
 	}
 }
