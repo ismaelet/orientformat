@@ -193,6 +193,20 @@ $sectionsConfig = [
 		'desc' => "Qui puoi controllare i risultati delle attività relative alla capacità di lettura. Per ogni attività è indicata la media della classe.<br>Puoi passare il mouse sopra alle singole colonne per visualizzare i valori esatti.",
 		'average' => true,
 	],
+	53 => [
+		'recap-name-grade' => 'Risultato medio delle attività',
+		'recap-name-student' => 'Risultato medio delle attività',
+		'type' => 'tiers',
+		'desc' => "Qui puoi controllare i risultati delle attività relative alla capacità di lettura. Per ogni attività è indicata la media della classe.<br>Puoi passare il mouse sopra alle singole colonne per visualizzare i valori esatti.",
+		'average' => true,
+	],
+	54 => [
+		'recap-name-grade' => 'Risultato medio delle attività',
+		'recap-name-student' => 'Risultato medio delle attività',
+		'type' => 'tiers',
+		'desc' => "Qui puoi controllare i risultati delle attività relative alla capacità di lettura. Per ogni attività è indicata la media della classe.<br>Puoi passare il mouse sopra alle singole colonne per visualizzare i valori esatti.",
+		'average' => true,
+	],
 
 	// Scrivere
 	14 => [
@@ -256,12 +270,20 @@ $sectionsConfig = [
 		'average' => true
 
 	],
-	15 => [
 
+	// Imparare
+	15 => [
 		'type' => 'tiers',
 		'desc' => "Qui puoi controllare i risultati delle attività relative alla capacità di imparare. Per ogni attività è indicata la media della classe.<br>Puoi passare il mouse sopra alle singole colonne per visualizzare i valori esatti.",
 		'average' => true,
 	],
+	56 => [
+		'recap-name-grade' => 'Risultato medio delle attività',
+		'recap-name-student' => 'Risultato medio delle attività',
+	],
+
+
+
 	40 => [
 		'recap-name-grade' => 'Risultato medio delle attività',
 		'recap-name-student' => 'Risultato medio delle attività',

@@ -23,7 +23,8 @@ $students = $schoolClass->studentCount ? DB::select('* FROM users WHERE id IN ('
 // feed
 $maxFeedCount = round(13 / 19 * $schoolClass->studentCount);
 $feed = [];
-$feedEntriesData = $schoolClass->studentCount ? DB::select(TestResult::USER_INDEX . ', ' . TestResult::TEST_INDEX . ' FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' IN (' . $schoolClass->studentIdsString . ') ORDER BY time DESC LIMIT ?', [$maxFeedCount]) : null;
+$feedEntriesData = $schoolClass->studentCount ? DB::select(TestResult::USER_INDEX . ', ' . TestResult::TEST_INDEX . ' FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' IN (' . $schoolClass->studentIdsString . ') ORDER BY time DESC LIMIT ' . $maxFeedCount) : null;
+$feedEntriesData = $feedEntriesData->num_rows ? $feedEntriesData : null;
 
 if ($feedEntriesData) {
 	while ($feedEntryData = $feedEntriesData->fetch_assoc()) {

@@ -3,7 +3,7 @@
 // ini_set('error_log', 'logs/error.log');
 
 if (in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'])) {
-	define('DEBUG', true);
+	define('DEBUG', false);
 } else {
 	define('DEBUG', false);
 }

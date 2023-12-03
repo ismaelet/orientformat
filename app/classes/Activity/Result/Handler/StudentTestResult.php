@@ -54,11 +54,11 @@ class StudentTestResult {
 				// stili > mappa
 			case 46:
 				// temperamento
-			case 92:
 			case 109:
 			case 111:
-			case 151:
 				// i miei interessi
+			case 92:
+			case 151:
 				return $this->calcMaxNameValue();
 
 			case 15:

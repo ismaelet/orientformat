@@ -77,7 +77,7 @@
 		<div class="dashboard-panel js-load load--fade-in" data-direction="bottom" data-delay="0" data-load-type="always">
 			<h3 class="dashboard-panel__title">Attività recenti</h3>
 
-			<?php if ($schoolClass->studentCount) { ?>
+			<?php if ($feedEntriesData) { ?>
 
 				<div class="dashboard-list">
 

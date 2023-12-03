@@ -1,18 +1,10 @@
 <?php
 
 use Activity\Result\Handler\StudentSectionResult;
-use Activity\Test;
 
 ?>
 
 {% block dashboard-body %}
-
-<!-- Content -->
-<?php if (schoolClass()->isHighSchool && schoolClass()->currentGrade > 4) { ?>
-
-	<p class="maintenance-warning">Questa pagina al momento è in manutenzione e potrebbe non mostrare tutti i dati previsti. Il normale funzionamento verrà ripristinato al più presto.</p>
-
-<?php } ?>
 
 <section class="page__content">
 	<!-- Title -->
@@ -39,6 +31,7 @@ use Activity\Test;
 								<div class="sections" style="--count: <?= count($area['sections']) ?>">
 
 									<?php foreach ($area['sections'] as $key => $section) {
+										$section->setStudentId($watchedStudentId);
 										$sectionResult = new StudentSectionResult($section->id, $watchedStudentId);
 										$speed = $sectionResult->getSpeedString();
 									?>
@@ -75,19 +68,15 @@ use Activity\Test;
 
 											<div class="dashboard-panel-footer">
 
-												<?php if ($sectionResult && isset($actions[$section->id ?? $section['id']])) {
-													foreach ($actions[$section->id ?? $section['id']] as $action) {
-														$relatedTest = (new Test($action[1]))->setStudentId($watchedStudentId);
-
-														if ($relatedTest->completed) {
+												<?php if (($section->completed || $sectionResult->result) && isset($actions[$section->id])) {
+													foreach ($actions[$section->id] as $action) {
 												?>
 
-															<p class="dashboard-home-more">
-																<a href="<?= client_url('/' . $action[2] . $action[1]) ?>"><?= $action[0] ?></a>
-															</p>
+														<p class="dashboard-home-more">
+															<a href="<?= client_url('/' . $action[2] . $action[1]) ?>"><?= $action[0] ?></a>
+														</p>
 
 												<?php }
-													}
 												} ?>
 
 											</div>

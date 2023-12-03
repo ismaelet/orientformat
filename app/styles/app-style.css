@@ -256,7 +256,10 @@ h3 {
 .button--filling {
 	border: var(--button--secondary-border-width) solid transparent;
 	overflow: hidden;
-	transition: filter 0.2s, color 0.2s, border 0.2s;
+	transition:
+		filter 0.2s,
+		color 0.2s,
+		border 0.2s;
 }
 
 .button--filling:disabled {
@@ -281,7 +284,9 @@ h3 {
 	width: calc(100% - var(--progress, 0));
 	margin-left: auto;
 	background-color: var(--clr-background);
-	transition: width 0.3s, opacity 0.2s;
+	transition:
+		width 0.3s,
+		opacity 0.2s;
 }
 
 /*
@@ -340,6 +345,13 @@ h3 {
 
 .page-header .button {
 	box-shadow: 0 1rem 3rem -1rem rgba(0, 0, 0, 0.8);
+}
+
+.panel {
+	padding: min(2.5rem, 5vw);
+	background-color: #fff;
+	border-radius: var(--border-radius-700);
+	box-shadow: var(--shadow-big);
 }
 
 /*

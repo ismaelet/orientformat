@@ -122,7 +122,7 @@ class Section {
 
 	public function getCompleted() {
 		if ($this->isStandard) {
-			return DB::exists('results_sections WHERE studentId = ? AND sectionId = ? AND completed = 1', [studentId(), $this->id]);
+			return DB::exists('results_sections WHERE studentId = ? AND sectionId = ? AND completed = 1', [$this->studentId, $this->id]);
 		} else {
 			return true;
 		}

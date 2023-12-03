@@ -5,6 +5,9 @@ use Activity\Section;
 use SchoolSystem\Grade;
 use UserSystem\Student;
 
+// DB::delete('results_sections_condensed');
+// DB::update('results_sections SET completed = 1 WHERE sectionId IN (24,45) AND studentId IN (SELECT studentId FROM results_tests WHERE completed = 1 AND (testId IN (SELECT id FROM activities_tests WHERE completeSection = 1)))');
+
 $watchedStudentId = $_GET['studentId'];
 $watchedStudent = new Student($watchedStudentId);
 
@@ -167,6 +170,24 @@ for ($i = schoolClass()->currentGrade; $i >= schoolClass()->minimumGrade; $i--) 
 						['Risultati dall\'attività "Analisi dei personaggi"', 71, $urlTemplate],
 					];
 					break;
+				case 53:
+					$actions[$section->id] = [
+						['Risultati dell\'autovalutazione', 199, $urlTemplate],
+						['Risultati dall\'attività "Analizza la poesia"', 173, $urlTemplate],
+						['Risultati dall\'attività "Aree di significato"', 174, $urlTemplate],
+						['Risultati dall\'attività "Schematizzare"', 175, $urlTemplate],
+						['Risultati dall\'attività "Completa il testo"', 176, $urlTemplate],
+					];
+					break;
+				case 54:
+					$actions[$section->id] = [
+						['Risultati dell\'autovalutazione', 193, $urlTemplate],
+						['Risultati dall\'attività "Analizza il testo 1"', 189, $urlTemplate],
+						['Risultati dall\'attività "Analizza il testo 2"', 190, $urlTemplate],
+						['Risultati dall\'attività "Cause e conseguenza"', 204, $urlTemplate],
+						['Risultati dall\'attività "Il punto di vista"', 191, $urlTemplate],
+					];
+					break;
 
 					// Scrivere
 				case 14:
@@ -198,13 +219,27 @@ for ($i = schoolClass()->currentGrade; $i >= schoolClass()->minimumGrade; $i--) 
 					break;
 
 
+					// Imparare
 				case 15:
 					$actions[$section->id] = [
 						['Risultati dell\'autovalutazione', 35, $urlTemplate],
-						['Risultati dall\'attività "Schematizzare"', 38, $urlTemplate],
-						['Risultati dall\'attività "Riassumere"', 39, $urlTemplate],
+						['Risultati dall\'attività "Balene"', 149, $urlTemplate],
+						['Risultati dall\'attività "Probabile o improbabile"', 185, $urlTemplate],
+						['Risultati dall\'attività "Mappa contettuale"', 202, $urlTemplate],
 					];
 					break;
+				case 56:
+					$actions[$section->id] = [
+						['Risultati dell\'autovalutazione', 186, $urlTemplate],
+						['Risultati di "Il racconto"', 187, $urlTemplate],
+						['Risultati di "Gradi di certezza"', 188, $urlTemplate],
+						['Risultati di "Schematizzare"', 203, $urlTemplate],
+					];
+					break;
+
+
+
+
 				case 17:
 					$actions[$section->id] = [
 						['Risultati delle autovalutazioni', 81, $urlTemplate],

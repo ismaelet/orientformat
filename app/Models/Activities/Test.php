@@ -27,6 +27,8 @@ class Test extends Model {
 		'slug' => ['type' => 'string'],
 		'template' => ['type' => 'string'],
 		'reviewResult' => ['type' => 'bool'],
+		'completeSection' => ['type' => 'bool'],
+		'active' => ['type' => 'bool'],
 	];
 
 	/**

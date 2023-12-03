@@ -99,14 +99,18 @@ class StudentSectionResult {
 					// leggere
 				case 14:
 				case 51:
+				case 53:
+				case 54:
 				case 55:
 					// scrivere
+				case 15:
+				case 40:
+				case 56:
+					// imparare
 				case 31:
 				case 34:
 				case 57:
 					// stare attenti
-				case 40:
-					// imparare
 					$result = $this->calcAverage();
 					break;
 
@@ -162,6 +166,8 @@ class StudentSectionResult {
 
 			case 13:
 			case 39:
+			case 53:
+			case 54:
 				// leggere
 				return $this->calcFullSectionResults([70]);
 
@@ -173,13 +179,15 @@ class StudentSectionResult {
 				// scrivere
 				return $this->calcFullSectionResults([62, 63, 167, 168]);
 
+			case 15:
+			case 40:
+			case 56:
+				// imparare
+				return $this->calcFullSectionResults([131]);
+
 			case 31:
 				// stare attenti
 				return $this->calcFullSectionResults();
-
-			case 40:
-				// imparare
-				return $this->calcFullSectionResults([131]);
 
 			default:
 				if (isset(self::MAIN_TEST_IDS[$this->sectionId])) {
