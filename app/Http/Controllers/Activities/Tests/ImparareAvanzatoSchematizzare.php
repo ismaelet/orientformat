@@ -33,7 +33,7 @@ class ImparareAvanzatoSchematizzare extends ImparareMappa {
 			3 => ['content' => "giovani", 'autofilled' => 1, 'type' => 1, 'connections' => [9 => 'bottom,left']],
 			4 => ['content' => "ben nutriti", 'autofilled' => 1, 'type' => 1, 'connections' => [9 => 'bottom,top']],
 			5 => ['content' => "forti", 'autofilled' => 0, 'type' => 1, 'connections' => [9 => 'bottom,right']],
-			6 => ['content' => "abili Guerrieri", 'autofilled' => 0, 'type' => 1, 'connections' => [10 => 'bottom,left'], 'alternatives' => [7]],
+			6 => ['content' => "abili guerrieri", 'autofilled' => 0, 'type' => 1, 'connections' => [10 => 'bottom,left'], 'alternatives' => [7]],
 			7 => ['content' => "violenti", 'autofilled' => 0, 'type' => 1, 'connections' => [10 => 'bottom,top'], 'alternatives' => [6]],
 			8 => ['content' => "senza donne", 'autofilled' => 1, 'type' => 1, 'connections' => [10 => 'bottom,right']],
 			9 => ['content' => "in breve tempo", 'autofilled' => 1, 'type' => 2, 'connections' => [11 => 'bottom,top']],

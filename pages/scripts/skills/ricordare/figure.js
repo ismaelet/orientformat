@@ -19,7 +19,7 @@ $(document).ready(function () {
 				$('#slider').hide()
 				$('#solutions').fadeIn(400)
 			}
-		}, 8000)
+		}, 6000)
 	}
 
 	$('.solution').click(function () {

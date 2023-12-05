@@ -84,7 +84,7 @@ class ConnectionInterface {
 	 * Singleton methods
 	 */
 	public function close() {
-		$userId = userId();
+		/*$userId = userId();
 
 		self::$connection->close();
 
@@ -105,6 +105,6 @@ class ConnectionInterface {
 			echo 'Numero di queries: ' . self::$queryCount;
 		}
 
-		file_put_contents(server_path('/logs/connection.log'), $message, FILE_APPEND);
+		file_put_contents(server_path('/logs/connection.log'), $message, FILE_APPEND);*/
 	}
 }

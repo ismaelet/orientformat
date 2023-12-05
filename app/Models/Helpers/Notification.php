@@ -13,6 +13,9 @@ class Notification extends Model {
 	 */
 	protected const TABLE = 'notifications';
 	protected const TABLE_LINKS = [];
+	protected const SETTABLE = [
+		'text' => ['type' => 'string'],
+	];
 
 	public function text() {
 		return nl2br($this->databaseData['text']);

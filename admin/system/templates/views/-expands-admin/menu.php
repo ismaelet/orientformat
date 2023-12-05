@@ -10,15 +10,14 @@
 
 			<!-- Admin sections -->
 			<div class="menu__groups grid-flow js-open-menu" data-spacing="400">
-				<div class="menu__group">
-					<!-- Home link -->
+				<!-- <div class="menu__group">
 					<div class="menu-item">
-						<a class="menu-item__header" href="<?= public_client_url('/') ?>" target="_blank">
+						<a class="menu-item__header" href="/" target="_blank">
 							<?= icon_embed('link') ?>
 							<p class="menu-item__title">Sito pubblico</p>
 						</a>
 					</div>
-				</div>
+				</div> -->
 
 				<span class="menu__divider"></span>
 

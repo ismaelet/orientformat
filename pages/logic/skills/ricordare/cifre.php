@@ -61,7 +61,7 @@ if (isset($_POST['check'])) {
 	}
 
 	DB::add(
-		'results (' . TestResult::USER_INDEX . ', ' . TestResult::TEST_INDEX . ', result, percentage)',
+		TestResult::TABLE . ' (' . TestResult::USER_INDEX . ', ' . TestResult::TEST_INDEX . ', result, percentage)',
 		[studentId(), $test->id, implode(',', $result), ($level - 1) * 10]
 	);
 
@@ -75,6 +75,6 @@ TestLogic::setTestSubmitFunction(
 		$level = empty($_POST['skip-cbx']) ? $level : $level - 1;
 		$level = $level > $maxLevel ? $maxLevel : $level;
 
-		return round($level / $maxLevel * 100);
+		return percent($level, $maxLevel);
 	}
 );

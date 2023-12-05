@@ -21,12 +21,16 @@
 	box-shadow: -3px -5px 10px rgba(0, 0, 0, 0.2) inset !important;
 	width: auto;
 	max-width: 100%;
+	padding-inline: 0.5em;
 	color: #222;
 	font-size: min(2.5rem, calc(30vw / var(--size)));
 	font-weight: bold;
 	line-height: 4;
 	text-align: center;
-	transition: background 0.4s, box-shadow 0.4s, color 0.4s;
+	transition:
+		background 0.4s,
+		box-shadow 0.4s,
+		color 0.4s;
 }
 
 .number:focus {

@@ -23,7 +23,7 @@
 			<?php for ($i = 1; $i < 7; $i++) { ?>
 
 				<div id="image<?= $i ?>" class="image-box fa-center">
-					<h1 class="number txt-3rem txt-wht txt-black mar-b-05"><?= $i ?>.</h1>
+					<p class="number txt-3rem fw-bold"><?= $i ?>.</p>
 					<img class="image push-center block" src="<?= client_path($i . '.png') ?>">
 				</div>
 
@@ -58,7 +58,10 @@
 
 			</div>
 
-			<?= submit(true) ?>
+			<div class="grid-flow" data-spacing="400">
+				<?= submit(true) ?>
+				<?= renderRedoButton() ?>
+			</div>
 
 		</div>
 	</div>
