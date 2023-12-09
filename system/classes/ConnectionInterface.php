@@ -14,8 +14,8 @@ class ConnectionInterface {
 	use DynamicProperties;
 	use Singleton;
 
-	private const LOCAL_DATA_PREFIX = 'local';
-	private const LIVE_DATA_PREFIX = 'live';
+	private const DEVELOPEMENT_DATA_PREFIX = 'local';
+	private const PRODUCTION_DATA_PREFIX = 'live';
 
 	private static $connection;
 	private static $hostname;
@@ -34,9 +34,9 @@ class ConnectionInterface {
 		$liveServerAddress = $config->serverAddress;
 
 		if ($currentServerAddress == $liveServerAddress) {
-			$dataPrefix = self::LIVE_DATA_PREFIX;
+			$dataPrefix = self::PRODUCTION_DATA_PREFIX;
 		} else {
-			$dataPrefix = self::LOCAL_DATA_PREFIX;
+			$dataPrefix = self::DEVELOPEMENT_DATA_PREFIX;
 		}
 
 		self::$hostname = $config->{$dataPrefix . 'DatabaseHostname'};
