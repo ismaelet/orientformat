@@ -43,21 +43,12 @@
 	cursor: pointer;
 	transition: background 0.3s;
 }
+
 .area_arrow:hover {
+	background-color: var(--_color);
 	--_fill: #fff;
 }
-.area:nth-child(1) .area_arrow:hover {
-	background-color: hsl(25, 100%, 60%);
-}
-.area:nth-child(2) .area_arrow:hover {
-	background-color: hsl(185, 100%, 40%);
-}
-.area:nth-child(3) .area_arrow:hover {
-	background-color: hsl(70, 100%, 35%);
-}
-.area:nth-child(4) .area_arrow:hover {
-	background-color: hsl(290, 100%, 35%);
-}
+
 .area_arrow svg {
 	width: 50%;
 }
@@ -78,9 +69,26 @@
 .section {
 	padding: 2rem;
 }
-.js-section-waiting .graph {
-	min-height: 30rem;
+
+.graph-item__icon {
+	background-color: var(--_color);
 }
+
+.js-section-waiting .graph {
+	min-height: 20rem;
+}
+
+.grah-item__body {
+	overflow: auto;
+}
+
+.graph-item__canvas-wrapper {
+	min-width: 500px;
+}
+.graph-item__canvas {
+	max-height: 30rem !important;
+}
+
 .dashboard-panel {
 	padding-bottom: 0;
 }

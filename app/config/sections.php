@@ -9,22 +9,28 @@ $sectionsConfig = [
 	// Stili cognitivi
 	1 => [
 		'type' => 'parameters',
+		'condensedType' => 'max',
 		'recap-name-grade' => 'Stile prevalente nella classe',
 		'recap-name-student' => 'Stile prevalente',
-		'desc' => "Qui puoi controllare i risultati delle autovalutazioni relative agli stili cognitivi. Per ogni stile è indicata la media della classe.<br>Puoi passare il mouse sopra alle singole colonne per visualizzare i valori esatti.",
-		'grade-average-name' => 'Stile predominante nella classe',
-		'platform-average-name' => 'Stile predominante nei partecipanti',
+	],
+	28 => [
+		'type' => 'parameters',
+		'condensedType' => 'max',
+		'recap-name-grade' => 'Stile prevalente nella classe',
+		'recap-name-student' => 'Stile prevalente',
 	],
 	36 => [
-
 		'type' => 'parameters',
+		'condensedType' => 'max',
 		'recap-name-grade' => 'Stile prevalente nella classe',
 		'recap-name-student' => 'Stile prevalente',
-		'desc' => "Qui puoi controllare i risultati delle autovalutazioni relative agli stili cognitivi. Per ogni stile è indicata la media della classe.<br>Puoi passare il mouse sopra alle singole colonne per visualizzare i valori esatti.",
-		'grade-average-name' => 'Stile predominante nella classe',
-		'platform-average-name' => 'Stile predominante nei partecipanti',
 	],
-
+	37 => [
+		'type' => 'parameters',
+		'condensedType' => 'max',
+		'recap-name-grade' => 'Stile prevalente nella classe',
+		'recap-name-student' => 'Stile prevalente',
+	],
 
 	// Resilienza
 	3 => [
@@ -34,28 +40,25 @@ $sectionsConfig = [
 		'desc' => "Qui puoi controllare i risultati delle autovalutazioni relative alla resilienza.<br>Compariranno solo gli studenti che hanno completato l'autovalutazione.",
 		'average' => true,
 	],
-	29 => [
-		'type' => 'parameters',
-		'recap-name-grade' => 'Livello medio di autostima',
-		'recap-name-student' => 'Livello medio di autostima',
-		'desc' => "Qui puoi controllare i risultati delle autovalutazioni relative all'autostima. Per ogni aspetto dell'autostima è indicata la media della classe.<br>Puoi passare il mouse sopra alle singole colonne per visualizzare i valori esatti.",
-		'average' => true,
-	],
 
 	// Autostima
 	4 => [
 		'type' => 'parameters',
+		'condensedType' => 'average',
 		'recap-name-grade' => 'Livello medio di autostima',
 		'recap-name-student' => 'Livello medio di autostima',
-		'desc' => "Qui puoi controllare i risultati delle autovalutazioni relative all'autostima. Per ogni aspetto dell'autostima è indicata la media della classe.<br>Puoi passare il mouse sopra alle singole colonne per visualizzare i valori esatti.",
-		'average' => true,
+	],
+	29 => [
+		'type' => 'parameters',
+		'condensedType' => 'average',
+		'recap-name-grade' => 'Livello medio di autostima',
+		'recap-name-student' => 'Livello medio di autostima',
 	],
 	41 => [
 		'type' => 'parameters',
+		'condensedType' => 'average',
 		'recap-name-grade' => 'Livello medio di autostima',
 		'recap-name-student' => 'Livello medio di autostima',
-		'desc' => "Qui puoi controllare i risultati delle autovalutazioni relative all'autostima. Per ogni aspetto dell'autostima è indicata la media della classe.<br>Puoi passare il mouse sopra alle singole colonne per visualizzare i valori esatti.",
-		'average' => true,
 	],
 
 	// Risolvere i problemi
@@ -95,20 +98,23 @@ $sectionsConfig = [
 	// Stile attributivo
 	6 => [
 		'type' => 'parameters',
+		'condensedType' => 'max',
 		'recap-name-grade' => 'Principalmente attribuiscono successi e fallimenti a',
 		'recap-name-student' => 'Principalmente attribuisce successi e fallimenti a',
-		'desc' => "Qui puoi controllare i risultati delle autovalutazioni relative allo stile attributivo. Per ogni stile è indicato quanto mediamente è predominante nella classe.<br>Puoi passare il mouse sopra alle singole colonne per visualizzare i valori esatti.",
-		'max' => 'dynamic',
 	],
+
+	// Motivazione
 	7 => [
 		'type' => 'parameters',
+		'condensedType' => 'max',
 		'recap-name-grade' => 'Area di interesse prevalente',
 		'recap-name-student' => 'Area di interesse prevalente',
-		'desc' => "Qui puoi controllare i risultati delle autovalutazioni relative alla motivazione e alle aree di interesse. Per ogni area principale è indicata la media della classe.<br>Puoi passare il mouse sopra alle singole colonne per visualizzare i valori esatti.",
-		'grade-average-name' => 'Area di interesse prevalente nella classe',
-		'platform-average-name' => 'Area di interesse prevalente nei partecipanti',
-		'max' => 'dynamic',
 	],
+
+
+
+
+
 	8 => [
 		'type' => 'parameters',
 		'recap-name-grade' => 'Temperamento più pronunciato',
@@ -245,11 +251,13 @@ $sectionsConfig = [
 	// I miei interessi
 	24 => [
 		'type' => 'parameters',
+		'condensedType' => 'max',
 		'recap-name-grade' => 'Interesse prevalente',
 		'recap-name-student' => 'Interesse prevalente',
 	],
 	45 => [
 		'type' => 'parameters',
+		'condensedType' => 'max',
 		'recap-name-grade' => 'Interesse prevalente',
 		'recap-name-student' => 'Interesse prevalente',
 	],
@@ -300,5 +308,13 @@ $sectionsConfig = [
 	47 => [
 		'recap-name-grade' => 'Risultato medio delle attività',
 		'recap-name-student' => 'Risultato medio delle attività',
+	],
+
+	// Stili cognitivi
+	27 => [
+		'type' => 'parameters',
+		'condensedType' => 'max',
+		'recap-name-grade' => 'Emozione prevalente nella classe',
+		'recap-name-student' => 'Emozione/i prevalente/i',
 	],
 ];

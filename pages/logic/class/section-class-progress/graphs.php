@@ -1,8 +1,27 @@
 <?php
 
+use Activity\Section;
+
 $areas = [];
 
 // redirect('/maintenance');
+$availableGrades = [];
+
+if (schoolClass()->isMiddleSchool) {
+	for ($i = 1; $i <= schoolClass()->currentGrade; $i++) {
+		$availableGrades[] = $i;
+	}
+} else if (!schoolClass()->isProfessional) {
+	for ($i = 4; $i <= schoolClass()->currentGrade; $i++) {
+		$availableGrades[] = $i;
+	}
+} else {
+	for ($i = 4; $i <= schoolClass()->currentGrade; $i++) {
+		if ($i < 6 || $i > 8) {
+			$availableGrades[] = $i;
+		}
+	}
+}
 
 // content
 foreach (schoolClass()->doableAreas as $doableArea) {
@@ -10,9 +29,36 @@ foreach (schoolClass()->doableAreas as $doableArea) {
 	$area['id'] = $doableArea->id;
 	$area['sections'] = [];
 
-	foreach ($doableArea->getDoableSections(schoolClass()->fullGrade) as $section) {
-		if (in_array($section->id, [1, 4, 8, 27])) {
-			$area['sections'][] = $section;
+	$doableSections = [];
+
+	foreach ($availableGrades as $gradeId) {
+		$sectionRes = DB::select(Section::INDEX . ' FROM ' . Section::TABLE . ' WHERE ' . Section::AREA_INDEX . ' = ? AND FIND_IN_SET(?, grades) ORDER BY grades ASC', [$area['id'], $gradeId]);
+
+		if (!empty($sectionRes->res)) {
+			$doableSections = array_merge($doableSections, $sectionRes->res);
+		}
+	}
+
+
+	$doableSections = array_keys(array_column($doableSections, null, 'id'));
+	$doableSections = array_unique($doableSections);
+
+	foreach ($doableSections as $doableSectionId) {
+		if (in_array($doableSectionId, [
+			// stili
+			1, 28, 36, 37,
+			// autostima
+			4, 29, 41,
+			// stile atributivo
+			6,
+			// motivazione
+			7,
+			// interessi
+			24, 45,
+			// la ruota delle emozioni
+			27,
+		])) {
+			$area['sections'][] = new Section($doableSectionId);
 		}
 	}
 

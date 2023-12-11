@@ -8,6 +8,8 @@ class StyleLoader {
 
 	private function __construct() {
 		// add system styles
+		self::add(true, 'base');
+
 		$files = glob(server_path('/system/styles/*.css'));
 
 		foreach ($files as $file) {
@@ -27,6 +29,11 @@ class StyleLoader {
 		$file = false;
 
 		switch ($type) {
+			case 'base':
+				$file = '/public/assets/css/style.css';
+				$priority = 0;
+				break;
+
 			case 'system':
 				$file = '/system/styles/' . $content . '.css';
 				if (!$priority) $priority = 1;

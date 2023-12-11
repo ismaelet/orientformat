@@ -8,14 +8,21 @@ class SectionGraph {
 
 	public static function generate(int $sectionId, int $schoolClassId = null) {
 		$type = section_config($sectionId, 'type');
+		$condensedType = section_config($sectionId, 'condensedType');
 		$schoolClassResults = (new SchoolClassSectionResult($sectionId, $schoolClassId))->rawResult;
 		$schoolClassAverages = $schoolClassResults['values'];
+
+		// if ($sectionId == 7) {
+		// 	debug($schoolClassResults);
+		// }
 
 		$graphData = [
 			'labels' => [],
 			'data' => [],
+			'condensed' => array_keys($schoolClassAverages, max($schoolClassAverages))[0],
 		];
 
+		// Generate the results
 		foreach ($schoolClassAverages as $resultName => $resultValue) {
 
 			if ($type == 'tiers') {
@@ -26,6 +33,13 @@ class SectionGraph {
 
 			$graphData['labels'][] = $resultName;
 			$graphData['data'][] = $resultValue;
+		}
+
+		// Generate the condensed value
+		if ($condensedType == 'max') {
+			$graphData['condensed'] = array_keys($schoolClassAverages, max($schoolClassAverages))[0];
+		} else if ($condensedType == 'average') {
+			$graphData['condensed'] = percent(array_sum($graphData['data']), count($graphData['data']) * 100) . '%';
 		}
 
 		return $graphData;

@@ -244,10 +244,14 @@ main {
 * Body
 */
 .dashboard-panel {
-	padding: 2.5rem;
+	padding: 1.5rem;
 	background-color: #fff;
 	border-radius: var(--border-radius-700);
 	box-shadow: var(--shadow-big);
+
+	@media (min-width: 769px) {
+		padding: 2.5rem;
+	}
 }
 
 .dashboard-panel__title,
@@ -255,7 +259,7 @@ main {
 	padding-bottom: 2.5rem;
 	margin-bottom: 2rem;
 	font-weight: var(--fw-bold);
-	font-size: var(--fs-700);
+	font-size: min(var(--fs-700), 6vw);
 	border-bottom: var(--border);
 }
 

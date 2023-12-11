@@ -69,12 +69,22 @@ class SchoolClassSectionResult {
 			// otherwise and for class results or if the platform results are outdated, calculate the results
 			switch ($this->sectionId) {
 				case 1:
-					// stili cognitivi
+				case 28:
+				case 36:
+				case 37:
+					// stili
 				case 4:
+				case 29:
+				case 41:
 					// autostima
-				case 8:
-					// resilienza
+				case 6:
+					// stile attributivo
+				case 7:
+					// motivazione
+				case 24:
+					// interessi
 				case 27:
+				case 45:
 					// ruota delle emozioni
 					$result = self::calcNamedPercentages();
 					break;
@@ -140,7 +150,6 @@ class SchoolClassSectionResult {
 	/**
 	 * Section specfic methods
 	 */
-	// Section 1 - Stili cognitivi
 	private function calcNamedPercentages() {
 		$count = 0;
 		$results = ['values' => [], 'count' => 0];

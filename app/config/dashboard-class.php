@@ -16,16 +16,14 @@ $dashboardNavigation[] =
 		'url' => client_url('/class')
 	];
 
-if (schoolClass()->currentGrade < 1) {
-	$dashboardNavigation[] =
-		[
-			'title' => 'Classe',
-			'slug' => 'class-progress',
-			'links' => [
-				['title' => 'Progresso della classe', 'slug' => 'graphs'],
-			]
-		];
-}
+$dashboardNavigation[] =
+	[
+		'title' => 'Classe',
+		'slug' => 'class-progress',
+		'links' => [
+			['title' => 'Progresso della classe', 'slug' => 'graphs'],
+		]
+	];
 
 if (schoolClass()->isMiddleSchool) {
 	$dashboardNavigation[] =

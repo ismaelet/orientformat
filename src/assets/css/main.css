@@ -1,0 +1,7 @@
+@import 'custom.css';
+
+@layer framework-base, custom;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

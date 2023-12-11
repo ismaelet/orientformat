@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Import Composer dependencies
+ */
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+(Dotenv\Dotenv::createImmutable(__DIR__ . '/../../'))->load();
+
 require_once(__DIR__ . '/../classes/Setup.php');
 
 // Define the class and trait autoloader

@@ -299,6 +299,10 @@ class StudentTestResult {
 				$areaId = $question[1];
 				$results[$areaId - 1]['value'] += $rawResults[$key];
 			}
+
+			foreach ($results as &$area) {
+				$area['percentage'] = percent($area['value'], 16);
+			}
 		}
 
 		return $results;
@@ -374,7 +378,8 @@ class StudentTestResult {
 			foreach ($results as $style => $result) {
 				$formattedResults[] = [
 					'name' => $style,
-					'value' => $result
+					'value' => $result,
+					'percentage' => percent($result, 8),
 				];
 			}
 

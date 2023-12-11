@@ -1,0 +1,5 @@
+@layer base {
+	:root {
+		--color-surface-400-hsl: 0deg 0% 100%;
+	}
+}
