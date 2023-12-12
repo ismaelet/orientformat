@@ -3,6 +3,7 @@
 use Activity\Area;
 use Activity\Section;
 use SchoolSystem\Grade;
+use Student\Questionnaire;
 use UserSystem\Student;
 
 // DB::delete('results_sections_condensed');
@@ -14,6 +15,9 @@ $watchedStudent = new Student($watchedStudentId);
 if ($watchedStudent->schoolClassId != schoolClassId()) {
 	redirect('/class');
 }
+
+// reviews
+$reviews = DB::select('id, reviewId FROM review_results WHERE studentId = ?', [$watchedStudentId]);
 
 // fetch areas and sections
 $grades = [];

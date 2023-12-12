@@ -1,6 +1,7 @@
 <?php
 
 use Activity\Result\Handler\StudentSectionResult;
+use Review\Review;
 
 ?>
 
@@ -21,9 +22,45 @@ use Activity\Result\Handler\StudentSectionResult;
 				<h2 class="dashboard-panel__title--outer"><?= $grade['title'] ?></h2>
 				<div class="dashboard-panel grade">
 
-
 					<div class="areas">
+						<!-- Reviews -->
+						<div class="area">
+							<h3 class="area__title subsection-title">Questionari</h3>
+							<div class="sections" style="--count: 2;">
 
+								<?php
+								$key = 0;
+
+								while ($reviewRow = $reviews->fetch_assoc()) {
+									$review = new Review($reviewRow['reviewId']);
+									$key++;
+								?>
+
+									<a href="review?id=<?= $reviewRow['id'] ?>" class="section section-color section-color--area-reviews" style="--i: <?= $key + 1 ?>">
+										<div class="dashboard-panel-icon js-load load--fade-in" data-delay="2" data-direction="bottom">
+											<?= icon_embed(APP_ICONS_DIR . 'sections/review') ?>
+										</div>
+
+										<p class="dashboard-panel-title"><?= $review->title ?></p>
+
+										<p class="dashboard-panel_result">
+										</p>
+
+										<p>
+										</p>
+
+										<div class="dashboard-panel-footer">
+											<div>Vedi i risultati</div>
+										</div>
+
+									</a>
+
+								<?php } ?>
+
+							</div>
+						</div>
+
+						<!-- Regular areas -->
 						<?php foreach ($grade['areas'] as $areaI => $area) { ?>
 
 							<div class="area">

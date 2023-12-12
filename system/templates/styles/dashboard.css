@@ -355,3 +355,25 @@ main {
 	gap: 2rem;
 	text-align: center;
 }
+
+@media print {
+	.dashboard__navigation {
+		display: none !important;
+	}
+	main {
+		display: block !important;
+	}
+	.dashboard__body {
+		border-radius: unset !important;
+		padding: 0 !important;
+		padding-top: 5rem !important;
+	}
+
+	html {
+		font-size: 85%;
+	}
+
+	* {
+		box-shadow: unset !important;
+	}
+}

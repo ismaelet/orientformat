@@ -2,10 +2,10 @@
 
 namespace app\Models\Activities;
 
-use app\Models\Model;
+use app\Models\OldModel;
 use DB;
 
-class Section extends Model {
+class Section extends OldModel {
 	/**
 	 * Table data
 	 */

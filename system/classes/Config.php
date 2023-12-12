@@ -45,7 +45,7 @@ class Config {
 
 	function __get($property) {
 		$method = 'get' . ucfirst($property);
-		$property = camel_case_to_hyphens($property);
+		$property = camel_case_to_kebab_case($property);
 
 		if (array_key_exists($property, self::$values)) {
 			return self::$values[$property];

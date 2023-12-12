@@ -2,12 +2,12 @@
 
 namespace app\Models\Helpers;
 
-use app\Models\Model;
+use app\Models\OldModel;
 
 /**
  * @method string text()
  */
-class Notification extends Model {
+class Notification extends OldModel {
 	/**
 	 * Table data
 	 */

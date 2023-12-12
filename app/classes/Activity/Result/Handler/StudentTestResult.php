@@ -478,7 +478,6 @@ class StudentTestResult {
 	/*
 	* OLD
 	private function calcMotivazioneMappa() {
-		debug($this->rawResults);
 		// foreach ($studentResults as $key => $CondensedTestResult) {
 		// 	if (!isset($results['values'][$key])) $results['values'][$key] = 0;
 		// 	$results['values'][$key] += $CondensedTestResult;

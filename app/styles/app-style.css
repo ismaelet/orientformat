@@ -256,10 +256,7 @@ h3 {
 .button--filling {
 	border: var(--button--secondary-border-width) solid transparent;
 	overflow: hidden;
-	transition:
-		filter 0.2s,
-		color 0.2s,
-		border 0.2s;
+	transition: filter 0.2s, color 0.2s, border 0.2s;
 }
 
 .button--filling:disabled {
@@ -284,9 +281,7 @@ h3 {
 	width: calc(100% - var(--progress, 0));
 	margin-left: auto;
 	background-color: var(--clr-background);
-	transition:
-		width 0.3s,
-		opacity 0.2s;
+	transition: width 0.3s, opacity 0.2s;
 }
 
 /*
@@ -391,8 +386,8 @@ h3 {
 }
 
 .section-color--area-reviews {
-	--_h-start: 80;
-	--_h-range: 35;
+	--_h-start: 120;
+	--_h-range: 70;
 	--_s: 100%;
 	--_l: 45%;
 }

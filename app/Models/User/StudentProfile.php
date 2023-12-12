@@ -2,10 +2,10 @@
 
 namespace app\Models\User;
 
-use app\Models\Model;
+use app\Models\OldModel;
 use DB;
 
-class StudentProfile extends Model {
+class StudentProfile extends OldModel {
 	/**
 	 * Database Model constants
 	 */

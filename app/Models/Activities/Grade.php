@@ -3,11 +3,11 @@
 namespace app\Models\Activities;
 
 use app\Models\Activities\Results\TestResult;
-use app\Models\Model;
+use app\Models\OldModel;
 use DB;
 use User;
 
-class Grade extends Model {
+class Grade extends OldModel {
 	/**
 	 * Table name
 	 */

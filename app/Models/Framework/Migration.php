@@ -1,16 +1,18 @@
 <?php
 
-namespace app\Models\Framework;
+namespace App\Models\Framework;
 
-use app\Models\Model;
+use App\Models\Model;
 
 class Migration extends Model {
+
 	/**
-	 * Table name
+	 * @property string the name of the table associated to the model
 	 */
 	protected const TABLE = 'migrations';
 
-	public static function allMigrations() {
-		return self::list('migration') ?: [];
-	}
+	/**
+	 * @property array the list of settable properties as ['propertyName' => 'propertyType', ...]
+	 */
+	protected const SETTABLE = [];
 }

@@ -3,10 +3,10 @@
 namespace app\Models\Activities\Results;
 
 use app\Models\Activities\Test;
-use app\Models\Model;
+use app\Models\OldModel;
 use User;
 
-class TestResult extends Model {
+class TestResult extends OldModel {
 	/**
 	 * Table name
 	 */

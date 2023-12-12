@@ -123,7 +123,7 @@ if (isset($_POST['register'])) {
 				// generate the student
 				$userId = DB::add('users (username, password, firstName, lastName, email, birthdate)', [$username, $hashedPassword, $firstname, $lastname, $email, $birthdate]);
 
-				DB::add('students (userId, ' . Student::SCHOOL_CLASS_INDEX . ')', [$userId, $schoolClassId]);
+				DB::add('students (userId, id, ' . Student::SCHOOL_CLASS_INDEX . ')', [$userId, $userId, $schoolClassId]);
 			} else {
 				// generate the teacher
 				$userId = DB::add('users (username, password, firstName, lastName, email, ' . User::GROUP_INDEX . ')', [$username, $hashedPassword, $firstname, $lastname, $email, 1]);

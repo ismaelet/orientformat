@@ -3,10 +3,10 @@
 namespace app\Models\Activities\Results;
 
 use app\Models\Activities\Section;
-use app\Models\Model;
+use app\Models\OldModel;
 use User;
 
-class CondensedSectionResult extends Model {
+class CondensedSectionResult extends OldModel {
 	/**
 	 * Table name
 	 */

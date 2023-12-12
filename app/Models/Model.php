@@ -1,100 +1,137 @@
 <?php
 
-namespace app\Models;
+namespace App\Models;
 
 use DB;
 use Exception;
 
-abstract class Model extends DatabaseModel {
+abstract class Model extends Schema {
+
 	/**
-	 * Database
+	 * @property string the name of the table associated to the model
 	 */
-	// protected const SETTABLE = ['column' => ['type' => Type, 'link' => ModuleName::class],];
+	protected const TABLE = '';
+
+	/**
+	 * @property array the list of settable properties as ['propertyName' => 'propertyType', ...]
+	 */
 	protected const SETTABLE = [];
 
 	/**
-	 * Model paramenters
+	 * @property int the index value of the istance
 	 */
 	protected $id;
+
+	/**
+	 * @property array the list of the database columns
+	 */
+	protected $columns = [];
+
+	/**
+	 * @property array the list of the values fetched form the database, structured as ['column_name' => value, ...]
+	 */
 	protected $databaseData = [];
-	protected $dynamicData = [];
-	protected $preparedData = [];
 
 	/**
-	 * Initialize
+	 * @property array the list of the cached values
 	 */
-	function __construct(int $id) {
-		$this->id = $id;
-		$this->databaseData = DB::row('* FROM ' . static::TABLE . ' WHERE ' . self::indexName() . ' = ?', [$id]) ?: [];
+	protected $cache = [];
+
+	/**
+	 * Initialize the istance
+	 */
+	public function __construct(int $id) {
+		$this->initialize($id);
 	}
 
-	function __call($methodName, $arguments) {
-		if (strpos($methodName, 'set') === 0) {
-			return $this->set($methodName, $arguments);
-		} else if (array_key_exists($methodName, $this->databaseData)) {
-			return $this->databaseData[$methodName];
+	protected function initialize(int $id) {
+		$databaseData = DB::row('* FROM ' . static::table() . ' WHERE id = ?', [$id]);
+
+		if ($databaseData) {
+			$this->id = $id;
+			$this->databaseData = $databaseData;
+			$this->columns = array_keys($this->databaseData);
+		}
+	}
+
+	/**
+	 * Set magic method
+	 */
+	function __get(string $property) {
+		$property = !in_array($property, $this->columns) ? camel_case_to_snake_case($property) : $property;
+
+		if (!$this->id) {
+			return null;
+		} else if (isset($this->cache[$property])) {
+			return $this->cache[$property];
+		} else if (isset($this->databaseData[$property])) {
+			return $this->databaseData[$property];
 		}
 
-		throw new Exception("database property $methodName not set");
+		throw new Exception('Property ' . $property . ' not found in ' . self::class);
 	}
 
 	/**
-	 * Get methods
+	 * Set magic method
 	 */
-	public function id() {
-		return $this->id;
-	}
-
-	public static function newEmpty() {
-		return new static(0);
+	function __set(string $property, $value) {
+		$this->set([$property => $value]);
 	}
 
 	/**
-	 * Post methods
+	 * Push the edits to the database
+	 * 
+	 * @property array $properties a list of the properties to set as ['propertyName' => $value, ...]
+	 * @return object self
 	 */
-	public function prepare($property, $arguments) {
-		if (in_array($property, array_keys(static::SETTABLE))) {
-			switch (static::SETTABLE[$property]['type'] ?? null) {
-				case 'bool':
-					$value = $arguments ? 1 : 0;
-					break;
+	public function set(array $properties): self {
+		foreach ($properties as $property => $value) {
+			if (in_array($property, array_keys(static::SETTABLE))) {
+				$databaseProperty = !in_array($property, $this->columns) ? camel_case_to_snake_case($property) : $property;
 
-				default:
-					$value = $arguments;
+				// type check
+				switch (static::SETTABLE[$property]) {
+					case 'string':
+						if (!is_string($value)) {
+							throw new Exception('Trying to set ' . $property . ' to a non-string value in ' . static::class);
+						}
+						break;
+				}
+
+				// set the value
+				$this->cache[$databaseProperty] = $value;
+				$this->databaseData[$databaseProperty] = $value;
+			} else {
+				throw new Exception('Property ' . $property . ' of ' . static::class . ' is not settable');
 			}
-		} else {
-			throw new Exception("Property $property can't be set in " . static::class);
 		}
-
-		$this->preparedData[$property] = $value;
 
 		return $this;
 	}
 
-	public function up() {
-		return static::add($this->preparedData);
-	}
+	/**
+	 * Push the edits to the database
+	 * 
+	 * @return object self
+	 */
+	public function save(): self {
+		$parameters = array_filter($this->cache, function ($propertyName) {
+			return in_array($propertyName, $this->columns);
+		}, ARRAY_FILTER_USE_KEY);
 
-	public function post() {
-		// columns
-		$columnQuery = array_map(function ($column) {
-			return $column . ' = ?';
-		}, array_keys($this->preparedData));
+		$fields = self::sqlSetFields($parameters);
 
-		$columnQuery = implode(',', $columnQuery);
+		array_push($parameters, $this->id);
 
-		// values
-		$values = array_values($this->preparedData);
-		array_push($values, $this->id);
+		DB::update($this->table() . ' SET ' . $fields . ' WHERE id = ?', array_values($parameters));
 
-		// execute
-		DB::update(static::TABLE . ' SET ' . $columnQuery . ' WHERE ' . self::indexName() . ' = ?', $values);
+		return $this;
 	}
 
 	/**
-	 * Delete method
+	 * Delete
 	 */
-	public function delete() {
-		DB::delete(static::table() . ' WHERE ' . static::indexName() . ' = ?', [$this->id]);
+	public function delete(): void {
+		DB::delete($this->table() . ' WHERE id = ?', [$this->id]);
 	}
 }

@@ -54,7 +54,6 @@ TestLogic::setParameterCount($count)
 			if (!$box['autofilled']) {
 				$i++;
 				$value = $_POST['field'][$i - 1];
-				debug('value: ' . $value . ' - key: ' . $key);
 
 				if ($value == $key || (isset($box['alternatives']) && in_array($value, $box['alternatives']))) {
 					$rightN++;

@@ -62,6 +62,13 @@ document.addEventListener('DOMContentLoaded', function () {
 									legend: {
 										display: false,
 									},
+									tooltip: {
+										callbacks: {
+											label: function (context) {
+												return context.dataset.label + ': ' + context.parsed.y + '%'
+											},
+										},
+									},
 								},
 								scales: {
 									x: {

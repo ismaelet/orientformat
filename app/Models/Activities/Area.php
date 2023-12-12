@@ -2,9 +2,9 @@
 
 namespace app\Models\Activities;
 
-use app\Models\Model;
+use app\Models\OldModel;
 
-class Area extends Model {
+class Area extends OldModel {
 	/**
 	 * Table name
 	 */

@@ -33,12 +33,6 @@ function public_client_path(string $file = '') {
 	return $url;
 }
 
-function server_path(string $file = '') {
-	$url = SERVER_ROOT . generate_base_url($file);
-
-	return $url;
-}
-
 function public_server_path(string $file = '') {
 	if (defined('PUBLIC_SERVER_ROOT')) {
 		$url = PUBLIC_SERVER_ROOT . generate_base_url($file);
@@ -169,17 +163,6 @@ function parse_html($url, $full = true) {
 function parse_server_path($url) {
 	if (strpos($url, CLIENT_ROOT) !== false) $url = SERVER_ROOT . explode(CLIENT_ROOT, $url)[1];
 	return $url;
-}
-
-// get all files in a folder
-function scan(string $path, string $ext = '*', string $filter = '*') {
-	$files = [];
-
-	if (strpos($path, SERVER_ROOT) === false) $path = SERVER_ROOT . $path;
-
-	foreach (glob($path . '/' . $filter . '.' . $ext) as $file) $files[] = $file;
-
-	return $files;
 }
 
 // get all files in the subfolders of a folder

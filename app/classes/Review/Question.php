@@ -3,10 +3,14 @@
 namespace Review;
 
 use \DB;
+use DynamicProperties;
 
 class Question {
+
+	use DynamicProperties;
+
 	private $areaId;
-	private $data;
+	private $dbdata;
 
 	public $id;
 	public $text;
@@ -19,38 +23,27 @@ class Question {
 	function __construct($id) {
 		if ($data = DB::row('* FROM review_questions WHERE id=?', [$id])) {
 			$this->id = $id;
-			$this->data = $data;
-			$this->areaId = $this->data['areaId'];
-			$this->slug = $this->data['slug'];
-			$this->text = $this->data['text'];
-			$this->type = $this->data['type'];
-			$this->multiple = $this->data['multiple'];
-			$this->optional = $this->data['optional'];
-			$this->grouppedBy = $this->data['grouppedBy'];
+			$this->dbdata = $data;
+			$this->areaId = $this->dbdata['areaId'];
+			$this->slug = $this->dbdata['slug'];
+			$this->text = $this->dbdata['text'];
+			$this->type = $this->dbdata['type'];
+			$this->multiple = $this->dbdata['multiple'];
+			$this->optional = $this->dbdata['optional'];
+			$this->grouppedBy = $this->dbdata['grouppedBy'];
 		}
 	}
 
-	function __get($name) {
-		switch ($name) {
-			case 'fullSlug':
-				return $this->fullSlug = 's' . $this->areaId . 'd' . $this->slug;
+	private function getFullSlug() {
+		return 's' . $this->areaId . 'd' . $this->slug;
+	}
 
-				// structure
-			case 'gridHeader':
-				return $this->gridHeader = $this->getGridHeader();
-			case 'rows':
-				return $this->rows = $this->getRows();
-			case 'hasLegend':
-				return $this->hasLegend = (bool) $this->data['rows'];
-
-				// answers
-			case 'answers':
-				return $this->answers = $this->getAnswers();
-		}
+	private function getHasLegend() {
+		return (bool) $this->dbdata['rows'];
 	}
 
 	private function getGridHeader() {
-		$header = explode(',', $this->data['gridHeader']);
+		$header = explode(',', $this->dbdata['gridHeader']);
 
 		return $header;
 	}
@@ -61,7 +54,7 @@ class Question {
 		switch ($this->type) {
 			case 'list':
 				// list
-				$rowTitles = explode(',', $this->data['rows']);
+				$rowTitles = explode(',', $this->dbdata['rows']);
 
 				foreach ($rowTitles as $rowKey => $rowTitle) {
 					$row = [];
@@ -75,9 +68,9 @@ class Question {
 				break;
 
 			case 'grid':
-				if ($this->data['rows']) {
+				if ($this->dbdata['rows']) {
 					// multiple rows with legend
-					$rowTitles = explode(',', $this->data['rows']);
+					$rowTitles = explode(',', $this->dbdata['rows']);
 
 					foreach ($rowTitles as $rowKey => $rowTitle) {
 						$row = [];
