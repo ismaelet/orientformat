@@ -46,7 +46,7 @@ class ReviewQuestion extends Model {
 			foreach ($answerValues as $answerKey => $answer) {
 				if ($this->type == 'grid') {
 					if (!empty($choices[$answerKey - 1])) {
-						$results[$choices[$answerKey - 1]] = $this->answers() ? $this->answers()[$answer - 1] : $answer;
+						$results[$choices[$answerKey - 1]] = $this->answers() && isset($this->answers()[$answer - 1]) ? $this->answers()[$answer - 1] : $answer;
 					}
 				} else {
 					$results[$choices[$answerKey - 1]] = $this->answers() ? $this->answers()[$answer - 1] : $answer;

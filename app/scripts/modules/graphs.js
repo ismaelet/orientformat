@@ -25,15 +25,16 @@ document.addEventListener('DOMContentLoaded', function () {
 		let borderColors = []
 		if (section.classList.contains('js-section-waiting')) {
 			axios
-				.post('/api/call-class-method/Activity\\Result\\Graphs\\SectionGraph', {
+				.post('../../api/call-class-method/Activity\\Result\\Graphs\\SectionGraph', {
 					scope: 'generate',
 					arguments: [sectionId, schoolClassId],
 				})
 				.then(function (response) {
 					console.log(response.data)
-					const resultCount = response.data.labels.length
 
-					if (resultCount) {
+					if (response.data.labels && response.data.labels.length) {
+						const resultCount = response.data.labels.length
+
 						for (let index = 0; index < resultCount; index++) {
 							colors.push(`lch(${colorL} ${colorS} ${colorBaseH + colorIncrement * (index - resultCount / 2)} / .7`)
 							borderColors.push(`lch(${colorL} ${colorS} ${colorBaseH + colorIncrement * (index - resultCount / 2)}`)

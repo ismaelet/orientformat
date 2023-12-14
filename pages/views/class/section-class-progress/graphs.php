@@ -86,7 +86,7 @@ use SchoolSystem\Grade;
 											<div class="graph-item__canvas-wrapper">
 												<canvas class="js-canvas graph-item__canvas"></canvas>
 											</div>
-											<p class="hidden text-lg text-center js-empty-warning">Ancora nessuno studente ha completato l'attività</p>
+											<p class="hidden text-lg text-center js-empty-warning pb-20">L'attività non è stata ancora completata</p>
 										</div>
 
 										<!-- Footer -->

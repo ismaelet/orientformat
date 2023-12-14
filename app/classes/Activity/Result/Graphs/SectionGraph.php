@@ -16,32 +16,36 @@ class SectionGraph {
 		// 	debug($schoolClassResults);
 		// }
 
-		$graphData = [
-			'labels' => [],
-			'data' => [],
-			'condensed' => array_keys($schoolClassAverages, max($schoolClassAverages))[0],
-		];
+		if (!empty($schoolClassAverages)) {
+			$graphData = [
+				'labels' => [],
+				'data' => [],
+				'condensed' => array_keys($schoolClassAverages, max($schoolClassAverages))[0],
+			];
 
-		// Generate the results
-		foreach ($schoolClassAverages as $resultName => $resultValue) {
+			// Generate the results
+			foreach ($schoolClassAverages as $resultName => $resultValue) {
 
-			if ($type == 'tiers') {
-				$resultValue = round($resultValue / array_sum($schoolClassAverages) * 100);
-			} else {
-				$resultValue = $schoolClassAverages[$resultName];
+				if ($type == 'tiers') {
+					$resultValue = round($resultValue / array_sum($schoolClassAverages) * 100);
+				} else {
+					$resultValue = $schoolClassAverages[$resultName];
+				}
+
+				$graphData['labels'][] = $resultName;
+				$graphData['data'][] = $resultValue;
 			}
 
-			$graphData['labels'][] = $resultName;
-			$graphData['data'][] = $resultValue;
+			// Generate the condensed value
+			if ($condensedType == 'max') {
+				$graphData['condensed'] = array_keys($schoolClassAverages, max($schoolClassAverages))[0];
+			} else if ($condensedType == 'average') {
+				$graphData['condensed'] = percent(array_sum($graphData['data']), count($graphData['data']) * 100) . '%';
+			}
+
+			return $graphData;
 		}
 
-		// Generate the condensed value
-		if ($condensedType == 'max') {
-			$graphData['condensed'] = array_keys($schoolClassAverages, max($schoolClassAverages))[0];
-		} else if ($condensedType == 'average') {
-			$graphData['condensed'] = percent(array_sum($graphData['data']), count($graphData['data']) * 100) . '%';
-		}
-
-		return $graphData;
+		return false;
 	}
 }
