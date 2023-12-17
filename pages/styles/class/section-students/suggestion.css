@@ -55,13 +55,14 @@
 /*
 * Responsive
 */
-@media (max-width: 1024px) {
+@media (max-width: 1924px) {
 	.page-content {
 		grid-template-columns: minmax(0, 1fr);
+		align-items: center;
 	}
 
 	.dashboard-panel {
-		padding-block: 10vw;
+		padding-block: 5rem;
 		min-height: unset;
 	}
 }

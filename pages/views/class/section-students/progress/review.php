@@ -5,6 +5,10 @@
 	<div class="page__header">
 		<h1 class="section-title"><?= $reviewResult->review()->title ?></h1>
 		<p class="section-subtitle">Qui puoi trovare le principali risposte che lo studente/studentessa ha segnato nel questionario</p>
+
+		<div class="center-content">
+			<a href="<?= client_url('/class/students/progress/focus?studentId=' . $student->id) ?>" class="button button--secondary">Indietro</a>
+		</div>
 	</div>
 
 	<div class="results grid ">

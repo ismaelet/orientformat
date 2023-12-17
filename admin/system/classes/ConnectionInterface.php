@@ -14,14 +14,15 @@ class ConnectionInterface {
 	use DynamicProperties;
 	use Singleton;
 
-	private const LOCAL_DATA_PREFIX = 'local';
-	private const LIVE_DATA_PREFIX = 'live';
+	private const DEVELOPEMENT_DATA_PREFIX = 'local';
+	private const PRODUCTION_DATA_PREFIX = 'live';
 
 	private static $connection;
 	private static $hostname;
 	private static $database;
 	private static $username;
 	private static $password;
+	private static $envirnoment;
 	public static $timeOpen;
 	public static $queryCount = 0;
 
@@ -34,9 +35,11 @@ class ConnectionInterface {
 		$liveServerAddress = $config->serverAddress;
 
 		if ($currentServerAddress == $liveServerAddress) {
-			$dataPrefix = self::LIVE_DATA_PREFIX;
+			$dataPrefix = self::PRODUCTION_DATA_PREFIX;
+			self::$envirnoment = 'production';
 		} else {
-			$dataPrefix = self::LOCAL_DATA_PREFIX;
+			$dataPrefix = self::DEVELOPEMENT_DATA_PREFIX;
+			self::$envirnoment = 'developement';
 		}
 
 		self::$hostname = $config->{$dataPrefix . 'DatabaseHostname'};
@@ -84,27 +87,27 @@ class ConnectionInterface {
 	 * Singleton methods
 	 */
 	public function close() {
-		/*$userId = userId();
+		// $userId = userId();
 
-		self::$connection->close();
+		// self::$connection->close();
 
-		$intervalOpen = round(microtime(true) - self::$timeOpen, 3) * 1000;
+		// $intervalOpen = round(microtime(true) - self::$timeOpen, 3) * 1000;
 
-		$prefix = '';
+		// $prefix = '';
 
-		if ($intervalOpen > 1000) {
-			$prefix = '!!! ';
-		} else if ($intervalOpen > 100) {
-			// $prefix = '!! ';
-		}
+		// if ($intervalOpen > 1000) {
+		// 	$prefix = '!!! ';
+		// } else if ($intervalOpen > 100) {
+		// 	// $prefix = '!! ';
+		// }
 
-		$message = $prefix . date('Y-m-d H:i:s') . ' Richiesta di ' . $intervalOpen . 'ms effettuata in ' . $_SERVER['REQUEST_URI'] . ($userId ? ' dall\'utente ' . $userId : null) . PHP_EOL;
+		// $message = $prefix . date('Y-m-d H:i:s') . ' Richiesta di ' . $intervalOpen . 'ms effettuata in ' . $_SERVER['REQUEST_URI'] . ($userId ? ' dall\'utente ' . $userId : null) . PHP_EOL;
 
-		if (DEBUG) {
-			echo $message . '<br>';
-			echo 'Numero di queries: ' . self::$queryCount;
-		}
+		// if (self::$envirnoment == 'developement' || studentId() && studentId() == 4719) {
+		// 	echo $message . '<br>';
+		// 	echo 'Numero di queries: ' . self::$queryCount;
+		// }
 
-		file_put_contents(server_path('/logs/connection.log'), $message, FILE_APPEND);*/
+		// // file_put_contents(server_path('/logs/connection.log'), $message, FILE_APPEND);
 	}
 }

@@ -14,12 +14,12 @@
 			<h2 class="dashboard-panel_title">Attribuisci i consigli orientativi</h2>
 		</a>
 
-		<a class="dashboard-panel" href="<?= client_url('/class/students/suggestion/compare') ?>">
+		<!-- <a class="dashboard-panel" href="<?= client_url('/class/students/suggestion/compare') ?>">
 			<div class="dashboard-panel_icon icon-box">
 				<?= icon_embed('section2') ?>
 			</div>
 			<h2 class="dashboard-panel_title">Compara i consigli orientativi</h2>
-		</a>
+		</a> -->
 	</div>
 </div>
 
