@@ -1,7 +1,7 @@
 {
-    "require": {
-        "dompdf/dompdf": "^2.0",
-        "phpmailer/phpmailer": "^6.8",
-        "vlucas/phpdotenv": "^5.6"
-    }
+	"require": {
+		"dompdf/dompdf": "*",
+		"phpmailer/phpmailer": "*",
+		"vlucas/phpdotenv": "*"
+	}
 }

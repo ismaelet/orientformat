@@ -1,6 +1,6 @@
-/node_modules
-/vendor
-/_misc
-/uploads
-/logs
+node_modules/
+vendor/
+uploads/
+logs/
 error.log
+composer.lock
