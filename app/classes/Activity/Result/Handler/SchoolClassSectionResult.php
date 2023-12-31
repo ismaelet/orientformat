@@ -21,6 +21,7 @@ class SchoolClassSectionResult {
 	private $schoolClassId;
 	private $filterBy;
 	private $range;
+	private static $singleTestSections = [11 => 27];
 
 	/**
 	 * Magic methods
@@ -39,13 +40,14 @@ class SchoolClassSectionResult {
 		switch ($this->sectionId) {
 			case 1:
 				// stili cognitivi
-			case 8:
-				// resilienza
-				return self::calcMaxNameValue();
 
 			case 4:
 				// autostima
 				return self::calcAveragePercentage();
+
+			case 8:
+				// resilienza
+				return self::calcMaxNameValue();
 		}
 	}
 
@@ -88,6 +90,10 @@ class SchoolClassSectionResult {
 					// ruota delle emozioni
 					$result = self::calcNamedPercentages();
 					break;
+
+				case 11:
+					// Ascoltare
+					$result = self::calcTierResult();
 			}
 
 			// store platform results
@@ -175,6 +181,33 @@ class SchoolClassSectionResult {
 
 			foreach ($results['values'] as &$value) {
 				$value = round($value / $count);
+			}
+		}
+
+		return $results;
+	}
+
+	private function calcTierResult() {
+		$count = 0;
+		$results = [];
+		$rawResults = [['Basso', 0], ['Medio', 0], ['Alto', 0], ['Molto alto', 0]];
+
+		foreach (self::getStudentIds() as $studentId) {
+			$result = (new StudentSectionResult($this->sectionId, $studentId))->result;
+
+			if ($result) {
+				$count++;
+				$result = explode('%', $result)[0];
+				$tier = floor($result / 20);
+				$rawResults[$tier - 1][1]++;
+			}
+		}
+
+		if ($count) {
+			$results['count'] = $count;
+
+			foreach ($rawResults as $rawResult) {
+				$results['values'][$rawResult[0]] = percent($rawResult[1], $count);
 			}
 		}
 

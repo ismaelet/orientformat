@@ -45,18 +45,20 @@ foreach (schoolClass()->doableAreas as $doableArea) {
 
 	foreach ($doableSections as $doableSectionId) {
 		if (in_array($doableSectionId, [
-			// stili
+			// Stili cognitivi
 			1, 28, 36, 37,
-			// autostima
+			// Autostima
 			4, 29, 41,
-			// stile atributivo
+			// Stile atributivo
 			6,
-			// motivazione
+			// Motivazione
 			7,
-			// interessi
+			// Interessi
 			24, 45,
-			// la ruota delle emozioni
+			// La ruota delle emozioni
 			27,
+			// Ascoltare
+			11,
 		])) {
 			$area['sections'][] = new Section($doableSectionId);
 		}

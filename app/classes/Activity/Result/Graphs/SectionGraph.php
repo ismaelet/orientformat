@@ -12,10 +12,6 @@ class SectionGraph {
 		$schoolClassResults = (new SchoolClassSectionResult($sectionId, $schoolClassId))->rawResult;
 		$schoolClassAverages = $schoolClassResults['values'];
 
-		// if ($sectionId == 7) {
-		// 	debug($schoolClassResults);
-		// }
-
 		if (!empty($schoolClassAverages)) {
 			$graphData = [
 				'labels' => [],
