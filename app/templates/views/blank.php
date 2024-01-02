@@ -37,9 +37,8 @@
 		</div>
 
 	<?php } ?>
-</body>
 
-<!-- Foot scripts -->
-<?= ScriptLoader::getInstance()->loadFootInline() ?>
+	<script defer src="https://cdn.jsdelivr.net/npm/leader-line-new@1.1.9/leader-line.min.js"></script>
+</body>
 
 </html>

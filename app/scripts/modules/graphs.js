@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		let colors = []
 		let borderColors = []
+
 		if (section.classList.contains('js-section-waiting')) {
 			axios
 				.post('../../api/call-class-method/Activity\\Result\\Graphs\\SectionGraph', {

@@ -11,9 +11,6 @@ use SchoolSystem\Grade;
 	<p class="section-subtitle">Qui sono illustrati i risultati medi della classe. Puoi usare le frecce a lato del nome di ogni area per vedere tutti i risultati.</p>
 </div>
 
-
-<p class="maintenance-warning my-8">Questa pagina sta venendo aggiornata e compariranno progressivamente più risultati fino alla fine del 2023.</p>
-
 <?php /*
 	<!-- Title -->
 	<!-- <div class="title-box mar-t-1">

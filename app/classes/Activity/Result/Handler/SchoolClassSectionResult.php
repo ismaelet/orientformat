@@ -21,7 +21,6 @@ class SchoolClassSectionResult {
 	private $schoolClassId;
 	private $filterBy;
 	private $range;
-	private static $singleTestSections = [11 => 27];
 
 	/**
 	 * Magic methods
@@ -74,25 +73,50 @@ class SchoolClassSectionResult {
 				case 28:
 				case 36:
 				case 37:
-					// stili
+					// Profilo - Stili cognitivi
 				case 4:
 				case 29:
 				case 41:
-					// autostima
+					// Profilo - Autostima
 				case 6:
-					// stile attributivo
+					// Profilo - Stile attributivo
 				case 7:
-					// motivazione
-				case 24:
-					// interessi
-				case 27:
+					// Profilo - Motivazione
+				case 8:
+					// Profilo - Temperamento
+				case 17:
+					// Saperi - Creatività
 				case 45:
-					// ruota delle emozioni
+					// Scegliere - Interessi
+				case 24:
+				case 27:
+					// Profilo - La Ruota delle emozioni
 					$result = self::calcNamedPercentages();
 					break;
 
+				case 3:
+					// Profilo - Resilienza
+				case 5:
+				case 30:
+					// Profilo - Risolvere i problemi
+				case 9:
+				case 31:
+					// Competenze - Stare attenti
+				case 10:
+				case 32:
+					// Competenze - Ricordare
 				case 11:
-					// Ascoltare
+				case 33:
+					// Competenze - Ascoltare
+				case 12:
+					// Competenze - Parlare
+				case 14:
+				case 34:
+					// Competenze - Scrivere
+				case 39:
+					// Competenze - Leggere
+				case 40:
+					// Competenze - Imparare
 					$result = self::calcTierResult();
 			}
 
@@ -198,8 +222,8 @@ class SchoolClassSectionResult {
 			if ($result) {
 				$count++;
 				$result = explode('%', $result)[0];
-				$tier = floor($result / 20);
-				$rawResults[$tier - 1][1]++;
+				$tier = floor(min($result, 99) / 25);
+				$rawResults[$tier][1]++;
 			}
 		}
 

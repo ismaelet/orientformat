@@ -39,26 +39,46 @@ foreach (schoolClass()->doableAreas as $doableArea) {
 		}
 	}
 
-
 	$doableSections = array_keys(array_column($doableSections, null, 'id'));
 	$doableSections = array_unique($doableSections);
+	$doableSections = array_reverse($doableSections);
 
 	foreach ($doableSections as $doableSectionId) {
 		if (in_array($doableSectionId, [
-			// Stili cognitivi
+			// Profilo - Stili cognitivi
 			1, 28, 36, 37,
-			// Autostima
+			// Profilo - Resilienza
+			3,
+			// Profilo - Autostima
 			4, 29, 41,
-			// Stile atributivo
+			// Profilo - Risolvere i problemi
+			5, 30,
+			// Profilo - Stile atributivo
 			6,
-			// Motivazione
+			// Profilo - Motivazione
 			7,
-			// Interessi
-			24, 45,
-			// La ruota delle emozioni
+			// Profilo - Temperamento
+			8,
+			// Profilo - La ruota delle emozioni
 			27,
-			// Ascoltare
-			11,
+			// Competenze - Stare Attenti
+			9, 31,
+			// Competenze - Ricordare
+			10, 32,
+			// Competenze - Ascoltare
+			11,	33,
+			// Competenze - Parlare
+			12,
+			// Competenze - Scrivere
+			14, 34,
+			// Competenze - Leggere
+			39,
+			// Competenze - Imparare
+			40,
+			// Saperi - Creatività
+			17,
+			// Scegliere - Interessi
+			24, 45,
 		])) {
 			$area['sections'][] = new Section($doableSectionId);
 		}

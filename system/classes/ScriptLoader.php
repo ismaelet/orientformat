@@ -9,35 +9,6 @@ class ScriptLoader {
 	private static $footInlineScripts = [];
 
 	private function __construct() {
-		// node packages
-		if (file_exists($configFile = server_path('/package.json'))) {
-			$config = file_get_contents($configFile);
-			$config = json_decode($config, true);
-
-			// setup the packages
-			foreach ($config['dependencies'] as $packageName => $_looping) {
-				$packageDirectory = '/node_modules/' . strtolower($packageName) . '/dist';
-				$packageFile = $packageName . '.min.js';
-				$packagePath = $packageDirectory . '/' . $packageFile;
-
-				if (!file_exists(server_path($packagePath)) && file_exists(server_path($packageDirectory))) {
-					$packageFiles = glob(server_path($packageDirectory . '/*.min.js'));
-
-					if (!empty($packageFiles)) {
-						$packagePath = explode(server_root(), ($packageFiles)[0])[1] ?? null;
-					}
-				}
-
-				if (!$packagePath || !file_exists(server_path($packagePath))) {
-					$packagePath = '/node_modules/' . $packageName . '/' . $packageFile;
-				}
-
-				if (file_exists(server_path($packagePath))) {
-					self::add($packagePath, 'static', 1);
-				}
-			}
-		}
-
 		// add system scripts
 		$files = glob(server_path('/system/scripts/*.js'));
 
