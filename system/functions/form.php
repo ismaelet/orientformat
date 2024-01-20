@@ -195,7 +195,7 @@ function generate_input($input, $data, $error, $done) {
 				}
 			?>
 
-				<select class="sel <?= isset($input['affect']) ? 'affect' : '' ?>" <?= isset($input['affect']) ? 'data-affect="' . $input['affect'] . '"' : '' ?> name="<?= $name ?>">
+				<select class="sel <?= isset($input['affect']) ? 'affect' : '' ?>" <?= isset($input['affect']) ? 'data-affect="' . $input['affect'] . '"' : '' ?> name="<?= $name ?>" <?= !empty($input['disabled']) ? 'disabled' : '' ?>>
 
 					<?php if (isset($input['empty'])) { ?>
 
@@ -241,6 +241,23 @@ function generate_input($input, $data, $error, $done) {
 					<input type="checkbox" name="<?= $name ?>" value="<?= $value ?>" <?= !empty($input['checked']) || ($name && isset($_POST[$name])) || ($name && isset($data[$name]) && $data[$name] == $value) ? 'checked' : '' ?> <?= isset($input['required']) ? 'required' : '' ?>>
 
 					<div class="icon"></div>
+
+					<p><?= $input['text'] ?></p>
+
+				</label>
+
+			<?php break;
+
+			case 'radio': ?>
+
+				<label class="checkbox
+					<?= $input['custom-class'] ?? '' ?>
+					<?= isset($input['size']) ? 'inp-size' . $input['size'] : '' ?>
+				">
+
+					<input type="radio" name="<?= $name ?>" value="<?= $value ?>" <?= !empty($input['checked']) || ($name && isset($_POST[$name])) || ($name && isset($data[$name]) && $data[$name] == $value) ? 'checked' : '' ?> <?= isset($input['required']) ? 'required' : '' ?>>
+
+					<span></span>
 
 					<p><?= $input['text'] ?></p>
 

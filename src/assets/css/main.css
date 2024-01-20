@@ -1,6 +1,7 @@
+@import 'base.css';
 @import 'custom.css';
 
-@layer framework-base, custom;
+@layer reset, base, layout, components, utilities;
 
 @tailwind base;
 @tailwind components;

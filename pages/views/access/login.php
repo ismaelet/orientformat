@@ -57,7 +57,7 @@
 		<!-- Register form -->
 		<form class="form form--register" method="POST" action="?register&login-type=<?= $loginType ?>" autocomplete="off">
 			<div class="form__header">
-				<h2 class="form__title">Registrazione <?= $loginType == $studentType ? 'studente' : 'insegnate' ?></h2>
+				<h2 class="form__title">Registrazione <?= $loginType == $studentType ? 'studente' : 'insegnante' ?></h2>
 			</div>
 
 			<div class="form__body">

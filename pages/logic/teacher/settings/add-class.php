@@ -25,18 +25,19 @@ for ($i = 2020; $i <= $currentYear + 1; $i++) {
 }
 
 // generate the inputs
-$formInputs = [
-	$pageType == 'new-middleschool' ? [
+$formInputs = [];
+
+if ($pageType == 'new-middleschool') {
+	$formInputs[] = [
 		['type' => 'lbl', 'text' => 'La classe è al'],
 		['type' => 'select', 'name' => 'grade', 'array' => [[1, 'Primo anno'], [2, 'Secondo anno'], [3, 'Terzo anno']]],
-	] : [
-		['type' => 'lbl', 'text' => 'La classe è al'],
-		['type' => 'select', 'name' => 'grade', 'array' => [[4, 'Istituti Tecnici, Professionali e Licei - Primo anno'], [5, 'Istituti Tecnici, Professionali e Licei - Secondo anno'], [6, 'Istituti Tecnici, Professionali e Licei - Terzo anno'], [7, 'Istituti Tecnici, Professionali e Licei - Quarto anno'], [8, 'Istituti Tecnici, Professionali e Licei - Quinto anno'], ['4-P', 'Istruzione e Formazione Professionale - Primo anno'], ['5-P', 'Istruzione e Formazione Professionale - Secondo anno'], ['6-P', 'Istruzione e Formazione Professionale - Terzo anno'], ['7-P', 'Istruzione e Formazione Professionale - Quarto anno']]],
-		['type' => 'error', 'error' => 'empty-grade', 'text' => 'Devi scegliere l\'anno scolastico']
-	],
+	];
+}
+
+$formInputs[] =
 	$pageType == 'new-middleschool' ? [
 		['type' => 'lbl', 'text' => 'Lettera identificativa della della classe'],
-		['type' => 'info', 'text' => 'Lettera che identifica la classe, ad es. se la calsse è una 3B la lettera è "B", se è una 2A è "A", ecc.'],
+		['type' => 'info', 'text' => 'Lettera che identifica la classe, ad es. se la classe è una 3B la lettera è "B", se è una 2A è "A", ecc.'],
 		['name' => 'letter', 'text' => 'Lettera identificativa', 'custom-class' => 'txt-upp', 'maxlength' => 1, 'required' => true],
 		['type' => 'error', 'error' => 'empty-name', 'text' => 'Devi scegliere il nome della classe'],
 		['type' => 'error', 'error' => 'duplicate', 'text' => 'Esiste già una classe con questo nome associata a questo istituto']
@@ -46,24 +47,43 @@ $formInputs = [
 		['name' => 'letter', 'text' => 'Nome della classe', 'custom-class' => 'txt-upp', 'required' => true],
 		['type' => 'error', 'error' => 'empty-name', 'text' => 'Devi scegliere il nome della classe'],
 		['type' => 'error', 'error' => 'duplicate', 'text' => 'Esiste già una classe con questo nome associata a questo istituto']
-	],
-	[
-		['type' => 'lbl', 'text' => 'Istituto'],
-		$pageType == 'new-middleschool' ? [
-			'type' => 'select',
-			'name' => 'schoolId',
-			'query' => '* FROM schools WHERE status = 1 ORDER BY name ASC',
-			'field-name' => 'id',
-			'field-show' => 'name',
-			'value' => $defaultSchoolId
-		] : [
-			'type' => 'select',
-			'name' => 'schoolId',
-			'query' => '* FROM schools WHERE status = 1 AND id IN (40,67,14,48) ORDER BY name ASC',
-			'field-name' => 'id',
-			'field-show' => 'name',
-			'value' => $defaultSchoolId
-		],
+	];
+
+if ($pageType == 'new-highschool') {
+	$formInputs[] = [
+		['type' => 'lbl', 'text' => 'La classe è iscritta in un'],
+		['type' => 'radio', 'name' => 'school_class_type', 'value' => 'L', 'text' => 'Istituto Tecnico, Professionale o Liceo', 'size' => 2, 'checked' => true],
+		['type' => 'radio', 'name' => 'school_class_type', 'value' => 'P', 'text' => 'Istituto di Istruzione e Formazione Professionale', 'size' => 2],
+	];
+
+	$formInputs[] = [
+		['type' => 'lbl', 'text' => 'Anno di corso'],
+		['type' => 'info', 'text' => 'L\'anno di corso della classe, calcolato automaticamente in base al nome fornito.'],
+		['type' => 'hidden', 'name' => 'grade',],
+		['type' => 'select', 'name' => 'visible_grade', 'disabled' => true, 'array' => [[1, 'Primo anno'], [2, 'Secondo anno'], [3, 'Terzo anno'], [4, 'Quarto anno'], [5, 'Quinto anno']]],
+		['type' => 'error', 'error' => 'empty-name', 'text' => 'Devi scegliere il nome della classe'],
+		['type' => 'error', 'error' => 'empty-grade', 'text' => 'Devi scegliere l\'anno scolastico']
+	];
+}
+
+array_push(
+	$formInputs,
+
+	['type' => 'lbl', 'text' => 'Istituto'],
+	$pageType == 'new-middleschool' ? [
+		'type' => 'select',
+		'name' => 'schoolId',
+		'query' => '* FROM schools WHERE status = 1 ORDER BY name ASC',
+		'field-name' => 'id',
+		'field-show' => 'name',
+		'value' => $defaultSchoolId
+	] : [
+		'type' => 'select',
+		'name' => 'schoolId',
+		'query' => '* FROM schools WHERE status = 1 AND id IN (40,67,14,48) ORDER BY name ASC',
+		'field-name' => 'id',
+		'field-show' => 'name',
+		'value' => $defaultSchoolId
 	],
 	[
 		['type' => 'lbl', 'text' => 'Anno scolastico'],
@@ -73,19 +93,8 @@ $formInputs = [
 			'array' => $startingYears,
 			'value' => $currentYear
 		],
-	],
-
-	// ['type' => 'lbl', 'text' => 'Tipo di percorso'],
-	// [
-	// 	'type' => 'select',
-	// 	'name' => 'pathId',
-	// 	'query' => '* FROM paths ORDER BY id ASC',
-	// 	'field-name' => 'id',
-	// 	'field-show' => 'name',
-	// 	'value' => 2
-	// ],
-	// ['type' => 'info', 'text' => 'Vuoi sapere quale percorso scegliere? <a class="fc-primary fw-bold" href="' . client_url('/teacher/paths?return=add') . '">Clicca qui</a><br>Potrai cambiare il tipo di percorso in qualsiasi momento nelle impostazioni della classe.'],
-];
+	]
+);
 
 /*
 * New class

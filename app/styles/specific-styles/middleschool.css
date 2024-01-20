@@ -1,4 +1,7 @@
 :root {
+	--color-primary-400-hsl: 41deg 88% 64%;
+	--color-secondary-400-hsl: 343deg 48% 53%;
+
 	/* clr-primary-400: #f4c152; */
 	/* clr-secondary-200: #dea1b2 */
 	/* clr-secondary-300: #ce738d; */

@@ -269,11 +269,18 @@ for ($i = schoolClass()->currentGrade; $i >= schoolClass()->minimumGrade; $i--) 
 						['Vedi i risultati', 101, $urlTemplate],
 					];
 					break;
+
+					// La Ruota delle Emozioni
 				case 27:
 					$actions[$section->id] = [
-						['Vedi i risultati', 116, $urlTemplate],
+						['Vedi i risultati della ruota', 116, $urlTemplate],
+						['Vedi i risultati di "Dipingere Emozioni"', 205, $urlTemplate],
 					];
 					break;
+
+
+
+
 				case 28:
 					$actions[$section->id] = [
 						['Mappa degli stili', 109, $urlTemplate],

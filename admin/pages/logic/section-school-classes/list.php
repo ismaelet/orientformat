@@ -23,7 +23,7 @@ ON school_classes.schoolId = schools.id
 INNER JOIN users
 ON school_classes.referentId = users.id';
 
-$queryConfig['where-search'] = "school_classes.id = ? OR CONCAT(grade, letter) = ? OR schools.name = ? OR firstName LIKE CONCAT('%',?,'%') OR lastName LIKE CONCAT('%',?,'%') OR CONCAT(firstName, ' ', lastName) LIKE CONCAT('%',?,'%') OR CONCAT(lastName, ' ', firstName) LIKE CONCAT('%',?,'%')";
+$queryConfig['where-search'] = "school_classes.id = ? OR CONCAT(grade, letter) = ? OR schools.name LIKE CONCAT('%',?,'%') OR firstName LIKE CONCAT('%',?,'%') OR lastName LIKE CONCAT('%',?,'%') OR CONCAT(firstName, ' ', lastName) LIKE CONCAT('%',?,'%') OR CONCAT(lastName, ' ', firstName) LIKE CONCAT('%',?,'%')";
 
 // select fields
 $fields = [

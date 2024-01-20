@@ -67,4 +67,41 @@
 		break;
 } ?>
 
+<?php if ($pageType == 'new-highschool') { ?>
+
+	<script defer>
+		document.addEventListener('DOMContentLoaded', function() {
+			const schoolClassSelector = '[name="school_class_type"]';
+			const schoolClassNameInput = document.querySelector('[name="letter"]');
+			const gradeInput = document.querySelector('[name="grade"]');
+			const visibleGradeInput = document.querySelector('[name="visible_grade"]');
+
+			schoolClassNameInput.addEventListener('keyup', function() {
+				select_grade();
+			})
+
+			document.querySelectorAll(schoolClassSelector).forEach((element) => {
+				element.addEventListener('input', function() {
+					select_grade();
+				})
+			})
+
+			function select_grade() {
+				const isProfessional = document.querySelector(`${schoolClassSelector}:checked`).value == 'P';
+				const validGrades = isProfessional ? [1, 2, 3, 4] : [1, 2, 3, 4, 5];
+
+				let relativeGrade = parseInt(schoolClassNameInput.value.replace(/[a-zA-Z]/g, ''));
+
+				relativeGrade = validGrades.includes(relativeGrade) ? relativeGrade : 1;
+
+				const fullGradeName = isProfessional ? `${relativeGrade + 3}-P` : relativeGrade + 3;
+
+				gradeInput.value = fullGradeName;
+				visibleGradeInput.value = relativeGrade;
+			}
+		})
+	</script>
+
+<?php } ?>
+
 {% end form-footer %}
