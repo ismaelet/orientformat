@@ -540,6 +540,7 @@ html.smooth-scrolling {
 
 body:has(.modal.open),
 body.fixed {
+	position: relative;
 	padding-right: 16px;
 	overflow: hidden;
 }

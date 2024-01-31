@@ -1,46 +1,22 @@
-/**
+/*
 * Header
 */
-.title {
-	@media (max-width: 480px) {
-		font-size: 10vw;
-	}
-}
-
-.subtitle {
-	@media (max-width: 480px) {
-		font-size: 5vw;
-	}
-}
 
 .slider__header {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
 	gap: min(3rem, 5vw);
 	align-items: center;
-
-	@media (min-width: 1681px) {
-		grid-template-columns: 29rem minmax(0, 1fr);
-	}
 }
 
 .slider__title-block {
 	gap: 2rem;
 	padding-top: 2rem;
-
-	@media (min-width: 1681px) {
-		gap: 3rem;
-		padding-block: 3rem;
-	}
 }
 
 .recap-panel {
 	grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
 	min-height: 100%;
-
-	@media (min-width: 1681px) {
-		grid-template-columns: repeat(auto-fill, minmax(min(13rem, 100%), 1fr));
-	}
 }
 
 .recap-item {
@@ -54,26 +30,22 @@
 	box-shadow: var(--shadow-big);
 	color: #fff;
 	font-family: var(--ff-titles);
+}
 
-	.icon-embed {
-		margin: unset;
-	}
+.recap-item .icon-embed {
+	margin: unset;
+}
 
-	&:nth-child(1) {
-		background-color: var(--clr-primary-400);
-	}
+.recap-item:nth-child(1) {
+	background-color: var(--clr-primary-400);
+}
 
-	&:nth-child(2) {
-		background-color: var(--clr-transition-400);
-	}
+.recap-item:nth-child(2) {
+	background-color: var(--clr-transition-400);
+}
 
-	&:nth-child(3) {
-		background-color: var(--clr-secondary-400);
-	}
-
-	@media (max-width: 480px) {
-		padding: 4rem 1.5rem 1.5rem 1.5rem;
-	}
+.recap-item:nth-child(3) {
+	background-color: var(--clr-secondary-400);
 }
 
 .recap-item__label {
@@ -88,11 +60,35 @@
 	font-weight: var(--fw-bold);
 }
 
-/**
-* Lists
-*/
-.lists {
-	@media (min-width: 1681px) {
+@media (min-width: 1681px) {
+	.slider__header {
+		grid-template-columns: 29rem minmax(0, 1fr);
+	}
+
+	.slider__title-block {
+		gap: 3rem;
+		padding-block: 3rem;
+	}
+
+	.recap-panel {
+		grid-template-columns: repeat(auto-fill, minmax(min(13rem, 100%), 1fr));
+	}
+
+	.lists {
 		grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+	}
+}
+
+@media (max-width: 480px) {
+	.title {
+		font-size: 10vw;
+	}
+
+	.subtitle {
+		font-size: 5vw;
+	}
+
+	.recap-item {
+		padding: 4rem 1.5rem 1.5rem 1.5rem;
 	}
 }

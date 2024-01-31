@@ -145,10 +145,10 @@
 	border-bottom-left-radius: inherit;
 	border-bottom-right-radius: inherit;
 	padding: var(--_spacing) 2rem;
+}
 
-	.area-wrapper:nth-child(2n) & {
-		border: var(--border);
-	}
+.section__body .area-wrapper:nth-child(2n) & {
+	border: var(--border);
 }
 
 .section__content {

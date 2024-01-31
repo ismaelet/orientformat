@@ -36,70 +36,62 @@
 	transition: opacity 0.4s;
 	opacity: 1;
 	pointer-events: all;
-
-	&.js-load .bgr {
-		opacity: 0;
-		translate: -2rem 0;
-	}
-
-	&:nth-child(1) {
-		--canv: calc(var(--base-canv) * 0.4 / 2);
-		--size: calc(var(--base-size) * 0.4);
-
-		.bgr {
-			transition-delay: 0.1s;
-		}
-	}
-
-	&:nth-child(2) {
-		--canv: calc(var(--base-canv) * 0.56 / 2);
-		--size: calc(var(--base-size) * 0.56);
-
-		.bgr {
-			transition-delay: 0.2s;
-		}
-	}
-
-	&:nth-child(3) {
-		--canv: calc(var(--base-canv) * 0.75 / 2);
-		--size: calc(var(--base-size) * 0.75);
-
-		.bgr {
-			transition-delay: 0.3s;
-		}
-	}
-
-	&:nth-child(4) {
-		--canv: calc(var(--base-canv) / 2);
-		--size: var(--base-size);
-
-		.bgr {
-			transition-delay: 0.4s;
-		}
-	}
 }
 
-.circles:has(.circle:hover) {
-	& .circle {
-		opacity: 0.2;
-		transition-delay: 0s;
-	}
-
-	& .result__title-box {
-		opacity: 0.2;
-	}
+.circle.js-load .bgr {
+	opacity: 0;
+	translate: -2rem 0;
 }
 
-.group:has(.circle:hover) {
-	& .circle {
-		opacity: 1;
-		transition-delay: 0s;
-	}
+.circle:nth-child(1) {
+	--canv: calc(var(--base-canv) * 0.4 / 2);
+	--size: calc(var(--base-size) * 0.4);
+}
+.circle:nth-child(1) .bgr {
+	transition-delay: 0.1s;
+}
 
-	& .result__title-box {
-		opacity: 1;
-		color: var(--clr-primary-400);
-	}
+.circle:nth-child(2) {
+	--canv: calc(var(--base-canv) * 0.56 / 2);
+	--size: calc(var(--base-size) * 0.56);
+}
+.circle:nth-child(2) .bgr {
+	transition-delay: 0.2s;
+}
+
+.circle:nth-child(3) {
+	--canv: calc(var(--base-canv) * 0.75 / 2);
+	--size: calc(var(--base-size) * 0.75);
+}
+.circle:nth-child(3) .bgr {
+	transition-delay: 0.3s;
+}
+
+.circle:nth-child(4) {
+	--canv: calc(var(--base-canv) / 2);
+	--size: var(--base-size);
+}
+.circle:nth-child(4) {
+	transition-delay: 0.4s;
+}
+
+.circles:has(.circle:hover) .circle {
+	opacity: 0.2;
+	transition-delay: 0s;
+}
+
+.circles:has(.circle:hover) .result__title-box {
+	opacity: 0.2;
+}
+
+.group:has(.circle:hover) .circle {
+	opacity: 1;
+	transition-delay: 0s;
+}
+
+.group:has(.circle:hover) .result__title-box {
+	opacity: 1;
+	color: var(--clr-primary-400);
 }
 
 .circle .bgr {
@@ -110,14 +102,14 @@
 
 .circle.checked .bgr {
 	background-color: var(--clr-primary-400);
+}
 
-	[data-style='highschool'] & {
-		background-color: var(--clr-secondary-400);
-	}
+[data-style='highschool'] .circle.checked .bgr {
+	background-color: var(--clr-secondary-400);
+}
 
-	[data-test-id='113'] & {
-		background-color: rgb(41, 209, 139);
-	}
+[data-test-id='113'] .circle.checked .bgr {
+	background-color: rgb(41, 209, 139);
 }
 
 /* Borders */
@@ -165,118 +157,148 @@
 	transition: opacity 0.5s, color 0.5s;
 }
 
-.result__title-box {
-	&[data-group='Visivo'],
-	&[data-group='Semplicità'],
-	&[data-group='Riflessivo'] {
-		top: 0;
-		left: 50%;
-		translate: -50% -100%;
-		text-align: center;
+.result__title-box[data-group='Visivo'],
+.result__title-box[data-group='Semplicità'],
+.result__title-box[data-group='Riflessivo'] {
+	top: 0;
+	left: 50%;
+	translate: -50% -100%;
+	text-align: center;
+}
 
-		.result__title.js-load,
-		.stitle.js-load {
-			translate: 0 2rem;
-		}
-	}
+.result__title-box[data-group='Visivo'] .result__title.js-load,
+.result__title-box[data-group='Semplicità'] .result__title.js-load,
+.result__title-box[data-group='Riflessivo'] .result__title.js-load,
+.result__title-box[data-group='Visivo'] .stitle.js-load,
+.result__title-box[data-group='Semplicità'] .stitle.js-load,
+.result__title-box[data-group='Riflessivo'] .stitle.js-load {
+	translate: 0 2rem;
+}
 
-	&[data-group='Globale'],
-	&[data-group='Giocoso'],
-	&[data-group='Livellatore'] {
-		top: 16%;
-		left: 87%;
-		translate: 0 -50%;
-		text-align: left;
+.result__title-box[data-group='Globale'],
+.result__title-box[data-group='Giocoso'],
+.result__title-box[data-group='Livellatore'] {
+	top: 16%;
+	left: 87%;
+	translate: 0 -50%;
+	text-align: left;
+}
 
-		.result__title.js-load,
-		.stitle.js-load {
-			translate: -2rem 0;
-		}
-	}
+.result__title-box[data-group='Globale'] .result__title.js-load,
+.result__title-box[data-group='Giocoso'] .result__title.js-load,
+.result__title-box[data-group='Livellatore'] .result__title.js-load,
+.result__title-box[data-group='Globale'] .stitle.js-load,
+.result__title-box[data-group='Giocoso'] .stitle.js-load,
+.result__title-box[data-group='Livellatore'] .stitle.js-load {
+	translate: -2rem 0;
+}
 
-	&[data-group='Collaborativo'],
-	&[data-group='Divergente'],
-	&[data-group='Impulsivo'] {
-		top: 50%;
-		left: 100%;
-		translate: 0 -50%;
-		text-align: left;
+.result__title-box[data-group='Collaborativo'],
+.result__title-box[data-group='Divergente'],
+.result__title-box[data-group='Impulsivo'] {
+	top: 50%;
+	left: 100%;
+	translate: 0 -50%;
+	text-align: left;
+}
 
-		.result__title.js-load,
-		.stitle.js-load {
-			translate: -2rem 0;
-		}
-	}
+.result__title-box[data-group='Collaborativo'] .result__title.js-load,
+.result__title-box[data-group='Divergente'] .result__title.js-load,
+.result__title-box[data-group='Impulsivo'] .result__title.js-load,
+.result__title-box[data-group='Collaborativo'] .stitle.js-load,
+.result__title-box[data-group='Divergente'] .stitle.js-load,
+.result__title-box[data-group='Impulsivo'] .stitle.js-load {
+	translate: -2rem 0;
+}
 
-	&[data-group='Sistematico'],
-	&[data-group='Esplorativo'],
-	&[data-group='Correttore'] {
-		top: 84%;
-		left: 87%;
-		translate: 0 -50%;
-		text-align: left;
+.result__title-box[data-group='Sistematico'],
+.result__title-box[data-group='Esplorativo'],
+.result__title-box[data-group='Correttore'] {
+	top: 84%;
+	left: 87%;
+	translate: 0 -50%;
+	text-align: left;
+}
 
-		.result__title.js-load,
-		.stitle.js-load {
-			translate: -2rem 0;
-		}
-	}
+.result__title-box[data-group='Sistematico'] .result__title.js-load,
+.result__title-box[data-group='Esplorativo'] .result__title.js-load,
+.result__title-box[data-group='Correttore'] .result__title.js-load,
+.result__title-box[data-group='Sistematico'] .stitle.js-load,
+.result__title-box[data-group='Esplorativo'] .stitle.js-load,
+.result__title-box[data-group='Correttore'] .stitle.js-load {
+	translate: -2rem 0;
+}
 
-	&[data-group='Uditivo'],
-	&[data-group='Complessità'],
-	&[data-group='Pragmatico'] {
-		top: 100%;
-		left: 50%;
-		translate: -50% 0;
-		text-align: center;
+.result__title-box[data-group='Uditivo'],
+.result__title-box[data-group='Complessità'],
+.result__title-box[data-group='Pragmatico'] {
+	top: 100%;
+	left: 50%;
+	translate: -50% 0;
+	text-align: center;
+}
 
-		.result__title.js-load,
-		.stitle.js-load {
-			translate: 0 -2rem;
-		}
-	}
+.result__title-box[data-group='Uditivo'] .result__title.js-load,
+.result__title-box[data-group='Complessità'] .result__title.js-load,
+.result__title-box[data-group='Pragmatico'] .result__title.js-load,
+.result__title-box[data-group='Uditivo'] .stitle.js-load,
+.result__title-box[data-group='Complessità'] .stitle.js-load,
+.result__title-box[data-group='Pragmatico'] .stitle.js-load {
+	translate: 0 -2rem;
+}
 
-	&[data-group='Analitico'],
-	&[data-group='Finalistico'],
-	&[data-group='Acutizzatore'] {
-		top: 84%;
-		left: 13%;
-		translate: -100% -50%;
-		text-align: right;
+.result__title-box[data-group='Analitico'],
+.result__title-box[data-group='Finalistico'],
+.result__title-box[data-group='Acutizzatore'] {
+	top: 84%;
+	left: 13%;
+	translate: -100% -50%;
+	text-align: right;
+}
 
-		.result__title.js-load,
-		.stitle.js-load {
-			translate: 2rem 0;
-		}
-	}
+.result__title-box[data-group='Analitico'] .result__title.js-load,
+.result__title-box[data-group='Finalistico'] .result__title.js-load,
+.result__title-box[data-group='Acutizzatore'] .result__title.js-load,
+.result__title-box[data-group='Analitico'] .stitle.js-load,
+.result__title-box[data-group='Finalistico'] .stitle.js-load,
+.result__title-box[data-group='Acutizzatore'] .stitle.js-load {
+	translate: 2rem 0;
+}
 
-	&[data-group='Autonomo'],
-	&[data-group='Convergente'],
-	&[data-group='Metodico'] {
-		top: 50%;
-		left: 0;
-		translate: -100% -50%;
-		text-align: right;
+.result__title-box[data-group='Autonomo'],
+.result__title-box[data-group='Convergente'],
+.result__title-box[data-group='Metodico'] {
+	top: 50%;
+	left: 0;
+	translate: -100% -50%;
+	text-align: right;
+}
 
-		.result__title.js-load,
-		.stitle.js-load {
-			translate: 2rem 0;
-		}
-	}
+.result__title-box[data-group='Autonomo'] .result__title.js-load,
+.result__title-box[data-group='Convergente'] .result__title.js-load,
+.result__title-box[data-group='Metodico'] .result__title.js-load,
+.result__title-box[data-group='Autonomo'] .stitle.js-load,
+.result__title-box[data-group='Convergente'] .stitle.js-load,
+.result__title-box[data-group='Metodico'] .stitle.js-load {
+	translate: 2rem 0;
+}
 
-	&[data-group='Intuitivo'],
-	&[data-group='Evitante'],
-	&[data-group='Pianificatore'] {
-		top: 16%;
-		left: 13%;
-		translate: -100% -50%;
-		text-align: right;
+.result__title-box[data-group='Intuitivo'],
+.result__title-box[data-group='Evitante'],
+.result__title-box[data-group='Pianificatore'] {
+	top: 16%;
+	left: 13%;
+	translate: -100% -50%;
+	text-align: right;
+}
 
-		.result__title.js-load,
-		.stitle.js-load {
-			translate: 2rem 0;
-		}
-	}
+.result__title-box[data-group='Intuitivo'] .result__title.js-load,
+.result__title-box[data-group='Evitante'] .result__title.js-load,
+.result__title-box[data-group='Pianificatore'] .result__title.js-load,
+.result__title-box[data-group='Intuitivo'] .stitle.js-load,
+.result__title-box[data-group='Evitante'] .stitle.js-load,
+.result__title-box[data-group='Pianificatore'] .stitle.js-load {
+	translate: 2rem 0;
 }
 
 .result__title {

@@ -45,7 +45,7 @@
 						<?php foreach ($h_links as $h_link) {
 							if (!isset($h_link['mobile']) || !$h_link['mobile']) { ?>
 
-								<div class="h-link">
+								<div class="h-link relative">
 									<p class="h-link-txt <?php if (View::getInstance()->location == $h_link['loc']) echo 'active'; ?>">
 										<a href="<?= $h_link['url']; ?>">
 											<?= $h_link['title'];
@@ -59,7 +59,7 @@
 
 											<?php foreach ($h_drop[$h_link['drop']] as $h_drop_link) { ?>
 
-												<p class="h-drop-link bgr-wht-h txt-wht txt-blk-h"><a href="<?= $h_drop_link[1]; ?>"><?= $h_drop_link[0]; ?></a></p>
+												<p class="h-drop-link bgr-wht-h txt-wht txt-blk-h"><a href="<?= client_url($h_drop_link[1]) ?>"><?= $h_drop_link[0]; ?></a></p>
 											<?php } ?>
 
 										</div>
@@ -180,7 +180,7 @@
 												<?php foreach ($h_drop[$h_link['drop']] as $h_drop_link) { ?>
 
 													<p class="h-dropM-link txt-wht-h bgr-c3-h">
-														<a href="<?= $h_drop_link[1]; ?>">
+														<a href="<?= client_url($h_drop_link[1]) ?>">
 															<?= $h_drop_link[0]; ?>
 														</a>
 													</p>

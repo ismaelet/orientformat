@@ -159,166 +159,154 @@
 	opacity: 0.5;
 }
 
-[data-test='emozioni'] {
-	& .test-res {
-		background: linear-gradient(to bottom, #3095bb, #0f4458);
-		transition-delay: 0s;
-	}
-
-	& .test-data {
-		transition-delay: 0s;
-	}
-
-	& .test-line {
-		border-color: #2b87ab;
-	}
-
-	& .test-dot {
-		background-color: #2b87ab;
-	}
-
-	& .test-title {
-		color: #2b87ab;
-	}
-
-	& .score {
-		color: #2b87ab;
-	}
+[data-test='emozioni'] .test-res {
+	background: linear-gradient(to bottom, #3095bb, #0f4458);
+	transition-delay: 0s;
 }
 
-[data-test='corpo'] {
-	& .test-res {
-		background: linear-gradient(to bottom, #7fbe55, #2e4f19);
-		transition-delay: 0.2s;
-	}
-
-	& .test-data {
-		transition-delay: 0.2s;
-	}
-
-	& .test-line {
-		border-color: #5a8b39;
-	}
-
-	& .test-dot {
-		background-color: #5a8b39;
-	}
-
-	& .test-title {
-		color: #5a8b39;
-	}
-
-	& .score {
-		color: #5a8b39;
-	}
+[data-test='emozioni'] .test-data {
+	transition-delay: 0s;
 }
 
-[data-test='problemi'] {
-	& .test-res {
-		background: linear-gradient(to bottom, #59599e, #31316a);
-		transition-delay: 0.4s;
-	}
-
-	& .test-data {
-		transition-delay: 0.4s;
-	}
-
-	& .test-line {
-		border-color: #6e6ebb;
-	}
-
-	& .test-dot {
-		background-color: #6e6ebb;
-	}
-
-	& .test-title {
-		color: #6e6ebb;
-	}
-
-	& .score {
-		color: #6e6ebb;
-	}
+[data-test='emozioni'] .test-line {
+	border-color: #2b87ab;
 }
 
-[data-test='orientamento'] {
-	& .test-res {
-		background: linear-gradient(to bottom, #ff7470, #9c2925);
-		transition-delay: 0.6s;
-	}
-
-	& .test-data {
-		transition-delay: 0.6s;
-	}
-
-	& .test-line {
-		border-color: #d2524e;
-	}
-
-	& .test-dot {
-		background-color: #d2524e;
-	}
-
-	& .test-title {
-		color: #d2524e;
-	}
-
-	& .score {
-		color: #d2524e;
-	}
+[data-test='emozioni'] .test-dot {
+	background-color: #2b87ab;
 }
 
-[data-test='scuola'] {
-	& .test-res {
-		background: linear-gradient(to bottom, #fff563, #be8c21);
-		transition-delay: 0.6s;
-	}
-
-	& .test-data {
-		transition-delay: 0.6s;
-	}
-
-	& .test-line {
-		border-color: #e6cd4a;
-	}
-
-	& .test-dot {
-		background-color: #e6cd4a;
-	}
-
-	& .test-title {
-		color: #e6cd4a;
-	}
-
-	& .score {
-		color: #e6cd4a;
-	}
+[data-test='emozioni'] .test-title {
+	color: #2b87ab;
 }
 
-[data-test='famiglia'] {
-	& .test-res {
-		background: linear-gradient(to bottom, #ffa963, #c05600);
-		transition-delay: 0.6s;
-	}
+[data-test='emozioni'] .score {
+	color: #2b87ab;
+}
 
-	& .test-data {
-		transition-delay: 0.6s;
-	}
+[data-test='corpo'] .test-res {
+	background: linear-gradient(to bottom, #7fbe55, #2e4f19);
+	transition-delay: 0.2s;
+}
 
-	& .test-line {
-		border-color: #e7893d;
-	}
+[data-test='corpo'] .test-data {
+	transition-delay: 0.2s;
+}
 
-	& .test-dot {
-		background-color: #e7893d;
-	}
+[data-test='corpo'] .test-line {
+	border-color: #5a8b39;
+}
 
-	& .test-title {
-		color: #e7893d;
-	}
+[data-test='corpo'] .test-dot {
+	background-color: #5a8b39;
+}
 
-	& .score {
-		color: #e7893d;
-	}
+[data-test='corpo'] .test-title {
+	color: #5a8b39;
+}
+
+[data-test='corpo'] .score {
+	color: #5a8b39;
+}
+
+[data-test='problemi'] .test-res {
+	background: linear-gradient(to bottom, #59599e, #31316a);
+	transition-delay: 0.4s;
+}
+
+[data-test='problemi'] .test-data {
+	transition-delay: 0.4s;
+}
+
+[data-test='problemi'] .test-line {
+	border-color: #6e6ebb;
+}
+
+[data-test='problemi'] .test-dot {
+	background-color: #6e6ebb;
+}
+
+[data-test='problemi'] .test-title {
+	color: #6e6ebb;
+}
+
+[data-test='problemi'] .score {
+	color: #6e6ebb;
+}
+
+[data-test='orientamento'] .test-res {
+	background: linear-gradient(to bottom, #ff7470, #9c2925);
+	transition-delay: 0.6s;
+}
+
+[data-test='orientamento'] .test-data {
+	transition-delay: 0.6s;
+}
+
+[data-test='orientamento'] .test-line {
+	border-color: #d2524e;
+}
+
+[data-test='orientamento'] .test-dot {
+	background-color: #d2524e;
+}
+
+[data-test='orientamento'] .test-title {
+	color: #d2524e;
+}
+
+[data-test='orientamento'] .score {
+	color: #d2524e;
+}
+
+[data-test='scuola'] .test-res {
+	background: linear-gradient(to bottom, #fff563, #be8c21);
+	transition-delay: 0.6s;
+}
+
+[data-test='scuola'] .test-data {
+	transition-delay: 0.6s;
+}
+
+[data-test='scuola'] .test-line {
+	border-color: #e6cd4a;
+}
+
+[data-test='scuola'] .test-dot {
+	background-color: #e6cd4a;
+}
+
+[data-test='scuola'] .test-title {
+	color: #e6cd4a;
+}
+
+[data-test='scuola'] .score {
+	color: #e6cd4a;
+}
+
+[data-test='famiglia'] .test-res {
+	background: linear-gradient(to bottom, #ffa963, #c05600);
+	transition-delay: 0.6s;
+}
+
+[data-test='famiglia'] .test-data {
+	transition-delay: 0.6s;
+}
+
+[data-test='famiglia'] .test-line {
+	border-color: #e7893d;
+}
+
+[data-test='famiglia'] .test-dot {
+	background-color: #e7893d;
+}
+
+[data-test='famiglia'] .test-title {
+	color: #e7893d;
+}
+
+[data-test='famiglia'] .score {
+	color: #e7893d;
 }
 
 /* Responsive */

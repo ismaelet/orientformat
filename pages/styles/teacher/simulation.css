@@ -10,7 +10,7 @@ main {
 	border-color: var(--text-color);
 }
 
-/**
+/*
 * School types
 */
 .school-types:not(.active) {
@@ -21,17 +21,17 @@ main {
 	display: none;
 	justify-items: center;
 	gap: 2rem;
+}
 
-	&.active {
-		display: block;
-	}
+.school-type.active {
+	display: block;
 }
 
 .school-type-selector {
 	cursor: pointer;
 }
 
-/**
+/*
 * Grades
 */
 .grades {
@@ -51,7 +51,7 @@ main {
 	font-weight: var(--fw-semibold);
 }
 
-/**
+/*
 * Areas
 */
 .areas {
@@ -72,13 +72,13 @@ main {
 	align-items: center;
 	gap: 1rem;
 	font-size: var(--fs-500);
+}
 
-	&::before,
-	&::after {
-		content: '';
-		display: block;
-		border-bottom: var(--border);
-	}
+.area__title::before,
+.area__title::after {
+	content: '';
+	display: block;
+	border-bottom: var(--border);
 }
 
 /*

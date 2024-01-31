@@ -46,81 +46,72 @@ main {
 	grid-template-columns: min(5rem, 20vw) 1fr;
 	justify-items: left;
 	width: 100%;
+}
 
-	&::after {
-		content: '';
-		width: 100%;
-		grid-column: span 2;
-		border-bottom: var(--border);
-	}
+.graph-col::after {
+	content: '';
+	width: 100%;
+	grid-column: span 2;
+	border-bottom: var(--border);
+}
 
-	&:last-child::after {
-		grid-column: unset;
-	}
+.graph-col:last-child::after {
+	grid-column: unset;
+}
 
-	&#graph-col1 {
-		transition-delay: 0.1s;
-
-		& .graph-ele.active {
-			background-color: var(--_color-1);
-		}
-	}
-	&#graph-col2 {
-		transition-delay: 0.15s;
-
-		& .graph-ele.active {
-			background-color: var(--_color-2);
-		}
-	}
-	&#graph-col3 {
-		transition-delay: 0.2s;
-
-		& .graph-ele.active {
-			background-color: var(--_color-3);
-		}
-	}
-	&#graph-col4 {
-		transition-delay: 0.25s;
-
-		& .graph-ele.active {
-			background-color: var(--_color-4);
-		}
-	}
-	&#graph-col5 {
-		transition-delay: 0.3s;
-
-		& .graph-ele.active {
-			background-color: var(--_color-5);
-		}
-	}
-	&#graph-col6 {
-		transition-delay: 0.35s;
-
-		& .graph-ele.active {
-			background-color: var(--_color-6);
-		}
-	}
-	&#graph-col7 {
-		transition-delay: 0.4s;
-
-		& .graph-ele.active {
-			background-color: var(--_color-7);
-		}
-	}
-	&#graph-col8 {
-		transition-delay: 0.45s;
-
-		& .graph-ele.active {
-			background-color: var(--_color-8);
-		}
-	}
-	&#graph-col9 {
-		transition-delay: 0.5s;
-
-		& .graph-ele.active {
-			background-color: var(--_color-9);
-		}
-	}
+#graph-col1.graph-col {
+	transition-delay: 0.1s;
+}
+#graph-col1.graph-col .graph-ele.active {
+	background-color: var(--_color-1);
+}
+#graph-col2.graph-col {
+	transition-delay: 0.15s;
+}
+#graph-col2.graph-col .graph-ele.active {
+	background-color: var(--_color-2);
+}
+#graph-col3.graph-col {
+	transition-delay: 0.2s;
+}
+#graph-col3.graph-col .graph-ele.active {
+	background-color: var(--_color-3);
+}
+#graph-col4.graph-col {
+	transition-delay: 0.25s;
+}
+#graph-col4.graph-col .graph-ele.active {
+	background-color: var(--_color-4);
+}
+#graph-col5.graph-col {
+	transition-delay: 0.3s;
+}
+#graph-col5.graph-col .graph-ele.active {
+	background-color: var(--_color-5);
+}
+#graph-col6.graph-col {
+	transition-delay: 0.35s;
+}
+#graph-col6.graph-col .graph-ele.active {
+	background-color: var(--_color-6);
+}
+#graph-col7.graph-col {
+	transition-delay: 0.4s;
+}
+#graph-col7.graph-col .graph-ele.active {
+	background-color: var(--_color-7);
+}
+#graph-col8.graph-col {
+	transition-delay: 0.45s;
+}
+#graph-col8.graph-col .graph-ele.active {
+	background-color: var(--_color-8);
+}
+#graph-col9.graph-col {
+	transition-delay: 0.5s;
+}
+#graph-col9.graph-col .graph-ele.active {
+	background-color: var(--_color-9);
 }
 
 .ele-box {

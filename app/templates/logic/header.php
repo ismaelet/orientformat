@@ -48,6 +48,7 @@ $raw_links = [
 		'loc' => '',
 		'url' => client_url('/teacher/simulation'),
 		'teacher' => true,
+		'drop' => 'simulation',
 	],
 	[
 		'title' => 'Saperne di più',
@@ -145,3 +146,11 @@ if (
 	$h_grade = (new Student(userId()))->schoolClass;
 	$header['survey-end'] = $h_grade && $h_grade->ended;
 }
+
+$h_drop = [
+	'simulation' => [
+		['Scuola secondaria di primo grado', '/teacher/simulation?type=middle-school'],
+		['Istituti Tecnici, Professionali e Licei', '/teacher/simulation?type=high-school'],
+		['Istruzione e Formazione Professionale', '/teacher/simulation?type=professional-school'],
+	],
+];

@@ -15,7 +15,7 @@ use Singleton;
  * @property array $parameters = [] <inherited>
  * @property array $arguments = []
  */
-class RuotaCaravaggio extends Test {
+class RuotaAvanzatoCaravaggio extends Test {
 
 	use Singleton;
 

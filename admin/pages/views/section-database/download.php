@@ -6,14 +6,29 @@
 
 		<div class="download-buttons">
 
-			<button class="download-button" name="download-students" value="all">
+			<?php for ($i = $currentYear; $i >= $startingYear; $i--) { ?>
+
+				<button class="download-button" name="download-active-students" value="<?= $i ?>">
+					Scarica gli studenti attivi nell'anno scolastico <?= $i ?>/<?= $i + 1 ?>
+					<?= icon_embed('download') ?>
+				</button>
+
+			<?php } ?>
+
+		</div>
+
+		<hr class="border-neutral-200">
+
+		<div class="download-buttons">
+
+			<button class="download-button download-button--fade" name="download-students" value="all">
 				Scarica la lista di tutti gli studenti
 				<?= icon_embed('download') ?>
 			</button>
 
-			<?php for ($i = $startingYear; $i <= $currentYear; $i++) { ?>
+			<?php for ($i = $currentYear; $i >= $startingYear; $i--) { ?>
 
-				<button class="download-button" name="download-students" value="<?= $i ?>">
+				<button class="download-button download-button--fade" name="download-students" value="<?= $i ?>">
 					Scarica gli studenti registrati nell'anno scolastico <?= $i ?>/<?= $i + 1 ?>
 					<?= icon_embed('download') ?>
 				</button>
@@ -33,7 +48,7 @@
 				<?= icon_embed('download') ?>
 			</button>
 
-			<?php for ($i = $startingYear; $i <= $currentYear; $i++) { ?>
+			<?php for ($i = $currentYear; $i >= $startingYear; $i--) { ?>
 
 				<button class="download-button" name="download-teachers" value="<?= $i ?>">
 					Scarica i docenti registrati nel <?= $i ?>
@@ -56,7 +71,7 @@
 				<?= icon_embed('download') ?>
 			</button>
 
-			<?php for ($i = $startingYear; $i <= $currentYear; $i++) { ?>
+			<?php for ($i = $currentYear; $i >= $startingYear; $i--) { ?>
 
 				<button class="download-button" name="download-school-classes" value="<?= $i ?>">
 					Scarica le classi registrate dell'anno scolastico <?= $i ?>/<?= $i + 1 ?>
@@ -81,7 +96,7 @@
 				</div>
 			</button>
 
-			<?php for ($i = $startingYear; $i <= $currentYear; $i++) { ?>
+			<?php for ($i = $currentYear; $i >= $startingYear; $i--) { ?>
 
 				<button class="download-button" name="download-results" value="<?= $i ?>">
 					Scarica i risultati degli studenti dell'anno scolastico <?= $i ?>/<?= $i + 1 ?>
@@ -105,7 +120,7 @@
 				<?= icon_embed('download') ?>
 			</button>
 
-			<?php for ($i = $startingYear; $i <= $currentYear; $i++) { ?>
+			<?php for ($i = $currentYear; $i >= $startingYear; $i--) { ?>
 
 				<button class="download-button" name="download-reviews" value="<?= $i ?>">
 					Scarica i risultati dei questionari compilati nell'anno scolastico <?= $i ?>/<?= $i + 1 ?>
@@ -128,7 +143,7 @@
 				<?= icon_embed('download') ?>
 			</button>
 
-			<?php for ($i = $startingYear; $i <= $currentYear; $i++) { ?>
+			<?php for ($i = $currentYear; $i >= $startingYear; $i--) { ?>
 
 				<button class="download-button" name="download-advices" value="<?= $i ?>">
 					Scarica i consigli orientativi dati nell'anno scolastico <?= $i ?>/<?= $i + 1 ?>

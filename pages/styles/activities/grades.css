@@ -28,34 +28,30 @@
 	filter: saturate(1) !important;
 }
 
-.grades--middleschool {
-	& .grade:nth-child(1) {
-		--_color: var(--clr-primary-400);
-	}
-	& .grade:nth-child(2) {
-		--_color: var(--clr-transition-400);
-	}
-	& .grade:nth-child(3) {
-		--_color: var(--clr-secondary-400);
-	}
+.grades--middleschool .grade:nth-child(1) {
+	--_color: var(--clr-primary-400);
+}
+.grades--middleschool .grade:nth-child(2) {
+	--_color: var(--clr-transition-400);
+}
+.grades--middleschool .grade:nth-child(3) {
+	--_color: var(--clr-secondary-400);
 }
 
-.grades--highschool {
-	& .grade:nth-child(1) {
-		--_color: var(--color-1-of-5);
-	}
-	& .grade:nth-child(2) {
-		--_color: var(--color-2-of-5);
-	}
-	& .grade:nth-child(3) {
-		--_color: var(--color-3-of-5);
-	}
-	& .grade:nth-child(4) {
-		--_color: var(--color-4-of-5);
-	}
-	& .grade:nth-child(5) {
-		--_color: var(--color-5-of-5);
-	}
+.grades--highschool .grade:nth-child(1) {
+	--_color: var(--color-1-of-5);
+}
+.grades--highschool .grade:nth-child(2) {
+	--_color: var(--color-2-of-5);
+}
+.grades--highschool .grade:nth-child(3) {
+	--_color: var(--color-3-of-5);
+}
+.grades--highschool .grade:nth-child(4) {
+	--_color: var(--color-4-of-5);
+}
+.grades--highschool .grade:nth-child(5) {
+	--_color: var(--color-5-of-5);
 }
 
 .grade__number {

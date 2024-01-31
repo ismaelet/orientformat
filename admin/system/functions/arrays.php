@@ -52,6 +52,6 @@ function rows_to_objects(Query_Result $rows = null, string $className) {
 	return $objects;
 }
 
-function debug($array) {
-	print('<pre>' . print_r($array, true) . '</pre>');
+function debug($content) {
+	exit('<pre>' . print_r($content, true) . '</pre>');
 }

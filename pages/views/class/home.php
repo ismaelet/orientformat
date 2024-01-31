@@ -25,7 +25,7 @@
 				</div>
 			</a>
 
-			<a class="recap-item js-load load--fade-in" data-direction="bottom" data-delay="3" href="<?= client_url('/class/settings/general') ?>">
+			<a class="recap-item js-load load--fade-in" data-direction="bottom" data-delay="3">
 				<?= icon_embed(APP_ICONS_DIR . 'dashboards/settings') ?>
 				<div>
 					<p class="recap-item__label">Codice della classe</p>

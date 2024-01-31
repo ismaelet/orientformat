@@ -69,41 +69,45 @@
 .petal.thinking .body {
 	border-color: var(--clr-tertiary-400);
 }
+
 .petal.skill .body {
 	border-color: var(--clr-primary-400);
+}
 
-	[data-style='highschool'] & {
-		border-color: var(--clr-secondary-400);
-	}
+[data-style='highschool'] .petal.skill .body {
+	border-color: var(--clr-secondary-400);
 }
 
 .petal.thinking.active .name {
 	color: var(--clr-tertiary-400);
 }
+
 .petal.skill.active .name {
 	color: var(--clr-primary-400);
+}
 
-	[data-style='highschool'] & {
-		color: var(--clr-secondary-400);
-	}
+[data-style='highschool'] .petal.skill.active .name {
+	color: var(--clr-secondary-400);
 }
 
 .petal.thinking .color,
 .petal.thinking .fill {
 	background: linear-gradient(to bottom, var(--gradient-secondary-tertiary));
+}
 
-	[data-style='highschool'] & {
-		background: linear-gradient(to bottom, var(--gradient-primary-tertiary));
-	}
+[data-style='highschool'] .petal.thinking .color,
+[data-style='highschool'] .petal.thinking .fill {
+	background: linear-gradient(to bottom, var(--gradient-primary-tertiary));
 }
 
 .petal.skill .color,
 .petal.skill .fill {
 	background: linear-gradient(to bottom, var(--gradient-primary-secondary));
+}
 
-	[data-style='highschool'] & {
-		background: linear-gradient(to top, var(--gradient-primary-secondary));
-	}
+[data-style='highschool'] .petal.skill .color,
+[data-style='highschool'] .petal.skill .fill {
+	background: linear-gradient(to top, var(--gradient-primary-secondary));
 }
 
 /* Scores and titles */

@@ -18,7 +18,7 @@ use SchoolSystem\Grade;
 	</div>
 
 	<div class="page-content mar-t-5">
-		<div class="school-types grid-flow active js-school-type-selectors" data-columns="20rem" data-spacing="700">
+		<div class="school-types grid-flow js-school-type-selectors <?= $selectedSchoolType ? '' : 'active' ?>" data-columns="20rem" data-spacing="700">
 
 			<?php foreach ($schoolTypes as $schoolTypeSlug => $schoolType) { ?>
 
@@ -38,7 +38,7 @@ use SchoolSystem\Grade;
 
 		<?php foreach ($schoolTypes as $schoolTypeSlug => $schoolType) { ?>
 
-			<div class="school-type js-school-type" data-school-type="<?= $schoolTypeSlug ?>">
+			<div class="school-type js-school-type <?= $selectedSchoolType && $selectedSchoolType == $schoolTypeSlug ? 'active' : '' ?>" data-school-type="<?= $schoolTypeSlug ?>">
 				<div class="grades">
 
 					<?php for ($gradeId = $schoolType['grades'][0]; $gradeId <= $schoolType['grades'][1]; $gradeId++) {

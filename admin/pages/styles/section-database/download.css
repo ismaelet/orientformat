@@ -1,6 +1,14 @@
 /*
 * Layout
 */
+.panels {
+	align-items: flex-start;
+}
+
+.panel:first-child {
+	grid-row: span 2;
+}
+
 .panel_title {
 	display: inline-block;
 	font-weight: 600;
@@ -11,6 +19,13 @@
 	content: '';
 	display: block;
 	border-bottom: 3px solid var(--clr-2);
+}
+
+hr {
+	border: none;
+	height: 1px;
+	background-color: currentColor;
+	color: #ebebeb;
 }
 
 .download-buttons {
@@ -35,6 +50,10 @@
 	& svg {
 		flex-shrink: 0;
 		transition: unset;
+	}
+
+	&.download-button--fade {
+		color: var(--fc-200);
 	}
 
 	&:hover {

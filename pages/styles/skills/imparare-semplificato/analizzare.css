@@ -30,38 +30,36 @@
 	line-height: 2;
 }
 
-#text.selecting {
-	&.argomento {
-		cursor: url('../../../assets/skills/imparare/analizzare/argomento.png'), pointer;
-	}
+#text.selecting.argomento {
+	cursor: url('../../../assets/skills/imparare/analizzare/argomento.png'), pointer;
+}
 
-	&.chi {
-		cursor: url('../../../assets/skills/imparare/analizzare/chi.png'), pointer;
-	}
+#text.selecting.chi {
+	cursor: url('../../../assets/skills/imparare/analizzare/chi.png'), pointer;
+}
 
-	&.causa {
-		cursor: url('../../../assets/skills/imparare/analizzare/causa.png'), pointer;
-	}
+#text.selecting.causa {
+	cursor: url('../../../assets/skills/imparare/analizzare/causa.png'), pointer;
+}
 
-	&.scopo {
-		cursor: url('../../../assets/skills/imparare/analizzare/scopo.png'), pointer;
-	}
+#text.selecting.scopo {
+	cursor: url('../../../assets/skills/imparare/analizzare/scopo.png'), pointer;
+}
 
-	&.dove {
-		cursor: url('../../../assets/skills/imparare/analizzare/dove.png'), pointer;
-	}
+#text.selecting.dove {
+	cursor: url('../../../assets/skills/imparare/analizzare/dove.png'), pointer;
+}
 
-	&.quando {
-		cursor: url('../../../assets/skills/imparare/analizzare/quando.png'), pointer;
-	}
+#text.selecting.quando {
+	cursor: url('../../../assets/skills/imparare/analizzare/quando.png'), pointer;
+}
 
-	&.come {
-		cursor: url('../../../assets/skills/imparare/analizzare/come.png'), pointer;
-	}
+#text.selecting.come {
+	cursor: url('../../../assets/skills/imparare/analizzare/come.png'), pointer;
+}
 
-	&.conseguenza {
-		cursor: url('../../../assets/skills/imparare/analizzare/conseguenza.png'), pointer;
-	}
+#text.selecting.conseguenza {
+	cursor: url('../../../assets/skills/imparare/analizzare/conseguenza.png'), pointer;
 }
 
 .selectable.active,
@@ -88,14 +86,14 @@
 	background-color: var(--_type-color);
 	text-align: center;
 	transition: background 0.4s, box-shadow 0.4s;
+}
 
-	& .active {
-		box-shadow: 0 15px 40px -15px rgba(0, 0, 0, 0.5);
-	}
+.test-selector .active {
+	box-shadow: 0 15px 40px -15px rgba(0, 0, 0, 0.5);
+}
 
-	&.disabled {
-		background-color: #ccc;
-	}
+.test-selector.disabled {
+	background-color: #ccc;
 }
 
 .test-selector p {

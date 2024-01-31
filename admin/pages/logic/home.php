@@ -41,4 +41,15 @@ $panels = [
 			'link' => client_url('/school-classes/list'),
 		],
 	],
+
+	[
+		'slug' => 'database',
+		'title' => 'Database',
+		'info' => 'Per accedere ai dati salvati nel database',
+		'primary-button' => [
+			'type' => 'primary',
+			'label' => 'Scarica il database',
+			'link' => client_url('/database/download'),
+		],
+	],
 ];

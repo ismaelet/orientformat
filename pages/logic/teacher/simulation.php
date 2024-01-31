@@ -1,5 +1,7 @@
 <?php
 
+$selectedSchoolType = $_GET['type'] ?? null;
+
 $schoolTypes = [
 	'middle-school' => [
 		'name' => 'Scuola secondaria di primo grado',

@@ -1,5 +1,6 @@
 <?php
 
+use Activity\Result\TestResult;
 use SchoolSystem\School;
 use SchoolSystem\SchoolClass;
 use Student\Profile;
@@ -7,105 +8,61 @@ use UserSystem\Student;
 use UserSystem\Student\Advice;
 use UserSystem\Teacher;
 
-/*
-* TEMP: condensed columns
-*/
-/*
-$tests = DB::select('* FROM tests WHERE active = 1 AND template <> "recap" ORDER BY sectionID ASC, step ASC');
-
-while ($test = $tests->fetch_assoc()) {
-	if (!$test['static'] && !$test['dependentOn']) {
-		// results
-		$colName = 'test' . $test['id'] . '_results';
-		$colExists = (DB::execute("SHOW COLUMNS FROM results_condensed LIKE '" . $colName . "'"))->num_rows;
-
-		if (!$colExists) {
-			DB::execute("ALTER TABLE results_condensed ADD " . $colName . " VARCHAR(200) DEFAULT ''");
-		}
-
-		// percentage
-		$colName = 'test' . $test['id'] . '_percentage';
-		$colExists = (DB::execute("SHOW COLUMNS FROM results_condensed LIKE '" . $colName . "'"))->num_rows;
-
-		if (!$colExists) {
-			DB::execute("ALTER TABLE results_condensed ADD " . $colName . " INT(3) DEFAULT 100");
-		}
-	}
-
-	// speed
-	$colName = 'test' . $test['id'] . '_speed';
-	$colExists = (DB::execute("SHOW COLUMNS FROM results_condensed LIKE '" . $colName . "'"))->num_rows;
-
-	if (!$colExists) {
-		DB::execute("ALTER TABLE results_condensed ADD " . $colName . " INT(4) DEFAULT 0");
-	}
-
-	// times
-	$colName = 'test' . $test['id'] . '_times';
-	$colExists = (DB::execute("SHOW COLUMNS FROM results_condensed LIKE '" . $colName . "'"))->num_rows;
-
-	if (!$colExists) {
-		DB::execute("ALTER TABLE results_condensed ADD " . $colName . " INT(3) DEFAULT 1");
-	}
-}
-*/
-/*
-* END TEMP
-*/
-
-/*
-* TEMP: copy results to condensed
-*/
-/*
-
-$tests = [];
-$students = DB::select('* FROM students WHERE userId NOT IN (SELECT studentId FROM results_condensed)');
-
-$testRows = DB::select('
-		tests.id as testId, title, sections.name as sectionName, static, dependentOn
-		FROM tests
-			INNER JOIN sections ON tests.sectionID = sections.id
-		WHERE tests.active = 1 AND template <> "recap"
-		ORDER BY sectionID ASC, step ASC
-	');
-
-while ($test = $testRows->fetch_assoc()) {
-	$tests[] = $test;
-}
-
-while ($student = $students->fetch_assoc()) {
-	DB::add('results_condensed (studentId)', [$student['userId']]);
-
-	foreach ($tests as $test) {
-		$result = DB::row(
-			'result, percentage, speed, timesNumber
-			FROM results_permanent
-			WHERE userID = ? AND testID = ?',
-			[$student['userId'], $test['testId']]
-		);
-
-		if ($result) {
-			if (!$test['static'] && !$test['dependentOn']) {
-				DB::update('results_condensed SET test' . $test['testId'] . '_results = ?, test' . $test['testId'] . '_percentage = ? WHERE studentId = ?', [$result['result'], $result['percentage'], $student['userId']]);
-			}
-
-			DB::update('results_condensed SET test' . $test['testId'] . '_speed = ?, test' . $test['testId'] . '_times = ? WHERE studentId = ?', [$result['speed'], $result['timesNumber'], $student['userId']]);
-		}
-	}
-}
-*/
-
-// update current year
-// DB::update(SchoolClass::TABLE . ' SET year = startingYear + grade - startingGrade');
-/*
-* END TEMP
-*/
-
 $startingYear = 2021;
-$currentYear = getdate()['year'];
+$currentYear = (int) date('m') >= 9 ? getdate()['year'] : getdate()['year'] - 1;
 
 /*
-* Download students
+* Download active students
+*/
+if (isset($_POST['download-active-students'])) {
+	$studentsArray = [];
+	$yearFilter = $_POST['download-active-students'];
+	$activeSql = 'AND ' . Student::INDEX . ' IN (SELECT ' . TestResult::USER_INDEX . ' FROM ' . TestResult::TABLE . ' WHERE (YEAR(time) = ? AND MONTH(time) >= 9) OR (YEAR(time) = ? AND MONTH(time) < 9))';
+	$parameters = [$yearFilter, $yearFilter + 1];
+	$fileTitle = 'Lista degli studenti attivi - ' . $yearFilter . '-' . ($yearFilter + 1);
+
+	$students = DB::select('
+	' . Student::INDEX . ', firstName, lastName, users.time, CONCAT (grade, letter) as gradeName, startingYear, grade, birthdate, schools.name as schoolName
+		FROM ' . Student::TABLE . '
+			INNER JOIN ' . User::TABLE . ' ON ' . Student::TABLE . '.' . Student::INDEX . ' = ' . User::TABLE . '.' . User::INDEX . '
+
+			INNER JOIN ' . SchoolClass::TABLE . ' ON ' . Student::TABLE . '.' . Student::SCHOOL_CLASS_INDEX . ' = ' . SchoolClass::TABLE . '.' . SchoolClass::INDEX . '
+
+			INNER JOIN ' . School::TABLE . ' ON ' . SchoolClass::TABLE . '.' . SchoolClass::SCHOOL_INDEX . ' = ' . School::TABLE . '.' . School::INDEX . '
+	WHERE ' . User::TABLE . '.status = 1 AND admin = 0 ' . $activeSql . '
+	ORDER BY ' . User::TABLE . '.' . User::INDEX . ' ASC', $parameters);
+
+	while ($student = $students->fetch_assoc()) {
+		$studentObj = new Student($student['userId']);
+		$studentStartingYear = date('Y', strtotime($student['time']));
+		$studentStartingMonth = (int) date('m', strtotime($student['time']));
+
+		$studentStartingYear = $studentStartingMonth >= 9 ? $studentStartingYear : $studentStartingYear - 1;
+		$completedActivityCount = DB::count(TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?', [$student['userId']]);
+		$totalTime = round(DB::find('SUM(speed) FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?', [$student['userId']]) / 60);
+
+		$studentData = [
+			'ID' => $student['userId'],
+			'Cognome' => $student['lastName'],
+			'Nome' => $student['firstName'],
+			'Classe' => $student['gradeName'],
+			'Istituto' => $student['schoolName'],
+			'Registrato/a nel' => $student['startingYear'] . '/' . ($student['startingYear'] + 1),
+			'Anno di corso' => $student['grade'],
+			'Data di nascita' => $student['birthdate'],
+			'Attività completate' => $completedActivityCount,
+			'Tempo totale impiegato' => $totalTime,
+			'Consiglio orientativo' => $studentObj->advicesString ? str_replace('<br>', ' - ', $studentObj->advicesString) : '.',
+		];
+
+		$studentsArray[] = $studentData;
+	}
+
+	download_csv($studentsArray, $fileTitle);
+}
+
+/*
+* Download students by year
 */
 if (isset($_POST['download-students'])) {
 	$studentsArray = [];
@@ -126,6 +83,10 @@ if (isset($_POST['download-students'])) {
 	ORDER BY ' . User::TABLE . '.' . User::INDEX . ' ASC', $parameters);
 
 	while ($student = $students->fetch_assoc()) {
+		$studentObj = new Student($student['userId']);
+		$completedActivityCount = DB::count(TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?', [$student['userId']]);
+		$totalTime = round(DB::find('SUM(speed) FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?', [$student['userId']]) / 60);
+
 		$studentData = [
 			'ID' => $student['userId'],
 			'Cognome' => $student['lastName'],
@@ -135,6 +96,9 @@ if (isset($_POST['download-students'])) {
 			'Registrato/a nel' => $student['startingYear'] . '/' . ($student['startingYear'] + 1),
 			'Anno di corso' => $student['grade'],
 			'Data di nascita' => $student['birthdate'],
+			'Attività completate' => $completedActivityCount,
+			'Tempo totale impiegato' => $totalTime,
+			'Consiglio orientativo' => $studentObj->advicesString ? str_replace('<br>', ' - ', $studentObj->advicesString) : '.',
 		];
 
 		$studentsArray[] = $studentData;
@@ -282,20 +246,6 @@ if (isset($_POST['download-reviews'])) {
 	$yearSql = $yearFilter ? 'AND year = ?' : '';
 	$parameters = $yearFilter ? [$yearFilter] : [];
 	$fileTitle = $yearFilter ? 'Lista dei risultati dei questionari - ' . $yearFilter . '-' . ($yearFilter + 1) : 'Lista dei risultati dei questionari';
-
-	// questions
-	/*$startQuestions = [];
-	$endQuestions = [];
-	$resStart = DB::select('CONCAT("s", areaId, "d", slug) as name FROM review_questions WHERE reviewIds="" OR reviewIds IN (1, 2) OR FIND_IN_SET(1, reviewIds) OR FIND_IN_SET(2, reviewIds) ORDER BY areaId ASC, slug ASC');
-	$resEnd = DB::select('CONCAT("s", areaId, "d", slug) as name FROM review_questions WHERE reviewIds="" OR reviewIds=3 OR FIND_IN_SET(3, reviewIds) ORDER BY areaId ASC, slug ASC');
-
-	while ($row = $resStart->fetch_assoc()) {
-		$startQuestions[] = $row['name'];
-	}
-
-	while ($row = $resEnd->fetch_assoc()) {
-		$endQuestions[] = $row['name'];
-	}*/
 
 	// generate questions mockup
 	$startQuestions = [];

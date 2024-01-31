@@ -19,6 +19,8 @@ if (teacher()->schoolClassIds) {
 // generate the years array
 $startingYears = [];
 $currentYear = getdate()['year'];
+$currentMonth = (int) date('m', strtotime('now'));
+$currentYear = $currentMonth > 6 ? $currentYear : $currentYear - 1;
 
 for ($i = 2020; $i <= $currentYear + 1; $i++) {
 	$startingYears[] = [$i, $i . ' / ' . ($i + 1)];

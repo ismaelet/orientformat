@@ -22,6 +22,29 @@
 */
 /* 2.1 General variables */
 :root {
+	/* 2.1.3 Neutral light */
+	--color-neutral-light-100-hsl: 0deg 0% 100%;
+	--color-neutral-light-200-hsl: 0deg 0% 93%;
+	--color-neutral-light-300-hsl: 0deg 0% 87%;
+	--color-neutral-light-400-hsl: 0deg 0% 25%;
+	--color-neutral-light-700-hsl: 0deg 0% 13%;
+	--color-neutral-light-900-hsl: 0deg 0% 0%;
+
+	/* 2.1.4 Neutral dark */
+	--color-neutral-dark-100-hsl: 0deg 0% 0%;
+	--color-neutral-dark-900-hsl: 0deg 0% 100%;
+
+	/* 2.1.5 Theme neutral */
+	--color-neutral-100-hsl: var(--color-neutral-light-100-hsl);
+	--color-neutral-200-hsl: var(--color-neutral-light-200-hsl);
+	--color-neutral-300-hsl: var(--color-neutral-light-300-hsl);
+	--color-neutral-400-hsl: var(--color-neutral-light-400-hsl);
+	--color-neutral-700-hsl: var(--color-neutral-light-700-hsl);
+	--color-neutral-900-hsl: var(--color-neutral-light-900-hsl);
+
+	/*
+	* OLD
+	*/
 	/* Typography */
 	--ff-default: 'Open Sans', sans-serif;
 	--ff-titles: 'Source Sans Pro', sans-serif;
@@ -201,10 +224,10 @@ h3 {
 
 .colored-title {
 	color: var(--clr-tertiary-400);
+}
 
-	.contrasting-background & {
-		color: var(--fc-700);
-	}
+.contrasting-background .colored-title {
+	color: var(--fc-700);
 }
 
 .contrasting-background {
@@ -304,16 +327,16 @@ h3 {
 
 .gradient-overlay--hover {
 	overflow: hidden;
+}
 
-	&::before {
-		border-radius: inherit;
-		opacity: 0;
-		transition: opacity 0.4s;
-	}
+.gradient-overlay--hover::before {
+	border-radius: inherit;
+	opacity: 0;
+	transition: opacity 0.4s;
+}
 
-	&:hover::before {
-		opacity: 1;
-	}
+.gradient-overlay--hover:hover::before {
+	opacity: 1;
 }
 
 /*

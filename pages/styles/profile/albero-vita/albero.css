@@ -1,11 +1,11 @@
-/**
+/*
 * Layout
 */
 .test__body {
 	margin-bottom: 0;
 }
 
-/**
+/*
 * Drawing
 */
 .canvas {
@@ -54,11 +54,11 @@
 	top: auto;
 	bottom: 0;
 	transition: opacity 0.3s;
+}
 
-	:checked + &,
-	&.hovering {
-		opacity: 1;
-	}
+:checked + .drawing__layer,
+.drawing__layer.hovering {
+	opacity: 1;
 }
 
 .drawing__character {
@@ -210,54 +210,51 @@
 	transition: opacity 0.3s;
 }
 
-.drawing__character {
-	&:hover::after {
-		opacity: 0;
-	}
-
-	&:nth-child(2)::after {
-		top: -7%;
-	}
-	&:nth-child(3)::after {
-		top: -24%;
-	}
-	&:nth-child(4)::after {
-		top: -8%;
-	}
-	&:nth-child(5)::after {
-		top: 20%;
-	}
-	&:nth-child(6)::after {
-		top: -10%;
-		left: 2%;
-	}
-	&:nth-child(7)::after {
-		left: -10%;
-	}
-	&:nth-child(8)::after {
-		top: 20%;
-	}
-	&:nth-child(9)::after {
-		left: 4%;
-	}
-	&:nth-child(12)::after {
-		left: 29%;
-	}
-	&:nth-child(13)::after {
-		left: -5%;
-	}
-	&:nth-child(15)::after {
-		left: 5%;
-	}
-	&:nth-child(17)::after {
-		left: 5%;
-	}
-	&:nth-child(18)::after {
-		top: -5%;
-	}
-	&:nth-child(19)::after {
-		left: -10%;
-	}
+.drawing__character:hover::after {
+	opacity: 0;
+}
+.drawing__character:nth-child(2)::after {
+	top: -7%;
+}
+.drawing__character:nth-child(3)::after {
+	top: -24%;
+}
+.drawing__character:nth-child(4)::after {
+	top: -8%;
+}
+.drawing__character:nth-child(5)::after {
+	top: 20%;
+}
+.drawing__character:nth-child(6)::after {
+	top: -10%;
+	left: 2%;
+}
+.drawing__character:nth-child(7)::after {
+	left: -10%;
+}
+.drawing__character:nth-child(8)::after {
+	top: 20%;
+}
+.drawing__character:nth-child(9)::after {
+	left: 4%;
+}
+.drawing__character:nth-child(12)::after {
+	left: 29%;
+}
+.drawing__character:nth-child(13)::after {
+	left: -5%;
+}
+.drawing__character:nth-child(15)::after {
+	left: 5%;
+}
+.drawing__character:nth-child(17)::after {
+	left: 5%;
+}
+.drawing__character:nth-child(18)::after {
+	top: -5%;
+}
+.drawing__character:nth-child(19)::after {
+	left: -10%;
 }
 
 .drawing__info {
@@ -273,10 +270,10 @@
 	font-size: min(var(--fs-400), 4vw);
 	line-height: 1.3;
 	transition: opacity 0.2s;
+}
 
-	&.active {
-		opacity: 1;
-	}
+.drawing__info.active {
+	opacity: 1;
 }
 
 .selected-info {
@@ -287,10 +284,10 @@
 	background-color: var(--clr-background);
 	box-shadow: var(--shadow);
 	border-radius: var(--border-radius-400);
+}
 
-	&.active {
-		visibility: visible;
-	}
+.selected-info.active {
+	visibility: visible;
 }
 
 .selected-info > * {

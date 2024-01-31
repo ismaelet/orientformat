@@ -183,7 +183,7 @@ header {
 /* Desktop dropdown menu */
 .h-drop {
 	background-color: var(--clr-primary-400);
-	width: 230px;
+	width: 300px;
 	max-height: 0;
 	position: absolute;
 	top: 100%;
