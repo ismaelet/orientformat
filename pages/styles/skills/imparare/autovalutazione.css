@@ -132,34 +132,34 @@ main {
 	align-content: center;
 	padding: 2rem 3rem;
 	transition: opacity 0.2s, translate 0.2s;
+}
 
-	&[data-id='1'] {
-		background-color: var(--_color-1);
-	}
-	&[data-id='2'] {
-		background-color: var(--_color-2);
-	}
-	&[data-id='3'] {
-		background-color: var(--_color-3);
-	}
-	&[data-id='4'] {
-		background-color: var(--_color-4);
-	}
-	&[data-id='5'] {
-		background-color: var(--_color-5);
-	}
-	&[data-id='6'] {
-		background-color: var(--_color-6);
-	}
-	&[data-id='7'] {
-		background-color: var(--_color-7);
-	}
-	&[data-id='8'] {
-		background-color: var(--_color-8);
-	}
-	&[data-id='9'] {
-		background-color: var(--_color-9);
-	}
+.field-info[data-id='1'] {
+	background-color: var(--_color-1);
+}
+.field-info[data-id='2'] {
+	background-color: var(--_color-2);
+}
+.field-info[data-id='3'] {
+	background-color: var(--_color-3);
+}
+.field-info[data-id='4'] {
+	background-color: var(--_color-4);
+}
+.field-info[data-id='5'] {
+	background-color: var(--_color-5);
+}
+.field-info[data-id='6'] {
+	background-color: var(--_color-6);
+}
+.field-info[data-id='7'] {
+	background-color: var(--_color-7);
+}
+.field-info[data-id='8'] {
+	background-color: var(--_color-8);
+}
+.field-info[data-id='9'] {
+	background-color: var(--_color-9);
 }
 
 .field-info.active {

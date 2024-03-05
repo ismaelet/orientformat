@@ -98,61 +98,57 @@ svg {
 	/* 2.2.2 Content flow */
 	.grid.stack-content {
 		grid-template-areas: 'content';
+	}
 
-		& > * {
-			grid-area: content;
-		}
+	.grid.stack-content > * {
+		grid-area: content;
 	}
 
 	/* 2.2.3 Dynamic grid columns */
-	.grid {
-		&.columns-15rem {
-			grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr));
-		}
+	.grid.columns-15rem {
+		grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr));
+	}
 
-		&.columns-20rem {
-			grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
-		}
+	.grid.columns-20rem {
+		grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+	}
 
-		&.columns-25rem {
-			grid-template-columns: repeat(auto-fill, minmax(min(25rem, 100%), 1fr));
-		}
+	.grid.columns-25rem {
+		grid-template-columns: repeat(auto-fill, minmax(min(25rem, 100%), 1fr));
+	}
 
-		&.columns-30rem {
-			grid-template-columns: repeat(auto-fill, minmax(min(30rem, 100%), 1fr));
-		}
+	.grid.columns-30rem {
+		grid-template-columns: repeat(auto-fill, minmax(min(30rem, 100%), 1fr));
+	}
 
-		&.columns-40rem {
-			grid-template-columns: repeat(auto-fill, minmax(min(40rem, 100%), 1fr));
-		}
+	.grid.columns-40rem {
+		grid-template-columns: repeat(auto-fill, minmax(min(40rem, 100%), 1fr));
 	}
 
 	/* 2.2.4 Dynamic flexbox columns */
-	.flex {
-		&.columns-15rem {
-			flex-grow: 1;
-			width: min(15rem, 100%);
-		}
+	.flex.columns-15rem {
+		flex-grow: 1;
+		width: min(15rem, 100%);
+	}
 
-		&.columns-20rem {
-			flex-grow: 1;
-			width: min(20rem, 100%);
-		}
+	.flex.columns-20rem {
+		flex-grow: 1;
+		width: min(20rem, 100%);
+	}
 
-		&.columns-25rem {
-			flex-grow: 1;
-			width: min(25rem, 100%);
-		}
+	.flex.columns-25rem {
+		flex-grow: 1;
+		width: min(25rem, 100%);
+	}
 
-		&.columns-30rem {
-			flex-grow: 1;
-			width: min(30rem, 100%);
-		}
+	.flex.columns-30rem {
+		flex-grow: 1;
+		width: min(30rem, 100%);
+	}
 
-		&.columns-40rem {
-			flex-grow: 1;
-			width: min(40rem, 100%);
-		}
+	.flex.columns-40rem {
+		flex-grow: 1;
+		width: min(40rem, 100%);
 	}
 }
 
@@ -177,32 +173,30 @@ svg {
 		--_enter-animation-intensity: var(--_animation-intensity, 0.5rem);
 		opacity: 0;
 		pointer-events: none;
+	}
 
-		&[data-enter-animation-type='fade-in'] {
-			&:where([data-enter-animation-direction='left']) {
-				translate: calc(-1 * var(--_enter-animation-intensity)) 0;
-			}
+	[data-enter-animation][data-enter-animation-type='fade-in']:where([data-enter-animation-direction='left']) {
+		translate: calc(-1 * var(--_enter-animation-intensity)) 0;
+	}
 
-			&:where([data-enter-animation-direction='right']) {
-				translate: var(--_enter-animation-intensity) 0;
-			}
+	[data-enter-animation][data-enter-animation-type='fade-in']:where([data-enter-animation-direction='right']) {
+		translate: var(--_enter-animation-intensity) 0;
+	}
 
-			&:where([data-enter-animation-direction='top']) {
-				translate: 0 calc(-1 * var(--_enter-animation-intensity));
-			}
+	[data-enter-animation][data-enter-animation-type='fade-in']:where([data-enter-animation-direction='top']) {
+		translate: 0 calc(-1 * var(--_enter-animation-intensity));
+	}
 
-			&:where([data-enter-animation-direction='bottom']) {
-				translate: 0 var(--_enter-animation-intensity);
-			}
-		}
+	[data-enter-animation][data-enter-animation-type='fade-in']:where([data-enter-animation-direction='bottom']) {
+		translate: 0 var(--_enter-animation-intensity);
+	}
 
-		&[data-entered='true'] {
-			opacity: 1;
-			pointer-events: auto;
-			translate: 0 0;
-			transition: translate var(--_enter-animation-speed) ease-out, opacity var(--_enter-animation-speed) ease-in;
-			transition-delay: var(--_enter-animation-delay);
-		}
+	[data-enter-animation][data-entered='true'] {
+		opacity: 1;
+		pointer-events: auto;
+		translate: 0 0;
+		transition: translate var(--_enter-animation-speed) ease-out, opacity var(--_enter-animation-speed) ease-in;
+		transition-delay: var(--_enter-animation-delay);
 	}
 
 	/* 3.2.2 Exit animations */
@@ -210,32 +204,32 @@ svg {
 		--_exit-animation-delay: var(--_animation-delay, 0ms);
 		--_exit-animation-speed: var(--_animation-speed, 400ms);
 		--_exit-animation-intensity: var(--_animation-intensity, 0.5rem);
+	}
 
-		&[data-exit-animation-type='fade-out'] {
-			transition: translate var(--_exit-animation-speed) ease-out, opacity var(--_exit-animation-speed) ease-in;
-			transition-delay: var(--_exit-animation-delay);
+	.exit-animation[data-exit-animation-type='fade-out'] {
+		transition: translate var(--_exit-animation-speed) ease-out, opacity var(--_exit-animation-speed) ease-in;
+		transition-delay: var(--_exit-animation-delay);
+	}
 
-			&[data-exited='true'] {
-				opacity: 0 !important;
-				pointer-events: none;
+	.exit-animation[data-exit-animation-type='fade-out'][data-exited='true'] {
+		opacity: 0 !important;
+		pointer-events: none;
+	}
 
-				&[data-exit-animation-direction='left'] {
-					translate: calc(-1 * var(--_exit-animation-intensity)) 0;
-				}
+	.exit-animation[data-exit-animation-type='fade-out'][data-exited='true'][data-exit-animation-direction='left'] {
+		translate: calc(-1 * var(--_exit-animation-intensity)) 0;
+	}
 
-				&[data-exit-animation-direction='right'] {
-					translate: var(--_exit-animation-intensity) 0;
-				}
+	.exit-animation[data-exit-animation-type='fade-out'][data-exited='true'][data-exit-animation-direction='right'] {
+		translate: var(--_exit-animation-intensity) 0;
+	}
 
-				&[data-exit-animation-direction='top'] {
-					translate: 0 calc(-1 * var(--_exit-animation-intensity));
-				}
+	.exit-animation[data-exit-animation-type='fade-out'][data-exited='true'][data-exit-animation-direction='top'] {
+		translate: 0 calc(-1 * var(--_exit-animation-intensity));
+	}
 
-				&[data-exit-animation-direction='bottom'] {
-					translate: 0 var(--_exit-animation-intensity);
-				}
-			}
-		}
+	.exit-animation[data-exit-animation-type='fade-out'][data-exited='true'][data-exit-animation-direction='bottom'] {
+		translate: 0 var(--_exit-animation-intensity);
 	}
 
 	[data-delay='1'] {

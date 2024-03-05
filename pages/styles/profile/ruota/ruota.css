@@ -41,23 +41,23 @@
 	border-radius: 50%;
 	overflow: hidden;
 	transition: background 0.3s;
+}
 
-	&.js-emotion-dot {
-		cursor: pointer;
-	}
+.emotion__dot.js-emotion-dot {
+	cursor: pointer;
+}
 
-	.emotion.chosen[data-intensity='1'] & {
-		background-color: var(--color-1-of-4);
-	}
-	.emotion.chosen[data-intensity='2'] & {
-		background-color: var(--color-2-of-4);
-	}
-	.emotion.chosen[data-intensity='3'] & {
-		background-color: var(--color-3-of-4);
-	}
-	.emotion.chosen[data-intensity='4'] & {
-		background-color: var(--color-4-of-4);
-	}
+.emotion.chosen[data-intensity='1'] .emotion__dot {
+	background-color: var(--color-1-of-4);
+}
+.emotion.chosen[data-intensity='2'] .emotion__dot {
+	background-color: var(--color-2-of-4);
+}
+.emotion.chosen[data-intensity='3'] .emotion__dot {
+	background-color: var(--color-3-of-4);
+}
+.emotion.chosen[data-intensity='4'] .emotion__dot {
+	background-color: var(--color-4-of-4);
 }
 
 .emotion__dot p {
@@ -77,12 +77,12 @@
 	opacity: 1;
 	pointer-events: none;
 	transition: width 0.5s, opacity 0.5s, rotate 0.5s;
+}
 
-	.emotion.active & {
-		width: 10rem;
-		opacity: 1;
-		rotate: 0deg;
-	}
+.emotion.active .emotion__scores {
+	width: 10rem;
+	opacity: 1;
+	rotate: 0deg;
 }
 
 .emotion__score {
@@ -128,105 +128,105 @@
 	position: absolute;
 	font-size: var(--fs-450);
 	font-weight: var(--fw-semibold);
-
-	&[data-emotion='paura'] {
-		top: 50%;
-		left: 0%;
-		translate: calc(-100% - 0.5rem) -50%;
-	}
-
-	&[data-emotion='spavento'] {
-		top: 50%;
-		left: 0%;
-		translate: calc(-100% - 0.5rem) -50%;
-	}
-
-	&[data-emotion='sorpresa'] {
-		top: 50%;
-		left: 0%;
-		translate: calc(-100% - 0.5rem) -50%;
-	}
-
-	&[data-emotion='delusione'] {
-		top: calc(-1 * var(--offset));
-		left: 50%;
-		translate: -50% -100%;
-	}
-
-	&[data-emotion='tristezza'] {
-		top: calc(-1 * var(--offset));
-		left: 50%;
-		translate: -50% -100%;
-	}
-
-	&[data-emotion='rimorso'] {
-		top: calc(-1 * var(--offset));
-		left: 50%;
-		translate: -50% -100%;
-	}
-
-	&[data-emotion='schifo'] {
-		top: 50%;
-		left: 100%;
-		translate: 0.5rem -50%;
-	}
-
-	&[data-emotion='disprezzo'] {
-		top: 50%;
-		left: 100%;
-		translate: 0.5rem -50%;
-	}
-
-	&[data-emotion='collera'] {
-		top: 50%;
-		left: 100%;
-		translate: 0.5rem -50%;
-	}
-
-	&[data-emotion='aggressività'] {
-		top: 50%;
-		left: 100%;
-		translate: 0.5rem -50%;
-	}
-
-	&[data-emotion='aspettativa'] {
-		top: 50%;
-		left: 100%;
-		translate: 0.5rem -50%;
-	}
-
-	&[data-emotion='ottimismo'] {
-		top: 100%;
-		left: 50%;
-		translate: -50% 0;
-	}
-
-	&[data-emotion='gioia'] {
-		top: 100%;
-		left: 50%;
-		translate: -50% 0;
-	}
-
-	&[data-emotion='amore'] {
-		top: 100%;
-		left: 50%;
-		translate: -50% 0;
-	}
-
-	&[data-emotion='accettazione'] {
-		top: 50%;
-		left: 0%;
-		translate: calc(-100% - 0.5rem) -50%;
-	}
-
-	&[data-emotion='sottomissione'] {
-		top: 50%;
-		left: 0%;
-		translate: calc(-100% - 0.5rem) -50%;
-	}
 }
 
-/**
+.emotion__name[data-emotion='paura'] {
+	top: 50%;
+	left: 0%;
+	translate: calc(-100% - 0.5rem) -50%;
+}
+
+.emotion__name[data-emotion='spavento'] {
+	top: 50%;
+	left: 0%;
+	translate: calc(-100% - 0.5rem) -50%;
+}
+
+.emotion__name[data-emotion='sorpresa'] {
+	top: 50%;
+	left: 0%;
+	translate: calc(-100% - 0.5rem) -50%;
+}
+
+.emotion__name[data-emotion='delusione'] {
+	top: calc(-1 * var(--offset));
+	left: 50%;
+	translate: -50% -100%;
+}
+
+.emotion__name[data-emotion='tristezza'] {
+	top: calc(-1 * var(--offset));
+	left: 50%;
+	translate: -50% -100%;
+}
+
+.emotion__name[data-emotion='rimorso'] {
+	top: calc(-1 * var(--offset));
+	left: 50%;
+	translate: -50% -100%;
+}
+
+.emotion__name[data-emotion='schifo'] {
+	top: 50%;
+	left: 100%;
+	translate: 0.5rem -50%;
+}
+
+.emotion__name[data-emotion='disprezzo'] {
+	top: 50%;
+	left: 100%;
+	translate: 0.5rem -50%;
+}
+
+.emotion__name[data-emotion='collera'] {
+	top: 50%;
+	left: 100%;
+	translate: 0.5rem -50%;
+}
+
+.emotion__name[data-emotion='aggressività'] {
+	top: 50%;
+	left: 100%;
+	translate: 0.5rem -50%;
+}
+
+.emotion__name[data-emotion='aspettativa'] {
+	top: 50%;
+	left: 100%;
+	translate: 0.5rem -50%;
+}
+
+.emotion__name[data-emotion='ottimismo'] {
+	top: 100%;
+	left: 50%;
+	translate: -50% 0;
+}
+
+.emotion__name[data-emotion='gioia'] {
+	top: 100%;
+	left: 50%;
+	translate: -50% 0;
+}
+
+.emotion__name[data-emotion='amore'] {
+	top: 100%;
+	left: 50%;
+	translate: -50% 0;
+}
+
+.emotion__name[data-emotion='accettazione'] {
+	top: 50%;
+	left: 0%;
+	translate: calc(-100% - 0.5rem) -50%;
+}
+
+.emotion__name[data-emotion='sottomissione'] {
+	top: 50%;
+	left: 0%;
+	translate: calc(-100% - 0.5rem) -50%;
+}
+
+/*
 * Wheel center
 */
 .wheel__center {
@@ -249,16 +249,16 @@
 	color: #fff;
 	line-height: 1.2;
 	font-size: var(--fs-450);
+}
 
-	&[data-step='1'] {
-		background-color: #5b89ce;
-	}
-	&[data-step='2'] {
-		background-color: #5452ca;
-	}
-	&[data-step='3'] {
-		background-color: #a3379a;
-	}
+.wheel__counter[data-step='1'] {
+	background-color: #5b89ce;
+}
+.wheel__counter[data-step='2'] {
+	background-color: #5452ca;
+}
+.wheel__counter[data-step='3'] {
+	background-color: #a3379a;
 }
 
 .wheel__arrow {

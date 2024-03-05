@@ -147,7 +147,7 @@
 	padding: var(--_spacing) 2rem;
 }
 
-.section__body .area-wrapper:nth-child(2n) & {
+.area-wrapper:nth-child(2n) .section__body {
 	border: var(--border);
 }
 

@@ -15,20 +15,20 @@
 	letter-spacing: 0.05em;
 	text-decoration: underline;
 	text-decoration-thickness: 1px;
+}
 
-	.bgr-c1 & {
-		color: #fff;
-		font-weight: var(--fw-light);
-	}
+.bgr-c1 .quote {
+	color: #fff;
+	font-weight: var(--fw-light);
 }
 
 .question {
 	font-size: var(--fs-500);
+}
 
-	.bgr-c1 & {
-		color: #fff;
-		font-weight: var(--fw-regular);
-	}
+.bgr-c1 .question {
+	color: #fff;
+	font-weight: var(--fw-regular);
 }
 
 .answers {

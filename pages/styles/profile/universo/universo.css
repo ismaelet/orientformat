@@ -1,4 +1,4 @@
-/**
+/*
 * Layout
 */
 body {
@@ -9,7 +9,7 @@ body {
 	margin-bottom: unset;
 }
 
-/**
+/*
 * Map
 */
 .map__background {
@@ -63,37 +63,37 @@ body {
 	animation-timing-function: linear;
 	animation-iteration-count: infinite;
 	transition: border-color 0.2s;
+}
 
-	&:nth-child(1) {
-		width: 100%;
-		animation-duration: 30s;
-		animation-delay: -22s;
-	}
-	&:nth-child(2) {
-		width: 82%;
-		animation-duration: 22s;
-		animation-delay: -2s;
-	}
-	&:nth-child(3) {
-		width: 64%;
-		animation-duration: 15s;
-		animation-delay: -10s;
-	}
-	&:nth-child(4) {
-		width: 47%;
-		animation-duration: 11s;
-		animation-delay: -8s;
-	}
-	&:nth-child(5) {
-		width: 30%;
-		animation-duration: 7s;
-		animation-delay: 0s;
-	}
+.orbit:nth-child(1) {
+	width: 100%;
+	animation-duration: 30s;
+	animation-delay: -22s;
+}
+.orbit:nth-child(2) {
+	width: 82%;
+	animation-duration: 22s;
+	animation-delay: -2s;
+}
+.orbit:nth-child(3) {
+	width: 64%;
+	animation-duration: 15s;
+	animation-delay: -10s;
+}
+.orbit:nth-child(4) {
+	width: 47%;
+	animation-duration: 11s;
+	animation-delay: -8s;
+}
+.orbit:nth-child(5) {
+	width: 30%;
+	animation-duration: 7s;
+	animation-delay: 0s;
+}
 
-	&:hover {
-		border-color: var(--clr-primary-400);
-		animation-play-state: paused;
-	}
+.orbit:hover {
+	border-color: var(--clr-primary-400);
+	animation-play-state: paused;
 }
 
 .planet {
@@ -109,29 +109,29 @@ body {
 	animation-delay: inherit;
 	transition: filter 0.2s, opacity 0.2s;
 	cursor: pointer;
+}
 
-	.orbits:has(.orbit:hover) & {
-		opacity: 0.5;
-		filter: saturate(0);
-	}
+.orbits:has(.orbit:hover) .planet {
+	opacity: 0.5;
+	filter: saturate(0);
+}
 
-	.orbit:hover & {
-		opacity: 1 !important;
-		filter: saturate(1) !important;
-		animation-play-state: paused;
-	}
+.orbit:hover .planet {
+	opacity: 1 !important;
+	filter: saturate(1) !important;
+	animation-play-state: paused;
+}
 
-	&:nth-child(1) {
-		top: 0;
-	}
+.planet:nth-child(1) {
+	top: 0;
+}
 
-	&:nth-child(2) {
-		left: 0;
-	}
+.planet:nth-child(2) {
+	left: 0;
+}
 
-	&:nth-child(3) {
-		left: 100%;
-	}
+.planet:nth-child(3) {
+	left: 100%;
 }
 
 .planet__image {

@@ -14,17 +14,22 @@
 			</div>
 
 			<!-- End review -->
-			<div class="">
-				<p class="form-lbl">Questionario finale</p>
-				<p>Quando i tuoi studenti averanno finito tutte le attività, attiva qui sotto il questionario finale.</p>
-				<label class="toggle-switch toggle-switch_rg mar-t-1">
-					<input type="checkbox" name="survey-end" <?= schoolClass()->ended ? 'checked' : '' ?>>
-					<div class="toggle-switch_bgr">
-						<div class="icon"></div>
-					</div>
-					<p>Questionario finale</p>
-				</label>
-			</div>
+			<?php if (in_array(schoolClass()->grade->id, [3, 7, 8, 9, 10])) { ?>
+
+				<div class="">
+					<p class="form-lbl">Questionario finale</p>
+					<p>Quando i tuoi studenti averanno finito tutte le attività, attiva qui sotto il questionario finale.</p>
+					<label class="toggle-switch toggle-switch_rg mar-t-1">
+						<input type="checkbox" name="survey-end" <?= schoolClass()->ended ? 'checked' : '' ?>>
+						<div class="toggle-switch_bgr">
+							<div class="icon"></div>
+						</div>
+						<p>Questionario finale</p>
+					</label>
+				</div>
+
+			<?php } ?>
+
 		</div>
 
 		<div class="form-footer mar-t-2 grid-flow center-content" data-spacing="400">

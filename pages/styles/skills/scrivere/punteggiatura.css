@@ -1,4 +1,4 @@
-/**
+/*
 * Layout
 */
 .sentence {
@@ -13,14 +13,14 @@
 	line-height: 1.5;
 	font-size: var(--fs-500);
 	cursor: pointer;
+}
 
-	&.right {
-		color: var(--clr-good-400);
-		cursor: default;
-	}
+.sentence select.right {
+	color: var(--clr-good-400);
+	cursor: default;
+}
 
-	&.wrong {
-		color: var(--clr-bad-400);
-		cursor: default;
-	}
+.sentence select.wrong {
+	color: var(--clr-bad-400);
+	cursor: default;
 }

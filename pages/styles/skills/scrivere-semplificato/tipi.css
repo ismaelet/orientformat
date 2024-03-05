@@ -1,0 +1,121 @@
+/* Types */
+#types {
+	grid-template-columns: repeat(2, 1fr);
+	align-items: center;
+}
+
+#types.completed {
+	pointer-events: none;
+}
+
+.row1 {
+	background-color: #e9edf2;
+}
+
+.name-box {
+	display: grid;
+	align-items: center;
+	height: 100%;
+	padding-left: 0.5rem;
+}
+
+.score-box {
+	height: 100%;
+	padding-right: 10px;
+	word-spacing: 10px;
+}
+
+.score {
+	display: inline-block;
+	padding: 10px 0 6px 0;
+}
+
+.score .circle {
+	position: relative;
+	border: 2px solid var(--clr-secondary-400);
+	border-radius: 50%;
+}
+
+.score0 .circle {
+	width: 2rem;
+	height: 2rem;
+}
+.score1 .circle {
+	width: 2rem;
+	height: 2rem;
+}
+.score2 .circle {
+	width: 2.5rem;
+	height: 2.5rem;
+}
+.score3 .circle {
+	width: 3rem;
+	height: 3rem;
+}
+.score4 .circle {
+	width: 3.5rem;
+	height: 3.5rem;
+}
+.score5 .circle {
+	width: 4rem;
+	height: 4rem;
+}
+
+.score p {
+	color: var(--clr-tertiary-400);
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+.score0 p {
+	color: #aaa;
+}
+
+.score .dot {
+	opacity: 0;
+	border-radius: inherit;
+	width: 40%;
+	height: 40%;
+	transition: opacity 0.3s;
+}
+
+.score0 .dot {
+	background-color: #aaa;
+}
+.score1 .dot {
+	background-color: #de0000;
+}
+.score2 .dot {
+	background-color: #ec7015;
+}
+.score3 .dot {
+	background-color: #fcd625;
+}
+.score4 .dot {
+	background-color: #d0f213;
+}
+.score5 .dot {
+	background-color: #01d64c;
+}
+
+input:checked + .circle .dot,
+.score:hover .dot {
+	opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	#types {
+		grid-template-columns: 1fr;
+	}
+
+	.name-box {
+		padding-top: 10px;
+	}
+
+	.score-box {
+		text-align: left;
+		padding-left: 10px;
+		padding-bottom: 5px;
+	}
+}

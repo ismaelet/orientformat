@@ -1,4 +1,4 @@
-/**
+/*
 * Layout
 */
 .text {
@@ -14,23 +14,23 @@
 	line-height: 1.5;
 	font-size: var(--fs-500);
 	cursor: pointer;
+}
 
-	&.right {
-		color: var(--clr-good-400);
-		cursor: default;
-	}
+.text select.right {
+	color: var(--clr-good-400);
+	cursor: default;
+}
 
-	&.wrong {
-		color: var(--clr-bad-400);
-		cursor: default;
-	}
+.text select.wrong {
+	color: var(--clr-bad-400);
+	cursor: default;
 }
 
 .result {
 	font-size: var(--fs-450);
 	text-align: center;
+}
 
-	& span {
-		font-weight: var(--fw-bold);
-	}
+.result span {
+	font-weight: var(--fw-bold);
 }

@@ -1,4 +1,4 @@
-/**
+/*
 * Layout
 */
 .start-button.inactive {
@@ -16,12 +16,12 @@
 	margin-top: 5rem;
 	transition: opacity 0.4s, translate 0.4s;
 	transition-delay: 0.4s;
+}
 
-	&:not(.active) {
-		opacity: 0;
-		translate: 0 2rem;
-		transition-delay: 0s;
-	}
+.test-images__block:not(.active) {
+	opacity: 0;
+	translate: 0 2rem;
+	transition-delay: 0s;
 }
 
 .test-image {
@@ -46,24 +46,24 @@
 	width: 7rem;
 	height: 100%;
 	transition: height 0.5s;
+}
 
-	&:nth-child(1) {
-		background-color: var(--clr-primary-400);
-		transition-delay: 0.1s;
-	}
-	&:nth-child(2) {
-		background-color: var(--clr-tertiary-400);
-		color: #fff;
-		transition-delay: 0.2s;
-	}
-	&:nth-child(3) {
-		background-color: var(--clr-bad-400);
-		transition-delay: 0.3s;
-	}
+.result-grid__column:nth-child(1) {
+	background-color: var(--clr-primary-400);
+	transition-delay: 0.1s;
+}
+.result-grid__column:nth-child(2) {
+	background-color: var(--clr-tertiary-400);
+	color: #fff;
+	transition-delay: 0.2s;
+}
+.result-grid__column:nth-child(3) {
+	background-color: var(--clr-bad-400);
+	transition-delay: 0.3s;
+}
 
-	&.js-load {
-		height: 0% !important;
-	}
+.result-grid__column.js-load {
+	height: 0% !important;
 }
 
 .result-grid__score {
@@ -71,10 +71,10 @@
 	font-size: var(--fs-500);
 	transition: opacity 0.3s 0.2s;
 	transition-delay: inherit;
+}
 
-	.js-load & {
-		opacity: 0;
-	}
+.js-load .result-grid__score {
+	opacity: 0;
 }
 
 .result-grid__column-name {
@@ -88,13 +88,11 @@
 	line-height: 1;
 }
 
-/**
+/*
 * Answers
 */
-.answers {
-	&:not(.active) {
-		display: none;
-	}
+.answers:not(.active) {
+	display: none;
 }
 
 .answer-list {
@@ -116,11 +114,11 @@
 	font-weight: var(--fw-medium);
 	cursor: pointer;
 	transition: background 0.3s;
+}
 
-	:checked + & {
-		background-color: var(--clr-primary-400);
-		box-shadow: var(--shadow);
-	}
+:checked + .answer__text {
+	background-color: var(--clr-primary-400);
+	box-shadow: var(--shadow);
 }
 
 .answer:not(:last-child)::after {

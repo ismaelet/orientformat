@@ -6,10 +6,10 @@
 /* Concepts */
 #concepts {
 	display: none;
+}
 
-	&.active {
-		display: block;
-	}
+#concepts.active {
+	display: block;
 }
 
 .concept {
@@ -41,11 +41,11 @@
 #answers {
 	display: none;
 	gap: 1rem;
+}
 
-	.completed &,
-	&.active {
-		display: grid;
-	}
+.completed #answers,
+#answers.active {
+	display: grid;
 }
 
 .answer {
@@ -91,23 +91,23 @@
 	font-size: 1.5rem;
 	pointer-events: none;
 	transition: transform 0.3s, color 0.3s, scale 0.3s;
-
-	.answer:has(:focus) &,
-	.answer:not(:has(:placeholder-shown)) & {
-		color: var(--clr-primary-400);
-		scale: 0.9;
-		transform: translateY(-3.5rem);
-	}
 }
 
-/**
+.answer:has(:focus) .number,
+.answer:not(:has(:placeholder-shown)) .number {
+	color: var(--clr-primary-400);
+	scale: 0.9;
+	transform: translateY(-3.5rem);
+}
+
+/*
 * Footer
 */
 .page-footer {
 	display: none;
+}
 
-	.completed &,
-	&.active {
-		display: grid;
-	}
+.completed .page-footer,
+.page-footer.active {
+	display: grid;
 }

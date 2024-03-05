@@ -162,11 +162,11 @@ h1::after {
 .feed-entry {
 	padding-bottom: 0.5rem;
 	border-bottom: 1px solid var(--border-color-fade);
+}
 
-	& span {
-		font-weight: var(--fw-bold);
-		color: var(--clr-transition-400);
-	}
+.feed-entry span {
+	font-weight: var(--fw-bold);
+	color: var(--clr-transition-400);
 }
 
 .feed-entry:last-child {

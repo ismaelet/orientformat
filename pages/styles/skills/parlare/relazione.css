@@ -52,10 +52,10 @@
 .element.big .name {
 	font-size: 1.3rem;
 	color: #222;
+}
 
-	[data-style='highschool'] & {
-		color: #fff;
-	}
+[data-style='highschool'] .element.big .name {
+	color: #fff;
 }
 
 .element.start .name {
