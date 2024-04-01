@@ -7,7 +7,7 @@ $test = test();
 $count = 20;
 
 $groups = ['La tua opinione', 'Docente o orientatore', 'Genitori o parenti', 'Amici'];
-$results = DB::find('result FROM results_others WHERE userID = ? AND testID = ?', [studentId(), $test->id]);
+$results = DB::find('result FROM results_others WHERE userID = ? AND testID = ?', [watchedStudentId(), $test->id]);
 
 if ($results) {
 	$results = explode(',', $results);
