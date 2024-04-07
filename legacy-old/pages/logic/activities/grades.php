@@ -1,3 +1,0 @@
-<?php
-
-$schoolClass = student()->schoolClass;
