@@ -12,7 +12,7 @@
 		<?php if ($pageConfig['add']) { ?>
 
 			<a href="add" class="icon-add icon-box">
-				<?= icon_embed('add') ?>
+				<?= embed_icon('add') ?>
 			</a>
 
 		<?php } ?>
@@ -24,7 +24,7 @@
 		<!-- Search bar -->
 		<div class="search-bar js-search-bar">
 			<div class="search-bar__icon--search interactive js-search">
-				<?= icon_embed('search') ?>
+				<?= embed_icon('search') ?>
 			</div>
 
 			<input type="text" class="js-search-input" name="search" value="<?= $queryConfig['search'] ?>" placeholder="<?= __('Search in this list') ?>" autocomplete="off">
@@ -32,7 +32,7 @@
 			<?php if ($queryConfig['search']) { ?>
 
 				<div class="interactive js-search-cancel js-list-filter">
-					<?= icon_embed('close') ?>
+					<?= embed_icon('close') ?>
 				</div>
 
 			<?php } ?>

@@ -215,7 +215,7 @@ class FileHelper {
 	 */
 	public static function embedSvg(string $fileName, array $customClasses = [], bool $isIcon = false): ?string {
 		// Add the default class and any custom classes
-		$classes = implode(' ', ['icon-embed', $customClasses]);
+		$classes = implode(' ', ['icon-embed', implode(' ', $customClasses)]);
 
 		// Get the icon file
 		$fileDirectory = $isIcon ? self::ICONS_PATH : self::SVG_PATH;

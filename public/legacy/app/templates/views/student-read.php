@@ -13,7 +13,7 @@
 			<a href="<?= $returnLink ?>" class="button button--secondary button--full-width">Indietro</a>
 
 			<div id="print" class="button button--full-width" onClick="window.print();">
-				<?= icon_embed('print') ?>
+				<?= embed_icon('print') ?>
 				Stampa questa pagina
 			</div>
 		</div>

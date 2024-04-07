@@ -56,7 +56,7 @@
 	<div id="slide-arrow-box" class="">
 		<div class="slide-arrow disabled" data-direction="left">
 			<div class="slide-arrow-icon icon-box">
-				<?= icon_embed('navigation/arrow2-left') ?>
+				<?= embed_icon('navigation/arrow2-left') ?>
 			</div>
 
 			<p class="slide-arrow-text">Precedente</p>
@@ -66,7 +66,7 @@
 			<p class="slide-arrow-text">Successivo</p>
 
 			<div class="slide-arrow-icon icon-box">
-				<?= icon_embed('navigation/arrow2-right') ?>
+				<?= embed_icon('navigation/arrow2-right') ?>
 			</div>
 		</div>
 	</div>

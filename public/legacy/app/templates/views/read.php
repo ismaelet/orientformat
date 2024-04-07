@@ -11,7 +11,7 @@
 
 		<div class="center-content">
 			<div id="print" class="button push-center button--auto-width mar-t-4" onClick="window.print();">
-				<?= icon_embed('print') ?>
+				<?= embed_icon('print') ?>
 				Stampa questa pagina
 			</div>
 		</div>

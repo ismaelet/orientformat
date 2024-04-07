@@ -35,7 +35,7 @@
 
 <div class="center-content grid-flow">
 	<a href="<?= client_url('/read?id=' . $sectionId) ?>" class="button button--auto-width mar-t-2">
-		<?= icon_embed('read') ?>
+		<?= embed_icon('read') ?>
 		Saperne di più
 	</a>
 </div>

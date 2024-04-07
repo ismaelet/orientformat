@@ -64,9 +64,9 @@ foreach ($listRows as $rowId => $result) {
 					?>
 						<div class="admin-list__field">
 							<?php if ($entry['value']) { ?>
-								<div class="admin-list__icon active"><?= icon_embed('correct') ?></div>
+								<div class="admin-list__icon active"><?= embed_icon('correct') ?></div>
 							<?php } else { ?>
-								<div class="admin-list__icon inactive"><?= icon_embed('wrong') ?></div>
+								<div class="admin-list__icon inactive"><?= embed_icon('wrong') ?></div>
 							<?php } ?>
 						</div>
 

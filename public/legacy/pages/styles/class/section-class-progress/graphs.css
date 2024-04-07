@@ -71,6 +71,7 @@
 }
 
 .graph-item__icon {
+	color: #fff;
 	background-color: var(--_color);
 }
 

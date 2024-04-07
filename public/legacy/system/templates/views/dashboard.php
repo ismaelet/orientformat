@@ -25,7 +25,7 @@
 							<a <?= !empty($category['url']) ? 'href="' . $category['url'] . '"' : '' ?>>
 								<input type="radio" name="dashboard-category" <?= $category['checked'] ? 'checked' : null ?>>
 
-								<?= icon_embed(APP_ICONS_DIR . 'dashboards/' . $category['slug']) ?>
+								<?= embed_icon(APP_ICONS_DIR . 'dashboards/' . $category['slug']) ?>
 
 								<p class="dashboard-category__label"><?= $category['title'] ?></p>
 							</a>

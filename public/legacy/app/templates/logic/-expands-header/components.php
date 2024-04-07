@@ -67,7 +67,7 @@ $headerComponent['mobile-menu'] = function () {
 		<div class="h-mob-bgr" data-function="mobile-menu-close"></div>
 		<div class="h-mob-ddown">
 			<div class="h-mob-close icon-box" data-function="mobile-menu-close">
-				<?= icon_embed('close') ?>
+				<?= embed_icon('close') ?>
 			</div>
 
 			<!-- Links -->
@@ -87,7 +87,7 @@ $headerComponent['mobile-menu'] = function () {
 
 								<?php if (isset($link['drop']) || isset($link['megamenu'])) { ?>
 									<div class="hm-ddown_icon icon-box">
-										<?= icon_embed('navigation/arrow1-down') ?>
+										<?= embed_icon('navigation/arrow1-down') ?>
 									</div>
 								<?php } ?>
 							</a>
@@ -185,7 +185,7 @@ $headerComponent['search-icon'] = function () { ?>
 		<input type="checkbox" class="hidden" id="h-srch-cbx">
 		<label class="h-search-cta stack-content" for="h-srch-cbx">
 			<div class="h-search-icon icon-box">
-				<?= icon_embed('search') ?>
+				<?= embed_icon('search') ?>
 			</div>
 		</label>
 
@@ -201,7 +201,7 @@ $headerComponent['search-icon'] = function () { ?>
 $headerComponent['search-simple'] = '
 	<form class="h-search h-search_simple" action="' . html_link('shop#shop') . '" method="GET" autocomplete="off">
 		<div class="h-search-icon icon-box">
-			' . icon_embed('search') . '
+			' . embed_icon('search') . '
 		</div>
 		
 		<input type="text" class="h-search-inp" name="search" placeholder="' . __('Search') . '">
@@ -243,10 +243,10 @@ $headerComponent['search-simple'] = '
 					<!-- Theme switch -->
 					<div class="h-theme-switch h-nav-icon">
 						<div class="light-icon icon-box" data-theme="light">
-							<?= icon_embed('sun') ?>
+							<?= embed_icon('sun') ?>
 						</div>
 						<div class="dark-icon icon-box" data-theme="dark">
-							<?= icon_embed('moon') ?>
+							<?= embed_icon('moon') ?>
 						</div>
 					</div>
 
@@ -258,7 +258,7 @@ $headerComponent['search-simple'] = '
 $headerComponent['profile'] = '
 	<a class="h-profile h-nav-icon" href="' . html_link('profile') . '">
 		<div class="icon-box">
-			' . icon_embed('profile-circle') . '
+			' . embed_icon('profile-circle') . '
 		</div>
 
 		<p>' . ($user->firstname ?: 'Profilo') . '</p>

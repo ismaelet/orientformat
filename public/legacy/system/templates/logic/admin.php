@@ -36,5 +36,5 @@ while ($categoryData = $categories->fetch_assoc()) {
 
 $navigationLogo =
 	file_exists(SERVER_ROOT . $file = LOGO_DIR . 'logo.svg') ?
-	icon_embed(LOGO_DIR . 'logo', ['menu__logo']) :
+	embed_icon(LOGO_DIR . 'logo', ['menu__logo']) :
 	'<img class="menu__logo image-fit" src="' . client_path(LOGO_DIR . 'logo.png') . '"></img>';

@@ -26,23 +26,23 @@
 
 						<div class="flex-group" data-spacing="200">
 							<a class="f-contact" href="<?= sysData('cont-twitter-link') ?>">
-								<?= icon_embed('contacts/twitter') ?>
+								<?= embed_icon('contacts/twitter') ?>
 							</a>
 
 							<a class="f-contact" href="<?= sysData('cont-facebook-link') ?>">
-								<?= icon_embed('contacts/facebook') ?>
+								<?= embed_icon('contacts/facebook') ?>
 							</a>
 
 							<a class="f-contact" href="<?= sysData('cont-instagram-link') ?>">
-								<?= icon_embed('contacts/instagram') ?>
+								<?= embed_icon('contacts/instagram') ?>
 							</a>
 
 							<a class="f-contact" href="<?= sysData('cont-telegram-link') ?>">
-								<?= icon_embed('contacts/telegram') ?>
+								<?= embed_icon('contacts/telegram') ?>
 							</a>
 
 							<a class="f-contact" href="<?= sysData('cont-vimeo-link') ?>">
-								<?= icon_embed('contacts/vimeo') ?>
+								<?= embed_icon('contacts/vimeo') ?>
 							</a>
 
 						</div>
@@ -89,7 +89,7 @@
 						&middot;
 						<a class="text-link" href="https://luigituffanelli.eu" target="_blank">
 							Curriculum
-							<?= icon_embed('external-link') ?>
+							<?= embed_icon('external-link') ?>
 						</a>
 					</p>
 

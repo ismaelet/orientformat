@@ -12,7 +12,7 @@
 		<?php if ($area->id <> 4) { ?>
 
 			<a class="button" href="<?= client_url('/student-read?id=' . $section->mainSection->id) ?>">
-				<?= icon_embed('read') ?>
+				<?= embed_icon('read') ?>
 				Saperne di più
 			</a>
 
@@ -44,7 +44,7 @@
 						<input type="hidden" name="testId" value="<?= $obj->id ?>">
 
 						<div class="test-img">
-							<?= icon_embed($testM['img']) ?>
+							<?= embed_icon($testM['img']) ?>
 						</div>
 
 						<div class="test-data">

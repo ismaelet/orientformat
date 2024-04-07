@@ -7,7 +7,7 @@
 	<!-- Title -->
 	<div class="page-title flex-group" data-spacing="200">
 		<a href="list" class="title-arrow border border-radius">
-			<?= icon_embed('navigation/arrow1-left') ?>
+			<?= embed_icon('navigation/arrow1-left') ?>
 		</a>
 
 		<h1 class="panel__title"><?= ViewOld::$title ?></h1>
@@ -39,7 +39,7 @@
 
 				<!-- Delete -->
 				<button type="submit" class="button button--secondary button--auto-width button--bad" name="delete" onclick="return confirm('Confermi di voler eliminare questo elemento? Non potrà essere ripristinato.')">
-					<?= icon_embed('delete') ?>
+					<?= embed_icon('delete') ?>
 					Elimina l'elemento
 				</button>
 
@@ -49,7 +49,7 @@
 
 				<!-- Preview -->
 				<a class="button button--secondary button--auto-width" href="<?= $pageConfig['preview-url'] ?>" target="_blank">
-					<?= icon_embed('view') ?>
+					<?= embed_icon('view') ?>
 					Anteprima
 				</a>
 
@@ -58,7 +58,7 @@
 			<!-- Save -->
 			<button type="submit" class="button" name="submit">
 				<?= ViewOld::get('id') ? 'Salva' : 'Aggiungi' ?>
-				<?= icon_embed(ViewOld::get('id') ? 'save' : 'add') ?>
+				<?= embed_icon(ViewOld::get('id') ? 'save' : 'add') ?>
 			</button>
 		</section>
 
@@ -68,7 +68,7 @@
 
 <!-- Loading panel -->
 <div class="loading center-content js-loading">
-	<?= icon_embed('loading') ?>
+	<?= embed_icon('loading') ?>
 </div>
 
 {% end content %}

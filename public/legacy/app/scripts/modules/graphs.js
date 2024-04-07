@@ -22,7 +22,9 @@ document.addEventListener('DOMContentLoaded', function () {
 		// const colorBaseH = 80
 
 		let colors = []
+		let platformColors = []
 		let borderColors = []
+		let platformBorderColors = []
 
 		if (section.classList.contains('js-section-waiting')) {
 			axios
@@ -37,8 +39,10 @@ document.addEventListener('DOMContentLoaded', function () {
 						const resultCount = response.data.labels.length
 
 						for (let index = 0; index < resultCount; index++) {
-							colors.push(`lch(${colorL} ${colorS} ${colorBaseH + colorIncrement * (index - resultCount / 2)} / .7`)
+							colors.push(`lch(${colorL} ${colorS} ${colorBaseH + colorIncrement * (index - resultCount / 2)} / 1`)
+							platformColors.push(`lch(${colorL} ${colorS} ${colorBaseH + colorIncrement * (index - resultCount / 2)} / .3`)
 							borderColors.push(`lch(${colorL} ${colorS} ${colorBaseH + colorIncrement * (index - resultCount / 2)}`)
+							platformBorderColors.push(`lch(${colorL} ${colorS} ${colorBaseH + colorIncrement * (index - resultCount / 2)} / .4`)
 						}
 
 						condensedResult.innerHTML = response.data.condensed
@@ -49,11 +53,19 @@ document.addEventListener('DOMContentLoaded', function () {
 								labels: response.data.labels,
 								datasets: [
 									{
-										label: 'Risultato medio per la classe',
-										data: response.data.data,
+										label: 'Risultato classe',
+										data: response.data.data.school_class,
 										backgroundColor: colors,
 										borderWidth: 3,
-										borderColor: borderColors,
+										borderColor: colors,
+										borderRadius: 16,
+									},
+									{
+										label: 'Risultato piattaforma',
+										data: response.data.data.platform,
+										backgroundColor: platformColors,
+										borderWidth: 3,
+										borderColor: platformBorderColors,
 										borderRadius: 16,
 									},
 								],
@@ -62,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
 							options: {
 								plugins: {
 									legend: {
-										display: false,
+										display: true,
 									},
 									tooltip: {
 										callbacks: {

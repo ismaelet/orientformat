@@ -13,7 +13,7 @@
 				<!-- <div class="menu__group">
 					<div class="menu-item">
 						<a class="menu-item__header" href="/" target="_blank">
-							<?= icon_embed('link') ?>
+							<?= embed_icon('link') ?>
 							<p class="menu-item__title">Sito pubblico</p>
 						</a>
 					</div>
@@ -26,7 +26,7 @@
 					<!-- Home link -->
 					<div class="menu-item <?= !$currentSection ? 'active' : '' ?>">
 						<a class="menu-item__header" href="<?= client_url('/') ?>">
-							<?= icon_embed('home') ?>
+							<?= embed_icon('home') ?>
 							<p class="menu-item__title">Home</p>
 						</a>
 					</div>
@@ -39,7 +39,7 @@
 
 							<!-- Item header -->
 							<div class="menu-item__header js-open-menu-category">
-								<?= icon_embed(APP_ICONS_DIR . 'navigation/' . $category['slug']) ?>
+								<?= embed_icon(APP_ICONS_DIR . 'navigation/' . $category['slug']) ?>
 								<p class="menu-item__title"><?= $category['name'] ?></p>
 							</div>
 
@@ -70,7 +70,7 @@
 					<!-- Logout link -->
 					<div class="menu-item">
 						<a class="menu-item__header" href="<?= client_url('/logout') ?>">
-							<?= icon_embed('logout') ?>
+							<?= embed_icon('logout') ?>
 							<p class="menu-item__title">Logout</p>
 						</a>
 					</div>
@@ -79,7 +79,7 @@
 
 			<!-- Mobile open menu icon -->
 			<div class="menu__open js-toggle-menu">
-				<?= icon_embed('navigation/arrow1-right') ?>
+				<?= embed_icon('navigation/arrow1-right') ?>
 			</div>
 		</div>
 	</div>
