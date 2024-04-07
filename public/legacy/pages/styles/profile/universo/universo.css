@@ -1,0 +1,161 @@
+/*
+* Layout
+*/
+body {
+	background-color: hsl(0, 0%, 3%);
+}
+
+.test__body {
+	margin-bottom: unset;
+}
+
+/*
+* Map
+*/
+.map__background {
+	opacity: 0.5;
+	position: relative;
+}
+.map__background::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(closest-side, hsl(0, 0%, 0%, 0), hsl(0, 0%, 3%, 1));
+}
+
+.map__system {
+	width: 100%;
+	padding: 5rem 3rem;
+}
+
+.star {
+	width: 10%;
+	aspect-ratio: 1;
+}
+
+.star__image {
+	width: 100%;
+	border-radius: 50%;
+	box-shadow: 0 0 5rem 1rem hsl(34, 100%, 70%, 0.7);
+}
+
+.star__me {
+	color: #fff;
+	font-size: 3rem;
+	font-weight: var(--fw-bold);
+	text-shadow: 2px 2px 1rem rgba(0, 0, 0, 0.7);
+	letter-spacing: 0.1em;
+	margin-right: -0.1em;
+}
+
+.orbits {
+	width: 100%;
+	max-width: 1200px;
+	aspect-ratio: 1;
+}
+
+.orbit {
+	aspect-ratio: 1;
+	border: 2px dashed hsl(0, 0%, 100%, 0.3);
+	border-radius: 50%;
+	position: relative;
+	animation-name: orbiting;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	transition: border-color 0.2s;
+}
+
+.orbit:nth-child(1) {
+	width: 100%;
+	animation-duration: 30s;
+	animation-delay: -22s;
+}
+.orbit:nth-child(2) {
+	width: 82%;
+	animation-duration: 22s;
+	animation-delay: -2s;
+}
+.orbit:nth-child(3) {
+	width: 64%;
+	animation-duration: 15s;
+	animation-delay: -10s;
+}
+.orbit:nth-child(4) {
+	width: 47%;
+	animation-duration: 11s;
+	animation-delay: -8s;
+}
+.orbit:nth-child(5) {
+	width: 30%;
+	animation-duration: 7s;
+	animation-delay: 0s;
+}
+
+.orbit:hover {
+	border-color: var(--clr-primary-400);
+	animation-play-state: paused;
+}
+
+.planet {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+	animation-name: inherit;
+	animation-duration: inherit;
+	animation-timing-function: inherit;
+	animation-iteration-count: inherit;
+	animation-direction: reverse;
+	animation-delay: inherit;
+	transition: filter 0.2s, opacity 0.2s;
+	cursor: pointer;
+}
+
+.orbits:has(.orbit:hover) .planet {
+	opacity: 0.5;
+	filter: saturate(0);
+}
+
+.orbit:hover .planet {
+	opacity: 1 !important;
+	filter: saturate(1) !important;
+	animation-play-state: paused;
+}
+
+.planet:nth-child(1) {
+	top: 0;
+}
+
+.planet:nth-child(2) {
+	left: 0;
+}
+
+.planet:nth-child(3) {
+	left: 100%;
+}
+
+.planet__image {
+	position: relative;
+	width: 5rem;
+	max-width: unset;
+	border-radius: 50%;
+	box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.7);
+	aspect-ratio: 1;
+}
+
+.planet__text {
+	min-width: 10rem;
+	position: relative;
+	color: #fff;
+	font-size: var(--fs-450);
+	text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.7);
+}
+
+@keyframes orbiting {
+	from {
+		rotate: 0deg;
+	}
+	to {
+		rotate: 360deg;
+	}
+}

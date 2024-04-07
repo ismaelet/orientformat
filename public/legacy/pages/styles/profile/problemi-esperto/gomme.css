@@ -1,0 +1,26 @@
+/**
+* Layout
+*/
+.answer {
+	font-size: 1.3rem;
+	font-weight: var(--fw-bold);
+	line-height: 2;
+	text-align: center;
+}
+
+.answer::placeholder {
+	font-weight: var(--fw-regular);
+}
+
+.result {
+	font-size: var(--fs-600);
+	text-align: center;
+}
+
+.result--correct {
+	color: var(--clr-good-400);
+}
+
+.result--wrong {
+	color: var(--clr-bad-400);
+}

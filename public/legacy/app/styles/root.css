@@ -1,0 +1,93 @@
+/*
+* GROUPS:
+* 1. Parent Layout
+* 2. Layout (composition)
+* 3. Box Model
+* 4. Positioning
+* 5. Styling
+* 6. Typography
+* 7. Animations
+*/
+
+/* Imports */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
+
+/* Root */
+:root {
+	/* Fonts */
+	--font-main: 'Poppins', sans-serif;
+	--font-text: 'Open Sans', sans-serif;
+
+	/* Wraps */
+	--wrap-width: 1200px;
+	--wrap-padding: 2rem;
+
+	/* form */
+	--inp-height: 3rem;
+
+	/* animations */
+	--slide-in-intensity: 1rem;
+}
+
+/* Themes */
+html {
+	/* theme color */
+	--theme-h: 34;
+	--theme-s: 88%;
+
+	--bgr-h: var(--theme-h);
+	--bgr-s: var(--theme-s);
+	--bgr-l: 100%;
+
+	--theme-max: #000;
+	--theme-min: #fff;
+
+	/* surfaces */
+	--bgr: hsl(var(--bgr-h), var(--bgr-s), var(--bgr-l));
+
+	--surface: hsl(var(--theme-h), 0%, 95%);
+	--surface-fade: hsl(var(--theme-h), 0%, 97%);
+
+	--surface-secondary: hsl(var(--theme-h), var(--theme-s), 95%);
+	--surface-tertiary: hsl(var(--theme-h), var(--theme-s), 80%);
+
+	/* borders */
+	--border-color-fade: #f1f1f1;
+	--border-color: #ebebeb;
+	--border-color-strong: #dadada;
+
+	--border-radius: 0.5rem;
+
+	/* text colors */
+	--text-color-fade: #707070;
+	--text-color: #505050;
+	--text-color-strong: #202020;
+
+	/* accent colors */
+	--clr-1: #f4c150;
+	--clr-1-strong: #f79f22;
+	--clr-2: #6ac2e1;
+	--clr-2-strong: #0b9ccf;
+	--clr-3: #072a5e;
+	--clr-3-strong: #0c49a4;
+	--clr-4: #ff9523;
+	--clr-4-strong: #ffb15e;
+	--clr-5: #266fdc;
+	--clr-5-strong: #104595;
+}
+
+/* Colors */
+html {
+	background-color: var(--bgr);
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: 0.02em;
+}
+
+body {
+	background-color: var(--bgr);
+}

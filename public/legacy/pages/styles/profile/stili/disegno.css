@@ -1,0 +1,44 @@
+/* Image section */
+#image-sec {
+	max-width: 1024px;
+}
+
+#img {
+	box-shadow: var(--shadow-big);
+	width: 100%;
+}
+
+#verify {
+	width: 100%;
+}
+
+/* Results */
+#results-sec {
+	max-width: 1200px;
+}
+
+.method {
+	box-shadow: var(--shadow);
+	border-radius: 10px;
+	padding: 2rem;
+	transition: background 0.4s;
+	cursor: pointer;
+}
+
+.title,
+.desc {
+	transform: translateZ(20px);
+}
+
+.method:hover {
+	background-color: var(--clr-secondary-400);
+}
+
+.highlight {
+	color: var(--clr-primary-400);
+	transition: color 0.3s;
+}
+
+.method:hover .highlight {
+	color: #fff;
+}

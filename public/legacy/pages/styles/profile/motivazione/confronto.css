@@ -1,0 +1,22 @@
+.answer {
+	display: grid;
+	align-items: center;
+	grid-template-columns: 2.5rem 1fr;
+	gap: 1rem;
+}
+
+.number {
+	display: inline-block;
+	border: 1px solid #333;
+	border-radius: 50%;
+	font-size: 1rem;
+	line-height: 2.5rem;
+	text-align: center;
+	transition: background 0.3s, border 0.3s, color 0.3s;
+}
+
+.number.focus {
+	background-color: var(--clr-primary-400);
+	border-color: var(--clr-primary-400);
+	color: #fff;
+}

@@ -1,0 +1,39 @@
+/*
+* Layout
+*/
+main {
+	padding-block: 3rem;
+}
+
+.form {
+	width: 768px;
+}
+
+.subform:last-child {
+	padding-top: 2rem;
+	margin-top: 2rem;
+	border-top: 1px solid var(--border-color);
+}
+
+.subform_body {
+	display: grid;
+	gap: 1rem;
+}
+
+.section-title {
+	display: grid;
+	grid-template-columns: 2rem 1fr;
+	align-items: center;
+	gap: 0.5rem;
+	margin-bottom: 1rem;
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+.subform_footer {
+	margin-top: 2rem;
+}
+
+.subform_footer .pbtn {
+	width: 100%;
+}

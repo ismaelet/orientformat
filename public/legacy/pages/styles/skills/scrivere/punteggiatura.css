@@ -1,0 +1,26 @@
+/*
+* Layout
+*/
+.sentence {
+	font-size: var(--fs-500);
+}
+
+.sentence select {
+	width: 2.5rem;
+	height: 1.5em;
+	padding-inline: 0;
+	opacity: 1;
+	line-height: 1.5;
+	font-size: var(--fs-500);
+	cursor: pointer;
+}
+
+.sentence select.right {
+	color: var(--clr-good-400);
+	cursor: default;
+}
+
+.sentence select.wrong {
+	color: var(--clr-bad-400);
+	cursor: default;
+}

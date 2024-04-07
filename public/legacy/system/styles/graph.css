@@ -1,0 +1,236 @@
+/*
+* Column graph
+*/
+.column-graph {
+	--_gap: calc(18% / var(--_total-columns));
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 1rem;
+	overflow: auto;
+}
+
+.graph-box {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: 1fr;
+	align-items: flex-end;
+	justify-items: center;
+	gap: var(--_gap);
+	min-width: 500px;
+	height: 25rem;
+	position: relative;
+	border: 1px solid #aaa;
+	border-width: 0 0 1px 1px;
+}
+
+.graph-column,
+.graph-subcolumn {
+	width: 100%;
+	height: calc(var(--_value) * 1%);
+	position: relative;
+	background-color: #aaa;
+	border-radius: 1rem 1rem 0 0;
+	transition: background 0.3s, filter 0.3s, height 0.3s;
+}
+
+.graph-column_single {
+	transition-delay: 0s, 0s, calc(var(--_count) * 0.02s);
+}
+
+.graph-subcolumn {
+	width: 2rem;
+	max-width: 100%;
+	transition-delay: 0s, 0s, calc((var(--_subcount) + var(--_count)) * 0.03s);
+}
+
+.js-load .graph-column,
+.js-load .graph-subcolumn {
+	height: 0;
+}
+
+.graph-column_single {
+	max-width: 4rem;
+}
+
+.graph-column_multiple {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: minmax(0, 2rem);
+	align-items: flex-end;
+	justify-content: center;
+	gap: 0.25rem;
+	height: 100%;
+	background-color: unset;
+	border-radius: unset;
+}
+
+.graph-column_multiple:hover {
+	background-color: rgba(150, 150, 150, 0.2);
+}
+
+.graph-column-average {
+	display: none;
+	width: 100%;
+	border-bottom: 2px dashed #ddd;
+	position: absolute;
+	bottom: calc(var(--_average) * 1% - 2px);
+}
+
+.graph-box-average {
+	width: 100%;
+	padding-block: 0.5rem;
+	position: absolute;
+	left: 0;
+	transform-origin: left;
+	bottom: calc(var(--_value) * 1% - 4px - 0.25rem);
+	transition: opacity 0.4s 0.8s;
+}
+
+.js-load .graph-box-average {
+	opacity: 0 !important;
+}
+
+.graph-box-average::before {
+	content: '';
+	display: block;
+	border-bottom: 2px solid var(--clr-4);
+}
+
+.graph-box-average_info {
+	padding: 0.5rem 1rem;
+	opacity: 0;
+	background-color: #fff;
+	border-radius: 2rem;
+	box-shadow: var(--shadow-small);
+	position: absolute;
+	left: 50%;
+	bottom: 100%;
+	z-index: 1;
+	transform: translate(-50%, -0.1rem);
+	pointer-events: none;
+	transition: opacity 0.3s;
+}
+
+.graph-box-average_info::before {
+	content: '';
+	background-color: inherit;
+	width: 0.8rem;
+	aspect-ratio: 1;
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	transform: translate(-50%, 50%) rotate(45deg);
+}
+
+.graph-box-average:hover .graph-box-average_info {
+	opacity: 1;
+}
+
+.graph-labels {
+	max-height: 10rem;
+	min-width: 500px;
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: 1fr;
+	align-items: flex-start;
+	justify-items: center;
+	gap: var(--_gap);
+}
+
+.graph-label {
+	font-weight: 600;
+	transition: opacity 0.3s, transform 0.3s;
+	transition-delay: calc(var(--_count) * 0.03s);
+}
+
+.js-load .graph-label {
+	opacity: 0;
+	transform: translateY(-1rem);
+}
+
+/*
+* Graph info
+*/
+.graph-info {
+	max-width: 20rem;
+	position: absolute;
+	left: 50%;
+	bottom: clamp(28%, calc(var(--_average) * 1%), 75%);
+	translate: 0 50%;
+	z-index: 3;
+	opacity: 0;
+	overflow: hidden;
+	background-color: #fff;
+	border-radius: 5px;
+	width: max-content;
+	pointer-events: none;
+	transition: opacity 0.3s;
+}
+
+.graph-column:hover .graph-info {
+	opacity: 1;
+}
+
+.graph-info_left {
+	left: unset;
+	right: 50%;
+}
+
+.graph-info-title {
+	background-color: #ddd;
+	font-size: 0.8rem;
+	font-weight: 500;
+	padding: 0.4rem;
+}
+
+.graph-info-body {
+	padding: 0.4rem;
+}
+
+.graph-info-row {
+	display: grid;
+	grid-template-columns: 0.75rem 1fr max-content;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.graph-info-icon {
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background-color: #aaa;
+}
+
+/*
+* Legend
+*/
+.graph-legend {
+	padding: 1rem;
+	max-width: 100%;
+	border: 1px solid var(--border-color-strong);
+}
+
+.graph-legend-row {
+	display: grid;
+	grid-template-columns: 1.5rem auto;
+	align-items: center;
+	gap: 1rem;
+}
+
+.graph-legend--none .graph-legend-row {
+	display: block;
+}
+
+.graph-legend-icon {
+	border-bottom: 2px solid #ddd;
+}
+
+:where(.graph-legend--square) .graph-legend-icon {
+	width: 10px;
+	aspect-ratio: 1;
+	background-color: #ddd;
+	border: none;
+}
+
+.graph-legend--none .graph-legend-icon {
+	display: none;
+}

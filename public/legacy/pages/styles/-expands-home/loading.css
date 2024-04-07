@@ -1,0 +1,17 @@
+/* Loading */
+#loading {
+	display: grid;
+	place-items: center;
+	background-color: var(--bgr-color);
+}
+
+#loading .logo {
+	display: grid;
+	justify-items: center;
+}
+
+#loading svg {
+	fill: var(--text-color-strong);
+}
+
+/* Insert SVG code here */

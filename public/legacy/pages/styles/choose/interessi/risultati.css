@@ -1,0 +1,105 @@
+/*
+* Layout
+*/
+main {
+	--wrap-width: 1500px;
+}
+
+.interests {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 3rem;
+	margin-bottom: 4rem;
+}
+
+.area_title {
+	grid-column: span 2;
+	font-weight: 500;
+}
+
+.interest {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	align-items: center;
+	overflow: hidden;
+	background-color: #fff;
+	border-radius: 2rem;
+	box-shadow: 1rem 1rem 2rem -0.5rem hsl(252, 30%, 95%), 0 -0.5rem 1rem hsl(252, 30%, 97%);
+}
+
+.interest--main {
+	grid-column: span 2;
+}
+
+.interest_content {
+	padding: 2rem;
+}
+
+.interest--main .interest_img {
+	min-height: 27rem;
+}
+
+.interest_title {
+	margin-bottom: 0.5rem;
+	font-size: 1.4rem;
+	font-weight: 500;
+}
+
+.interest--main .interest_title {
+	font-size: 2.5rem;
+}
+
+.interest_value {
+	margin-bottom: 1rem;
+}
+
+.interest--other .interest_info {
+	display: -webkit-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 4;
+}
+
+.interest_link {
+	min-width: 0;
+	padding: 0;
+	font-size: 0.9rem;
+}
+
+.interest_link:hover {
+	color: var(--clr-primary-400);
+}
+
+/*
+* Responsive
+*/
+@media (max-width: 1280px) {
+	.interest--other {
+		grid-template-columns: 1fr;
+	}
+
+	.interest--other .interest_img {
+		height: 14rem;
+	}
+}
+
+@media (max-width: 768px) {
+	.interests {
+		grid-template-columns: 1fr;
+	}
+
+	.area_title,
+	.interest--main {
+		grid-column: unset;
+	}
+
+	.interest {
+		grid-template-columns: 1fr;
+	}
+
+	.interest--main .interest_img {
+		height: 18rem;
+		min-height: 0;
+	}
+}

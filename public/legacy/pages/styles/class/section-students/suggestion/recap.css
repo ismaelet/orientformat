@@ -1,0 +1,65 @@
+/*
+* Layout
+*/
+.dashboard-panel {
+	grid-template-rows: max-content 1fr;
+}
+
+.result {
+	display: grid;
+	grid-template-columns: 3rem minmax(0, 1fr);
+	gap: 1rem;
+	padding-block: 1.5rem;
+	border-top: 1px solid var(--border-color);
+}
+
+.result:first-child {
+	border-top: none;
+	padding-top: unset;
+}
+
+.result:last-child {
+	padding-bottom: unset;
+}
+
+.result__icon {
+	--icon-size: 50%;
+	position: relative;
+	isolation: isolate;
+	width: 100%;
+	aspect-ratio: 1;
+	overflow: hidden;
+	border-radius: 50%;
+	color: #fff;
+}
+
+.result__icon::after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	inset: 0;
+	opacity: 0.4;
+	mix-blend-mode: overlay;
+	background: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 0%, 0%));
+}
+
+.result:nth-child(1) .result__icon {
+	background-color: var(--clr-primary-400);
+}
+
+.result:nth-child(2) .result__icon {
+	background-color: var(--clr-secondary-400);
+}
+
+.result:nth-child(3) .result__icon {
+	background-color: var(--clr-4);
+}
+
+.result__title {
+	font-size: var(--fs-300);
+	font-weight: var(--fw-semibold);
+}
+
+.answer {
+	font-size: var(--fs-450);
+}

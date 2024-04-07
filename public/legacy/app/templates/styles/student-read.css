@@ -1,0 +1,118 @@
+/* Structure */
+html {
+	scroll-behavior: smooth;
+}
+
+/* Content */
+#content .title {
+	margin-bottom: 4rem;
+	font-size: 3rem;
+	font-weight: 900;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+#content .section-title {
+	background-image: url('../assets/read/marker2.svg');
+	background-position: center;
+	background-size: contain;
+	width: fit-content;
+	padding-inline: 1rem;
+	margin-top: 3rem;
+	margin-bottom: 1rem;
+	font-size: 2rem;
+	letter-spacing: 0.05em;
+	font-weight: bold;
+	font-variant: small-caps;
+}
+
+#content h3 {
+	width: fit-content;
+	margin-bottom: 0.5rem;
+	border-bottom: 1px solid #202020;
+	font-size: 1.5rem;
+	letter-spacing: 0.02em;
+	font-weight: bold;
+	font-variant: small-caps;
+}
+
+#content .text {
+	margin-bottom: 1rem;
+	font-size: 1rem;
+	line-height: 2;
+	text-align: justify;
+}
+
+#content .text .break {
+	display: block;
+	height: 1em;
+}
+
+#content img {
+	width: 100%;
+}
+
+#content .foot {
+	border-top: 1px solid #d0d0d0;
+	padding-top: 10px;
+	margin-top: 3rem;
+}
+
+/* Glossary */
+#glossary {
+	margin-top: 5rem;
+}
+
+.letter .entry {
+	transition: color 0.3s;
+}
+
+.marker {
+	opacity: 0.8;
+	width: 100%;
+	min-width: 8rem;
+	top: 70%;
+}
+
+#entries p {
+	font-size: 1rem;
+	line-height: 2;
+	text-align: justify;
+	letter-spacing: 0.05em;
+}
+
+/* Scroll to top */
+#scroll {
+	background-color: #ccc;
+	width: 3rem;
+	height: 3rem;
+	position: fixed;
+	bottom: 2rem;
+	right: 2rem;
+	transition: opacity 0.3s, background 0.3s;
+}
+
+#scroll.top {
+	opacity: 0;
+}
+
+#scroll.bottom {
+	position: absolute;
+}
+
+#scroll .icon {
+	width: 50%;
+	aspect-ratio: 1/1;
+}
+
+/* Responsive */
+@media only print {
+	header,
+	footer,
+	#scroll,
+	#print,
+	.button {
+		display: none !important;
+	}
+}

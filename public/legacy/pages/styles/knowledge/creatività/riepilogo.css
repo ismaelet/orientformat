@@ -1,0 +1,173 @@
+/* Structure */
+.load.slide-bottom {
+	transform: translateY(4rem);
+}
+
+/* Flower */
+#flower {
+	--width: 1000px;
+	max-width: var(--width);
+	position: relative;
+}
+
+#center {
+	box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
+	width: 13%;
+	height: 13%;
+	z-index: 1;
+}
+
+/* Petals */
+.petal {
+	width: calc((var(--width) / 6));
+	height: calc((var(--width) / 2) * 0.9);
+	position: absolute;
+	left: 50%;
+	transform-origin: calc(var(--width) / 12) calc(var(--width) / 2);
+	transform: translateX(-50%) rotate(calc(45deg * (var(--i) - 4)));
+	transition: opacity 0.4s, filter 0.4s;
+}
+
+.petal.active {
+	z-index: 1;
+}
+
+.petal.blur {
+	opacity: 0.3;
+	filter: saturate(0);
+}
+
+.petal .body {
+	border: 1px solid transparent;
+	border-radius: 100%;
+	box-sizing: border-box;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.petal .color {
+	opacity: 0.3;
+	transition: opacity 0.4s;
+}
+
+.petal .fill {
+	opacity: 0.75;
+	top: auto;
+	bottom: 0;
+	transition: opacity 0.4s;
+}
+
+.petal.active .fill {
+	opacity: 1;
+}
+
+.petal__background {
+	--offset: calc(100% - max(var(--score), 5%));
+	clip-path: polygon(0 var(--offset), 100% var(--offset), 100% 100%, 0% 100%);
+}
+
+.petal.thinking .body {
+	border-color: var(--clr-tertiary-400);
+}
+
+.petal.skill .body {
+	border-color: var(--clr-primary-400);
+}
+
+[data-style='highschool'] .petal.skill .body {
+	border-color: var(--clr-secondary-400);
+}
+
+.petal.thinking.active .name {
+	color: var(--clr-tertiary-400);
+}
+
+.petal.skill.active .name {
+	color: var(--clr-primary-400);
+}
+
+[data-style='highschool'] .petal.skill.active .name {
+	color: var(--clr-secondary-400);
+}
+
+.petal.thinking .color,
+.petal.thinking .fill {
+	background: linear-gradient(to bottom, var(--gradient-secondary-tertiary));
+}
+
+[data-style='highschool'] .petal.thinking .color,
+[data-style='highschool'] .petal.thinking .fill {
+	background: linear-gradient(to bottom, var(--gradient-primary-tertiary));
+}
+
+.petal.skill .color,
+.petal.skill .fill {
+	background: linear-gradient(to bottom, var(--gradient-primary-secondary));
+}
+
+[data-style='highschool'] .petal.skill .color,
+[data-style='highschool'] .petal.skill .fill {
+	background: linear-gradient(to top, var(--gradient-primary-secondary));
+}
+
+/* Scores and titles */
+#petal1 .score-wrapper,
+#petal7 .score-wrapper,
+#petal8 .score-wrapper {
+	transform: translate(-50%, -50%) rotate(180deg);
+}
+
+.reset {
+	opacity: 0;
+	transform: translateY(-1rem);
+	color: var(--clr-bad-400);
+	transition: opacity 0.4s, transform 0.4s;
+}
+
+.petal.active .reset {
+	opacity: 1;
+	transform: none;
+}
+
+.petal.thinking .score {
+	color: #fff;
+}
+
+.petal .name-box {
+	pointer-events: none;
+	position: relative;
+}
+
+.petal .name {
+	width: 200%;
+	position: relative;
+	left: 50%;
+	transform: translate(-50%, calc(-100% - 0.5em));
+	transition: color 0.4s;
+}
+
+#petal1 .name,
+#petal7 .name,
+#petal8 .name {
+	transform: translate(-50%, calc(-100% - 0.5em)) rotate(180deg);
+}
+
+/* Responsive */
+@media (max-width: 1280px) {
+	#flower {
+		--width: 90vw;
+		max-width: var(--width);
+	}
+}
+
+@media (max-width: 480px) {
+	.petal .name {
+		width: 250%;
+		font-size: 1rem;
+		line-height: 1;
+	}
+
+	.petal .score {
+		font-size: 1rem;
+	}
+}

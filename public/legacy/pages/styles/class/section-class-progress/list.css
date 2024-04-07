@@ -1,0 +1,309 @@
+/*
+* Layout
+*/
+.areas {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 5rem;
+}
+.area-title {
+	padding-inline: 1rem;
+	margin-left: 2rem;
+	font-size: min(2.5rem, 8vw);
+	word-break: break-word;
+	font-weight: 600;
+}
+.area:nth-child(1) .area-title::before {
+	background-color: hsl(25, 100%, 60%);
+}
+.area:nth-child(2) .area-title::before {
+	background-color: hsl(185, 100%, 40%);
+}
+.area:nth-child(3) .area-title::before {
+	background-color: hsl(90, 100%, 35%);
+}
+.area:nth-child(4) .area-title::before {
+	background-color: hsl(290, 100%, 35%);
+}
+.area_header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 2rem;
+}
+.area_arrows {
+	display: flex;
+	gap: 1rem;
+}
+.area_arrow {
+	width: 3rem;
+	aspect-ratio: 1;
+	background-color: #ddd;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: background 0.3s;
+}
+.area_arrow:hover {
+	--_fill: #fff;
+}
+.area:nth-child(1) .area_arrow:hover {
+	background-color: hsl(25, 100%, 60%);
+}
+.area:nth-child(2) .area_arrow:hover {
+	background-color: hsl(185, 100%, 40%);
+}
+.area:nth-child(3) .area_arrow:hover {
+	background-color: hsl(70, 100%, 35%);
+}
+.area:nth-child(4) .area_arrow:hover {
+	background-color: hsl(290, 100%, 35%);
+}
+.area_arrow svg {
+	width: 50%;
+}
+.sections-containter {
+	overflow: hidden;
+	margin: -2rem;
+	margin-top: 0;
+}
+.sections {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: 100%;
+	position: relative;
+	scroll-behavior: smooth;
+	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+.section {
+	padding: 2rem;
+}
+.js-section-waiting .graph {
+	min-height: 30rem;
+}
+.dashboard-panel {
+	padding-bottom: 0;
+}
+.dashboard-panel-body {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) min(6rem, 15vw);
+	align-content: flex-start;
+	gap: 0.5rem 1rem;
+	margin-bottom: -2rem;
+}
+.dashboard-panel-icon {
+	margin-top: -2rem;
+	border-radius: 50%;
+}
+.dashboard-panel-title {
+	font-size: min(1.75rem, 6vw);
+	font-weight: 600;
+	letter-spacing: unset;
+}
+.dashboard-panel_result {
+	padding-block: 1rem;
+	border-top: 1px solid var(--border-color);
+	text-align: center;
+	font-weight: 300;
+}
+.dashboard-panel_value {
+	font-size: 1.5em;
+}
+.dashboard-panel-footer {
+	padding-block: 0.75rem 1rem;
+	border-top: 1px solid var(--border-color);
+}
+.dashboard-home-more {
+	text-align: center;
+	margin: unset;
+}
+.dashboard-home-more a {
+	border-bottom: 1px dashed;
+	color: var(--clr-tertiary-400);
+	transition: color 0.2s;
+}
+.dashboard-home-more a:hover {
+	color: var(--clr-primary-400);
+}
+
+.dashboard-panel-icon {
+	background-color: var(--_color);
+}
+
+/* .dashboard-panel-icon {
+	--_h-range: 30;
+	--_h: calc((var(--_h-center) - var(--_h-range) / 2) + ((var(--i) - 1) / (var(--count) - 1) * var(--_h-range)));
+	background: hsl(var(--_h), var(--_s), var(--_l));
+}
+.area:nth-child(1) {
+	--_h-center: 40;
+	--_s: 100%;
+	--_l: 55%;
+}
+.area:nth-child(2) {
+	--_h-center: 200;
+	--_s: 100%;
+	--_l: 40%;
+}
+.area:nth-child(3) {
+	--_h-center: 100;
+	--_s: 100%;
+	--_l: 35%;
+}
+.area:nth-child(3) .dashboard-panel-icon {
+	--_h: 90;
+}
+.area:nth-child(4) {
+	--_h-center: 290;
+	--_s: 100%;
+	--_l: 35%;
+}
+.area:nth-child(4) .dashboard-panel-icon {
+	--_h: 290;
+} */
+/*
+* Graphs
+*/
+.graph {
+	margin-bottom: 2rem;
+}
+
+.column-graph {
+	overflow: auto;
+	padding-bottom: 2rem;
+	grid-template-columns: minmax(0, 1fr);
+}
+
+.graph-box {
+	min-width: 500px;
+	height: 18rem;
+}
+
+.column-graph--has-legend .graph-box {
+	height: 14rem;
+}
+
+.graph-labels {
+	min-width: 500px;
+	max-height: 5rem;
+}
+.column-graph {
+	margin-top: 1rem;
+}
+.area:nth-child(1) .column-graph {
+	--_h-base: 25;
+	--_s-base: 100%;
+	--_l-base: 60%;
+}
+.area:nth-child(2) .column-graph {
+	--_h-base: 185;
+	--_s-base: 80%;
+	--_l-base: 40%;
+}
+.area:nth-child(3) .column-graph {
+	--_h-base: 70;
+	--_s-base: 70%;
+	--_l-base: 35%;
+}
+.area:nth-child(4) .column-graph {
+	--_h-base: 290;
+	--_s-base: 70%;
+	--_l-base: 35%;
+}
+.graph-info-title {
+	background-color: var(--clr-tertiary-400);
+	color: #fff;
+}
+.graph-column_single,
+.graph-column_single .graph-info-icon {
+	--_h: calc(var(--_h-base) + (var(--_count) - 1) * 8);
+	--_s: calc(var(--_s-base) + (var(--_count) - 1) * 0%);
+	--_l: calc(var(--_l-base) + (var(--_count) - 1) * 1%);
+	background: linear-gradient(to bottom, hsl(var(--_h), var(--_s), var(--_l)), hsl(var(--_h), var(--_s), calc(var(--_l) - 15%)));
+}
+.graph-subcolumn,
+.graph-column_multiple .graph-info-icon {
+	--_h: calc(var(--_h-base) + (var(--_count) - 1) * 5);
+	--_s: calc(var(--_s-base) + (var(--_subcount) - 1) * 0%);
+	--_l: calc(var(--_l-base) + (var(--_subcount) - 1) * 30%);
+	background: linear-gradient(to bottom, hsl(var(--_h), var(--_s), var(--_l)), hsl(var(--_h), var(--_s), calc(var(--_l) - 15%)));
+}
+.graph-box-average::before,
+.graph-legend-icon {
+	border-bottom-style: dashed;
+}
+.graph-legend-row:nth-child(1) .graph-legend-icon,
+.graph-box-average:nth-last-child(2)::before {
+	border-color: rgb(255, 123, 0);
+}
+.graph-legend-row:nth-child(2) .graph-legend-icon,
+.graph-box-average:nth-last-child(1)::before {
+	border-color: rgb(90, 161, 255);
+}
+.search-filter-title {
+	line-height: 2.5rem;
+}
+.graph-info_average {
+	display: none;
+}
+/*
+* Dots
+*/
+.section-dots {
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	margin-top: 2rem;
+}
+.section-dot {
+	display: flex;
+	width: 1.5rem;
+	cursor: pointer;
+}
+.section-dot::after {
+	content: '';
+	width: 50%;
+	aspect-ratio: 1;
+	margin: auto;
+	background-color: var(--border-color-strong);
+	border-radius: 50%;
+	transition: background 0.3s;
+}
+.section-dot.active::after {
+	background-color: var(--text-color);
+}
+/*
+* Empty
+*/
+.empty {
+	padding-block: 18rem;
+	text-align: center;
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+/*
+* Responsive
+*/
+@media (max-width: 480px) {
+	.area-title {
+		padding-inline: 0.5em;
+		margin-left: 0;
+	}
+
+	.dashboard-panel-body {
+		align-items: center;
+	}
+
+	.dashboard-panel-icon {
+		margin-top: 0;
+	}
+
+	.dashboard-panel-title {
+		word-break: break-word;
+	}
+
+	.graph-legend {
+		display: none;
+	}
+}

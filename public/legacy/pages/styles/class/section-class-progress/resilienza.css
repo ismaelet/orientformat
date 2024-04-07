@@ -1,0 +1,43 @@
+/*
+* Layout
+*/
+.graph-column {
+	max-width: 3rem;
+}
+
+.graph-box-average {
+	transition-delay: 0.5s;
+}
+
+.graph-column,
+.graph-column .graph-info-icon {
+	--_h: calc(120 / var(--_total-columns) * var(--_count) + 170);
+	background: linear-gradient(to top, hsl(var(--_h), 55%, 65%), hsl(var(--_h), 65%, 40%));
+}
+
+.graph-column:hover .graph-column-average {
+	opacity: 1;
+}
+
+.graph-box {
+	border-color: var(--clr-tertiary-400);
+}
+
+.graph-info-title {
+	background: linear-gradient(225deg, hsl(var(--_h), 55%, 25%), hsl(var(--_h), 65%, 15%));
+	color: #fff;
+}
+
+.graph-box-average:nth-last-child(2),
+.graph-legend-row:nth-child(1) .graph-legend-icon {
+	opacity: 0.6;
+	border-color: orange;
+	border-bottom-style: dashed;
+}
+
+.graph-box-average:last-child,
+.graph-legend-row:nth-child(2) .graph-legend-icon {
+	opacity: 0.6;
+	border-color: var(--clr-5);
+	border-bottom-style: dashed;
+}
