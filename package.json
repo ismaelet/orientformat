@@ -25,6 +25,7 @@
 	},
 	"dependencies": {
 		"alpinejs": "^3.13.8",
+		"chartjs-plugin-annotation": "^3.0.1",
 		"ts-node": "^10.9.2"
 	}
 }

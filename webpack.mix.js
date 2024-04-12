@@ -11,6 +11,6 @@ const mix = require('laravel-mix')
  |
  */
 
-mix.js('resources/js/main.ts', 'public/legacy/js').postCss('resources/css/main.css', 'public/legacy/css', [
+mix.js('resources/js/main.ts', 'public').postCss('resources/css/main.css', 'public', [
 	//
 ])
