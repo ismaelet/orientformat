@@ -1,11 +1,13 @@
-@pushOnce('styles')
-    <style>
-        main .input {
-            padding-inline: 1.5em;
-            border-radius: var(--border-radius-1000);
-        }
-    </style>
-@endpushOnce
+@once
+    @push('styles')
+        <style>
+            main .input {
+                padding-inline: 1.5em;
+                border-radius: var(--border-radius-1000);
+            }
+        </style>
+    @endpush
+@endonce
 
 <x-templates.auth :$title welcome-title="<span class='font-light'>Benvenuto su</span><br>Shipping Dog"
     welcome-image="auth/login-background.webp"

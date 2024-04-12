@@ -7269,6 +7269,7 @@ input[type='number']:not(.number-input-with-arrows)::-webkit-inner-spin-button {
 	--inp-clr-bgr: var(--clr-neutral-100);
 	padding-inline: unset;
 	font-size: var(--fs-400);
+	line-height: 3.5rem;
 	border: none;
 	border-bottom: var(--inp-border-width) solid var(--border-clr-700);
 	border-radius: unset;

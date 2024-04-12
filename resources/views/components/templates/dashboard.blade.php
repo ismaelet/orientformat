@@ -1,0 +1,42 @@
+@props(['navigationGroups', 'colorScheme' => null])
+
+@once
+    @push('styles')
+        <style>
+            [data-color-scheme="dark"] {
+                --theme-h: 220deg;
+                --theme-dark-s: 25%;
+                --border-color: var(--color-neutral-250);
+                --border-width: 1px;
+            }
+
+            main {
+                display: grid;
+                grid-template-columns: max-content minmax(0, 1fr);
+                background-color: var(--background-color);
+            }
+
+            .page-content {
+                min-height: 100svh;
+                padding: 2rem;
+            }
+
+            .page-wrapper {
+                min-width: 250px;
+            }
+        </style>
+    @endpush
+@endonce
+
+<x-templates.empty :$colorScheme>
+    <!-- Navigation bar -->
+    <x-dashboard.navigation :navigation-groups="$navigationGroups" />
+    <!-- Body -->
+    <section class="page-content">
+        <div class="page-wrapper">
+
+            {{ $slot }}
+
+        </div>
+    </section>
+</x-templates.empty>

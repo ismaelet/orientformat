@@ -7,10 +7,10 @@ use Illuminate\Contracts\View\View;
 
 class Layout extends Component {
 
-	public ?string $title;
-	public string $appName;
-	public ?string $appDescription;
-	public string $colorScheme;
+	public $title;
+	public $appName;
+	public $appDescription;
+	public $colorScheme;
 
 	/**
 	 * Create a new component instance.
