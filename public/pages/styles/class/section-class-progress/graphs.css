@@ -86,7 +86,11 @@
 .graph-item__canvas-wrapper {
 	width: 100%;
 	min-width: 500px;
-	aspect-ratio: 3.5;
+	aspect-ratio: 3;
+
+	.section-color--area-4 & {
+		aspect-ratio: 2.4;
+	}
 }
 
 .dashboard-panel {

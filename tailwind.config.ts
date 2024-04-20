@@ -36,7 +36,7 @@ export default {
 			'neutral-900': 'hsl(var(--color-neutral-900-hsl) / <alpha-value>)',
 
 			// Background
-			background: 'hsl(var(--color-background-hsl) / <alpha-value>)',
+			background: 'var(--color-background)',
 			'background-400': 'hsl(var(--color-background-hsl) / <alpha-value>)',
 			'background-500': 'hsl(var(--color-background-hsl) / <alpha-value>)',
 
