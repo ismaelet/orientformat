@@ -37,13 +37,14 @@
 		}
 	},
 	"autoload": {
-		"files": [
-			"app/helpers.php"
-		],
 		"psr-4": {
 			"App\\": "app/",
 			"Database\\Factories\\": "database/factories/",
-			"Database\\Seeders\\": "database/seeders/"
+			"Database\\Seeders\\": "database/seeders/",
+			"Legacy\\": "legacy/app/classes/",
+			"LegacyModels\\": "legacy/app/Models/",
+			"System\\Classes\\": "legacy/system/classes/",
+			"System\\Traits\\": "legacy/system/traits/"
 		}
 	},
 	"autoload-dev": {

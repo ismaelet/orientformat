@@ -27,4 +27,4 @@ if (file_exists(__DIR__ . '/admin.php')) include_once __DIR__ . '/admin.php';
 /**
  * Legacy routes
  */
-Route::any('{path}', LegacyController::class)->where('path', '.*');
+Route::any('{path}', LegacyController::class)->where('path', '^(?!api\/).*');

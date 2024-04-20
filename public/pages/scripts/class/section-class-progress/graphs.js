@@ -11,6 +11,46 @@ document.addEventListener('DOMContentLoaded', function () {
 		const loading = section.querySelector('.js-loading')
 		const schoolClassId = section.dataset.schoolClassId
 
+		if (section.classList.contains('js-section-waiting')) {
+			requested = true
+
+			// Fetch the data
+			get_graph_data(sectionId, schoolClassId).then(async function (schoolClassResponse) {
+				// Fetch the platform data
+				platformResponse = await get_graph_data(sectionId).then(function (response) {
+					return response
+				})
+
+				// Generate the graph
+				if (schoolClassResponse.labels && schoolClassResponse.labels.length) {
+					// Show the condensed result
+					condensedResult.innerHTML = schoolClassResponse.condensed
+
+					// Generate the datasets
+					let datasets = []
+					datasets.push(generate_dataset(schoolClassResponse.data, section))
+					datasets.push(generate_dataset(platformResponse.data, section, false))
+
+					// Average
+					const average = generate_annotations(schoolClassResponse.condensed)
+
+					// Render the graph
+					render_graph(canvas, schoolClassResponse.labels, datasets, average)
+				} else {
+					emptyWarning.classList.remove('hidden')
+					condensedResultContainer.classList.add('hidden')
+				}
+			})
+
+			loading.classList.add('hidden')
+			section.classList.remove('js-section-waiting')
+		}
+	}
+
+	/**
+	 * Generate a dataset
+	 */
+	function generate_dataset(data, section, specific = true) {
 		// colors
 		const colorIncrement = 10
 		const colorS = 120
@@ -18,139 +58,119 @@ document.addEventListener('DOMContentLoaded', function () {
 		const colorBaseH = parseInt(getComputedStyle(section).getPropertyValue('--_h-start')) + 39
 
 		let colors = []
-		let platformColors = []
 		let borderColors = []
-		let platformBorderColors = []
 
-		if (section.classList.contains('js-section-waiting')) {
-			axios
-				.post('../../api/call-class-method/Activity\\Result\\Graphs\\SectionGraph', {
-					scope: 'generate',
-					arguments: [sectionId, schoolClassId],
-				})
-				.then(function (response) {
-					// console.log(response.data)
+		const resultCount = data.length
 
-					if (response.data.labels && response.data.labels.length) {
-						const resultCount = response.data.labels.length
-
-						for (let index = 0; index < resultCount; index++) {
-							colors.push(`lch(${colorL} ${colorS} ${colorBaseH + colorIncrement * (index - resultCount / 2)} / 1`)
-							platformColors.push(`lch(${colorL} ${colorS} ${colorBaseH + colorIncrement * (index - resultCount / 2)} / .3`)
-							borderColors.push(`lch(${colorL} ${colorS} ${colorBaseH + colorIncrement * (index - resultCount / 2)}`)
-							platformBorderColors.push(`lch(${colorL} ${colorS} ${colorBaseH + colorIncrement * (index - resultCount / 2)} / .4`)
-						}
-
-						condensedResult.innerHTML = response.data.condensed
-
-						// Class dataset
-						const datasets = [
-							{
-								label: 'Risultato classe',
-								data: response.data.data.school_class,
-								backgroundColor: colors,
-								borderWidth: 3,
-								borderColor: colors,
-								borderRadius: 16,
-							},
-						]
-
-						// Platform dataset
-						if (response.data.data.platform) {
-							datasets.push({
-								label: 'Risultato piattaforma',
-								data: response.data.data.platform,
-								backgroundColor: platformColors,
-								borderWidth: 3,
-								borderColor: platformBorderColors,
-								borderRadius: 16,
-							})
-						}
-
-						// Average
-						let annotations = {}
-
-						if (!isNaN(parseInt(response.data.condensed)) && parseInt(response.data.condensed)) {
-							annotations = {
-								annotation: {
-									type: 'line',
-									borderColor: 'hsl(0 0% 0% / 0.5)',
-									borderDash: [6, 6],
-									borderDashOffset: 0,
-									borderWidth: 2,
-									label: {
-										enabled: true,
-										content: (ctx) => 'Average: ' + average(ctx).toFixed(2),
-										position: 'end',
-									},
-									scaleID: 'y',
-									value: (ctx) => average(ctx),
-								},
-							}
-						}
-
-						function average(ctx) {
-							const values = ctx.chart.data.datasets[0].data
-							return values.reduce((a, b) => a + b, 0) / values.length
-						}
-
-						new Chart(canvas, {
-							type: 'bar',
-							data: {
-								labels: response.data.labels,
-								datasets: datasets,
-							},
-							scales: {},
-							options: {
-								plugins: {
-									legend: {
-										display: true,
-									},
-									tooltip: {
-										callbacks: {
-											label: function (context) {
-												return context.dataset.label + ': ' + context.parsed.y + '%'
-											},
-										},
-									},
-									annotation: {
-										annotations,
-									},
-								},
-								scales: {
-									x: {
-										ticks: {
-											color: '#202020',
-											font: {
-												family: 'Open Sans',
-												size: 16,
-											},
-										},
-									},
-									y: {
-										ticks: {
-											color: '#202020',
-											font: {
-												family: 'Open Sans',
-												size: 16,
-											},
-										},
-									},
-								},
-							},
-						})
-					} else {
-						emptyWarning.classList.remove('hidden')
-						condensedResultContainer.classList.add('hidden')
-					}
-
-					loading.classList.add('hidden')
-					section.classList.remove('js-section-waiting')
-				})
-				.catch(function (error) {
-					console.error(error)
-				})
+		// Dataset colors
+		if (specific) {
+			for (let index = 0; index < resultCount; index++) {
+				colors.push(`lch(${colorL} ${colorS} ${colorBaseH + colorIncrement * (index - resultCount / 2)} / 1`)
+				borderColors.push(`lch(${colorL} ${colorS} ${colorBaseH + colorIncrement * (index - resultCount / 2)} / 1`)
+			}
+		} else {
+			for (let index = 0; index < resultCount; index++) {
+				colors.push(`lch(${colorL} ${colorS} ${colorBaseH + colorIncrement * (index - resultCount / 2)} / .3`)
+				borderColors.push(`lch(${colorL} ${colorS} ${colorBaseH + colorIncrement * (index - resultCount / 2)} / .4`)
+			}
 		}
+
+		// Class dataset
+		const dataset = {
+			label: specific ? 'Risultato classe' : 'Risultato piattaforma',
+			data: data,
+			backgroundColor: colors,
+			borderWidth: 3,
+			borderColor: borderColors,
+			borderRadius: 16,
+		}
+
+		return dataset
+	}
+
+	/**
+	 * Generate the annotations
+	 */
+	function generate_annotations(condensedResult) {
+		if (isNaN(parseInt(condensedResult)) || !parseInt(condensedResult)) {
+			return null
+		}
+
+		function average(ctx) {
+			const values = ctx.chart.data.datasets[0].data
+			return values.reduce((a, b) => a + b, 0) / values.length
+		}
+
+		annotations = {
+			annotation: {
+				type: 'line',
+				borderColor: 'hsl(0 0% 0% / 0.5)',
+				borderDash: [6, 6],
+				borderDashOffset: 0,
+				borderWidth: 2,
+				label: {
+					enabled: true,
+					content: (ctx) => 'Average: ' + average(ctx).toFixed(2),
+					position: 'end',
+				},
+				scaleID: 'y',
+				value: (ctx) => average(ctx),
+			},
+		}
+
+		return annotations
+	}
+
+	/**
+	 * Render the graph
+	 */
+	function render_graph(canvas, labels, datasets, annotations = null) {
+		new Chart(canvas, {
+			type: 'bar',
+			data: {
+				labels: labels,
+				datasets: datasets,
+			},
+			scales: {},
+			options: {
+				maintainAspectRatio: false,
+				plugins: {
+					legend: {
+						display: true,
+					},
+					tooltip: {
+						callbacks: {
+							label: function (context) {
+								return context.dataset.label + ': ' + context.parsed.y + '%'
+							},
+						},
+					},
+					annotation: {
+						annotations,
+					},
+				},
+				scales: {
+					x: {
+						ticks: {
+							color: '#202020',
+							font: {
+								family: 'Open Sans',
+								size: 16,
+							},
+						},
+					},
+					y: {
+						ticks: {
+							color: '#202020',
+							font: {
+								family: 'Open Sans',
+								size: 16,
+							},
+						},
+					},
+				},
+			},
+		})
 	}
 
 	/**
@@ -216,3 +236,19 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}
 })
+
+function get_graph_data(sectionId, schoolClassId = null) {
+	return axios({
+		method: 'get',
+		url: schoolClassId ? `/api/section-graphs/${sectionId}?school_class_id=${schoolClassId}` : `/api/section-graphs/${sectionId}`,
+		retry: 3,
+		retryDelay: 1000,
+	})
+		.then(function (response) {
+			return response.data
+		})
+		.catch(function (error) {
+			console.error(error.response.data.message)
+			return error
+		})
+}

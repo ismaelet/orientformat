@@ -84,10 +84,9 @@
 }
 
 .graph-item__canvas-wrapper {
+	width: 100%;
 	min-width: 500px;
-}
-.graph-item__canvas {
-	max-height: 30rem !important;
+	aspect-ratio: 3.5;
 }
 
 .dashboard-panel {
