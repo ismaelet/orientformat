@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use Legacy\Activity\Result\Handler\SchoolClassSectionResult;
+use \Legacy\Activity\Result\Handler\SchoolClassSectionResult;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

@@ -3,64 +3,134 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Models\User\UserReset;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Legacy\SchoolSystem\SchoolClass;
+use Legacy\UserSystem\Student;
 
-class ResetController extends Controller {
-
-	/**
-	 * Render the reset page
-	 */
+class RegisterController extends Controller {
 	public function index() {
-
-		$userId = $_GET['user_id'] ?? null;
-		$securityCode = $_GET['security_code'] ?? null;
-
-		if (!$userId || !$securityCode) {
-			return redirect()->route('auth.recover')->with('status', 'Errore durante il reset della password');
-		}
-
-		return view('auth.reset')
-			->with([
-				'title' => 'Reset accesso',
-				'error' => !UserReset::where('user_id', $userId)->where('security_code', Hash::make($securityCode))->count(),
-				'userId' => $userId,
-				'securityCode' => $securityCode,
-			]);
+		return view('auth.register')
+			->with('locationTag', 'login')
+			->with('title', 'Registrati');
 	}
 
-	/**
-	 * Process the request
-	 */
-	public function update(Request $request) {
-
-		// Validation
-		$this->validate($request, [
-			'password' => ['required', 'confirmed'],
+	public function store(Request $request): RedirectResponse {
+		define('AVAILABLE_EMAIL_DOMAINS', [
+			'arcivescoviletrento.it',
+			'artigianelli.tn.it',
+			'centromoda.tn.it',
+			'cfp-upt.it',
+			'cfpgveronesi.it',
+			'enaip.tn.it',
+			'fmach.it',
+			'gardascuola.it',
+			'iasma.it',
+			'iprase.tn.it',
+			'istitutodecarneri.it',
+			'istitutosacrocuore.it',
+			'mileschool.it',
+			'operaarmidabarelli.org',
+			'pavoniani.tn.it',
+			'provincia.tn.it',
+			'sacrafamigliatrento.it',
+			'scuolasteiner-trento.it',
+			'scuolaveronesi.it',
+			'scuole.provincia.tn.it',
+			'sdbmezzano.it',
+			'sdbtrento.it',
 		]);
 
-		// Process the request
-		$user = User::find($request->user_id);
-		$securityCode = $request->security_code;
 
-		if ($user) {
-			$userReset = UserReset::where('user_id', $user->id)->where('security_code', Hash::make($securityCode))->first();
 
-			if ($userReset) {
-				$user->update([
-					'password' => Hash::make($_POST['password']),
-				]);
+		// parameters
+		$loginType = $request->type;
+		$firstname = trim($request->firstname);
+		$lastname = trim($request->lastname);
+		$password = $request->password;
+		$passwordConfirmation = $request->cpassword;
+		$email = $request->email;
+		$emailDomain = explode('@', $request->email)[1] ?? '';
+		$emailDomain = strtolower($emailDomain);
 
-				$userReset->delete();
+		// student specifc parameters
+		$studentType = 'student';
+		$teacherType = 'teacher';
+		$birthdate = $loginType == $studentType ? $request->birthdate : null;
+		$schoolClassCode = $loginType == $studentType ? $request->class : null;
+		$schoolClassId = $loginType == $studentType ? \System\Classes\DBOld::find('id FROM ' . SchoolClass::TABLE . ' WHERE code = ?', [$schoolClassCode]) : null;
 
-				return back()->with('submitted', true);
-			}
+		// generate the username
+		$usernameFirstName = strtolower(substr(preg_replace("/[^A-Za-z0-9 ]/", '', str_replace(' ', '', $firstname)), 0, 8));
+		$usernameLastName = strtolower(substr(preg_replace("/[^A-Za-z0-9 ]/", '', str_replace(' ', '', $lastname)), 0, 8));
+		$userNameRandomNumber = rand(1000, 9999);
 
-			return back()->with('error', 'Il link di rest non è valido o è scaduto');
+		$username = $usernameFirstName . '.' . $usernameLastName . $userNameRandomNumber;
+
+		while (\System\Classes\DBOld::exists('users WHERE username = ?', [$username])) {
+			$userNameRandomNumber = rand(1000, 9999);
+			$username = $usernameFirstName . '.' . $usernameLastName . $userNameRandomNumber;
 		}
 
-		return back()->with('error', 'Errore durante il reset della password');
+		// try to register the user
+		switch (true) {
+			case strlen($password) < 8:
+				// password too short
+				$error = 'password-short';
+				break;
+
+			case $password != $passwordConfirmation:
+				// password and password confirmation don't match
+				$error = 'password-match';
+				break;
+
+			case \System\Classes\DBOld::exists('users WHERE email = ?', [$email]):
+				// email already used
+				$error = 'duplicate-email';
+				break;
+
+			case $loginType == $studentType && !$schoolClassId:
+				// no school class found matching the student class code
+				$error = 'class-wrong';
+				break;
+
+			case $loginType == $studentType && \System\Classes\DBOld::exists('users WHERE firstName = ? AND lastName = ? AND id IN (SELECT ' . Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ?)', [$firstname, $lastname, $schoolClassId]):
+				// already exists a student in the selected school class with the same firstname and lastname
+				$error = 'duplicate-name';
+				break;
+
+			case $loginType == $teacherType && !in_array($emailDomain, AVAILABLE_EMAIL_DOMAINS):
+				// the teacher's email is not in the allowed list
+				$error = 'invalid-email';
+				break;
+
+			default:
+				// generate the user
+				$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+				if ($loginType == $studentType) {
+					// generate the student
+					$userId = \System\Classes\DBOld::add('users (username, password, firstName, lastName, email, birthdate)', [$username, $hashedPassword, $firstname, $lastname, $email, $birthdate]);
+
+					\System\Classes\DBOld::add('students (userId, id, ' . Student::SCHOOL_CLASS_INDEX . ')', [$userId, $userId, $schoolClassId]);
+				} else {
+					// generate the teacher
+					$userId = \System\Classes\DBOld::add('users (username, password, firstName, lastName, email, groupId)', [$username, $hashedPassword, $firstname, $lastname, $email, 1]);
+
+					\System\Classes\DBOld::add('teachers (userId)', [$userId]);
+				}
+
+				// Sign in the user
+				auth()->attempt($request->only('email', 'password'));
+
+				// Redirect
+				return redirect()->route('home');
+		}
+
+		return redirect()->route('login', [
+			'error' => $error,
+			'login-type' => $loginType,
+			'register' => true,
+		]);
 	}
 }

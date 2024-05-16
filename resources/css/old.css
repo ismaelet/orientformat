@@ -385,35 +385,6 @@ table {
 	border-color: inherit;
 	text-indent: 0;
 }
-button,
-input,
-optgroup,
-select,
-textarea {
-	font-feature-settings: inherit;
-	color: inherit;
-	font-family: inherit;
-	font-size: 100%;
-	font-variation-settings: inherit;
-	font-weight: inherit;
-	letter-spacing: inherit;
-	line-height: inherit;
-	margin: 0;
-	padding: 0;
-}
-button,
-select {
-	text-transform: none;
-}
-button,
-input:where([type='button']),
-input:where([type='reset']),
-input:where([type='submit']) {
-	-webkit-appearance: button;
-	appearance: button;
-	background-color: transparent;
-	background-image: none;
-}
 :-moz-focusring {
 	outline: auto;
 }
@@ -1729,7 +1700,8 @@ video {
 /* Inputs */
 input,
 select,
-textarea {
+textarea,
+.input {
 	--inp-height: 2.5rem;
 	--inp-outline: 1px;
 	--inp-bgr: var(--surface);
@@ -5046,18 +5018,6 @@ main {
 	font-weight: 600;
 }
 
-/* Inputs */
-input,
-select,
-textarea {
-	--inp-height: 2.5rem;
-	--inp-outline: 1px;
-	--inp-bgr: var(--surface);
-	--inp-color: var(--text-color-strong);
-	--inp-accent: var(--clr-primary-400);
-	--inp-font-size: 0.9rem;
-}
-
 .inp,
 .sel,
 .textarea {
@@ -5122,46 +5082,6 @@ textarea {
 }
 .inp-size3 {
 	grid-column: span 3;
-}
-
-/* Fancy input */
-.fancy-input {
-	position: relative;
-	border-radius: 3px;
-	outline: 2px solid var(--border-color-strong);
-	transition: outline-color 0.15s;
-}
-
-.fancy-input .inp {
-	--inp-bgr: var(--bgr);
-}
-
-.fancy-input-lbl {
-	position: absolute;
-	top: 50%;
-	transform: translateY(calc(-50% + var(--inp-height) / -2)) scale(0.8);
-	transform-origin: left;
-	z-index: 1;
-	width: max-content;
-	padding-inline: 0.4em;
-	margin-left: 0.6rem;
-	background-color: var(--bgr);
-	font-size: 1rem;
-	line-height: 1;
-	pointer-events: none;
-	transition: color 0.15s, transform 0.15s;
-}
-
-.fancy-input.not-filled:not(:focus-within) .fancy-input-lbl {
-	transform: translateY(-50%);
-}
-
-.fancy-input:focus-within .fancy-input-lbl {
-	color: var(--c1);
-}
-
-.fancy-input:focus-within {
-	outline-color: var(--c1);
 }
 
 /* Checkboxes */
@@ -7179,7 +7099,8 @@ body.fixed {
 
 input,
 select,
-textarea {
+textarea,
+.input {
 	width: 100%;
 	padding-inline: 1em;
 	border: var(--inp-border-width) solid var(--inp-border-color);
@@ -7208,7 +7129,8 @@ textarea:-webkit-autofill {
 	color: var(--inp-fc);
 }
 
-input {
+input,
+.input {
 	line-height: var(--inp-height);
 }
 

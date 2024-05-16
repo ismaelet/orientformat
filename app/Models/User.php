@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Ecommerce\Cart;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -59,12 +57,5 @@ class User extends Authenticatable {
 	 */
 	public function isSupervisor(): bool {
 		return (bool) $this->admin_level == 2;
-	}
-
-	/**
-	 * Get the user's active cart
-	 */
-	public function cart(): HasOne {
-		return $this->hasOne(Cart::class)->where('status', 0);
 	}
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use \System\Classes\ActiveUser;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +22,7 @@ class LoginController extends Controller {
 	/**
 	 * Authenticate the user
 	 */
-	public function auth(Request $request) {
+	public function auth(Request $request): RedirectResponse {
 		// validation
 		$request->validate([
 			'login' => 'required',
