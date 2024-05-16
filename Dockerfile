@@ -1,5 +1,5 @@
 # Use the official PHP image with Apache
-FROM php:apache
+FROM php:7.3-apache
 
 # Install the database
 RUN docker-php-ext-install pdo pdo_mysql
