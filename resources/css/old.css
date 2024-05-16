@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap);
+
 body {
 	background-color: var(--color-background);
 	color: var(--color-neutral-400);
@@ -301,9 +302,7 @@ svg {
 	--font-weight-semibold: 500;
 	--font-weight-bold: 600;
 }
-@layer reset, base, layout, components, utilities;
 
-/*! tailwindcss v3.4.3 | MIT License | https://tailwindcss.com*/
 *,
 :after,
 :before {
@@ -411,6 +410,7 @@ input:where([type='button']),
 input:where([type='reset']),
 input:where([type='submit']) {
 	-webkit-appearance: button;
+	appearance: button;
 	background-color: transparent;
 	background-image: none;
 }
@@ -428,14 +428,14 @@ progress {
 	height: auto;
 }
 [type='search'] {
-	-webkit-appearance: textfield;
+	appearance: textfield;
 	outline-offset: -2px;
 }
 ::-webkit-search-decoration {
-	-webkit-appearance: none;
+	appearance: none;
 }
 ::-webkit-file-upload-button {
-	-webkit-appearance: button;
+	appearance: button;
 	font: inherit;
 }
 summary {
@@ -502,7 +502,6 @@ object,
 svg,
 video {
 	display: block;
-	vertical-align: middle;
 }
 img,
 video {
@@ -1786,7 +1785,7 @@ textarea {
 
 .inp-num {
 	box-shadow: none !important;
-	-moz-appearance: textfield;
+	appearance: textfield;
 }
 
 .inp-num::-webkit-outer-spin-button,
@@ -5106,7 +5105,7 @@ textarea {
 
 .inp-num {
 	box-shadow: none !important;
-	-moz-appearance: textfield;
+	appearance: textfield;
 }
 
 .inp-num::-webkit-outer-spin-button,
@@ -9303,10 +9302,6 @@ h3 {
 
 .page-header__overlay::before {
 	background: linear-gradient(135deg, var(--clr-tertiary-100), var(--clr-tertiary-700));
-}
-
-.page-header__title {
-	/* letter-spacing: 0.2em; */
 }
 
 .page-header .button {
