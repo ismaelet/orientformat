@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use System\Classes\ActiveUser;
 
 class LogoutController extends Controller {
 

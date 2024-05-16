@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use \System\Classes\ActiveUser;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,17 +24,25 @@ class LoginController extends Controller {
 	 */
 	public function auth(Request $request) {
 		// validation
-		$this->validate($request, [
-			'email' => ['required', 'email'],
+		$request->validate([
+			'login' => 'required',
 			'password' => 'required',
 		]);
 
+		if (strpos($request->login, '@') !== false) {
+			$username = User::where('email', $request->login)->value('username');
+		} else {
+			$username = $request->login;
+		}
+
 		// sign in the user
-		if (!Auth::attempt($request->only('email', 'password'), $request->filled('remember'))) {
-			return back()->with('error', 'Dati di accesso errati');
+		if (!Auth::attempt(['username' => $username, 'password' => $request->password])) {
+			return redirect()->route('login', [
+				'error' => 'login_failed',
+			]);
 		}
 
 		// redirect
-		return redirect()->route('user-dashboard');
+		return redirect()->route('home');
 	}
 }
