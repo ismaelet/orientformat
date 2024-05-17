@@ -14,70 +14,67 @@ return [
 		'full_name' => env('APP_FULL_NAME', ''),
 		'description' => env('APP_DESCRIPTION', ''),
 		'short_description' => env('APP_SHORT_DESCRIPTION', ''),
-		'default_color_scheme' => env('APP_COLOR_SCHEME', 'light'),
+		'default_color_scheme' => env('APP_DEFAULT_COLOR_SCHEME', 'light'),
 	],
 
 	/*
     |--------------------------------------------------------------------------
-    | Navigation Links
+    | Header navigation Links
     |--------------------------------------------------------------------------
-    |
+	|	
+    | The header navigation links are used to generate the header navigation
+	| Header Navigation Item Interface: [
+	|	'label' => string,
+	|	'url' => string,
+	|	'location_tag' => ?string,
+	|	'auth' => ?boolean,
+	|	'admin_only' => ?boolean,
+	| ]
     |
     */
 
-	'header_navigation_links' => [
-		['label' => 'Home', 'url' => 'home', 'location_tag' => 'home', 'admin_only' => false],
-		// ['type' => 'link', 'label' => 'Contatti', 'url' => 'contacts', 'location_tag' => 'contacts', 'admin_only' => false],
-		// ['type' => 'button', 'label' => 'Login', 'url' => 'login', 'location_tag' => 'login', 'auth' => false, 'admin_only' => false],
-		// ['type' => 'button', 'label' => '{{ $username }}', 'url' => 'user-dashboard', 'location_tag' => 'user-dashboard', 'auth' => true, 'admin_only' => false],
-	],
+	'navigation' => [
+		'header' => [
+			['label' => 'Home', 'route' => 'home', 'main_route' => 'home'],
+		],
 
-	'footer_navigation_links' => [
-		'Navigazione' => [
-			['label' => 'Home', 'url' => 'home',],
-		],
-		'Legali' => [
-			// ['label' => 'Privacy policy', 'url' => 'privacy'],
-			// ['label' => 'P. IVA 02392550220'],
-		],
-		'Contatti' => [
-			// ['label' => 'Contattaci', 'url' => 'contacts'],
-			['social_media' => 'email',],
-			['social_media' => 'phone',],
-
-		],
-		'Seguici' => [
-			['social_media' => 'instagram', 'icon' => true],
-			['social_media' => 'facebook', 'icon' => true],
-			['social_media' => 'whatsapp', 'icon' => true],
+		'footer' => [
+			['label' => 'Home', 'route' => 'home', 'main_route' => 'home'],
 		],
 	],
 
 	/*
     |--------------------------------------------------------------------------
-    | Social media
+    | Footer navigation Links
     |--------------------------------------------------------------------------
-    |
+	|	
+    | The footer navigation links are used to generate the footer navigation
+	| Footer Navigation Interface: [
+		'column_name':string =>
+	|		[
+	|			'label' => string,
+	|			'url' => string,
+	|			'social_media' => ?string,
+	|			'icon' => ?boolean,
+	| 		]
+	|	...
+	| ]
     |
     */
 
-	'social_media' => [
-		'instagram' => ['url' => 'https://www.instagram.com/tag/', 'label' => '@tag',],
-		'facebook' => ['url' => 'https://www.facebook.com/tag/', 'label' => '@tag',],
-		'email' => ['url' => 'mailto:mail@mail.com', 'label' => 'mail@mail.com',],
-		'whatsapp' => ['url' => 'https://wa.me/000000000', 'label' => '000 000000',],
-		'phone' => ['url' => 'tel:0000 000000', 'label' => '0000 000000',],
-	],
-
 	/*
     |--------------------------------------------------------------------------
-    | Ecommerce data
+    | Contacts
     |--------------------------------------------------------------------------
-    |
-    |
-	*/
+    */
 
-	'ecommerce' => [
-		'vat' => '00000000000',
+	'contacts' => [
+		'web' => ['url' => 'https://www.iprase.tn.it', 'label' => 'Sito Iprase',],
+		'instagram' => ['url' => 'https://www.instagram.com/iprasetrentino/', 'label' => '@iprasetrentino',],
+		'twitter' => ['url' => 'https://x.com/IpraseTrentino', 'label' => '@iprasetrentino',],
+		'email' => ['url' => 'mailto:iprase@iprase.tn.it', 'label' => 'iprase@iprase.tn.it',],
+		'facebook' => ['url' => 'https://www.facebook.com/IpraseTrentino/', 'label' => '@IpraseTrentino',],
+		// 'whatsapp' => ['url' => 'https://wa.me/000000000', 'label' => '000 000000',],
+		'phone' => ['url' => 'tel:+390461494399', 'label' => '+39 0461 494399',],
 	],
 ];
