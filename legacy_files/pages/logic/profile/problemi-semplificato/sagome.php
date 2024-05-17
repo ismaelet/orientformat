@@ -1,0 +1,9 @@
+<?php
+
+$solution = ['H', 'C', 'E'];
+$answers = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+
+include_once(__DIR__ . '/../' . test()->section->mainSection->slug . '/' . test()->slug . '.php');
+
+StyleLoader::add(test()->area->slug . '/' . test()->section->mainSection->slug . '/' . test()->slug, 'page');
+ScriptLoader::add(test()->area->slug . '/' . test()->section->mainSection->slug . '/' . test()->slug, 'page');
