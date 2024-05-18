@@ -44,10 +44,10 @@
 	<livewire:styles />
 	<link
 		rel="stylesheet"
-		href="{{ mix('main.css') }}"
+		href="{{ asset('main.css') }}"
 	>
 	<script
-		src="{{ mix('main.js') }}"
+		src="{{ asset('main.js') }}"
 		defer
 	></script>
 

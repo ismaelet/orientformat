@@ -1,9 +1,10 @@
 /*
  * Ajax call
  */
+const root = '/orientamento'
+
 async function AJAX(parcialEndpoint, parameters = {}, contentType = 'json', debug = false) {
 	// generate endpoint
-	const root = document.querySelector('html').getAttribute('data-client-root')
 
 	let responseData
 	let endpoint = parcialEndpoint[0] == '/' ? root + parcialEndpoint : root + '/ajax/' + parcialEndpoint
@@ -57,7 +58,7 @@ async function call_function(functionName, arguments = null, debug = false) {
 		parameters.arguments = arguments
 	}
 
-	return await AJAX('/api/call-function/' + functionName, parameters, 'json', debug)
+	return await AJAX(root + '/api/call-function/' + functionName, parameters, 'json', debug)
 }
 
 /**
@@ -95,7 +96,7 @@ async function search_table(tableName, responseFields, searchFields = null, sear
 		parameters.count = count
 	}
 
-	return await AJAX('/api/search-table/' + tableName, parameters, 'json', debug)
+	return await AJAX(root + '/api/search-table/' + tableName, parameters, 'json', debug)
 }
 
 /**
@@ -119,7 +120,7 @@ async function get_class_properties(className, propertyNames, objectId = null, s
 		parameters.setProperties = format_set_request(setProperties)
 	}
 
-	return await AJAX('/api/get-class-properties/' + className, parameters, 'json', debug)
+	return await AJAX(root + '/api/get-class-properties/' + className, parameters, 'json', debug)
 }
 
 /**
@@ -148,7 +149,7 @@ async function call_class_method(className, methodName, arguments = null, object
 		parameters.setProperties = format_set_request(setProperties)
 	}
 
-	return await AJAX('/api/call-class-method/' + className, parameters, 'json', debug)
+	return await AJAX(root + '/api/call-class-method/' + className, parameters, 'json', debug)
 }
 
 /*

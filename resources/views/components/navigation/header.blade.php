@@ -3,7 +3,8 @@
 	use Legacy\UserSystem\Student;
 
 	$userId = auth()->id();
-	$userGroupId = auth()->check() ? auth()->user()->group_id : 0;
+	$user = auth()->user();
+	$userGroupId = $user ? $user->groupId : 0;
 
 	$header = [];
 

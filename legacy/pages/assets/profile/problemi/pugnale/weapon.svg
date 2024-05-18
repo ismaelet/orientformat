@@ -1,25 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="35 5 30 90">
-<defs>
-    <linearGradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
-      <stop offset="0%" stop-color="#f4c152" />
-      <stop offset="50%" stop-color="#f69f52" />
-      <stop offset="100%" stop-color="#ee7f5a" />
-    </linearGradient>
+<svg xmlns="https://www.w3.org/2000/svg" x="0px" y="0px" viewBox="35 5 30 90">
+	<defs>
+		<linearGradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
+			<stop offset="0%" stop-color="#f4c152" />
+			<stop offset="50%" stop-color="#f69f52" />
+			<stop offset="100%" stop-color="#ee7f5a" />
+		</linearGradient>
 
-	 <linearGradient id="Gradient2" x1="0" x2="0" y1="0" y2="1">
-      <stop offset="0%" stop-color="#ee7f5a" />
-      <stop offset="100%" stop-color="#dc6464" />
-    </linearGradient>
+		<linearGradient id="Gradient2" x1="0" x2="0" y1="0" y2="1">
+			<stop offset="0%" stop-color="#ee7f5a" />
+			<stop offset="100%" stop-color="#dc6464" />
+		</linearGradient>
 
-	 <linearGradient id="Gradient3" x1="0" x2="0" y1="0" y2="1">
-      <stop offset="0%" stop-color="#dc6464" />
-      <stop offset="100%" stop-color="#c14e6e" />
-    </linearGradient>
-  </defs>
-  <g data-name="Layer 3" >
-  <path fill="url(#Gradient1)" d="M46.59,64.79a6.29,6.29,0,0,1,6.83,0L58.91,14,50,5l-8.91,9,3.37,31.15Z"></path>
-  <path fill="#c14e6e"  d="M50,95a3.36,3.36,0,0,0,3.08-2.81H46.92A3.36,3.36,0,0,0,50,95Z"></path>
-  <path  fill="url(#Gradient3)" d="M53.91,87.32H46.09a1.41,1.41,0,0,0,0,2.81h7.83a1.41,1.41,0,0,0,0-2.81Z"></path>
-  <path fill="url(#Gradient2)" d="M61.8,63c-1.76,0-3.2,1.72-3.2,3.84a1,1,0,0,1-1,1H54.21a1,1,0,0,1-.41-.09l-.06,0a1,1,0,0,1-.27-.21l0,0-.25-.27a4.47,4.47,0,0,0-3.34-1.39,4.6,4.6,0,0,0-3.32,1.67l0,0-.08.07a1,1,0,0,1-.21.14l-.1,0a1,1,0,0,1-.32.06h-3.4a1,1,0,0,1-1-1C41.4,64.71,40,63,38.2,63S35,64.71,35,66.82s1.43,3.84,3.2,3.84H61.8c1.76,0,3.2-1.72,3.2-3.84S63.57,63,61.8,63Z"></path>
-  <rect fill="#dc6464"  x="46.8" y="72.72" width="6.4" height="12.55"></rect>
-  </g></svg>
+		<linearGradient id="Gradient3" x1="0" x2="0" y1="0" y2="1">
+			<stop offset="0%" stop-color="#dc6464" />
+			<stop offset="100%" stop-color="#c14e6e" />
+		</linearGradient>
+	</defs>
+	<g data-name="Layer 3">
+		<path fill="url(#Gradient1)"
+			d="M46.59,64.79a6.29,6.29,0,0,1,6.83,0L58.91,14,50,5l-8.91,9,3.37,31.15Z"></path>
+		<path fill="#c14e6e" d="M50,95a3.36,3.36,0,0,0,3.08-2.81H46.92A3.36,3.36,0,0,0,50,95Z"></path>
+		<path fill="url(#Gradient3)"
+			d="M53.91,87.32H46.09a1.41,1.41,0,0,0,0,2.81h7.83a1.41,1.41,0,0,0,0-2.81Z"></path>
+		<path fill="url(#Gradient2)"
+			d="M61.8,63c-1.76,0-3.2,1.72-3.2,3.84a1,1,0,0,1-1,1H54.21a1,1,0,0,1-.41-.09l-.06,0a1,1,0,0,1-.27-.21l0,0-.25-.27a4.47,4.47,0,0,0-3.34-1.39,4.6,4.6,0,0,0-3.32,1.67l0,0-.08.07a1,1,0,0,1-.21.14l-.1,0a1,1,0,0,1-.32.06h-3.4a1,1,0,0,1-1-1C41.4,64.71,40,63,38.2,63S35,64.71,35,66.82s1.43,3.84,3.2,3.84H61.8c1.76,0,3.2-1.72,3.2-3.84S63.57,63,61.8,63Z"></path>
+		<rect fill="#dc6464" x="46.8" y="72.72" width="6.4" height="12.55"></rect>
+	</g>
+</svg>

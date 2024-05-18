@@ -1,7 +1,7 @@
 <?php
 
 // homepage
-RouteOld::add(['/', '/index.php', '/home'], function () {
+RouteOld::add(['', '/', '/index.php', '/home'], function () {
 
 	if (admin()) {
 		redirect_old('/admin');

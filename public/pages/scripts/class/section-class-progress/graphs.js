@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function get_graph_data(sectionId, schoolClassId = null) {
 	return axios({
 		method: 'get',
-		url: schoolClassId ? `/api/section-graphs/${sectionId}?school_class_id=${schoolClassId}` : `/api/section-graphs/${sectionId}`,
+		url: schoolClassId ? `/orientamento/api/section-graphs/${sectionId}?school_class_id=${schoolClassId}` : `/orientamento/api/section-graphs/${sectionId}`,
 		retry: 3,
 		retryDelay: 1000,
 	})

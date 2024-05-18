@@ -1,0 +1,36 @@
+[17-May-2024 22:39:40 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Please provide a valid cache path. in /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36
+Stack trace:
+#0 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(88): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false)
+#1 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/Container/Container.php(873): Illuminate\View\ViewServiceProvider->Illuminate\View\{closure}(Object(Illuminate\Foundation\Application), Array)
+#2 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build(Object(Closure))
+#3 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(851): Illuminate\Container\Container->resolve('blade.compil in /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php on line 36
+[17-May-2024 22:39:40 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Please provide a valid cache path. in /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36
+Stack trace:
+#0 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(88): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false)
+#1 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/Container/Container.php(873): Illuminate\View\ViewServiceProvider->Illuminate\View\{closure}(Object(Illuminate\Foundation\Application), Array)
+#2 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build(Object(Closure))
+#3 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(851): Illuminate\Container\Container->resolve('blade.compil in /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php on line 36
+[17-May-2024 22:39:42 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Please provide a valid cache path. in /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36
+Stack trace:
+#0 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(88): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false)
+#1 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/Container/Container.php(873): Illuminate\View\ViewServiceProvider->Illuminate\View\{closure}(Object(Illuminate\Foundation\Application), Array)
+#2 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build(Object(Closure))
+#3 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(851): Illuminate\Container\Container->resolve('blade.compil in /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php on line 36
+[17-May-2024 22:39:42 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Please provide a valid cache path. in /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36
+Stack trace:
+#0 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(88): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false)
+#1 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/Container/Container.php(873): Illuminate\View\ViewServiceProvider->Illuminate\View\{closure}(Object(Illuminate\Foundation\Application), Array)
+#2 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build(Object(Closure))
+#3 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(851): Illuminate\Container\Container->resolve('blade.compil in /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php on line 36
+[17-May-2024 22:39:48 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Please provide a valid cache path. in /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36
+Stack trace:
+#0 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(88): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false)
+#1 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/Container/Container.php(873): Illuminate\View\ViewServiceProvider->Illuminate\View\{closure}(Object(Illuminate\Foundation\Application), Array)
+#2 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build(Object(Closure))
+#3 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(851): Illuminate\Container\Container->resolve('blade.compil in /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php on line 36
+[17-May-2024 22:39:48 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: Please provide a valid cache path. in /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36
+Stack trace:
+#0 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(88): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false)
+#1 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/Container/Container.php(873): Illuminate\View\ViewServiceProvider->Illuminate\View\{closure}(Object(Illuminate\Foundation\Application), Array)
+#2 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build(Object(Closure))
+#3 /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(851): Illuminate\Container\Container->resolve('blade.compil in /products/software/external/orientamentoformativo/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php on line 36

@@ -34,7 +34,7 @@
 			"label": "Artisan: Get Route List",
 			"type": "shell",
 			"command": "php",
-			"args": ["artisan", "route:list", "--except-vendor"],
+			"args": ["artisan", "route:list"],
 			"group": {
 				"kind": "test",
 				"isDefault": false

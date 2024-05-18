@@ -23,6 +23,7 @@ class LoginController extends Controller {
 	 * Authenticate the user
 	 */
 	public function auth(Request $request): RedirectResponse {
+
 		// validation
 		$request->validate([
 			'login' => 'required',

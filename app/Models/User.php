@@ -35,13 +35,6 @@ class User extends Authenticatable {
 	];
 
 	/**
-	 * * Accessors
-	 */
-	public function getGroupIdAttribute() {
-		return $this->groupId;
-	}
-
-	/**
 	 * Get the user's full name
 	 */
 	public function fullName(): string {
