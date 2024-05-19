@@ -77,7 +77,7 @@
 <section class="modal" id="branch-modal">
 	<div class="modal__content grid-flow center-content" data-spacing="700">
 		<h2 class="subsection-title">Inserisci il nome della categoria</h2>
-		<input type="text" class="fa-center js-branch-name-input" placeholder="Per es. musica, arte, sport o abilità manuali" maxlength="25">
+		<input type="text" class="input fa-center js-branch-name-input" placeholder="Per es. musica, arte, sport o abilità manuali" maxlength="25">
 		<button type="button" class="button js-add-branch js-close-modal">Inserisci</button>
 	</div>
 </section>
@@ -85,7 +85,7 @@
 <section class="modal" id="fruit-modal">
 	<div class="modal__content grid-flow center-content" data-spacing="700">
 		<h2 class="subsection-title">Inserisci la competenza</h2>
-		<input type="text" class="fa-center js-fruit-name-input" placeholder="Per es. suonare la chitarra, giocare a calcio, disegnare, ecc." maxlength="25">
+		<input type="text" class="input fa-center js-fruit-name-input" placeholder="Per es. suonare la chitarra, giocare a calcio, disegnare, ecc." maxlength="25">
 		<button type="button" class="button js-add-fruit js-close-modal">Inserisci</button>
 	</div>
 </section>
