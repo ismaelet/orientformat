@@ -740,20 +740,16 @@
 				class="h-nav-bar"
 			>
 
-				<?php if ($h_comp['logo']) { ?>
-
 				<!-- Logo -->
 				<a
-					href="{{ route('home') }}"
+					href="<?= config('custom.contacts.web.url') ?>"
 					id="h-logo"
 				>
 					<img
-						src="<?= asset('logo.png') ?>"
+						src="<?= asset('images/logo/logo.png') ?>"
 						alt=""
 					>
 				</a>
-
-				<?php } ?>
 
 				<?php if ($h_comp['name-bar']) { ?>
 

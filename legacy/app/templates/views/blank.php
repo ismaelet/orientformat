@@ -10,6 +10,7 @@
 	<link rel="icon" href="<?= asset('favicon.ico') ?>">
 
 	<!-- Styles -->
+	<link href="<?= asset('legacy.css') ?>" rel="stylesheet">
 	<link href="<?= asset('main.css') ?>" rel="stylesheet">
 	<?= PHP_EOL . \Legacy\System\Classes\StyleLoader::load() ?>
 

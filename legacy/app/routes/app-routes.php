@@ -1,10 +1,13 @@
 <?php
 
 // homepage
+
+use Illuminate\Support\Facades\Auth;
+
 \Legacy\System\Classes\LegacyRoute::add(['', '/', '/index.php', '/home'], function () {
 
-	if (admin()) {
-		redirect_old('/admin');
+	if (is_admin()) {
+		redirect_old(route('admin.dashboard'));
 	} else if (is_teacher()) {
 		$page = 'teacher/home';
 		$middlewares = ['public', 'teacher', 'required-email'];

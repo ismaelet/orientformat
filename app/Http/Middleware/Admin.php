@@ -13,8 +13,8 @@ class Admin {
 	 */
 	public function handle(Request $request, Closure $next): Response {
 		// Check if the user is authenticated and is an admin
-		if (!auth()->check() || !admin()) {
-			return redirect()->route('admin.login')->with('error', 'Unauthorized access.');
+		if (!auth()->check() || !is_admin()) {
+			return redirect()->route('login')->with('error', 'Unauthorized access.');
 		}
 
 		return $next($request);

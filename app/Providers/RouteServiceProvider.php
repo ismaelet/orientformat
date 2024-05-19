@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\Admin;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -27,6 +28,11 @@ class RouteServiceProvider extends ServiceProvider {
 		$this->configureRateLimiting();
 
 		$this->routes(function () {
+			Route::middleware(['web', Admin::class])
+				->prefix('orientamento/admin')
+				->name('admin.')
+				->group(base_path('routes/web-admin.php'));
+
 			Route::middleware('web')
 				->prefix('orientamento')
 				->group(base_path('routes/web-auth.php'));

@@ -170,13 +170,6 @@ svg {
 /*
 * 3. Utilities
 */
-/*
-	* 3.1 Surfaces
-	*/
-.surface {
-	background-color: var(--color-surface-400);
-	box-shadow: var(--shadow-400);
-}
 
 /*
 	* 3.2 Images

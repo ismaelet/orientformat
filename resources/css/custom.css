@@ -92,7 +92,7 @@
 		* 2.2. Borders
 		*/
 	--border-width: 1px;
-	--border-color: var(--color-neutral-200);
+	--border-color: var(--color-neutral-300);
 	--border: var(--border-width) solid var(--border-color);
 	--border-radius-100: 0.25rem;
 	--border-radius-400: 0.5rem;
@@ -200,6 +200,38 @@
 	/* 2.8.6 Typography */
 	--font-weight-semibold: 500;
 	--font-weight-bold: 600;
+}
+
+/*
+* 4. Components
+*/
+:where(.surface) {
+	background-color: var(--color-surface-400);
+	border-radius: var(--border-radius-700);
+	box-shadow: var(--shadow-400);
+
+	[data-theme='modern'] & {
+		background-color: transparent;
+		border: var(--border);
+		box-shadow: none;
+	}
+}
+
+:where(.surface-2) {
+	background-color: var(--color-surface-500);
+	border-radius: var(--border-radius-700);
+	box-shadow: var(--shadow-400);
+
+	[data-theme='modern'] & {
+		background-color: transparent;
+		border: var(--border-width) solid var(--color-neutral-300);
+		box-shadow: none;
+	}
+}
+
+:where(p.font-bold),
+p :where(.font-bold) {
+	color: var(--color-neutral-700);
 }
 
 [data-school-group='middleschool'] {

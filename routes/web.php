@@ -43,5 +43,6 @@ Route::any('/analysis/student/sections/{section}', [StudentAnalysisController::c
  * * Legacy routes
  */
 Route::any('/', LegacyController::class)->name('home');
+Route::get('/logout', LegacyController::class)->name('logout');
 
 Route::any('{path}', LegacyController::class)->where('path', '^(?!api\/).*');
