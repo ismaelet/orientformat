@@ -2,20 +2,20 @@
 
 use \Legacy\Activity\Test;
 
-$test = test();
+$legacyTest = test();
 
 // sections
 $results = [];
-$sections = test_config($test->id, 'sections');
+$legacySections = test_config($legacyTest->id, 'sections');
 
 for ($i = 1; $i < 6; $i++) {
-	$requiredTestId = \Legacy\System\Classes\LegacyDB::find('id FROM ' . Test::TABLE . ' WHERE sectionId = ? AND step = ?', [$test->sectionId, $i]);
+	$requiredTestId = \Legacy\System\Classes\LegacyDB::find('id FROM ' . Test::TABLE . ' WHERE sectionId = ? AND step = ?', [$legacyTest->sectionId, $i]);
 	$requiredTest = new Test($requiredTestId);
 
 	$results[] = round($requiredTest->percentage / 100 * 6);
 }
 
-bump($sections);
+bump($legacySections);
 bump($results);
 
 // reset

@@ -3,7 +3,7 @@
 global $grade;
 
 // setup page
-$sectionId = 9;
+$legacySectionId = 9;
 $testId = 16;
 $pageTitle = 'Attenzione - Autovalutazione';
 $pageDesc = 'Qui puoi controllare i risultati dell\'autovalutazione. Per ogni campo è indicata la media della classe.<br>Puoi passare il mouse sopra alle singole colonne per visualizzare i valori esatti.';

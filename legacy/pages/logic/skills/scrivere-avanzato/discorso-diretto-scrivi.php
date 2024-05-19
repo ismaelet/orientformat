@@ -18,7 +18,7 @@ $correctAnswers = [
 	"Per questa sera la radio prevede nebbia",
 ];
 
-Test\Legacy\System\Classes\Logic::setParameterCount(count($correctAnswers))
+\LogicManager\TestLogic::setParameterCount(count($correctAnswers))
 	::setTestSubmitFunction(function ($count) {
 		$correctCount = 0;
 		$correctAnswers = \Legacy\System\Classes\LegacyView::get('correctAnswers');

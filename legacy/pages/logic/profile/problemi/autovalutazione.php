@@ -2,7 +2,7 @@
 
 use LogicManager\TestLogic;
 
-$test = test();
+$legacyTest = test();
 
 $graph_data = $graph_data ?? [
 	['Mi rendo conto del problema', "I problemi è più facile evitarli che affrontarli, per questo spesso nessuno ne parla. Tu come reagisci?"],
@@ -18,4 +18,4 @@ $graph_data = $graph_data ?? [
 
 $count = count($graph_data);
 
-Test\Legacy\System\Classes\Logic::setParameterCount($count);
+\LogicManager\TestLogic::setParameterCount($count);

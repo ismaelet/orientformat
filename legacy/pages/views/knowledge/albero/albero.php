@@ -8,7 +8,7 @@
 
 <!-- Tree -->
 <section class="tree-wrapper">
-	<div class="tree <?= $test->completed ? 'completed' : '' ?>">
+	<div class="tree <?= $legacyTest->completed ? 'completed' : '' ?>">
 		<!-- Side images -->
 		<div class="tree__side-image" <?= background_image('tree-1') ?>></div>
 		<div class="tree__side-image" <?= background_image('tree-3') ?>></div>

@@ -53,9 +53,9 @@ use \Legacy\SchoolSystem\Grade;
 
 								<?php for ($areaId = 1; $areaId <= 4; $areaId++) {
 									$area = new Area($areaId);
-									$sections = $area->getSections($grade->fullId);
+									$legacySections = $area->getSections($grade->fullId);
 
-									if ($sections) {
+									if ($legacySections) {
 								?>
 
 										<div class="area">
@@ -63,17 +63,17 @@ use \Legacy\SchoolSystem\Grade;
 
 											<div class="activities grid-flow" data-columns='20rem' data-spacing="400">
 
-												<?php foreach ($sections as $sectionKey => $section) { ?>
+												<?php foreach ($legacySections as $legacySectionKey => $legacySection) { ?>
 
-													<div class="load--fade-in js-load" data-direction="bottom" data-delay="<?= $sectionKey % 3 ?>">
-														<a class="activity element element_functionality" href="<?= $section->clientUrl ?>">
+													<div class="load--fade-in js-load" data-direction="bottom" data-delay="<?= $legacySectionKey % 3 ?>">
+														<a class="activity element element_functionality" href="<?= $legacySection->clientUrl ?>">
 															<div class="element-icon icon-box">
-																<?= embed_icon($section->icon) ?>
+																<?= embed_icon($legacySection->icon) ?>
 															</div>
 
 															<div>
-																<h3 class="element-title"><?= $section->name ?></h3>
-																<p class="element-subtitle"><?= $section->description ?></p>
+																<h3 class="element-title"><?= $legacySection->name ?></h3>
+																<p class="element-subtitle"><?= $legacySection->description ?></p>
 															</div>
 														</a>
 													</div>

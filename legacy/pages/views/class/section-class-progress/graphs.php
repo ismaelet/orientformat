@@ -37,21 +37,21 @@ use \Legacy\SchoolSystem\Grade;
 			<div class="sections-containter pb-16">
 				<div class="sections" style="--count: <?= count($area['sections']) ?>">
 
-					<?php foreach ($area['sections'] as $key => $section) { ?>
+					<?php foreach ($area['sections'] as $key => $legacySection) { ?>
 
-						<div class="graph-item section js-section js-section-waiting section-color section-color--area-<?= $area['id'] ?>" data-key="<?= $key ?>" data-section-id="<?= $section->id ?>" data-school-class-id="<?= schoolClassId() ?>">
+						<div class="graph-item section js-section js-section-waiting section-color section-color--area-<?= $area['id'] ?>" data-key="<?= $key ?>" data-section-id="<?= $legacySection->id ?>" data-school-class-id="<?= schoolClassId() ?>">
 
 							<div class="dashboard-panel">
 								<!-- Header -->
 								<h3 class="dashboard-panel__title flex justify-between items-center">
 									<span class="block">
-										<?= $section->title ?>
+										<?= $legacySection->title ?>
 
 										<span class="block text-base font-normal">
 											Attività di
 											<?php
 											$grades = [];
-											foreach (explode(',', $section->grades) as $gradeId) {
+											foreach (explode(',', $legacySection->grades) as $gradeId) {
 												if ((schoolClass()->isMiddleSchool && $gradeId <= 3) || (schoolClass()->isHighSchool && !schoolClass()->isProfessional && in_array($gradeId, [4, 5, 6, 7, 8])) || (schoolClass()->isHighSchool && schoolClass()->isProfessional && in_array($gradeId, [4, 5, 9, 10]))) {
 													$grade = new Grade($gradeId);
 													$grades[] = strtolower($grade->name);
@@ -63,7 +63,7 @@ use \Legacy\SchoolSystem\Grade;
 									</span>
 
 									<div class="w-20 text-4xl justify-center aspect-square rounded-full gradient-overlady graph-item__icon flex invisible md:visible text-background ">
-										<?= embed_icon('sections/section-' . $section->mainSectionId) ?>
+										<?= embed_icon('sections/section-' . $legacySection->mainSectionId) ?>
 									</div>
 								</h3>
 
@@ -80,7 +80,7 @@ use \Legacy\SchoolSystem\Grade;
 
 										<!-- Footer -->
 										<div class="grah-item__footer js-condensed-result-container py-8 grid justify-items-center text-center">
-											<p class="md:text-l "><?= section_config($section->id, 'recap-name-grade') ?: 'Risultato medio' ?>:</p>
+											<p class="md:text-l "><?= section_config($legacySection->id, 'recap-name-grade') ?: 'Risultato medio' ?>:</p>
 											<p class="md:text-xl font-semibold js-condensed-result">...</p>
 										</div>
 									</div>

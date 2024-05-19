@@ -1,7 +1,7 @@
 <?php
 
-$test = test();
-$sibling = $test->requiredTest;
+$legacyTest = test();
+$sibling = $legacyTest->requiredTest;
 
 $questions = [
 	["Mi piace lavorare manualmente", 1],

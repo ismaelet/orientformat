@@ -6,14 +6,14 @@
 	<?= submit(true) ?>
 
 	<!-- Graphic -->
-	<?php if (!isSupervisor() || $test->completed) { ?>
+	<?php if (!isSupervisor() || $legacyTest->completed) { ?>
 
 		<section id="graphic" class="">
 			<div id="graphic-pan">
 
 				<?php foreach ($graph_data as $key => $column) {
 					$fieldID = $key + 1;
-					$val = $test->completed ? $test->rawResults[$key] : 0;
+					$val = $legacyTest->completed ? $legacyTest->rawResults[$key] : 0;
 				?>
 
 					<div id="graph-col<?= $fieldID; ?>" class="graph-col js-load load--fade-in" data-direction="top" data-id="<?= $fieldID; ?>">
@@ -22,7 +22,7 @@
 
 							<?php for ($i = 5; $i > 0; $i--) { ?>
 
-								<div class="graph-ele bgr-e <?php if ($test->completed) echo 'disabled'; ?>" data-val="<?= $i; ?>">
+								<div class="graph-ele bgr-e <?php if ($legacyTest->completed) echo 'disabled'; ?>" data-val="<?= $i; ?>">
 									<p class="score-txt fw-bold txt-09rem txt-wht cen"><?= $i; ?></p>
 								</div>
 

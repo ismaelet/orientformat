@@ -2,11 +2,10 @@
 
 namespace Legacy\Activity;
 
+use Illuminate\Support\Facades\Auth;
 use \Legacy\Activity\Result\AdditionalTestResult;
 use \Legacy\Activity\Result\Handler\StudentTestResult;
 use \Legacy\Activity\Result\TestResult;
-use DatabaseObject;
-use LegacyDB;
 
 /**
  * Test
@@ -110,7 +109,7 @@ class Test {
 	}
 
 	private function getEverCompleted() {
-		return \Legacy\System\Classes\LegacyDB::exists('results_permanent WHERE studentId = ? AND testId = ? ', [studentId(), $this->id]);
+		return \Legacy\System\Classes\LegacyDB::exists('results_permanent WHERE studentId = ? AND testId = ? ', [\Illuminate\Support\Facades\Auth::id(), $this->id]);
 	}
 
 	private function getPercentage() {
@@ -118,7 +117,7 @@ class Test {
 	}
 
 	private function getAdditionalResultId() {
-		return \Legacy\System\Classes\LegacyDB::find(AdditionalTestResult::INDEX . ' FROM ' . AdditionalTestResult::TABLE . ' WHERE ' . AdditionalTestResult::USER_INDEX . ' = ? AND ' . AdditionalTestResult::TEST_INDEX . ' = ?', [studentId(), $this->id]);
+		return \Legacy\System\Classes\LegacyDB::find(AdditionalTestResult::INDEX . ' FROM ' . AdditionalTestResult::TABLE . ' WHERE ' . AdditionalTestResult::USER_INDEX . ' = ? AND ' . AdditionalTestResult::TEST_INDEX . ' = ?', [\Illuminate\Support\Facades\Auth::id(), $this->id]);
 	}
 
 	private function getAdditionalResult() {
@@ -200,7 +199,7 @@ class Test {
 	// save the test result
 	public function saveResult($results, $percentage, $completed, $speed) {
 		TestResult::new([
-			'studentId' => studentId(),
+			'studentId' => Auth::id(),
 			'testId' => $this->id,
 			'results' => $results,
 			'percentage' => $percentage,
@@ -227,8 +226,8 @@ class Test {
 	}
 
 	public function redo() {
-		\Legacy\System\Classes\LegacyDB::delete(TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ?', [studentId(), $this->id]);
-		\Legacy\System\Classes\LegacyDB::delete(AdditionalTestResult::TABLE . ' WHERE ' . AdditionalTestResult::USER_INDEX . ' = ? AND ' . AdditionalTestResult::TEST_INDEX . ' = ?', [studentId(), $this->id]);
+		\Legacy\System\Classes\LegacyDB::delete(TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ?', [\Illuminate\Support\Facades\Auth::id(), $this->id]);
+		\Legacy\System\Classes\LegacyDB::delete(AdditionalTestResult::TABLE . ' WHERE ' . AdditionalTestResult::USER_INDEX . ' = ? AND ' . AdditionalTestResult::TEST_INDEX . ' = ?', [\Illuminate\Support\Facades\Auth::id(), $this->id]);
 		\Legacy\System\Classes\LegacyDB::delete('results_others WHERE userID = ? AND testID = ?', [userId(), $this->id]);
 
 		// update section progress

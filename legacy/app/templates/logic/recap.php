@@ -9,7 +9,7 @@ $legacyArea = $legacySection->area;
 $section = Section::find($legacySection->id);
 $area = Area::find($legacyArea->id);
 
-if (isTeacher()) {
+if (is_teacher()) {
 	$backUrl = '/teacher/simulation';
 } else {
 	$gradeNumber = $_SESSION['activities-year'] ?? student()->schoolClass->relativeGrade;
@@ -17,23 +17,23 @@ if (isTeacher()) {
 }
 
 // get tests
-$tests = [];
+$legacyTests = [];
 $res = \Legacy\System\Classes\LegacyDB::select('id FROM ' . Test::TABLE . ' WHERE sectionID = ? AND active = 1 AND template <> "recap" ORDER BY step ASC', [$legacySection->id]);
 
 while ($row = $res->fetch_assoc()) {
 
-	$testM = new Test($row['id']);
+	$legacyTestM = new Test($row['id']);
 
-	if ($testM->completed) $desc = $testM->percentage == 100 || $testM->template == 'survey' || $legacySection->id == 8 ? 'Già completata' : 'Risultato: <strong>' . $testM->percentage . '%</strong>';
+	if ($legacyTestM->completed) $desc = $legacyTestM->percentage == 100 || $legacyTestM->template == 'survey' || $legacySection->id == 8 ? 'Già completata' : 'Risultato: <strong>' . $legacyTestM->percentage . '%</strong>';
 	else $desc = 'Non completata';
 
-	$test_arr = [
-		'obj' => $testM,
+	$legacyTest_arr = [
+		'obj' => $legacyTestM,
 		'desc' => $desc,
-		'img' => '/pages/assets/' . $legacySection->mainSection->filePath . '/recap/' . $testM->slug,
+		'img' => '/pages/assets/' . $legacySection->mainSection->filePath . '/recap/' . $legacyTestM->slug,
 	];
 
-	$tests[] = $test_arr;
+	$legacyTests[] = $legacyTest_arr;
 }
 
 $coverImage = file_exists(server_path($file = '/pages/assets/' . $legacySection->mainSection->filePath . '/recap/background.webp')) ? $file : str_replace('background.webp', 'bgr.png', $file);
@@ -45,9 +45,9 @@ if (isset($_POST['reset'])) {
 
 // download survey results
 if (isset($_POST['download'])) {
-	$test = new Test($_POST['testId']);
+	$legacyTest = new Test($_POST['testId']);
 
-	if ($test->completed) {
-		print_survey_results($test->id, userId());
+	if ($legacyTest->completed) {
+		print_survey_results($legacyTest->id, userId());
 	}
 }

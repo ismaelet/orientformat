@@ -18,20 +18,20 @@ define('_CONCEPTS', [
 
 use LogicManager\TestLogic;
 
-$test = test();
+$legacyTest = test();
 
 $time_str = '';
 
 $count = count(_CONCEPTS);
 
 // fetch previous results
-$results = \Legacy\System\Classes\LegacyDB::find('result FROM results_others WHERE userID = ? AND testID = ?', [watchedStudentId(), $test->id]);
+$results = \Legacy\System\Classes\LegacyDB::find('result FROM results_others WHERE userID = ? AND testID = ?', [watchedStudentId(), $legacyTest->id]);
 
 if ($results) {
 	$results = explode(',', $results);
 }
 
-$time = !empty($test->rawResults[0]) ? $test->rawResults[0] : 0;
+$time = !empty($legacyTest->rawResults[0]) ? $legacyTest->rawResults[0] : 0;
 
 $minutes = floor($time / 60);
 $seconds = $time - $minutes * 60;
@@ -43,11 +43,11 @@ if ($minutes) {
 $time_str .= $seconds == 1 ? '1 secondo' : $seconds . ' secondi';
 
 // process result
-Test\Legacy\System\Classes\Logic::setParameterCount($count)
+\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(
 		function ($count) {
 			$rightN = 0;
-			$test = test();
+			$legacyTest = test();
 			$concepts = _CONCEPTS;
 			$results = $_POST['field_other'];
 
@@ -63,8 +63,8 @@ Test\Legacy\System\Classes\Logic::setParameterCount($count)
 
 			$results = implode(',', $results);
 
-			\Legacy\System\Classes\LegacyDB::delete('results_others WHERE userID = ? AND testID = ?', [studentId(), $test->id]);
-			\Legacy\System\Classes\LegacyDB::add('results_others (userID, testID, result) VALUES (?, ?, ?)', [studentId(), $test->id, $results]);
+			\Legacy\System\Classes\LegacyDB::delete('results_others WHERE userID = ? AND testID = ?', [\Illuminate\Support\Facades\Auth::id(), $legacyTest->id]);
+			\Legacy\System\Classes\LegacyDB::add('results_others (userID, testID, result) VALUES (?, ?, ?)', [\Illuminate\Support\Facades\Auth::id(), $legacyTest->id, $results]);
 
 			return round($rightN / $count * 100);
 		}

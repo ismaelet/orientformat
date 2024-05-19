@@ -90,15 +90,15 @@ class Test extends Controller {
 	 * Misc
 	 */
 	private static function specificTest(int $id) {
-		$test = new TestModel($id);
+		$legacyTest = new TestModel($id);
 		$namespace = 'app\Http\Controllers\Activities\Tests';
-		$testController = 'Test' . $test->id();
+		$legacyTestController = 'Test' . $legacyTest->id();
 
-		if (!file_exists(__DIR__ . '/Tests/' . $testController . '.php')) {
-			$testController = hypens_to_camel_case($test->section()->slug(), true) . hypens_to_camel_case($test->slug(), true);
+		if (!file_exists(__DIR__ . '/Tests/' . $legacyTestController . '.php')) {
+			$legacyTestController = hypens_to_camel_case($legacyTest->section()->slug(), true) . hypens_to_camel_case($legacyTest->slug(), true);
 		}
 
-		$fullTestController = $namespace . '\\' . $testController;
+		$fullTestController = $namespace . '\\' . $legacyTestController;
 
 		return $fullTestController::getInstance();
 	}

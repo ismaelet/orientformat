@@ -73,8 +73,8 @@ class SectionResult {
 	/**
 	 * Istance methods
 	 */
-	public static function new($sectionId) {
-		$id = \Legacy\System\Classes\LegacyDB::add(self::TABLE . ' (' . self::USER_INDEX . ', ' . self::SECTION_INDEX . ')', [studentId(), $sectionId]);
+	public static function new($legacySectionId) {
+		$id = \Legacy\System\Classes\LegacyDB::add(self::TABLE . ' (' . self::USER_INDEX . ', ' . self::SECTION_INDEX . ')', [\Illuminate\Support\Facades\Auth::id(), $legacySectionId]);
 
 		return new self($id);
 	}

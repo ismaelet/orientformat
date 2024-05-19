@@ -3,17 +3,17 @@
 use \Legacy\Activity\Result\TestResult;
 use \Legacy\Activity\Test;
 
-$test = test();
+$legacyTest = test();
 
 // calculate the total
-$tot = \Legacy\System\Classes\LegacyDB::sum('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' IN (SELECT id FROM ' . Test::TABLE . ' WHERE sectionId = ? AND id<?)', [watchedStudentId(), $test->section->id, $test->id]);
-$compN = \Legacy\System\Classes\LegacyDB::count(TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND completed = 1 AND testID IN (SELECT id FROM ' . Test::TABLE . ' WHERE sectionId = ? AND id < ?)', [watchedStudentId(), $test->section->id, $test->id]);
+$tot = \Legacy\System\Classes\LegacyDB::sum('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' IN (SELECT id FROM ' . Test::TABLE . ' WHERE sectionId = ? AND id<?)', [watchedStudentId(), $legacyTest->section->id, $legacyTest->id]);
+$compN = \Legacy\System\Classes\LegacyDB::count(TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND completed = 1 AND testID IN (SELECT id FROM ' . Test::TABLE . ' WHERE sectionId = ? AND id < ?)', [watchedStudentId(), $legacyTest->section->id, $legacyTest->id]);
 $tot = $compN ? round($tot / $compN, 0) : 0;
 
 // fetch the tests
-$tests = [];
+$legacyTests = [];
 $maxHeight = 0;
-$res = \Legacy\System\Classes\LegacyDB::select(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND step < ? ORDER BY step ASC', [$test->section->id, $test->step]);
+$res = \Legacy\System\Classes\LegacyDB::select(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND step < ? ORDER BY step ASC', [$legacyTest->section->id, $legacyTest->step]);
 
 while ($row = $res->fetch_assoc()) {
 	$dependentTest = new Test($row[Test::INDEX]);
@@ -22,7 +22,7 @@ while ($row = $res->fetch_assoc()) {
 		$maxHeight = $dependentTest->result->percentage;
 	}
 
-	$tests[] = $dependentTest;
+	$legacyTests[] = $dependentTest;
 }
 
 // reset a section

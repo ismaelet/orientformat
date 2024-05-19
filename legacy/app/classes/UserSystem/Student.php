@@ -6,7 +6,7 @@ use \Legacy\SchoolSystem\SchoolClass;
 use LegacyModels\User\StudentProfile;
 use \Legacy\SchoolSystem\School;
 
-use User;
+use \Legacy\System\Classes\User;
 use \Legacy\UserSystem\Student\Advice;
 
 /**

@@ -53,7 +53,7 @@
 		<div class="grid va-items-cen">
 			<p class="txt-15rem fw-bold">Risultato:</p>
 
-			<input type="number" class="inp txt-15rem fw-bold fa-center inp-num filler-inp" name="field[]" min="1" max="10" <?= $test->completed || isSupervisor() ? 'readonly' : '' ?> value="<?= $test->completed ? $test->rawResults[0] : '' ?>" onKeyPress="if(this.value.length==2) return false;">
+			<input type="number" class="inp txt-15rem fw-bold fa-center inp-num filler-inp" name="field[]" min="1" max="10" <?= $legacyTest->completed || isSupervisor() ? 'readonly' : '' ?> value="<?= $legacyTest->completed ? $legacyTest->rawResults[0] : '' ?>" onKeyPress="if(this.value.length==2) return false;">
 
 			<p class="fw-bold txt-15rem padl10px">/10</p>
 		</div>

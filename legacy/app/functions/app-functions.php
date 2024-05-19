@@ -9,11 +9,7 @@ use \Legacy\UserSystem\Student;
  * Student & teachers
  */
 function student() {
-	return isTeacher() ? teacher() : ActiveStudent::getInstance();
-}
-
-function studentId() {
-	return student()->id;
+	return is_teacher() ? teacher() : ActiveStudent::getInstance();
 }
 
 function teacher() {
@@ -24,20 +20,16 @@ function teacherId() {
 	return teacher()->id;
 }
 
-function isTeacher() {
-	return (bool) teacherId();
-}
-
 function isStudent() {
-	return (bool) !isTeacher();
+	return (bool) !is_teacher();
 }
 
 function watchedStudentId() {
-	return $_GET['studentId'] ?? studentId();
+	return $_GET['studentId'] ?? \Illuminate\Support\Facades\Auth::id();
 }
 
 function watchedStudent() {
-	if (isSupervisor() && (!isTeacher() || !in_array(watchedStudentId(), teacher()->studentIds))) {
+	if (isSupervisor() && (!is_teacher() || !in_array(watchedStudentId(), teacher()->studentIds))) {
 		return student();
 	} else {
 		return new Student(watchedStudentId());
@@ -45,18 +37,7 @@ function watchedStudent() {
 }
 
 function isSupervisor() {
-	return watchedStudentId() != studentId();
-}
-
-/**
- * Tests
- */
-function test() {
-	return \Legacy\System\Classes\LegacyView::get('test');
-}
-
-function testId() {
-	return test()->id;
+	return watchedStudentId() != \Illuminate\Support\Facades\Auth::id();
 }
 
 /**
@@ -110,7 +91,7 @@ function profile_config($type) {
 function get_grade_style() {
 	if (isSupervisor()) {
 		return watchedStudent()->isInMiddleSchool ? 'middleschool' : 'highschool';
-	} else if (isTeacher()) {
+	} else if (is_teacher()) {
 		return 'highschool';
 	} else {
 		return student()->isInMiddleSchool ? 'middleschool' : 'highschool';
@@ -119,18 +100,6 @@ function get_grade_style() {
 
 function add_grade_style() {
 	\Legacy\System\Classes\StyleLoader::add('specific-styles/' . get_grade_style(), 'app', 5);
-}
-
-if (!function_exists("array_is_list")) {
-	function array_is_list(array $array): bool {
-		$i = 0;
-		foreach ($array as $k => $v) {
-			if ($k !== $i++) {
-				return false;
-			}
-		}
-		return true;
-	}
 }
 
 /**

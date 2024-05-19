@@ -19,29 +19,29 @@
 
 				<div class="sections" style="--count: <?= count($area['sections']) ?>">
 
-					<?php foreach ($area['sections'] as $key => $section) {
+					<?php foreach ($area['sections'] as $key => $legacySection) {
 
-						$result = Student\SectionTestResult::getResult(studentId(), $section['id']) ?: ($section['defaultResult'] ?? false);
+						$result = Student\SectionTestResult::getResult(\Illuminate\Support\Facades\Auth::id(), $legacySection['id']) ?: ($legacySection['defaultResult'] ?? false);
 					?>
 
 						<div class="dashboard-panel load slide-bottom" style="--i: <?= $key + 1 ?>">
 							<div class="dashboard-panel-body">
 								<div class="dashboard-panel-icon icon-box load slide-bottom ld-2">
-									<?= embed_icon('/pages/assets/area/section' . $section['id']) ?>
+									<?= embed_icon('/pages/assets/area/section' . $legacySection['id']) ?>
 								</div>
-								<h3 class="dashboard-panel-title"><?= $section['name'] ?></h3>
+								<h3 class="dashboard-panel-title"><?= $legacySection['name'] ?></h3>
 							</div>
 
 							<?php if ($result) { ?>
 								<h3 class="dashboard-panel_result">
-									<span class="inlb"><?= $section['resultName'] ?? 'Risultato' ?>:</span><br>
+									<span class="inlb"><?= $legacySection['resultName'] ?? 'Risultato' ?>:</span><br>
 									<span class="dashboard-panel_value inlb fw-bold"><?= $result ?></span>
 								</h3>
 							<?php } ?>
 
 							<div class="dashboard-panel-footer">
-								<?php if (isset($section['actions'])) {
-									foreach ($section['actions'] as $btnTitle => $btnUrl) { ?>
+								<?php if (isset($legacySection['actions'])) {
+									foreach ($legacySection['actions'] as $btnTitle => $btnUrl) { ?>
 
 										<p class="dashboard-home-more">
 											<a href="<?= $btnUrl ?>"><?= $btnTitle ?></a>
@@ -51,7 +51,7 @@
 								} else { ?>
 
 									<p class="dashboard-home-more">
-										<a href="<?= $section['slug'] ?>">Vedi i risultati</a>
+										<a href="<?= $legacySection['slug'] ?>">Vedi i risultati</a>
 									</p>
 
 								<?php } ?>

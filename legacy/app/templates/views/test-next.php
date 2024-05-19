@@ -8,7 +8,7 @@
 	</div>
 
 	<div class="test__content">
-		<?= $testController->render(); ?>
+		<?= $legacyTestController->render(); ?>
 	</div>
 
 	<div class="grid-flow" data-spacing="700">

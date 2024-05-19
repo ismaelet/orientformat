@@ -4,9 +4,9 @@ define('_RIGHT_COUNT', 5);
 
 use LogicManager\TestLogic;
 
-$testCount = 1;
+$legacyTestCount = 1;
 
-Test\Legacy\System\Classes\Logic::setParameterCount($testCount)
+\LogicManager\TestLogic::setParameterCount($legacyTestCount)
 	->setTestSubmitFunction(function () {
 		$right = _RIGHT_COUNT;
 

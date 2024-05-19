@@ -37,7 +37,7 @@ $area = \Legacy\System\Classes\LegacyDB::row('* FROM areas WHERE slug = ?', [bas
 $this->loc = $area['slug'];
 
 //select sections
-$sections = [];
+$legacySections = [];
 
 $res = $user->schoolClassId ?
 	\Legacy\System\Classes\LegacyDB::select('* FROM sections WHERE area = ? AND active=1 AND id IN (' . $user->schoolClass->path->sectionIdsStr . ') ORDER BY id ASC', $area['id']) :
@@ -45,5 +45,5 @@ $res = $user->schoolClassId ?
 
 while ($row = $res->fetch_assoc()) {
 	$row['img'] = 'section' . $row['id'] . '.svg';
-	$sections[] = $row;
+	$legacySections[] = $row;
 }

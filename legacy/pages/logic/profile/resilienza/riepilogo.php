@@ -1,7 +1,7 @@
 <?php
 
-$test = test();
-$sibling = $test->requiredTest;
+$legacyTest = test();
+$sibling = $legacyTest->requiredTest;
 
 $titles = ['Pochissimo', 'Poco', 'Abbastanza', 'Molto', 'Moltissimo'];
 

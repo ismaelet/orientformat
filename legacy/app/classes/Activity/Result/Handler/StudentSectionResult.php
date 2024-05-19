@@ -9,7 +9,7 @@ use LegacyModels\Activities\Results\CondensedSectionResult;
 use LegacyModels\Activities\Section as SectionModel;
 use LegacyDB;
 use System\Traits\DynamicProperties;
-use User;
+use \Legacy\System\Classes\User;
 
 /**
  * StudentSectionResult class
@@ -45,16 +45,16 @@ class StudentSectionResult {
 		45 => 151,
 	];
 
-	private $sectionId;
-	private $section;
+	private $legacySectionId;
+	private $legacySection;
 	private $studentId;
 
 	/**
 	 * Magic methods
 	 */
-	function __construct(int $sectionId, $studentId = null) {
-		$this->sectionId = $sectionId;
-		$this->studentId = $studentId ?: studentId();
+	function __construct(int $legacySectionId, $studentId = null) {
+		$this->sectionId = $legacySectionId;
+		$this->studentId = $studentId ?: \Illuminate\Support\Facades\Auth::id();
 		$this->section = (new Section($this->sectionId))->setStudentId($this->studentId);
 	}
 
@@ -204,13 +204,13 @@ class StudentSectionResult {
 	private function calcFullSectionResults(array $skipTestIds = []) {
 		$results = [];
 
-		foreach ($this->section->tests as $test) {
-			$test->setStudentId($this->studentId);
+		foreach ($this->section->tests as $legacyTest) {
+			$legacyTest->setStudentId($this->studentId);
 
-			if ($test->completed && !in_array($test->id, $skipTestIds) && $test->template != 'survey-results') {
+			if ($legacyTest->completed && !in_array($legacyTest->id, $skipTestIds) && $legacyTest->template != 'survey-results') {
 				$results[] = [
-					'test' => $test->title,
-					'percentage' => (int) (new StudentTestResult($test->id, $this->studentId))->result,
+					'test' => $legacyTest->title,
+					'percentage' => (int) (new StudentTestResult($legacyTest->id, $this->studentId))->result,
 				];
 			}
 		}

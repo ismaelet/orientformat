@@ -193,9 +193,9 @@ if (isset($_POST['download-results'])) {
 	ORDER BY users.id ASC', $parameters);
 
 	// fetch tests data
-	$tests = [];
+	$legacyTests = [];
 
-	$testRows = DB::select('
+	$legacyTestRows = DB::select('
 		tests.id as testId, title, sections.name as sectionName, static, dependentOn
 		FROM tests
 			INNER JOIN sections ON tests.sectionID = sections.id
@@ -203,8 +203,8 @@ if (isset($_POST['download-results'])) {
 		ORDER BY sectionID ASC, step ASC
 	');
 
-	while ($test = $testRows->fetch_assoc()) {
-		$tests[] = $test;
+	while ($legacyTest = $legacyTestRows->fetch_assoc()) {
+		$legacyTests[] = $legacyTest;
 	}
 
 	// generate results
@@ -219,16 +219,16 @@ if (isset($_POST['download-results'])) {
 			'Anno di corso' => $result['grade'],
 		];
 
-		foreach ($tests as $test) {
-			$testTitle = $test['sectionName'] . ' - ' . $test['title'];
+		foreach ($legacyTests as $legacyTest) {
+			$legacyTestTitle = $legacyTest['sectionName'] . ' - ' . $legacyTest['title'];
 
-			if (!$test['static'] && !$test['dependentOn']) {
-				$resultData[$testTitle . ' - Risultati'] = !empty($result['test' . $test['testId'] . '_results']) ? str_replace(',', ' - ', $result['test' . $test['testId'] . '_results']) : '.';
-				$resultData[$testTitle . ' - Percentuale'] = isset($result['test' . $test['testId'] . '_percentage']) ? $result['test' . $test['testId'] . '_percentage'] . '%' : '.';
+			if (!$legacyTest['static'] && !$legacyTest['dependentOn']) {
+				$resultData[$legacyTestTitle . ' - Risultati'] = !empty($result['test' . $legacyTest['testId'] . '_results']) ? str_replace(',', ' - ', $result['test' . $legacyTest['testId'] . '_results']) : '.';
+				$resultData[$legacyTestTitle . ' - Percentuale'] = isset($result['test' . $legacyTest['testId'] . '_percentage']) ? $result['test' . $legacyTest['testId'] . '_percentage'] . '%' : '.';
 			}
 
-			$resultData[$testTitle . ' - Tempo Impiegato'] = $result && $result['test' . $test['testId'] . '_speed'] ? $result['test' . $test['testId'] . '_speed'] : '.';
-			$resultData[$testTitle . ' - Numero di volte completato'] = $result && $result['test' . $test['testId'] . '_times'] ? $result['test' . $test['testId'] . '_times'] : 0;
+			$resultData[$legacyTestTitle . ' - Tempo Impiegato'] = $result && $result['test' . $legacyTest['testId'] . '_speed'] ? $result['test' . $legacyTest['testId'] . '_speed'] : '.';
+			$resultData[$legacyTestTitle . ' - Numero di volte completato'] = $result && $result['test' . $legacyTest['testId'] . '_times'] ? $result['test' . $legacyTest['testId'] . '_times'] : 0;
 		}
 
 		$resultsArray[] = $resultData;

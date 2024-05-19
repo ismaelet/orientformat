@@ -43,7 +43,7 @@ class Grade {
 
 	function __construct(int $gradeNumber, object $schoolClass = null) {
 		$this->id = $gradeNumber;
-		$this->schoolClass = $schoolClass ?: (isTeacher() ? 0 : student()->schoolClass);
+		$this->schoolClass = $schoolClass ?: (is_teacher() ? 0 : student()->schoolClass);
 	}
 
 	/*
@@ -96,13 +96,13 @@ class Grade {
 	}
 
 	private function getDoableSectionIds() {
-		$sectionIds = [];
+		$legacySectionIds = [];
 
-		foreach ($this->doableSections as $section) {
-			$sectionIds[] = $section->id;
+		foreach ($this->doableSections as $legacySection) {
+			$legacySectionIds[] = $legacySection->id;
 		}
 
-		return $sectionIds;
+		return $legacySectionIds;
 	}
 
 	private function getDoableSectionIdsString() {
@@ -114,7 +114,7 @@ class Grade {
 	}
 
 	private function getResultId() {
-		$resultId = \Legacy\System\Classes\LegacyDB::find(GradeResult::INDEX . ' FROM ' . GradeResult::TABLE . ' WHERE ' . GradeResult::GRADE_INDEX . ' = ?  AND ' . GradeResult::USER_INDEX . ' = ?', [$this->id, studentId()]);
+		$resultId = \Legacy\System\Classes\LegacyDB::find(GradeResult::INDEX . ' FROM ' . GradeResult::TABLE . ' WHERE ' . GradeResult::GRADE_INDEX . ' = ?  AND ' . GradeResult::USER_INDEX . ' = ?', [$this->id, \Illuminate\Support\Facades\Auth::id()]);
 
 		if (!$resultId) {
 			$resultId = GradeResult::new($this->id);
@@ -166,20 +166,20 @@ class Grade {
 	public function updateProgress() {
 		$progressPercentage = $this->calcProgress();
 
-		\Legacy\System\Classes\LegacyDB::update(GradeResult::TABLE . ' SET progressPercentage = ? WHERE ' . GradeResult::GRADE_INDEX . ' = ? AND ' . GradeResult::USER_INDEX . ' = ?', [$progressPercentage, $this->id, studentId()]);
+		\Legacy\System\Classes\LegacyDB::update(GradeResult::TABLE . ' SET progressPercentage = ? WHERE ' . GradeResult::GRADE_INDEX . ' = ? AND ' . GradeResult::USER_INDEX . ' = ?', [$progressPercentage, $this->id, \Illuminate\Support\Facades\Auth::id()]);
 	}
 
 	/**
 	 * Calc methods
 	 */
 	private function calcProgress() {
-		$testCount = $this->standardTestCount;
+		$legacyTestCount = $this->standardTestCount;
 
 		$completedTestCount = \Legacy\System\Classes\LegacyDB::count(
 			TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND completed = 1 AND FIND_IN_SET(' . TestResult::TEST_INDEX . ', "' . implode(',', $this->standardTestIds) . '")',
-			[studentId()]
+			[\Illuminate\Support\Facades\Auth::id()]
 		);
 
-		return round($completedTestCount / $testCount * 100);
+		return round($completedTestCount / $legacyTestCount * 100);
 	}
 }

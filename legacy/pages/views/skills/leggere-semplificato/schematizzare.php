@@ -11,7 +11,7 @@
 		</div>
 	</div>
 
-	<?php if ($test->completed || !$supervisorView) { ?>
+	<?php if ($legacyTest->completed || !$supervisorView) { ?>
 
 		<h3 class="section-title center-content">Schema</h3>
 
@@ -56,7 +56,7 @@
 
 	<?php } ?>
 
-	<?php if (!$test->completed && !$supervisorView) { ?>
+	<?php if (!$legacyTest->completed && !$supervisorView) { ?>
 
 		<h3 class="section-title center-content mar-b-2">Elementi</h3>
 		<div id="causes" class="mar-b-5">

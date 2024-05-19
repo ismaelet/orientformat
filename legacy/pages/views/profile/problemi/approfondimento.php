@@ -24,14 +24,14 @@
 
 					<div class="quiz-pan">
 
-						<div class="quiz-cont no-trans" data-pos="<?= $pos; ?>" <?php if ($test->completed) echo 'data-locked="1"' ?> data-max="<?= $count; ?>">
+						<div class="quiz-cont no-trans" data-pos="<?= $pos; ?>" <?php if ($legacyTest->completed) echo 'data-locked="1"' ?> data-max="<?= $count; ?>">
 
 							<?php
 							foreach ($questions as $key => $question) {
 
 								$fieldID = $count - $key;
 
-								$val = $test->completed ? $test->rawResults[$key] : 0; ?>
+								$val = $legacyTest->completed ? $legacyTest->rawResults[$key] : 0; ?>
 
 								<div id="quiz<?= $fieldID; ?>" class="quiz no-trans" data-pos="<?= $fieldID; ?>">
 
@@ -41,13 +41,13 @@
 
 									<p class="quiz-text"><?= $question[1]; ?></p>
 
-									<div class="quiz-scor-box mar-t-1 <?php if ($test->completed) echo 'disabled' ?>">
+									<div class="quiz-scor-box mar-t-1 <?php if ($legacyTest->completed) echo 'disabled' ?>">
 
 										<?php for ($i = 1; $i < 6; $i++) { ?>
 
 											<label class="quiz-scor inlb marr2 marr1-480w">
 
-												<input type="checkbox" class="quiz-cbx hidden" value="<?= $i; ?>" <?= $test->completed ? 'disabled' : ''; ?> <?= $val == $i ? 'checked' : ''; ?>>
+												<input type="checkbox" class="quiz-cbx hidden" value="<?= $i; ?>" <?= $legacyTest->completed ? 'disabled' : ''; ?> <?= $val == $i ? 'checked' : ''; ?>>
 
 												<p class="quiz-scor-txt fa-center fw-bold"><?= $i ?></p>
 

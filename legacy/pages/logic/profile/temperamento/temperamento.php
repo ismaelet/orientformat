@@ -5,13 +5,13 @@ use LogicManager\TestLogic;
 \Legacy\System\Classes\StyleLoader::add('profile/temperamento/temperamento', 'page');
 \Legacy\System\Classes\ScriptLoader::add('profile/temperamento/temperamento', 'page');
 
-$test = test();
+$legacyTest = test();
 
 $count = count($questions);
 
 bump($questions);
 
-Test\Legacy\System\Classes\Logic::setParameterCount($count)
+\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(
 		function ($count) {
 			$max = $count * 6;

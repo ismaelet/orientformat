@@ -5,7 +5,7 @@
 
 	if (admin()) {
 		redirect_old('/admin');
-	} else if (isTeacher()) {
+	} else if (is_teacher()) {
 		$page = 'teacher/home';
 		$middlewares = ['public', 'teacher', 'required-email'];
 	} else if (isStudent()) {

@@ -9,7 +9,7 @@ $letters = 'VFZOHNIKLFZDSFEJSFZBGAVQCBFWQRFZBTEJZSPXDZTAFZBEWUDGLFZBFPFZFZBKGLRF
 $count = substr_count($letters, $pattern);
 $letters = str_replace($pattern, '<span class="is-pattern js-pattern">FZ<span>B</span></span>', $letters);
 
-Test\Legacy\System\Classes\Logic::setParameterCount($count)
+\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function ($count) {
 		$score = $_POST['field'][0];
 

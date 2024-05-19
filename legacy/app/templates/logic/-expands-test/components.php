@@ -1,16 +1,16 @@
 <?php
 
 function title(string $title = null, string $description = null) {
-	$test = test();
-	$title = $title ?: $test->title;
-	$description = $description ?: $test->description;
+	$legacyTest = test();
+	$title = $title ?: $legacyTest->title;
+	$description = $description ?: $legacyTest->description;
 
 	ob_start();
 
 ?>
 
 	<section class="test__title-block">
-		<p class="test__counter colored-title">attività <?= $test->step ?> di <?= $test->section->testCount ?></p>
+		<p class="test__counter colored-title">attività <?= $legacyTest->step ?> di <?= $legacyTest->section->testCount ?></p>
 		<h1 class="section-title colored-title"><?= $title ?></h1>
 		<p class="test__description subsection-subtitle"><?= nl2br($description) ?></p>
 	</section>
@@ -21,7 +21,7 @@ function title(string $title = null, string $description = null) {
 }
 
 function submit(bool $progressiveButton = false) {
-	$test = test();
+	$legacyTest = test();
 
 	switch (true) {
 			// supervisor view
@@ -31,19 +31,19 @@ function submit(bool $progressiveButton = false) {
 			break;
 
 			// completed test and section
-		case $test->completed && $test->section->completed:
+		case $legacyTest->completed && $legacyTest->section->completed:
 			$label = 'Torna al riepilogo';
 			$name = null;
 			break;
 
 			// test that requires review
-		case $test->reviewResult && !$test->completed:
+		case $legacyTest->reviewResult && !$legacyTest->completed:
 			$label = 'Verifica';
 			$name = 'review';
 			break;
 
 			// uncompleted test, completed section
-		case $test->section->completed:
+		case $legacyTest->section->completed:
 			$label = 'Salva il nuovo risultato';
 			$name = 'submit';
 			break;
@@ -69,10 +69,10 @@ function submit(bool $progressiveButton = false) {
 		<?php break;
 
 			// go back button
-		case $test->completed && $test->section->completed: ?>
+		case $legacyTest->completed && $legacyTest->section->completed: ?>
 
 			<div class="fa-center">
-				<a class="button button--secondary button--full-width js-submit-button" href="?id=<?= $test->section->id ?>"><?= $label ?></a>
+				<a class="button button--secondary button--full-width js-submit-button" href="?id=<?= $legacyTest->section->id ?>"><?= $label ?></a>
 			</div>
 
 		<?php break;
@@ -96,29 +96,29 @@ function submit(bool $progressiveButton = false) {
 }
 
 function skip() {
-	$test = test();
+	$legacyTest = test();
 
-	if (!$test->completed && !isSupervisor()) { ?>
+	if (!$legacyTest->completed && !isSupervisor()) { ?>
 
 		<button type="submit" name="skip" class="skip interactive" formnovalidate>
-			<?= $test->everCompleted ? 'Continua in un\'altro momento' : 'Salta questa attività e riprendila più tardi' ?>
+			<?= $legacyTest->everCompleted ? 'Continua in un\'altro momento' : 'Salta questa attività e riprendila più tardi' ?>
 		</button>
 
 	<?php }
 }
 
 function no_results() {
-	$test = test();
+	$legacyTest = test();
 
 	ob_start();
 
-	if ((!$test->completed && !$test->hasRequiredTest && isSupervisor()) || ($test->hasRequiredTest && !$test->requiredTest->completed)) { ?>
+	if ((!$legacyTest->completed && !$legacyTest->hasRequiredTest && isSupervisor()) || ($legacyTest->hasRequiredTest && !$legacyTest->requiredTest->completed)) { ?>
 
 		<div class="no-results mar-v-2">
 
 			<?php if (isSupervisor()) { ?>
 
-				<?php if ($test->hasRequiredTest) { ?>
+				<?php if ($legacyTest->hasRequiredTest) { ?>
 					<p>Lo studente non ha ancora completato l'attività precedente, necessaria per mostrare i dati di questa pagina, oppure ha deciso di azzerare i propri risultati per ripeterla più tardi. Potrai tornare qui quando avrà completato l'attività per esaminare i risultati.</p>
 				<?php  } else { ?>
 					<p>Lo studente non ha ancora completato questa attività, oppure ha deciso di azzerare i propri risultati per ripetere l'attività più tardi. Potrai tornare qui quando l'avrà completata per esaminare i risultati.</p>
@@ -126,7 +126,7 @@ function no_results() {
 
 			<?php } else { ?>
 
-				<p>Per poter vedere i risultati devi completare l'attività precedente, <a class="text-link" href="<?= $test->requiredTest->clientUrl ?>">clicca qui</a> per svolgerla</p>
+				<p>Per poter vedere i risultati devi completare l'attività precedente, <a class="text-link" href="<?= $legacyTest->requiredTest->clientUrl ?>">clicca qui</a> per svolgerla</p>
 
 			<?php } ?>
 

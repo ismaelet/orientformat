@@ -1,7 +1,7 @@
 <?php
 
-$test = test();
-$sibling = $test->requiredTest;
+$legacyTest = test();
+$sibling = $legacyTest->requiredTest;
 
 $max = 0;
 $results = [];

@@ -12,6 +12,19 @@ class SchoolClass extends Model {
 	protected $fillable = [];
 
 	/**
+	 * * Relationships
+	 */
+
+	/**
+	 * Grade
+	 * 
+	 * !TO FIX: Grade isn't a real model
+	 */
+	public function grade(): Grade {
+		return new Grade($this->grade, $this->professional);
+	}
+
+	/**
 	 * * Attributes
 	 */
 

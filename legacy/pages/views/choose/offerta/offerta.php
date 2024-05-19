@@ -1,4 +1,4 @@
-{% block content %}
+{% block content %}is_teacher()
 
 <div class="main-wrap pad-t-4 pad-b-7">
 
@@ -6,7 +6,7 @@
 		<?= title() ?>
 
 		<div class="center-content">
-			<a href="<?= client_url(isTeacher() ? '/teacher/simulation' : '/activities?grade=3#sections') ?>" class="button button--secondary">Indietro</a>
+			<a href="<?= client_url(is_teacher() ? '/teacher/simulation' : '/activities?grade=3#sections') ?>" class="button button--secondary">Indietro</a>
 		</div>
 	</div>
 
@@ -15,8 +15,8 @@
 
 		<?php foreach ($interests as $interestId => $interest) { ?>
 
-			<a class="interest grid-flow center-content stack-content js-load load--fade-in" data-direction="bottom" data-delay="<?= $interestId % 2 ?>" id="area<?= $interestId ?>" href="<?= client_url('/interest?id=' . $interestId . '&watch=1' . ($testResultId == 151 ? '&highschool=1' : '')) ?>">
-				<img src="<?= client_path($testResultId != 151 ? '/pages/assets/interests/highschool/' . $interestId . '.jpg' : '/pages/assets/interests/universities/' . $interestId) ?>" alt="" class="interest_img img-fill">
+			<a class="interest grid-flow center-content stack-content js-load load--fade-in" data-direction="bottom" data-delay="<?= $interestId % 2 ?>" id="area<?= $interestId ?>" href="<?= client_url('/interest?id=' . $interestId . '&watch=1' . ($legacyTestResultId == 151 ? '&highschool=1' : '')) ?>">
+				<img src="<?= client_path($legacyTestResultId != 151 ? '/pages/assets/interests/highschool/' . $interestId . '.jpg' : '/pages/assets/interests/universities/' . $interestId) ?>" alt="" class="interest_img img-fill">
 				<div class="interest_overflow"></div>
 				<div class="interest_content">
 					<h3 class="interest_title"><?= $interest['name'] ?></h3>

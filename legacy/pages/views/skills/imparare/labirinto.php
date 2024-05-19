@@ -1,11 +1,11 @@
 {% block content %}
 
 <div class="">
-	<div class="main-wrap <?= $test->completed ? 'completed' : '' ?>">
+	<div class="main-wrap <?= $legacyTest->completed ? 'completed' : '' ?>">
 		<div class="title__wrapper">
 			<?= title() ?>
 
-			<?php if (!$test->completed || $test->percentage == 100) { ?>
+			<?php if (!$legacyTest->completed || $legacyTest->percentage == 100) { ?>
 
 				<p id="end" class="fa-center txt-c5 fw-bold txt-25rem">Hai risolto il labirinto!</p>
 
@@ -18,7 +18,7 @@
 			<div>
 				<?= submit(true) ?>
 
-				<?php if (!$test->completed) { ?>
+				<?php if (!$legacyTest->completed) { ?>
 
 					<label>
 						<p class="txt-c3 clickable inlb">Non riesco ad uscire dal labirinto e preferisco saltare l'attività.</p>

@@ -4,7 +4,7 @@
 
 	<?= title() ?>
 
-	<div id="types" class="grid <?= $test->completed ? 'completed' : '' ?>">
+	<div id="types" class="grid <?= $legacyTest->completed ? 'completed' : '' ?>">
 
 		<?php foreach ($questions as $questionId => $question) { ?>
 
@@ -18,7 +18,7 @@
 					<?php for ($i = 0; $i <= 3; $i++) { ?>
 
 						<label class="score<?= $i ?> score clickable">
-							<input type="checkbox" class="hidden js-field" name="field[]" value="<?= $i + 1 ?>" <?= isset($test->rawResults[$questionId - 1]) && $i + 1 == $test->rawResults[$questionId - 1] ? 'checked' : '' ?>>
+							<input type="checkbox" class="hidden js-field" name="field[]" value="<?= $i + 1 ?>" <?= isset($legacyTest->rawResults[$questionId - 1]) && $i + 1 == $legacyTest->rawResults[$questionId - 1] ? 'checked' : '' ?>>
 
 							<div class="circle">
 								<div class="dot cen"></div>

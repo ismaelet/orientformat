@@ -8,7 +8,7 @@ use \Legacy\UserSystem\Student;
 $watch = $_GET['watch'] ?? false;
 
 // interest data
-$studentId = $_GET['student-id'] ?? studentId();
+$studentId = $_GET['student-id'] ?? \Illuminate\Support\Facades\Auth::id();
 $student = new Student($studentId);
 $highschool = $_GET['highschool'] ?? $student->isInHighschool;
 $surveyTestId = $highschool ? 150 : 91;
@@ -41,7 +41,7 @@ if (isset($_POST['edit'])) {
 
 	$results = implode(',', $results);
 
-	\Legacy\System\Classes\LegacyDB::update('results SET result = ? WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ?', [$results, studentId(), $surveyTestId]);
+	\Legacy\System\Classes\LegacyDB::update('results SET result = ? WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ?', [$results, \Illuminate\Support\Facades\Auth::id(), $surveyTestId]);
 
 	redirect_old();
 }

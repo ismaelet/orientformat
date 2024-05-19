@@ -7,7 +7,7 @@ use LegacyDB;
 class Path {
 	public $id = null;
 	public $name;
-	public $sectionIdsStr;
+	public $legacySectionIdsStr;
 	public $areaIdsStr;
 
 	function __construct($id) {

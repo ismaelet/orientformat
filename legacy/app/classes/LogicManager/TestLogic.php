@@ -5,7 +5,7 @@ namespace LogicManager;
 class TestLogic {
 
 	public static $parameterCount;
-	public static $testSubmitFunction;
+	public static $legacyTestSubmitFunction;
 
 	/**
 	 * Set methods
@@ -17,7 +17,7 @@ class TestLogic {
 	}
 
 	public static function setTestSubmitFunction(callable $function) {
-		self::$testSubmitFunction = $function;
+		self::$legacyTestSubmitFunction = $function;
 
 		return new static;
 	}
@@ -26,6 +26,6 @@ class TestLogic {
 	 * Misc methods
 	 */
 	public static function runTestSubmitFunction() {
-		return call_user_func(self::$testSubmitFunction, (self::$parameterCount ?: ($_POST['result_count'] ?? 0)));
+		return call_user_func(self::$legacyTestSubmitFunction, (self::$parameterCount ?: ($_POST['result_count'] ?? 0)));
 	}
 }

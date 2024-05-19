@@ -1,7 +1,7 @@
 {% block content %}
 
 <!-- Review view -->
-<?php if ($test->completed) { ?>
+<?php if ($legacyTest->completed) { ?>
 
 	<div id="results-sec" class="grid-flow main-wrap pad-t-5 pad-b-5" data-spacing="700">
 

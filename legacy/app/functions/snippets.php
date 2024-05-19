@@ -1,16 +1,16 @@
 <?php
 
-function snippet_graph_filters($graphData, $sectionId, $divideBy = false, $filterBy = false) { ?>
+function snippet_graph_filters($graphData, $legacySectionId, $divideBy = false, $filterBy = false) { ?>
 	<!-- Filters -->
-	<form class="search-filters <?= $divideBy || !section_config($sectionId, 'average') ? 'search-filters--default-position' : '' ?>" method="GET" action="results">
+	<form class="search-filters <?= $divideBy || !section_config($legacySectionId, 'average') ? 'search-filters--default-position' : '' ?>" method="GET" action="results">
 
-		<input type="hidden" name="sectionId" value="<?= $sectionId ?>">
+		<input type="hidden" name="sectionId" value="<?= $legacySectionId ?>">
 
 		<?php foreach (sysDashboardGraphsConfig('search-filters') as $filter) { ?>
 
 			<div class="search-filter <?= empty($_GET[$filter['slug']]) ? '' : 'active' ?>">
-				<input type="checkbox" class="search-filter-cbx" id="search-filter-<?= $filter['slug'] . $sectionId ?>">
-				<label class="search-filter-header" for="search-filter-<?= $filter['slug'] . $sectionId ?>">
+				<input type="checkbox" class="search-filter-cbx" id="search-filter-<?= $filter['slug'] . $legacySectionId ?>">
+				<label class="search-filter-header" for="search-filter-<?= $filter['slug'] . $legacySectionId ?>">
 					<p class="search-filter-title"><?= $filter['title'] ?></p>
 					<div class="search-filter-icon icon-box">
 						<?= embed_icon('navigation/arrow1-down') ?>

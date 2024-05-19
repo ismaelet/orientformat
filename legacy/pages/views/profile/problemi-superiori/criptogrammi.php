@@ -20,7 +20,7 @@
 			$cryptogramId = $cryptogramKey + 1;
 		?>
 
-			<div class="cryptogram cryptogram--<?= test()->completed ? ($testResults[$cryptogramId] == $correctResults[$cryptogramId] ? 'correct' : 'wrong') : null ?>" data-id="<?= $cryptogramId ?>">
+			<div class="cryptogram cryptogram--<?= test()->completed ? ($legacyTestResults[$cryptogramId] == $correctResults[$cryptogramId] ? 'correct' : 'wrong') : null ?>" data-id="<?= $cryptogramId ?>">
 				<p class="cryptogram__text">
 
 					<?php foreach ($cryptogram as $fragmentKey => $fragment) {

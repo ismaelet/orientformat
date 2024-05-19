@@ -2,7 +2,7 @@
 
 use LogicManager\TestLogic;
 
-$test = test();
+$legacyTest = test();
 
 $colors = ['c4', 'c1', 'c5', 'c2'];
 
@@ -85,13 +85,13 @@ $answers_emotions = [
 	[2, 3],
 ];
 
-$results_emotions = explode(',', \Legacy\System\Classes\LegacyDB::find('result FROM results_others WHERE userID = ? AND testID = ?', [studentId(), $test->id]));
+$results_emotions = explode(',', \Legacy\System\Classes\LegacyDB::find('result FROM results_others WHERE userID = ? AND testID = ?', [\Illuminate\Support\Facades\Auth::id(), $legacyTest->id]));
 
 $count = count($questions) * 2;
 
 bump($questions);
 
-Test\Legacy\System\Classes\Logic::setParameterCount($count)
+\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function ($count) {
 		$rightN = 0;
 		$answers = \Legacy\System\Classes\LegacyView::getInstance()->get('answers');
@@ -99,8 +99,8 @@ Test\Legacy\System\Classes\Logic::setParameterCount($count)
 
 		$results = implode(',', $_POST['field_other']);
 
-		\Legacy\System\Classes\LegacyDB::delete('results_others WHERE userID = ? AND testID = ?', [studentId(), testId()]);
-		\Legacy\System\Classes\LegacyDB::add('results_others (userID, testID, result) VALUES (?, ?, ?)', [studentId(), testId(), $results]);
+		\Legacy\System\Classes\LegacyDB::delete('results_others WHERE userID = ? AND testID = ?', [\Illuminate\Support\Facades\Auth::id(), testId()]);
+		\Legacy\System\Classes\LegacyDB::add('results_others (userID, testID, result) VALUES (?, ?, ?)', [\Illuminate\Support\Facades\Auth::id(), testId(), $results]);
 
 		foreach ($_POST['field'] as $key => $field) {
 			if ($field == $answers[$key]) {

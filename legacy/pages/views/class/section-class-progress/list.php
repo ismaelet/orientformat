@@ -37,14 +37,14 @@
 				<div class="sections-containter">
 					<div class="sections" style="--count: <?= count($area['sections']) ?>">
 
-						<?php foreach ($area['sections'] as $key => $section) { ?>
+						<?php foreach ($area['sections'] as $key => $legacySection) { ?>
 
-							<div class="section js-section js-section-waiting section-color section-color--area-<?= $area['id'] ?>" data-key="<?= $key ?>" data-section-id="<?= $section->id ?>" data-grade-id="<?= schoolClassId() ?>">
+							<div class="section js-section js-section-waiting section-color section-color--area-<?= $area['id'] ?>" data-key="<?= $key ?>" data-section-id="<?= $legacySection->id ?>" data-grade-id="<?= schoolClassId() ?>">
 								<div class="dashboard-panel load slide-bottom ld-<?= $key ?>" style="--i: <?= $key + 1 ?>">
 									<div class="dashboard-panel-body">
-										<h3 class="dashboard-panel-title"><?= $section->title ?></h3>
+										<h3 class="dashboard-panel-title"><?= $legacySection->title ?></h3>
 										<div class="dashboard-panel-icon icon-box load slide-bottom ld-<?= $key + 2 ?>">
-											<?= embed_icon(APP_ICONS_DIR . 'sections/section-' . $section->id) ?>
+											<?= embed_icon(APP_ICONS_DIR . 'sections/section-' . $legacySection->id) ?>
 										</div>
 									</div>
 
@@ -62,7 +62,7 @@
 										</div>
 
 										<h3 class="dashboard-panel_result">
-											<span class="inlb"><?= section_config($section->id, 'recap-name-grade') ?: 'Risultato medio' ?>:</span><br>
+											<span class="inlb"><?= section_config($legacySection->id, 'recap-name-grade') ?: 'Risultato medio' ?>:</span><br>
 											<span class="dashboard-panel_value inlb fw-bold">...</span>
 										</h3>
 									</div>

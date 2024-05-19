@@ -43,34 +43,34 @@
 
 						<div class="sections">
 
-							<?php foreach ($legacyArea->getSections($grade->fullId) as $key => $section) { ?>
+							<?php foreach ($legacyArea->getSections($grade->fullId) as $key => $legacySection) { ?>
 
-								<div class="section-wrapper js-load load--fade-in section-color section-color--area-<?= $section->areaId ?>" data-direction="bottom" data-delay="<?= $key % 3 ?>">
-									<a class="section <?= $section->progressPercentage == 100 ? 'completed' : '' ?>" <?= 'href="' . $section->clientUrl . '&slug=' . $section->slug . '"' ?>>
+								<div class="section-wrapper js-load load--fade-in section-color section-color--area-<?= $legacySection->areaId ?>" data-direction="bottom" data-delay="<?= $key % 3 ?>">
+									<a class="section <?= $legacySection->progressPercentage == 100 ? 'completed' : '' ?>" <?= 'href="' . $legacySection->clientUrl . '&slug=' . $legacySection->slug . '"' ?>>
 										<div class="section-img gradient-overlay grid-flow stack-content center-content">
 											<div class="section-img-over"></div>
 											<div class="section__icon">
-												<?= embed_icon($section->icon) ?>
+												<?= embed_icon($legacySection->icon) ?>
 											</div>
 										</div>
 
 										<div class="section__body">
 											<div class="section__content grid-flow center-content" data-spacing="100">
-												<h3 class="section__title fw-bold txt-12rem"><?= $section->name ?></h3>
-												<p class="section-desc"><?= $section->description ?></p>
+												<h3 class="section__title fw-bold txt-12rem"><?= $legacySection->name ?></h3>
+												<p class="section-desc"><?= $legacySection->description ?></p>
 
-												<?php if ($section->isStandard) { ?>
+												<?php if ($legacySection->isStandard) { ?>
 
 													<p class="section__progress flex-group center-content fw-semibold">
 
-														<?php if ($section->progressPercentage == 100) { ?>
+														<?php if ($legacySection->progressPercentage == 100) { ?>
 
 															<?= embed_icon('correct') ?>
 															Sezione completata
 
 														<?php } else { ?>
 
-															Attività completate: <span class="fw-bold"><?= $section->completedTestCount . '/' . ($section->testCount ?: '??') ?></span>
+															Attività completate: <span class="fw-bold"><?= $legacySection->completedTestCount . '/' . ($legacySection->testCount ?: '??') ?></span>
 
 														<?php } ?>
 
@@ -82,7 +82,7 @@
 
 											<?php if (false) { ?>
 
-												<p class="mar-t-1 pad-t-05 br-t-1 br-d txt-09rem">Durata stimata<br>dell'attività: <span class="fw-bold"><?= $section->time ?> minuti</span></p>
+												<p class="mar-t-1 pad-t-05 br-t-1 br-d txt-09rem">Durata stimata<br>dell'attività: <span class="fw-bold"><?= $legacySection->time ?> minuti</span></p>
 
 											<?php } ?>
 

@@ -6,8 +6,8 @@ foreach (schoolClass()->students as $student) {
 }
 /* END TEMP */
 
-$sectionId = $_GET['sectionId'];
-$pageTitle = \Legacy\System\Classes\LegacyDB::find('name FROM sections WHERE id = ?', [$sectionId]);
+$legacySectionId = $_GET['sectionId'];
+$pageTitle = \Legacy\System\Classes\LegacyDB::find('name FROM sections WHERE id = ?', [$legacySectionId]);
 
 $breadcrumbs = [
 	schoolClass()->name => client_url('/class'),
@@ -53,4 +53,4 @@ if ($filterBy && !isset($filterByNames[$filterBy][$filterRange])) {
 	$filterBy = false;
 }
 
-$graphData = generate_graph_data($sectionId, schoolClass(), $filterBy, $divideBy, $filterRange);
+$graphData = generate_graph_data($legacySectionId, schoolClass(), $filterBy, $divideBy, $filterRange);

@@ -2,7 +2,7 @@
 
 global $grade;
 
-$testCount = \Legacy\System\Classes\LegacyDB::count('results_permanent WHERE userID IN (SELECT userId FROM students WHERE classId = ?)', [$grade->id]);
+$legacyTestCount = \Legacy\System\Classes\LegacyDB::count('results_permanent WHERE userID IN (SELECT userId FROM students WHERE classId = ?)', [$grade->id]);
 
 $advicesCount = \Legacy\System\Classes\LegacyDB::count('advices WHERE userID IN (SELECT userId FROM students WHERE classId = ?)', [$grade->id]);
 $advicesPercentage = round($advicesCount / $grade->studentCount * 100);

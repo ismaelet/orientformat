@@ -27,12 +27,12 @@
 						</a>
 
 						<?php } else {
-						foreach ($area->getAplhabeticalDoableSections() as $section) {
-							if ($section->isMainSection) { ?>
+						foreach ($area->getAplhabeticalDoableSections() as $legacySection) {
+							if ($legacySection->isMainSection) { ?>
 
-								<a href="<?= client_url('/read?id=' . $section->id) ?>" id="section<?= $section->id ?>" class="section fa-center section-color section-color--area-<?= $area->id ?>">
-									<?= embed_icon($section->icon) ?>
-									<p class="section__title"><?= $section->name ?></p>
+								<a href="<?= client_url('/read?id=' . $legacySection->id) ?>" id="section<?= $legacySection->id ?>" class="section fa-center section-color section-color--area-<?= $area->id ?>">
+									<?= embed_icon($legacySection->icon) ?>
+									<p class="section__title"><?= $legacySection->name ?></p>
 								</a>
 
 					<?php }

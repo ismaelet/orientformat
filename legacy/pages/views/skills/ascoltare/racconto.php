@@ -4,7 +4,7 @@
 
 	<?= title() ?>
 
-	<?php if ($test->completed || !isSupervisor()) { ?>
+	<?php if ($legacyTest->completed || !isSupervisor()) { ?>
 
 		<div class="fa-center mar-t-4">
 
@@ -18,7 +18,7 @@
 
 		<h1 class="mar-t-5 txt-2rem mar-b-2">Domande:</h1>
 
-		<div id="questions" class="mar-b-4 <?= $test->completed ? 'completed' : '' ?>">
+		<div id="questions" class="mar-b-4 <?= $legacyTest->completed ? 'completed' : '' ?>">
 
 			<?php foreach ($content as $questionKey => $question) { ?>
 
@@ -31,7 +31,7 @@
 						<div class="block mar-b-1">
 
 							<label class="checkbox <?= $answer['class'] ?>">
-								<input type="checkbox" name="field[]" class="cbx-mirror filler-inp" <?= $answer['checked'] ? 'checked' : '' ?> value="<?= $answerKey + 1 ?>" <?= $test->completed ? 'readonly' : '' ?>>
+								<input type="checkbox" name="field[]" class="cbx-mirror filler-inp" <?= $answer['checked'] ? 'checked' : '' ?> value="<?= $answerKey + 1 ?>" <?= $legacyTest->completed ? 'readonly' : '' ?>>
 								<span></span>
 								<p><?= $answer['text'] ?></p>
 							</label>

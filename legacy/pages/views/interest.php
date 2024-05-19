@@ -48,7 +48,7 @@
 
 									<?php for ($i = 0; $i <= 3; $i++) { ?>
 
-										<label class="score<?= $i ?> score <?= $studentId != studentId() ? 'score--supervisor' : '' ?>">
+										<label class="score<?= $i ?> score <?= $studentId != \Illuminate\Support\Facades\Auth::id() ? 'score--supervisor' : '' ?>">
 
 											<input type="checkbox" class="hidden filler-inp" name="field[<?= $questionId - 1 ?>]" value="<?= $i + 1 ?>" <?= isset($survey->rawResults[$questionId - 1]) && $i + 1 == $survey->rawResults[$questionId - 1] ? 'checked' : '' ?>>
 

@@ -19,7 +19,7 @@
 							<?php for ($i = 0; $i < $levelOld + 2; $i++) { ?>
 
 								<div class="number-box">
-									<input type="number" class="number <?= $test->rawResults[$i + 1] == $answers[$levelOld][$i] ? 'right' : 'wrong' ?>" disabled min="1" max="9" value="<?= $test->rawResults[$i + 1] ?>" autocomplete="off">
+									<input type="number" class="number <?= $legacyTest->rawResults[$i + 1] == $answers[$levelOld][$i] ? 'right' : 'wrong' ?>" disabled min="1" max="9" value="<?= $legacyTest->rawResults[$i + 1] ?>" autocomplete="off">
 								</div>
 
 							<?php } ?>
@@ -41,7 +41,7 @@
 							<?php if (!isSupervisor()) { ?>
 								<div id="reset" class="button resume mar-b-2">Riprova</div><br>
 
-								<?php if (!$test->completed) { ?>
+								<?php if (!$legacyTest->completed) { ?>
 
 									<label>
 										<p class="interactive">Non riesco a memorizzare tutte le cifre e preferisco fermarmi qui.</p>
@@ -98,7 +98,7 @@
 					<div class="submit-box fa-center mar-t-5">
 						<button type="submit" id="check" name="check" class="button mar-b-2">Conferma</button><br>
 
-						<?php if (!$test->completed) { ?>
+						<?php if (!$legacyTest->completed) { ?>
 
 							<label>
 								<p class="txt-a clickable inlb">Non riesco a memorizzare tutte le cifre e preferisco fermarmi qui.</p>

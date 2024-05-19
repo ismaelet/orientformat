@@ -2,7 +2,7 @@
 
 use LogicManager\TestLogic;
 
-$test = test();
+$legacyTest = test();
 
 $graph_data = [
 	['Ho chiari i miei obiettivi', 'Ci sono obiettivi a breve termine, come ottenere un buon voto, e obiettivi
@@ -25,4 +25,4 @@ $graph_data = [
 
 $count = count($graph_data);
 
-Test\Legacy\System\Classes\Logic::setParameterCount($count);
+\LogicManager\TestLogic::setParameterCount($count);

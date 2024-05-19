@@ -108,7 +108,7 @@ class ConnectionInterface {
 
 		// $message = $prefix . date('Y-m-d H:i:s') . ' Richiesta di ' . $intervalOpen . 'ms effettuata in ' . $_SERVER['REQUEST_URI'] . ($userId ? ' dall\'utente ' . $userId : null) . PHP_EOL;
 
-		// if (self::$envirnoment == 'developement' || studentId() && studentId() == 4719) {
+		// if (self::$envirnoment == 'developement' || \Illuminate\Support\Facades\Auth::id() && \Illuminate\Support\Facades\Auth::id() == 4719) {
 		// 	echo $message . '<br>';
 		// 	echo 'Numero di queries: ' . self::$queryCount;
 		// }

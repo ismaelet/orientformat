@@ -7,26 +7,30 @@ class AppSetup {
 	 * Templates
 	 */
 	private static function initializeTemplates() {
-		\Legacy\System\Classes\Logic::$dependencies['test'] = 'main';
-		\Legacy\System\Classes\Logic::$dependencies['test-next'] = 'test';
-		\Legacy\System\Classes\Logic::$dependencies['survey'] = 'main';
+
 		\Legacy\System\Classes\Logic::$dependencies['recap'] = 'main';
 		\Legacy\System\Classes\Logic::$dependencies['survey-results'] = 'test';
 		\Legacy\System\Classes\Logic::$dependencies['read'] = 'main';
-		\Legacy\System\Classes\Logic::$dependencies['student-read'] = 'main';
 		\Legacy\System\Classes\Logic::$dependencies['dashboard'] = 'main';
 		\Legacy\System\Classes\Logic::$dependencies['school-class'] = 'dashboard';
 		\Legacy\System\Classes\Logic::$dependencies['school-class-graph'] = 'dashboard';
-		\Legacy\System\Classes\Logic::$priorities['test'] = 200;
-		\Legacy\System\Classes\Logic::$priorities['test-next'] = 210;
-		\Legacy\System\Classes\Logic::$priorities['survey'] = 60;
 		\Legacy\System\Classes\Logic::$priorities['survey-results'] = 210;
 		\Legacy\System\Classes\Logic::$priorities['recap'] = 60;
 		\Legacy\System\Classes\Logic::$priorities['read'] = 70;
-		\Legacy\System\Classes\Logic::$priorities['student-read'] = 70;
 		\Legacy\System\Classes\Logic::$priorities['dashboard'] = 60;
 		\Legacy\System\Classes\Logic::$priorities['school-class'] = 70;
 		\Legacy\System\Classes\Logic::$priorities['school-class-graph'] = 70;
+
+
+
+		\Legacy\System\Classes\Logic::$dependencies['test'] = 'main';
+		\Legacy\System\Classes\Logic::$dependencies['test-next'] = 'test';
+		\Legacy\System\Classes\Logic::$dependencies['survey'] = 'main';
+		\Legacy\System\Classes\Logic::$dependencies['student-read'] = 'main';
+		\Legacy\System\Classes\Logic::$priorities['test'] = 200;
+		\Legacy\System\Classes\Logic::$priorities['test-next'] = 210;
+		\Legacy\System\Classes\Logic::$priorities['survey'] = 60;
+		\Legacy\System\Classes\Logic::$priorities['student-read'] = 70;
 	}
 
 	/**
@@ -44,7 +48,7 @@ class AppSetup {
 		$middlewares->add('beginner-review', function () {
 			$reviewId = null;
 
-			if (!isTeacher()) {
+			if (!is_teacher()) {
 				switch (true) {
 
 					case student()->isInMiddleSchool && student()->schoolClass->relativeGrade == 3:
@@ -85,7 +89,7 @@ class AppSetup {
 		});
 
 		$middlewares->add('teacher', function () {
-			if (!isTeacher()) {
+			if (!is_teacher()) {
 				redirect_old('/');
 			}
 		});
@@ -99,7 +103,7 @@ class AppSetup {
 				$schoolClassId = $_SESSION['dashboard-schoolClassId'];
 			}
 
-			if (!isTeacher()) {
+			if (!is_teacher()) {
 				redirect_old('/');
 			}
 

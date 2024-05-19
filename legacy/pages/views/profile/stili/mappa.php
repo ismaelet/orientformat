@@ -5,7 +5,7 @@
 	<?= title() ?>
 	<?= no_results() ?>
 
-	<?php if ($test->requiredTest->completed) { ?>
+	<?php if ($legacyTest->requiredTest->completed) { ?>
 
 		<div class="graph-wrapper">
 

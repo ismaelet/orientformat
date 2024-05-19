@@ -43,8 +43,8 @@ class SchoolClassTestResult {
 		$resultCount = 0;
 
 		foreach ($this->getSchoolClass()->students as $student) {
-			$test = (new Test($this->testId))->setStudentId($student->id);
-			$requiredTest = ($test->requiredTest)->setStudentId($student->id);
+			$legacyTest = (new Test($this->testId))->setStudentId($student->id);
+			$requiredTest = ($legacyTest->requiredTest)->setStudentId($student->id);
 			$survey = $requiredTest->survey;
 
 			$questions = $survey->questions;

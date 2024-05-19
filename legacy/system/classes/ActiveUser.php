@@ -2,7 +2,7 @@
 
 namespace Legacy\System\Classes;
 
-use User;
+use \Legacy\System\Classes\User;
 
 class ActiveUser {
 

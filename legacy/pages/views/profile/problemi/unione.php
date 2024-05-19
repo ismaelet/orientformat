@@ -11,9 +11,9 @@
 				<canvas id="canv-perm" class="canv bgr"></canvas>
 				<canvas id="canv-draw" class="canv bgr"></canvas>
 
-				<div id="page-graph" class="grid5 <?= $test->completed ? 'disabled' : ''; ?>">
+				<div id="page-graph" class="grid5 <?= $legacyTest->completed ? 'disabled' : ''; ?>">
 
-					<input type="hidden" name="field[]" id="field" class="tracking-inp field" value="<?= $val = $test->completed ? implode(',', $test->rawResults) : 0; ?>">
+					<input type="hidden" name="field[]" id="field" class="tracking-inp field" value="<?= $val = $legacyTest->completed ? implode(',', $legacyTest->rawResults) : 0; ?>">
 
 					<?php
 					$row = sqrt($count) + 2;

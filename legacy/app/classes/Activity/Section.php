@@ -2,11 +2,13 @@
 
 namespace Legacy\Activity;
 
+use Illuminate\Support\Facades\Auth;
 use \Legacy\Activity\Result\SectionResult;
 use \Legacy\Activity\Result\TestResult;
+use Legacy\System\Classes\User as LegacyUser;
 use LegacyModels\Activities\Results\CondensedSectionResult;
 use LegacyModels\Activities\Section as SectionModel;
-use User;
+use \Legacy\System\Classes\User;
 
 /**
  * Section class
@@ -44,7 +46,7 @@ class Section {
 	* Get methods
 	*/
 	private function getStudentId() {
-		return studentId();
+		return Auth::id();
 	}
 
 	private function getTitle() {
@@ -111,7 +113,7 @@ class Section {
 
 	public function getProgressPercentage() {
 		if ($this->isStandard) {
-			return (int) \Legacy\System\Classes\LegacyDB::find('progressPercentage FROM results_sections WHERE studentId = ? AND sectionId = ?', [studentId(), $this->id]);
+			return (int) \Legacy\System\Classes\LegacyDB::find('progressPercentage FROM results_sections WHERE studentId = ? AND sectionId = ?', [\Illuminate\Support\Facades\Auth::id(), $this->id]);
 		} else {
 			return 100;
 		}
@@ -165,14 +167,14 @@ class Section {
 				' SET completedTestCount = ?, lastCompletedStep = ?, progressPercentage = ?, completed = ? 
 				WHERE ' . SectionResult::USER_INDEX . ' = ? AND ' . SectionResult::SECTION_INDEX . ' = ?',
 
-			[$completedTestCount, $lastCompletedStep, $percentage, $completed, studentId(), $this->id]
+			[$completedTestCount, $lastCompletedStep, $percentage, $completed, \Illuminate\Support\Facades\Auth::id(), $this->id]
 		);
 
-		\Legacy\System\Classes\LegacyDB::delete(CondensedSectionResult::table() . ' WHERE ' . CondensedSectionResult::linkedIndexName(User::class) . ' = ? AND ' . CondensedSectionResult::linkedIndexName(SectionModel::class) . ' = ?', [studentId(), $this->id]);
+		\Legacy\System\Classes\LegacyDB::delete(CondensedSectionResult::table() . ' WHERE ' . CondensedSectionResult::linkedIndexName(LegacyUser::class) . ' = ? AND ' . CondensedSectionResult::linkedIndexName(SectionModel::class) . ' = ?', [\Illuminate\Support\Facades\Auth::id(), $this->id]);
 
 		// update grade progress
-		if (!isTeacher()) {
-			student()->grade->updateProgress();
+		if (!is_teacher()) {
+			Auth::user()->student->grade()->updateProgress();
 		}
 
 		// return this
@@ -191,7 +193,7 @@ class Section {
 				' ON ' . TestResult::TABLE . '.' . TestResult::TEST_INDEX . ' = ' . Test::TABLE . '.' . Test::INDEX . '
 			WHERE ' . Test::SECTION_INDEX . ' = ? AND active = 1 AND ' . TestResult::USER_INDEX . ' = ?',
 
-			[$this->id, studentId()]
+			[$this->id, \Illuminate\Support\Facades\Auth::id()]
 		);
 	}
 
@@ -203,7 +205,7 @@ class Section {
 				' ON ' . TestResult::TABLE . '.' . TestResult::TEST_INDEX . ' = ' . Test::TABLE . '.' . Test::INDEX . '
 			WHERE ' . Test::SECTION_INDEX . ' = ? AND active = 1 AND ' . TestResult::USER_INDEX . ' = ?',
 
-			[$this->id, studentId()]
+			[$this->id, \Illuminate\Support\Facades\Auth::id()]
 		)['maxStep'];
 	}
 }

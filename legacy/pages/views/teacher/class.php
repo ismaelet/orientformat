@@ -33,11 +33,11 @@
 		<!-- Tests -->
 		<div id="sections-sec" class="mar-t-3 grid3 grid2-1024w grid1-480w gap2">
 
-			<?php foreach ($sections as $key => $section) { ?>
+			<?php foreach ($legacySections as $key => $legacySection) { ?>
 
 				<div class="load slide-bottom ld-<?= ($key - 1) % 3 ?>">
 
-					<a href="<?= $section['url'] ?>" id="section<?= $key ?>" class="section bgr-wht grid gap-o-1">
+					<a href="<?= $legacySection['url'] ?>" id="section<?= $key ?>" class="section bgr-wht grid gap-o-1">
 
 						<div class="section-img">
 							<div class="bgr cont rel pad-b-100" <?= background_image('section' . $key . '.svg') ?>></div>
@@ -47,11 +47,11 @@
 
 							<div class="section-texts">
 
-								<h1 class="section-title txt-upp txt-12rem fw-bold"><?= $section['title'] ?></h1>
+								<h1 class="section-title txt-upp txt-12rem fw-bold"><?= $legacySection['title'] ?></h1>
 
-								<p class="section-stitle mar-b-1 txt-upp mar-t-05"><?= $section['stitle'] ?></p>
+								<p class="section-stitle mar-b-1 txt-upp mar-t-05"><?= $legacySection['stitle'] ?></p>
 
-								<p class=""><?= $section['desc'] ?></p>
+								<p class=""><?= $legacySection['desc'] ?></p>
 
 							</div>
 

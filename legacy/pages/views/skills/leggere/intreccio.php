@@ -22,10 +22,10 @@ use \Legacy\Activity\Test;
 			<?php } ?>
 		</div>
 
-		<?php if ($test->completed && !$supervisorView) { ?>
+		<?php if ($legacyTest->completed && !$supervisorView) { ?>
 			<div>
 
-				<p class="result txt-15rem mar-b-2 pad-1 br-2 br-c1 fa-center">Sei riuscito a riordinare il <span class="fc-primary fw-bold"><?= $test->percentage ?> %</span> delle cause ed effetti.</p>
+				<p class="result txt-15rem mar-b-2 pad-1 br-2 br-c1 fa-center">Sei riuscito a riordinare il <span class="fc-primary fw-bold"><?= $legacyTest->percentage ?> %</span> delle cause ed effetti.</p>
 
 				<?= renderRedoButton(true) ?>
 
@@ -39,7 +39,7 @@ use \Legacy\Activity\Test;
 		</div>
 	</div>
 
-	<?php if ($test->completed || !$supervisorView) { ?>
+	<?php if ($legacyTest->completed || !$supervisorView) { ?>
 
 		<div id="graph-box" class="mar-t-4">
 
@@ -74,7 +74,7 @@ use \Legacy\Activity\Test;
 
 		</div>
 
-		<?php if (!$test->completed) { ?>
+		<?php if (!$legacyTest->completed) { ?>
 
 			<h2 class="subsection-title txt-blk txt-15rem fw-bold mar-t-3">Elementi:</h2>
 			<div id="causes" class="mar-b-3 mar-t-2 grid3">

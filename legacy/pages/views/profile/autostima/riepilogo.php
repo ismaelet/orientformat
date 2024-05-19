@@ -18,7 +18,7 @@
 		<div class="main-wrap pad-b-5">
 			<div id="tests" class="al-top">
 
-				<?php foreach ($tests as $key => $dependentTest) {
+				<?php foreach ($legacyTests as $key => $dependentTest) {
 					$height = $dependentTest->result && $dependentTest->result->completed ? 1 + ($dependentTest->result->percentage / $maxHeight * 23) : 0;
 				?>
 

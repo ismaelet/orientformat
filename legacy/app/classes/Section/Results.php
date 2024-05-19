@@ -7,11 +7,11 @@ use \DB;
 class Results {
 
 	// parse the numeric result to a string
-	/*static function resultByValue($sectionId, $value) {
+	/*static function resultByValue($legacySectionId, $value) {
 		$result = false;
 
 		if ($value) {
-			switch ($sectionId) {
+			switch ($legacySectionId) {
 				case 3:
 					// resilienza
 					$names = ['Pochissimo', 'Poco', 'Abbastanza', 'Molto', 'Moltissimo'];
@@ -27,17 +27,17 @@ class Results {
 	}
 
 	// calculate the average results of a section of a class or of all the students
-	static function getGeneralResults($sectionId, $classId = false) {
-		switch ($sectionId) {
+	static function getGeneralResults($legacySectionId, $classId = false) {
+		switch ($legacySectionId) {
 			case 3:
 				// resilienza
 				$testIds = [49];
-				$result = self::getGeneralAverageResult($sectionId, $testIds, $classId);
+				$result = self::getGeneralAverageResult($legacySectionId, $testIds, $classId);
 				break;
 			case 4:
 				// autostima
 				$testIds = [7, 8, 9, 10, 11, 12];
-				$result = self::getGeneralAverageResult($sectionId, $testIds, $classId);
+				$result = self::getGeneralAverageResult($legacySectionId, $testIds, $classId);
 				break;
 			default:
 				$result = false;
@@ -47,7 +47,7 @@ class Results {
 	}
 
 	// calculate specific sections
-	static private function getGeneralAverageResult($sectionId, $testIds, $classId) {
+	static private function getGeneralAverageResult($legacySectionId, $testIds, $classId) {
 
 		$testIdsStr = "'" . implode("','", $testIds) . "'";
 

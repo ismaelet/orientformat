@@ -97,10 +97,10 @@ use \Legacy\Activity\Section;
 	$id = $_GET['id'] ?? null;
 	$areaId = $_GET['area-id'] ?? null;
 
-	if ($id) $section = \Legacy\System\Classes\LegacyDB::find('slug FROM ' . Section::TABLE . ' WHERE id=?', $id);
+	if ($id) $legacySection = \Legacy\System\Classes\LegacyDB::find('slug FROM ' . Section::TABLE . ' WHERE id=?', $id);
 	if ($areaId) $area = \Legacy\System\Classes\LegacyDB::find('slug FROM ' . Area::TABLE . ' WHERE id=?', $areaId);
 
-	$page = $id ? $section : 'area-' . $area;
+	$page = $id ? $legacySection : 'area-' . $area;
 
 	if (!$page) {
 		redirect_old('/');

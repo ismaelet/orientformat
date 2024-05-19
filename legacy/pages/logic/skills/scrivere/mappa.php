@@ -2,8 +2,8 @@
 
 use LogicManager\TestLogic;
 
-$test = test();
-$sibling = $test->requiredTest;
+$legacyTest = test();
+$sibling = $legacyTest->requiredTest;
 
 $results = [];
 $types = test_config(63, 'types');
@@ -26,4 +26,4 @@ $categories = [
 
 $count = count($types);
 
-Test\Legacy\System\Classes\Logic::setParameterCount($count);
+\LogicManager\TestLogic::setParameterCount($count);

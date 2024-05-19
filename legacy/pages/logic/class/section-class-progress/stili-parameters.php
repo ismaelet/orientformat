@@ -3,7 +3,7 @@
 global $grade;
 
 // setup page
-$sectionId = 1;
+$legacySectionId = 1;
 $pageTitle = 'Stili Cogniviti';
 $pageDesc = "Qui puoi controllare i risultati delle autovalutazioni relative agli stili cognitivi. Per ogni stile è indicata la media della classe.<br>Puoi passare il mouse sopra alle singole colonne per visualizzare i valori esatti.";
 $breadcrumbs[$pageTitle] = false;

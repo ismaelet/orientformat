@@ -4,7 +4,7 @@ namespace LegacyModels\Activities\Results;
 
 use LegacyModels\Activities\Test;
 use LegacyModels\OldModel;
-use User;
+use \Legacy\System\Classes\User;
 
 class TestResult extends OldModel {
 	/**

@@ -1,13 +1,13 @@
 <?php
 
-$test = test();
+$legacyTest = test();
 
 // setup variables
 $answers = false;
 $focus['score'] = 0;
 $hyper['score'] = 0;
 
-$sibling = $test->requiredTest;
+$sibling = $legacyTest->requiredTest;
 
 $questions = [
 	"Incontro difficoltà a dirigere l'attenzione sui dettagli o commetto errori di distrazione",

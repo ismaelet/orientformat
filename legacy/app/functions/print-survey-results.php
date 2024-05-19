@@ -4,13 +4,13 @@ use \Legacy\Activity\Test;
 use \Legacy\UserSystem\Student;
 
 function print_survey_results($testId, $studentId, $teacherView = false) {
-	$test = new Test($testId);
-	$survey = $test->survey;
-	$result = $test->rawResults;
+	$legacyTest = new Test($testId);
+	$survey = $legacyTest->survey;
+	$result = $legacyTest->rawResults;
 
 	if ($teacherView) {
 		$student = new Student($studentId);
-		$test->title .= '<br><i>' . $student->lastname . ' ' . $student->firstname . '</i>';
+		$legacyTest->title .= '<br><i>' . $student->lastname . ' ' . $student->firstname . '</i>';
 	}
 
 	// opening html
@@ -47,7 +47,7 @@ function print_survey_results($testId, $studentId, $teacherView = false) {
 		</head>
 		<body>
 
-			<p class='title'>Risposte - " . $test->title . "</p>
+			<p class='title'>Risposte - " . $legacyTest->title . "</p>
 	";
 
 	// html body
@@ -74,5 +74,5 @@ function print_survey_results($testId, $studentId, $teacherView = false) {
 
 	$dompdf->setPaper('A4', 'portrait');
 	$dompdf->render();
-	$dompdf->stream('Risposte_' . str_replace([' ', '<br>'], '_', str_replace(['<i>', '</i>'], '', $test->title)) . '.pdf');
+	$dompdf->stream('Risposte_' . str_replace([' ', '<br>'], '_', str_replace(['<i>', '</i>'], '', $legacyTest->title)) . '.pdf');
 }

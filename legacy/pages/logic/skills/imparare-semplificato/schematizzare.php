@@ -2,7 +2,7 @@
 
 use LogicManager\TestLogic;
 
-$test = test();
+$legacyTest = test();
 
 $boxes = [
 	1 => ['content' => "istinto", 'autofilled' => 0, 'type' => 1],
@@ -32,9 +32,9 @@ foreach ($boxes as $key => &$box) {
 		$i++;
 	}
 
-	if ($test->completed) {
-		$box['classes'] = $box['autofilled'] || $test->rawResults[$i - 1] == $key || (isset($box['alternatives']) && in_array($test->rawResults[$i - 1], $box['alternatives'])) ? 'right' : 'wrong';
-		$box['text'] = $box['autofilled'] ? $box['content'] : ($boxes[$test->rawResults[$i - 1]]['content'] ?? false);
+	if ($legacyTest->completed) {
+		$box['classes'] = $box['autofilled'] || $legacyTest->rawResults[$i - 1] == $key || (isset($box['alternatives']) && in_array($legacyTest->rawResults[$i - 1], $box['alternatives'])) ? 'right' : 'wrong';
+		$box['text'] = $box['autofilled'] ? $box['content'] : ($boxes[$legacyTest->rawResults[$i - 1]]['content'] ?? false);
 	} else {
 		$box['classes'] = $box['autofilled'] ? 'active' : 'droppable';
 		$box['text'] = $box['autofilled'] ? $box['content'] : '';
@@ -43,7 +43,7 @@ foreach ($boxes as $key => &$box) {
 
 $count = $i;
 
-Test\Legacy\System\Classes\Logic::setParameterCount($count)
+\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function ($count) {
 		$boxes = \Legacy\System\Classes\LegacyView::getInstance()->get('boxes');
 

@@ -3,7 +3,7 @@
 global $grade;
 
 // setup page
-$sectionId = 1;
+$legacySectionId = 1;
 $pageTitle = 'Stili Cogniviti';
 $pageDesc = "Qui puoi controllare i risultati dell'autovalutazione relativa agli stili cognitivi.<br>Compariranno solo gli studenti che hanno completato l'autovalutazione.<br>Puoi passare il mouse sopra alle singole colonne per visualizzare i valori esatti.";
 $breadcrumbs[$pageTitle] = false;
@@ -24,11 +24,11 @@ $groups = [
 ];
 
 foreach ($grade->students as $student) {
-	if (\Legacy\System\Classes\LegacyDB::exists("results WHERE userID = ? AND testID IN ('30') AND completed=1", [studentId()])) {
+	if (\Legacy\System\Classes\LegacyDB::exists("results WHERE userID = ? AND testID IN ('30') AND completed=1", [\Illuminate\Support\Facades\Auth::id()])) {
 
 		$columnData = [];
 		$columnData['subcolumns'] = [];
-		$CondensedTestResult = Student\SectionTestResult::getRawResult(studentId(), $sectionId);
+		$CondensedTestResult = Student\SectionTestResult::getRawResult(\Illuminate\Support\Facades\Auth::id(), $legacySectionId);
 
 		foreach ($groups as $styleId => $styleName) {
 			$columnData['subcolumns'][$styleName[0]] = $CondensedTestResult[$styleId] . '%';

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Activities\StudentAnalysisController;
+use App\Http\Controllers\Activities\TestController;
 use App\Http\Controllers\LegacyController;
 use App\Http\Controllers\SurveysHighschool2024Controller;
 use Illuminate\Support\Facades\Artisan;
@@ -31,6 +32,10 @@ Route::get('/run-migrations', function () {
 /**
  * * Parcially legacy routes
  */
+// ~ Student Activities
+Route::any('/activities/tests/{test}', [TestController::class, 'show'])->middleware(['auth'])->name('activities.tests');
+
+// ~ Student Analisys
 Route::any('/analysis/student/areas/{area}', [StudentAnalysisController::class, 'show'])->middleware(['auth'])->name('analysis.student.area');
 Route::any('/analysis/student/sections/{section}', [StudentAnalysisController::class, 'show'])->name('analysis.student.section');
 

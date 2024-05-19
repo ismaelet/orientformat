@@ -77,25 +77,25 @@ use Review\Review;
 								<h3 class="area__title subsection-title"><?= $area['name'] ?></h3>
 								<div class="sections" style="--count: <?= count($area['sections']) ?>">
 
-									<?php foreach ($area['sections'] as $key => $section) {
-										$section->setStudentId($watchedStudentId);
-										$sectionResult = new StudentSectionResult($section->id, $watchedStudentId);
-										$speed = $sectionResult->getSpeedString();
+									<?php foreach ($area['sections'] as $key => $legacySection) {
+										$legacySection->setStudentId($watchedStudentId);
+										$legacySectionResult = new StudentSectionResult($legacySection->id, $watchedStudentId);
+										$speed = $legacySectionResult->getSpeedString();
 									?>
 
 										<div class="section section-color section-color--area-<?= $area['id'] ?>" style="--i: <?= $key + 1 ?>">
 											<div class="dashboard-panel-icon js-load load--fade-in" data-delay="2" data-direction="bottom">
-												<?= embed_icon(APP_ICONS_DIR . 'sections/section-' . $section->mainSectionId) ?>
+												<?= embed_icon(APP_ICONS_DIR . 'sections/section-' . $legacySection->mainSectionId) ?>
 											</div>
 
-											<p class="dashboard-panel-title"><?= $section->title ?? $section['title'] ?></p>
+											<p class="dashboard-panel-title"><?= $legacySection->title ?? $legacySection['title'] ?></p>
 
 											<p class="dashboard-panel_result">
 
-												<?php if ($sectionResult->result) { ?>
+												<?php if ($legacySectionResult->result) { ?>
 
-													<span class="inlb"><?= section_config($section->id ?? null, 'recap-name-student') ?: 'Risultato' ?>:</span><br>
-													<span class="dashboard-panel_value inlb fw-bold"><?= $sectionResult->result ?></span>
+													<span class="inlb"><?= section_config($legacySection->id ?? null, 'recap-name-student') ?: 'Risultato' ?>:</span><br>
+													<span class="dashboard-panel_value inlb fw-bold"><?= $legacySectionResult->result ?></span>
 
 												<?php } else { ?>
 
@@ -107,7 +107,7 @@ use Review\Review;
 
 											<p>
 
-												<?php if ($sectionResult && $speed) { ?>
+												<?php if ($legacySectionResult && $speed) { ?>
 													Completato in <strong><?= $speed ?></strong><br>
 												<?php } ?>
 
@@ -115,8 +115,8 @@ use Review\Review;
 
 											<div class="dashboard-panel-footer">
 
-												<?php if (($section->completed || $sectionResult->result) && isset($actions[$section->id])) {
-													foreach ($actions[$section->id] as $action) {
+												<?php if (($legacySection->completed || $legacySectionResult->result) && isset($actions[$legacySection->id])) {
+													foreach ($actions[$legacySection->id] as $action) {
 												?>
 
 														<p class="dashboard-home-more">
@@ -133,7 +133,7 @@ use Review\Review;
 											</div>
 
 											<div class="section-info">
-												<p><?= $infos[$section->mainSectionId] ?? "" ?></p>
+												<p><?= $infos[$legacySection->mainSectionId] ?? "" ?></p>
 											</div>
 
 										</div>

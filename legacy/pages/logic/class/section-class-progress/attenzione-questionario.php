@@ -3,7 +3,7 @@
 global $grade;
 
 // setup page
-$sectionId = 9;
+$legacySectionId = 9;
 $testId = 17;
 $pageTitle = 'Attenzione - Autovalutazione';
 $pageDesc = 'Qui puoi controllare i risultati dell\'autovalutazione.<br>Valori bassi indicano una concentrazione migliore e una propensione minore all\'iperattività.<br> Per ogni campo è indicata la media della classe.<br>Puoi passare il mouse sopra alle singole colonne per visualizzare i valori esatti.';
@@ -17,7 +17,7 @@ $graphData['columns'] = [];
 $graphData['columns'] = [];
 
 foreach ($grade->students as $student) {
-	$result = Activity\Result\CondensedTestResult::getRawResult(studentId(), $testId);
+	$result = Activity\Result\CondensedTestResult::getRawResult(\Illuminate\Support\Facades\Auth::id(), $testId);
 
 	if ($result) {
 		foreach ($result as $resultName => $resultValue) {

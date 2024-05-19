@@ -35,8 +35,8 @@
 		<!-- Tests -->
 		<div class="tests mar-t-5 grid-flow" data-columns="25rem" data-spacing="700">
 
-			<?php foreach ($tests as $key => $testM) {
-				$obj = $testM['obj'];
+			<?php foreach ($legacyTests as $key => $legacyTestM) {
+				$obj = $legacyTestM['obj'];
 			?>
 
 				<div class="pos-rel load--fade-in js-load" data-direction="bottom" data-delay="<?= $key % 3 ?>">
@@ -44,7 +44,7 @@
 						<input type="hidden" name="testId" value="<?= $obj->id ?>">
 
 						<div class="test-img">
-							<?= icon_embed($testM['img']) ?>
+							<?= icon_embed($legacyTestM['img']) ?>
 						</div>
 
 						<div class="test-data">
@@ -55,7 +55,7 @@
 
 								<?php if (!$obj->static) { ?>
 
-									<p class="test-stitle txt-upp mar-t-05 <?= !$obj->completed ? 'active' : ''; ?>"><?= $testM['desc'] ?></p>
+									<p class="test-stitle txt-upp mar-t-05 <?= !$obj->completed ? 'active' : ''; ?>"><?= $legacyTestM['desc'] ?></p>
 
 								<?php } ?>
 

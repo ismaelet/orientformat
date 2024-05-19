@@ -22,7 +22,7 @@ class StudentTestResult {
 	use \System\Traits\DynamicProperties;
 
 	private $testId;
-	private $test;
+	private $legacyTest;
 	private $studentId;
 
 	/**
@@ -176,15 +176,15 @@ class StudentTestResult {
 	 */
 	// generic calculators
 	private function calcDetailedResult() {
-		$test = $this->test->hasRequiredTest ? $this->test->requiredTest->setStudentId($this->studentId) : $this->test;
+		$legacyTest = $this->test->hasRequiredTest ? $this->test->requiredTest->setStudentId($this->studentId) : $this->test;
 
-		return $test->completed ? $test->rawResults : null;
+		return $legacyTest->completed ? $legacyTest->rawResults : null;
 	}
 
 	private function calcPercentage() {
-		$test = $this->test->hasRequiredTest ? $this->test->requiredTest->setStudentId($this->studentId) : $this->test;
+		$legacyTest = $this->test->hasRequiredTest ? $this->test->requiredTest->setStudentId($this->studentId) : $this->test;
 
-		return $test->completed ? $test->percentage : null;
+		return $legacyTest->completed ? $legacyTest->percentage : null;
 	}
 
 	private function calcCompleted() {
@@ -261,16 +261,16 @@ class StudentTestResult {
 	// Autostima and Creatività
 	private function calcDetailedTestsAverage() {
 		$results = [];
-		$tests = rows_to_objects(\Legacy\System\Classes\LegacyDB::select(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND step < ? ORDER BY step ASC', [$this->test->sectionId, $this->test->step]), Test::class);
+		$legacyTests = rows_to_objects(\Legacy\System\Classes\LegacyDB::select(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND step < ? ORDER BY step ASC', [$this->test->sectionId, $this->test->step]), Test::class);
 
-		foreach ($tests as $test) {
-			$test->setStudentId($this->studentId);
+		foreach ($legacyTests as $legacyTest) {
+			$legacyTest->setStudentId($this->studentId);
 
-			if ($test->completed) {
+			if ($legacyTest->completed) {
 				$results[] = [
-					'name' => $test->title,
-					'value' => $test->percentage,
-					'percentage' => $test->percentage,
+					'name' => $legacyTest->title,
+					'value' => $legacyTest->percentage,
+					'percentage' => $legacyTest->percentage,
 				];
 			}
 		}
@@ -338,7 +338,7 @@ class StudentTestResult {
 	// Test 46: Temperamento
 	private function calcTemperamento() {
 		$results = [];
-		$sections = test_config($this->testId, 'sections');
+		$legacySections = test_config($this->testId, 'sections');
 
 		for ($i = 1; $i < 6; $i++) {
 			$requiredTestId = \Legacy\System\Classes\LegacyDB::find('id FROM ' . Test::TABLE . ' WHERE sectionId = ? AND step = ?', [$this->test->sectionId, $i]);
@@ -346,7 +346,7 @@ class StudentTestResult {
 
 			if ($requiredTest->completed) {
 				$results[] = [
-					'name' => $sections[$i - 1],
+					'name' => $legacySections[$i - 1],
 					'value' => round($requiredTest->percentage / 100 * 6),
 					'percentage' => $requiredTest->percentage
 				];
@@ -358,9 +358,9 @@ class StudentTestResult {
 
 	// Test 48
 	private function calcStileAttributivo() {
-		$test = $this->test->requiredTest->setStudentId($this->studentId);
+		$legacyTest = $this->test->requiredTest->setStudentId($this->studentId);
 
-		if ($test->completed) {
+		if ($legacyTest->completed) {
 			$results = [];
 			$formattedResults = [];
 			$styles = test_config($this->testId, 'styles');
@@ -369,7 +369,7 @@ class StudentTestResult {
 				$results[$style] = 0;
 			}
 
-			foreach ($test->rawResults as $key => $value) {
+			foreach ($legacyTest->rawResults as $key => $value) {
 				$style = $styles[$value - 1];
 
 				$results[$style]++;
@@ -393,12 +393,12 @@ class StudentTestResult {
 	private function calcDetailedScrivereStili() {
 		$results = [];
 		$max = 5;
-		$test = $this->test->requiredTest->setStudentId($this->studentId);
-		$testConfig = test_config($this->test->id, 'types');
+		$legacyTest = $this->test->requiredTest->setStudentId($this->studentId);
+		$legacyTestConfig = test_config($this->test->id, 'types');
 
-		foreach ($test->rawResults as $id => $result) {
+		foreach ($legacyTest->rawResults as $id => $result) {
 			$results[] = [
-				'name' => $testConfig[$id],
+				'name' => $legacyTestConfig[$id],
 				'value' => $result - 1,
 				'percentage' => round(($result - 1) / $max * 100),
 			];
@@ -488,17 +488,17 @@ class StudentTestResult {
 		$results = false;
 		$maxValue = 18;
 		$groups = test_config($this->testId, 'groups');
-		$test = new Test(91);
+		$legacyTest = new Test(91);
 
-		if ($test->rawResults) {
+		if ($legacyTest->rawResults) {
 			$results = [];
 
 			foreach ($groups as $groupId => $group) {
 				$score = 0;
 
 				foreach ($group['questionIds'] as $questionId) {
-					$testScore = $test->rawResults[$questionId - 1] ?? 0;
-					$score += ((int) $testScore) - 1;
+					$legacyTestScore = $legacyTest->rawResults[$questionId - 1] ?? 0;
+					$score += ((int) $legacyTestScore) - 1;
 				}
 
 				$results[$groupId] = round($score / $maxValue * 100);

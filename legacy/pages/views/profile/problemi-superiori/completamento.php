@@ -13,9 +13,9 @@ $sets = _SETS;
 
 	<div id="body">
 		<!-- Content -->
-		<?php if ($test->completed || !$supervisorView) { ?>
+		<?php if ($legacyTest->completed || !$supervisorView) { ?>
 
-			<section id="num-pan" data-count="<?= count($sets) ?>" class="<?= $test->completed ? 'completed' : 'uncompleted' ?>">
+			<section id="num-pan" data-count="<?= count($sets) ?>" class="<?= $legacyTest->completed ? 'completed' : 'uncompleted' ?>">
 
 				<?php foreach ($sets as $key => $set) {
 					$fieldID = $key + 1;
@@ -23,21 +23,21 @@ $sets = _SETS;
 					$numbers = explode(',', $set[0]);
 					$max = count($numbers);
 
-					if ($test->completed) {
-						$right = ($test->rawResults[$key] ?? 0) == $set[1];
+					if ($legacyTest->completed) {
+						$right = ($legacyTest->rawResults[$key] ?? 0) == $set[1];
 					}
 
-					$val = $test->completed && isset($test->rawResults[$key]) ?: null;
+					$val = $legacyTest->completed && isset($legacyTest->rawResults[$key]) ?: null;
 				?>
 
-					<div class="num-row mar-t-2 pad-h-2 pad-v-1 <?php if ($test->completed) echo $right ? 'right' : 'wrong';
+					<div class="num-row mar-t-2 pad-h-2 pad-v-1 <?php if ($legacyTest->completed) echo $right ? 'right' : 'wrong';
 																else echo 'clickable' ?>" onclick="$(this).find('.num-emp').focus();">
 
 						<?php foreach ($numbers as $i => $number) {
 
 							if ($number == 'e') {
 
-								if ($test->completed) { ?>
+								if ($legacyTest->completed) { ?>
 
 									<input type="hidden" class="filler-inp" value="<?= $val ?>" readonly>
 
@@ -65,7 +65,7 @@ $sets = _SETS;
 						} ?>
 					</div>
 
-					<?php if ($test->completed) { ?>
+					<?php if ($legacyTest->completed) { ?>
 
 						<p class="result-txt txt-09rem mar-t-10px fw-bold txt-upp <?= $right ? 'right' : 'wrong' ?>">
 							<span class="text-icon" <?= $right ? icon_css('correct/correct') : icon_css('errors/alert_red') ?>></span>

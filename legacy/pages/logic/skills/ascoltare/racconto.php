@@ -2,7 +2,7 @@
 
 use LogicManager\TestLogic;
 
-$test = test();
+$legacyTest = test();
 
 $results = [];
 
@@ -69,9 +69,9 @@ foreach ($questions as $questionKey => $question) {
 	foreach ($answers[$questionKey]['res'] as $answerKey => $answer) {
 		$answerData = [];
 		$answerData['text'] = $answer;
-		$answerData['checked'] = isset($test->rawResults[$questionKey]) && $test->rawResults[$questionKey] == $answerKey + 1;
+		$answerData['checked'] = isset($legacyTest->rawResults[$questionKey]) && $legacyTest->rawResults[$questionKey] == $answerKey + 1;
 
-		if ($test->completed && $answerData['checked']) {
+		if ($legacyTest->completed && $answerData['checked']) {
 			$answerData['class'] = $answerKey + 1 == $answers[$questionKey]['right'] ? 'right' : 'wrong';
 		} else {
 			$answerData['class'] = '';
@@ -85,7 +85,7 @@ foreach ($questions as $questionKey => $question) {
 
 $count = count($questions);
 
-Test\Legacy\System\Classes\Logic::setParameterCount($count)
+\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function ($count) {
 		$answers = \Legacy\System\Classes\LegacyView::getInstance()->get('answers');
 

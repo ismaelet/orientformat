@@ -12,10 +12,10 @@ $activeN = \Legacy\System\Classes\LegacyDB::count('users WHERE level=0 AND statu
 $areasTot = \Legacy\System\Classes\LegacyDB::count('progress_areas WHERE progress=100 AND userID IN (SELECT id FROM users WHERE class = ? AND level=0 AND status=1)', [$grade->id]);
 $areasPercent = $activeN ? round($areasTot / ($activeN * 3) * 100) : 0;
 
-$sectionsTot = \Legacy\System\Classes\LegacyDB::count(TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' IN (SELECT id FROM users WHERE class = ? AND level=0 AND status=1)', [$grade->id]);
+$legacySectionsTot = \Legacy\System\Classes\LegacyDB::count(TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' IN (SELECT id FROM users WHERE class = ? AND level=0 AND status=1)', [$grade->id]);
 
 //setup sections
-$sections = [
+$legacySections = [
 	[
 		'title' => 'Lista degli studenti',
 		'stitle' => '<strong>' . $studentsN . ' studenti</strong> di questa classe registrati',
@@ -30,7 +30,7 @@ $sections = [
 	],
 	[
 		'title' => 'Progresso per attività',
-		'stitle' => '<strong>' . $sectionsTot . '</strong> attività completate',
+		'stitle' => '<strong>' . $legacySectionsTot . '</strong> attività completate',
 		'desc' => 'Qui puoi monitorare il progresso della classe diviso per attività',
 		'url' => client_url('/teacher/sections'),
 	],
@@ -60,7 +60,7 @@ $sections = [
 	],
 ];
 
-bump($sections);
+bump($legacySections);
 
 //set class as ended
 if (isset($_POST['activate-survey'])) {

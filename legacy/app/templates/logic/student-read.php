@@ -3,12 +3,12 @@
 use \Legacy\Activity\Area;
 use \Legacy\Activity\Section;
 
-$sectionId = \Legacy\System\Classes\LegacyView::getInstance()->get('sectionId');
+$legacySectionId = \Legacy\System\Classes\LegacyView::getInstance()->get('sectionId');
 $areaId = \Legacy\System\Classes\LegacyView::getInstance()->get('sectionId');
 
-$section = new Section($sectionId);
+$legacySection = new Section($legacySectionId);
 $area = new Area($areaId);
 
-$returnLink = $section->id ?
-	client_url('/profile/section?id=' . $section->id) :
+$returnLink = $legacySection->id ?
+	client_url('/profile/section?id=' . $legacySection->id) :
 	client_url('/activities');

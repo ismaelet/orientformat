@@ -6,7 +6,7 @@
 
 	<?= title() ?>
 
-	<div id="content" class="mar-t-4 <?= $test->completed ? 'completed' : '' ?>">
+	<div id="content" class="mar-t-4 <?= $legacyTest->completed ? 'completed' : '' ?>">
 
 		<div class="fa-center">
 			<div id="start" class="button">Comincia</div>
@@ -34,7 +34,7 @@
 			<?php for ($i = 0; $i < $count; $i++) { ?>
 
 				<div class="answer">
-					<input type="text" name="field_other[]" placeholder="" class="inp filler-inp <?php if ($test->completed) echo in_array(strtolower($results[$i]), _CONCEPTS) ? 'right' : 'wrong' ?>" maxlength="40" required value="<?= $results[$i] ?? null ?>" <?= $test->completed ? 'readonly' : null ?>>
+					<input type="text" name="field_other[]" placeholder="" class="inp filler-inp <?php if ($legacyTest->completed) echo in_array(strtolower($results[$i]), _CONCEPTS) ? 'right' : 'wrong' ?>" maxlength="40" required value="<?= $results[$i] ?? null ?>" <?= $legacyTest->completed ? 'readonly' : null ?>>
 					<h3 class="number fw-bold txt-c3"><?= $i + 1 ?>.</h3>
 				</div>
 
@@ -42,10 +42,10 @@
 
 		</div>
 
-		<?php if ($test->completed) { ?>
+		<?php if ($legacyTest->completed) { ?>
 
 			<p id="result" class="txt-c3 txt-12rem mar-t-2">
-				Ti sei ricordato <?= $test->percentage ? 'il ' : 'lo ' ?><strong><?= $test->percentage ?>%</strong> dei concetti e ci hai messo <strong><?= $time_str ?></strong> per memorizzarli.
+				Ti sei ricordato <?= $legacyTest->percentage ? 'il ' : 'lo ' ?><strong><?= $legacyTest->percentage ?>%</strong> dei concetti e ci hai messo <strong><?= $time_str ?></strong> per memorizzarli.
 			</p>
 
 		<?php } ?>

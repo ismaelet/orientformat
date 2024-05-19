@@ -38,12 +38,12 @@
 
 					<?php } ?>
 
-					<?php if (isset($area['sections'])) while ($section = $area['sections']->fetch_assoc()) { ?>
+					<?php if (isset($area['sections'])) while ($legacySection = $area['sections']->fetch_assoc()) { ?>
 
-						<a href="<?= client_url('/read?id=' . $section['id']) ?>" id="section<?= $section['id'] ?>" class="section inlb al-top ele4 ele3-768w ele2-480w pad-2 fa-center">
+						<a href="<?= client_url('/read?id=' . $legacySection['id']) ?>" id="section<?= $legacySection['id'] ?>" class="section inlb al-top ele4 ele3-768w ele2-480w pad-2 fa-center">
 							<div class="">
-								<div class="img cont inlb" <?= background_image('/pages/assets/area/section' . $section['id'] . '.svg') ?>></div>
-								<p class="title txt-11rem txt-sbold mar-t-1 txt-line"><?= $section['name'] ?></p>
+								<div class="img cont inlb" <?= background_image('/pages/assets/area/section' . $legacySection['id'] . '.svg') ?>></div>
+								<p class="title txt-11rem txt-sbold mar-t-1 txt-line"><?= $legacySection['name'] ?></p>
 							</div>
 						</a>
 

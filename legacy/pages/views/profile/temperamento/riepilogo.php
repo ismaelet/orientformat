@@ -33,12 +33,12 @@
 	<div class="results">
 
 		<?php for ($i = 1; $i < 6; $i++) {
-			$relatedTestId = \Legacy\System\Classes\LegacyDB::find(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND step = ?', [$test->sectionId, $i]);
+			$relatedTestId = \Legacy\System\Classes\LegacyDB::find(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND step = ?', [$legacyTest->sectionId, $i]);
 		?>
 
 			<div id="result<?= $i ?>" class="result">
 				<div class="title-box fa-center">
-					<p class="title inlb"><?= $sections[$i] ?></p><br>
+					<p class="title inlb"><?= $legacySections[$i] ?></p><br>
 
 					<?php if (!isSupervisor()) { ?>
 

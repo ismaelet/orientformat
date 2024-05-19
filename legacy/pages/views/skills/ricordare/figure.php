@@ -4,7 +4,7 @@
 
 	<?= title() ?>
 
-	<div id="content" class="mar-t-5 <?= $test->completed ? 'completed' : '' ?>">
+	<div id="content" class="mar-t-5 <?= $legacyTest->completed ? 'completed' : '' ?>">
 
 		<!-- Example -->
 		<div id="example" class="image-box fa-center">
@@ -36,9 +36,9 @@
 
 			<input type="hidden" name="field[]" class="filler-inp" value="0">
 
-			<?php if ($test->completed) { ?>
+			<?php if ($legacyTest->completed) { ?>
 
-				<p id="result-text" class="mar-b-4 fa-center txt-12rem fw-bold <?= $test->percentage == 100 ? 'right' : 'wrong' ?>"><?= $test->percentage == 100 ? 'Hai scelto la figura giusta, ottimo lavoro!' : 'La soluzione è errata, ma puoi riprovare quando vuoi' ?></p>
+				<p id="result-text" class="mar-b-4 fa-center txt-12rem fw-bold <?= $legacyTest->percentage == 100 ? 'right' : 'wrong' ?>"><?= $legacyTest->percentage == 100 ? 'Hai scelto la figura giusta, ottimo lavoro!' : 'La soluzione è errata, ma puoi riprovare quando vuoi' ?></p>
 
 			<?php } ?>
 
@@ -47,7 +47,7 @@
 				<?php for ($i = 1; $i < 7; $i++) { ?>
 
 					<div class="fa-center">
-						<p class="solution inlb clickable <?php if ($test->completed && $test->rawResults[0] == $i) echo $test->percentage == 100 ? 'right' : 'wrong' ?>" data-val="<?= $i ?>">
+						<p class="solution inlb clickable <?php if ($legacyTest->completed && $legacyTest->rawResults[0] == $i) echo $legacyTest->percentage == 100 ? 'right' : 'wrong' ?>" data-val="<?= $i ?>">
 
 							<?= $i ?>
 

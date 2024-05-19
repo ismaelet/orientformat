@@ -1,7 +1,7 @@
 <?php
 
 //fetch sibling test data
-$sibling = new \Legacy\Activity\Test($test->step - 1, $user);
+$sibling = new \Legacy\Activity\Test($legacyTest->step - 1, $user);
 
 //set groups
 $groups = ['Visivo', 'Collaborativo', 'Globale', 'Intuitivo', 'Uditivo', 'Autonomo', 'Analitico', 'Sistematico'];

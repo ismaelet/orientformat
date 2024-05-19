@@ -1,3 +1,3 @@
 <?php
 
-$sectionId = $_GET['sectionId'];
+$legacySectionId = $_GET['sectionId'];

@@ -4,8 +4,8 @@ $fixedQuestions = \Legacy\System\Classes\LegacyView::getInstance()->get('fixedQu
 $answers = null;
 $total = 0;
 
-$test = test();
-$requiredTest = $test->requiredTest;
+$legacyTest = test();
+$requiredTest = $legacyTest->requiredTest;
 $survey = $requiredTest->survey;
 
 $questions = $survey->questions;

@@ -5,7 +5,7 @@ use LogicManager\TestLogic;
 $count = 1;
 $correctAnswer = $correctAnswer ?? 6;
 
-Test\Legacy\System\Classes\Logic::setParameterCount($count)
+\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function () {
 		$correctAnswer = \Legacy\System\Classes\LegacyView::get('correctAnswer');
 

@@ -27,8 +27,8 @@
 
 				<div class="emotion <?= $chosen ? 'chosen' : 'js-emotion' ?>" style="--i: <?= $key + 1 ?>;" data-emotion="<?= $emotion ?>" data-intensity="<?= $chosen ? $intensity : '' ?>">
 					<div class="emotion__content">
-						<div class="emotion__dot gradient-overlay <?= !$test->completed && !$chosen ? 'js-emotion-dot' : null ?>">
-							<p class="<?= !$test->completed && !$chosen ? 'js-emotion-value' : null ?>"><?= $chosen ? $intensity : null ?></p>
+						<div class="emotion__dot gradient-overlay <?= !$legacyTest->completed && !$chosen ? 'js-emotion-dot' : null ?>">
+							<p class="<?= !$legacyTest->completed && !$chosen ? 'js-emotion-value' : null ?>"><?= $chosen ? $intensity : null ?></p>
 						</div>
 
 						<p class="emotion__name" data-emotion="<?= $emotion ?>"><?= $emotion ?></p>

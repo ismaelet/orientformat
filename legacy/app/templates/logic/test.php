@@ -1,7 +1,9 @@
 <?php
 
-use \Legacy\Activity\Test;
-use LogicManager\TestLogic;
+use \Legacy\Activity\Test as LegacyTest;
+
+$legacyTest = test();
+$legacySection = $legacyTest->section;
 
 include_once('-expands-test/components.php');
 
@@ -11,7 +13,7 @@ include_once('-expands-test/components.php');
 if (isset($_POST['submit']) || isset($_POST['review']) || isset($_POST['skip'])) {
 	if (test()->template != 'test-next') {
 		// get the score
-		$score = Test\Legacy\System\Classes\Logic::$testSubmitFunction ? Test\Legacy\System\Classes\Logic::runTestSubmitFunction() : 100;
+		$score = \LogicManager\TestLogic::$legacyTestSubmitFunction ? \LogicManager\TestLogic::runTestSubmitFunction() : 100;
 
 		// save the results
 		$result = [];
@@ -37,5 +39,5 @@ if (isset($_POST['submit']) || isset($_POST['review']) || isset($_POST['skip']))
 }
 
 if (isset($_POST['redo'])) {
-	(new Test($_POST['redo']))->redo();
+	(new LegacyTest($_POST['redo']))->redo();
 }

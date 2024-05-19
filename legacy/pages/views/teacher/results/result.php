@@ -27,29 +27,29 @@
 
 				<div class="grid gap2">
 
-					<?php while ($section = $area['sections']->fetch_assoc()) {
+					<?php while ($legacySection = $area['sections']->fetch_assoc()) {
 						$i++; ?>
 
 						<div>
-							<div id="section<?= $section['id'] ?>" class="section panel grid">
+							<div id="section<?= $legacySection['id'] ?>" class="section panel grid">
 
 								<div class="icon-box bgr-f6 pad-2">
-									<div class="icon" <?= icon_svg('section' . $section['id']) ?>></div>
+									<div class="icon" <?= icon_svg('section' . $legacySection['id']) ?>></div>
 								</div>
 
 								<div class="result pad-v-1 pad-h-2">
 
 									<p class="title txt-13rem txt-sbold">
-										<?= $section['name'] ?>
+										<?= $legacySection['name'] ?>
 									</p>
 
 									<p class="txt-1rem mar-t-05">
 										<?= $results[$i] ?: 'Non completato' ?>
 									</p>
 
-									<?php if ($results[$i] && isset($infos[$section['id']])) { ?>
+									<?php if ($results[$i] && isset($infos[$legacySection['id']])) { ?>
 
-										<p class="info br-t-1 br-e pad-t-1 txt-09rem mar-t-1"><?= $infos[$section['id']] ?></p>
+										<p class="info br-t-1 br-e pad-t-1 txt-09rem mar-t-1"><?= $infos[$legacySection['id']] ?></p>
 
 									<?php } ?>
 

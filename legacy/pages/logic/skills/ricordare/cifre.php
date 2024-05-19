@@ -3,11 +3,11 @@
 use \Legacy\Activity\Result\TestResult;
 use LogicManager\TestLogic;
 
-$test = test();
+$legacyTest = test();
 $right = true;
 $count = 8;
 
-$levelOld = $test->rawResults[0] ?? 0;
+$levelOld = $legacyTest->rawResults[0] ?? 0;
 
 $answers = [
 	[9, 2, 4],
@@ -23,10 +23,10 @@ $answers = [
 bump($answers);
 
 // calculate if the last test was right
-if ($test->rawResults) {
-	foreach ($test->rawResults as $key => $value) {
+if ($legacyTest->rawResults) {
+	foreach ($legacyTest->rawResults as $key => $value) {
 		if ($key) {
-			if ($test->rawResults[$key] != $answers[$levelOld][$key - 1]) {
+			if ($legacyTest->rawResults[$key] != $answers[$levelOld][$key - 1]) {
 				$right = false;
 			}
 		}
@@ -51,7 +51,7 @@ if (isset($_POST['check'])) {
 	$result = [];
 
 	// clear previous results
-	\Legacy\System\Classes\LegacyDB::delete(TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ?', [studentId(), $test->id,]);
+	\Legacy\System\Classes\LegacyDB::delete(TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ?', [\Illuminate\Support\Facades\Auth::id(), $legacyTest->id,]);
 
 	// save result
 	if (isset($_POST['field'])) {
@@ -62,13 +62,13 @@ if (isset($_POST['check'])) {
 
 	\Legacy\System\Classes\LegacyDB::add(
 		TestResult::TABLE . ' (' . TestResult::USER_INDEX . ', ' . TestResult::TEST_INDEX . ', result, percentage)',
-		[studentId(), $test->id, implode(',', $result), ($level - 1) * 10]
+		[\Illuminate\Support\Facades\Auth::id(), $legacyTest->id, implode(',', $result), ($level - 1) * 10]
 	);
 
 	redirect_old();
 }
 
-Test\Legacy\System\Classes\Logic::setTestSubmitFunction(
+\LogicManager\TestLogic::setTestSubmitFunction(
 	function () {
 		$maxLevel = count(\Legacy\System\Classes\LegacyView::get('answers'));
 		$level = $_POST['field'][0];

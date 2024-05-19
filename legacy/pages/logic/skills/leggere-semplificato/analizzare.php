@@ -23,7 +23,7 @@ $results = test()->completed ? test()->rawResults : null;
 
 $count = 7;
 
-Test\Legacy\System\Classes\Logic::setParameterCount($count)
+\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(
 		function () {
 			if (isset($_POST['skip-cbx'])) {

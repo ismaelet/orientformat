@@ -1,7 +1,8 @@
 <?php
 
-$test = test();
-$survey = $test->survey;
+$legacyTest = test();
+$legacySection = $legacyTest->section;
+$survey = $legacyTest->survey;
 
 /**
  * Form handling

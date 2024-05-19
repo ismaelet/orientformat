@@ -2,7 +2,7 @@
 
 use LogicManager\TestLogic;
 
-$test = test();
+$legacyTest = test();
 
 // results
 $results = ['subantartiche', 'fedeltà', 'incubazione', 'carezze', 'legame', 'nove mesi', 'due anni'];
@@ -17,15 +17,15 @@ $count = count($text) - 1;
 
 foreach ($text as $key => &$part) {
 	if ($key) {
-		if ($test->completed) {
+		if ($legacyTest->completed) {
 			$inp = '<span class="text-inp fa-center ';
-			$inp .= $test->rawResults[$key - 1] == $results[$key - 1] ? 'right' : 'wrong';
+			$inp .= $legacyTest->rawResults[$key - 1] == $results[$key - 1] ? 'right' : 'wrong';
 			$inp .= '">';
-			$inp .=  $test->rawResults[$key - 1];
+			$inp .=  $legacyTest->rawResults[$key - 1];
 			$inp .= '</span>';
 		} else {
 			$inp = '<input type="text" class="inp text-inp filler-inp" name="field[]" value="';
-			if ($test->result && isset($test->rawResults[$key - 1])) $inp .= $test->rawResults[$key - 1];
+			if ($legacyTest->result && isset($legacyTest->rawResults[$key - 1])) $inp .= $legacyTest->rawResults[$key - 1];
 			$inp .= '" ' . (test()->completed || isSupervisor() ? 'readonly' : null) . '>';
 		}
 
@@ -35,7 +35,7 @@ foreach ($text as $key => &$part) {
 
 $text = implode('', $text);
 
-Test\Legacy\System\Classes\Logic::setParameterCount($count)
+\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(
 		function ($count) {
 			$results = \Legacy\System\Classes\LegacyView::getInstance()->get('results');

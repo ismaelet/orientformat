@@ -16,14 +16,20 @@ class Logic {
 		'form' => self::DEFAULT_TEMPLATE_PRIORITY + 10,
 		'header' => self::DEFAULT_TEMPLATE_PRIORITY + 20,
 		'footer' => self::DEFAULT_TEMPLATE_PRIORITY + 20,
-		'student-read' => 70
+		'test' => 200,
+		'test-next' => 210,
+		'survey' => 60,
+		'student-read' => 70,
 	];
 
 	public static $dependencies = [
 		'main' => ['blank', 'header', 'footer'],
 		'void' => 'blank',
 		'form' => 'main',
-		'student-read' => 'main'
+		'test' => 'main',
+		'survey' => 'main',
+		'student-read' => 'main',
+		'test-next' => 'test',
 	];
 
 	// add a file
@@ -98,5 +104,18 @@ class Logic {
 				}
 			}
 		}
+	}
+}
+
+
+if (!function_exists("array_is_list")) {
+	function array_is_list(array $array): bool {
+		$i = 0;
+		foreach ($array as $k => $v) {
+			if ($k !== $i++) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

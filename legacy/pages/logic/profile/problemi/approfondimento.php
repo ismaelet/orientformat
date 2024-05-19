@@ -19,16 +19,15 @@ $questions = array_reverse($questions);
 
 $count = count($questions);
 
-if ($test->result) {
+if ($legacyTest->result) {
 
-	$result = array_filter(array_reverse($test->result));
+	$result = array_filter(array_reverse($legacyTest->result));
 
 	end($result);
 
 	$pos = empty($result) ? 1 : key($result) + 2;
 
 	if ($pos > $count) $pos = $count;
-
 } else $pos = 1;
 
 $this->set('questions', $questions);

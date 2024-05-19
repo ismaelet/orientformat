@@ -1,8 +1,8 @@
 <?php
 
-global $testsConfig;
+global $legacyTestsConfig;
 
-$testsConfig = [
+$legacyTestsConfig = [
 	// motivazione e aree di interesse > mappa
 	20 => [
 		'questions' => [

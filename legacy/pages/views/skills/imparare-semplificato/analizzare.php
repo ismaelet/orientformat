@@ -7,7 +7,7 @@
 	<div>
 		<h2 id="text-title" class="fa-center txt-3rem mar-b-2 mar-t-5 fw-bold txt-upp">Testo</h2>
 
-		<div id="content" class="<?= $test->completed ? 'completed' : '' ?>">
+		<div id="content" class="<?= $legacyTest->completed ? 'completed' : '' ?>">
 
 			<p id="text" class="txt-11rem">
 
@@ -58,7 +58,7 @@
 	<div>
 		<?= submit(true) ?>
 
-		<?php if (!$test->completed) { ?>
+		<?php if (!$legacyTest->completed) { ?>
 
 			<label>
 				<p class="txt-c3 clickable inlb">Non riesco ad associare tutti i tipo di ragionamento e voglio fermarmi qui.</p>

@@ -4,7 +4,7 @@ namespace Legacy\UserSystem;
 
 use \Legacy\SchoolSystem\SchoolClass;
 
-use User;
+use \Legacy\System\Classes\User;
 
 /**
  * Teacher class

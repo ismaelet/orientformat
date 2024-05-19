@@ -10,9 +10,9 @@ foreach (schoolClass()->doableAreas as $doableArea) {
 	$area['id'] = $doableArea->id;
 	$area['sections'] = [];
 
-	foreach ($doableArea->getDoableSections(schoolClass()->fullGrade) as $section) {
-		if (in_array($section->id, [1, 4, 8, 27])) {
-			$area['sections'][] = $section;
+	foreach ($doableArea->getDoableSections(schoolClass()->fullGrade) as $legacySection) {
+		if (in_array($legacySection->id, [1, 4, 8, 27])) {
+			$area['sections'][] = $legacySection;
 		}
 	}
 

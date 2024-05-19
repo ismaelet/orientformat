@@ -2,10 +2,10 @@
 
 
 
-global $sectionsConfig;
+global $legacySectionsConfig;
 
 
-$sectionsConfig = [
+$legacySectionsConfig = [
 	// Stili cognitivi
 	1 => [
 		'type' => 'parameters',

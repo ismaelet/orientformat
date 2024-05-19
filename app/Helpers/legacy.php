@@ -69,3 +69,11 @@ function rows_to_objects(\Legacy\System\Classes\Query_Result $rows = null, strin
 
 	return $objects;
 }
+
+function test() {
+	return \Legacy\System\Classes\LegacyView::get('test');
+}
+
+function testId() {
+	return test()->id;
+}

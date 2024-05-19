@@ -27,11 +27,11 @@
 
 				<div class="grid4 grid3-1024w grid2-768w grid1-480w gap2 al-top">
 
-					<?php while ($section = $area['sections']->fetch_assoc()) { ?>
+					<?php while ($legacySection = $area['sections']->fetch_assoc()) { ?>
 
-						<a href="<?= client_url('/teacher/sections/section?id=' . $section['id']) ?>" id="section<?= $section['id'] ?>" class="section panel pad-2 fa-center">
-							<div class="img cont inlb" <?= background_image('/pages/assets/area/section' . $section['id'] . '.svg') ?>></div>
-							<p class="title txt-11rem txt-sbold mar-t-1"><?= $section['name'] ?></p>
+						<a href="<?= client_url('/teacher/sections/section?id=' . $legacySection['id']) ?>" id="section<?= $legacySection['id'] ?>" class="section panel pad-2 fa-center">
+							<div class="img cont inlb" <?= background_image('/pages/assets/area/section' . $legacySection['id'] . '.svg') ?>></div>
+							<p class="title txt-11rem txt-sbold mar-t-1"><?= $legacySection['name'] ?></p>
 						</a>
 
 					<?php } ?>

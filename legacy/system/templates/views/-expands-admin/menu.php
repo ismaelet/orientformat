@@ -46,11 +46,11 @@
 							<!-- Dropdown -->
 							<div class="menu__dropdown">
 
-								<?php foreach ($category['sections'] as $section) { ?>
+								<?php foreach ($category['sections'] as $legacySection) { ?>
 
 									<div class="menu-subitem">
-										<p class="menu-subitem__title <?= $section['checked'] ? 'active' : '' ?>">
-											<a href="<?= $section['url'] ?>"><?= $section['name'] ?></a>
+										<p class="menu-subitem__title <?= $legacySection['checked'] ? 'active' : '' ?>">
+											<a href="<?= $legacySection['url'] ?>"><?= $legacySection['name'] ?></a>
 										</p>
 									</div>
 

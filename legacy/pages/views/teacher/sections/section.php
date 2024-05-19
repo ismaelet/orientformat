@@ -13,7 +13,7 @@
 	<!-- Title -->
 	<div class="title-box mar-t-4 fa-center">
 
-		<h1 class="title txt-25rem txt-sbold"><?= $section['name'] ?></h1>
+		<h1 class="title txt-25rem txt-sbold"><?= $legacySection['name'] ?></h1>
 
 		<p class="stitle txt-1rem mar-t-1">Qui puoi controllare e stampare i risultati della classe in questa attività.</p>
 
@@ -40,8 +40,8 @@
 
 					<p class="field field-l">Studente</p>
 
-					<?php foreach ($tests as $test) { ?>
-						<p class="field field-l"><?= $test['title'] ?></p>
+					<?php foreach ($legacyTests as $legacyTest) { ?>
+						<p class="field field-l"><?= $legacyTest['title'] ?></p>
 					<?php } ?>
 
 				</div>
@@ -52,7 +52,7 @@
 
 						<?php foreach ($result['values'] as $key => $field) { ?>
 
-							<p class="field" data-student-id="<?= $result['studentId'] ?>" data-test-id="<?= $tests[$key - 1]['id'] ?? '' ?>" onclick="$('#inp-testId').val($(this).data('test-id')); $('#inp-studentId').val($(this).data('student-id')); $('#btn-download').click();">
+							<p class="field" data-student-id="<?= $result['studentId'] ?>" data-test-id="<?= $legacyTests[$key - 1]['id'] ?? '' ?>" onclick="$('#inp-testId').val($(this).data('test-id')); $('#inp-studentId').val($(this).data('student-id')); $('#btn-download').click();">
 
 								<?= $field ?>
 
@@ -80,8 +80,8 @@
 
 						<p class="field field-l">Confronto</p>
 
-						<?php foreach ($tests as $test) { ?>
-							<p class="field field-l"><?= $test['title'] ?></p>
+						<?php foreach ($legacyTests as $legacyTest) { ?>
+							<p class="field field-l"><?= $legacyTest['title'] ?></p>
 						<?php } ?>
 
 					</div>

@@ -15,7 +15,7 @@ class SchoolClassSectionResult {
 
 	use \System\Traits\DynamicProperties;
 
-	private $sectionId;
+	private $legacySectionId;
 	private $schoolClassId;
 	private $filterBy;
 	private $range;
@@ -23,8 +23,8 @@ class SchoolClassSectionResult {
 	/**
 	 * Magic methods
 	 */
-	function __construct(int $sectionId, $schoolClassId = null, $filterBy = null, $range = []) {
-		$this->sectionId = $sectionId;
+	function __construct(int $legacySectionId, $schoolClassId = null, $filterBy = null, $range = []) {
+		$this->sectionId = $legacySectionId;
 		$this->schoolClassId = $schoolClassId ?: null;
 		$this->filterBy = $filterBy;
 		$this->range = $range;

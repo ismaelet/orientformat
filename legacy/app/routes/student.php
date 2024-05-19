@@ -60,16 +60,6 @@ use \Legacy\Activity\Test;
 		->show();
 });
 
-// areas
-\Legacy\System\Classes\LegacyRoute::add('/student-read', function () {
-	\Legacy\System\Classes\LegacyView::setPage('student-read/' . $page)
-		->setTitle('Saperne di più')
-		->setTemplate('student-read')
-		->setMiddlewares(['public', 'logged', 'active', 'beginner-review', 'end-review', 'required-email'])
-		->set('sectionId', $id)
-		->set('areaId', $areaId)
-		->show();
-});
 
 // interests
 \Legacy\System\Classes\LegacyRoute::add('/interest', function () {

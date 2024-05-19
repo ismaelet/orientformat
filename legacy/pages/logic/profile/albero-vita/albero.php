@@ -8,4 +8,4 @@ bump($characters);
 
 $selectedCharacterId = test()->completed ? test()->rawResults[0] : null;
 
-Test\Legacy\System\Classes\Logic::setParameterCount(1);
+\LogicManager\TestLogic::setParameterCount(1);

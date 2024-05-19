@@ -20,10 +20,10 @@ if (isset($_GET['user'])) {
 
 		$watcher = true;
 
-		$test = $view->get('test');
+		$legacyTest = $view->get('test');
 
 		$view->set('section', new \Legacy\Activity\Section($_GET['id'], $student));
-		$view->set('test', new \Legacy\Activity\Test($test->step, $student));
+		$view->set('test', new \Legacy\Activity\Test($legacyTest->step, $student));
 	}
 }
 

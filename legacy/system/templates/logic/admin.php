@@ -20,15 +20,15 @@ while ($categoryData = $categories->fetch_assoc()) {
 	$category['slug'] = $categoryData['slug'];
 	$category['checked'] = $currentSection && $category['slug'] == $currentSection['category'];
 
-	$sections = \Legacy\System\Classes\LegacyDB::select('* FROM admin_sections WHERE category=? AND hidden=0 ' . ($queryManager ? 'AND ' . $queryManager : '') . ' ORDER BY sort ASC, name ASC', [$category['slug']]);
+	$legacySections = \Legacy\System\Classes\LegacyDB::select('* FROM admin_sections WHERE category=? AND hidden=0 ' . ($queryManager ? 'AND ' . $queryManager : '') . ' ORDER BY sort ASC, name ASC', [$category['slug']]);
 
-	while ($sectionData = $sections->fetch_assoc()) {
-		$section = [];
-		$section['name'] = $sectionData['name'];
-		$section['checked'] = $currentSection && $category['checked'] && ($sectionData['slug'] == $currentSection['slug'] || ($sectionData['hidden'] && str_replace('add', 'list',  $currentSection['slug'])));
-		$section['url'] = empty($sectionData['url']) ? client_url('/' . $sectionData['category'] . '/' . $sectionData['slug']) : $sectionData['url'];
+	while ($legacySectionData = $legacySections->fetch_assoc()) {
+		$legacySection = [];
+		$legacySection['name'] = $legacySectionData['name'];
+		$legacySection['checked'] = $currentSection && $category['checked'] && ($legacySectionData['slug'] == $currentSection['slug'] || ($legacySectionData['hidden'] && str_replace('add', 'list',  $currentSection['slug'])));
+		$legacySection['url'] = empty($legacySectionData['url']) ? client_url('/' . $legacySectionData['category'] . '/' . $legacySectionData['slug']) : $legacySectionData['url'];
 
-		$category['sections'][] = $section;
+		$category['sections'][] = $legacySection;
 	}
 
 	$menu['categories'][] = $category;

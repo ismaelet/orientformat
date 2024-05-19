@@ -1,6 +1,6 @@
 <?php
 
-$sibling = new \Legacy\Activity\Test($test->step - 1, $user);
+$sibling = new \Legacy\Activity\Test($legacyTest->step - 1, $user);
 
 header('Location: ' . $sibling->url);
 exit();

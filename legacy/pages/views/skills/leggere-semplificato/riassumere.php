@@ -4,7 +4,7 @@
 
 	<?= title() ?>
 
-	<?php if ($test->completed || !isSupervisor()) { ?>
+	<?php if ($legacyTest->completed || !isSupervisor()) { ?>
 
 		<div id="text-box" class="section">
 

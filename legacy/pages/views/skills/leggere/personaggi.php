@@ -23,10 +23,10 @@ use \Legacy\Activity\Test;
 		<?php } ?>
 
 		<!-- Results -->
-		<?php if ($test->completed) { ?>
+		<?php if ($legacyTest->completed) { ?>
 
 			<p class="mar-t-2 txt-12rem fw-bold">
-				Hai risposto correttamente al <span class="fc-primary fw-bold"><?= $test->percentage ?>%</span>.<br>
+				Hai risposto correttamente al <span class="fc-primary fw-bold"><?= $legacyTest->percentage ?>%</span>.<br>
 			</p>
 
 			<p class="txt-1rem">
@@ -37,10 +37,10 @@ use \Legacy\Activity\Test;
 
 	</div>
 
-	<?php if ($test->completed || !$supervisorView) { ?>
+	<?php if ($legacyTest->completed || !$supervisorView) { ?>
 
 		<!-- Questions -->
-		<div id="questions" class="mar-t-3 mar-b-3 <?= $test->completed ? 'completed' : '' ?>">
+		<div id="questions" class="mar-t-3 mar-b-3 <?= $legacyTest->completed ? 'completed' : '' ?>">
 
 			<?php foreach ($questions as $key => $question) { ?>
 
@@ -61,7 +61,7 @@ use \Legacy\Activity\Test;
 							<div class="answers answers--characters">
 
 								<?php foreach ($question['answers'] as $i => $answer) {
-									$val = $test->rawResults[$key - 1] ?? false;
+									$val = $legacyTest->rawResults[$key - 1] ?? false;
 									$resultClass = null;
 									$cheched = !test()->completed && $val && $val == $i + 1;
 

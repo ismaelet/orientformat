@@ -5,16 +5,16 @@ use \Legacy\Activity\Result\TestResult;
 use \Legacy\Activity\Section;
 
 $schoolClass = schoolClass();
-$testCount = $schoolClass->studentCount ? \Legacy\System\Classes\LegacyDB::count('results_permanent WHERE studentId IN (' . $schoolClass->studentIdsString . ')') : 0;
+$legacyTestCount = $schoolClass->studentCount ? \Legacy\System\Classes\LegacyDB::count('results_permanent WHERE studentId IN (' . $schoolClass->studentIdsString . ')') : 0;
 
 $advicesCount = $schoolClass->studentCount ? \Legacy\System\Classes\LegacyDB::count('advices WHERE userID IN (' . $schoolClass->studentIdsString . ')') : 0;
 $advicesPercentage = $schoolClass->studentCount ? round($advicesCount / $schoolClass->studentCount * 100) : 0;
 
 // data
-$sectionsCount = \Legacy\System\Classes\LegacyDB::count(Section::TABLE . ' WHERE isStandard = 1 AND active = 1 AND FIND_IN_SET(?, years)', [$schoolClass->fullGrade]);
+$legacySectionsCount = \Legacy\System\Classes\LegacyDB::count(Section::TABLE . ' WHERE isStandard = 1 AND active = 1 AND FIND_IN_SET(?, years)', [$schoolClass->fullGrade]);
 $progressCount = $schoolClass->studentCount ? \Legacy\System\Classes\LegacyDB::count(SectionResult::TABLE . ' WHERE completed = 1 AND ' . SectionResult::USER_INDEX . ' IN (' . $schoolClass->activeStudentIdsString . ') AND ' . SectionResult::SECTION_INDEX . ' IN (SELECT ' . Section::INDEX . ' FROM ' . Section::TABLE . ' WHERE isStandard = 1 AND active = 1 AND FIND_IN_SET(?, years))', [$schoolClass->fullGrade]) : 0;
 
-$maxProgressCount = $sectionsCount * $schoolClass->activeStudentCount;
+$maxProgressCount = $legacySectionsCount * $schoolClass->activeStudentCount;
 $progressPercent = $maxProgressCount ? round($progressCount / $maxProgressCount * 100) : 0;
 
 // fetch students

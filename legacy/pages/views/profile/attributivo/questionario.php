@@ -5,7 +5,7 @@
 		<?= title() ?>
 	</div>
 
-	<div id="questions" class="<?= $test->completed ? 'completed' : '' ?>">
+	<div id="questions" class="<?= $legacyTest->completed ? 'completed' : '' ?>">
 
 		<?php foreach ($questions as $key => $question) {
 
@@ -20,7 +20,7 @@
 					<?php foreach ($answer as $i => $res) { ?>
 
 						<label class="answer checkbox mar-b-1">
-							<input type="checkbox" name="field[]" class="cbx-mirror filler-inp" <?= !empty($test->rawResults[$key - 1]) && $test->rawResults[$key - 1] == ($i + 1) ? 'checked' : '' ?> value="<?= $i + 1 ?>">
+							<input type="checkbox" name="field[]" class="cbx-mirror filler-inp" <?= !empty($legacyTest->rawResults[$key - 1]) && $legacyTest->rawResults[$key - 1] == ($i + 1) ? 'checked' : '' ?> value="<?= $i + 1 ?>">
 							<span></span>
 							<p><?= $res ?></p>
 						</label>

@@ -24,7 +24,7 @@
 				<?= embed_icon(__APP_ICONS__ . 'dashboards/student-progress') ?>
 			</div>
 			<h3 class="dashboard-panel-title">Attività completate</h3>
-			<h3 class="dashboard-panel-subtitle"><?= $testCount ?> </h3>
+			<h3 class="dashboard-panel-subtitle"><?= $legacyTestCount ?> </h3>
 		</div>
 		<div class="dashboard-panel-footer">
 			<p class="dashboard-home-more">

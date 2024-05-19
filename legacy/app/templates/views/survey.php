@@ -3,7 +3,7 @@
 {% block main %}
 
 <div class="background center-content grid-flow">
-	<h3 class="sec-title txt-cen txt-upp load--fade-in js-load" data-direction="right"><?= $section->name ?></h3>
+	<h3 class="sec-title txt-cen txt-upp load--fade-in js-load" data-direction="right"><?= $legacySection->name ?></h3>
 </div>
 
 <form class="pos-rel" id="body" method="POST">
@@ -22,7 +22,7 @@
 
 						<!-- Title -->
 						<h2 class="section-subtitle load--fade-in js-load" data-direction="bottom" data-delay="2">
-							<?= $test->title ?> <span><?= sprintf('%02d', ($key + 1)) . '/' . sprintf('%02d', $survey->questionCount) ?></span>
+							<?= $legacyTest->title ?> <span><?= sprintf('%02d', ($key + 1)) . '/' . sprintf('%02d', $survey->questionCount) ?></span>
 						</h2>
 
 						<h3 class="question-text section-title colored-title load--fade-in js-load" data-direction="top"><?= $question[0] ?>:</h3>
