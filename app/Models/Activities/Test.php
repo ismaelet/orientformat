@@ -13,6 +13,13 @@ class Test extends Model {
 	protected $table = 'activities_tests';
 
 	/**
+	 * The attributes that are mass assignable.
+	 */
+	protected $fillable = [
+		'description',
+	];
+
+	/**
 	 * * Relationships
 	 */
 
