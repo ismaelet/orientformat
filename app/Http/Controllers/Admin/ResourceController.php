@@ -78,7 +78,7 @@ class ResourceController extends Controller {
 	 * @return RedirectResponse The redirect response.
 	 */
 	protected function update(int $recordId, Request $request): RedirectResponse {
-		$routeName = explode_last('.', Route::currentRouteName())[0] . '.index';
+		$routeName = legacy_explode_last('.', Route::currentRouteName())[0] . '.index';
 
 		$routeParameters = json_decode($request->route()->index_parameters, true);
 

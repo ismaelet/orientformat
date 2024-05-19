@@ -45,43 +45,6 @@ class AppSetup {
 			}
 		});
 
-		$middlewares->add('beginner-review', function () {
-			$reviewId = null;
-
-			if (!is_teacher()) {
-				switch (true) {
-
-					case student()->isInMiddleSchool && student()->schoolClass->relativeGrade == 3:
-						// third middleschool year
-						$reviewId = 2;
-						break;
-
-					case student()->isInHighschool && (student()->schoolClass->relativeGrade == 1 || student()->schoolClass->startingGrade == student()->schoolClass->currentGrade):
-						// first higschool year
-						$reviewId = 4;
-						break;
-
-					case student()->isInHighschool:
-						// other higschool years
-						$reviewId = 5;
-						break;
-				}
-
-				if ($reviewId && !\App\Legacy\LegacyDB::exists('review_results WHERE studentId = ? AND reviewId = ?', [userId(), $reviewId])) {
-					redirect_old('/review?id=' . $reviewId);
-				}
-			}
-		});
-
-		$middlewares->add('end-review', function () {
-		});
-
-		$middlewares->add('required-email', function () {
-			if (!user()->email) {
-				redirect_old('/add-email');
-			}
-		});
-
 		$middlewares->add('student', function () {
 			if (!isStudent()) {
 				redirect_old('/');

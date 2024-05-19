@@ -3,25 +3,6 @@
 /*
 * File url
 */
-function generate_base_url(?string $file = '') {
-	if (!strpos($file, '.')) {
-		$file .= '.webp';
-	}
-
-	if ($file[0] == '/') {
-		$url = $file;
-	} else {
-		$url = assets_directory(\App\Legacy\LegacyView::getInstance()->url) . $file;
-	}
-
-	return $url;
-}
-
-function client_path(?string $file = '') {
-	$url = asset('' . file_time(generate_base_url($file)));
-
-	return $url;
-}
 
 function public_client_path(?string $file = '') {
 	if (defined('PUBLIC_CLIENT_ROOT')) {
@@ -54,22 +35,6 @@ function public_client_url(string $parcialUrl = '') {
 	}
 
 	return $url;
-}
-
-// avoid cache if the chached file is not up to date
-function file_time($file, bool $publicRoot = false) {
-	$root = $publicRoot ? PUBLIC_SERVER_ROOT : SERVER_ROOT;
-
-	if (!strpos($file, '?=') && file_exists($url = $root . $file)) {
-		$file .= '?=' . filemtime($url);
-	}
-
-	return $file;
-}
-
-// put the image as background image
-function background_image($img) {
-	return 'style="background-image: url(' . client_path($img) . ');"';
 }
 
 function temp_bg($img) {
@@ -126,18 +91,6 @@ function icon_css($icon) {
 // put a svg icon as background image
 function icon_svg($icon) {
 	return 'style="mask: url(' . icon_url($icon) . '); -webkit-mask: url(' . icon_url($icon) . ') center;"';
-}
-
-// get the url of a page's image folder 
-function assets_directory(string $pagePath = null) {
-	$path = null;
-
-	if ($pagePath) {
-		$path = substr($pagePath, strpos($pagePath, 'pages') - 1);
-		$path = str_replace(['/views/', '.php'], ['/assets/', '/'], $path);
-	}
-
-	return $path;
 }
 
 // parse a url from server url to client url

@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use LegacyModels\Helpers\Notification;
+
+$teacher = Auth::user()->teacher;
 
 // setup page
 $functionalities = [
@@ -44,7 +47,7 @@ $functionalities = [
 $feed = Notification::getAll([], 8);
 
 // collaboration requests
-$collaborations = \App\Legacy\LegacyDB::select('* FROM grade_requests WHERE referentId = ?', [teacherId()]);
+$collaborations = \App\Legacy\LegacyDB::select('* FROM grade_requests WHERE referentId = ?', [Auth::id()]);
 
 if (isset($_POST['accept-collaboration'])) {
 	$collaborationId = $_POST['accept-collaboration'];

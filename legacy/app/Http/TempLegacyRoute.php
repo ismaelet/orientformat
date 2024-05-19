@@ -4,7 +4,7 @@ namespace app\Http;
 
 
 
-class Route {
+class TempLegacyRoute {
 
 	use \System\Traits\Singleton;
 

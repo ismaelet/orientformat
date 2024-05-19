@@ -2,10 +2,10 @@
 
 namespace app\Http\Controllers\Activities;
 
-use app\Http\Controllers\Controller;
+use app\Http\Controllers\LegacyController;
 use LegacyModels\Activities\Test as TestModel;
 
-class Test extends Controller {
+class Test extends LegacyController {
 
 	protected $resultCount = 0;
 	protected $buttonIsProgressive = false;

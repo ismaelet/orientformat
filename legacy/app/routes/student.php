@@ -11,7 +11,7 @@ use \Legacy\Activity\Test;
 	add_grade_style();
 
 	\App\Legacy\LegacyView::setPage($page)
-		->setMiddlewares(['public', 'logged', 'active', 'beginner-review', 'end-review', 'required-email'])
+		->setMiddlewares(['public', 'logged', 'active', 'beginner-review', 'required-email'])
 		->show();
 });
 
@@ -53,7 +53,7 @@ use \Legacy\Activity\Test;
 	\App\Legacy\LegacyView::setPage($page)
 		->setTemplate($template)
 		->setTitle($title)
-		->setMiddlewares(['public', 'logged', 'active', 'beginner-review', 'end-review', 'required-email'])
+		->setMiddlewares(['public', 'logged', 'active', 'beginner-review', 'required-email'])
 		->set('section', $section)
 		->set('test', $test ?? null)
 		->set('supervisorView', $supervisorView)
@@ -66,7 +66,7 @@ use \Legacy\Activity\Test;
 	add_grade_style();
 
 	\App\Legacy\LegacyView::setPage('interest')
-		->setMiddlewares(['public', 'logged', 'active', 'beginner-review', 'end-review', 'required-email'])
+		->setMiddlewares(['public', 'logged', 'active', 'beginner-review',  'required-email'])
 		->show();
 });
 

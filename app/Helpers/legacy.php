@@ -77,3 +77,53 @@ function test() {
 function testId() {
 	return test()->id;
 }
+
+function legacy_explode_last($separator, $string) {
+	$array = explode($separator, $string);
+	return end($array);
+}
+
+function background_image($img) {
+	return 'style="background-image: url(' . client_path($img) . ');"';
+}
+
+function client_path(?string $file = '') {
+	$url = asset('' . file_time(generate_base_url($file)));
+
+	return $url;
+}
+
+function file_time($file, bool $publicRoot = false) {
+	$root = base_path();
+
+	if (!strpos($file, '?=') && file_exists($url = $root . $file)) {
+		$file .= '?=' . filemtime($url);
+	}
+
+	return $file;
+}
+
+function generate_base_url(?string $file = '') {
+	if (!strpos($file, '.')) {
+		$file .= '.webp';
+	}
+
+	if ($file[0] == '/') {
+		$url = $file;
+	} else {
+		$url = assets_directory(\App\Legacy\LegacyView::getInstance()->url) . $file;
+	}
+
+	return $url;
+}
+
+function assets_directory(string $pagePath = null) {
+	$path = null;
+
+	if ($pagePath) {
+		$path = substr($pagePath, strpos($pagePath, 'pages') - 1);
+		$path = str_replace(['/views/', '.php'], ['/assets/', '/'], $path);
+	}
+
+	return $path;
+}

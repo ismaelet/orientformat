@@ -50,7 +50,7 @@ class LegacyView {
 	}
 
 	private function getUrl() {
-		return SERVER_ROOT . '/pages/views/' . self::$page . '.php';
+		return server_root() . '/pages/views/' . self::$page . '.php';
 	}
 
 	public static function getTabTitle() {

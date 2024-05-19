@@ -10,12 +10,21 @@ use Illuminate\Support\Facades\Auth;
 
 class Grade {
 
-	private $grade_number;
+	private $number;
 	private $is_professional;
 
-	public function __construct(int $gradeNumber, bool $isProfessional) {
-		$this->grade_number = $gradeNumber;
+	public function __construct(int $number, bool $isProfessional) {
+		$this->number = $number;
 		$this->is_professional = $isProfessional;
+	}
+
+	/**
+	 * * Accessors
+	 * 
+	 * ! NOT AN ACCESSOR
+	 */
+	public function relative_number(): int {
+		return $this->isMiddleSchool() ? $this->number : $this->number - 3;
 	}
 
 	/**
@@ -26,8 +35,15 @@ class Grade {
 	 * Slug
 	 */
 	public function slug(): string {
-		return $this->grade_number > 5 ?
-			($this->is_professional ? $this->grade_number . 'P' : $this->grade_number . 'L') : $this->grade_number;
+		return $this->number > 5 ?
+			($this->is_professional ? $this->number . 'P' : $this->number . 'L') : $this->number;
+	}
+
+	/**
+	 * 
+	 */
+	public function isMiddleschool(): bool {
+		return $this->number < 4;
 	}
 
 	/**
@@ -68,7 +84,7 @@ class Grade {
 		$progressPercentage = $this->user_progress();
 
 		GradeResult::updateOrCreate([
-			'gradeId' => $this->grade_number,
+			'gradeId' => $this->number,
 			'studentId' => Auth::id(),
 		], [
 			'progressPercentage' => $progressPercentage,

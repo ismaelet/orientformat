@@ -32,27 +32,24 @@ use \Legacy\UserSystem\Teacher;
 
 			<div class="element-list element-list_classes mar-t-2">
 
-				<?php if (teacher()->schoolClasses) {
-					foreach (teacher()->schoolClasses as $key => $schoolClass) { ?>
+				<?php foreach ($teacher->school_classes() as $key => $schoolClass) { ?>
 
-						<div class="load--fade-in js-load grid-flow" data-direction="bottom" data-delay="<?= $key % 3 ?>">
-							<a class="element element_class" href="<?= client_url('/class?class-id=' . $schoolClass->id) ?>">
-								<div>
-									<h3 class="class-name fw-bold"><?= substr($schoolClass->name, 0, 4) ?></h3>
-									<h3 class="fa-center txt-sbold">(<?= $schoolClass->yearRangeString ?>)</h3>
-								</div>
+					<div class="load--fade-in js-load grid-flow" data-direction="bottom" data-delay="<?= $key % 3 ?>">
+						<a class="element element_class" href="<?= $schoolClass->url() ?>">
+							<div>
+								<h3 class="class-name fw-bold"><?= $schoolClass->name ?></h3>
+								<h3 class="fa-center txt-sbold">(<?= $schoolClass->yearRangeString() ?>)</h3>
+							</div>
 
-								<div>
-									<p class="element-subtitle txt-sbold"><?= $schoolClass->school->name ?></p>
-									<!-- <p class="mar-t-1">Codice classe:<br><strong><?= $schoolClass->code ?></strong></p> -->
-								</div>
-							</a>
-						</div>
+							<div>
+								<p class="element-subtitle txt-sbold"><?= $schoolClass->school->name ?></p>
+							</div>
+						</a>
+					</div>
 
-				<?php }
-				} ?>
+				<?php } ?>
 
-				<div class="load--fade-in js-load" data-direction="bottom" data-delay="<?= teacher()->schoolClassCount % 4 ?>">
+				<div class="load--fade-in js-load" data-direction="bottom" data-delay="<?= $teacher->schoolClassesCount() % 4 ?>">
 					<a class="element element_functionality" href="<?= client_url('/teacher/add-class') ?>">
 						<div class="element-icon icon-box">
 							<?= embed_icon('add') ?>
@@ -76,7 +73,7 @@ use \Legacy\UserSystem\Teacher;
 					<div class="load--fade-in js-load" data-direction="bottom" data-delay="<?= ($key - 1) % 2 ?>">
 						<a class="element element_functionality" href="<?= $functionality['url'] ?>">
 							<div class="element-icon icon-box">
-								<?= icon_embed('functionality-' . $functionality['slug']) ?>
+								<?= embed_icon('functionality-' . $functionality['slug']) ?>
 							</div>
 							<div>
 								<h3 class="element-title txt-upp fw-bold"><?= $functionality['title'] ?></h3>

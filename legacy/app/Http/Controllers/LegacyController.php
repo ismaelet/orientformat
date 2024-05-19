@@ -2,15 +2,12 @@
 
 namespace app\Http\Controllers;
 
-use ScriptLoader;
-use StyleLoader;
-use View;
+class LegacyController {
 
-class Controller {
-	private $template = '';
-	private $inlineStyles = [];
-	private $inlineScripts = [];
-	private $parameters = [];
+	protected $template = '';
+	protected $inlineStyles = [];
+	protected $inlineScripts = [];
+	protected $parameters = [];
 
 	/**
 	 * Initilize

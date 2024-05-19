@@ -1,13 +1,13 @@
 <?php
 
 use app\Http\Controllers\Activities\Test;
-use app\Http\Route;
+use app\Http\TempLegacyRoute;
 
-\App\Legacy\LegacyRoute::get(function () {
+TempLegacyRoute::get(function () {
 	Test::get(testId());
 });
 
 
-\App\Legacy\LegacyRoute::post(function () {
+TempLegacyRoute::post(function () {
 	Test::post(testId());
 });

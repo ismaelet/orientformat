@@ -23,11 +23,6 @@ function extract_subvalue(array $array, $subKey) {
 	return $array;
 }
 
-function explode_last($separator, $string) {
-	$array = explode($separator, $string);
-	return end($array);
-}
-
 function bump(&$array) {
 	array_unshift($array, '');
 	unset($array[0]);

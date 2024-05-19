@@ -2,6 +2,8 @@
 
 namespace App\Legacy;
 
+use Illuminate\Support\Facades\Auth;
+
 class MiddlewareLoader {
 
 	use Singleton;
@@ -47,6 +49,45 @@ class MiddlewareLoader {
 					redirect_old('/');
 				}
 			},
+
+			'beginner-review' => function () {
+				$reviewId = null;
+
+				if (is_student()) {
+					$student = Auth::user()->student;
+					$relativeGrade = $student->school_class->grade()->relative_number();
+					$startingGrade = $student->school_class->startingGrade;
+					$currentGrade = $student->school_class->grade;
+
+					switch (true) {
+
+						case $student->isMiddleSchoolStudent() && $relativeGrade == 3:
+							// third middleschool year
+							$reviewId = 2;
+							break;
+
+						case $student->isHighSchoolStudent() && ($relativeGrade == 1 || $startingGrade == $currentGrade):
+							// first higschool year
+							$reviewId = 4;
+							break;
+
+						case student()->isHighSchoolStudent():
+							// other higschool years
+							$reviewId = 5;
+							break;
+					}
+
+					if ($reviewId && !\App\Legacy\LegacyDB::exists('review_results WHERE studentId = ? AND reviewId = ?', [Auth::id(), $reviewId])) {
+						redirect_old('/review?id=' . $reviewId);
+					}
+				}
+			},
+
+			'required-email' => function () {
+				if (!Auth::user()->email) {
+					redirect_old('/add-email');
+				}
+			}
 		];
 
 		foreach ($defaultMiddlewareLoader as $middlewareName => $middlewareFunction) {

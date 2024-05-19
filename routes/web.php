@@ -2,8 +2,13 @@
 
 use App\Http\Controllers\Activities\StudentAnalysisController;
 use App\Http\Controllers\Activities\TestController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LegacyController;
+use App\Http\Controllers\StudentHomeController;
 use App\Http\Controllers\SurveysHighschool2024Controller;
+use App\Http\Controllers\TeacherDashboardController;
+use App\Http\Middleware\Student;
+use App\Http\Middleware\Teacher;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +23,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/**
+ * * App routes
+ */
+// ~ Home
+Route::get('', [HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('/', [HomeController::class, 'index'])->middleware('auth')->name('home');
+
+// ~ Surveys
 Route::get('/2024-highschool-survey', [SurveysHighschool2024Controller::class, 'index'])->name('2024-highschool-survey');
 
 /**
@@ -32,6 +45,11 @@ Route::get('/run-migrations', function () {
 /**
  * * Parcially legacy routes
  */
+// ~ Home pages
+Route::any('/student', [StudentHomeController::class, 'index'])->middleware(Student::class)->name('student');
+
+Route::any('/teacher-dashboard', [TeacherDashboardController::class, 'index'])->middleware(Teacher::class)->name('teacher.dashboard');
+
 // ~ Student Activities
 Route::any('/activities/tests/{test}', [TestController::class, 'show'])->middleware(['auth'])->name('activities.tests');
 
@@ -42,7 +60,6 @@ Route::any('/analysis/student/sections/{section}', [StudentAnalysisController::c
 /**
  * * Legacy routes
  */
-Route::any('/', LegacyController::class)->name('home');
 Route::get('/logout', LegacyController::class)->name('logout');
 
 Route::any('{path}', LegacyController::class)->where('path', '^(?!api\/).*');
