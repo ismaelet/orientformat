@@ -35,10 +35,10 @@ foreach ($text as $key => &$part) {
 
 $text = implode('', $text);
 
-TestLogic::setParameterCount($count)
+Test\Legacy\System\Classes\Logic::setParameterCount($count)
 	->setTestSubmitFunction(
 		function ($count) {
-			$results = ViewOld::getInstance()->get('results');
+			$results = \Legacy\System\Classes\LegacyView::getInstance()->get('results');
 			$rightN = 0;
 
 			foreach ($_POST['field'] as $key => $result) {

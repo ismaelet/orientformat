@@ -1,5 +1,7 @@
 <?php
 
+namespace Legacy\System\Classes;
+
 class ScriptLoader {
 
 	private static $list = [];
@@ -7,9 +9,6 @@ class ScriptLoader {
 	private static $footInlineScripts = [];
 
 	public static function __constructStatic() {
-		$file = 'legacy.js?v=' . filemtime(base_path() . '/public/legacy.js');
-
-		self::$list[] = [0, $file];
 	}
 
 	// load a script

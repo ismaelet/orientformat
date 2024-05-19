@@ -24,7 +24,7 @@ abstract class OldModel extends DatabaseModel {
 	 */
 	function __construct(int $id) {
 		$this->id = $id;
-		$this->databaseData = \System\Classes\DBOld::row('* FROM ' . static::TABLE . ' WHERE ' . self::indexName() . ' = ?', [$id]) ?: [];
+		$this->databaseData = \Legacy\System\Classes\LegacyDB::row('* FROM ' . static::TABLE . ' WHERE ' . self::indexName() . ' = ?', [$id]) ?: [];
 	}
 
 	function __call($methodName, $arguments) {
@@ -87,13 +87,13 @@ abstract class OldModel extends DatabaseModel {
 		array_push($values, $this->id);
 
 		// execute
-		\System\Classes\DBOld::update(static::TABLE . ' SET ' . $columnQuery . ' WHERE ' . self::indexName() . ' = ?', $values);
+		\Legacy\System\Classes\LegacyDB::update(static::TABLE . ' SET ' . $columnQuery . ' WHERE ' . self::indexName() . ' = ?', $values);
 	}
 
 	/**
 	 * Delete method
 	 */
 	public function delete() {
-		\System\Classes\DBOld::delete(static::table() . ' WHERE ' . static::indexName() . ' = ?', [$this->id]);
+		\Legacy\System\Classes\LegacyDB::delete(static::table() . ' WHERE ' . static::indexName() . ' = ?', [$this->id]);
 	}
 }

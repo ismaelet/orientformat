@@ -2,7 +2,7 @@
 
 $returnUrl = $_GET['return'] ?? false;
 $areas = [];
-$areaRows = \System\Classes\DBOld::select('id FROM areas ORDER BY id ASC');
+$areaRows = \Legacy\System\Classes\LegacyDB::select('id FROM areas ORDER BY id ASC');
 
 while ($areaRow = $areaRows->fetch_assoc()) {
 	$area = new Area($areaRow['id']);

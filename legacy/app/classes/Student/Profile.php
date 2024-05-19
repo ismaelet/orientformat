@@ -3,7 +3,7 @@
 namespace Student;
 
 use DatabaseObject;
-use DBOld;
+use LegacyDB;
 
 class Profile {
 
@@ -20,7 +20,7 @@ class Profile {
 	 * Istance methods
 	 */
 	public static function new(int $id) {
-		\System\Classes\DBOld::add(self::TABLE . ' (' . self::INDEX . ')', [$id]);
+		\Legacy\System\Classes\LegacyDB::add(self::TABLE . ' (' . self::INDEX . ')', [$id]);
 
 		return new self($id);
 	}

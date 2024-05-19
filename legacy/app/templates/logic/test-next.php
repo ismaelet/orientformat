@@ -3,11 +3,11 @@
 use app\Http\Controllers\Activities\Test;
 use app\Http\Route;
 
-RouteOld::get(function () {
+\Legacy\System\Classes\LegacyRoute::get(function () {
 	Test::get(testId());
 });
 
 
-RouteOld::post(function () {
+\Legacy\System\Classes\LegacyRoute::post(function () {
 	Test::post(testId());
 });

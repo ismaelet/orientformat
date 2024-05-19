@@ -7,18 +7,18 @@ if (isset($_POST['submit'])) {
 	$submitted = true;
 	$email = $_POST['email'];
 
-	if ($userId = \System\Classes\DBOld::find('id FROM users WHERE email = ?', [$email])) {
+	if ($userId = \Legacy\System\Classes\LegacyDB::find('id FROM users WHERE email = ?', [$email])) {
 		$found = true;
-		$userToRecover = new User($userId);
+		$userToRecover = new \Legacy\System\Classes\User($userId);
 
 		// generate reset security code
-		if (!$resetCode = \System\Classes\DBOld::find('security FROM user_resets WHERE userId = ?', [$userToRecover->id])) {
+		if (!$resetCode = \Legacy\System\Classes\LegacyDB::find('security FROM user_resets WHERE userId = ?', [$userToRecover->id])) {
 			$resetCode = (string) random_string();
-			\System\Classes\DBOld::add('user_resets (userId, security)', [$userToRecover->id, $resetCode]);
+			\Legacy\System\Classes\LegacyDB::add('user_resets (userId, security)', [$userToRecover->id, $resetCode]);
 		}
 
 		// generare reset endpoint
-		$resetEndpoint = \System\Classes\ConfigOld::getInstance()->domain . '/reset?id=' . $userToRecover->id . '&security=' . $resetCode;
+		$resetEndpoint = \Legacy\System\Classes\LegacyConfig::getInstance()->domain . '/reset?id=' . $userToRecover->id . '&security=' . $resetCode;
 
 		// generate email content
 		$mailText = '<h1 style="text-align: center; padding-bottom: 32px; font-weight: 600;">Recupero dati</h1>
@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
 		$emailData = [
 			'debugger' => false,
 			'from-address' => 'no-reply@iprase.tn.it',
-			'from-name' => \System\Classes\ConfigOld::getInstance()->name,
+			'from-name' => \Legacy\System\Classes\LegacyConfig::getInstance()->name,
 			'to' => $email,
 			'subject' => 'Recupero dati di accesso',
 			'text' => $emailContent,

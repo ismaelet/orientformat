@@ -107,7 +107,7 @@ export default {
 					{
 						fontWeight: 'var(--font-weight-semibold)',
 						letterSpacing: '0.03em',
-						lineHeight: '1.2',
+						lineHeight: '1',
 					},
 				],
 				'component-heading': [

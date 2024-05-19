@@ -45,7 +45,7 @@ function form_db_add($tbl, $fields) {
 
 	$query = $tbl . ' (' . $names . ') VALUES (' . $pholders . ')';
 
-	return \System\Classes\DBOld::add($query, $values);
+	return \Legacy\System\Classes\LegacyDB::add($query, $values);
 }
 
 // Edit database
@@ -87,7 +87,7 @@ function form_db_update($tbl, $fields, $index, $indexVal) {
 	$query = $tbl . ' SET ' . $query . ' WHERE ' . $index . '=?';
 	$values[] = $indexVal;
 
-	\System\Classes\DBOld::update($query, $values);
+	\Legacy\System\Classes\LegacyDB::update($query, $values);
 }
 
 // Generate form
@@ -185,7 +185,7 @@ function generate_input($input, $data, $error, $done) {
 			case 'select':
 
 				if (isset($input['query'])) {
-					$selectOptions = \System\Classes\DBOld::select($input['query'])->res;
+					$selectOptions = \Legacy\System\Classes\LegacyDB::select($input['query'])->res;
 					$fieldId = $input['field-name'];
 					$fieldShow = $input['field-show'];
 				} else if (isset($input['array'])) {

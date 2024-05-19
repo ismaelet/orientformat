@@ -3,7 +3,7 @@
 namespace Review;
 
 use DatabaseObject;
-use DBOld;
+use LegacyDB;
 
 class Review {
 
@@ -31,7 +31,7 @@ class Review {
 	}
 
 	private function getCompleted() {
-		return \System\Classes\DBOld::exists('review_results WHERE reviewId = ? AND studentId = ?', [$this->id, $this->studentId]);
+		return \Legacy\System\Classes\LegacyDB::exists('review_results WHERE reviewId = ? AND studentId = ?', [$this->id, $this->studentId]);
 	}
 
 	/**

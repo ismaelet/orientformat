@@ -18,10 +18,10 @@ $correctAnswers = [
 	"Per questa sera la radio prevede nebbia",
 ];
 
-TestLogic::setParameterCount(count($correctAnswers))
+Test\Legacy\System\Classes\Logic::setParameterCount(count($correctAnswers))
 	::setTestSubmitFunction(function ($count) {
 		$correctCount = 0;
-		$correctAnswers = ViewOld::get('correctAnswers');
+		$correctAnswers = \Legacy\System\Classes\LegacyView::get('correctAnswers');
 
 		foreach ($_POST['field'] as $answerKey => $answer) {
 			if (strtolower($answer) == strtolower($correctAnswers[$answerKey])) {

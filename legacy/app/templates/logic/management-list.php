@@ -15,7 +15,7 @@ $searchSQL = $searchSQL ?? ['', []];
 $search_bar = $search_bar ?? true;
 
 //fetch data
-$res = $res ?? \System\Classes\DBOld::select('* FROM ' . $tbl . ' WHERE status=1 ' . $searchSQL[0] . ' ORDER BY ' . $index . ' DESC LIMIT 50', $searchSQL[1]);
+$res = $res ?? \Legacy\System\Classes\LegacyDB::select('* FROM ' . $tbl . ' WHERE status=1 ' . $searchSQL[0] . ' ORDER BY ' . $index . ' DESC LIMIT 50', $searchSQL[1]);
 
 $list = [];
 
@@ -24,7 +24,7 @@ while ($row = $res->fetch_assoc()) $list[] = $row;
 //delete entry
 if (isset($_POST['delete'])) {
 
-	\System\Classes\DBOld::update($tbl . ' SET status=0 WHERE ' . $index . ' = ?', [$_POST[$index]]);
+	\Legacy\System\Classes\LegacyDB::update($tbl . ' SET status=0 WHERE ' . $index . ' = ?', [$_POST[$index]]);
 
 	redirect_old();
 }
@@ -47,7 +47,7 @@ if (isset($_POST['download'])) {
 			if ($type == 'text') $line[$field['title']] = $field['value'] ?? $entry[$field['name']];
 			else if ($type == 'find') {
 
-				$val = \System\Classes\DBOld::find($field['find'][0], $entry[$field['find'][1]]);
+				$val = \Legacy\System\Classes\LegacyDB::find($field['find'][0], $entry[$field['find'][1]]);
 
 				if ($switch_file) $val = empty($val) ? $field['switch_file'][1] : $field['switch_file'][0];
 				if (isset($field['parse']) && $field['parse'] == 'int') $val = (int) $val;

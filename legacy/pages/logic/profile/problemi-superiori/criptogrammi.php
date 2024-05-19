@@ -32,8 +32,8 @@ $correctResults = [
 
 $testResults = test()->completed ? _parse_results(test()->rawResults) : null;
 
-TestLogic::setTestSubmitFunction(function () {
-	$correctResults = ViewOld::getInstance()->get('correctResults');
+Test\Legacy\System\Classes\Logic::setTestSubmitFunction(function () {
+	$correctResults = \Legacy\System\Classes\LegacyView::getInstance()->get('correctResults');
 	$correctResultCount = 0;
 
 	$results = _parse_results($_POST['field']);

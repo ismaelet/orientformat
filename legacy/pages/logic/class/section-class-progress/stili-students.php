@@ -24,7 +24,7 @@ $groups = [
 ];
 
 foreach ($grade->students as $student) {
-	if (\System\Classes\DBOld::exists("results WHERE userID = ? AND testID IN ('30') AND completed=1", [studentId()])) {
+	if (\Legacy\System\Classes\LegacyDB::exists("results WHERE userID = ? AND testID IN ('30') AND completed=1", [studentId()])) {
 
 		$columnData = [];
 		$columnData['subcolumns'] = [];

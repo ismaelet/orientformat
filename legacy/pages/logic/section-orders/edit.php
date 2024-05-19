@@ -12,7 +12,7 @@ $added = false;
 * Setup cart
 */
 $cart = new Cart($id);
-ViewOld::$title = 'Ordine ' . $cart->idCode;
+\Legacy\System\Classes\LegacyView::$title = 'Ordine ' . $cart->idCode;
 
 /*
 * Form events
@@ -24,10 +24,10 @@ if (isset($_POST['change-status'])) {
 	$cart->updateStatus($status);
 
 	if ($comment) {
-		if (\System\Classes\DBOld::exists('ecommerce_carts_comments WHERE cartId=?', $id))
-			\System\Classes\DBOld::update('ecommerce_carts_comments SET comment=? WHERE cartId=?', [$comment, $id]);
+		if (\Legacy\System\Classes\LegacyDB::exists('ecommerce_carts_comments WHERE cartId=?', $id))
+			\Legacy\System\Classes\LegacyDB::update('ecommerce_carts_comments SET comment=? WHERE cartId=?', [$comment, $id]);
 		else
-			\System\Classes\DBOld::add('ecommerce_carts_comments (cartId, comment) VALUES (?, ?)', [$id, $comment]);
+			\Legacy\System\Classes\LegacyDB::add('ecommerce_carts_comments (cartId, comment) VALUES (?, ?)', [$id, $comment]);
 	}
 
 	redirect_old();

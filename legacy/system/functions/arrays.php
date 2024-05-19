@@ -1,16 +1,8 @@
 <?php
 
-use System\Classes\Query_Result;
-
 function explode_and_pop($separator, $string) {
 	$array = explode($separator, $string);
 	return end($array);
-}
-
-function sort_subvalue(&$array, $key) {
-	usort($array, function ($a, $b) use ($key) {
-		return strcmp($a[$key], $b[$key]);
-	});
 }
 
 function sort_subvalue_desc(&$array, $key) {

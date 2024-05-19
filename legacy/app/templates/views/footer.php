@@ -3,7 +3,7 @@
 	<div id="footer-wrap" class="main-wrap">
 
 		<div class="footer__content">
-			<div id="footer-body" class="grid al-top">
+			<div id="footer-body" class="al-top grid">
 
 				<?php if ($f_comp['contacts']) { ?>
 					<div id="f-contacts" class="footer-col">
@@ -13,7 +13,7 @@
 							Contatti
 						</p>
 
-						<a href="<?= sysData('cont-web_link') ?>">
+						<a href="<?= config('custom.contacts.web.url') ?>">
 							<img id="f-logo" class="footer__logo--light" src="<?= asset('/images/logo/logo-white.webp') ?>">
 							<img id="f-logo" class="footer__logo--dark" src="<?= asset('/images/logo/logo.webp') ?>">
 						</a>
@@ -25,24 +25,16 @@
 						</p>
 
 						<div class="flex-group" data-spacing="200">
-							<a class="f-contact" href="<?= sysData('cont-twitter-link') ?>">
+							<a class="f-contact" href="<?= config('custom.contacts.twitter.url') ?>">
 								<?= embed_icon('contacts/twitter') ?>
 							</a>
 
-							<a class="f-contact" href="<?= sysData('cont-facebook-link') ?>">
+							<a class="f-contact" href="<?= config('custom.contacts.facebook.url') ?>">
 								<?= embed_icon('contacts/facebook') ?>
 							</a>
 
-							<a class="f-contact" href="<?= sysData('cont-instagram-link') ?>">
+							<a class="f-contact" href="<?= config('custom.contacts.instagram.url') ?>">
 								<?= embed_icon('contacts/instagram') ?>
-							</a>
-
-							<a class="f-contact" href="<?= sysData('cont-telegram-link') ?>">
-								<?= embed_icon('contacts/telegram') ?>
-							</a>
-
-							<a class="f-contact" href="<?= sysData('cont-vimeo-link') ?>">
-								<?= embed_icon('contacts/vimeo') ?>
 							</a>
 
 						</div>
@@ -82,10 +74,10 @@
 
 			</div>
 
-			<div id="footer-credits" class="grid gap1 pad-t-2 br-t-1 br-d">
+			<div id="footer-credits" class="gap1 pad-t-2 br-t-1 br-d grid">
 				<div class="footer-credit">
 					<p class="flex-line gap05">Autore:
-						<span class="fw-bold ">Luigi Tuffanelli</span>
+						<span class="fw-bold">Luigi Tuffanelli</span>
 						&middot;
 						<a class="text-link" href="https://luigituffanelli.eu" target="_blank">
 							Curriculum
@@ -94,7 +86,9 @@
 					</p>
 
 					<p class="mar-t-05">
-						Insegnante, formatore e docente presso le Università di Trento e di Bolzano. Ha collaborato frequentemente con l’Iprase e con il Centro Studi Edizioni Erickson. Ha numerose pubblicazioni con gli editori Giunti, La Nuova Italia, Edizioni Erickson e diverse riviste di didattica e pedagogia.
+						Insegnante, formatore e docente presso le Università di Trento e di Bolzano. Ha collaborato frequentemente con
+						l’Iprase e con il Centro Studi Edizioni Erickson. Ha numerose pubblicazioni con gli editori Giunti, La Nuova
+						Italia, Edizioni Erickson e diverse riviste di didattica e pedagogia.
 					</p>
 				</div>
 
@@ -108,6 +102,7 @@
 	</div>
 
 	<p id="footer-notes" class="pad-v-1 pad-h-2 txt-cen">
-		Copyright © <?= getdate()['year'] ?> Iprase - Istituto provinciale per la ricerca e la sperimentazione educativa, Ente strumentale della Provincia Autonoma di Trento
+		Copyright © <?= getdate()['year'] ?> Iprase - Istituto provinciale per la ricerca e la sperimentazione educativa, Ente
+		strumentale della Provincia Autonoma di Trento
 	</p>
 </footer>

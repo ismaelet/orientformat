@@ -1,5 +1,7 @@
 <?php
 
+namespace Legacy\System\Classes;
+
 require_once __DIR__ . '/../../public/index.php';
 
 class Setup {
@@ -65,7 +67,7 @@ class Setup {
 	 * Migrate
 	 */
 	static private function migrate() {
-		// $config = \System\Classes\ConfigOld::getInstance();
+		// $config = \Legacy\System\Classes\LegacyConfig::getInstance();
 
 		// if ($config->hasDatabase && $config->migrate) {
 		// 	$migrationList = Migration::allMigrations();
@@ -92,7 +94,7 @@ class Setup {
 	 * Set session language
 	 */
 	static private function setSessionLanguage() {
-		$config = \System\Classes\ConfigOld::getInstance();
+		$config = \Legacy\System\Classes\LegacyConfig::getInstance();
 		$acceptedLanguages = $config->languages;
 		$defaultLanguage = $config->defaultLanguage;
 		$browserLanguage = !empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) : null;
@@ -120,7 +122,7 @@ class Setup {
 	 * Set session theme settings
 	 */
 	static private function setSessionTheme() {
-		$_SESSION['theme-color'] = \System\Classes\ConfigOld::getInstance()->themeColor;
+		$_SESSION['theme-color'] = \Legacy\System\Classes\LegacyConfig::getInstance()->themeColor;
 	}
 
 	/**
@@ -141,7 +143,7 @@ class Setup {
 		// start the session
 		session_start();
 
-		date_default_timezone_set(\System\Classes\ConfigOld::getInstance()->timezone);
+		date_default_timezone_set(\Legacy\System\Classes\LegacyConfig::getInstance()->timezone);
 
 		self::setSessionUser();
 		self::setSessionLanguage();

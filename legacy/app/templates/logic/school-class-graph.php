@@ -7,7 +7,7 @@ foreach (schoolClass()->students as $student) {
 /* END TEMP */
 
 $sectionId = $_GET['sectionId'];
-$pageTitle = \System\Classes\DBOld::find('name FROM sections WHERE id = ?', [$sectionId]);
+$pageTitle = \Legacy\System\Classes\LegacyDB::find('name FROM sections WHERE id = ?', [$sectionId]);
 
 $breadcrumbs = [
 	schoolClass()->name => client_url('/class'),

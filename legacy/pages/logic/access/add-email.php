@@ -20,10 +20,10 @@ if (isset($_POST['submit'])) {
 
 	if ($email != $confirmationEmail) {
 		$error = 'not-matching-email';
-	} else if (\System\Classes\DBOld::exists('users WHERE email = ?', [$email])) {
+	} else if (\Legacy\System\Classes\LegacyDB::exists('users WHERE email = ?', [$email])) {
 		$error = 'existent-email';
 	} else {
-		\System\Classes\DBOld::update('users SET email = ? WHERE id = ?', [$email, user()->id]);
+		\Legacy\System\Classes\LegacyDB::update('users SET email = ? WHERE id = ?', [$email, user()->id]);
 	}
 
 	redirect_old('/');

@@ -15,18 +15,24 @@
 
 		<div class="areas">
 
-			<?php foreach ($grade->areas as $area) { ?>
+			<?php
+
+			use App\Models\Activities\Area;
+
+			foreach ($grade->areas as $legacyArea) {
+				$area = Area::find($legacyArea->id);
+			?>
 
 				<div class="area-wrapper">
 					<section class="area grid-flow main-wrap full-width" data-spacing="700">
 						<div class="area__header fa-center grid-flow" data-spacing="400">
-							<h2 class="section-title"><?= $area->name ?></h2>
-							<p class="section-subtitle"><?= $area->description ?></p>
+							<h2 class="section-title"><?= $legacyArea->name ?></h2>
+							<p class="section-subtitle"><?= $legacyArea->description ?></p>
 
 							<!-- Read more -->
-							<?php if ($area->id == 4) { ?>
+							<?php if ($legacyArea->id == 4) { ?>
 
-								<a class="button button--secondary push-center" href="student-read?area=<?= $area->id ?>">
+								<a class="button button--secondary push-center" href="<?= route('analysis.student.area', $area) ?>">
 									<?= embed_icon('read') ?>
 									Saperne di più
 								</a>
@@ -37,7 +43,7 @@
 
 						<div class="sections">
 
-							<?php foreach ($area->getSections($grade->fullId) as $key => $section) { ?>
+							<?php foreach ($legacyArea->getSections($grade->fullId) as $key => $section) { ?>
 
 								<div class="section-wrapper js-load load--fade-in section-color section-color--area-<?= $section->areaId ?>" data-direction="bottom" data-delay="<?= $key % 3 ?>">
 									<a class="section <?= $section->progressPercentage == 100 ? 'completed' : '' ?>" <?= 'href="' . $section->clientUrl . '&slug=' . $section->slug . '"' ?>>

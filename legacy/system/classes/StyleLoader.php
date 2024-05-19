@@ -1,13 +1,12 @@
 <?php
 
+namespace Legacy\System\Classes;
+
 class StyleLoader {
 
 	private static $list = [];
 
 	public static function __constructStatic() {
-		$file = 'main.css?v=' . filemtime(base_path() . '/public/main.css');
-
-		self::$list[] = [0, $file];
 	}
 
 	// add a style

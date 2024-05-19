@@ -4,7 +4,7 @@ use LogicManager\TestLogic;
 
 $count = 13;
 
-TestLogic::setParameterCount($count)
+Test\Legacy\System\Classes\Logic::setParameterCount($count)
 	->setTestSubmitFunction(
 		function () {
 			$correctN = 0;
@@ -13,7 +13,7 @@ TestLogic::setParameterCount($count)
 				if (eval_num($_POST['field'], $key)) $correctN++;
 			}
 
-			return round($correctN / TestLogic::$parameterCount * 100, 0);
+			return round($correctN / Test\Legacy\System\Classes\Logic::$parameterCount * 100, 0);
 		}
 	);
 

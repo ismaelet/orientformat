@@ -1,6 +1,6 @@
 <?php
 
-StyleLoader::add('profile/stili/' . test()->slug, 'page');
+\Legacy\System\Classes\StyleLoader::add('profile/stili/' . test()->slug, 'page');
 
 $title = 'Modi di agire';
 

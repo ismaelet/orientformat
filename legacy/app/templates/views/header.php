@@ -11,7 +11,9 @@
 				<?php if ($h_comp['logo']) { ?>
 
 					<!-- Logo -->
-					<a href="<?= sysData('cont-web_link') ?>" id="h-logo" <?= background_image(LOGO_DIR . 'logo.png'); ?>></a>
+					<a href="<?= config('custom.contacts.web.url') ?>" id="h-logo">
+						<img src="<?= asset('images/logo/logo.png') ?>" alt="">
+					</a>
 
 				<?php } ?>
 
@@ -20,10 +22,10 @@
 					<!-- Name -->
 					<div clas="h-name-box" class="inlb">
 						<h3 class="h-name txt-upp desk">
-							<a href="<?= sysData('cont-web_link') ?>"><?= $h_name ?></a>
+							<a href="<?= config('custom.contacts.web.url') ?>"><?= $h_name ?></a>
 						</h3>
 						<h3 class="h-name txt-upp mob">
-							<a href="<?= sysData('cont-web_link') ?>"><?= $h_name ?></a>
+							<a href="<?= config('custom.contacts.web.url') ?>"><?= $h_name ?></a>
 						</h3>
 					</div>
 
@@ -46,7 +48,7 @@
 							if (!isset($h_link['mobile']) || !$h_link['mobile']) { ?>
 
 								<div class="h-link relative">
-									<p class="h-link-txt <?php if (ViewOld::getInstance()->location == $h_link['loc']) echo 'active'; ?>">
+									<p class="h-link-txt <?php if (\Legacy\System\Classes\LegacyView::getInstance()->location == $h_link['loc']) echo 'active'; ?>">
 										<a href="<?= $h_link['url']; ?>">
 											<?= $h_link['title'];
 											if (isset($h_link['drop'])) echo ' <span class="h-drop-ico">&#x25BC;</span>' ?>
@@ -79,7 +81,7 @@
 				<?php if ($h_comp['login']) { ?>
 					<div id="h-log-box" class="inlb va-cen <?= $h_comp['force-mob'] ? 'hide' : 'desk1024'; ?> ">
 
-						<?php if (userId()) { ?>
+						<?php if ($userId) { ?>
 
 							<a href="<?= $h_log_in[1]; ?>">
 								<p class="h-link-txt h-link-txt--button"><?= $h_log_in[0] ?></p>
@@ -129,8 +131,8 @@
 								//check logged filter
 								if (isset($h_link['logged'])) {
 
-									if ($h_link['logged'] && !userId()) $h_valid = false;
-									else if (!$h_link['logged'] && userId()) $h_valid = false;
+									if ($h_link['logged'] && !$userId) $h_valid = false;
+									else if (!$h_link['logged'] && $userId) $h_valid = false;
 								}
 
 								//check mobile filter

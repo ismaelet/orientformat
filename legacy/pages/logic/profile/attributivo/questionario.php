@@ -100,7 +100,7 @@ $answers = [
 
 $count = count($questions);
 
-TestLogic::setParameterCount($count);
+Test\Legacy\System\Classes\Logic::setParameterCount($count);
 
 bump($questions);
 bump($answers);

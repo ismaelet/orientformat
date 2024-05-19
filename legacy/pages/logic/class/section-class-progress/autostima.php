@@ -20,23 +20,23 @@ $graphData['columns'] = [];
 
 foreach ($class->students as $student) {
 
-	if (\System\Classes\DBOld::count("results WHERE userID = ? AND testID IN ('7', '8', '9', '10', '11', '12') AND completed=1", [studentId()])) {
+	if (\Legacy\System\Classes\LegacyDB::count("results WHERE userID = ? AND testID IN ('7', '8', '9', '10', '11', '12') AND completed=1", [studentId()])) {
 
 		$columnData = [];
 
 		$columnData['subcolumns'] = [
 
-			'Le mie emozioni' => \System\Classes\DBOld::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [studentId(), 7]),
+			'Le mie emozioni' => \Legacy\System\Classes\LegacyDB::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [studentId(), 7]),
 
-			'Come mi sento' => \System\Classes\DBOld::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [studentId(), 8]),
+			'Come mi sento' => \Legacy\System\Classes\LegacyDB::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [studentId(), 8]),
 
-			'Affrontare i problemi' => \System\Classes\DBOld::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [studentId(), 9]),
+			'Affrontare i problemi' => \Legacy\System\Classes\LegacyDB::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [studentId(), 9]),
 
-			'Orientamento al futuro' => \System\Classes\DBOld::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [studentId(), 10]),
+			'Orientamento al futuro' => \Legacy\System\Classes\LegacyDB::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [studentId(), 10]),
 
-			'La scuola' => \System\Classes\DBOld::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [studentId(), 11]),
+			'La scuola' => \Legacy\System\Classes\LegacyDB::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [studentId(), 11]),
 
-			'I rapporti con gli altri' => \System\Classes\DBOld::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [studentId(), 12]),
+			'I rapporti con gli altri' => \Legacy\System\Classes\LegacyDB::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [studentId(), 12]),
 
 		];
 

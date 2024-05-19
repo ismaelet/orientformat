@@ -37,9 +37,9 @@ foreach ($boxes as $key => &$box) {
 
 $count = $i;
 
-TestLogic::setParameterCount($count)
+Test\Legacy\System\Classes\Logic::setParameterCount($count)
 	->setTestSubmitFunction(function ($count) {
-		$boxes = ViewOld::getInstance()->get('boxes');
+		$boxes = \Legacy\System\Classes\LegacyView::getInstance()->get('boxes');
 
 		$rightN = 0;
 

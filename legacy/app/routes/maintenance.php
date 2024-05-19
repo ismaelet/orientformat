@@ -1,7 +1,7 @@
 <?php
 
 //offline
-RouteOld::add('/offline', function () {
+\Legacy\System\Classes\LegacyRoute::add('/offline', function () {
 
 	//setup page
 	$view = new View('errors/offline');

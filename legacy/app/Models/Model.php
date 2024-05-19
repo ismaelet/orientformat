@@ -2,7 +2,7 @@
 
 namespace LegacyModels;
 
-use DBOld;
+use LegacyDB;
 use Exception;
 
 abstract class Model extends Schema {
@@ -45,7 +45,7 @@ abstract class Model extends Schema {
 	}
 
 	protected function initialize(int $id) {
-		$databaseData = \System\Classes\DBOld::row('* FROM ' . static::table() . ' WHERE id = ?', [$id]);
+		$databaseData = \Legacy\System\Classes\LegacyDB::row('* FROM ' . static::table() . ' WHERE id = ?', [$id]);
 
 		if ($databaseData) {
 			$this->id = $id;
@@ -123,7 +123,7 @@ abstract class Model extends Schema {
 
 		array_push($parameters, $this->id);
 
-		\System\Classes\DBOld::update($this->table() . ' SET ' . $fields . ' WHERE id = ?', array_values($parameters));
+		\Legacy\System\Classes\LegacyDB::update($this->table() . ' SET ' . $fields . ' WHERE id = ?', array_values($parameters));
 
 		return $this;
 	}
@@ -132,6 +132,6 @@ abstract class Model extends Schema {
 	 * Delete
 	 */
 	public function delete(): void {
-		\System\Classes\DBOld::delete($this->table() . ' WHERE id = ?', [$this->id]);
+		\Legacy\System\Classes\LegacyDB::delete($this->table() . ' WHERE id = ?', [$this->id]);
 	}
 }

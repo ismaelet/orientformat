@@ -9,9 +9,9 @@ $riddles = [
 	['xwyj', 'affettuoso, ma anche poco economico', 'CARO'],
 ];
 
-TestLogic::setParameterCount(count($riddles))
+Test\Legacy\System\Classes\Logic::setParameterCount(count($riddles))
 	->setTestSubmitFunction(function ($count) {
-		$riddles = ViewOld::get('riddles');
+		$riddles = \Legacy\System\Classes\LegacyView::get('riddles');
 		$rightAnswers = 0;
 
 		foreach ($riddles as $riddleKey => $riddle) {

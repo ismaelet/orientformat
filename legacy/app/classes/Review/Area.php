@@ -3,7 +3,7 @@
 namespace Review;
 
 use DatabaseObject;
-use DBOld;
+use LegacyDB;
 
 class Area {
 
@@ -16,7 +16,7 @@ class Area {
 		$questions = [];
 
 		if ($reviewId) {
-			$questionRows = \System\Classes\DBOld::select('id FROM review_questions WHERE areaId=? AND (reviewIds="" OR FIND_IN_SET(' . $reviewId . ', reviewIds))', [$this->id]);
+			$questionRows = \Legacy\System\Classes\LegacyDB::select('id FROM review_questions WHERE areaId=? AND (reviewIds="" OR FIND_IN_SET(' . $reviewId . ', reviewIds))', [$this->id]);
 
 			while ($questionRow = $questionRows->fetch_assoc()) {
 				$questions[] = new Question($questionRow['id']);

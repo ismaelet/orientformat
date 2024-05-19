@@ -14,7 +14,7 @@ function get_student() {
 			$watcher = new Teacher($watcherId);
 
 			if (in_array($studentId, $watcher->studentIds)) {
-				$student = new User($studentId);
+				$student = new \Legacy\System\Classes\User($studentId);
 				$supervisorView = true;
 			}
 		}

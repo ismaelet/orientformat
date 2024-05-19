@@ -2,7 +2,7 @@
 
 namespace Legacy\UserSystem;
 
-use DBOld;
+use LegacyDB;
 
 
 class ActiveTeacher {
@@ -16,7 +16,7 @@ class ActiveTeacher {
 	 * Magic methods
 	 */
 	private function __construct() {
-		if (\System\Classes\DBOld::exists(Teacher::TABLE . ' WHERE ' . Teacher::INDEX . ' = ?', [userId()])) {
+		if (\Legacy\System\Classes\LegacyDB::exists(Teacher::TABLE . ' WHERE ' . Teacher::INDEX . ' = ?', [userId()])) {
 			$teacher = new Teacher(userId());
 
 			self::$id = $teacher->id;

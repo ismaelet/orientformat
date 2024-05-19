@@ -6,9 +6,9 @@ $solution = $solution ?? [4, 5, 8, 1];
 $answers = $answers ?? [1, 2, 3, 4, 5, 6, 7, 8];
 $count = count($solution);
 
-TestLogic::setParameterCount($count)
+Test\Legacy\System\Classes\Logic::setParameterCount($count)
 	->setTestSubmitFunction(function () {
-		$solution = ViewOld::get('solution');
+		$solution = \Legacy\System\Classes\LegacyView::get('solution');
 
 		foreach ($_POST['field'] as $key => $answer) {
 			if (strtolower($answer) != strtolower($solution[$key])) {

@@ -11,7 +11,7 @@ include_once('-expands-test/components.php');
 if (isset($_POST['submit']) || isset($_POST['review']) || isset($_POST['skip'])) {
 	if (test()->template != 'test-next') {
 		// get the score
-		$score = TestLogic::$testSubmitFunction ? TestLogic::runTestSubmitFunction() : 100;
+		$score = Test\Legacy\System\Classes\Logic::$testSubmitFunction ? Test\Legacy\System\Classes\Logic::runTestSubmitFunction() : 100;
 
 		// save the results
 		$result = [];

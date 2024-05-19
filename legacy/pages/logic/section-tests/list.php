@@ -32,7 +32,7 @@ $fields = [
 ];
 
 function _expand_results(&$entry, $field, $key, $row) {
-	$studentCount = \System\Classes\DBOld::count('students WHERE status=1');
+	$studentCount = \Legacy\System\Classes\LegacyDB::count('students WHERE status=1');
 
 	if ($field['name'] == 'completed') {
 		$entry['value'] = round($row['completedCount'] / $studentCount * 100) . ' %';

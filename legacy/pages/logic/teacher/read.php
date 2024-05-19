@@ -11,11 +11,11 @@ $this->scripts->add(SERVER_ROOT . '/pages/scripts/teacher/teacher.js');
 //fetch areas and sections
 $areas = [];
 
-$res = \System\Classes\DBOld::select('id, name FROM areas ORDER BY id ASC');
+$res = \Legacy\System\Classes\LegacyDB::select('id, name FROM areas ORDER BY id ASC');
 
 while ($row = $res->fetch_assoc()) {
 
-	$sections = \System\Classes\DBOld::select('* FROM sections WHERE active=1 AND locked=0 AND area<4 AND area = ? ORDER BY id ASC', [$row['id']]);
+	$sections = \Legacy\System\Classes\LegacyDB::select('* FROM sections WHERE active=1 AND locked=0 AND area<4 AND area = ? ORDER BY id ASC', [$row['id']]);
 
 	$area['name'] = $row['name'];
 	$area['sections'] = $sections;

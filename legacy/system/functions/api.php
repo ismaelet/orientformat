@@ -46,7 +46,7 @@ function API_GET_ids($requestContent, $queryFields, $tbl, $idName = 'id') {
 
 	foreach ($queryValues as $queryValue) $spreadQueryValues[] = $queryValue;
 
-	$response = \System\Classes\DBOld::select($query, [$spreadQueryValues]);
+	$response = \Legacy\System\Classes\LegacyDB::select($query, [$spreadQueryValues]);
 
 	while ($row = $response->fetch_assoc()) $ids[] = $row[$idName];
 

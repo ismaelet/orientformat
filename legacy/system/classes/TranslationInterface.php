@@ -1,6 +1,9 @@
 <?php
 
+namespace Legacy\System\Classes;
+
 class TranslationInterface {
+
 	use \System\Traits\Singleton;
 
 	private static $translations;

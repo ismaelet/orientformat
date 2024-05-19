@@ -1,6 +1,6 @@
 <?php
 
-StyleLoader::add(test()->area->slug . '/' . test()->section->mainSection->slug . '/' . test()->slug, 'page');
+\Legacy\System\Classes\StyleLoader::add(test()->area->slug . '/' . test()->section->mainSection->slug . '/' . test()->slug, 'page');
 
 $resultOrder = [1, 3, 2, 4];
 

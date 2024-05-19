@@ -5,74 +5,74 @@
 use \Legacy\Activity\Area;
 use \Legacy\Activity\Section;
 
-RouteOld::add('/teacher', function () {
-	ViewOld::setPage('teacher/home')
+\Legacy\System\Classes\LegacyRoute::add('/teacher', function () {
+	\Legacy\System\Classes\LegacyView::setPage('teacher/home')
 		->addMiddlewares(['teacher'])
 		->setTitle('Gestione della classe')
 		->show();
 });
 
-RouteOld::add('/teacher/add-class', function () {
-	ViewOld::setPage('teacher/settings/add-class')
+\Legacy\System\Classes\LegacyRoute::add('/teacher/add-class', function () {
+	\Legacy\System\Classes\LegacyView::setPage('teacher/settings/add-class')
 		->addMiddlewares(['teacher'])
 		->setTitle('Aggiungi una classe')
 		->setTemplate('form')
 		->show();
 });
 
-RouteOld::add('/teacher/simulation', function () {
-	ViewOld::setPage('teacher/simulation')
+\Legacy\System\Classes\LegacyRoute::add('/teacher/simulation', function () {
+	\Legacy\System\Classes\LegacyView::setPage('teacher/simulation')
 		->addMiddlewares(['teacher'])
 		->setTitle('Simulazione studente')
 		->show();
 });
 
-RouteOld::add('/teacher/know-more', function () {
-	ViewOld::setPage('teacher/know-more')
+\Legacy\System\Classes\LegacyRoute::add('/teacher/know-more', function () {
+	\Legacy\System\Classes\LegacyView::setPage('teacher/know-more')
 		->addMiddlewares(['teacher'])
 		->setTitle('Saperne di più')
 		->show();
 });
 
-RouteOld::add('/teacher/documents', function () {
-	ViewOld::setPage('teacher/documents')
+\Legacy\System\Classes\LegacyRoute::add('/teacher/documents', function () {
+	\Legacy\System\Classes\LegacyView::setPage('teacher/documents')
 		->addMiddlewares(['teacher'])
 		->setTitle('Modulistica')
 		->show();
 });
 
-RouteOld::add('/teacher/settings', function () {
-	ViewOld::setPage('teacher/settings')
+\Legacy\System\Classes\LegacyRoute::add('/teacher/settings', function () {
+	\Legacy\System\Classes\LegacyView::setPage('teacher/settings')
 		->addMiddlewares(['teacher'])
 		->setTemplate('form')
 		->setTitle('Impostazioni')
 		->show();
 });
 
-RouteOld::add('/teacher/support/open-ticket', function () {
-	ViewOld::setPage('teacher/support/open-ticket')
+\Legacy\System\Classes\LegacyRoute::add('/teacher/support/open-ticket', function () {
+	\Legacy\System\Classes\LegacyView::setPage('teacher/support/open-ticket')
 		->addMiddlewares(['teacher'])
 		->setTitle('Supporto')
 		->show();
 });
 
-RouteOld::add('/teacher/support', function () {
-	ViewOld::setPage('teacher/support/ticket-list')
+\Legacy\System\Classes\LegacyRoute::add('/teacher/support', function () {
+	\Legacy\System\Classes\LegacyView::setPage('teacher/support/ticket-list')
 		->addMiddlewares(['teacher'])
 		->setTitle('Supporto')
 		->show();
 });
 
-RouteOld::add('/teacher/paths', function () {
-	ViewOld::setPage('teacher/paths')
+\Legacy\System\Classes\LegacyRoute::add('/teacher/paths', function () {
+	\Legacy\System\Classes\LegacyView::setPage('teacher/paths')
 		->addMiddlewares(['teacher'])
 		->setTitle('Percorsi')
 		->show();
 });
 
 // class panel
-RouteOld::add('/class', function () {
-	ViewOld::setPage('class/home')
+\Legacy\System\Classes\LegacyRoute::add('/class', function () {
+	\Legacy\System\Classes\LegacyView::setPage('class/home')
 		->addMiddlewares(['class'])
 		->setTemplate('school-class')
 		->setTitle('Gestione della classe')
@@ -81,10 +81,10 @@ RouteOld::add('/class', function () {
 });
 
 // specific class pages
-RouteOld::add('/class/*', function ($url) {
+\Legacy\System\Classes\LegacyRoute::add('/class/*', function ($url) {
 	$pageUrl = explode('class/', $url)[1];
 
-	ViewOld::setPage('class/section-' . $pageUrl)
+	\Legacy\System\Classes\LegacyView::setPage('class/section-' . $pageUrl)
 		->addMiddlewares(['class'])
 		->setTemplate('school-class')
 		->setTitle('Gestione della classe')
@@ -93,12 +93,12 @@ RouteOld::add('/class/*', function ($url) {
 });
 
 // read more
-RouteOld::add('/read', function () {
+\Legacy\System\Classes\LegacyRoute::add('/read', function () {
 	$id = $_GET['id'] ?? null;
 	$areaId = $_GET['area-id'] ?? null;
 
-	if ($id) $section = \System\Classes\DBOld::find('slug FROM ' . Section::TABLE . ' WHERE id=?', $id);
-	if ($areaId) $area = \System\Classes\DBOld::find('slug FROM ' . Area::TABLE . ' WHERE id=?', $areaId);
+	if ($id) $section = \Legacy\System\Classes\LegacyDB::find('slug FROM ' . Section::TABLE . ' WHERE id=?', $id);
+	if ($areaId) $area = \Legacy\System\Classes\LegacyDB::find('slug FROM ' . Area::TABLE . ' WHERE id=?', $areaId);
 
 	$page = $id ? $section : 'area-' . $area;
 
@@ -106,7 +106,7 @@ RouteOld::add('/read', function () {
 		redirect_old('/');
 	}
 
-	ViewOld::setPage('read/' . $page)
+	\Legacy\System\Classes\LegacyView::setPage('read/' . $page)
 		->setTemplate('read')
 		->setMiddlewares(['public', 'logged', 'active', 'beginner-review'])
 		->show();

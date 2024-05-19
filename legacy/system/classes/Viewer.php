@@ -1,14 +1,16 @@
 <?php
 
+namespace Legacy\System\Classes;
+
 class Viewer {
-	const SYSTEM_TEMPLATES = SERVER_ROOT . '/system/templates';
-	const APP_TEMPLATES = SERVER_ROOT . '/app/templates';
-	const VIEWS_PATH = SERVER_ROOT . '/pages/views';
 	const TEMPLATE_OPENING_TAG = '{% extends ';
 	const BLOCK_OPENING_TAG = '{% block ';
 	const PLACING_OPENING_TAG = '{% place ';
 	const CLOSING_TAG = ' %}';
 
+	static private $systemTemplates;
+	static private $appTemplates;
+	static private $viewsPath;
 	static private $templateFile;
 	static private $viewFile = false;
 	static private $baseTemplateContent;
@@ -16,10 +18,14 @@ class Viewer {
 
 	// render page
 	static public function render() {
-		$view = ViewOld::getInstance();
+		self::$systemTemplates = server_root() . '/system/templates';
+		self::$appTemplates = server_root() . '/app/templates';
+		self::$viewsPath = server_root() . '/pages/views';
+
+		$view = \Legacy\System\Classes\LegacyView::getInstance();
 		// fetch the view files
 		self::$templateFile = self::getTemplateFile($view->template);
-		if (file_exists($file = self::VIEWS_PATH . '/' . $view->name . '.php')) self::$viewFile = $file;
+		if (file_exists($file = self::$viewsPath . '/' . $view->name . '.php')) self::$viewFile = $file;
 
 		echo self::renderView();
 	}
@@ -43,7 +49,7 @@ class Viewer {
 		$parentName = false;
 
 		// access variables
-		foreach (ViewOld::getInstance()->variables as $var => $value) {
+		foreach (\Legacy\System\Classes\LegacyView::getInstance()->variables as $var => $value) {
 			${$var} = $value;
 		}
 
@@ -110,8 +116,8 @@ class Viewer {
 
 	// get the full path of a template file
 	static private function getTemplateFile($templateName) {
-		if (file_exists($file = self::APP_TEMPLATES . '/views/' . $templateName . '.php')) $templateFile = $file;
-		else $templateFile = self::SYSTEM_TEMPLATES . '/views/' . $templateName . '.php';
+		if (file_exists($file = self::$appTemplates . '/views/' . $templateName . '.php')) $templateFile = $file;
+		else $templateFile = self::$systemTemplates . '/views/' . $templateName . '.php';
 
 		return $templateFile;
 	}

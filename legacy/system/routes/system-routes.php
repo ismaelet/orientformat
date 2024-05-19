@@ -3,7 +3,7 @@
 /**
  * Ajax calls
  */
-RouteOld::add('/ajax/*', function ($path) {
+\Legacy\System\Classes\LegacyRoute::add('/ajax/*', function ($path) {
 	$ajaxFile = null;
 	$ajaxRequest = explode('ajax/', $path)[1] ?? null;
 	$ajaxModule = explode('?', $ajaxRequest)[0] ?? null;
@@ -19,7 +19,7 @@ RouteOld::add('/ajax/*', function ($path) {
  * API calls
  */
 // Function call
-RouteOld::add('/api-old/call-function/*', function ($path) {
+\Legacy\System\Classes\LegacyRoute::add('/api-old/call-function/*', function ($path) {
 	$response = [];
 
 	// request data
@@ -33,7 +33,7 @@ RouteOld::add('/api-old/call-function/*', function ($path) {
 });
 
 // Search a table
-RouteOld::add('/api-old/search-table/*', function ($path) {
+\Legacy\System\Classes\LegacyRoute::add('/api-old/search-table/*', function ($path) {
 	$response = [];
 	$queryFilters = [];
 	$queryParameters = [];
@@ -63,14 +63,14 @@ RouteOld::add('/api-old/search-table/*', function ($path) {
 
 		$query = $querySelect . ' FROM ' . $table . ' WHERE ' . $queryFilters . '  ORDER BY ' . $queryOrder . ' ' . $queryOrderDirection . ' LIMIT ' . $limit;
 
-		$response = (\System\Classes\DBOld::select($query, $queryParameters))->res;
+		$response = (\Legacy\System\Classes\LegacyDB::select($query, $queryParameters))->res;
 	}
 
 	echo json_encode($response);
 });
 
 // Class interactions
-RouteOld::add(['/api-old/get-class-properties/*', '/api-old/call-class-method/*'], function ($path) {
+\Legacy\System\Classes\LegacyRoute::add(['/api-old/get-class-properties/*', '/api-old/call-class-method/*'], function ($path) {
 	$response = [];
 
 	if (empty($_POST)) {
@@ -127,6 +127,6 @@ RouteOld::add(['/api-old/get-class-properties/*', '/api-old/call-class-method/*'
 /**
  * Favicon
  */
-RouteOld::add('/favicon.ico', function () {
+\Legacy\System\Classes\LegacyRoute::add('/favicon.ico', function () {
 	include(SERVER_ROOT . '/app/assets/favicon/favicon.ico');
 });

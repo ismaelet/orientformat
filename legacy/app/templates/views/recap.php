@@ -11,7 +11,7 @@
 
 		<?php if ($area->id <> 4) { ?>
 
-			<a class="button" href="<?= client_url('/student-read?id=' . $section->mainSection->id) ?>">
+			<a class="button" href="<?= route('analysis.student.section', $section) ?>">
 				<?= embed_icon('read') ?>
 				Saperne di più
 			</a>

@@ -2,7 +2,7 @@
 
 use \Legacy\UserSystem\Student;
 
-$students = \System\Classes\DBOld::select('
+$students = \Legacy\System\Classes\LegacyDB::select('
 		students.id FROM students
 		INNER JOIN users ON students.userId = users.id
 		WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ? AND users.status=1
@@ -10,7 +10,7 @@ $students = \System\Classes\DBOld::select('
 
 // fetch choices
 $choices = [];
-$choicesRes = \System\Classes\DBOld::select('id, advice FROM advices_list ORDER BY id ASC');
+$choicesRes = \Legacy\System\Classes\LegacyDB::select('id, advice FROM advices_list ORDER BY id ASC');
 
 while ($choice = $choicesRes->fetch_assoc()) {
 	$choices[$choice['id']] = $choice['advice'];
@@ -29,10 +29,10 @@ if (isset($_POST['add-advice'])) {
 	$advices = implode(',', $advices);
 
 	if (empty($advices)) {
-		\System\Classes\DBOld::delete('advices WHERE userID = ?', $_POST['id']);
-	} else if (\System\Classes\DBOld::exists('advices WHERE userID = ?', $_POST['id'])) {
-		\System\Classes\DBOld::update('advices SET advices = ? WHERE userID = ?', [$advices, $_POST['id']]);
+		\Legacy\System\Classes\LegacyDB::delete('advices WHERE userID = ?', $_POST['id']);
+	} else if (\Legacy\System\Classes\LegacyDB::exists('advices WHERE userID = ?', $_POST['id'])) {
+		\Legacy\System\Classes\LegacyDB::update('advices SET advices = ? WHERE userID = ?', [$advices, $_POST['id']]);
 	} else {
-		\System\Classes\DBOld::add('advices (userID, advices) VALUES (?, ?)', [$_POST['id'], $advices]);
+		\Legacy\System\Classes\LegacyDB::add('advices (userID, advices) VALUES (?, ?)', [$_POST['id'], $advices]);
 	}
 }

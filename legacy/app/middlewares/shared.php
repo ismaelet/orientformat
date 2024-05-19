@@ -11,10 +11,10 @@ if (isset($_GET['user'])) {
 	$userID = $_GET['user'];
 
 	//fetch class and check that the user is a teacher of that class
-	$grade = \System\Classes\DBOld::find('class FROM users WHERE id=? AND level=1', [$user->id]);
+	$grade = \Legacy\System\Classes\LegacyDB::find('class FROM users WHERE id=? AND level=1', [$user->id]);
 
 	//if teacher and student both exists and are of that class
-	if ($grade && \System\Classes\DBOld::exists('users WHERE class=? AND id=?', [$grade, $userID])) {
+	if ($grade && \Legacy\System\Classes\LegacyDB::exists('users WHERE class=? AND id=?', [$grade, $userID])) {
 
 		$student = $userID;
 

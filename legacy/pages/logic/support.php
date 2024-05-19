@@ -5,12 +5,12 @@ $topicId = $_GET['topic'] ?? null;
 $topicText = '';
 
 // fetch categories
-$categories = \System\Classes\DBOld::select('* FROM support_categories ORDER BY id ASC');
+$categories = \Legacy\System\Classes\LegacyDB::select('* FROM support_categories ORDER BY id ASC');
 
 // fetch topics
 if ($categoryId) {
-	$categoryData = \System\Classes\DBOld::row('* FROM support_categories WHERE id = ?', [$categoryId]);
-	$topics = \System\Classes\DBOld::select('* FROM support_topics WHERE categoryId = ? ORDER BY id ASC', [$categoryId]);
+	$categoryData = \Legacy\System\Classes\LegacyDB::row('* FROM support_categories WHERE id = ?', [$categoryId]);
+	$topics = \Legacy\System\Classes\LegacyDB::select('* FROM support_topics WHERE categoryId = ? ORDER BY id ASC', [$categoryId]);
 }
 
 function _fill_text($text, $topicId) {

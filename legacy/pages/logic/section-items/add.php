@@ -18,8 +18,8 @@ $layout['preview'] = $item->url;
 
 $this->title = $item->id ? $item->name : 'Aggiungi un prodotto';
 
-$images = \System\Classes\DBOld::select('* FROM item_images WHERE itemId=? ORDER BY sort ASC', [$item->id]);
-$promotion = \System\Classes\DBOld::row('* FROM ecommerce_promotions WHERE itemId=? ORDER BY expiration DESC', [$id]);
+$images = \Legacy\System\Classes\LegacyDB::select('* FROM item_images WHERE itemId=? ORDER BY sort ASC', [$item->id]);
+$promotion = \Legacy\System\Classes\LegacyDB::row('* FROM ecommerce_promotions WHERE itemId=? ORDER BY expiration DESC', [$id]);
 
 // template parts
 include_once('-expands-add/basic-data.php');
@@ -37,8 +37,8 @@ if (isset($_POST['submit-form'])) {
 
 	// create the item is it doesn't exist
 	if (!$id) {
-		$id = \System\Classes\DBOld::add('items () VALUES ()');
-		\System\Classes\DBOld::add('item_data (itemId) VALUES (?)', [$id]);
+		$id = \Legacy\System\Classes\LegacyDB::add('items () VALUES ()');
+		\Legacy\System\Classes\LegacyDB::add('item_data (itemId) VALUES (?)', [$id]);
 		$added = true;
 	}
 
@@ -48,14 +48,14 @@ if (isset($_POST['submit-form'])) {
 	//form_db_update('items_data', $itemTech, 'itemId', $id);
 	//form_db_update('items_data', $itemShippingTech, 'itemId', $id);
 
-	\System\Classes\DBOld::update(
+	\Legacy\System\Classes\LegacyDB::update(
 		'items SET slug=?, highlighted=?, price=?, inStock=?, status=?, sku=? WHERE id=?',
 		[$itemSlug, $itemHighlighted, $itemPrice, $_POST['inStock'], $_POST['status'], $_POST['sku'], $id]
 	);
 
 	// stocks
-	\System\Classes\DBOld::delete('item_stocks WHERE itemId=?', $id);
-	\System\Classes\DBOld::add('item_stocks (itemId, quantity)', [$id, $_POST['stock']]);
+	\Legacy\System\Classes\LegacyDB::delete('item_stocks WHERE itemId=?', $id);
+	\Legacy\System\Classes\LegacyDB::add('item_stocks (itemId, quantity)', [$id, $_POST['stock']]);
 
 	// update the FAQs
 	// add_faqs($id);
@@ -74,10 +74,10 @@ if (isset($_POST['submit-form'])) {
 		}
 		$variations .= implode(',', $variants);
 	}
-	if (\System\Classes\DBOld::exists('items_variations WHERE itemId=?', [$id]))
-		\System\Classes\DBOld::update('items_variations SET variations=? WHERE itemId=?', [$variations, $id]);
+	if (\Legacy\System\Classes\LegacyDB::exists('items_variations WHERE itemId=?', [$id]))
+		\Legacy\System\Classes\LegacyDB::update('items_variations SET variations=? WHERE itemId=?', [$variations, $id]);
 	else if ($variations)
-		\System\Classes\DBOld::add('items_variations (itemId, variations) VALUES (?, ?)', [$id, $variations]);*/
+		\Legacy\System\Classes\LegacyDB::add('items_variations (itemId, variations) VALUES (?, ?)', [$id, $variations]);*/
 
 	// manage the imgs
 	if (!empty($_FILES['new-img-files']['name'][0])) {
@@ -86,7 +86,7 @@ if (isset($_POST['submit-form'])) {
 	} else if (isset($_POST['images'])) {
 		// reorder the images
 		foreach ($_POST['images'] as $key => $img)
-			\System\Classes\DBOld::update('item_images SET sort=? WHERE id=?', [$key + 1, $img]);
+			\Legacy\System\Classes\LegacyDB::update('item_images SET sort=? WHERE id=?', [$key + 1, $img]);
 	}
 
 	// refresh
@@ -98,7 +98,7 @@ if (isset($_POST['delete'])) {
 	$path = __PUBLIC_SERVER_ROOT__ . '/uploads/items/' . $id . '/*';
 	$files = glob($path);
 
-	\System\Classes\DBOld::delete('items WHERE id=?', [$id]);
+	\Legacy\System\Classes\LegacyDB::delete('items WHERE id=?', [$id]);
 
 	foreach ($files as $file) unlink($file);
 
@@ -122,7 +122,7 @@ if (isset($_POST['delete-img'])) {
 
 	foreach ($files as $file) unlink($file);
 
-	\System\Classes\DBOld::delete('item_images WHERE id=?', [$imgId]);
+	\Legacy\System\Classes\LegacyDB::delete('item_images WHERE id=?', [$imgId]);
 
 	redirect_old('#gallery');
 }
@@ -132,15 +132,15 @@ if (isset($_POST['add-promotion'])) {
 	$promotionPrice = (float) str_replace(',', '.', $_POST['promotion-price']);
 	$promotionExpiration = $_POST['promotion-expiration'];
 
-	\System\Classes\DBOld::delete('ecommerce_promotions WHERE itemId=?', [$id]);
-	\System\Classes\DBOld::add('ecommerce_promotions (itemId, price, expiration)', [$id, $promotionPrice, $promotionExpiration]);
+	\Legacy\System\Classes\LegacyDB::delete('ecommerce_promotions WHERE itemId=?', [$id]);
+	\Legacy\System\Classes\LegacyDB::add('ecommerce_promotions (itemId, price, expiration)', [$id, $promotionPrice, $promotionExpiration]);
 
 	redirect_old('#promotions');
 }
 
 // delete promotion
 if (isset($_POST['delete-promotion'])) {
-	\System\Classes\DBOld::delete('ecommerce_promotions WHERE itemId=?', $id);
+	\Legacy\System\Classes\LegacyDB::delete('ecommerce_promotions WHERE itemId=?', $id);
 
 	redirect_old('#promotions');
 }
@@ -183,7 +183,7 @@ function item_upload_img($imgId = false) {
 				[[100, 100], 70, 'crop'],
 			];
 
-			$imgId = \System\Classes\DBOld::row('MAX(id) as maxId FROM item_images')['maxId'] + 1;
+			$imgId = \Legacy\System\Classes\LegacyDB::row('MAX(id) as maxId FROM item_images')['maxId'] + 1;
 
 			foreach ($sizes as $size) {
 				$fileUrl = __PUBLIC_SERVER_ROOT__ . '/uploads/items/' . $id . '/' . $imgId . '-' . ($size[0][0] ?? $size[0]) . '.jpg';
@@ -200,9 +200,9 @@ function item_upload_img($imgId = false) {
 				upload_img($fileConfig);
 			}
 
-			$sort = \System\Classes\DBOld::row('MAX(sort) as maxSort FROM item_images WHERE itemId=?', [$id])['maxSort'] + 1;
+			$sort = \Legacy\System\Classes\LegacyDB::row('MAX(sort) as maxSort FROM item_images WHERE itemId=?', [$id])['maxSort'] + 1;
 
-			\System\Classes\DBOld::add('item_images (id, itemId, sort) VALUES (?, ?, ?)', [$imgId, $id, $sort]);
+			\Legacy\System\Classes\LegacyDB::add('item_images (id, itemId, sort) VALUES (?, ?, ?)', [$imgId, $id, $sort]);
 		}
 	}
 }
@@ -213,10 +213,10 @@ function item_upload_img($imgId = false) {
 	$answers = $_POST['faq-answer'];
 	array_walk($questions, 'trim');
 	array_walk($answers, 'trim');
-	\System\Classes\DBOld::delete('items_faqs WHERE itemId=?', $id);
+	\Legacy\System\Classes\LegacyDB::delete('items_faqs WHERE itemId=?', $id);
 	foreach ($questions as $key => $question) {
 		if (!empty($question) && !empty($answers[$key])) {
-			\System\Classes\DBOld::add('items_faqs (itemId, question, answer) VALUES (?, ?, ?)', [$id, $question, $answers[$key]]);
+			\Legacy\System\Classes\LegacyDB::add('items_faqs (itemId, question, answer) VALUES (?, ?, ?)', [$id, $question, $answers[$key]]);
 		}
 	}
 }*/

@@ -5,7 +5,7 @@ namespace Legacy\Activity\Result;
 use \Legacy\Activity\Result\Handler\StudentSectionResult;
 use \Legacy\Activity\Test;
 use DatabaseObject;
-use DBOld;
+use LegacyDB;
 
 /**
  * SectionResult class
@@ -38,7 +38,7 @@ class SectionResult {
 	}
 
 	private function getSpeed() {
-		return \System\Classes\DBOld::sum('speed FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?' . ' AND ' . TestResult::TEST_INDEX . ' IN (SELECT ' . Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ?)', [$this->studentId, $this->sectionId]);
+		return \Legacy\System\Classes\LegacyDB::sum('speed FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?' . ' AND ' . TestResult::TEST_INDEX . ' IN (SELECT ' . Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ?)', [$this->studentId, $this->sectionId]);
 	}
 
 	private function getSpeedString() {
@@ -63,7 +63,7 @@ class SectionResult {
 	 * Update methods
 	 */
 	public function updateCompleted(bool $completed) {
-		\System\Classes\DBOld::update(self::TABLE . ' SET completed = ? WHERE ' . self::INDEX . ' = ?', [$completed ? 1 : 0, $this->id]);
+		\Legacy\System\Classes\LegacyDB::update(self::TABLE . ' SET completed = ? WHERE ' . self::INDEX . ' = ?', [$completed ? 1 : 0, $this->id]);
 
 		$this->data['completed'] = $completed;
 
@@ -74,7 +74,7 @@ class SectionResult {
 	 * Istance methods
 	 */
 	public static function new($sectionId) {
-		$id = \System\Classes\DBOld::add(self::TABLE . ' (' . self::USER_INDEX . ', ' . self::SECTION_INDEX . ')', [studentId(), $sectionId]);
+		$id = \Legacy\System\Classes\LegacyDB::add(self::TABLE . ' (' . self::USER_INDEX . ', ' . self::SECTION_INDEX . ')', [studentId(), $sectionId]);
 
 		return new self($id);
 	}

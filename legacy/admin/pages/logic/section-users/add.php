@@ -1,6 +1,6 @@
 <?php
 
-$user = new User($_GET['id'] ?? null);
+$user = new \Legacy\System\Classes\User($_GET['id'] ?? null);
 
 /**
  * Query configuration

@@ -3,16 +3,16 @@
 // fetch current section
 $currentSection = false;
 
-if (strpos(ViewOld::getInstance()->page, '-')) {
-	$currentPath = explode('/', explode('section-', ViewOld::getInstance()->page)[1], 2);
-	$currentSection = \System\Classes\DBOld::row('* FROM admin_sections WHERE category=? AND slug=?', [$currentPath[0], $currentPath[1]]);
+if (strpos(\Legacy\System\Classes\LegacyView::getInstance()->page, '-')) {
+	$currentPath = explode('/', explode('section-', \Legacy\System\Classes\LegacyView::getInstance()->page)[1], 2);
+	$currentSection = \Legacy\System\Classes\LegacyDB::row('* FROM admin_sections WHERE category=? AND slug=?', [$currentPath[0], $currentPath[1]]);
 }
 
 // fetch categories
 $menu['categories'] = [];
 $queryManager = manager() ? '' : 'manager=0';
 
-$categories = \System\Classes\DBOld::select('* FROM admin_categories ' . ($queryManager ? 'WHERE ' . $queryManager : '') . ' ORDER BY manager ASC, sort ASC, name ASC');
+$categories = \Legacy\System\Classes\LegacyDB::select('* FROM admin_categories ' . ($queryManager ? 'WHERE ' . $queryManager : '') . ' ORDER BY manager ASC, sort ASC, name ASC');
 
 while ($categoryData = $categories->fetch_assoc()) {
 	$category = [];
@@ -20,7 +20,7 @@ while ($categoryData = $categories->fetch_assoc()) {
 	$category['slug'] = $categoryData['slug'];
 	$category['checked'] = $currentSection && $category['slug'] == $currentSection['category'];
 
-	$sections = \System\Classes\DBOld::select('* FROM admin_sections WHERE category=? AND hidden=0 ' . ($queryManager ? 'AND ' . $queryManager : '') . ' ORDER BY sort ASC, name ASC', [$category['slug']]);
+	$sections = \Legacy\System\Classes\LegacyDB::select('* FROM admin_sections WHERE category=? AND hidden=0 ' . ($queryManager ? 'AND ' . $queryManager : '') . ' ORDER BY sort ASC, name ASC', [$category['slug']]);
 
 	while ($sectionData = $sections->fetch_assoc()) {
 		$section = [];

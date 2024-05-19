@@ -2,7 +2,7 @@
 
 namespace Grade;
 
-use DBOld;
+use LegacyDB;
 
 class Path {
 	public $id = null;
@@ -11,7 +11,7 @@ class Path {
 	public $areaIdsStr;
 
 	function __construct($id) {
-		if ($row = \System\Classes\DBOld::row('* FROM paths WHERE id=?', [$id])) {
+		if ($row = \Legacy\System\Classes\LegacyDB::row('* FROM paths WHERE id=?', [$id])) {
 			$this->id = $id;
 			$this->name = $row['name'];
 			$this->sectionIdsStr = $row['sectionIds'];

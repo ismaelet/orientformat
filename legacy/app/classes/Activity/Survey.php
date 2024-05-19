@@ -3,7 +3,7 @@
 namespace Legacy\Activity;
 
 use DatabaseObject;
-use DBOld;
+use LegacyDB;
 
 class Survey {
 
@@ -25,7 +25,7 @@ class Survey {
 
 	private function getQuestions() {
 		$questions = [];
-		$res = \System\Classes\DBOld::select('text, positive FROM surveys_questions WHERE surveyId = ?', [$this->id]);
+		$res = \Legacy\System\Classes\LegacyDB::select('text, positive FROM surveys_questions WHERE surveyId = ?', [$this->id]);
 
 		while ($row = $res->fetch_assoc()) {
 			$questions[] = [$row['text'], $row['positive']];

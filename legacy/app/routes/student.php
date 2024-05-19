@@ -4,19 +4,19 @@ use \Legacy\Activity\Section;
 use \Legacy\Activity\Test;
 
 // grade selection and activities
-RouteOld::add('/activities', function () {
+\Legacy\System\Classes\LegacyRoute::add('/activities', function () {
 	$grade = $_GET['grade'] ?? null;
 	$page = in_array($grade, [1, 2, 3, 4, 5, 6, 7, 8]) ? 'activities/list' : 'activities/grades';
 
 	add_grade_style();
 
-	ViewOld::setPage($page)
+	\Legacy\System\Classes\LegacyView::setPage($page)
 		->setMiddlewares(['public', 'logged', 'active', 'beginner-review', 'end-review', 'required-email'])
 		->show();
 });
 
 // tests
-RouteOld::add(['/profile/section', '/skills/section', '/knowledge/section', '/choose/section'], function () {
+\Legacy\System\Classes\LegacyRoute::add(['/profile/section', '/skills/section', '/knowledge/section', '/choose/section'], function () {
 	// get test and section
 	$sectionId = $_GET['id'] ?? null;
 	$testId = $_GET['test-id'] ?? null;
@@ -31,7 +31,7 @@ RouteOld::add(['/profile/section', '/skills/section', '/knowledge/section', '/ch
 	add_grade_style();
 
 	if (!$section->isStandard) {
-		$testId = \System\Classes\DBOld::find(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ?', [$section->id]);
+		$testId = \Legacy\System\Classes\LegacyDB::find(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ?', [$section->id]);
 	} else if (!$testId && !$section->completed) {
 		$testId = $section->checkpointId;
 	}
@@ -50,7 +50,7 @@ RouteOld::add(['/profile/section', '/skills/section', '/knowledge/section', '/ch
 	}
 
 	// render
-	ViewOld::setPage($page)
+	\Legacy\System\Classes\LegacyView::setPage($page)
 		->setTemplate($template)
 		->setTitle($title)
 		->setMiddlewares(['public', 'logged', 'active', 'beginner-review', 'end-review', 'required-email'])
@@ -61,27 +61,8 @@ RouteOld::add(['/profile/section', '/skills/section', '/knowledge/section', '/ch
 });
 
 // areas
-RouteOld::add('/student-read', function () {
-	$id = $_GET['id'] ?? null;
-	$areaId = $_GET['area'] ?? null;
-
-	if ($id) {
-		$section = \System\Classes\DBOld::find('slug FROM ' . Section::TABLE . ' WHERE id = ?', $id);
-	}
-
-	if ($areaId) {
-		$area = \System\Classes\DBOld::find('slug FROM areas WHERE id = ?', $areaId);
-	}
-
-	$page = $id ? $section : 'area-' . $area;
-
-	if (!$page) {
-		redirect_old('/');
-	}
-
-	add_grade_style();
-
-	ViewOld::setPage('student-read/' . $page)
+\Legacy\System\Classes\LegacyRoute::add('/student-read', function () {
+	\Legacy\System\Classes\LegacyView::setPage('student-read/' . $page)
 		->setTitle('Saperne di più')
 		->setTemplate('student-read')
 		->setMiddlewares(['public', 'logged', 'active', 'beginner-review', 'end-review', 'required-email'])
@@ -91,17 +72,17 @@ RouteOld::add('/student-read', function () {
 });
 
 // interests
-RouteOld::add('/interest', function () {
+\Legacy\System\Classes\LegacyRoute::add('/interest', function () {
 	add_grade_style();
 
-	ViewOld::setPage('interest')
+	\Legacy\System\Classes\LegacyView::setPage('interest')
 		->setMiddlewares(['public', 'logged', 'active', 'beginner-review', 'end-review', 'required-email'])
 		->show();
 });
 
 // review
-RouteOld::add('/review', function () {
-	ViewOld::setPage('review')
+\Legacy\System\Classes\LegacyRoute::add('/review', function () {
+	\Legacy\System\Classes\LegacyView::setPage('review')
 		->setMiddlewares(['public', 'student', 'logged', 'active', 'required-email'])
 		->show();
 });

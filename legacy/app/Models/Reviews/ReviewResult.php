@@ -4,7 +4,7 @@ namespace LegacyModels\Reviews;
 
 use LegacyModels\Model;
 use LegacyModels\User\Student;
-use DBOld;
+use LegacyDB;
 
 /**
  * @property int studentId
@@ -33,7 +33,7 @@ class ReviewResult extends Model {
 	 * Get the associated review
 	 */
 	public function review() {
-		return $this->reviewId ? ReViewOld::find($this->reviewId) : null;
+		return $this->reviewId ? Re\Legacy\System\Classes\LegacyView::find($this->reviewId) : null;
 	}
 
 	/**
@@ -46,7 +46,7 @@ class ReviewResult extends Model {
 		$structuredResults = $this->structuredResults();
 
 		foreach ($structuredResults as $questionKey => $answers) {
-			$questionId = \System\Classes\DBOld::find("id FROM " . ReviewQuestion::table() . " WHERE full_slug = ? AND (reviewIds = '' OR FIND_IN_SET(?, reviewIds))", [$questionKey, $this->reviewId]);
+			$questionId = \Legacy\System\Classes\LegacyDB::find("id FROM " . ReviewQuestion::table() . " WHERE full_slug = ? AND (reviewIds = '' OR FIND_IN_SET(?, reviewIds))", [$questionKey, $this->reviewId]);
 
 			if ($questionId) {
 				$question = ReviewQuestion::find($questionId);

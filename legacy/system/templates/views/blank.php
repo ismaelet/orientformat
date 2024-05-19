@@ -2,7 +2,7 @@
 <html data-theme="<?= $_SESSION['theme-color'] ?>" data-client-root="<?= CLIENT_ROOT ?>">
 
 <head>
-	<?= PHP_EOL . ViewOld::getInstance()->renderHeadContent() . PHP_EOL . PHP_EOL ?>
+	<?= PHP_EOL . \Legacy\System\Classes\LegacyView::getInstance()->renderHeadContent() . PHP_EOL . PHP_EOL ?>
 
 
 	<!-- Google tag (gtag.js) -->
@@ -22,7 +22,7 @@
 <body>
 	{% place body %}
 
-	<?php if (\System\Classes\ConfigOld::getInstance()->cookiesWarning && !isset($_COOKIE['cookies-warning'])) { ?>
+	<?php if (\Legacy\System\Classes\LegacyConfig::getInstance()->cookiesWarning && !isset($_COOKIE['cookies-warning'])) { ?>
 
 		<div class="cookies-warning">
 			<h3 class="cookies-warning_title">Avviso cookies</h3>
@@ -41,6 +41,6 @@
 </body>
 
 <!-- Foot scripts -->
-<?= ScriptLoader::loadFootInline() ?>
+<?= \Legacy\System\Classes\ScriptLoader::loadFootInline() ?>
 
 </html>

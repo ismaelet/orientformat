@@ -15,13 +15,13 @@ $graphData['max'] = 100;
 $graphData['columns'] = [];
 
 foreach ($grade->students as $student) {
-	if (\System\Classes\DBOld::exists("results WHERE userID = ? AND testID IN ('7', '8', '9', '10', '11', '12') AND completed=1", [studentId()])) {
+	if (\Legacy\System\Classes\LegacyDB::exists("results WHERE userID = ? AND testID IN ('7', '8', '9', '10', '11', '12') AND completed=1", [studentId()])) {
 		$columnData = [];
 		$studentResults = [];
 		$rawResults = Student\SectionTestResult::getRawResult(studentId(), $sectionId);
 
 		foreach ($rawResults as $resultId => $resultValue) {
-			$resultName = \System\Classes\DBOld::find('title FROM ' . Test::TABLE . ' WHERE id = ?', [$resultId]);
+			$resultName = \Legacy\System\Classes\LegacyDB::find('title FROM ' . Test::TABLE . ' WHERE id = ?', [$resultId]);
 			$studentResults[$resultName] = Student\SectionTestResult::parseToString($sectionId, $resultValue);
 		}
 

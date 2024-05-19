@@ -1,6 +1,6 @@
 <?php
 
-namespace System\Classes;
+namespace Legacy\System\Classes;
 
 class Query {
 

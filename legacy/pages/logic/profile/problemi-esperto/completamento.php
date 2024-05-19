@@ -17,7 +17,7 @@ define('_SETS', [
 
 $count = count(_SETS);
 
-TestLogic::setParameterCount($count)
+Test\Legacy\System\Classes\Logic::setParameterCount($count)
 	->setTestSubmitFunction(function () {
 		$sets = _SETS;
 		$correctResultCount = 0;
@@ -28,5 +28,5 @@ TestLogic::setParameterCount($count)
 			}
 		}
 
-		return round($correctResultCount / TestLogic::$parameterCount * 100);
+		return round($correctResultCount / Test\Legacy\System\Classes\Logic::$parameterCount * 100);
 	});

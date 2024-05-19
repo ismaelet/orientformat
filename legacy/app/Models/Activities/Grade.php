@@ -4,7 +4,7 @@ namespace LegacyModels\Activities;
 
 use LegacyModels\Activities\Results\TestResult;
 use LegacyModels\OldModel;
-use DBOld;
+use LegacyDB;
 use User;
 
 class Grade extends OldModel {
@@ -28,7 +28,7 @@ class Grade extends OldModel {
 		$sectionIndex = Section::indexName();
 		$sectionLinkedIndex = Test::linkedIndexName(Section::class);
 
-		return $this->testIds = (\System\Classes\DBOld::execute(
+		return $this->testIds = (\Legacy\System\Classes\LegacyDB::execute(
 			"SELECT $testTable.$testIndex
 				FROM $testTable 
 				INNER JOIN $sectionTable
@@ -51,7 +51,7 @@ class Grade extends OldModel {
 		$testResultTestIndex = TestResult::linkedIndexName(Test::class);
 		$gradeTestIds = implode(',', $this->testIds());
 
-		return $this->completedTestIds = \System\Classes\DBOld::execute("SELECT $testResultIndex FROM $testResultTable WHERE $testResultUserIndex = ? AND FIND_IN_SET($testResultTestIndex, '$gradeTestIds')", [studentId()])->extractResults() ?: [];
+		return $this->completedTestIds = \Legacy\System\Classes\LegacyDB::execute("SELECT $testResultIndex FROM $testResultTable WHERE $testResultUserIndex = ? AND FIND_IN_SET($testResultTestIndex, '$gradeTestIds')", [studentId()])->extractResults() ?: [];
 	}
 
 	public function completedTestCount() {

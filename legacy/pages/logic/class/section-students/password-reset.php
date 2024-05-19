@@ -18,4 +18,4 @@ if (!$valid) {
 // generate new password
 $password = bin2hex(random_bytes(5));
 
-\System\Classes\DBOld::update('users SET password = ? WHERE id = ?', [$password, $studentId]);
+\Legacy\System\Classes\LegacyDB::update('users SET password = ? WHERE id = ?', [$password, $studentId]);

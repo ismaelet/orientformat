@@ -2,7 +2,7 @@
 
 use LogicManager\TestLogic;
 
-TestLogic::setParameterCount(1)
+Test\Legacy\System\Classes\Logic::setParameterCount(1)
 	->setTestSubmitFunction(function () {
 		return str_replace('.', '', $_POST['field'][0]) == 16000 ? 100 : 0;
 	});

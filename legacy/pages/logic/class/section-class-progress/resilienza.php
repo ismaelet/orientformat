@@ -17,7 +17,7 @@ $graphData['max'] = 100;
 $graphData['columns'] = [];
 
 foreach ($grade->students as $student) {
-	if (\System\Classes\DBOld::exists("results WHERE userID = ? AND testID=49 AND completed=1", [studentId()])) {
+	if (\Legacy\System\Classes\LegacyDB::exists("results WHERE userID = ? AND testID=49 AND completed=1", [studentId()])) {
 		$graphData['columns'][$student->fullName] = Student\SectionTestResult::getResult(studentId(), $sectionId);
 	}
 }

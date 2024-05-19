@@ -7,10 +7,10 @@ use LogicManager\AdminLogic;
 $values = [];
 $listRows = [];
 $currentPage = $_GET['page'] ?? 1;
-$pageConfig = ViewOld::get('pageConfig') ?? [];
-$queryConfig = ViewOld::get('queryConfig');
-$fields = ViewOld::get('fields');
-$buttons = ViewOld::get('buttons') ?? [];
+$pageConfig = \Legacy\System\Classes\LegacyView::get('pageConfig') ?? [];
+$queryConfig = \Legacy\System\Classes\LegacyView::get('queryConfig');
+$fields = \Legacy\System\Classes\LegacyView::get('fields');
+$buttons = \Legacy\System\Classes\LegacyView::get('buttons') ?? [];
 
 /*
 * Page configuration fields
@@ -47,7 +47,7 @@ $queryConfig['maximum-results'] = $queryConfig['maximum-results'] ?? 40;
 * Table interactions
 */
 if (isset($_POST['delete'])) {
-	\System\Classes\DBOld::delete($queryConfig['table'] . ' WHERE ' . $queryConfig['index'] . ' = ?', [$_POST['delete']]);
+	\Legacy\System\Classes\LegacyDB::delete($queryConfig['table'] . ' WHERE ' . $queryConfig['index'] . ' = ?', [$_POST['delete']]);
 }
 
 /*
@@ -74,8 +74,8 @@ for ($i = 0; $i < substr_count($queryConfig['where-string'], '?'); $i++) {
 }
 
 // execute the queries
-$queryResults = \System\Classes\DBOld::select($sql, $values);
-$resultCount = \System\Classes\DBOld::count($sqlCount, $values);
+$queryResults = \Legacy\System\Classes\LegacyDB::select($sql, $values);
+$resultCount = \Legacy\System\Classes\LegacyDB::count($sqlCount, $values);
 
 /*
 * Setup the page
@@ -124,7 +124,7 @@ while ($queryRow = $queryResults->fetch_assoc()) {
 				$entry['value'] = $field['value'];
 				break;
 			case $field['type'] == 'find':
-				$entry['value'] = \System\Classes\DBOld::find($field['find'], [$queryRow[$field['name']]]) ?: '-';
+				$entry['value'] = \Legacy\System\Classes\LegacyDB::find($field['find'], [$queryRow[$field['name']]]) ?: '-';
 				break;
 			case $field['name'] && isset($queryRow[$field['name']]):
 				$entry['value'] = strlen($queryRow[$field['name']]) ? $queryRow[$field['name']] : '-';
@@ -161,8 +161,8 @@ while ($queryRow = $queryResults->fetch_assoc()) {
 		}
 
 		// additional code
-		if (AdminLogic::$listResultConfiguration) {
-			$entry = AdminLogic::executeListResultConfiguration($entry, $key, $field, $queryRow);
+		if (Admin\Legacy\System\Classes\Logic::$listResultConfiguration) {
+			$entry = Admin\Legacy\System\Classes\Logic::executeListResultConfiguration($entry, $key, $field, $queryRow);
 		}
 
 		// store entry
@@ -229,8 +229,8 @@ function _generate_buttons(&$entry, $queryRow, $queryConfig, $buttons) {
 		$button['type'] = $url ? 'link' : 'button';
 
 		// additional code
-		if (AdminLogic::$listButtonConfiguration) {
-			AdminLogic::executeListButtonConfiguration($button, $buttonKey, $queryRow);
+		if (Admin\Legacy\System\Classes\Logic::$listButtonConfiguration) {
+			Admin\Legacy\System\Classes\Logic::executeListButtonConfiguration($button, $buttonKey, $queryRow);
 		}
 
 		if ($button) $entry['buttons'][] = $button;

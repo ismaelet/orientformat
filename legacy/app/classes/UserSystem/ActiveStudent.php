@@ -13,7 +13,7 @@ class ActiveStudent {
 	 * Magic methods
 	 */
 	private function __construct() {
-		if (\System\Classes\DBOld::exists(Student::TABLE . ' WHERE ' . Student::INDEX . ' = ?', [userId()])) {
+		if (\Legacy\System\Classes\LegacyDB::exists(Student::TABLE . ' WHERE ' . Student::INDEX . ' = ?', [userId()])) {
 			$student = new Student(userId());
 
 			self::$id = $student->id;

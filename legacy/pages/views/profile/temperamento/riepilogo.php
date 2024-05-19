@@ -33,7 +33,7 @@
 	<div class="results">
 
 		<?php for ($i = 1; $i < 6; $i++) {
-			$relatedTestId = \System\Classes\DBOld::find(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND step = ?', [$test->sectionId, $i]);
+			$relatedTestId = \Legacy\System\Classes\LegacyDB::find(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND step = ?', [$test->sectionId, $i]);
 		?>
 
 			<div id="result<?= $i ?>" class="result">

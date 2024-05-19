@@ -57,7 +57,7 @@ if (isset($_POST['login'])) {
 	header('Location: ' . PUBLIC_CLIENT_ROOT . '/');
 }
 
-AdminLogic::$listResultConfiguration = function ($entry, $key, $field, $queryRow) {
+Admin\Legacy\System\Classes\Logic::$listResultConfiguration = function ($entry, $key, $field, $queryRow) {
 	if ($field['name'] == 'schoolClasses') {
 		$schoolClassString = [];
 		$teacher = new Teacher($queryRow['userId']);

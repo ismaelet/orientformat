@@ -11,7 +11,7 @@ function generate_base_url(?string $file = '') {
 	if ($file[0] == '/') {
 		$url = $file;
 	} else {
-		$url = assets_directory(ViewOld::getInstance()->url) . $file;
+		$url = assets_directory(\Legacy\System\Classes\LegacyView::getInstance()->url) . $file;
 	}
 
 	return $url;
@@ -86,7 +86,7 @@ function icon_url_raw($file) {
 	$file = $file . '.svg';
 
 	if ($file[0] == '/') $urlRaw = $file;
-	else if (file_exists(SERVER_ROOT . $path = assets_directory(ViewOld::getInstance()->url) . $file)) $urlRaw = $path;
+	else if (file_exists(SERVER_ROOT . $path = assets_directory(\Legacy\System\Classes\LegacyView::getInstance()->url) . $file)) $urlRaw = $path;
 	else if (file_exists(SERVER_ROOT . $path = APP_ICONS_DIR . $file)) $urlRaw = $path;
 	else $urlRaw = ICONS_DIR . $file;
 
@@ -176,11 +176,6 @@ function force_base_url(string $filePath) {
 	return strpos($filePath, SERVER_ROOT) !== false ? explode(SERVER_ROOT, $filePath)[1] : $filePath;
 }
 
-// get the server root
-function server_root() {
-	return defined('PUBLIC_SERVER_ROOT') ? PUBLIC_SERVER_ROOT : SERVER_ROOT;
-}
-
 // get the public server root
 function public_server_root() {
 	return server_root();
@@ -204,7 +199,7 @@ function redirect_old($path = false) {
 		$url = $path;
 	}
 
-	\System\Classes\ConnectionInterface::getInstance()->close();
+	\Legacy\System\Classes\ConnectionInterface::getInstance()->close();
 
 	header('Location: ' . $url);
 

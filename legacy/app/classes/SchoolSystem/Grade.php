@@ -84,15 +84,15 @@ class Grade {
 	}
 
 	private function getAreas() {
-		return rows_to_objects(\System\Classes\DBOld::select(Area::INDEX . ' FROM ' . Area::TABLE . ' WHERE id IN (SELECT ' . Section::AREA_INDEX . ' FROM ' . Section::TABLE . ' WHERE FIND_IN_SET(?, years))', [$this->fullId]), Area::class);
+		return rows_to_objects(\Legacy\System\Classes\LegacyDB::select(Area::INDEX . ' FROM ' . Area::TABLE . ' WHERE id IN (SELECT ' . Section::AREA_INDEX . ' FROM ' . Section::TABLE . ' WHERE FIND_IN_SET(?, years))', [$this->fullId]), Area::class);
 	}
 
 	private function getSections() {
-		return rows_to_objects(\System\Classes\DBOld::select(Section::INDEX . ' FROM ' . Section::TABLE . ' WHERE FIND_IN_SET(?, years) AND active = 1', [$this->fullId]), Section::class);
+		return rows_to_objects(\Legacy\System\Classes\LegacyDB::select(Section::INDEX . ' FROM ' . Section::TABLE . ' WHERE FIND_IN_SET(?, years) AND active = 1', [$this->fullId]), Section::class);
 	}
 
 	private function getDoableSections() {
-		return rows_to_objects(\System\Classes\DBOld::select(Section::INDEX . ' FROM ' . Section::TABLE . ' WHERE FIND_IN_SET(?, years) AND active = 1 AND isStandard = 1', [$this->fullId]), Section::class);
+		return rows_to_objects(\Legacy\System\Classes\LegacyDB::select(Section::INDEX . ' FROM ' . Section::TABLE . ' WHERE FIND_IN_SET(?, years) AND active = 1 AND isStandard = 1', [$this->fullId]), Section::class);
 	}
 
 	private function getDoableSectionIds() {
@@ -114,7 +114,7 @@ class Grade {
 	}
 
 	private function getResultId() {
-		$resultId = \System\Classes\DBOld::find(GradeResult::INDEX . ' FROM ' . GradeResult::TABLE . ' WHERE ' . GradeResult::GRADE_INDEX . ' = ?  AND ' . GradeResult::USER_INDEX . ' = ?', [$this->id, studentId()]);
+		$resultId = \Legacy\System\Classes\LegacyDB::find(GradeResult::INDEX . ' FROM ' . GradeResult::TABLE . ' WHERE ' . GradeResult::GRADE_INDEX . ' = ?  AND ' . GradeResult::USER_INDEX . ' = ?', [$this->id, studentId()]);
 
 		if (!$resultId) {
 			$resultId = GradeResult::new($this->id);
@@ -133,7 +133,7 @@ class Grade {
 	}
 
 	private function getStandardTestIds() {
-		$res = \System\Classes\DBOld::select(
+		$res = \Legacy\System\Classes\LegacyDB::select(
 			Test::TABLE . '.' . Test::INDEX . ' FROM ' . Test::TABLE . ' INNER JOIN ' .
 				Section::TABLE . ' ON ' . Test::TABLE . '.' . Test::SECTION_INDEX . ' = ' . Section::TABLE . '.' . Section::INDEX . '
 				WHERE isStandard = 1 AND ' . Test::TABLE . '.active = 1 AND ' . Section::TABLE . '.active = 1 AND FIND_IN_SET(?, years)',
@@ -166,7 +166,7 @@ class Grade {
 	public function updateProgress() {
 		$progressPercentage = $this->calcProgress();
 
-		\System\Classes\DBOld::update(GradeResult::TABLE . ' SET progressPercentage = ? WHERE ' . GradeResult::GRADE_INDEX . ' = ? AND ' . GradeResult::USER_INDEX . ' = ?', [$progressPercentage, $this->id, studentId()]);
+		\Legacy\System\Classes\LegacyDB::update(GradeResult::TABLE . ' SET progressPercentage = ? WHERE ' . GradeResult::GRADE_INDEX . ' = ? AND ' . GradeResult::USER_INDEX . ' = ?', [$progressPercentage, $this->id, studentId()]);
 	}
 
 	/**
@@ -175,7 +175,7 @@ class Grade {
 	private function calcProgress() {
 		$testCount = $this->standardTestCount;
 
-		$completedTestCount = \System\Classes\DBOld::count(
+		$completedTestCount = \Legacy\System\Classes\LegacyDB::count(
 			TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND completed = 1 AND FIND_IN_SET(' . TestResult::TEST_INDEX . ', "' . implode(',', $this->standardTestIds) . '")',
 			[studentId()]
 		);

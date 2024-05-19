@@ -36,11 +36,11 @@ spl_autoload_register(function ($name) {
 });
 
 // Run the setup
-Setup::run();
+\Legacy\System\Classes\Setup::run();
 
 if (class_exists('AppSetup')) {
 	AppSetup::run();
 }
 
 // Render the page
-RouteOld::run();
+\Legacy\System\Classes\LegacyRoute::run();

@@ -1,7 +1,7 @@
 <?php
 
 // homepage
-RouteOld::add(['', '/', '/index.php', '/home'], function () {
+\Legacy\System\Classes\LegacyRoute::add(['', '/', '/index.php', '/home'], function () {
 
 	if (admin()) {
 		redirect_old('/admin');
@@ -15,14 +15,14 @@ RouteOld::add(['', '/', '/index.php', '/home'], function () {
 		$middlewares = ['public', 'logged', 'active', 'beginner-review', 'end-review', 'required-email'];
 	}
 
-	ViewOld::setPage($page)
+	\Legacy\System\Classes\LegacyView::setPage($page)
 		->setMiddlewares($middlewares)
 		->show();
 });
 
 // support
-RouteOld::add(['/tutorial', '/help'], function () {
-	ViewOld::setPage('support')
+\Legacy\System\Classes\LegacyRoute::add(['/tutorial', '/help'], function () {
+	\Legacy\System\Classes\LegacyView::setPage('support')
 		->setTitle('Supporto')
 		->show();
 });

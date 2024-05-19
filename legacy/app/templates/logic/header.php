@@ -1,8 +1,12 @@
 <?php
 
-// elements
-
+use Illuminate\Support\Facades\Auth;
 use \Legacy\UserSystem\Student;
+
+$userId = Auth::id();
+$user = Auth::user();
+$userGroupId = $user ? $user->groupId : null;
+$logged = Auth::check();
 
 $header = [];
 
@@ -31,7 +35,7 @@ $raw_links = [
 	[
 		'title' => 'Gestisci classe',
 		'loc' => 'teacher',
-		'url' => CLIENT_ROOT . '/teacher',
+		'url' => client_url('/teacher'),
 		'logged' => true,
 		'teacher' => true,
 		'mobile' => true,
@@ -39,7 +43,7 @@ $raw_links = [
 	[
 		'title' => 'Attività',
 		'loc' => 'activities',
-		'url' => CLIENT_ROOT . '/activities',
+		'url' => client_url('/activities'),
 		'logged' => true,
 		'student' => true,
 	],
@@ -70,7 +74,7 @@ $raw_links = [
 	[
 		'title' => 'Login',
 		'loc' => 'login',
-		'url' => CLIENT_ROOT . '/login',
+		'url' => client_url('/login'),
 		'logged' => false,
 		'mobile' => true,
 
@@ -78,14 +82,14 @@ $raw_links = [
 	[
 		'title' => 'Logout',
 		'loc' => 'login',
-		'url' => CLIENT_ROOT . '/logout',
+		'url' => client_url('/logout'),
 		'logged' => true,
 		'mobile' => true,
 	],
 	[
 		'title' => 'Logout',
 		'loc' => 'login',
-		'url' => CLIENT_ROOT . '/logout',
+		'url' => client_url('/logout'),
 		'logged' => true,
 		'teacher' => true,
 		'mobile' => false,
@@ -99,15 +103,15 @@ foreach ($raw_links as $link) {
 	// check logged filter
 	if (isset($link['logged'])) {
 
-		if ($link['logged'] && !userId()) $valid = false;
-		else if (!$link['logged'] && userId()) $valid = false;
+		if ($link['logged'] && !$userId) $valid = false;
+		else if (!$link['logged'] && $userId) $valid = false;
 	}
 
 	// check student filter
-	if (isset($link['student']) && user()->groupId != 0) $valid = false;
+	if (isset($link['student']) && $userGroupId != 0) $valid = false;
 
 	// check teacher filter
-	if (isset($link['teacher']) && user()->groupId != 1) $valid = false;
+	if (isset($link['teacher']) && $userGroupId != 1) $valid = false;
 
 	// check manager filter
 	if (isset($link['manager']) && !manager()) $valid = false;
@@ -116,12 +120,12 @@ foreach ($raw_links as $link) {
 }
 
 // login bar
-$h_log_out = ['Login', CLIENT_ROOT . '/login'];
+$h_log_out = ['Login', client_url('/login')];
 $h_log_in = false;
 
-if (userId()) {
-	if (user()->groupId == 2) $h_log_in = ['Amministrazione', CLIENT_ROOT . '/management'];
-	else if (user()->groupId == 1) $h_log_in = ['Gestione Classi', CLIENT_ROOT . '/teacher'];
+if ($userId) {
+	if ($userGroupId == 2) $h_log_in = ['Amministrazione', client_url('/management')];
+	else if ($userGroupId == 1) $h_log_in = ['Gestione Classi', client_url('/teacher')];
 	else $h_log_in = ['Logout', client_url('/logout')];
 }
 
@@ -129,12 +133,12 @@ if (userId()) {
 $header['survey-end'] = false;
 
 if (
-	logged() &&
-	!user()->groupId &&
-	ViewOld::getInstance()->location != 'review' &&
-	!\System\Classes\DBOld::exists('review_results WHERE studentId = ? AND reviewId = 3', [userId()])
+	$logged &&
+	!$userGroupId &&
+	\Legacy\System\Classes\LegacyView::getInstance()->location != 'review' &&
+	!\Legacy\System\Classes\LegacyDB::exists('review_results WHERE studentId = ? AND reviewId = 3', [$userId])
 ) {
-	$h_grade = (new Student(userId()))->schoolClass;
+	$h_grade = (new Student($userId))->schoolClass;
 	$header['survey-end'] = $h_grade && $h_grade->ended;
 }
 

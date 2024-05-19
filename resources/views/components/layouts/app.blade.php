@@ -47,7 +47,7 @@
 		href="{{ asset('main.css') }}"
 	>
 	<script
-		src="{{ asset('main.js') }}"
+		src="{{ asset('app.js') }}"
 		defer
 	></script>
 

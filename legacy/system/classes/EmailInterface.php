@@ -1,5 +1,7 @@
 <?php
 
+namespace Legacy\System\Classes;
+
 /**
  * Requires: phpmailer/phpmailer
  */
@@ -27,7 +29,7 @@ class EmailInterface {
 
 	// send the email
 	static function sendEmail(array $emailData) {
-		$config = \System\Classes\ConfigOld::getInstance();
+		$config = \Legacy\System\Classes\LegacyConfig::getInstance();
 		$email = new PHPMailer();
 
 		// email setup
@@ -70,7 +72,7 @@ class EmailInterface {
 
 	// prepare a standard email body
 	static function generateEmailContent($emailBody) {
-		$config = \System\Classes\ConfigOld::getInstance();
+		$config = \Legacy\System\Classes\LegacyConfig::getInstance();
 
 		$logo = $config->logoAbsoluteImage;
 

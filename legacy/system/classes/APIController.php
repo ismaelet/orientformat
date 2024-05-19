@@ -1,5 +1,7 @@
 <?php
 
+namespace Legacy\System\Classes;
+
 class APIController {
 
 	public function processRequest($requestEndpoint, $requestMethod, $requestContent) {

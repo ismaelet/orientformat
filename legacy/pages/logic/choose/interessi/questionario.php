@@ -11,4 +11,4 @@ bump($questions);
 
 $count = count($questions);
 
-TestLogic::setParameterCount($count);
+Test\Legacy\System\Classes\Logic::setParameterCount($count);

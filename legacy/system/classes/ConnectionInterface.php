@@ -1,6 +1,6 @@
 <?php
 
-namespace System\Classes;
+namespace Legacy\System\Classes;
 
 use Exception;
 use mysqli;
@@ -35,7 +35,7 @@ class ConnectionInterface {
 	 * Magic methods
 	 */
 	private function __construct() {
-		$config = \System\Classes\ConfigOld::getInstance();
+		$config = \Legacy\System\Classes\LegacyConfig::getInstance();
 		$currentServerAddress = $_SERVER['REMOTE_ADDR'];
 		$liveServerAddress = $config->serverAddress;
 

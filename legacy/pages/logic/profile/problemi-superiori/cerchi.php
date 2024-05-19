@@ -11,9 +11,9 @@ $patterns = [
 
 $correctSolution = 3;
 
-TestLogic::setParameterCount(1)
+Test\Legacy\System\Classes\Logic::setParameterCount(1)
 	::setTestSubmitFunction(function () {
-		$correctSolution = ViewOld::getInstance()->get('correctSolution');
+		$correctSolution = \Legacy\System\Classes\LegacyView::getInstance()->get('correctSolution');
 
 		return $_POST['field'][0] == $correctSolution ? 100 : 0;
 	});

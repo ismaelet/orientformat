@@ -119,7 +119,7 @@
 	--font-size-300: 0.875rem;
 	--font-size-400: 1rem;
 	--font-size-700: min(2rem, 6vw);
-	--font-size-800: min(3rem, 10vw);
+	--font-size-800: min(4rem, 10vw);
 	--font-size-900: min(5rem, 15vw);
 
 	/* 2.4.3 Font weight */

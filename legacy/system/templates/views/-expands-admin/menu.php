@@ -3,9 +3,9 @@
 
 		<div class="">
 			<!-- Title -->
-			<div class="menu__header" href="<?= \System\Classes\ConfigOld::getInstance()->websiteUrl ?>">
+			<div class="menu__header" href="<?= \Legacy\System\Classes\LegacyConfig::getInstance()->websiteUrl ?>">
 				<?= $navigationLogo ?>
-				<h1 class="menu__title"><?= \System\Classes\ConfigOld::getInstance()->name ?></h1>
+				<h1 class="menu__title"><?= \Legacy\System\Classes\LegacyConfig::getInstance()->name ?></h1>
 			</div>
 
 			<!-- Admin sections -->

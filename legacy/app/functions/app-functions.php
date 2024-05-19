@@ -52,7 +52,7 @@ function isSupervisor() {
  * Tests
  */
 function test() {
-	return ViewOld::get('test');
+	return \Legacy\System\Classes\LegacyView::get('test');
 }
 
 function testId() {
@@ -118,7 +118,7 @@ function get_grade_style() {
 }
 
 function add_grade_style() {
-	StyleLoader::add('specific-styles/' . get_grade_style(), 'app', 5);
+	\Legacy\System\Classes\StyleLoader::add('specific-styles/' . get_grade_style(), 'app', 5);
 }
 
 if (!function_exists("array_is_list")) {
@@ -138,12 +138,12 @@ if (!function_exists("array_is_list")) {
  */
 function printConnectionTime() {
 	if (DEBUG) {
-		echo 'Connection time: ' . round(microtime(true) - \System\Classes\ConnectionInterface::$timeOpen, 3) * 1000 . ' ms<br>';
+		echo 'Connection time: ' . round(microtime(true) - \Legacy\System\Classes\ConnectionInterface::$timeOpen, 3) * 1000 . ' ms<br>';
 	}
 }
 
 function printQueriesCount() {
 	if (DEBUG) {
-		echo 'Queries count: ' . \System\Classes\ConnectionInterface::$queryCount . '<br>';
+		echo 'Queries count: ' . \Legacy\System\Classes\ConnectionInterface::$queryCount . '<br>';
 	}
 }

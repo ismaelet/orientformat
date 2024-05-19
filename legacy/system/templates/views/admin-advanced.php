@@ -10,7 +10,7 @@
 			<?= embed_icon('navigation/arrow1-left') ?>
 		</a>
 
-		<h1 class="panel__title"><?= ViewOld::$title ?></h1>
+		<h1 class="panel__title"><?= \Legacy\System\Classes\LegacyView::$title ?></h1>
 	</div>
 
 	<?php if ($added) { ?>
@@ -35,7 +35,7 @@
 		<!-- Footer -->
 		<section class="page-footer">
 
-			<?php if (ViewOld::get('id') && $pageConfig['delete']) { ?>
+			<?php if (\Legacy\System\Classes\LegacyView::get('id') && $pageConfig['delete']) { ?>
 
 				<!-- Delete -->
 				<button type="submit" class="button button--secondary button--auto-width button--bad" name="delete" onclick="return confirm('Confermi di voler eliminare questo elemento? Non potrà essere ripristinato.')">
@@ -57,8 +57,8 @@
 
 			<!-- Save -->
 			<button type="submit" class="button" name="submit">
-				<?= ViewOld::get('id') ? 'Salva' : 'Aggiungi' ?>
-				<?= embed_icon(ViewOld::get('id') ? 'save' : 'add') ?>
+				<?= \Legacy\System\Classes\LegacyView::get('id') ? 'Salva' : 'Aggiungi' ?>
+				<?= embed_icon(\Legacy\System\Classes\LegacyView::get('id') ? 'save' : 'add') ?>
 			</button>
 		</section>
 

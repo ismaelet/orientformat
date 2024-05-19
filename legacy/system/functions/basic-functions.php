@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
-use System\Classes\ActiveUser;
 
 // parse colors
 function parse_rgba($hex, $alpha = 1) {
@@ -20,18 +19,18 @@ function parse_rgba($hex, $alpha = 1) {
  */
 function user() {
 	if (Auth::id()) {
-		ActiveUser::getInstance()->setId(Auth::id());
+		\Legacy\System\Classes\ActiveUser::getInstance()->setId(Auth::id());
 	}
 
-	return ActiveUser::getInstance();
+	return \Legacy\System\Classes\ActiveUser::getInstance();
 }
 
 function userId() {
 	if (Auth::id()) {
-		ActiveUser::getInstance()->setId(Auth::id());
+		\Legacy\System\Classes\ActiveUser::getInstance()->setId(Auth::id());
 	}
 
-	return ActiveUser::getInstance()->id;
+	return \Legacy\System\Classes\ActiveUser::getInstance()->id;
 }
 
 function logged() {
@@ -43,11 +42,11 @@ function guest() {
 }
 
 function admin() {
-	return ActiveUser::getInstance()->isAdmin;
+	return \Legacy\System\Classes\ActiveUser::getInstance()->isAdmin;
 }
 
 function manager() {
-	return ActiveUser::getInstance()->isManager;
+	return \Legacy\System\Classes\ActiveUser::getInstance()->isManager;
 }
 
 /**

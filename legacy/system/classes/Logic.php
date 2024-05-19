@@ -1,5 +1,7 @@
 <?php
 
+namespace Legacy\System\Classes;
+
 class Logic {
 
 	public const DEFAULT_TEMPLATE_PRIORITY = 50;
@@ -14,12 +16,14 @@ class Logic {
 		'form' => self::DEFAULT_TEMPLATE_PRIORITY + 10,
 		'header' => self::DEFAULT_TEMPLATE_PRIORITY + 20,
 		'footer' => self::DEFAULT_TEMPLATE_PRIORITY + 20,
+		'student-read' => 70
 	];
 
 	public static $dependencies = [
 		'main' => ['blank', 'header', 'footer'],
 		'void' => 'blank',
 		'form' => 'main',
+		'student-read' => 'main'
 	];
 
 	// add a file
@@ -72,8 +76,8 @@ class Logic {
 			if ($file['url']) self::loadFile($file['url']);
 
 			if ($file['type'] == 'template') {
-				StyleLoader::add($file['name'], 'template');
-				ScriptLoader::add($file['name'], 'template');
+				\Legacy\System\Classes\StyleLoader::add($file['name'], 'template');
+				\Legacy\System\Classes\ScriptLoader::add($file['name'], 'template');
 			}
 		}
 	}
@@ -86,10 +90,10 @@ class Logic {
 		foreach ($variables as $key => $value) {
 			if (!in_array($key, ['__file'])) {
 				if (!is_array($value) || array_is_list($value)) {
-					ViewOld::set($key, $value);
+					\Legacy\System\Classes\LegacyView::set($key, $value);
 				} else {
 					foreach ($value as $arrayKey => $arrayValue) {
-						ViewOld::set($key, $arrayValue, $arrayKey);
+						\Legacy\System\Classes\LegacyView::set($key, $arrayValue, $arrayKey);
 					}
 				}
 			}

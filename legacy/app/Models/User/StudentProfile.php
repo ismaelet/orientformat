@@ -3,7 +3,7 @@
 namespace LegacyModels\User;
 
 use LegacyModels\OldModel;
-use DBOld;
+use LegacyDB;
 
 class StudentProfile extends OldModel {
 	/**
@@ -23,9 +23,9 @@ class StudentProfile extends OldModel {
 		$mappedChoiches = [];
 		$relevantKeys = ['s2d2_1', 's2d2_2', 's2d2_3', 's2d2_4'];
 		$intensities = ['Lo esclude', 'Lo sta valutando', 'Ne è quasi sicuro/a', 'Ne è sicuro/a'];
-		$choices = explode(',', \System\Classes\DBOld::find('`rows` FROM review_questions WHERE id = 2'));
+		$choices = explode(',', \Legacy\System\Classes\LegacyDB::find('`rows` FROM review_questions WHERE id = 2'));
 
-		$answers = \System\Classes\DBOld::find('results FROM review_results WHERE studentId = ? ORDER BY reviewId DESC', [$this->id]);
+		$answers = \Legacy\System\Classes\LegacyDB::find('results FROM review_results WHERE studentId = ? ORDER BY reviewId DESC', [$this->id]);
 
 		if ($answers) {
 			$answers = explode(',', $answers);

@@ -53,9 +53,6 @@ header {
 /* Logo */
 #h-logo {
 	display: inline-block;
-	background-image: url(/app/assets/logo/logo_wht.png);
-	background-size: contain;
-	background-position: left;
 	width: 10rem;
 	height: 5rem;
 }

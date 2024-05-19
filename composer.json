@@ -15,6 +15,7 @@
 		"guzzlehttp/guzzle": "^7.0.1",
 		"laravel/framework": "8.83.27",
 		"laravel/tinker": "^2.0",
+		"phpmailer/phpmailer": "^6.9",
 		"sentry/sentry-laravel": "^4.5",
 		"symfony/filesystem": "^5.4"
 	},
@@ -46,7 +47,7 @@
 			"Database\\Seeders\\": "database/seeders/",
 			"Legacy\\": "legacy/app/classes/",
 			"LegacyModels\\": "legacy/app/Models/",
-			"System\\Classes\\": "legacy/system/classes/",
+			"Legacy\\System\\Classes\\": "legacy/system/classes/",
 			"System\\Traits\\": "legacy/system/traits/"
 		}
 	},

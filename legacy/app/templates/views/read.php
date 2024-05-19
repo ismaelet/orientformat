@@ -67,7 +67,9 @@
 
 <!-- Scroll back to top -->
 <a href="#content" id="scroll" class="round bgr-c1-h top">
-	<div class="icon cen bgr-wht" <?= icon_svg('navigation/arrow1-top') ?>></div>
+	<div class="icon cen">
+		<?= embed_icon('navigation/arrow-simple-top') ?>
+	</div>
 </a>
 
 {% end main %}

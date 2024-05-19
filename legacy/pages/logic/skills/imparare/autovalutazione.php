@@ -25,4 +25,4 @@ $graph_data = [
 
 $count = count($graph_data);
 
-TestLogic::setParameterCount($count);
+Test\Legacy\System\Classes\Logic::setParameterCount($count);

@@ -9,7 +9,7 @@ $results = [];
 $sections = test_config($test->id, 'sections');
 
 for ($i = 1; $i < 6; $i++) {
-	$requiredTestId = \System\Classes\DBOld::find('id FROM ' . Test::TABLE . ' WHERE sectionId = ? AND step = ?', [$test->sectionId, $i]);
+	$requiredTestId = \Legacy\System\Classes\LegacyDB::find('id FROM ' . Test::TABLE . ' WHERE sectionId = ? AND step = ?', [$test->sectionId, $i]);
 	$requiredTest = new Test($requiredTestId);
 
 	$results[] = round($requiredTest->percentage / 100 * 6);

@@ -2,8 +2,8 @@
 
 use LogicManager\TestLogic;
 
-StyleLoader::add('profile/temperamento/temperamento', 'page');
-ScriptLoader::add('profile/temperamento/temperamento', 'page');
+\Legacy\System\Classes\StyleLoader::add('profile/temperamento/temperamento', 'page');
+\Legacy\System\Classes\ScriptLoader::add('profile/temperamento/temperamento', 'page');
 
 $test = test();
 
@@ -11,7 +11,7 @@ $count = count($questions);
 
 bump($questions);
 
-TestLogic::setParameterCount($count)
+Test\Legacy\System\Classes\Logic::setParameterCount($count)
 	->setTestSubmitFunction(
 		function ($count) {
 			$max = $count * 6;

@@ -1,13 +1,13 @@
 <?php
 
-RouteOld::add('/send-mass-email', function () {
+\Legacy\System\Classes\LegacyRoute::add('/send-mass-email', function () {
 
 	$emails = [];
 	// all teacher with an active 3rd grade in the school year 2022/2033
-	//$teachers = \System\Classes\DBOld::select('referentId FROM classes WHERE grade=3 AND year=2022');
+	//$teachers = \Legacy\System\Classes\LegacyDB::select('referentId FROM classes WHERE grade=3 AND year=2022');
 
 	// all teacher with an active 3rd grade in the school year 2022/2033 and no students that completed the final survery
-	$teachers = \System\Classes\DBOld::select('referentId FROM classes WHERE grade=3 AND year=2022');
+	$teachers = \Legacy\System\Classes\LegacyDB::select('referentId FROM classes WHERE grade=3 AND year=2022');
 
 	// generate email content
 	$mailText = '
@@ -58,10 +58,10 @@ Vi ringraziamo per la collaborazione e rimaniamo a completa disposizione per eve
 	}
 });
 
-RouteOld::add('/list-active-teachers', function () {
+\Legacy\System\Classes\LegacyRoute::add('/list-active-teachers', function () {
 	$emails = [];
 
-	$teachers = \System\Classes\DBOld::select('
+	$teachers = \Legacy\System\Classes\LegacyDB::select('
 		referentId
 		FROM classes
 			INNER JOIN users ON classes.referentId = users.id
@@ -80,8 +80,8 @@ RouteOld::add('/list-active-teachers', function () {
 	}
 });
 
-RouteOld::add('/list-active-schools', function () {
-	$schools = \System\Classes\DBOld::select('
+\Legacy\System\Classes\LegacyRoute::add('/list-active-schools', function () {
+	$schools = \Legacy\System\Classes\LegacyDB::select('
 		id
 		FROM schools
 		WHERE id IN (SELECT school FROM classes WHERE year > 2021)

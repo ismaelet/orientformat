@@ -1,6 +1,6 @@
 <?php
 
-namespace System\Classes;
+namespace Legacy\System\Classes;
 
 use User;
 
@@ -17,7 +17,7 @@ class ActiveUser {
 	private function __construct() {
 		$userId = null;
 
-		if (\System\Classes\ConfigOld::getInstance()->hasDatabase) {
+		if (\Legacy\System\Classes\LegacyConfig::getInstance()->hasDatabase) {
 			$userId = $_SESSION['userId'] ?? $userId;
 			$userToken = $_COOKIE['auth_token'] ?? null;
 
@@ -27,7 +27,7 @@ class ActiveUser {
 		}
 
 		self::$id = $userId;
-		self::$user = new User($userId);
+		self::$user = new \Legacy\System\Classes\User($userId);
 	}
 
 	function __get($property) {
@@ -39,7 +39,7 @@ class ActiveUser {
 	 */
 	public function setId(int $id) {
 		self::$id = $id;
-		self::$user = new User($id);
+		self::$user = new \Legacy\System\Classes\User($id);
 
 		return $this;
 	}

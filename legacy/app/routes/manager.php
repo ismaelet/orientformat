@@ -1,7 +1,7 @@
 <?php
 
 // management panel
-RouteOld::add('/management', function () {
+\Legacy\System\Classes\LegacyRoute::add('/management', function () {
 	$view = new View('management/home');
 	$view->title('Pannello amministrativo');
 	$view->middlewares[] = 'management';
@@ -9,7 +9,7 @@ RouteOld::add('/management', function () {
 });
 
 // schools - add
-RouteOld::add('/management/schools/add', function () {
+\Legacy\System\Classes\LegacyRoute::add('/management/schools/add', function () {
 	$view = new View('management/schools/add');
 	$view->title('Pannello amministrativo');
 	$view->middlewares[] = 'management';
@@ -18,7 +18,7 @@ RouteOld::add('/management/schools/add', function () {
 });
 
 // schools - list
-RouteOld::add('/management/schools/list', function () {
+\Legacy\System\Classes\LegacyRoute::add('/management/schools/list', function () {
 	$view = new View('management/schools/list');
 	$view->title('Pannello amministrativo');
 	$view->middlewares[] = 'management';
@@ -27,7 +27,7 @@ RouteOld::add('/management/schools/list', function () {
 });
 
 // classes - add
-RouteOld::add('/management/classes/add', function () {
+\Legacy\System\Classes\LegacyRoute::add('/management/classes/add', function () {
 	$view = new View('management/classes/add');
 	$view->title('Pannello amministrativo');
 	$view->middlewares[] = 'management';
@@ -36,7 +36,7 @@ RouteOld::add('/management/classes/add', function () {
 });
 
 // classes - list
-RouteOld::add('/management/classes/list', function () {
+\Legacy\System\Classes\LegacyRoute::add('/management/classes/list', function () {
 	$view = new View('management/classes/list');
 	$view->title('Pannello amministrativo');
 	$view->middlewares[] = 'management';
@@ -45,7 +45,7 @@ RouteOld::add('/management/classes/list', function () {
 });
 
 // classes - results
-RouteOld::add('/management/classes/results', function () {
+\Legacy\System\Classes\LegacyRoute::add('/management/classes/results', function () {
 	$view = new View('management/classes/results');
 	$view->title('Pannello amministrativo');
 	$view->middlewares[] = 'management';
@@ -54,7 +54,7 @@ RouteOld::add('/management/classes/results', function () {
 });
 
 // teachers - add
-RouteOld::add('/management/teachers/add', function () {
+\Legacy\System\Classes\LegacyRoute::add('/management/teachers/add', function () {
 	$view = new View('management/teachers/add');
 	$view->title('Pannello amministrativo');
 	$view->middlewares[] = 'management';
@@ -63,7 +63,7 @@ RouteOld::add('/management/teachers/add', function () {
 });
 
 // teachers - reset password
-RouteOld::add('/management/teachers/reset', function () {
+\Legacy\System\Classes\LegacyRoute::add('/management/teachers/reset', function () {
 	$view = new View('management/teachers/reset');
 	$view->title('Pannello amministrativo');
 	$view->middlewares[] = 'management';
@@ -71,7 +71,7 @@ RouteOld::add('/management/teachers/reset', function () {
 });
 
 // teachers - list
-RouteOld::add('/management/teachers/list', function () {
+\Legacy\System\Classes\LegacyRoute::add('/management/teachers/list', function () {
 	$view = new View('management/teachers/list');
 	$view->title('Pannello amministrativo');
 	$view->middlewares[] = 'management';
@@ -80,7 +80,7 @@ RouteOld::add('/management/teachers/list', function () {
 });
 
 // students - list
-RouteOld::add('/management/students/list', function () {
+\Legacy\System\Classes\LegacyRoute::add('/management/students/list', function () {
 	$view = new View('management/students/list');
 	$view->title('Pannello amministrativo');
 	$view->middlewares[] = 'management';
@@ -89,7 +89,7 @@ RouteOld::add('/management/students/list', function () {
 });
 
 // students - download
-RouteOld::add('/management/students/download', function () {
+\Legacy\System\Classes\LegacyRoute::add('/management/students/download', function () {
 	$view = new View('management/students/download');
 	$view->title('Pannello amministrativo');
 	$view->middlewares[] = 'management';
@@ -97,7 +97,7 @@ RouteOld::add('/management/students/download', function () {
 });
 
 // students - results
-RouteOld::add('/management/students/results', function () {
+\Legacy\System\Classes\LegacyRoute::add('/management/students/results', function () {
 	$view = new View('management/students/results');
 	$view->title('Pannello amministrativo');
 	$view->middlewares[] = 'management';
@@ -105,7 +105,7 @@ RouteOld::add('/management/students/results', function () {
 });
 
 // students - completed
-RouteOld::add('/management/students/completed', function () {
+\Legacy\System\Classes\LegacyRoute::add('/management/students/completed', function () {
 	$view = new View('management/students/completed');
 	$view->title('Pannello amministrativo');
 	$view->middlewares[] = 'management';

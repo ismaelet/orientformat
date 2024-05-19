@@ -2,18 +2,18 @@
 
 global $grade;
 
-$testCount = \System\Classes\DBOld::count('results_permanent WHERE userID IN (SELECT userId FROM students WHERE classId = ?)', [$grade->id]);
+$testCount = \Legacy\System\Classes\LegacyDB::count('results_permanent WHERE userID IN (SELECT userId FROM students WHERE classId = ?)', [$grade->id]);
 
-$advicesCount = \System\Classes\DBOld::count('advices WHERE userID IN (SELECT userId FROM students WHERE classId = ?)', [$grade->id]);
+$advicesCount = \Legacy\System\Classes\LegacyDB::count('advices WHERE userID IN (SELECT userId FROM students WHERE classId = ?)', [$grade->id]);
 $advicesPercentage = round($advicesCount / $grade->studentCount * 100);
 
 // fetch students
-$students = \System\Classes\DBOld::select('* FROM users WHERE id IN (SELECT userId FROM students WHERE classId = ?) ORDER BY time DESC, id DESC', [$grade->id]);
+$students = \Legacy\System\Classes\LegacyDB::select('* FROM users WHERE id IN (SELECT userId FROM students WHERE classId = ?) ORDER BY time DESC, id DESC', [$grade->id]);
 
 // feed
 $feed = [];
 
-$feedEntriesData = \System\Classes\DBOld::select('userID, testID FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' IN (SELECT userId FROM students WHERE classId = ?) GROUP BY userID ORDER BY time DESC LIMIT 10', [$grade->id]);
+$feedEntriesData = \Legacy\System\Classes\LegacyDB::select('userID, testID FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' IN (SELECT userId FROM students WHERE classId = ?) GROUP BY userID ORDER BY time DESC LIMIT 10', [$grade->id]);
 
 while ($feedEntryData = $feedEntriesData->fetch_assoc()) {
 	$feedEntry = [];

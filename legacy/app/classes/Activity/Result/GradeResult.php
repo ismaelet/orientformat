@@ -3,7 +3,7 @@
 namespace Legacy\Activity\Result;
 
 use DatabaseObject;
-use DBOld;
+use LegacyDB;
 
 /**
  * GradeResult class
@@ -28,6 +28,6 @@ class GradeResult {
 	 * Istance methods
 	 */
 	public static function new(int $gradeId) {
-		return \System\Classes\DBOld::add(self::TABLE . ' (' . self::USER_INDEX . ', ' . self::GRADE_INDEX . ')', [studentId(), $gradeId]);
+		return \Legacy\System\Classes\LegacyDB::add(self::TABLE . ' (' . self::USER_INDEX . ', ' . self::GRADE_INDEX . ')', [studentId(), $gradeId]);
 	}
 }

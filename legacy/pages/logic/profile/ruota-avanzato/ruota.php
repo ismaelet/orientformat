@@ -3,8 +3,8 @@
 use \Legacy\Activity\Test;
 use LogicManager\TestLogic;
 
-StyleLoader::add('profile/ruota/ruota', 'page');
-ScriptLoader::add('profile/ruota/ruota', 'page');
+\Legacy\System\Classes\StyleLoader::add('profile/ruota/ruota', 'page');
+\Legacy\System\Classes\ScriptLoader::add('profile/ruota/ruota', 'page');
 
 $test = test();
 $result = $test->completed ? $test->rawResults : null;
@@ -21,10 +21,10 @@ if ($test->completed) {
 
 $emotionCount = count($emotions);
 
-TestLogic::setParameterCount(1);
+Test\Legacy\System\Classes\Logic::setParameterCount(1);
 
 for ($i = 1; $i < $step; $i++) {
-	$relatedTestId = \System\Classes\DBOld::find(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND step = ?', [$test->sectionId, $i]);
+	$relatedTestId = \Legacy\System\Classes\LegacyDB::find(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND step = ?', [$test->sectionId, $i]);
 	$relatedTest = new Test($relatedTestId);
 
 	if ($relatedTest->completed) {

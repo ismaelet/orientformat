@@ -9,8 +9,8 @@ $f_columns = [
 	[
 		'title' => 'Esplora',
 		'links' => [
-			['Home', CLIENT_ROOT . '/'],
-			['Supporto', CLIENT_ROOT . '/help'],
+			['Home', client_url('/')],
+			['Supporto', client_url('/help')],
 		]
 	],
 	[

@@ -15,7 +15,7 @@ $error = false;
 $id = $_GET['id'] ?? false;
 
 //fetch data
-if ($id) $row = $row ?? \System\Classes\DBOld::row('* FROM ' . $tbl . ' WHERE ' . $index . ' = ?', [$id]);
+if ($id) $row = $row ?? \Legacy\System\Classes\LegacyDB::row('* FROM ' . $tbl . ' WHERE ' . $index . ' = ?', [$id]);
 else $row = false;
 
 //add

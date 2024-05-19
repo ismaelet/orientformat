@@ -52,14 +52,14 @@ class Results {
 		$testIdsStr = "'" . implode("','", $testIds) . "'";
 
 		if ($classId) {
-			$resultIds = \System\Classes\DBOld::select("DISTINCT id, testID, userID FROM ' . TestResult::TABLE . ' WHERE testID IN (" . $testIdsStr . ") AND userID IN (SELECT userId FROM students WHERE classId=?)", [$classId])->res;
+			$resultIds = \Legacy\System\Classes\LegacyDB::select("DISTINCT id, testID, userID FROM ' . TestResult::TABLE . ' WHERE testID IN (" . $testIdsStr . ") AND userID IN (SELECT userId FROM students WHERE classId=?)", [$classId])->res;
 			$resultIds = array_column($resultIds, 'id');
 			$count = count($resultIds);
 			$resultIdsStr = "'" . implode("','", $resultIds) . "'";
-			$tot = \System\Classes\DBOld::sum("percentage FROM ' . TestResult::TABLE . ' WHERE id IN (" . $resultIdsStr . ")");
+			$tot = \Legacy\System\Classes\LegacyDB::sum("percentage FROM ' . TestResult::TABLE . ' WHERE id IN (" . $resultIdsStr . ")");
 		} else {
-			$tot = \System\Classes\DBOld::sum("percentage FROM results_permanent WHERE testID IN (" . $testIdsStr . ")");
-			$count = \System\Classes\DBOld::count("results_permanent WHERE testID IN (" . $testIdsStr . ")");
+			$tot = \Legacy\System\Classes\LegacyDB::sum("percentage FROM results_permanent WHERE testID IN (" . $testIdsStr . ")");
+			$count = \Legacy\System\Classes\LegacyDB::count("results_permanent WHERE testID IN (" . $testIdsStr . ")");
 		}
 
 		$result = round($tot / $count);

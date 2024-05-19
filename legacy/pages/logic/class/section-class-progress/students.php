@@ -4,13 +4,13 @@
 global $user, $grade;
 
 // fetch students
-$students = \System\Classes\DBOld::select('* FROM users WHERE id IN (SELECT userId FROM students WHERE classId = ? AND status=1) ORDER BY lastname ASC, firstname ASC, id ASC', [$grade->id]);
+$students = \Legacy\System\Classes\LegacyDB::select('* FROM users WHERE id IN (SELECT userId FROM students WHERE classId = ? AND status=1) ORDER BY lastname ASC, firstname ASC, id ASC', [$grade->id]);
 
 // activate a student
 if (isset($_POST['activate'])) {
 	$id = $_POST['id'];
 
-	\System\Classes\DBOld::update('users SET status=1 WHERE id = ?', $id);
+	\Legacy\System\Classes\LegacyDB::update('users SET status=1 WHERE id = ?', $id);
 
 	redirect_old();
 }
@@ -18,7 +18,7 @@ if (isset($_POST['activate'])) {
 if (isset($_POST['deactivate'])) {
 	$id = $_POST['id'];
 
-	\System\Classes\DBOld::update('users SET status=0 WHERE id = ?', $id);
+	\Legacy\System\Classes\LegacyDB::update('users SET status=0 WHERE id = ?', $id);
 
 	redirect_old();
 }

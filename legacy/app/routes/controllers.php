@@ -4,14 +4,14 @@
  * Email controllers
  */
 // Send reminder email
-RouteOld::add('/emails/reminder', function () {
+\Legacy\System\Classes\LegacyRoute::add('/emails/reminder', function () {
 	if (!isset($_SESSION['email-sent-reminder'])) {
 		$_SESSION['email-sent-reminder'] = true;
 		$emails = [];
-		$schoolClasses = \System\Classes\DBOld::select('id FROM school_classes WHERE year = 2023 AND grade = 3');
+		$schoolClasses = \Legacy\System\Classes\LegacyDB::select('id FROM school_classes WHERE year = 2023 AND grade = 3');
 
 		while ($schoolClass = $schoolClasses->fetch_assoc()) {
-			$users = \System\Classes\DBOld::select('email FROM users INNER JOIN teachers ON users.id = teachers.userId WHERE FIND_IN_SET(?, classes)', [$schoolClass['id']]);
+			$users = \Legacy\System\Classes\LegacyDB::select('email FROM users INNER JOIN teachers ON users.id = teachers.userId WHERE FIND_IN_SET(?, classes)', [$schoolClass['id']]);
 
 			while ($user = $users->fetch_assoc()) {
 				$emails[] = $user['email'];

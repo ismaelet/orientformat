@@ -21,7 +21,7 @@ foreach ($text as $textPart) {
 	}
 }
 
-TestLogic::setParameterCount($count)
+Test\Legacy\System\Classes\Logic::setParameterCount($count)
 	->setTestSubmitFunction(
 		function ($count) {
 			$resultCount = 0;

@@ -25,7 +25,7 @@ $time_str = '';
 $count = count(_CONCEPTS);
 
 // fetch previous results
-$results = \System\Classes\DBOld::find('result FROM results_others WHERE userID = ? AND testID = ?', [studentId(), $test->id]);
+$results = \Legacy\System\Classes\LegacyDB::find('result FROM results_others WHERE userID = ? AND testID = ?', [studentId(), $test->id]);
 
 if ($results) {
 	$results = explode(',', $results);
@@ -43,7 +43,7 @@ if ($minutes) {
 $time_str .= $seconds == 1 ? '1 secondo' : $seconds . ' secondi';
 
 // process result
-TestLogic::setParameterCount($count)
+Test\Legacy\System\Classes\Logic::setParameterCount($count)
 	->setTestSubmitFunction(
 		function ($count) {
 			$rightN = 0;
@@ -63,8 +63,8 @@ TestLogic::setParameterCount($count)
 
 			$results = implode(',', $results);
 
-			\System\Classes\DBOld::delete('results_others WHERE userID = ? AND testID = ?', [studentId(), $test->id]);
-			\System\Classes\DBOld::add('results_others (userID, testID, result) VALUES (?, ?, ?)', [studentId(), $test->id, $results]);
+			\Legacy\System\Classes\LegacyDB::delete('results_others WHERE userID = ? AND testID = ?', [studentId(), $test->id]);
+			\Legacy\System\Classes\LegacyDB::add('results_others (userID, testID, result) VALUES (?, ?, ?)', [studentId(), $test->id, $results]);
 
 			return round($rightN / $count * 100);
 		}

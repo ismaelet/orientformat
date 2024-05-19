@@ -7,33 +7,33 @@ class AppSetup {
 	 * Templates
 	 */
 	private static function initializeTemplates() {
-		Logic::$dependencies['test'] = 'main';
-		Logic::$dependencies['test-next'] = 'test';
-		Logic::$dependencies['survey'] = 'main';
-		Logic::$dependencies['recap'] = 'main';
-		Logic::$dependencies['survey-results'] = 'test';
-		Logic::$dependencies['read'] = 'main';
-		Logic::$dependencies['student-read'] = 'main';
-		Logic::$dependencies['dashboard'] = 'main';
-		Logic::$dependencies['school-class'] = 'dashboard';
-		Logic::$dependencies['school-class-graph'] = 'dashboard';
-		Logic::$priorities['test'] = 200;
-		Logic::$priorities['test-next'] = 210;
-		Logic::$priorities['survey'] = 60;
-		Logic::$priorities['survey-results'] = 210;
-		Logic::$priorities['recap'] = 60;
-		Logic::$priorities['read'] = 70;
-		Logic::$priorities['student-read'] = 70;
-		Logic::$priorities['dashboard'] = 60;
-		Logic::$priorities['school-class'] = 70;
-		Logic::$priorities['school-class-graph'] = 70;
+		\Legacy\System\Classes\Logic::$dependencies['test'] = 'main';
+		\Legacy\System\Classes\Logic::$dependencies['test-next'] = 'test';
+		\Legacy\System\Classes\Logic::$dependencies['survey'] = 'main';
+		\Legacy\System\Classes\Logic::$dependencies['recap'] = 'main';
+		\Legacy\System\Classes\Logic::$dependencies['survey-results'] = 'test';
+		\Legacy\System\Classes\Logic::$dependencies['read'] = 'main';
+		\Legacy\System\Classes\Logic::$dependencies['student-read'] = 'main';
+		\Legacy\System\Classes\Logic::$dependencies['dashboard'] = 'main';
+		\Legacy\System\Classes\Logic::$dependencies['school-class'] = 'dashboard';
+		\Legacy\System\Classes\Logic::$dependencies['school-class-graph'] = 'dashboard';
+		\Legacy\System\Classes\Logic::$priorities['test'] = 200;
+		\Legacy\System\Classes\Logic::$priorities['test-next'] = 210;
+		\Legacy\System\Classes\Logic::$priorities['survey'] = 60;
+		\Legacy\System\Classes\Logic::$priorities['survey-results'] = 210;
+		\Legacy\System\Classes\Logic::$priorities['recap'] = 60;
+		\Legacy\System\Classes\Logic::$priorities['read'] = 70;
+		\Legacy\System\Classes\Logic::$priorities['student-read'] = 70;
+		\Legacy\System\Classes\Logic::$priorities['dashboard'] = 60;
+		\Legacy\System\Classes\Logic::$priorities['school-class'] = 70;
+		\Legacy\System\Classes\Logic::$priorities['school-class-graph'] = 70;
 	}
 
 	/**
 	 * Middlewares
 	 */
 	private static function initializeMiddlewares() {
-		$middlewares = MiddlewareLoader::getInstance();
+		$middlewares = \Legacy\System\Classes\MiddlewareLoader::getInstance();
 
 		$middlewares->add('active', function () {
 			if (!user()->groupId && !user()->status) {
@@ -46,10 +46,6 @@ class AppSetup {
 
 			if (!isTeacher()) {
 				switch (true) {
-						// case student()->isInMiddleSchool && student()->schoolClass->relativeGrade < 3:
-						// 	// first and second middleschool year
-						// 	$reviewId =  1;
-						// 	break;
 
 					case student()->isInMiddleSchool && student()->schoolClass->relativeGrade == 3:
 						// third middleschool year
@@ -67,7 +63,7 @@ class AppSetup {
 						break;
 				}
 
-				if ($reviewId && !\System\Classes\DBOld::exists('review_results WHERE studentId = ? AND reviewId = ?', [userId(), $reviewId])) {
+				if ($reviewId && !\Legacy\System\Classes\LegacyDB::exists('review_results WHERE studentId = ? AND reviewId = ?', [userId(), $reviewId])) {
 					redirect_old('/review?id=' . $reviewId);
 				}
 			}
@@ -107,7 +103,7 @@ class AppSetup {
 				redirect_old('/');
 			}
 
-			if (!$schoolClassId || !\System\Classes\DBOld::exists(Teacher::TABLE . ' WHERE ' . Teacher::INDEX . ' = ? AND FIND_IN_SET (?, classes)', [teacherId(), $schoolClassId])) {
+			if (!$schoolClassId || !\Legacy\System\Classes\LegacyDB::exists(Teacher::TABLE . ' WHERE ' . Teacher::INDEX . ' = ? AND FIND_IN_SET (?, classes)', [teacherId(), $schoolClassId])) {
 				redirect_old('/teacher');
 			}
 		});

@@ -66,9 +66,9 @@ foreach ($sentences as $sentence) {
 }
 
 // submit
-TestLogic::setParameterCount($count)
+Test\Legacy\System\Classes\Logic::setParameterCount($count)
 	->setTestSubmitFunction(function ($count) {
-		$correctAnswers = ViewOld::get('correctAnswers');
+		$correctAnswers = \Legacy\System\Classes\LegacyView::get('correctAnswers');
 		$correctAnswerCount = 0;
 
 		foreach ($_POST['field'] as $answerKey => $answer) {

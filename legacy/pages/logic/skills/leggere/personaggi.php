@@ -85,22 +85,22 @@ $answers_emotions = [
 	[2, 3],
 ];
 
-$results_emotions = explode(',', \System\Classes\DBOld::find('result FROM results_others WHERE userID = ? AND testID = ?', [studentId(), $test->id]));
+$results_emotions = explode(',', \Legacy\System\Classes\LegacyDB::find('result FROM results_others WHERE userID = ? AND testID = ?', [studentId(), $test->id]));
 
 $count = count($questions) * 2;
 
 bump($questions);
 
-TestLogic::setParameterCount($count)
+Test\Legacy\System\Classes\Logic::setParameterCount($count)
 	->setTestSubmitFunction(function ($count) {
 		$rightN = 0;
-		$answers = ViewOld::getInstance()->get('answers');
-		$answers_emotions = ViewOld::getInstance()->get('answers_emotions');
+		$answers = \Legacy\System\Classes\LegacyView::getInstance()->get('answers');
+		$answers_emotions = \Legacy\System\Classes\LegacyView::getInstance()->get('answers_emotions');
 
 		$results = implode(',', $_POST['field_other']);
 
-		\System\Classes\DBOld::delete('results_others WHERE userID = ? AND testID = ?', [studentId(), testId()]);
-		\System\Classes\DBOld::add('results_others (userID, testID, result) VALUES (?, ?, ?)', [studentId(), testId(), $results]);
+		\Legacy\System\Classes\LegacyDB::delete('results_others WHERE userID = ? AND testID = ?', [studentId(), testId()]);
+		\Legacy\System\Classes\LegacyDB::add('results_others (userID, testID, result) VALUES (?, ?, ?)', [studentId(), testId(), $results]);
 
 		foreach ($_POST['field'] as $key => $field) {
 			if ($field == $answers[$key]) {

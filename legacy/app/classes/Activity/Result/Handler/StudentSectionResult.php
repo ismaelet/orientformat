@@ -7,7 +7,7 @@ use \Legacy\Activity\Section;
 use \Legacy\Activity\Test;
 use LegacyModels\Activities\Results\CondensedSectionResult;
 use LegacyModels\Activities\Section as SectionModel;
-use DBOld;
+use LegacyDB;
 use System\Traits\DynamicProperties;
 use User;
 
@@ -62,7 +62,7 @@ class StudentSectionResult {
 	 * Get methods
 	 */
 	private function getStaticResult() {
-		$row = \System\Classes\DBOld::row('* FROM ' . CondensedSectionResult::table() . ' WHERE ' . CondensedSectionResult::linkedIndexName(User::class) . ' = ? AND ' . CondensedSectionResult::linkedIndexName(SectionModel::class) . ' = ?', [$this->studentId, $this->sectionId]);
+		$row = \Legacy\System\Classes\LegacyDB::row('* FROM ' . CondensedSectionResult::table() . ' WHERE ' . CondensedSectionResult::linkedIndexName(User::class) . ' = ? AND ' . CondensedSectionResult::linkedIndexName(SectionModel::class) . ' = ?', [$this->studentId, $this->sectionId]);
 
 		return $row ? $row : null;
 	}
@@ -294,7 +294,7 @@ class StudentSectionResult {
 	}
 
 	private function calcSpeed() {
-		return \System\Classes\DBOld::sum('speed FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?' . ' AND ' . TestResult::TEST_INDEX . ' IN (SELECT ' . Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ?)', [$this->studentId, $this->sectionId]) ?: 0;
+		return \Legacy\System\Classes\LegacyDB::sum('speed FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?' . ' AND ' . TestResult::TEST_INDEX . ' IN (SELECT ' . Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ?)', [$this->studentId, $this->sectionId]) ?: 0;
 	}
 
 	public function getSpeedString() {

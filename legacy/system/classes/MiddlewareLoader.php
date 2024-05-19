@@ -1,5 +1,7 @@
 <?php
 
+namespace Legacy\System\Classes;
+
 class MiddlewareLoader {
 
 	use \System\Traits\Singleton;
@@ -10,7 +12,7 @@ class MiddlewareLoader {
 		$defaultMiddlewareLoader = [
 			'public' => function () {
 				// dd('public');
-				$public = !\System\Classes\ConfigOld::getInstance()->hasDatabase ?: \System\Classes\DBOld::find('value FROM config WHERE name = ?', ['public']);
+				$public = !\Legacy\System\Classes\LegacyConfig::getInstance()->hasDatabase ?: \Legacy\System\Classes\LegacyDB::find('value FROM config WHERE name = ?', ['public']);
 
 				if (!$public) {
 					redirect_old('/offline');
@@ -19,7 +21,7 @@ class MiddlewareLoader {
 
 			'not-public' => function () {
 				// dd('not-public');
-				$public = !\System\Classes\ConfigOld::getInstance()->hasDatabase ?: \System\Classes\DBOld::find('value FROM config WHERE name = ?', ['public']);
+				$public = !\Legacy\System\Classes\LegacyConfig::getInstance()->hasDatabase ?: \Legacy\System\Classes\LegacyDB::find('value FROM config WHERE name = ?', ['public']);
 
 				if ($public) {
 					redirect_old('/');
@@ -39,7 +41,7 @@ class MiddlewareLoader {
 			},
 
 			'not-logged' => function () {
-				$config = \System\Classes\ConfigOld::getInstance();
+				$config = \Legacy\System\Classes\LegacyConfig::getInstance();
 
 				if (!$config->hasDatabase || logged()) {
 					redirect_old('/');

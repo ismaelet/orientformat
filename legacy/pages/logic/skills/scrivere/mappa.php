@@ -26,4 +26,4 @@ $categories = [
 
 $count = count($types);
 
-TestLogic::setParameterCount($count);
+Test\Legacy\System\Classes\Logic::setParameterCount($count);

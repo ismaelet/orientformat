@@ -6,13 +6,13 @@ $teacher = new Teacher(($this->get('user'))->id);
 $grade = new Grade($teacher->classID);
 
 //fetch sudents data
-$studentsN = \System\Classes\DBOld::count('users WHERE level=0 AND class = ?', [$grade->id]);
-$activeN = \System\Classes\DBOld::count('users WHERE level=0 AND status=1 AND class = ?', [$grade->id]);
+$studentsN = \Legacy\System\Classes\LegacyDB::count('users WHERE level=0 AND class = ?', [$grade->id]);
+$activeN = \Legacy\System\Classes\LegacyDB::count('users WHERE level=0 AND status=1 AND class = ?', [$grade->id]);
 
-$areasTot = \System\Classes\DBOld::count('progress_areas WHERE progress=100 AND userID IN (SELECT id FROM users WHERE class = ? AND level=0 AND status=1)', [$grade->id]);
+$areasTot = \Legacy\System\Classes\LegacyDB::count('progress_areas WHERE progress=100 AND userID IN (SELECT id FROM users WHERE class = ? AND level=0 AND status=1)', [$grade->id]);
 $areasPercent = $activeN ? round($areasTot / ($activeN * 3) * 100) : 0;
 
-$sectionsTot = \System\Classes\DBOld::count(TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' IN (SELECT id FROM users WHERE class = ? AND level=0 AND status=1)', [$grade->id]);
+$sectionsTot = \Legacy\System\Classes\LegacyDB::count(TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' IN (SELECT id FROM users WHERE class = ? AND level=0 AND status=1)', [$grade->id]);
 
 //setup sections
 $sections = [
@@ -65,7 +65,7 @@ bump($sections);
 //set class as ended
 if (isset($_POST['activate-survey'])) {
 
-	\System\Classes\DBOld::update('classes SET ended=1 WHERE id = ?', [$grade->id]);
+	\Legacy\System\Classes\LegacyDB::update('classes SET ended=1 WHERE id = ?', [$grade->id]);
 
 	redirect_old();
 }

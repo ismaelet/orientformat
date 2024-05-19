@@ -6562,13 +6562,6 @@ main {
 	-webkit-line-clamp: 4;
 }
 
-/* Responsive */
-@media (max-width: 480px) {
-	p {
-		font-size: 0.9rem;
-	}
-}
-
 /**
 * 1. Variables
 * 2. Setup
@@ -7018,7 +7011,6 @@ body.fixed {
 	width: 12.5rem;
 	max-width: 100%;
 	padding: calc(var(--_padding-block) - var(--_border-width, 0px)) 2.2em;
-	background-color: var(--clr-primary-400);
 	border-width: var(--_border-width, 0);
 	border-style: solid;
 	border-radius: var(--button-border-radius);
@@ -7032,7 +7024,7 @@ body.fixed {
 	transition: background-color 0.3s, border 0.3s, color 0.3s;
 }
 
-.button:where(:not(.button--secondary):not(.button--empty)):hover {
+.button:where(:not(.button--secondary):not([data-variant='secondary']):not(.button--empty)):hover {
 	background-color: var(--clr-primary-500);
 }
 
@@ -8435,9 +8427,6 @@ h2 {
 h3 {
 	font-size: 1rem;
 }
-p {
-	font-size: 0.875rem;
-}
 
 h1,
 h2,
@@ -8633,12 +8622,6 @@ p {
 }
 
 /* Responsive */
-@media (max-width: 480px) {
-	p {
-		font-size: 0.9rem;
-	}
-}
-
 /*
 * GROUPS:
 * 1. Parent Layout
@@ -8732,11 +8715,6 @@ body {
 /*
 * Typography
 */
-
-p {
-	font-size: 0.9rem;
-}
-
 .striked-title {
 	width: max-content;
 	position: relative;
@@ -9120,7 +9098,7 @@ h3 {
 	isolation: isolate;
 }
 
-.button:not(.button--secondary):not(.button--empty):not(.button--mono)::before {
+.button:not(.button--secondary):not([data-variant='secondary']):not(.button--empty):not(.button--mono)::before {
 	content: '';
 	position: absolute;
 	inset: 0;
@@ -9130,12 +9108,12 @@ h3 {
 	transition: opacity 0.2s;
 }
 
-.button:not(.button--secondary):not(.button--empty):not(.button--mono),
-.button:not(.button--secondary):not(.button--empty):not(.button--mono):hover {
+.button:not(.button--secondary):not([data-variant='secondary']):not(.button--empty):not(.button--mono),
+.button:not(.button--secondary):not([data-variant='secondary']):not(.button--empty):not(.button--mono):hover {
 	background-color: var(--clr-primary-400);
 }
 
-.button:not(.button--secondary):not(.button--empty):not(.button--mono):hover::before {
+.button:not(.button--secondary):not([data-variant='secondary']):not(.button--empty):not(.button--mono):hover::before {
 	opacity: 0;
 }
 

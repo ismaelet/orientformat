@@ -39,9 +39,9 @@ $sentences = [
 
 $correctAnswers = [3, 2, 3, 2];
 
-TestLogic::setParameterCount(count($sentences))
+Test\Legacy\System\Classes\Logic::setParameterCount(count($sentences))
 	::setTestSubmitFunction(function ($count) {
-		$correctAnswers = ViewOld::get('correctAnswers');
+		$correctAnswers = \Legacy\System\Classes\LegacyView::get('correctAnswers');
 		$correctAnswerCount = 0;
 
 		foreach ($correctAnswers as $answerKey => $correctAnswer) {

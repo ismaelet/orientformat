@@ -23,10 +23,10 @@ $characters = [
 
 $correctResults = [4, 3, 1, 2];
 
-TestLogic::setParameterCount(count($characters))
+Test\Legacy\System\Classes\Logic::setParameterCount(count($characters))
 	->setTestSubmitFunction(function ($count) {
 		$correctCount = 0;
-		$correctResults = ViewOld::get('correctResults');
+		$correctResults = \Legacy\System\Classes\LegacyView::get('correctResults');
 
 		foreach ($correctResults as $resultKey => $correctResult) {
 			if (isset($_POST['field'][$resultKey]) && $_POST['field'][$resultKey] == $correctResult) {

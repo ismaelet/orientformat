@@ -1,7 +1,7 @@
 <?php
 
 //setup page
-ViewOld::setTitle('Approfondisci');
+\Legacy\System\Classes\LegacyView::setTitle('Approfondisci');
 
 //setup variables
 $glossary = [

@@ -3,7 +3,7 @@
 namespace LegacyModels\Activities;
 
 use LegacyModels\OldModel;
-use DBOld;
+use LegacyDB;
 
 class Section extends OldModel {
 	/**

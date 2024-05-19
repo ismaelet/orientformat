@@ -85,9 +85,9 @@ foreach ($questions as $questionKey => $question) {
 
 $count = count($questions);
 
-TestLogic::setParameterCount($count)
+Test\Legacy\System\Classes\Logic::setParameterCount($count)
 	->setTestSubmitFunction(function ($count) {
-		$answers = ViewOld::getInstance()->get('answers');
+		$answers = \Legacy\System\Classes\LegacyView::getInstance()->get('answers');
 
 		$rightN = 0;
 

@@ -4,7 +4,7 @@ use \Legacy\SchoolSystem\SchoolClass;
 
 $schoolId = $_GET['schoolId'];
 
-$schoolClasses = \System\Classes\DBOld::select(SchoolClass::INDEX . ' FROM ' . SchoolClass::TABLE . ' WHERE ' . SchoolClass::SCHOOL_INDEX . ' = ? ORDER BY startingYear DESC, grade ASC, letter ASC', [$schoolId]);
+$schoolClasses = \Legacy\System\Classes\LegacyDB::select(SchoolClass::INDEX . ' FROM ' . SchoolClass::TABLE . ' WHERE ' . SchoolClass::SCHOOL_INDEX . ' = ? ORDER BY startingYear DESC, grade ASC, letter ASC', [$schoolId]);
 
 ?>
 
