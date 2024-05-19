@@ -1,8 +1,10 @@
 <?php
 
-namespace Legacy\System\Classes;
+namespace App\Legacy;
 
 class ScriptLoader {
+
+	use Singleton;
 
 	private static $list = [];
 	private static $headInlineScripts = [];

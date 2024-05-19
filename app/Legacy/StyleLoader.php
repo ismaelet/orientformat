@@ -1,8 +1,10 @@
 <?php
 
-namespace Legacy\System\Classes;
+namespace App\Legacy;
 
 class StyleLoader {
+
+	use Singleton;
 
 	private static $list = [];
 

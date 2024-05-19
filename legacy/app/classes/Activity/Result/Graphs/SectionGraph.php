@@ -6,11 +6,11 @@ use \Legacy\Activity\Result\Handler\SchoolClassSectionResult;
 
 class SectionGraph {
 
-	public static function generate(int $legacySectionId, int $schoolClassId = null) {
-		$type = section_config($legacySectionId, 'type');
-		$condensedType = section_config($legacySectionId, 'condensedType');
-		$schoolClassResults = (new SchoolClassSectionResult($legacySectionId, $schoolClassId))->rawResult;
-		$platformResults = (new SchoolClassSectionResult($legacySectionId))->rawResult;
+	public static function generate(int $sectionId, int $schoolClassId = null) {
+		$type = section_config($sectionId, 'type');
+		$condensedType = section_config($sectionId, 'condensedType');
+		$schoolClassResults = (new SchoolClassSectionResult($sectionId, $schoolClassId))->rawResult;
+		$platformResults = (new SchoolClassSectionResult($sectionId))->rawResult;
 		$schoolClassAverages = $schoolClassResults['values'];
 		$platformAverages = $platformResults['values'];
 

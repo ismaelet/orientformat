@@ -9,7 +9,7 @@ $results = [];
 
 for ($i = 1; $i < $legacyTest->step; $i++) {
 
-	$requiredTestId = \Legacy\System\Classes\LegacyDB::find('id FROM ' . Test::TABLE . ' WHERE sectionId = ? AND step = ?', [$legacyTest->sectionId, $i]);
+	$requiredTestId = \App\Legacy\LegacyDB::find('id FROM ' . Test::TABLE . ' WHERE sectionId = ? AND step = ?', [$legacyTest->sectionId, $i]);
 
 	$requiredTest = new Test($requiredTestId);
 	$results[$i]['id'] = $requiredTest->id;

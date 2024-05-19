@@ -23,7 +23,7 @@ class StudentAnalysisController extends Controller {
 			return redirect()->back();
 		}
 
-		\Legacy\System\Classes\LegacyView::setPage('student-read/' . $page)
+		\App\Legacy\LegacyView::setPage('student-read/' . $page)
 			->setTitle('Saperne di più')
 			->setTemplate('student-read')
 			->set('sectionId', $section->id)

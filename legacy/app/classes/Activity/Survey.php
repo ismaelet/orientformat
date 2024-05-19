@@ -25,7 +25,7 @@ class Survey {
 
 	private function getQuestions() {
 		$questions = [];
-		$res = \Legacy\System\Classes\LegacyDB::select('text, positive FROM surveys_questions WHERE surveyId = ?', [$this->id]);
+		$res = \App\Legacy\LegacyDB::select('text, positive FROM surveys_questions WHERE surveyId = ?', [$this->id]);
 
 		while ($row = $res->fetch_assoc()) {
 			$questions[] = [$row['text'], $row['positive']];

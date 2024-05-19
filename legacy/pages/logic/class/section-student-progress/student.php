@@ -11,14 +11,14 @@ if ($student->schoolClass->id != $grade->id) redirect_old('/class');
 // fetch areas and sections
 $areas = [];
 
-$res = \Legacy\System\Classes\LegacyDB::select('id, name FROM areas WHERE id<4 ORDER BY id ASC');
+$res = \App\Legacy\LegacyDB::select('id, name FROM areas WHERE id<4 ORDER BY id ASC');
 
 while ($row = $res->fetch_assoc()) {
 
 	$area['name'] = $row['name'];
 	$area['sections'] = [];
 
-	$legacySections = \Legacy\System\Classes\LegacyDB::select('* FROM sections WHERE active=1 AND area = ? ORDER BY id ASC', [$row['id']]);
+	$legacySections = \App\Legacy\LegacyDB::select('* FROM sections WHERE active=1 AND area = ? ORDER BY id ASC', [$row['id']]);
 
 	while ($legacySection = $legacySections->fetch_assoc()) {
 		switch ($legacySection['id']) {

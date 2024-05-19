@@ -37,11 +37,11 @@ $inputs = [
  * Form handling
  */
 function _replace_edit($table, $inputs, $index, $id) {
-	$old = \Legacy\System\Classes\LegacyDB::find('slug FROM admin_categories WHERE id=?', $id);
+	$old = \App\Legacy\LegacyDB::find('slug FROM admin_categories WHERE id=?', $id);
 
 	query_from_inputs($table, $inputs, $id);
 
-	\Legacy\System\Classes\LegacyDB::update('admin_sections SET category=? WHERE category=?', [$_POST['slug'], $old]);
+	\App\Legacy\LegacyDB::update('admin_sections SET category=? WHERE category=?', [$_POST['slug'], $old]);
 
 	if (file_exists($file = SERVER_ROOT . '/app/assets/icons/navigation/' . $old . '.svg')) rename($file, SERVER_ROOT . '/app/assets/icons/navigation/' . $_POST['slug'] . '.svg');
 }

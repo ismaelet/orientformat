@@ -58,7 +58,7 @@ class RegisterController extends Controller {
 		$teacherType = 'teacher';
 		$birthdate = $loginType == $studentType ? $request->birthdate : null;
 		$schoolClassCode = $loginType == $studentType ? $request->class : null;
-		$schoolClassId = $loginType == $studentType ? \Legacy\System\Classes\LegacyDB::find('id FROM ' . SchoolClass::TABLE . ' WHERE code = ?', [$schoolClassCode]) : null;
+		$schoolClassId = $loginType == $studentType ? \App\Legacy\LegacyDB::find('id FROM ' . SchoolClass::TABLE . ' WHERE code = ?', [$schoolClassCode]) : null;
 
 		// generate the username
 		$usernameFirstName = strtolower(substr(preg_replace("/[^A-Za-z0-9 ]/", '', str_replace(' ', '', $firstname)), 0, 8));
@@ -67,7 +67,7 @@ class RegisterController extends Controller {
 
 		$username = $usernameFirstName . '.' . $usernameLastName . $userNameRandomNumber;
 
-		while (\Legacy\System\Classes\LegacyDB::exists('users WHERE username = ?', [$username])) {
+		while (\App\Legacy\LegacyDB::exists('users WHERE username = ?', [$username])) {
 			$userNameRandomNumber = rand(1000, 9999);
 			$username = $usernameFirstName . '.' . $usernameLastName . $userNameRandomNumber;
 		}
@@ -84,7 +84,7 @@ class RegisterController extends Controller {
 				$error = 'password-match';
 				break;
 
-			case \Legacy\System\Classes\LegacyDB::exists('users WHERE email = ?', [$email]):
+			case \App\Legacy\LegacyDB::exists('users WHERE email = ?', [$email]):
 				// email already used
 				$error = 'duplicate-email';
 				break;
@@ -94,7 +94,7 @@ class RegisterController extends Controller {
 				$error = 'class-wrong';
 				break;
 
-			case $loginType == $studentType && \Legacy\System\Classes\LegacyDB::exists('users WHERE firstName = ? AND lastName = ? AND id IN (SELECT ' . Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ?)', [$firstname, $lastname, $schoolClassId]):
+			case $loginType == $studentType && \App\Legacy\LegacyDB::exists('users WHERE firstName = ? AND lastName = ? AND id IN (SELECT ' . Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ?)', [$firstname, $lastname, $schoolClassId]):
 				// already exists a student in the selected school class with the same firstname and lastname
 				$error = 'duplicate-name';
 				break;
@@ -110,14 +110,14 @@ class RegisterController extends Controller {
 
 				if ($loginType == $studentType) {
 					// generate the student
-					$userId = \Legacy\System\Classes\LegacyDB::add('users (username, password, firstName, lastName, email, birthdate)', [$username, $hashedPassword, $firstname, $lastname, $email, $birthdate]);
+					$userId = \App\Legacy\LegacyDB::add('users (username, password, firstName, lastName, email, birthdate)', [$username, $hashedPassword, $firstname, $lastname, $email, $birthdate]);
 
-					\Legacy\System\Classes\LegacyDB::add('students (userId, id, ' . Student::SCHOOL_CLASS_INDEX . ')', [$userId, $userId, $schoolClassId]);
+					\App\Legacy\LegacyDB::add('students (userId, id, ' . Student::SCHOOL_CLASS_INDEX . ')', [$userId, $userId, $schoolClassId]);
 				} else {
 					// generate the teacher
-					$userId = \Legacy\System\Classes\LegacyDB::add('users (username, password, firstName, lastName, email, groupId)', [$username, $hashedPassword, $firstname, $lastname, $email, 1]);
+					$userId = \App\Legacy\LegacyDB::add('users (username, password, firstName, lastName, email, groupId)', [$username, $hashedPassword, $firstname, $lastname, $email, 1]);
 
-					\Legacy\System\Classes\LegacyDB::add('teachers (userId)', [$userId]);
+					\App\Legacy\LegacyDB::add('teachers (userId)', [$userId]);
 				}
 
 				// Sign in the user

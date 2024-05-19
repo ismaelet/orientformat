@@ -64,7 +64,7 @@ if (isset($_POST['login'])) {
 	header('Location: ' . PUBLIC_CLIENT_ROOT . '/');
 }
 
-Admin\Legacy\System\Classes\Logic::$listResultConfiguration = function ($entry, $key, $field, $queryRow) {
+Admin\App\Legacy\Logic::$listResultConfiguration = function ($entry, $key, $field, $queryRow) {
 	$schoolClass = new SchoolClass($queryRow[Student::SCHOOL_CLASS_INDEX]);
 
 	if ($field['name'] == 'schoolClassName') {

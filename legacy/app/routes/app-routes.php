@@ -4,7 +4,7 @@
 
 use Illuminate\Support\Facades\Auth;
 
-\Legacy\System\Classes\LegacyRoute::add(['', '/', '/index.php', '/home'], function () {
+\App\Legacy\LegacyRoute::add(['', '/orientamento', '/', '/index.php', '/home'], function () {
 
 	if (is_admin()) {
 		redirect_old(route('admin.dashboard'));
@@ -18,14 +18,14 @@ use Illuminate\Support\Facades\Auth;
 		$middlewares = ['public', 'logged', 'active', 'beginner-review', 'end-review', 'required-email'];
 	}
 
-	\Legacy\System\Classes\LegacyView::setPage($page)
+	\App\Legacy\LegacyView::setPage($page)
 		->setMiddlewares($middlewares)
 		->show();
 });
 
 // support
-\Legacy\System\Classes\LegacyRoute::add(['/tutorial', '/help'], function () {
-	\Legacy\System\Classes\LegacyView::setPage('support')
+\App\Legacy\LegacyRoute::add(['/tutorial', '/help'], function () {
+	\App\Legacy\LegacyView::setPage('support')
 		->setTitle('Supporto')
 		->show();
 });

@@ -55,7 +55,7 @@ while (strpos($textHtml, $placeholder) !== false) {
 // submit
 \LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function ($count) {
-		$correctAnswers = \Legacy\System\Classes\LegacyView::get('correctAnswers');
+		$correctAnswers = \App\Legacy\LegacyView::get('correctAnswers');
 		$correctAnswerCount = 0;
 
 		foreach ($_POST['field'] as $answerKey => $answer) {

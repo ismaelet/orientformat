@@ -6,7 +6,7 @@ $count = count($solution);
 
 \LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function () {
-		$solution = \Legacy\System\Classes\LegacyView::get('solution');
+		$solution = \App\Legacy\LegacyView::get('solution');
 
 		foreach ($_POST['field'] as $key => $answer) {
 			if (strtolower($answer) != strtolower($solution[$key])) {

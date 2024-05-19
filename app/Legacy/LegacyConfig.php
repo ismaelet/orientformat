@@ -1,6 +1,6 @@
 <?php
 
-namespace Legacy\System\Classes;
+namespace App\Legacy;
 
 /**
  * Access the system configuration
@@ -21,7 +21,7 @@ namespace Legacy\System\Classes;
 
 class LegacyConfig {
 
-	use \System\Traits\Singleton;
+	use Singleton;
 
 	private const CONFIG_FILE = 'app/config/config.php';
 	private const DEFAULT_THEME = 'light';
@@ -32,7 +32,7 @@ class LegacyConfig {
 	 * Magic methods
 	 */
 	private function __construct() {
-		$configSettings = require_once base_path() . '/legacy/' . self::CONFIG_FILE;
+		$configSettings = require base_path() . '/legacy/' . self::CONFIG_FILE;
 
 		foreach ($configSettings as $key => $value) {
 			self::$values[$key] = $value;

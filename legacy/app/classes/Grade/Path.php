@@ -7,11 +7,11 @@ use LegacyDB;
 class Path {
 	public $id = null;
 	public $name;
-	public $legacySectionIdsStr;
+	public $sectionIdsStr;
 	public $areaIdsStr;
 
 	function __construct($id) {
-		if ($row = \Legacy\System\Classes\LegacyDB::row('* FROM paths WHERE id=?', [$id])) {
+		if ($row = \App\Legacy\LegacyDB::row('* FROM paths WHERE id=?', [$id])) {
 			$this->id = $id;
 			$this->name = $row['name'];
 			$this->sectionIdsStr = $row['sectionIds'];

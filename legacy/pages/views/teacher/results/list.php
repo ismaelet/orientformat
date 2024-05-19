@@ -42,7 +42,7 @@
 
 					$advices_str = false;
 
-					$advices = \Legacy\System\Classes\LegacyDB::find('advices FROM advices WHERE userID = ? AND advices<>""', $student['id']);
+					$advices = \App\Legacy\LegacyDB::find('advices FROM advices WHERE userID = ? AND advices<>""', $student['id']);
 
 					if ($advices) {
 
@@ -64,7 +64,7 @@
 
 						<p class="field"><?= $advices_str ?: '-' ?></p>
 
-						<p class="field"><?= \Legacy\System\Classes\LegacyDB::exists('survey_end WHERE userID = ?', [$student['id']]) ? 'SI' : '<span class="txt-red">NO</span>' ?></p>
+						<p class="field"><?= \App\Legacy\LegacyDB::exists('survey_end WHERE userID = ?', [$student['id']]) ? 'SI' : '<span class="txt-red">NO</span>' ?></p>
 
 						<div class="field btn-box">
 							<div class="btn blu inlb lbox-open" data-tar="#advice<?= $student['id'] ?>">Scegli consiglio</div>

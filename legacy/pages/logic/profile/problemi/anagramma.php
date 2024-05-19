@@ -11,7 +11,7 @@ $riddles = [
 
 \LogicManager\TestLogic::setParameterCount(count($riddles))
 	->setTestSubmitFunction(function ($count) {
-		$riddles = \Legacy\System\Classes\LegacyView::get('riddles');
+		$riddles = \App\Legacy\LegacyView::get('riddles');
 		$rightAnswers = 0;
 
 		foreach ($riddles as $riddleKey => $riddle) {

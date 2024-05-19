@@ -99,7 +99,7 @@ function get_grade_style() {
 }
 
 function add_grade_style() {
-	\Legacy\System\Classes\StyleLoader::add('specific-styles/' . get_grade_style(), 'app', 5);
+	\App\Legacy\StyleLoader::add('specific-styles/' . get_grade_style(), 'app', 5);
 }
 
 /**
@@ -107,12 +107,12 @@ function add_grade_style() {
  */
 function printConnectionTime() {
 	if (DEBUG) {
-		echo 'Connection time: ' . round(microtime(true) - \Legacy\System\Classes\ConnectionInterface::$timeOpen, 3) * 1000 . ' ms<br>';
+		echo 'Connection time: ' . round(microtime(true) - \App\Legacy\ConnectionInterface::$timeOpen, 3) * 1000 . ' ms<br>';
 	}
 }
 
 function printQueriesCount() {
 	if (DEBUG) {
-		echo 'Queries count: ' . \Legacy\System\Classes\ConnectionInterface::$queryCount . '<br>';
+		echo 'Queries count: ' . \App\Legacy\ConnectionInterface::$queryCount . '<br>';
 	}
 }

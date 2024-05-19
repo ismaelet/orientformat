@@ -10,7 +10,7 @@ use Section\Results as SectionResults;
 
 
 
-$legacySectionId = 4;
+$sectionId = 4;
 
 $graphData['max'] = 100;
 
@@ -20,23 +20,23 @@ $graphData['columns'] = [];
 
 foreach ($class->students as $student) {
 
-	if (\Legacy\System\Classes\LegacyDB::count("results WHERE userID = ? AND testID IN ('7', '8', '9', '10', '11', '12') AND completed=1", [\Illuminate\Support\Facades\Auth::id()])) {
+	if (\App\Legacy\LegacyDB::count("results WHERE userID = ? AND testID IN ('7', '8', '9', '10', '11', '12') AND completed=1", [\Illuminate\Support\Facades\Auth::id()])) {
 
 		$columnData = [];
 
 		$columnData['subcolumns'] = [
 
-			'Le mie emozioni' => \Legacy\System\Classes\LegacyDB::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [\Illuminate\Support\Facades\Auth::id(), 7]),
+			'Le mie emozioni' => \App\Legacy\LegacyDB::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [\Illuminate\Support\Facades\Auth::id(), 7]),
 
-			'Come mi sento' => \Legacy\System\Classes\LegacyDB::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [\Illuminate\Support\Facades\Auth::id(), 8]),
+			'Come mi sento' => \App\Legacy\LegacyDB::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [\Illuminate\Support\Facades\Auth::id(), 8]),
 
-			'Affrontare i problemi' => \Legacy\System\Classes\LegacyDB::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [\Illuminate\Support\Facades\Auth::id(), 9]),
+			'Affrontare i problemi' => \App\Legacy\LegacyDB::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [\Illuminate\Support\Facades\Auth::id(), 9]),
 
-			'Orientamento al futuro' => \Legacy\System\Classes\LegacyDB::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [\Illuminate\Support\Facades\Auth::id(), 10]),
+			'Orientamento al futuro' => \App\Legacy\LegacyDB::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [\Illuminate\Support\Facades\Auth::id(), 10]),
 
-			'La scuola' => \Legacy\System\Classes\LegacyDB::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [\Illuminate\Support\Facades\Auth::id(), 11]),
+			'La scuola' => \App\Legacy\LegacyDB::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [\Illuminate\Support\Facades\Auth::id(), 11]),
 
-			'I rapporti con gli altri' => \Legacy\System\Classes\LegacyDB::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [\Illuminate\Support\Facades\Auth::id(), 12]),
+			'I rapporti con gli altri' => \App\Legacy\LegacyDB::find('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ? AND completed=1 ORDER BY time DESC', [\Illuminate\Support\Facades\Auth::id(), 12]),
 
 		];
 
@@ -48,9 +48,9 @@ foreach ($class->students as $student) {
 
 // averages
 
-$generalAverage = SectionResults::getGeneralResults($legacySectionId);
+$generalAverage = SectionResults::getGeneralResults($sectionId);
 
-$classAverage = SectionResults::getGeneralResults($legacySectionId, $class->id);
+$classAverage = SectionResults::getGeneralResults($sectionId, $class->id);
 
 
 
@@ -66,9 +66,9 @@ $graphData['averages'] = [
 
 $graphData['legend'] = [
 
-	'Media della classe (' . SectionResults::resultByValue($legacySectionId, $classAverage) . ')',
+	'Media della classe (' . SectionResults::resultByValue($sectionId, $classAverage) . ')',
 
-	'Media dei partecipanti (' . SectionResults::resultByValue($legacySectionId, $generalAverage) . ')',
+	'Media dei partecipanti (' . SectionResults::resultByValue($sectionId, $generalAverage) . ')',
 
 	'Media dello studente',
 

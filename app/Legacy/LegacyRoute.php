@@ -1,6 +1,6 @@
 <?php
 
-namespace Legacy\System\Classes;
+namespace App\Legacy;
 
 class LegacyRoute {
 
@@ -33,7 +33,7 @@ class LegacyRoute {
 
 		// error 404
 		if (!$path_found) {
-			\Legacy\System\Classes\LegacyView::setPage('errors/404')
+			\App\Legacy\LegacyView::setPage('errors/404')
 				->setTitle(__('Error 404'))
 				->setTemplate('void')
 				->setMiddlewares()

@@ -9,7 +9,7 @@ use LegacyModels\Activities\Results\CondensedSectionResult;
 use LegacyModels\Activities\Section as SectionModel;
 use LegacyDB;
 use System\Traits\DynamicProperties;
-use \Legacy\System\Classes\User;
+use \App\Legacy\User;
 
 /**
  * StudentSectionResult class
@@ -45,15 +45,15 @@ class StudentSectionResult {
 		45 => 151,
 	];
 
-	private $legacySectionId;
+	private $sectionId;
 	private $legacySection;
 	private $studentId;
 
 	/**
 	 * Magic methods
 	 */
-	function __construct(int $legacySectionId, $studentId = null) {
-		$this->sectionId = $legacySectionId;
+	function __construct(int $sectionId, $studentId = null) {
+		$this->sectionId = $sectionId;
 		$this->studentId = $studentId ?: \Illuminate\Support\Facades\Auth::id();
 		$this->section = (new Section($this->sectionId))->setStudentId($this->studentId);
 	}
@@ -62,7 +62,7 @@ class StudentSectionResult {
 	 * Get methods
 	 */
 	private function getStaticResult() {
-		$row = \Legacy\System\Classes\LegacyDB::row('* FROM ' . CondensedSectionResult::table() . ' WHERE ' . CondensedSectionResult::linkedIndexName(User::class) . ' = ? AND ' . CondensedSectionResult::linkedIndexName(SectionModel::class) . ' = ?', [$this->studentId, $this->sectionId]);
+		$row = \App\Legacy\LegacyDB::row('* FROM ' . CondensedSectionResult::table() . ' WHERE ' . CondensedSectionResult::linkedIndexName(User::class) . ' = ? AND ' . CondensedSectionResult::linkedIndexName(SectionModel::class) . ' = ?', [$this->studentId, $this->sectionId]);
 
 		return $row ? $row : null;
 	}
@@ -294,7 +294,7 @@ class StudentSectionResult {
 	}
 
 	private function calcSpeed() {
-		return \Legacy\System\Classes\LegacyDB::sum('speed FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?' . ' AND ' . TestResult::TEST_INDEX . ' IN (SELECT ' . Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ?)', [$this->studentId, $this->sectionId]) ?: 0;
+		return \App\Legacy\LegacyDB::sum('speed FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?' . ' AND ' . TestResult::TEST_INDEX . ' IN (SELECT ' . Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ?)', [$this->studentId, $this->sectionId]) ?: 0;
 	}
 
 	public function getSpeedString() {

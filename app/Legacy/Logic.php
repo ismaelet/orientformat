@@ -1,6 +1,6 @@
 <?php
 
-namespace Legacy\System\Classes;
+namespace App\Legacy;
 
 class Logic {
 
@@ -82,8 +82,8 @@ class Logic {
 			if ($file['url']) self::loadFile($file['url']);
 
 			if ($file['type'] == 'template') {
-				\Legacy\System\Classes\StyleLoader::add($file['name'], 'template');
-				\Legacy\System\Classes\ScriptLoader::add($file['name'], 'template');
+				StyleLoader::add($file['name'], 'template');
+				ScriptLoader::add($file['name'], 'template');
 			}
 		}
 	}
@@ -96,10 +96,10 @@ class Logic {
 		foreach ($variables as $key => $value) {
 			if (!in_array($key, ['__file'])) {
 				if (!is_array($value) || array_is_list($value)) {
-					\Legacy\System\Classes\LegacyView::set($key, $value);
+					LegacyView::set($key, $value);
 				} else {
 					foreach ($value as $arrayKey => $arrayValue) {
-						\Legacy\System\Classes\LegacyView::set($key, $arrayValue, $arrayKey);
+						LegacyView::set($key, $arrayValue, $arrayKey);
 					}
 				}
 			}

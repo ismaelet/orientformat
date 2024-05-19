@@ -5,18 +5,18 @@
 * 	- requires a dashboard name, set in the router
 * 	- requires a file in app/config named dashboard-*name* with all the configurations stored in a $dashboardConfig variable
 */
-$dashboardName = \Legacy\System\Classes\LegacyView::get('dashboard-name');
+$dashboardName = \App\Legacy\LegacyView::get('dashboard-name');
 
 require_once(SERVER_ROOT . '/app/config/dashboard-' . $dashboardName . '.php');
 
 // load template parts
-\Legacy\System\Classes\StyleLoader::add('-expands-dashboard/list', 'template');
+\App\Legacy\StyleLoader::add('-expands-dashboard/list', 'template');
 
 // fetch current section
 $currentPath = false;
 
-if (strpos((\Legacy\System\Classes\LegacyView::getInstance())->name, '-')) {
-	$path = explode('/', explode('section-', str_replace('add', 'list', (\Legacy\System\Classes\LegacyView::getInstance())->name))[1], 2);
+if (strpos((\App\Legacy\LegacyView::getInstance())->name, '-')) {
+	$path = explode('/', explode('section-', str_replace('add', 'list', (\App\Legacy\LegacyView::getInstance())->name))[1], 2);
 	$currentPath = [
 		'category' => $path[0],
 		'link' => $path[1],

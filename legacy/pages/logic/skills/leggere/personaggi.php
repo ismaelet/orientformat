@@ -85,7 +85,7 @@ $answers_emotions = [
 	[2, 3],
 ];
 
-$results_emotions = explode(',', \Legacy\System\Classes\LegacyDB::find('result FROM results_others WHERE userID = ? AND testID = ?', [\Illuminate\Support\Facades\Auth::id(), $legacyTest->id]));
+$results_emotions = explode(',', \App\Legacy\LegacyDB::find('result FROM results_others WHERE userID = ? AND testID = ?', [\Illuminate\Support\Facades\Auth::id(), $legacyTest->id]));
 
 $count = count($questions) * 2;
 
@@ -94,13 +94,13 @@ bump($questions);
 \LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function ($count) {
 		$rightN = 0;
-		$answers = \Legacy\System\Classes\LegacyView::getInstance()->get('answers');
-		$answers_emotions = \Legacy\System\Classes\LegacyView::getInstance()->get('answers_emotions');
+		$answers = \App\Legacy\LegacyView::getInstance()->get('answers');
+		$answers_emotions = \App\Legacy\LegacyView::getInstance()->get('answers_emotions');
 
 		$results = implode(',', $_POST['field_other']);
 
-		\Legacy\System\Classes\LegacyDB::delete('results_others WHERE userID = ? AND testID = ?', [\Illuminate\Support\Facades\Auth::id(), testId()]);
-		\Legacy\System\Classes\LegacyDB::add('results_others (userID, testID, result) VALUES (?, ?, ?)', [\Illuminate\Support\Facades\Auth::id(), testId(), $results]);
+		\App\Legacy\LegacyDB::delete('results_others WHERE userID = ? AND testID = ?', [\Illuminate\Support\Facades\Auth::id(), testId()]);
+		\App\Legacy\LegacyDB::add('results_others (userID, testID, result) VALUES (?, ?, ?)', [\Illuminate\Support\Facades\Auth::id(), testId(), $results]);
 
 		foreach ($_POST['field'] as $key => $field) {
 			if ($field == $answers[$key]) {

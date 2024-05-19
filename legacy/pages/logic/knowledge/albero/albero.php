@@ -22,8 +22,8 @@ if ($fruitsResults) {
 			$branches = implode(',', $_POST['branch']);
 			$fruits = implode(',', $_POST['fruit']);
 
-			\Legacy\System\Classes\LegacyDB::delete(AdditionalTestResult::TABLE . ' WHERE ' . AdditionalTestResult::USER_INDEX . ' = ? AND ' . AdditionalTestResult::TEST_INDEX . ' = ?', [\Illuminate\Support\Facades\Auth::id(), testId()]);
-			\Legacy\System\Classes\LegacyDB::add(AdditionalTestResult::TABLE . ' (' . AdditionalTestResult::USER_INDEX . ', ' . AdditionalTestResult::TEST_INDEX . ', primaryResults, secondaryResults)', [\Illuminate\Support\Facades\Auth::id(), testId(), $branches, $fruits]);
+			\App\Legacy\LegacyDB::delete(AdditionalTestResult::TABLE . ' WHERE ' . AdditionalTestResult::USER_INDEX . ' = ? AND ' . AdditionalTestResult::TEST_INDEX . ' = ?', [\Illuminate\Support\Facades\Auth::id(), testId()]);
+			\App\Legacy\LegacyDB::add(AdditionalTestResult::TABLE . ' (' . AdditionalTestResult::USER_INDEX . ', ' . AdditionalTestResult::TEST_INDEX . ', primaryResults, secondaryResults)', [\Illuminate\Support\Facades\Auth::id(), testId(), $branches, $fruits]);
 
 			return 100;
 		}

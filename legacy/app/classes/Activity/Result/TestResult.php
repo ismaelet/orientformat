@@ -28,22 +28,22 @@ class TestResult {
 	 * Istance methods
 	 */
 	public static function new(array $data) {
-		\Legacy\System\Classes\LegacyDB::delete(self::TABLE . ' WHERE ' . self::USER_INDEX . ' = ? AND ' . self::TEST_INDEX . ' = ?', [$data['studentId'], $data['testId']]);
+		\App\Legacy\LegacyDB::delete(self::TABLE . ' WHERE ' . self::USER_INDEX . ' = ? AND ' . self::TEST_INDEX . ' = ?', [$data['studentId'], $data['testId']]);
 
 		// save results
-		$id = \Legacy\System\Classes\LegacyDB::add(
+		$id = \App\Legacy\LegacyDB::add(
 			self::TABLE . ' (' . self::USER_INDEX . ', ' . self::TEST_INDEX . ', result, percentage, completed, speed)',
 			[$data['studentId'], $data['testId'], $data['results'], $data['percentage'], $data['completed'], $data['speed']]
 		);
 
 		// permanent record
-		if (!\Legacy\System\Classes\LegacyDB::exists('results_permanent WHERE studentId = ? AND testId = ?', [$data['studentId'], $data['testId']])) {
+		if (!\App\Legacy\LegacyDB::exists('results_permanent WHERE studentId = ? AND testId = ?', [$data['studentId'], $data['testId']])) {
 			self::saveToPermanentRecord($data);
 		}
 	}
 
 	private static function saveToPermanentRecord(array $data) {
-		\Legacy\System\Classes\LegacyDB::add(
+		\App\Legacy\LegacyDB::add(
 			'results_permanent (studentId, testId, result, percentage, speed)',
 			[$data['studentId'], $data['testId'], $data['results'], $data['percentage'], $data['speed']]
 		);

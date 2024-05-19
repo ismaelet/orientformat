@@ -43,4 +43,4 @@ if (class_exists('AppSetup')) {
 }
 
 // Render the page
-\Legacy\System\Classes\LegacyRoute::run();
+\App\Legacy\LegacyRoute::run();

@@ -3,7 +3,7 @@
 global $grade;
 
 // setup page
-$legacySectionId = 3;
+$sectionId = 3;
 $pageTitle = 'Resilienza';
 $pageDesc = "Qui puoi controllare i risultati delle autovalutazioni relative alla resilienza.<br>
 Compariranno solo gli studenti che hanno completato l'autovalutazione.";
@@ -17,14 +17,14 @@ $graphData['max'] = 100;
 $graphData['columns'] = [];
 
 foreach ($grade->students as $student) {
-	if (\Legacy\System\Classes\LegacyDB::exists("results WHERE userID = ? AND testID=49 AND completed=1", [\Illuminate\Support\Facades\Auth::id()])) {
-		$graphData['columns'][$student->fullName] = Student\SectionTestResult::getResult(\Illuminate\Support\Facades\Auth::id(), $legacySectionId);
+	if (\App\Legacy\LegacyDB::exists("results WHERE userID = ? AND testID=49 AND completed=1", [\Illuminate\Support\Facades\Auth::id()])) {
+		$graphData['columns'][$student->fullName] = Student\SectionTestResult::getResult(\Illuminate\Support\Facades\Auth::id(), $sectionId);
 	}
 }
 
 // averages
-$gradeAverage = Grade\SectionTestResult::getResult($grade->id, $legacySectionId);
-$generalAverage = Grade\SectionTestResult::getResult(false, $legacySectionId);
+$gradeAverage = Grade\SectionTestResult::getResult($grade->id, $sectionId);
+$generalAverage = Grade\SectionTestResult::getResult(false, $sectionId);
 
 $graphData['averages'] = [
 	'Media della classe' => $gradeAverage,

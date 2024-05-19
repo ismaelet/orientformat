@@ -21,7 +21,7 @@ if (isset($_POST['download-active-students'])) {
 	$parameters = [$yearFilter, $yearFilter + 1];
 	$fileTitle = 'Lista degli studenti attivi - ' . $yearFilter . '-' . ($yearFilter + 1);
 
-	$students = \Legacy\System\Classes\LegacyDB::select('
+	$students = \App\Legacy\LegacyDB::select('
 	' . Student::INDEX . ', firstName, lastName, users.time, CONCAT (grade, letter) as gradeName, startingYear, grade, birthdate, schools.name as schoolName
 		FROM ' . Student::TABLE . '
 			INNER JOIN ' . User::TABLE . ' ON ' . Student::TABLE . '.' . Student::INDEX . ' = ' . User::TABLE . '.' . User::INDEX . '
@@ -38,8 +38,8 @@ if (isset($_POST['download-active-students'])) {
 		$studentStartingMonth = (int) date('m', strtotime($student['time']));
 
 		$studentStartingYear = $studentStartingMonth >= 9 ? $studentStartingYear : $studentStartingYear - 1;
-		$completedActivityCount = \Legacy\System\Classes\LegacyDB::count(TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?', [$student['userId']]);
-		$totalTime = round(\Legacy\System\Classes\LegacyDB::find('SUM(speed) FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?', [$student['userId']]) / 60);
+		$completedActivityCount = \App\Legacy\LegacyDB::count(TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?', [$student['userId']]);
+		$totalTime = round(\App\Legacy\LegacyDB::find('SUM(speed) FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?', [$student['userId']]) / 60);
 
 		$studentData = [
 			'ID' => $student['userId'],
@@ -71,7 +71,7 @@ if (isset($_POST['download-students'])) {
 	$parameters = $yearFilter ? [$yearFilter] : [];
 	$fileTitle = $yearFilter ? 'Lista degli studenti - ' . $yearFilter . '-' . ($yearFilter + 1) : 'Lista di tutti gli studenti';
 
-	$students = \Legacy\System\Classes\LegacyDB::select('
+	$students = \App\Legacy\LegacyDB::select('
 	' . Student::INDEX . ', firstName, lastName, CONCAT (grade, letter) as gradeName, startingYear, grade, birthdate, schools.name as schoolName
 		FROM ' . Student::TABLE . '
 			INNER JOIN ' . User::TABLE . ' ON ' . Student::TABLE . '.' . Student::INDEX . ' = ' . User::TABLE . '.' . User::INDEX . '
@@ -84,8 +84,8 @@ if (isset($_POST['download-students'])) {
 
 	while ($student = $students->fetch_assoc()) {
 		$studentObj = new Student($student['userId']);
-		$completedActivityCount = \Legacy\System\Classes\LegacyDB::count(TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?', [$student['userId']]);
-		$totalTime = round(\Legacy\System\Classes\LegacyDB::find('SUM(speed) FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?', [$student['userId']]) / 60);
+		$completedActivityCount = \App\Legacy\LegacyDB::count(TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?', [$student['userId']]);
+		$totalTime = round(\App\Legacy\LegacyDB::find('SUM(speed) FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?', [$student['userId']]) / 60);
 
 		$studentData = [
 			'ID' => $student['userId'],
@@ -117,7 +117,7 @@ if (isset($_POST['download-teachers'])) {
 	$parameters = $yearFilter ? [$yearFilter] : [];
 	$fileTitle = $yearFilter ? 'Lista dei docenti - ' . $yearFilter : 'Lista dei docenti';
 
-	$teachers = \Legacy\System\Classes\LegacyDB::select('
+	$teachers = \App\Legacy\LegacyDB::select('
 	userId, firstName, lastName, email
 		FROM ' . Teacher::TABLE . '
 			INNER JOIN ' . User::TABLE . ' ON ' . Teacher::TABLE . '.' . Teacher::INDEX . ' = ' . User::TABLE . '.' . User::INDEX . '
@@ -148,7 +148,7 @@ if (isset($_POST['download-school-classes'])) {
 	$parameters = $yearFilter ? [$yearFilter] : [];
 	$fileTitle = $yearFilter ? 'Lista delle classi - ' . $yearFilter . '-' . ($yearFilter + 1) : 'Lista di tutte le classi';
 
-	$grades = \Legacy\System\Classes\LegacyDB::select('
+	$grades = \App\Legacy\LegacyDB::select('
 	grade, startingYear, CONCAT(grade, letter) as gradeName, CONCAT (lastName, " ", firstName) as referentName, schools.name as schoolName
 		FROM ' . SchoolClass::TABLE . '
 			INNER JOIN ' . School::TABLE . ' ON ' . SchoolClass::TABLE . '.' . SchoolClass::SCHOOL_INDEX . ' = ' . School::TABLE . '.' . School::INDEX . '
@@ -182,7 +182,7 @@ if (isset($_POST['download-results'])) {
 	$parameters = $yearFilter ? [$yearFilter] : [];
 	$fileTitle = $yearFilter ? 'Lista dei risultati - ' . $yearFilter . '-' . ($yearFilter + 1) : 'Lista di tutti i risultati';
 
-	$results = \Legacy\System\Classes\LegacyDB::select('
+	$results = \App\Legacy\LegacyDB::select('
 	*, CONCAT (grade, letter) as gradeName, year as gradeYear, grade as grade, birthdate as birthdate, schools.name as schoolName
 		FROM students
 			INNER JOIN users ON students.userId = users.id
@@ -195,7 +195,7 @@ if (isset($_POST['download-results'])) {
 	// fetch tests data
 	$legacyTests = [];
 
-	$legacyTestRows = \Legacy\System\Classes\LegacyDB::select('
+	$legacyTestRows = \App\Legacy\LegacyDB::select('
 		tests.id as testId, title, sections.name as sectionName, static, dependentOn
 		FROM tests
 			INNER JOIN sections ON tests.sectionID = sections.id
@@ -251,14 +251,14 @@ if (isset($_POST['download-reviews'])) {
 	$startQuestions = [];
 	$endQuestions = [];
 
-	$mockupStartProfileId = \Legacy\System\Classes\LegacyDB::find('id FROM review_results WHERE reviewId IN (1, 2) ORDER BY reviewId DESC');
+	$mockupStartProfileId = \App\Legacy\LegacyDB::find('id FROM review_results WHERE reviewId IN (1, 2) ORDER BY reviewId DESC');
 	$mockupStartProfile = new Profile($mockupStartProfileId);
 
 	foreach ($mockupStartProfile->numericResults as $questionSlug => $_looping) {
 		$startQuestions[] = $questionSlug;
 	}
 
-	$mockupEndProfileId = \Legacy\System\Classes\LegacyDB::find('id FROM review_results WHERE reviewId = 3 ORDER BY reviewId DESC');
+	$mockupEndProfileId = \App\Legacy\LegacyDB::find('id FROM review_results WHERE reviewId = 3 ORDER BY reviewId DESC');
 	$mockupEndProfile = new Profile($mockupEndProfileId);
 
 	foreach ($mockupEndProfile->numericResults as $questionSlug => $_looping) {
@@ -269,7 +269,7 @@ if (isset($_POST['download-reviews'])) {
 	asort($endQuestions);
 
 	// fetch students
-	$students = \Legacy\System\Classes\LegacyDB::select('
+	$students = \App\Legacy\LegacyDB::select('
 	userId, firstname, lastname, CONCAT (grade, letter) as gradeName, year as gradeYear, grade as grade, schools.name as schoolName
 		FROM students
 			INNER JOIN users ON students.userId = users.id
@@ -291,8 +291,8 @@ if (isset($_POST['download-reviews'])) {
 		];
 
 		// reviews results
-		$startProfileId = \Legacy\System\Classes\LegacyDB::find('id FROM review_results WHERE studentId = ? AND reviewId IN (1, 2) ORDER BY reviewId DESC', [$student['userId']]);
-		$endProfileId = \Legacy\System\Classes\LegacyDB::find('id FROM review_results WHERE studentId = ? AND reviewId = 3', [$student['userId']]);
+		$startProfileId = \App\Legacy\LegacyDB::find('id FROM review_results WHERE studentId = ? AND reviewId IN (1, 2) ORDER BY reviewId DESC', [$student['userId']]);
+		$endProfileId = \App\Legacy\LegacyDB::find('id FROM review_results WHERE studentId = ? AND reviewId = 3', [$student['userId']]);
 
 		$startProfile = $startProfileId ? new Profile($startProfileId) : null;
 
@@ -322,7 +322,7 @@ if (isset($_POST['download-advices'])) {
 	$parameters = $yearFilter ? [$yearFilter] : [];
 	$fileTitle = $yearFilter ? 'Lista dei consigli orientativi - ' . $yearFilter . '-' . ($yearFilter + 1) : 'Lista di tutti i consigli orientativi';
 
-	$students = \Legacy\System\Classes\LegacyDB::select('
+	$students = \App\Legacy\LegacyDB::select('
 	advices, users.id as userId, firstname, lastname
 		FROM advices
 			INNER JOIN students ON advices.userID = students.userId

@@ -40,14 +40,14 @@ if (isset($_POST['submit'])) {
 	$passwordConfirmation = $_POST['password-confirmation'];
 
 	// check for errors
-	if (\Legacy\System\Classes\LegacyDB::exists('users WHERE email=?', [$email])) $error = 'mail-match';
-	//else if (\Legacy\System\Classes\LegacyDB::exists('users WHERE username=?', [$_POST['username']])) $error = 'user-match';
+	if (\App\Legacy\LegacyDB::exists('users WHERE email=?', [$email])) $error = 'mail-match';
+	//else if (\App\Legacy\LegacyDB::exists('users WHERE username=?', [$_POST['username']])) $error = 'user-match';
 	else if (strlen($password) < 6) $error = 'password-short';
 	else if ($password != $passwordConfirmation) $error = 'password-match';
 	else {
 		// add user
-		//$id = \Legacy\System\Classes\LegacyDB::add('users (username, password, mail) VALUES (?, MD5(?), ?)', [$_POST['username'], $password, $_POST['mail']]);
-		$id = \Legacy\System\Classes\LegacyDB::add('users (password, email) VALUES (MD5(?), ?)', [$password, $email]);
+		//$id = \App\Legacy\LegacyDB::add('users (username, password, mail) VALUES (?, MD5(?), ?)', [$_POST['username'], $password, $_POST['mail']]);
+		$id = \App\Legacy\LegacyDB::add('users (password, email) VALUES (MD5(?), ?)', [$password, $email]);
 
 		login($email, $password);
 	}

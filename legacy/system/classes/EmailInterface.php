@@ -29,7 +29,7 @@ class EmailInterface {
 
 	// send the email
 	static function sendEmail(array $emailData) {
-		$config = \Legacy\System\Classes\LegacyConfig::getInstance();
+		$config = \App\Legacy\LegacyConfig::getInstance();
 		$email = new PHPMailer();
 
 		// email setup
@@ -72,7 +72,7 @@ class EmailInterface {
 
 	// prepare a standard email body
 	static function generateEmailContent($emailBody) {
-		$config = \Legacy\System\Classes\LegacyConfig::getInstance();
+		$config = \App\Legacy\LegacyConfig::getInstance();
 
 		$logo = $config->logoAbsoluteImage;
 

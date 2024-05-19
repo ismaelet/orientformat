@@ -38,7 +38,7 @@ $text = implode('', $text);
 \LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(
 		function ($count) {
-			$results = \Legacy\System\Classes\LegacyView::getInstance()->get('results');
+			$results = \App\Legacy\LegacyView::getInstance()->get('results');
 			$rightN = 0;
 
 			foreach ($_POST['field'] as $key => $result) {

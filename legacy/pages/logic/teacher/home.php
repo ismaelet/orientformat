@@ -44,15 +44,15 @@ $functionalities = [
 $feed = Notification::getAll([], 8);
 
 // collaboration requests
-$collaborations = \Legacy\System\Classes\LegacyDB::select('* FROM grade_requests WHERE referentId = ?', [teacherId()]);
+$collaborations = \App\Legacy\LegacyDB::select('* FROM grade_requests WHERE referentId = ?', [teacherId()]);
 
 if (isset($_POST['accept-collaboration'])) {
 	$collaborationId = $_POST['accept-collaboration'];
-	$collaborationData = \Legacy\System\Classes\LegacyDB::row('* FROM grade_requests WHERE id = ?', [$collaborationId]);
+	$collaborationData = \App\Legacy\LegacyDB::row('* FROM grade_requests WHERE id = ?', [$collaborationId]);
 
-	$gradeId = \Legacy\System\Classes\LegacyDB::update("teachers SET classes=CONCAT(classes, '," . $collaborationData['gradeId'] . "') WHERE userId = ?", [$collaborationData['teacherId']]);
+	$gradeId = \App\Legacy\LegacyDB::update("teachers SET classes=CONCAT(classes, '," . $collaborationData['gradeId'] . "') WHERE userId = ?", [$collaborationData['teacherId']]);
 
-	\Legacy\System\Classes\LegacyDB::delete('grade_requests WHERE id = ?', [$collaborationData['id']]);
+	\App\Legacy\LegacyDB::delete('grade_requests WHERE id = ?', [$collaborationData['id']]);
 
 	redirect_old();
 }
@@ -60,7 +60,7 @@ if (isset($_POST['accept-collaboration'])) {
 if (isset($_POST['decline-collaboration'])) {
 	$collaborationId = $_POST['decline-collaboration'];
 
-	\Legacy\System\Classes\LegacyDB::delete('grade_requests WHERE id = ?', [$collaborationId]);
+	\App\Legacy\LegacyDB::delete('grade_requests WHERE id = ?', [$collaborationId]);
 
 	redirect_old();
 }

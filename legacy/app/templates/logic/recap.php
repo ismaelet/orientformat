@@ -4,7 +4,7 @@ use App\Models\Activities\Area;
 use App\Models\Activities\Section;
 use \Legacy\Activity\Test;
 
-$legacySection = \Legacy\System\Classes\LegacyView::getInstance()->get('section');
+$legacySection = \App\Legacy\LegacyView::getInstance()->get('section');
 $legacyArea = $legacySection->area;
 $section = Section::find($legacySection->id);
 $area = Area::find($legacyArea->id);
@@ -18,7 +18,7 @@ if (is_teacher()) {
 
 // get tests
 $legacyTests = [];
-$res = \Legacy\System\Classes\LegacyDB::select('id FROM ' . Test::TABLE . ' WHERE sectionID = ? AND active = 1 AND template <> "recap" ORDER BY step ASC', [$legacySection->id]);
+$res = \App\Legacy\LegacyDB::select('id FROM ' . Test::TABLE . ' WHERE sectionID = ? AND active = 1 AND template <> "recap" ORDER BY step ASC', [$legacySection->id]);
 
 while ($row = $res->fetch_assoc()) {
 

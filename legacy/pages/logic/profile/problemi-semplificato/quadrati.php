@@ -7,7 +7,7 @@ $correctAnswer = $correctAnswer ?? 6;
 
 \LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function () {
-		$correctAnswer = \Legacy\System\Classes\LegacyView::get('correctAnswer');
+		$correctAnswer = \App\Legacy\LegacyView::get('correctAnswer');
 
 		if ($_POST['field'][0] == $correctAnswer) {
 			return 100;

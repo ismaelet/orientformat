@@ -43,9 +43,9 @@ $passwordInputs = [
 if (isset($_POST['edit-data'])) {
 	$mail = $_POST['email'];
 
-	if (\Legacy\System\Classes\LegacyDB::exists('users WHERE email = ? AND id <> ?', [$mail, userId()])) {
+	if (\App\Legacy\LegacyDB::exists('users WHERE email = ? AND id <> ?', [$mail, userId()])) {
 		$error = 'existing-mail';
-	} else if (\Legacy\System\Classes\LegacyDB::exists('users WHERE username = ? AND id <> ?', [$_POST['username'], userId()])) {
+	} else if (\App\Legacy\LegacyDB::exists('users WHERE username = ? AND id <> ?', [$_POST['username'], userId()])) {
 		$error = 'existing-username';
 	} else {
 		form_db_update('users', $dataInputs, 'id', userId());
@@ -56,7 +56,7 @@ if (isset($_POST['edit-data'])) {
 }
 
 if (isset($_POST['edit-password'])) {
-	$dbPassword = \Legacy\System\Classes\LegacyDB::find('password FROM users WHERE id = ?', [userId()]);
+	$dbPassword = \App\Legacy\LegacyDB::find('password FROM users WHERE id = ?', [userId()]);
 	$oldPassword = $_POST['old-password'];
 	$newPassword = $_POST['new-password'];
 	$passwordConfirmation = $_POST['password-confirmation'];
@@ -69,7 +69,7 @@ if (isset($_POST['edit-password'])) {
 		$error = 'password-not-matching';
 	} else {
 		$newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-		\Legacy\System\Classes\LegacyDB::update('users SET password = ? WHERE id = ?', [$newPassword, userId()]);
+		\App\Legacy\LegacyDB::update('users SET password = ? WHERE id = ?', [$newPassword, userId()]);
 		redirect_old('?done=1#user-data');
 	}
 

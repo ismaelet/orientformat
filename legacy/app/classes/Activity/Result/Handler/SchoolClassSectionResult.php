@@ -15,7 +15,7 @@ class SchoolClassSectionResult {
 
 	use \System\Traits\DynamicProperties;
 
-	private $legacySectionId;
+	private $sectionId;
 	private $schoolClassId;
 	private $filterBy;
 	private $range;
@@ -23,8 +23,8 @@ class SchoolClassSectionResult {
 	/**
 	 * Magic methods
 	 */
-	function __construct(int $legacySectionId, $schoolClassId = null, $filterBy = null, $range = []) {
-		$this->sectionId = $legacySectionId;
+	function __construct(int $sectionId, $schoolClassId = null, $filterBy = null, $range = []) {
+		$this->sectionId = $sectionId;
 		$this->schoolClassId = $schoolClassId ?: null;
 		$this->filterBy = $filterBy;
 		$this->range = $range;
@@ -49,9 +49,9 @@ class SchoolClassSectionResult {
 	}
 
 	public function getRawResult() {
-		if (!$this->schoolClassId && \Legacy\System\Classes\LegacyDB::exists('averages WHERE sectionId = ? AND time > NOW() - INTERVAL 1 MONTH', [$this->sectionId])) {
+		if (!$this->schoolClassId && \App\Legacy\LegacyDB::exists('averages WHERE sectionId = ? AND time > NOW() - INTERVAL 1 MONTH', [$this->sectionId])) {
 			// for platform results try to find search the database for updated results
-			$rawResult = \Legacy\System\Classes\LegacyDB::find('value FROM averages WHERE sectionId = ? AND time > NOW() - INTERVAL 1 MONTH', [$this->sectionId]);
+			$rawResult = \App\Legacy\LegacyDB::find('value FROM averages WHERE sectionId = ? AND time > NOW() - INTERVAL 1 MONTH', [$this->sectionId]);
 
 			if (strpos($rawResult, ',') === false) {
 				$result['values'] = $rawResult;
@@ -132,8 +132,8 @@ class SchoolClassSectionResult {
 					$sqlResult = implode(',', $sqlResult);
 				}
 
-				\Legacy\System\Classes\LegacyDB::delete('averages WHERE sectionId = ?', [$this->sectionId]);
-				\Legacy\System\Classes\LegacyDB::add('averages (sectionId, value)', [$this->sectionId, $sqlResult]);
+				\App\Legacy\LegacyDB::delete('averages WHERE sectionId = ?', [$this->sectionId]);
+				\App\Legacy\LegacyDB::add('averages (sectionId, value)', [$this->sectionId, $sqlResult]);
 			}
 		}
 
@@ -144,12 +144,12 @@ class SchoolClassSectionResult {
 	private function getStudentIds() {
 		if (!$this->filterBy) {
 			$students = $this->schoolClassId ?
-				\Legacy\System\Classes\LegacyDB::select(Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ?', [$this->schoolClassId])->res :
-				\Legacy\System\Classes\LegacyDB::select(Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE ' . Student::INDEX . ' IN (SELECT ' . SectionResult::USER_INDEX . ' FROM ' . SectionResult::TABLE . ' WHERE completed = 1 AND ' . SectionResult::SECTION_INDEX . ' = ?) ORDER BY ' . Student::INDEX . ' DESC', [$this->sectionId])->res;
+				\App\Legacy\LegacyDB::select(Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ?', [$this->schoolClassId])->res :
+				\App\Legacy\LegacyDB::select(Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE ' . Student::INDEX . ' IN (SELECT ' . SectionResult::USER_INDEX . ' FROM ' . SectionResult::TABLE . ' WHERE completed = 1 AND ' . SectionResult::SECTION_INDEX . ' = ?) ORDER BY ' . Student::INDEX . ' DESC', [$this->sectionId])->res;
 		} else {
 			$students = $this->schoolClassId ?
-				\Legacy\System\Classes\LegacyDB::select('* FROM ' . Student::TABLE . ' INNER JOIN students_data ON students.userId = students_data.studentId WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ? AND ' . $this->filterBy . ' >= ? AND ' . $this->filterBy . ' <= ?', [$this->schoolClassId, min($this->range), max($this->range)])->res :
-				\Legacy\System\Classes\LegacyDB::select('* FROM ' . Student::TABLE . ' INNER JOIN students_data ON students.userId = students_data.studentId WHERE ' . $this->filterBy . ' >= ? AND ' . $this->filterBy . ' <= ?', [min($this->range), max($this->range)])->res;
+				\App\Legacy\LegacyDB::select('* FROM ' . Student::TABLE . ' INNER JOIN students_data ON students.userId = students_data.studentId WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ? AND ' . $this->filterBy . ' >= ? AND ' . $this->filterBy . ' <= ?', [$this->schoolClassId, min($this->range), max($this->range)])->res :
+				\App\Legacy\LegacyDB::select('* FROM ' . Student::TABLE . ' INNER JOIN students_data ON students.userId = students_data.studentId WHERE ' . $this->filterBy . ' >= ? AND ' . $this->filterBy . ' <= ?', [min($this->range), max($this->range)])->res;
 		}
 
 		return $students ? array_column($students, 'userId') : null;

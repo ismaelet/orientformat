@@ -1,4 +1,4 @@
-@props(['navigationGroups'])
+@props(['groups'])
 
 @push('styles')
 	<style>
@@ -40,8 +40,8 @@
 			<!-- Dashboard groups -->
 			<div class="js-open-navigation grid gap-4">
 
-				@foreach ($navigationGroups as $navigationGroup)
-					<x-dashboard.navigation.group :navigation-group="$navigationGroup" />
+				@foreach ($groups as $group)
+					<x-dashboard.navigation.group :navigation-group="$group" />
 				@endforeach
 			</div>
 

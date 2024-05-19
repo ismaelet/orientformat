@@ -35,7 +35,7 @@ $fields = [
 	['title' => 'Referente', 'name' => 'referentName', 'size' => 3,],
 ];
 
-Admin\Legacy\System\Classes\Logic::$listResultConfiguration = function ($entry, $key, $field, $queryRow) {
+Admin\App\Legacy\Logic::$listResultConfiguration = function ($entry, $key, $field, $queryRow) {
 	$schoolClass = new SchoolClass($queryRow['id']);
 
 	switch ($field['name']) {

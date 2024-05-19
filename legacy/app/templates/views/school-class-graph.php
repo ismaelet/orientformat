@@ -18,11 +18,11 @@
 	<?php } ?>
 </div>
 
-<?php snippet_graph_filters($graphData, $legacySectionId, $divideBy, $filterBy) ?>
+<?php snippet_graph_filters($graphData, $sectionId, $divideBy, $filterBy) ?>
 
 <?php if ($graphData) { ?>
 	<!-- Graph -->
-	<section class="graph <?= $divideBy ? 'graph--divided' : '' ?> <?= 'graph--' . section_config($legacySectionId, 'type') ?> js-load" data-section-id="<?= $legacySectionId ?>">
+	<section class="graph <?= $divideBy ? 'graph--divided' : '' ?> <?= 'graph--' . section_config($sectionId, 'type') ?> js-load" data-section-id="<?= $sectionId ?>">
 		<?php graph_columns($graphData) ?>
 	</section>
 <?php } else { ?>
@@ -31,10 +31,10 @@
 	</h3>
 <?php } ?>
 
-<p class="txt-cen txt-1rem mar-t-2"><?= section_config($legacySectionId, 'desc') ?></p>
+<p class="txt-cen txt-1rem mar-t-2"><?= section_config($sectionId, 'desc') ?></p>
 
 <div class="center-content grid-flow">
-	<a href="<?= client_url('/read?id=' . $legacySectionId) ?>" class="button button--auto-width mar-t-2">
+	<a href="<?= client_url('/read?id=' . $sectionId) ?>" class="button button--auto-width mar-t-2">
 		<?= embed_icon('read') ?>
 		Saperne di più
 	</a>

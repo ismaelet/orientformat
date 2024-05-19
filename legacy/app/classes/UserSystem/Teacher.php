@@ -4,7 +4,7 @@ namespace Legacy\UserSystem;
 
 use \Legacy\SchoolSystem\SchoolClass;
 
-use \Legacy\System\Classes\User;
+use \App\Legacy\User;
 
 /**
  * Teacher class
@@ -32,7 +32,7 @@ class Teacher {
 	}
 
 	private function getUser() {
-		return new \Legacy\System\Classes\User($this->id);
+		return new \App\Legacy\User($this->id);
 	}
 
 	private function getStudentIdsString() {
@@ -45,7 +45,7 @@ class Teacher {
 		if ($this->id && $this->databaseEntry['classes']) {
 			switch ($type) {
 				default:
-					$schooClassesData = \Legacy\System\Classes\LegacyDB::select(SchoolClass::INDEX . ' FROM ' . SchoolClass::TABLE . ' WHERE FIND_IN_SET(' . SchoolClass::INDEX . ', "' . $this->databaseEntry['classes'] . '") ORDER BY year DESC, grade DESC');
+					$schooClassesData = \App\Legacy\LegacyDB::select(SchoolClass::INDEX . ' FROM ' . SchoolClass::TABLE . ' WHERE FIND_IN_SET(' . SchoolClass::INDEX . ', "' . $this->databaseEntry['classes'] . '") ORDER BY year DESC, grade DESC');
 					$results = $schooClassesData->num_rows ? extract_subvalue($schooClassesData->res, 'id') : null;
 			}
 		}
@@ -60,7 +60,7 @@ class Teacher {
 			$schoolClasses = [];
 
 			foreach ($this->schoolClassIds as $schoolClassId) {
-				if (!empty($schoolClassId) && \Legacy\System\Classes\LegacyDB::exists(SchoolClass::TABLE . ' WHERE ' . SchoolClass::INDEX . ' = ?', $schoolClassId)) {
+				if (!empty($schoolClassId) && \App\Legacy\LegacyDB::exists(SchoolClass::TABLE . ' WHERE ' . SchoolClass::INDEX . ' = ?', $schoolClassId)) {
 					$schoolClasses[] = new SchoolClass($schoolClassId);
 				}
 			}
@@ -78,7 +78,7 @@ class Teacher {
 
 		if ($this->schoolClassIds) {
 			$schoolClassIdsString = implode(',', $this->schoolClassIds);
-			$res = \Legacy\System\Classes\LegacyDB::select(Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE FIND_IN_SET (' . Student::SCHOOL_CLASS_INDEX . ', ?)', [$schoolClassIdsString]);
+			$res = \App\Legacy\LegacyDB::select(Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE FIND_IN_SET (' . Student::SCHOOL_CLASS_INDEX . ', ?)', [$schoolClassIdsString]);
 			$studentIds = $res->num_rows ? array_column($res->res, Student::INDEX) : null;
 		}
 

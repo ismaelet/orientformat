@@ -4,21 +4,21 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
-	<meta name="description" content="<?= \Legacy\System\Classes\LegacyView::getDescription() ?>">
-	<title><?= \Legacy\System\Classes\LegacyView::getTabTitle() ?></title>
-	<meta property="og:description" content="<?= \Legacy\System\Classes\LegacyView::getDescription() ?>">
+	<meta name="description" content="<?= \App\Legacy\LegacyView::getDescription() ?>">
+	<title><?= \App\Legacy\LegacyView::getTabTitle() ?></title>
+	<meta property="og:description" content="<?= \App\Legacy\LegacyView::getDescription() ?>">
 	<link rel="icon" href="<?= asset('favicon.ico') ?>">
 
 	<!-- Styles -->
 	<link href="<?= asset('legacy.css') ?>" rel="stylesheet">
 	<link href="<?= asset('main.css') ?>" rel="stylesheet">
-	<?= PHP_EOL . \Legacy\System\Classes\StyleLoader::load() ?>
+	<?= PHP_EOL . \App\Legacy\StyleLoader::load() ?>
 
 	<!-- Scripts -->
 	<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
 	<script src="<?= asset('legacy.js') ?>"></script>
 	<script src="<?= asset('main.js') ?>"></script>
-	<?= PHP_EOL . \Legacy\System\Classes\ScriptLoader::load() ?>
+	<?= PHP_EOL . \App\Legacy\ScriptLoader::load() ?>
 
 	<!-- Google tag (gtag.js) -->
 	<?php if (env('APP_ENV') == 'production') { ?>
@@ -39,7 +39,7 @@
 <body>
 	{% place body %}
 
-	<?php if (\Legacy\System\Classes\LegacyConfig::getInstance()->cookiesWarning && !isset($_COOKIE['cookies-warning'])) { ?>
+	<?php if (\App\Legacy\LegacyConfig::getInstance()->cookiesWarning && !isset($_COOKIE['cookies-warning'])) { ?>
 
 		<div class="cookies-warning">
 			<h3 class="cookies-warning_title">Avviso cookies</h3>

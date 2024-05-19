@@ -21,7 +21,7 @@ class Question {
 	public $grouppedBy;
 
 	function __construct($id) {
-		if ($data = \Legacy\System\Classes\LegacyDB::row('* FROM review_questions WHERE id=?', [$id])) {
+		if ($data = \App\Legacy\LegacyDB::row('* FROM review_questions WHERE id=?', [$id])) {
 			$this->id = $id;
 			$this->dbdata = $data;
 			$this->areaId = $this->dbdata['areaId'];

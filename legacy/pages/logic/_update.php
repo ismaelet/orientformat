@@ -1,31 +1,31 @@
 <?php
 
 /* TEMP: add class letter */
-/*$tempClasses = \Legacy\System\Classes\LegacyDB::select('id, name FROM classes');
+/*$tempClasses = \App\Legacy\LegacyDB::select('id, name FROM classes');
 
 while ($tempClassRow = $tempClasses->fetch_assoc()) {
-	\Legacy\System\Classes\LegacyDB::update('classes SET letter = ? WHERE id = ?', [$tempClassRow['name'][1], $tempClassRow['id']]);
+	\App\Legacy\LegacyDB::update('classes SET letter = ? WHERE id = ?', [$tempClassRow['name'][1], $tempClassRow['id']]);
 }
 /* END */
 
 /* TEMP: create teachers */
-/*$tempTeachers = \Legacy\System\Classes\LegacyDB::select('id, class FROM users WHERE level=1 AND id NOT IN (SELECT userId FROM teachers)');
+/*$tempTeachers = \App\Legacy\LegacyDB::select('id, class FROM users WHERE level=1 AND id NOT IN (SELECT userId FROM teachers)');
 
 while ($tempTeacher = $tempTeachers->fetch_assoc()) {
-	\Legacy\System\Classes\LegacyDB::add('teachers (userId, classes)', [$tempTeacher['id'], $tempTeacher['class']]);
+	\App\Legacy\LegacyDB::add('teachers (userId, classes)', [$tempTeacher['id'], $tempTeacher['class']]);
 }
 /* END TEMP */
 
 /* TEMP: create students */
-/*$tempStudents = \Legacy\System\Classes\LegacyDB::select('id, class FROM users WHERE level=0 AND id NOT IN (SELECT userId FROM students)');
+/*$tempStudents = \App\Legacy\LegacyDB::select('id, class FROM users WHERE level=0 AND id NOT IN (SELECT userId FROM students)');
 
 while ($tempStudent = $tempStudents->fetch_assoc()) {
-	\Legacy\System\Classes\LegacyDB::add('students (userId, classId)', [$tempStudent['id'], $tempStudent['class']]);
+	\App\Legacy\LegacyDB::add('students (userId, classId)', [$tempStudent['id'], $tempStudent['class']]);
 }
 /* END TEMP */
 
 /* TEMP: standardize class names */
-/*$resTemp = \Legacy\System\Classes\LegacyDB::select('* FROM classes');
+/*$resTemp = \App\Legacy\LegacyDB::select('* FROM classes');
 
 while ($rowTemp = $resTemp->fetch_assoc()) {
 	$tempName = strtoupper(str_replace(' ', '', $rowTemp['name']));
@@ -37,36 +37,36 @@ while ($rowTemp = $resTemp->fetch_assoc()) {
 
 	if (strlen($tempName) > 2) $tempName = substr($tempName, 0, 2);
 
-	\Legacy\System\Classes\LegacyDB::update('classes SET name = ? WHERE id = ?', [$tempName, $rowTemp['id']]);
+	\App\Legacy\LegacyDB::update('classes SET name = ? WHERE id = ?', [$tempName, $rowTemp['id']]);
 }
 /* END TEMP */
 
 /* TEMP: set class grades */
-/*$resTemp = \Legacy\System\Classes\LegacyDB::select('* FROM classes WHERE grade=0 OR grade IS null');
+/*$resTemp = \App\Legacy\LegacyDB::select('* FROM classes WHERE grade=0 OR grade IS null');
 
 while ($rowTemp = $resTemp->fetch_assoc()) {
 	$tempGrade = $rowTemp['name'][0];
 
 	if (in_array($tempGrade, [2, 3])) {
-		\Legacy\System\Classes\LegacyDB::update('classes SET grade = ? WHERE id = ?', [$tempGrade, $rowTemp['id']]);
+		\App\Legacy\LegacyDB::update('classes SET grade = ? WHERE id = ?', [$tempGrade, $rowTemp['id']]);
 	}
 }
 /* END TEMP */
 
 /* TEMP: set referents */
-/*$resTemp = \Legacy\System\Classes\LegacyDB::select('* FROM classes WHERE referentId=0 || referentId IS null');
+/*$resTemp = \App\Legacy\LegacyDB::select('* FROM classes WHERE referentId=0 || referentId IS null');
 
 while ($rowTemp = $resTemp->fetch_assoc()) {
-	$tempReferentId = \Legacy\System\Classes\LegacyDB::find('userId FROM teachers WHERE FIND_IN_SET(?, classes) ORDER BY userId ASC', [$rowTemp['id']]);
-	\Legacy\System\Classes\LegacyDB::update('classes SET referentId = ? WHERE id = ?', [$tempReferentId, $rowTemp['id']]);
+	$tempReferentId = \App\Legacy\LegacyDB::find('userId FROM teachers WHERE FIND_IN_SET(?, classes) ORDER BY userId ASC', [$rowTemp['id']]);
+	\App\Legacy\LegacyDB::update('classes SET referentId = ? WHERE id = ?', [$tempReferentId, $rowTemp['id']]);
 }
 /* END TEMP */
 
 /* TEMP: standardize the year */
-/*\Legacy\System\Classes\LegacyDB::update('classes SET year=2021 WHERE year IN (20213, 20212)');
-\Legacy\System\Classes\LegacyDB::update('classes SET year=2022, grade=3 WHERE year=2021 AND grade=2');
+/*\App\Legacy\LegacyDB::update('classes SET year=2021 WHERE year IN (20213, 20212)');
+\App\Legacy\LegacyDB::update('classes SET year=2022, grade=3 WHERE year=2021 AND grade=2');
 
-$resTemp = \Legacy\System\Classes\LegacyDB::select('* FROM classes WHERE grade=3 AND year=3');
+$resTemp = \App\Legacy\LegacyDB::select('* FROM classes WHERE grade=3 AND year=3');
 /* END TEMP */
 
 /* TEMP: full school list */
@@ -146,8 +146,8 @@ $resTemp = \Legacy\System\Classes\LegacyDB::select('* FROM classes WHERE grade=3
 foreach ($tempSchools as $tempSchool) {
 	$tempSchoolName = $tempSchool;
 
-	if (!\Legacy\System\Classes\LegacyDB::exists('schools WHERE name = ?', [$tempSchoolName])) {
-		\Legacy\System\Classes\LegacyDB::add('schools (name)', [$tempSchoolName]);
+	if (!\App\Legacy\LegacyDB::exists('schools WHERE name = ?', [$tempSchoolName])) {
+		\App\Legacy\LegacyDB::add('schools (name)', [$tempSchoolName]);
 	}
 }
 /* END TEMP */

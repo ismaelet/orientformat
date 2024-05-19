@@ -63,7 +63,7 @@ function _expand_results(&$entry, $field, $key, $row) {
 
 		$entry['value'] = empty($info) ? '-' : implode(', ', $info);
 	} else if ($field['name'] == 'count') {
-		$count = \Legacy\System\Classes\LegacyDB::count('ecommerce_carts WHERE couponId=? AND status<>0', [$row['code']]);
+		$count = \App\Legacy\LegacyDB::count('ecommerce_carts WHERE couponId=? AND status<>0', [$row['code']]);
 		$entry['value'] = $count . ' ' . ($count == 1 ? 'volta' : 'volte');
 	}
 }

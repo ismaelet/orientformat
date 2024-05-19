@@ -31,7 +31,7 @@ class Review {
 	}
 
 	private function getCompleted() {
-		return \Legacy\System\Classes\LegacyDB::exists('review_results WHERE reviewId = ? AND studentId = ?', [$this->id, $this->studentId]);
+		return \App\Legacy\LegacyDB::exists('review_results WHERE reviewId = ? AND studentId = ?', [$this->id, $this->studentId]);
 	}
 
 	/**

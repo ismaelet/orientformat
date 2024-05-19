@@ -25,7 +25,7 @@ $time_str = '';
 $count = count(_CONCEPTS);
 
 // fetch previous results
-$results = \Legacy\System\Classes\LegacyDB::find('result FROM results_others WHERE userID = ? AND testID = ?', [\Illuminate\Support\Facades\Auth::id(), $legacyTest->id]);
+$results = \App\Legacy\LegacyDB::find('result FROM results_others WHERE userID = ? AND testID = ?', [\Illuminate\Support\Facades\Auth::id(), $legacyTest->id]);
 
 if ($results) {
 	$results = explode(',', $results);
@@ -63,8 +63,8 @@ $time_str .= $seconds == 1 ? '1 secondo' : $seconds . ' secondi';
 
 			$results = implode(',', $results);
 
-			\Legacy\System\Classes\LegacyDB::delete('results_others WHERE userID = ? AND testID = ?', [\Illuminate\Support\Facades\Auth::id(), $legacyTest->id]);
-			\Legacy\System\Classes\LegacyDB::add('results_others (userID, testID, result) VALUES (?, ?, ?)', [\Illuminate\Support\Facades\Auth::id(), $legacyTest->id, $results]);
+			\App\Legacy\LegacyDB::delete('results_others WHERE userID = ? AND testID = ?', [\Illuminate\Support\Facades\Auth::id(), $legacyTest->id]);
+			\App\Legacy\LegacyDB::add('results_others (userID, testID, result) VALUES (?, ?, ?)', [\Illuminate\Support\Facades\Auth::id(), $legacyTest->id, $results]);
 
 			return round($rightN / $count * 100);
 		}

@@ -1,6 +1,6 @@
 <?php
 
-$thisUser = new \Legacy\System\Classes\User($_GET['id']);
+$thisUser = new \App\Legacy\User($_GET['id']);
 
 // setup page
 $tbl = 'users';

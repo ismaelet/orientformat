@@ -1,6 +1,6 @@
 <?php
 
-namespace Legacy\System\Classes;
+namespace App\Legacy;
 
 class Viewer {
 	const TEMPLATE_OPENING_TAG = '{% extends ';
@@ -22,7 +22,7 @@ class Viewer {
 		self::$appTemplates = server_root() . '/app/templates';
 		self::$viewsPath = server_root() . '/pages/views';
 
-		$view = \Legacy\System\Classes\LegacyView::getInstance();
+		$view = LegacyView::getInstance();
 		// fetch the view files
 		self::$templateFile = self::getTemplateFile($view->template);
 		if (file_exists($file = self::$viewsPath . '/' . $view->name . '.php')) self::$viewFile = $file;
@@ -49,7 +49,7 @@ class Viewer {
 		$parentName = false;
 
 		// access variables
-		foreach (\Legacy\System\Classes\LegacyView::getInstance()->variables as $var => $value) {
+		foreach (LegacyView::getInstance()->variables as $var => $value) {
 			${$var} = $value;
 		}
 

@@ -16,7 +16,7 @@ class Area {
 		$questions = [];
 
 		if ($reviewId) {
-			$questionRows = \Legacy\System\Classes\LegacyDB::select('id FROM review_questions WHERE areaId=? AND (reviewIds="" OR FIND_IN_SET(' . $reviewId . ', reviewIds))', [$this->id]);
+			$questionRows = \App\Legacy\LegacyDB::select('id FROM review_questions WHERE areaId=? AND (reviewIds="" OR FIND_IN_SET(' . $reviewId . ', reviewIds))', [$this->id]);
 
 			while ($questionRow = $questionRows->fetch_assoc()) {
 				$questions[] = new Question($questionRow['id']);

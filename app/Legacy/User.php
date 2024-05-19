@@ -1,6 +1,6 @@
 <?php
 
-namespace Legacy\System\Classes;
+namespace App\Legacy;
 
 /**
  * User class
@@ -12,7 +12,7 @@ namespace Legacy\System\Classes;
  */
 class User {
 
-	use \System\Traits\DatabaseObject;
+	use DatabaseObject;
 
 	public const TABLE = 'users';
 	public const INDEX = 'id';

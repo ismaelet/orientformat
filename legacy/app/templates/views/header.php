@@ -48,7 +48,7 @@
 							if (!isset($h_link['mobile']) || !$h_link['mobile']) { ?>
 
 								<div class="h-link relative">
-									<p class="h-link-txt <?php if (\Legacy\System\Classes\LegacyView::getInstance()->location == $h_link['loc']) echo 'active'; ?>">
+									<p class="h-link-txt <?php if (\App\Legacy\LegacyView::getInstance()->location == $h_link['loc']) echo 'active'; ?>">
 										<a href="<?= $h_link['url']; ?>">
 											<?= $h_link['title'];
 											if (isset($h_link['drop'])) echo ' <span class="h-drop-ico">&#x25BC;</span>' ?>

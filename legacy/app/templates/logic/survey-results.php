@@ -1,6 +1,6 @@
 <?php
 
-$fixedQuestions = \Legacy\System\Classes\LegacyView::getInstance()->get('fixedQuestions');
+$fixedQuestions = \App\Legacy\LegacyView::getInstance()->get('fixedQuestions');
 $answers = null;
 $total = 0;
 

@@ -21,7 +21,7 @@ $correctAnswers = [
 \LogicManager\TestLogic::setParameterCount(count($correctAnswers))
 	::setTestSubmitFunction(function ($count) {
 		$correctCount = 0;
-		$correctAnswers = \Legacy\System\Classes\LegacyView::get('correctAnswers');
+		$correctAnswers = \App\Legacy\LegacyView::get('correctAnswers');
 
 		foreach ($_POST['field'] as $answerKey => $answer) {
 			if (strtolower($answer) == strtolower($correctAnswers[$answerKey])) {

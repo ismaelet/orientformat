@@ -2,7 +2,7 @@
 
 //skin types
 $skins = [];
-$skinsRes = \Legacy\System\Classes\LegacyDB::select('id, name FROM items_skins ORDER BY name ASC');
+$skinsRes = \App\Legacy\LegacyDB::select('id, name FROM items_skins ORDER BY name ASC');
 
 while ($skin = $skinsRes->fetch_assoc()) {
 	$skins[] = [
@@ -18,7 +18,7 @@ while ($skin = $skinsRes->fetch_assoc()) {
 
 //uses
 $uses = [];
-$usesRes = \Legacy\System\Classes\LegacyDB::select('id, name FROM items_uses ORDER BY name ASC');
+$usesRes = \App\Legacy\LegacyDB::select('id, name FROM items_uses ORDER BY name ASC');
 
 while ($use = $usesRes->fetch_assoc()) {
 	$uses[] = [

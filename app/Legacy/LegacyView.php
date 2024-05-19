@@ -1,11 +1,11 @@
 <?php
 
-namespace Legacy\System\Classes;
+namespace App\Legacy;
 
 class LegacyView {
 
-	use \System\Traits\Singleton;
-	use \System\Traits\DynamicProperties;
+	use Singleton;
+	use DynamicProperties;
 
 	private static $page;
 	private static $title;
@@ -54,10 +54,10 @@ class LegacyView {
 	}
 
 	public static function getTabTitle() {
-		$config = \Legacy\System\Classes\LegacyConfig::getInstance();
+		$config = LegacyConfig::getInstance();
 
 		if (self::$title) {
-			$tabTitle = self::$title . ' | ' . \Legacy\System\Classes\LegacyConfig::getInstance()->name;
+			$tabTitle = self::$title . ' | ' . LegacyConfig::getInstance()->name;
 		} else {
 			$tabTitle = $config->name;
 
@@ -70,11 +70,11 @@ class LegacyView {
 	}
 
 	public static function getDescription() {
-		return __(\Legacy\System\Classes\LegacyConfig::getInstance()->description);
+		return __(LegacyConfig::getInstance()->description);
 	}
 
 	public static function getThumbnail() {
-		return self::$thumbnail ?: \Legacy\System\Classes\LegacyConfig::getInstance()->clientLogo;
+		return self::$thumbnail ?: LegacyConfig::getInstance()->clientLogo;
 	}
 
 	/**
@@ -161,24 +161,24 @@ class LegacyView {
 
 	public static function show() {
 		// load the middlewares
-		$middlewareLoader = \Legacy\System\Classes\MiddlewareLoader::getInstance();
+		$middlewareLoader = MiddlewareLoader::getInstance();
 
 		foreach (self::$middlewares as $middleware) {
 			$middlewareLoader->run($middleware);
 		}
 
 		// load the logic
-		\Legacy\System\Classes\Logic::add(self::$template, 'template');
-		\Legacy\System\Classes\Logic::add(self::$page, 'page');
-		\Legacy\System\Classes\Logic::load();
+		Logic::add(self::$template, 'template');
+		Logic::add(self::$page, 'page');
+		Logic::load();
 
 		// load page resources
-		\Legacy\System\Classes\StyleLoader::addPageStyles(\Legacy\System\Classes\LegacyView::$page);
-		\Legacy\System\Classes\ScriptLoader::addPageScripts(\Legacy\System\Classes\LegacyView::$page);
+		StyleLoader::addPageStyles(LegacyView::$page);
+		ScriptLoader::addPageScripts(LegacyView::$page);
 
 		// render page
 		Viewer::render();
 
-		\Legacy\System\Classes\ConnectionInterface::getInstance()->close();
+		ConnectionInterface::getInstance()->close();
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Legacy\System\Classes;
+namespace App\Legacy;
 
 class LegacyDB {
 
@@ -9,7 +9,7 @@ class LegacyDB {
 		$values = !empty($values) ? (array) $values : null;
 
 		// prepare the query
-		$connection = \Legacy\System\Classes\ConnectionInterface::getInstance()->connection;
+		$connection = ConnectionInterface::getInstance()->connection;
 		$stmt = $connection->prepare($query);
 
 		// execute the query
@@ -39,7 +39,7 @@ class LegacyDB {
 			$stmt->execute();
 			$stmt->store_result();
 
-			\Legacy\System\Classes\ConnectionInterface::$queryCount++;
+			ConnectionInterface::$queryCount++;
 
 			return new Query($stmt);
 		} else {
@@ -100,7 +100,7 @@ class LegacyDB {
 
 	// add an element
 	static function add(string $query, $values = []) {
-		$connection = \Legacy\System\Classes\ConnectionInterface::getInstance()->connection;
+		$connection = ConnectionInterface::getInstance()->connection;
 
 		$query = 'INSERT INTO ' . $query;
 

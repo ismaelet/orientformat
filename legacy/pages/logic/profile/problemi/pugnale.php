@@ -26,7 +26,7 @@ $correctResults = [4, 3, 1, 2];
 \LogicManager\TestLogic::setParameterCount(count($characters))
 	->setTestSubmitFunction(function ($count) {
 		$correctCount = 0;
-		$correctResults = \Legacy\System\Classes\LegacyView::get('correctResults');
+		$correctResults = \App\Legacy\LegacyView::get('correctResults');
 
 		foreach ($correctResults as $resultKey => $correctResult) {
 			if (isset($_POST['field'][$resultKey]) && $_POST['field'][$resultKey] == $correctResult) {

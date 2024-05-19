@@ -1,7 +1,7 @@
 <?php
 
 //management panel
-\Legacy\System\Classes\LegacyRoute::add('/management', function () {
+\App\Legacy\LegacyRoute::add('/management', function () {
 
 	//setup page
 	$view = new View('management/home');
@@ -13,7 +13,7 @@
 });
 
 //schools - add
-\Legacy\System\Classes\LegacyRoute::add('/management/schools/add', function () {
+\App\Legacy\LegacyRoute::add('/management/schools/add', function () {
 
 	//setup page
 	$view = new View('management/schools/add');
@@ -26,7 +26,7 @@
 });
 
 //schools - list
-\Legacy\System\Classes\LegacyRoute::add('/management/schools/list', function () {
+\App\Legacy\LegacyRoute::add('/management/schools/list', function () {
 
 	//setup page
 	$view = new View('management/schools/list');
@@ -39,7 +39,7 @@
 });
 
 //classes - add
-\Legacy\System\Classes\LegacyRoute::add('/management/classes/add', function () {
+\App\Legacy\LegacyRoute::add('/management/classes/add', function () {
 
 	//setup page
 	$view = new View('management/classes/add');
@@ -52,7 +52,7 @@
 });
 
 //classes - list
-\Legacy\System\Classes\LegacyRoute::add('/management/classes/list', function () {
+\App\Legacy\LegacyRoute::add('/management/classes/list', function () {
 
 	//setup page
 	$view = new View('management/classes/list');
@@ -65,7 +65,7 @@
 });
 
 //classes - results
-\Legacy\System\Classes\LegacyRoute::add('/management/classes/results', function () {
+\App\Legacy\LegacyRoute::add('/management/classes/results', function () {
 
 	//setup page
 	$view = new View('management/classes/results');
@@ -78,7 +78,7 @@
 });
 
 //teachers - add
-\Legacy\System\Classes\LegacyRoute::add('/management/teachers/add', function () {
+\App\Legacy\LegacyRoute::add('/management/teachers/add', function () {
 
 	//setup page
 	$view = new View('management/teachers/add');
@@ -91,7 +91,7 @@
 });
 
 //teachers - reset password
-\Legacy\System\Classes\LegacyRoute::add('/management/teachers/reset', function () {
+\App\Legacy\LegacyRoute::add('/management/teachers/reset', function () {
 
 	//setup page
 	$view = new View('management/teachers/reset');
@@ -103,7 +103,7 @@
 });
 
 //teachers - list
-\Legacy\System\Classes\LegacyRoute::add('/management/teachers/list', function () {
+\App\Legacy\LegacyRoute::add('/management/teachers/list', function () {
 
 	//setup page
 	$view = new View('management/teachers/list');
@@ -116,7 +116,7 @@
 });
 
 //students - list
-\Legacy\System\Classes\LegacyRoute::add('/management/students/list', function () {
+\App\Legacy\LegacyRoute::add('/management/students/list', function () {
 
 	//setup page
 	$view = new View('management/students/list');
@@ -129,7 +129,7 @@
 });
 
 //students - download
-\Legacy\System\Classes\LegacyRoute::add('/management/students/download', function () {
+\App\Legacy\LegacyRoute::add('/management/students/download', function () {
 
 	//setup page
 	$view = new View('management/students/download');
@@ -141,7 +141,7 @@
 });
 
 //students - results
-\Legacy\System\Classes\LegacyRoute::add('/management/students/results', function () {
+\App\Legacy\LegacyRoute::add('/management/students/results', function () {
 
 	//setup page
 	$view = new View('management/students/results');
@@ -153,7 +153,7 @@
 });
 
 //students - completed
-\Legacy\System\Classes\LegacyRoute::add('/management/students/completed', function () {
+\App\Legacy\LegacyRoute::add('/management/students/completed', function () {
 
 	//setup page
 	$view = new View('management/students/completed');

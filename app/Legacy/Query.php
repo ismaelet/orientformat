@@ -1,6 +1,6 @@
 <?php
 
-namespace Legacy\System\Classes;
+namespace App\Legacy;
 
 class Query {
 
@@ -50,28 +50,5 @@ class Query {
 	// return the response
 	public function extractResults() {
 		return $this->num_rows ? array_column($this->res, key($this->res[0])) : null;
-	}
-}
-
-class Query_Result {
-
-	public $res = false;
-	public $num_rows = 0;
-
-	function __construct($stmt) {
-
-		$this->res = $stmt->res;
-		$this->num_rows = $stmt->num_rows;
-	}
-
-	//fetch rows
-	function fetch_assoc() {
-
-		if ($this->res) {
-
-			$row = array_shift($this->res);
-
-			return $row;
-		} else return false;
 	}
 }

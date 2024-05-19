@@ -50,7 +50,7 @@ $count = $i;
 
 \LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function ($count) {
-		$boxes = \Legacy\System\Classes\LegacyView::getInstance()->get('boxes');
+		$boxes = \App\Legacy\LegacyView::getInstance()->get('boxes');
 
 		$rightN = 0;
 

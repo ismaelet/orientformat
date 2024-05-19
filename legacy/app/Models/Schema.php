@@ -30,7 +30,7 @@ class Schema {
 	 */
 
 	public static function tableExists(): bool {
-		return \Legacy\System\Classes\LegacyDB::table(static::table());
+		return \App\Legacy\LegacyDB::table(static::table());
 	}
 
 	/**
@@ -45,7 +45,7 @@ class Schema {
 
 		$columnsQuery = implode(',', $blueprint->columns());
 
-		\Legacy\System\Classes\LegacyDB::execute('CREATE TABLE IF NOT EXISTS ' . static::table() . ' (' . $columnsQuery . ')');
+		\App\Legacy\LegacyDB::execute('CREATE TABLE IF NOT EXISTS ' . static::table() . ' (' . $columnsQuery . ')');
 	}
 
 	/**
@@ -53,7 +53,7 @@ class Schema {
 	 */
 
 	public static function max(string $column): int {
-		$response = \Legacy\System\Classes\LegacyDB::row('MAX(' . $column . ') as maxId FROM ' . static::table());
+		$response = \App\Legacy\LegacyDB::row('MAX(' . $column . ') as maxId FROM ' . static::table());
 
 		return $response['maxId'] ?: 0;
 	}
@@ -66,7 +66,7 @@ class Schema {
 	 * @return object|array|null
 	 */
 	public static function findWhere(array $parameters) {
-		$id = \Legacy\System\Classes\LegacyDB::find('id FROM ' . static::table() . ' WHERE ' . self::sqlWherelFields($parameters), array_values($parameters));
+		$id = \App\Legacy\LegacyDB::find('id FROM ' . static::table() . ' WHERE ' . self::sqlWherelFields($parameters), array_values($parameters));
 
 		return $id ? $instances[] = new static($id) : null;
 	}
@@ -80,7 +80,7 @@ class Schema {
 	 */
 	public static function where(array $parameters) {
 		$instances = [];
-		$rows = \Legacy\System\Classes\LegacyDB::select('id FROM ' . static::table() . ' WHERE ' . self::sqlWherelFields($parameters), array_values($parameters));
+		$rows = \App\Legacy\LegacyDB::select('id FROM ' . static::table() . ' WHERE ' . self::sqlWherelFields($parameters), array_values($parameters));
 
 		if ($rows->num_rows) {
 			while ($row = $rows->fetch_assoc()) {
@@ -104,7 +104,7 @@ class Schema {
 		$columns = implode(',', array_keys($parameters));
 		$placeHolders = implode(',', array_fill(0, count($parameters), '?'));
 
-		return \Legacy\System\Classes\LegacyDB::add(static::table() . ' (' . $columns . ') VALUES (' . $placeHolders . ')', array_values($parameters));
+		return \App\Legacy\LegacyDB::add(static::table() . ' (' . $columns . ') VALUES (' . $placeHolders . ')', array_values($parameters));
 	}
 
 	/**
@@ -112,7 +112,7 @@ class Schema {
 	 * 
 	 */
 	public static function deleteWhere(array $parameters) {
-		return \Legacy\System\Classes\LegacyDB::delete(static::table() . ' WHERE ' . self::sqlWherelFields($parameters), array_values($parameters));
+		return \App\Legacy\LegacyDB::delete(static::table() . ' WHERE ' . self::sqlWherelFields($parameters), array_values($parameters));
 	}
 
 	/**
@@ -155,7 +155,7 @@ class Schema {
 	 */
 
 	public static function columnExists(string $column): bool {
-		return \Legacy\System\Classes\LegacyDB::execute("SHOW COLUMNS FROM " . static::table() . " LIKE '" . $column . "'")->num_rows;
+		return \App\Legacy\LegacyDB::execute("SHOW COLUMNS FROM " . static::table() . " LIKE '" . $column . "'")->num_rows;
 	}
 
 	/**
@@ -188,7 +188,7 @@ class Schema {
 
 		$columnsQuery = (implode(', ', array_filter(condense_array($addColumns, $dropColumns))));
 
-		\Legacy\System\Classes\LegacyDB::execute('ALTER TABLE ' . static::table() . ' ' . $columnsQuery);
+		\App\Legacy\LegacyDB::execute('ALTER TABLE ' . static::table() . ' ' . $columnsQuery);
 	}
 
 	/**
@@ -199,7 +199,7 @@ class Schema {
 	 */
 
 	public static function find(int $id) {
-		if (\Legacy\System\Classes\LegacyDB::exists(static::table() . ' WHERE id = ?', [$id])) {
+		if (\App\Legacy\LegacyDB::exists(static::table() . ' WHERE id = ?', [$id])) {
 			return new static($id);
 		}
 
@@ -213,7 +213,7 @@ class Schema {
 	 * @return object
 	 
 	public function first(): object {
-		$query = \Legacy\System\Classes\LegacyDB::getInstance()->table(static::table());
+		$query = \App\Legacy\LegacyDB::getInstance()->table(static::table());
 
 		foreach (static::$where as $column => $value) {
 			$query->where($column, $value);
@@ -234,7 +234,7 @@ class Schema {
 	 * @return array | bool returns all the matching rows or false if no match was found
 	 
 	public static function allWhere(string $column, $value) {
-		return \Legacy\System\Classes\LegacyDB::getInstance()->execute('SELECT * FROM ' . static::table() . ' WHERE ' . $column . ' = ?', [$value]);
+		return \App\Legacy\LegacyDB::getInstance()->execute('SELECT * FROM ' . static::table() . ' WHERE ' . $column . ' = ?', [$value]);
 	}
 
 	/**

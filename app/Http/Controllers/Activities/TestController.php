@@ -16,7 +16,7 @@ class TestController extends Controller {
 		$template = $test->template;
 		$title = $test->title;
 
-		\Legacy\System\Classes\LegacyView::setPage($page)
+		\App\Legacy\LegacyView::setPage($page)
 			->setTemplate($template)
 			->setTitle($title)
 			->set('test', $test)

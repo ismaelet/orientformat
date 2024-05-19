@@ -6,14 +6,14 @@ $pageType = $_GET['type'] ?? null;
 $pageType = in_array($pageType, ['new-middleschool', 'new-highschool', 'collaborate']) ? $pageType : null;
 $error = false;
 
-$schools = \Legacy\System\Classes\LegacyDB::select('* FROM schools WHERE status = 1 AND id IN (SELECT ' . SchoolClass::SCHOOL_INDEX . ' FROM ' . SchoolClass::TABLE . ') ORDER BY name ASC');
+$schools = \App\Legacy\LegacyDB::select('* FROM schools WHERE status = 1 AND id IN (SELECT ' . SchoolClass::SCHOOL_INDEX . ' FROM ' . SchoolClass::TABLE . ') ORDER BY name ASC');
 
 // generate a default school ID based on the other classes
 $defaultSchoolId = null;
 
 if (teacher()->schoolClassIds) {
 	$classesSql = implode(',', teacher()->schoolClassIds);
-	$defaultSchoolId = \Legacy\System\Classes\LegacyDB::find(SchoolClass::SCHOOL_INDEX . ' FROM ' . SchoolClass::TABLE . ' WHERE ' . SchoolClass::INDEX . ' IN (' . $classesSql . ') ORDER BY ' . SchoolClass::INDEX . ' DESC');
+	$defaultSchoolId = \App\Legacy\LegacyDB::find(SchoolClass::SCHOOL_INDEX . ' FROM ' . SchoolClass::TABLE . ' WHERE ' . SchoolClass::INDEX . ' IN (' . $classesSql . ') ORDER BY ' . SchoolClass::INDEX . ' DESC');
 }
 
 // generate the years array
@@ -120,13 +120,13 @@ if (isset($_POST['add'])) {
 	} else {
 		$code = bin2hex(random_bytes(5));
 
-		while (\Legacy\System\Classes\LegacyDB::exists(SchoolClass::TABLE . ' WHERE code = ?', [$code])) {
+		while (\App\Legacy\LegacyDB::exists(SchoolClass::TABLE . ' WHERE code = ?', [$code])) {
 			$code = bin2hex(random_bytes(5));
 		}
 
-		$classId = \Legacy\System\Classes\LegacyDB::add(SchoolClass::TABLE . ' (letter, ' . SchoolClass::SCHOOL_INDEX . ', startingYear, year, grade, startingGrade, code, referentId, professional)', [$letter, $schoolId, $startingYear, $startingYear, $grade, $grade, $code, teacherId(), $professional]);
+		$classId = \App\Legacy\LegacyDB::add(SchoolClass::TABLE . ' (letter, ' . SchoolClass::SCHOOL_INDEX . ', startingYear, year, grade, startingGrade, code, referentId, professional)', [$letter, $schoolId, $startingYear, $startingYear, $grade, $grade, $code, teacherId(), $professional]);
 
-		\Legacy\System\Classes\LegacyDB::update("teachers SET classes = CONCAT(classes, '," . $classId . "') WHERE userId = ?", [teacherId()]);
+		\App\Legacy\LegacyDB::update("teachers SET classes = CONCAT(classes, '," . $classId . "') WHERE userId = ?", [teacherId()]);
 
 		$_SESSION['dashboard-schoolClassId'] = $classId;
 
@@ -141,8 +141,8 @@ if (isset($_POST['collaborate'])) {
 	$schoolClassId = $_POST['schoolClassId'];
 	$schoolClass = new SchoolClass($schoolClassId);
 
-	if (!\Legacy\System\Classes\LegacyDB::exists('grade_requests WHERE teacherId = ? AND gradeId = ?', [teacher()->id, $schoolClass->id])) {
-		\Legacy\System\Classes\LegacyDB::add('grade_requests (teacherId, gradeId, referentId)', [teacher()->id, $schoolClass->id, $schoolClass->referentId]);
+	if (!\App\Legacy\LegacyDB::exists('grade_requests WHERE teacherId = ? AND gradeId = ?', [teacher()->id, $schoolClass->id])) {
+		\App\Legacy\LegacyDB::add('grade_requests (teacherId, gradeId, referentId)', [teacher()->id, $schoolClass->id, $schoolClass->referentId]);
 	}
 
 	$pageType = 'requested';

@@ -29,5 +29,5 @@ $inputs = [
 function _expand_edit($tbl, $inputs, $index, $id) {
 	$newPassword = $_POST['new-password'];
 
-	if ($newPassword) \Legacy\System\Classes\LegacyDB::update('users SET password=? WHERE id=?', [$newPassword, $_GET['id']]);
+	if ($newPassword) \App\Legacy\LegacyDB::update('users SET password=? WHERE id=?', [$newPassword, $_GET['id']]);
 }

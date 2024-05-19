@@ -6,7 +6,7 @@ use \Legacy\SchoolSystem\SchoolClass;
 use LegacyModels\User\StudentProfile;
 use \Legacy\SchoolSystem\School;
 
-use \Legacy\System\Classes\User;
+use \App\Legacy\User;
 use \Legacy\UserSystem\Student\Advice;
 
 /**
@@ -41,7 +41,7 @@ class Student {
 	}
 
 	private function getUser() {
-		return new \Legacy\System\Classes\User($this->userId);
+		return new \App\Legacy\User($this->userId);
 	}
 
 	private function getUsername() {
@@ -85,14 +85,14 @@ class Student {
 	}
 
 	private function getHasCompletedEndReview() {
-		return \Legacy\System\Classes\LegacyDB::exists('survey_end WHERE userID = ?', [$this->id]);
+		return \App\Legacy\LegacyDB::exists('survey_end WHERE userID = ?', [$this->id]);
 	}
 
 	private function getStartReviewId() {
-		return \Legacy\System\Classes\LegacyDB::find('id FROM review_results WHERE studentId = ? AND reviewId IN (1, 2) ORDER BY reviewId DESC', [$this->id]);
+		return \App\Legacy\LegacyDB::find('id FROM review_results WHERE studentId = ? AND reviewId IN (1, 2) ORDER BY reviewId DESC', [$this->id]);
 	}
 	private function getEndReviewId() {
-		return \Legacy\System\Classes\LegacyDB::find('id FROM review_results WHERE studentId = ? AND reviewId = 3', [$this->id]);
+		return \App\Legacy\LegacyDB::find('id FROM review_results WHERE studentId = ? AND reviewId = 3', [$this->id]);
 	}
 
 	private function getProfile() {
@@ -106,7 +106,7 @@ class Student {
 	private function getAdvices() {
 		$advices = false;
 
-		$advicesData = \Legacy\System\Classes\LegacyDB::find('advices FROM advices WHERE userID=?', [$this->id]);
+		$advicesData = \App\Legacy\LegacyDB::find('advices FROM advices WHERE userID=?', [$this->id]);
 
 		if ($advicesData) {
 			$advices = [];
@@ -195,11 +195,11 @@ class Student {
 	 * Misc
 	 */
 	public function calcPersonalData() {
-		if (!\Legacy\System\Classes\LegacyDB::exists('students_data WHERE studentId = ?', [$this->id])) {
+		if (!\App\Legacy\LegacyDB::exists('students_data WHERE studentId = ?', [$this->id])) {
 			$tempData = [];
 			$tempSurveryData = [];
 
-			if ($tempSurvery = \Legacy\System\Classes\LegacyDB::find('results FROM review_results WHERE studentId = ? AND FIND_IN_SET (reviewId, "1,2")', [$this->id])) {
+			if ($tempSurvery = \App\Legacy\LegacyDB::find('results FROM review_results WHERE studentId = ? AND FIND_IN_SET (reviewId, "1,2")', [$this->id])) {
 				foreach (explode(',', $tempSurvery) as $tempSurveryVal) {
 					$tempSurveryVal = explode('=', $tempSurveryVal);
 					$tempSurveryData[$tempSurveryVal[0]] = $tempSurveryVal[1] ?? false;
@@ -226,7 +226,7 @@ class Student {
 			}
 
 			if (!empty($tempData)) {
-				\Legacy\System\Classes\LegacyDB::add('students_data (studentId, gender, decided, degree)', [$this->id, $tempData['gender'], $tempData['decided'], $tempData['degree']]);
+				\App\Legacy\LegacyDB::add('students_data (studentId, gender, decided, degree)', [$this->id, $tempData['gender'], $tempData['decided'], $tempData['degree']]);
 			}
 		}
 	}

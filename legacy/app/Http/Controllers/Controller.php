@@ -18,17 +18,17 @@ class Controller {
 	public function index() {
 		// preload the scripts
 		foreach ($this->inlineScripts as $script) {
-			\Legacy\System\Classes\ScriptLoader::getInstance()->add($script, 'inline');
+			\App\Legacy\ScriptLoader::getInstance()->add($script, 'inline');
 		}
 
 		// preload the styles
 		foreach ($this->inlineStyles as $style) {
-			\Legacy\System\Classes\StyleLoader::getInstance()->add($style, 'inline');
+			\App\Legacy\StyleLoader::getInstance()->add($style, 'inline');
 		}
 
 		// store the parameters
 		foreach ($this->parameters as $parameter => $parameterValue) {
-			\Legacy\System\Classes\LegacyView::getInstance()->set($parameter, $parameterValue);
+			\App\Legacy\LegacyView::getInstance()->set($parameter, $parameterValue);
 		}
 	}
 

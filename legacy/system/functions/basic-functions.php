@@ -19,18 +19,18 @@ function parse_rgba($hex, $alpha = 1) {
  */
 function user() {
 	if (Auth::id()) {
-		\Legacy\System\Classes\ActiveUser::getInstance()->setId(Auth::id());
+		\App\Legacy\ActiveUser::getInstance()->setId(Auth::id());
 	}
 
-	return \Legacy\System\Classes\ActiveUser::getInstance();
+	return \App\Legacy\ActiveUser::getInstance();
 }
 
 function userId() {
 	if (Auth::id()) {
-		\Legacy\System\Classes\ActiveUser::getInstance()->setId(Auth::id());
+		\App\Legacy\ActiveUser::getInstance()->setId(Auth::id());
 	}
 
-	return \Legacy\System\Classes\ActiveUser::getInstance()->id;
+	return \App\Legacy\ActiveUser::getInstance()->id;
 }
 
 function logged() {
@@ -42,11 +42,11 @@ function guest() {
 }
 
 function admin() {
-	return \Legacy\System\Classes\ActiveUser::getInstance()->isAdmin;
+	return \App\Legacy\ActiveUser::getInstance()->isAdmin;
 }
 
 function manager() {
-	return \Legacy\System\Classes\ActiveUser::getInstance()->isManager;
+	return \App\Legacy\ActiveUser::getInstance()->isManager;
 }
 
 /**

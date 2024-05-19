@@ -87,7 +87,7 @@ $count = count($questions);
 
 \LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function ($count) {
-		$answers = \Legacy\System\Classes\LegacyView::getInstance()->get('answers');
+		$answers = \App\Legacy\LegacyView::getInstance()->get('answers');
 
 		$rightN = 0;
 

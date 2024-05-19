@@ -11,7 +11,7 @@ function scan(string $path, string $extension = '*', string $filter = '*'): arra
  * Get the url of an image
  */
 function image_url(string $fileName): string {
-	return client_path('/src/assets/images/' . \Legacy\System\Classes\LegacyView::name() . '/' . $fileName);
+	return client_path('/src/assets/images/' . \App\Legacy\LegacyView::name() . '/' . $fileName);
 }
 
 /**

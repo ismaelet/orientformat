@@ -1,6 +1,6 @@
 <?php
 
-namespace Legacy\System\Classes;
+namespace App\Legacy;
 
 use Exception;
 use mysqli;
@@ -16,8 +16,8 @@ use mysqli;
  */
 class ConnectionInterface {
 
-	use \System\Traits\DynamicProperties;
-	use \System\Traits\Singleton;
+	use DynamicProperties;
+	use Singleton;
 
 	private const DEVELOPEMENT_DATA_PREFIX = 'local';
 	private const PRODUCTION_DATA_PREFIX = 'live';
@@ -35,7 +35,7 @@ class ConnectionInterface {
 	 * Magic methods
 	 */
 	private function __construct() {
-		$config = \Legacy\System\Classes\LegacyConfig::getInstance();
+		$config = LegacyConfig::getInstance();
 		$currentServerAddress = $_SERVER['REMOTE_ADDR'];
 		$liveServerAddress = $config->serverAddress;
 
@@ -92,27 +92,5 @@ class ConnectionInterface {
 	 * Singleton methods
 	 */
 	public function close() {
-		// $userId = userId();
-
-		// self::$connection->close();
-
-		// $intervalOpen = round(microtime(true) - self::$timeOpen, 3) * 1000;
-
-		// $prefix = '';
-
-		// if ($intervalOpen > 1000) {
-		// 	$prefix = '!!! ';
-		// } else if ($intervalOpen > 100) {
-		// 	// $prefix = '!! ';
-		// }
-
-		// $message = $prefix . date('Y-m-d H:i:s') . ' Richiesta di ' . $intervalOpen . 'ms effettuata in ' . $_SERVER['REQUEST_URI'] . ($userId ? ' dall\'utente ' . $userId : null) . PHP_EOL;
-
-		// if (self::$envirnoment == 'developement' || \Illuminate\Support\Facades\Auth::id() && \Illuminate\Support\Facades\Auth::id() == 4719) {
-		// 	echo $message . '<br>';
-		// 	echo 'Numero di queries: ' . self::$queryCount;
-		// }
-
-		// // file_put_contents(server_path('/logs/connection.log'), $message, FILE_APPEND);
 	}
 }

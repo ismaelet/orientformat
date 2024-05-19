@@ -28,6 +28,6 @@ class GradeResult {
 	 * Istance methods
 	 */
 	public static function new(int $gradeId) {
-		return \Legacy\System\Classes\LegacyDB::add(self::TABLE . ' (' . self::USER_INDEX . ', ' . self::GRADE_INDEX . ')', [\Illuminate\Support\Facades\Auth::id(), $gradeId]);
+		return \App\Legacy\LegacyDB::add(self::TABLE . ' (' . self::USER_INDEX . ', ' . self::GRADE_INDEX . ')', [\Illuminate\Support\Facades\Auth::id(), $gradeId]);
 	}
 }

@@ -34,8 +34,8 @@ class Test extends OldModel {
 	/**
 	 * Get methods
 	 */
-	public static function newFromStep(int $legacySectionId, int $step) {
-		return self::newWhere([Test::linkedIndexName(Section::class) => $legacySectionId, 'step' => $step]);
+	public static function newFromStep(int $sectionId, int $step) {
+		return self::newWhere([Test::linkedIndexName(Section::class) => $sectionId, 'step' => $step]);
 	}
 
 	public function section() {

@@ -16,7 +16,7 @@ class ActiveTeacher {
 	 * Magic methods
 	 */
 	private function __construct() {
-		if (\Legacy\System\Classes\LegacyDB::exists(Teacher::TABLE . ' WHERE ' . Teacher::INDEX . ' = ?', [userId()])) {
+		if (\App\Legacy\LegacyDB::exists(Teacher::TABLE . ' WHERE ' . Teacher::INDEX . ' = ?', [userId()])) {
 			$teacher = new Teacher(userId());
 
 			self::$id = $teacher->id;

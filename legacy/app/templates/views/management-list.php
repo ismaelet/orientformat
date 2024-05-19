@@ -75,7 +75,7 @@
 
 							<?php } else if ($type == 'find') {
 
-								$val = \Legacy\System\Classes\LegacyDB::find($field['find'][0], $entry[$field['find'][1]]);
+								$val = \App\Legacy\LegacyDB::find($field['find'][0], $entry[$field['find'][1]]);
 								if (isset($field['switch'])) $val = empty($val) ? $field['switch'][1] : $field['switch'][0];
 								if (isset($field['parse']) && $field['parse'] == 'int') $val = (int) $val;
 

@@ -10,8 +10,8 @@ if (isset($_POST['submit'])) {
 
 	if ($password != $passwordConfirmation) $error = 'no-match';
 	else {
-		\Legacy\System\Classes\LegacyDB::delete('user_resets WHERE userId = ?', [$userId]);
-		\Legacy\System\Classes\LegacyDB::update('users SET password = ? WHERE id = ?', [$password, $userId]);
+		\App\Legacy\LegacyDB::delete('user_resets WHERE userId = ?', [$userId]);
+		\App\Legacy\LegacyDB::update('users SET password = ? WHERE id = ?', [$password, $userId]);
 
 		$done = true;
 	}

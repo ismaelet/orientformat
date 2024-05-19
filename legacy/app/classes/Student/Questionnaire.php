@@ -18,7 +18,7 @@ class Questionnaire {
 	public $reviewId;
 
 	function __construct($id) {
-		if ($row = \Legacy\System\Classes\LegacyDB::row('* FROM ' . self::TABLE . ' WHERE id = ?', [$id])) {
+		if ($row = \App\Legacy\LegacyDB::row('* FROM ' . self::TABLE . ' WHERE id = ?', [$id])) {
 			$this->id = $id;
 			$this->row = $row['results'];
 			$this->reviewId = $row['reviewId'];
@@ -88,7 +88,7 @@ class Questionnaire {
 	*/
 	private function getAreas() {
 		$areas = [];
-		$areaIds = explode(',', \Legacy\System\Classes\LegacyDB::find('areas FROM reviews WHERE id=?', [$this->reviewId]));
+		$areaIds = explode(',', \App\Legacy\LegacyDB::find('areas FROM reviews WHERE id=?', [$this->reviewId]));
 
 		foreach ($areaIds as $areaId) {
 			$areas[] = new Area($areaId, $this->reviewId);
@@ -227,7 +227,7 @@ class Questionnaire {
 		$results = [];
 
 		// prepare all the results
-		$resultRows = \Legacy\System\Classes\LegacyDB::select('id FROM review_results');
+		$resultRows = \App\Legacy\LegacyDB::select('id FROM review_results');
 
 		while ($resultRow = $resultRows->fetch_assoc()) {
 			$profile = new self($resultRow['id']);
@@ -241,13 +241,13 @@ class Questionnaire {
 		$averages = [];
 
 		// calculate the average for each question
-		$questions = \Legacy\System\Classes\LegacyDB::select('id FROM review_questions WHERE average=1');
+		$questions = \App\Legacy\LegacyDB::select('id FROM review_questions WHERE average=1');
 
 		while ($questionRow = $questions->fetch_assoc()) {
 			$averageValues = null;
 			$average = 0;
 			$question = new Question($questionRow['id']);
-			$average = \Legacy\System\Classes\LegacyDB::find('results FROM averages_surveys WHERE questionId=? AND time > NOW() - INTERVAL 1 WEEK', [$question->id]);
+			$average = \App\Legacy\LegacyDB::find('results FROM averages_surveys WHERE questionId=? AND time > NOW() - INTERVAL 1 WEEK', [$question->id]);
 
 			// when the result is an array
 			if (strpos($average, ',')) {
@@ -299,8 +299,8 @@ class Questionnaire {
 					$average = $averageSql = format($averageValues / $resultCount);
 				}
 
-				\Legacy\System\Classes\LegacyDB::delete('averages_surveys WHERE questionId=?', [$question->id]);
-				\Legacy\System\Classes\LegacyDB::add('averages_surveys (questionId, results)', [$question->id, $averageSql]);
+				\App\Legacy\LegacyDB::delete('averages_surveys WHERE questionId=?', [$question->id]);
+				\App\Legacy\LegacyDB::add('averages_surveys (questionId, results)', [$question->id, $averageSql]);
 			}
 
 			$averages[$question->fullSlug] = $average;
@@ -313,7 +313,7 @@ class Questionnaire {
 	* Entry management
 	*/
 	public static function generateLastCompleted(int $studentId) {
-		$questionnaireId = \Legacy\System\Classes\LegacyDB::find('id FROM ' . self::TABLE . ' WHERE studentId = ? ORDER BY reviewId DESC', [$studentId]);
+		$questionnaireId = \App\Legacy\LegacyDB::find('id FROM ' . self::TABLE . ' WHERE studentId = ? ORDER BY reviewId DESC', [$studentId]);
 
 		return new self($questionnaireId);
 	}

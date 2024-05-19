@@ -32,7 +32,7 @@ foreach (schoolClass()->doableAreas as $doableArea) {
 	$doableSections = [];
 
 	foreach ($availableGrades as $gradeId) {
-		$legacySectionRes = \Legacy\System\Classes\LegacyDB::select(Section::INDEX . ' FROM ' . Section::TABLE . ' WHERE ' . Section::AREA_INDEX . ' = ? AND FIND_IN_SET(?, grades) ORDER BY grades ASC', [$area['id'], $gradeId]);
+		$legacySectionRes = \App\Legacy\LegacyDB::select(Section::INDEX . ' FROM ' . Section::TABLE . ' WHERE ' . Section::AREA_INDEX . ' = ? AND FIND_IN_SET(?, grades) ORDER BY grades ASC', [$area['id'], $gradeId]);
 
 		if (!empty($legacySectionRes->res)) {
 			$doableSections = array_merge($doableSections, $legacySectionRes->res);

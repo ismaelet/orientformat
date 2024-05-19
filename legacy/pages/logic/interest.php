@@ -41,7 +41,7 @@ if (isset($_POST['edit'])) {
 
 	$results = implode(',', $results);
 
-	\Legacy\System\Classes\LegacyDB::update('results SET result = ? WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ?', [$results, \Illuminate\Support\Facades\Auth::id(), $surveyTestId]);
+	\App\Legacy\LegacyDB::update('results SET result = ? WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ?', [$results, \Illuminate\Support\Facades\Auth::id(), $surveyTestId]);
 
 	redirect_old();
 }

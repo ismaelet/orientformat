@@ -38,7 +38,7 @@ class StudentTestResult {
 	 * Get methods
 	 */
 	private function getResultId() {
-		return \Legacy\System\Classes\LegacyDB::find(TestResult::INDEX . ' FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::TEST_INDEX . ' = ? AND ' . TestResult::USER_INDEX . ' = ?', [$this->testId, $this->studentId]);
+		return \App\Legacy\LegacyDB::find(TestResult::INDEX . ' FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::TEST_INDEX . ' = ? AND ' . TestResult::USER_INDEX . ' = ?', [$this->testId, $this->studentId]);
 	}
 
 	private function getRawResults() {
@@ -220,7 +220,7 @@ class StudentTestResult {
 	}
 
 	private function checkCompleted() {
-		return \Legacy\System\Classes\LegacyDB::exists(Test::TABLE . ' WHERE ' . Test::INDEX . ' = ?', [$this->testId]) ? 'Completato' : null;
+		return \App\Legacy\LegacyDB::exists(Test::TABLE . ' WHERE ' . Test::INDEX . ' = ?', [$this->testId]) ? 'Completato' : null;
 	}
 
 	private function mergeNames() {
@@ -261,7 +261,7 @@ class StudentTestResult {
 	// Autostima and Creatività
 	private function calcDetailedTestsAverage() {
 		$results = [];
-		$legacyTests = rows_to_objects(\Legacy\System\Classes\LegacyDB::select(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND step < ? ORDER BY step ASC', [$this->test->sectionId, $this->test->step]), Test::class);
+		$legacyTests = rows_to_objects(\App\Legacy\LegacyDB::select(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND step < ? ORDER BY step ASC', [$this->test->sectionId, $this->test->step]), Test::class);
 
 		foreach ($legacyTests as $legacyTest) {
 			$legacyTest->setStudentId($this->studentId);
@@ -341,7 +341,7 @@ class StudentTestResult {
 		$legacySections = test_config($this->testId, 'sections');
 
 		for ($i = 1; $i < 6; $i++) {
-			$requiredTestId = \Legacy\System\Classes\LegacyDB::find('id FROM ' . Test::TABLE . ' WHERE sectionId = ? AND step = ?', [$this->test->sectionId, $i]);
+			$requiredTestId = \App\Legacy\LegacyDB::find('id FROM ' . Test::TABLE . ' WHERE sectionId = ? AND step = ?', [$this->test->sectionId, $i]);
 			$requiredTest = (new Test($requiredTestId))->setStudentId($this->studentId);
 
 			if ($requiredTest->completed) {
@@ -558,7 +558,7 @@ class StudentTestResult {
 
 	static private function calcResults($studentId, $testId, $resultsNames, $max) {
 		$results = false;
-		$resultsRaw = \Legacy\System\Classes\LegacyDB::find('result FROM ' . TestResult::TABLE . ' WHERE testID = ? AND userID = ? AND completed=1', [$testId, $studentId]);
+		$resultsRaw = \App\Legacy\LegacyDB::find('result FROM ' . TestResult::TABLE . ' WHERE testID = ? AND userID = ? AND completed=1', [$testId, $studentId]);
 
 		if ($resultsRaw) {
 			$resultsRaw = explode(',', $resultsRaw);
@@ -618,7 +618,7 @@ class StudentTestResult {
 		$results = [];
 		$resultsNames = ['Perdita di attenzione', 'Iperattività'];
 
-		$resultsRaw = \Legacy\System\Classes\LegacyDB::find('result FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ?', [$studentId, $testId]);
+		$resultsRaw = \App\Legacy\LegacyDB::find('result FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ?', [$studentId, $testId]);
 
 		if ($resultsRaw) {
 			$resultsRaw = explode(',', $resultsRaw);

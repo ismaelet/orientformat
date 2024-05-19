@@ -17,8 +17,8 @@ if (!empty($_POST)) {
 
 	$results = implode(',', $results);
 
-	\Legacy\System\Classes\LegacyDB::delete('review_results WHERE studentId = ? AND reviewId = ?', [userId(), $review->id]);
-	\Legacy\System\Classes\LegacyDB::add('review_results (studentId, reviewId, results)', [userId(), $review->id, $results]);
+	\App\Legacy\LegacyDB::delete('review_results WHERE studentId = ? AND reviewId = ?', [userId(), $review->id]);
+	\App\Legacy\LegacyDB::add('review_results (studentId, reviewId, results)', [userId(), $review->id, $results]);
 
 	redirect_old();
 }

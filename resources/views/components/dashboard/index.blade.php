@@ -11,7 +11,8 @@
 
 <div class="dashboard">
 	<!-- Navigation bar -->
-	<x-dashboard.navigation :navigation-groups="$navigationGroups" />
+	<x-dashboard.navigation :groups="$navigationGroups" />
+
 	<!-- Body -->
 	<section class="min-h-svh p-8">
 		<div class="min-w-64">

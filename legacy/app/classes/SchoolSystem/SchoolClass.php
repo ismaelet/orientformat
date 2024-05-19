@@ -53,19 +53,19 @@ class SchoolClass {
 	}
 
 	private function getStudentCount() {
-		return \Legacy\System\Classes\LegacyDB::count(Student::TABLE . ' WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ?', [$this->id]);
+		return \App\Legacy\LegacyDB::count(Student::TABLE . ' WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ?', [$this->id]);
 	}
 
 	private function getActiveStudentCount() {
-		return \Legacy\System\Classes\LegacyDB::count(Student::TABLE . ' WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ? AND status = 1', [$this->id]);
+		return \App\Legacy\LegacyDB::count(Student::TABLE . ' WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ? AND status = 1', [$this->id]);
 	}
 
 	private function getStudents() {
-		return rows_to_objects(\Legacy\System\Classes\LegacyDB::select(Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ?', [$this->id]), Student::class);
+		return rows_to_objects(\App\Legacy\LegacyDB::select(Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ?', [$this->id]), Student::class);
 	}
 
 	private function getActiveStudents() {
-		return rows_to_objects(\Legacy\System\Classes\LegacyDB::select(Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ? AND status = 1', [$this->id]), Student::class);
+		return rows_to_objects(\App\Legacy\LegacyDB::select(Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ? AND status = 1', [$this->id]), Student::class);
 	}
 
 	private function getStudentIds() {
@@ -154,7 +154,7 @@ class SchoolClass {
 	}
 
 	private function getDoableAreas() {
-		return rows_to_objects(\Legacy\System\Classes\LegacyDB::select(Area::INDEX . ' FROM ' . Area::TABLE . ' WHERE ' . Area::INDEX . ' IN (SELECT ' . Section::AREA_INDEX . ' FROM ' . Section::TABLE . ' WHERE FIND_IN_SET(' . Section::INDEX . ', "' . $this->doableSectionIdsString . '"))', []), Area::class);
+		return rows_to_objects(\App\Legacy\LegacyDB::select(Area::INDEX . ' FROM ' . Area::TABLE . ' WHERE ' . Area::INDEX . ' IN (SELECT ' . Section::AREA_INDEX . ' FROM ' . Section::TABLE . ' WHERE FIND_IN_SET(' . Section::INDEX . ', "' . $this->doableSectionIdsString . '"))', []), Area::class);
 	}
 
 	private function getReferent() {

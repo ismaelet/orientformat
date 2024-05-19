@@ -60,7 +60,7 @@ function percent($currentVal, $maxVal) {
 }
 
 
-function rows_to_objects(\Legacy\System\Classes\Query_Result $rows = null, string $className) {
+function rows_to_objects(\App\Legacy\Query_Result $rows = null, string $className) {
 	$objects = [];
 
 	while ($row = $rows->fetch_assoc()) {
@@ -71,7 +71,7 @@ function rows_to_objects(\Legacy\System\Classes\Query_Result $rows = null, strin
 }
 
 function test() {
-	return \Legacy\System\Classes\LegacyView::get('test');
+	return \App\Legacy\LegacyView::get('test');
 }
 
 function testId() {

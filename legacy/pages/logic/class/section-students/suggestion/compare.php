@@ -17,11 +17,11 @@ $parseIcons = [
 ];
 
 // fetch students
-$students = \Legacy\System\Classes\LegacyDB::select('id FROM students INNER JOIN users on students.userId = users.id WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ? AND users.status = 1 AND id IN (SELECT userID FROM advices) ORDER BY lastName ASC, firstName ASC, id ASC', schoolClassId());
+$students = \App\Legacy\LegacyDB::select('id FROM students INNER JOIN users on students.userId = users.id WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ? AND users.status = 1 AND id IN (SELECT userID FROM advices) ORDER BY lastName ASC, firstName ASC, id ASC', schoolClassId());
 
 // fetch choices
 $choices = [];
-$choicesRes = \Legacy\System\Classes\LegacyDB::select('id, advice FROM advices_list ORDER BY id ASC');
+$choicesRes = \App\Legacy\LegacyDB::select('id, advice FROM advices_list ORDER BY id ASC');
 
 while ($choice = $choicesRes->fetch_assoc()) {
 	$choices[$choice['id']] = $choice['advice'];

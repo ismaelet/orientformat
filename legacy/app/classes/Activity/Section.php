@@ -8,7 +8,7 @@ use \Legacy\Activity\Result\TestResult;
 use Legacy\System\Classes\User as LegacyUser;
 use LegacyModels\Activities\Results\CondensedSectionResult;
 use LegacyModels\Activities\Section as SectionModel;
-use \Legacy\System\Classes\User;
+use \App\Legacy\User;
 
 /**
  * Section class
@@ -74,7 +74,7 @@ class Section {
 	}
 
 	private function getTests() {
-		return rows_to_objects(\Legacy\System\Classes\LegacyDB::select(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND active = 1', [$this->id]), Test::class);
+		return rows_to_objects(\App\Legacy\LegacyDB::select(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND active = 1', [$this->id]), Test::class);
 	}
 
 	private function getTestCount() {
@@ -82,7 +82,7 @@ class Section {
 	}
 
 	private function getLastStep() {
-		return \Legacy\System\Classes\LegacyDB::row('MAX(step) as maxStep FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND active = 1', [$this->id])['maxStep'];
+		return \App\Legacy\LegacyDB::row('MAX(step) as maxStep FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND active = 1', [$this->id])['maxStep'];
 	}
 
 	private function getLastCompletedStep() {
@@ -90,7 +90,7 @@ class Section {
 	}
 
 	private function getResultId() {
-		$resultId = \Legacy\System\Classes\LegacyDB::find(SectionResult::INDEX . ' FROM ' . SectionResult::TABLE . ' WHERE ' . SectionResult::SECTION_INDEX . ' = ?  AND ' . SectionResult::USER_INDEX . ' = ?', [$this->id, $this->studentId]);
+		$resultId = \App\Legacy\LegacyDB::find(SectionResult::INDEX . ' FROM ' . SectionResult::TABLE . ' WHERE ' . SectionResult::SECTION_INDEX . ' = ?  AND ' . SectionResult::USER_INDEX . ' = ?', [$this->id, $this->studentId]);
 
 		return $resultId ?: (SectionResult::new($this->id))->id;
 	}
@@ -100,7 +100,7 @@ class Section {
 	}
 
 	private function getCheckpointId() {
-		return \Legacy\System\Classes\LegacyDB::find(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE active = 1 AND ' . Test::SECTION_INDEX . ' = ? AND ' . Test::INDEX . ' NOT IN (SELECT ' . TestResult::TEST_INDEX . ' FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?) ORDER BY step ASC', [$this->id, $this->studentId]);
+		return \App\Legacy\LegacyDB::find(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE active = 1 AND ' . Test::SECTION_INDEX . ' = ? AND ' . Test::INDEX . ' NOT IN (SELECT ' . TestResult::TEST_INDEX . ' FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?) ORDER BY step ASC', [$this->id, $this->studentId]);
 	}
 
 	private function getCheckpoint() {
@@ -113,7 +113,7 @@ class Section {
 
 	public function getProgressPercentage() {
 		if ($this->isStandard) {
-			return (int) \Legacy\System\Classes\LegacyDB::find('progressPercentage FROM results_sections WHERE studentId = ? AND sectionId = ?', [\Illuminate\Support\Facades\Auth::id(), $this->id]);
+			return (int) \App\Legacy\LegacyDB::find('progressPercentage FROM results_sections WHERE studentId = ? AND sectionId = ?', [\Illuminate\Support\Facades\Auth::id(), $this->id]);
 		} else {
 			return 100;
 		}
@@ -121,7 +121,7 @@ class Section {
 
 	public function getCompleted() {
 		if ($this->isStandard) {
-			return \Legacy\System\Classes\LegacyDB::exists('results_sections WHERE studentId = ? AND sectionId = ? AND completed = 1', [$this->studentId, $this->id]);
+			return \App\Legacy\LegacyDB::exists('results_sections WHERE studentId = ? AND sectionId = ? AND completed = 1', [$this->studentId, $this->id]);
 		} else {
 			return true;
 		}
@@ -162,7 +162,7 @@ class Section {
 		$percentage = round($completedTestCount / $this->testCount * 100);
 		$completed = $lastCompletedStep >= $this->lastStep ? 1 : 0;
 
-		\Legacy\System\Classes\LegacyDB::update(
+		\App\Legacy\LegacyDB::update(
 			SectionResult::TABLE .
 				' SET completedTestCount = ?, lastCompletedStep = ?, progressPercentage = ?, completed = ? 
 				WHERE ' . SectionResult::USER_INDEX . ' = ? AND ' . SectionResult::SECTION_INDEX . ' = ?',
@@ -170,7 +170,7 @@ class Section {
 			[$completedTestCount, $lastCompletedStep, $percentage, $completed, \Illuminate\Support\Facades\Auth::id(), $this->id]
 		);
 
-		\Legacy\System\Classes\LegacyDB::delete(CondensedSectionResult::table() . ' WHERE ' . CondensedSectionResult::linkedIndexName(LegacyUser::class) . ' = ? AND ' . CondensedSectionResult::linkedIndexName(SectionModel::class) . ' = ?', [\Illuminate\Support\Facades\Auth::id(), $this->id]);
+		\App\Legacy\LegacyDB::delete(CondensedSectionResult::table() . ' WHERE ' . CondensedSectionResult::linkedIndexName(LegacyUser::class) . ' = ? AND ' . CondensedSectionResult::linkedIndexName(SectionModel::class) . ' = ?', [\Illuminate\Support\Facades\Auth::id(), $this->id]);
 
 		// update grade progress
 		if (!is_teacher()) {
@@ -187,7 +187,7 @@ class Section {
 	 * Calc methods
 	 */
 	private function calcCompletedTestCount() {
-		return \Legacy\System\Classes\LegacyDB::count(
+		return \App\Legacy\LegacyDB::count(
 			TestResult::TABLE .
 				' INNER JOIN ' . Test::TABLE .
 				' ON ' . TestResult::TABLE . '.' . TestResult::TEST_INDEX . ' = ' . Test::TABLE . '.' . Test::INDEX . '
@@ -198,7 +198,7 @@ class Section {
 	}
 
 	private function calcLastCompletedStep() {
-		return \Legacy\System\Classes\LegacyDB::row(
+		return \App\Legacy\LegacyDB::row(
 			'MAX(step) as maxStep FROM ' .
 				TestResult::TABLE .
 				' INNER JOIN ' . Test::TABLE .

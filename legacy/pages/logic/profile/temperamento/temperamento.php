@@ -2,8 +2,8 @@
 
 use LogicManager\TestLogic;
 
-\Legacy\System\Classes\StyleLoader::add('profile/temperamento/temperamento', 'page');
-\Legacy\System\Classes\ScriptLoader::add('profile/temperamento/temperamento', 'page');
+\App\Legacy\StyleLoader::add('profile/temperamento/temperamento', 'page');
+\App\Legacy\ScriptLoader::add('profile/temperamento/temperamento', 'page');
 
 $legacyTest = test();
 

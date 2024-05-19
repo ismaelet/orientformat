@@ -4,19 +4,19 @@ use \Legacy\Activity\Section;
 use \Legacy\Activity\Test;
 
 // grade selection and activities
-\Legacy\System\Classes\LegacyRoute::add('/activities', function () {
+\App\Legacy\LegacyRoute::add('/activities', function () {
 	$grade = $_GET['grade'] ?? null;
 	$page = in_array($grade, [1, 2, 3, 4, 5, 6, 7, 8]) ? 'activities/list' : 'activities/grades';
 
 	add_grade_style();
 
-	\Legacy\System\Classes\LegacyView::setPage($page)
+	\App\Legacy\LegacyView::setPage($page)
 		->setMiddlewares(['public', 'logged', 'active', 'beginner-review', 'end-review', 'required-email'])
 		->show();
 });
 
 // tests
-\Legacy\System\Classes\LegacyRoute::add(['/profile/section', '/skills/section', '/knowledge/section', '/choose/section'], function () {
+\App\Legacy\LegacyRoute::add(['/profile/section', '/skills/section', '/knowledge/section', '/choose/section'], function () {
 	// get test and section
 	$sectionId = $_GET['id'] ?? null;
 	$testId = $_GET['test-id'] ?? null;
@@ -31,7 +31,7 @@ use \Legacy\Activity\Test;
 	add_grade_style();
 
 	if (!$section->isStandard) {
-		$testId = \Legacy\System\Classes\LegacyDB::find(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ?', [$section->id]);
+		$testId = \App\Legacy\LegacyDB::find(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ?', [$section->id]);
 	} else if (!$testId && !$section->completed) {
 		$testId = $section->checkpointId;
 	}
@@ -50,7 +50,7 @@ use \Legacy\Activity\Test;
 	}
 
 	// render
-	\Legacy\System\Classes\LegacyView::setPage($page)
+	\App\Legacy\LegacyView::setPage($page)
 		->setTemplate($template)
 		->setTitle($title)
 		->setMiddlewares(['public', 'logged', 'active', 'beginner-review', 'end-review', 'required-email'])
@@ -62,17 +62,17 @@ use \Legacy\Activity\Test;
 
 
 // interests
-\Legacy\System\Classes\LegacyRoute::add('/interest', function () {
+\App\Legacy\LegacyRoute::add('/interest', function () {
 	add_grade_style();
 
-	\Legacy\System\Classes\LegacyView::setPage('interest')
+	\App\Legacy\LegacyView::setPage('interest')
 		->setMiddlewares(['public', 'logged', 'active', 'beginner-review', 'end-review', 'required-email'])
 		->show();
 });
 
 // review
-\Legacy\System\Classes\LegacyRoute::add('/review', function () {
-	\Legacy\System\Classes\LegacyView::setPage('review')
+\App\Legacy\LegacyRoute::add('/review', function () {
+	\App\Legacy\LegacyView::setPage('review')
 		->setMiddlewares(['public', 'student', 'logged', 'active', 'required-email'])
 		->show();
 });

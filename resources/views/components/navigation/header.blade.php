@@ -145,7 +145,7 @@
 	if (
 	    auth()->check() &&
 	    !$userGroupId &&
-	    !\Legacy\System\Classes\LegacyDB::exists('review_results WHERE studentId = ? AND reviewId = 3', [$userId])
+	    !\App\Legacy\LegacyDB::exists('review_results WHERE studentId = ? AND reviewId = 3', [$userId])
 	) {
 	    $h_grade = (new Student($userId))->schoolClass;
 	    $header['survey-end'] = $h_grade && $h_grade->ended;

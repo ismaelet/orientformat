@@ -33,7 +33,7 @@ class ReviewResult extends Model {
 	 * Get the associated review
 	 */
 	public function review() {
-		return $this->reviewId ? Re\Legacy\System\Classes\LegacyView::find($this->reviewId) : null;
+		return $this->reviewId ? Re\App\Legacy\LegacyView::find($this->reviewId) : null;
 	}
 
 	/**
@@ -46,7 +46,7 @@ class ReviewResult extends Model {
 		$structuredResults = $this->structuredResults();
 
 		foreach ($structuredResults as $questionKey => $answers) {
-			$questionId = \Legacy\System\Classes\LegacyDB::find("id FROM " . ReviewQuestion::table() . " WHERE full_slug = ? AND (reviewIds = '' OR FIND_IN_SET(?, reviewIds))", [$questionKey, $this->reviewId]);
+			$questionId = \App\Legacy\LegacyDB::find("id FROM " . ReviewQuestion::table() . " WHERE full_slug = ? AND (reviewIds = '' OR FIND_IN_SET(?, reviewIds))", [$questionKey, $this->reviewId]);
 
 			if ($questionId) {
 				$question = ReviewQuestion::find($questionId);

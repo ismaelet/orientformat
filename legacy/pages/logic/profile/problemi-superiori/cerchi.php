@@ -13,7 +13,7 @@ $correctSolution = 3;
 
 \LogicManager\TestLogic::setParameterCount(1)
 	::setTestSubmitFunction(function () {
-		$correctSolution = \Legacy\System\Classes\LegacyView::getInstance()->get('correctSolution');
+		$correctSolution = \App\Legacy\LegacyView::getInstance()->get('correctSolution');
 
 		return $_POST['field'][0] == $correctSolution ? 100 : 0;
 	});

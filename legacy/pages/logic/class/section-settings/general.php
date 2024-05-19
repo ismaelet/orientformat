@@ -60,13 +60,13 @@ if (isset($_POST['submit'])) {
 	$schoolId = $_POST['schoolId'];
 	$ended = (int) isset($_POST['survey-end']);
 
-	\Legacy\System\Classes\LegacyDB::update(SchoolClass::TABLE . ' SET grade = ?, letter = ?, ' . SchoolClass::SCHOOL_INDEX . ' = ?, ended = ?, professional = ? WHERE id = ?', [$classGrade, $letter, $schoolId, $ended, $professional, schoolClassId()]);
+	\App\Legacy\LegacyDB::update(SchoolClass::TABLE . ' SET grade = ?, letter = ?, ' . SchoolClass::SCHOOL_INDEX . ' = ?, ended = ?, professional = ? WHERE id = ?', [$classGrade, $letter, $schoolId, $ended, $professional, schoolClassId()]);
 
 	redirect_old('?done=1');
 }
 
 if (isset($_POST['delete'])) {
-	\Legacy\System\Classes\LegacyDB::delete(SchoolClass::TABLE . ' WHERE ' . SchoolClass::INDEX . ' = ?', [schoolClassId()]);
+	\App\Legacy\LegacyDB::delete(SchoolClass::TABLE . ' WHERE ' . SchoolClass::INDEX . ' = ?', [schoolClassId()]);
 
 	redirect_old('/teacher');
 }

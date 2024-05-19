@@ -5,8 +5,8 @@ use \Legacy\Activity\Section;
 use \Legacy\SchoolSystem\Grade;
 use \Legacy\UserSystem\Student;
 
-// \Legacy\System\Classes\LegacyDB::delete('results_sections_condensed');
-// \Legacy\System\Classes\LegacyDB::update('results_sections SET completed = 1 WHERE sectionId IN (24,45) AND studentId IN (SELECT studentId FROM results_tests WHERE completed = 1 AND (testId IN (SELECT id FROM activities_tests WHERE completeSection = 1)))');
+// \App\Legacy\LegacyDB::delete('results_sections_condensed');
+// \App\Legacy\LegacyDB::update('results_sections SET completed = 1 WHERE sectionId IN (24,45) AND studentId IN (SELECT studentId FROM results_tests WHERE completed = 1 AND (testId IN (SELECT id FROM activities_tests WHERE completeSection = 1)))');
 
 $watchedStudentId = $_GET['studentId'];
 $watchedStudent = new Student($watchedStudentId);
@@ -16,13 +16,13 @@ if ($watchedStudent->schoolClassId != schoolClassId()) {
 }
 
 // reviews
-$reviews = \Legacy\System\Classes\LegacyDB::select('id, reviewId FROM review_results WHERE studentId = ?', [$watchedStudentId]);
+$reviews = \App\Legacy\LegacyDB::select('id, reviewId FROM review_results WHERE studentId = ?', [$watchedStudentId]);
 
 // fetch areas and sections
 $grades = [];
 $legacySections = [];
 $actions = [];
-$areaObjects = rows_to_objects(\Legacy\System\Classes\LegacyDB::select('id, name FROM ' . Area::TABLE . ' ORDER BY id ASC'), Area::class);
+$areaObjects = rows_to_objects(\App\Legacy\LegacyDB::select('id, name FROM ' . Area::TABLE . ' ORDER BY id ASC'), Area::class);
 
 for ($i = schoolClass()->currentGrade; $i >= schoolClass()->minimumGrade; $i--) {
 	$grade = new Grade($i, schoolClass());
@@ -33,7 +33,7 @@ for ($i = schoolClass()->currentGrade; $i >= schoolClass()->minimumGrade; $i--) 
 		$area['name'] = $areaObject->name;
 		$area['sections'] = [];
 
-		$legacySections = \Legacy\System\Classes\LegacyDB::select('id FROM ' . Section::TABLE . ' WHERE ' . Section::INDEX . ' IN (' . $grade->doableSectionIdsString . ') AND ' . Section::AREA_INDEX . ' = ? ORDER BY id ASC', [$areaObject->id]);
+		$legacySections = \App\Legacy\LegacyDB::select('id FROM ' . Section::TABLE . ' WHERE ' . Section::INDEX . ' IN (' . $grade->doableSectionIdsString . ') AND ' . Section::AREA_INDEX . ' = ? ORDER BY id ASC', [$areaObject->id]);
 
 		while ($legacySectionData = $legacySections->fetch_assoc()) {
 			$legacySection = new Section($legacySectionData['id']);
