@@ -112,8 +112,8 @@
 		}
 
 		/*
-																																																																										* Credits
-																																																																										*/
+																																																																											* Credits
+																																																																											*/
 		#footer-credits {
 			border-color: hsl(0, 0%, 100%, 0.1);
 		}
@@ -125,8 +125,8 @@
 		}
 
 		/*
-																																																																										* Notes
-																																																																										*/
+																																																																											* Notes
+																																																																											*/
 		#footer-notes {
 			background-color: var(--color-tertiary-800);
 		}
@@ -259,7 +259,7 @@
 
 			<div
 				id="footer-credits"
-				class="grid gap-4 pt-8"
+				class="grid gap-4 border-t pt-8"
 			>
 				<div class="footer-credit">
 					<p class="flex flex-wrap items-center gap-2">Autore:

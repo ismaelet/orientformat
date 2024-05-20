@@ -54,7 +54,7 @@ class RecoverController extends Controller {
 			}
 
 			// Generare the recovery endpoint
-			$resetEndpoint = env('APP_URL') . '/reset?email=' . $user->email . '&token=' . $token;
+			$resetEndpoint = route('auth.reset', ['email' => $user->email, 'token' => $token]);
 
 			// Generate the email
 			$subject = 'Recupero dati di accesso';
@@ -68,14 +68,15 @@ class RecoverController extends Controller {
 			$mail = new GenericMail($subject, $content);
 
 			// Send the email
-			Mail::to($email)->send($mail);
+			Mail::to($user)->queue($mail);
 		}
 
-		return redirect()->route('recover')
-			->with('locationTag', 'recover')
-			->with('title', 'Recupero accesso')
-			->with('submitted', true)
-			->with('email', $email)
-			->with('not_found', !$user);
+		return redirect()->route('auth.recover')
+			->with([
+				'title' => 'Recupero accesso',
+				'submitted' => true,
+				'email' => $email,
+				'not_found' => !$user,
+			]);
 	}
 }
