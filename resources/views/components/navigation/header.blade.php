@@ -309,7 +309,6 @@
 
 		/* Desktop links */
 		.h-nav-box {
-			display: flex;
 			align-items: center;
 			gap: 2rem;
 		}
@@ -327,8 +326,8 @@
 
 		.h-link-txt:hover,
 		.h-link-txt.active {
-			border-color: var(--clr-primary-400);
-			color: var(--clr-primary-400);
+			border-color: var(--color-primary-400);
+			color: var(--color-primary-400);
 		}
 
 		.h-link-txt a {
@@ -350,7 +349,7 @@
 
 		/* Desktop dropdown menu */
 		.h-drop {
-			background-color: var(--clr-primary-400);
+			background-color: var(--color-primary-400);
 			width: 300px;
 			max-height: 0;
 			position: absolute;
@@ -607,7 +606,7 @@
 
 		.review-prompt span {
 			font-weight: 800;
-			color: var(--clr-bad-500);
+			color: var(--color-bad-500);
 		}
 
 		/* Responsive */
@@ -730,7 +729,7 @@
 
 		<div
 			id="h-bgr"
-			class="bgr bgr-c2"
+			class="bgr bg-secondary"
 		></div>
 
 		<div class="h-bars">
@@ -751,23 +750,6 @@
 					>
 				</a>
 
-				<?php if ($h_comp['name-bar']) { ?>
-
-				<!-- Name -->
-				<div
-					clas="h-name-box"
-					class="inlb"
-				>
-					<h3 class="h-name txt-upp desk">
-						<a href="{{ route('home') }}"><?= $h_name ?></a>
-					</h3>
-					<h3 class="h-name txt-upp mob">
-						<a href="{{ route('home') }}"><?= $h_name ?></a>
-					</h3>
-				</div>
-
-				<?php } ?>
-
 			</section>
 
 			<!-- Central bar -->
@@ -785,7 +767,7 @@
 				<!-- Links -->
 				<?php if (!$h_comp['force-mob']) { ?>
 
-				<div class="h-nav-box desk1024 inlb va-cen txt-wht">
+				<div class="h-nav-box inlb va-cen txt-wht hidden lg:flex">
 
 					<?php foreach ($h_links as $h_link) {
 							if (!isset($h_link['mobile']) || !$h_link['mobile']) { ?>
@@ -827,7 +809,7 @@
 				<?php if ($h_comp['login']) { ?>
 				<div
 					id="h-log-box"
-					class="inlb va-cen <?= $h_comp['force-mob'] ? 'hide' : 'desk1024' ?>"
+					class="inlb va-cen hidden lg:block"
 				>
 
 					<?php if ($userId) { ?>
@@ -850,9 +832,7 @@
 				<!-- Mobile menu -->
 				<div
 					id="h-mob-pan"
-					class="txt-rig <?php if (!$h_comp['force-mob']) {
-					    echo 'mob1024';
-					} ?>"
+					class="txt-rig block lg:hidden"
 				>
 
 					<!-- Mobile icon -->
@@ -899,7 +879,7 @@
 
 						<div
 							id="h-navM-bgr"
-							class="bgr bgr-c2"
+							class="bgr bg-secondary"
 						></div>
 
 						<div id="h-contM">

@@ -35,9 +35,9 @@
 
 				</div>
 
-				<div id="count-box" class="pad-v-1 pad-h-2 contrasting-background">
-					<p class="txt-1rem">segmenti usati: <span class="fw-bold contrasting-background marl1"><span id="segments">0</span>/4</span></p>
-					<p class="txt-1rem">punti uniti: <span class="fw-bold contrasting-background marl1 flt-r"><span id="score">0</span>/9</span></p>
+				<div id="count-box" class="py-4 px-8 contrasting-background">
+					<p class="txt-1rem">segmenti usati: <span class="font-bold contrasting-background marl1"><span id="segments">0</span>/4</span></p>
+					<p class="txt-1rem">punti uniti: <span class="font-bold contrasting-background marl1 flt-r"><span id="score">0</span>/9</span></p>
 				</div>
 			</div>
 		</section>

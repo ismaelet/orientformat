@@ -62,12 +62,12 @@
 
 .dashboard-home-more a {
 	border-bottom: 1px dashed;
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 	transition: color 0.2s;
 }
 
 .dashboard-home-more a:hover {
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 }
 
 /*
@@ -126,7 +126,7 @@
 * Section info
 */
 .info-icon {
-	--_fill: var(--clr-tertiary-400);
+	--_fill: var(--color-tertiary-400);
 	width: 1.5rem;
 	justify-self: flex-end;
 	cursor: pointer;

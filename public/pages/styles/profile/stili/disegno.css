@@ -31,11 +31,11 @@
 }
 
 .method:hover {
-	background-color: var(--clr-secondary-400);
+	background-color: var(--color-secondary-400);
 }
 
 .highlight {
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 	transition: color 0.3s;
 }
 

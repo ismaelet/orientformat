@@ -57,7 +57,7 @@
 .character__text {
 	padding: 2rem 2rem;
 	font-size: var(--fs-450);
-	font-weight: var(--fw-medium);
+	font-weight: var(--font-weight-medium);
 }
 
 @media (min-width: 481px) {

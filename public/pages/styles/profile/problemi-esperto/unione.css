@@ -30,7 +30,7 @@
 }
 
 #page-graph-sec {
-	background: var(--clr-tertiary-400);
+	background: var(--color-tertiary-400);
 }
 
 .dot-space {
@@ -57,7 +57,7 @@
 }
 
 .dot.active {
-	background-color: var(--clr-secondary-400);
+	background-color: var(--color-secondary-400);
 	width: 15%;
 	height: 15%;
 }

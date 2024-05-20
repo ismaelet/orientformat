@@ -13,7 +13,7 @@ main {
 	box-shadow: var(--shadow-big);
 	width: 100%;
 	max-width: 600px;
-	border: 5px solid var(--clr-tertiary-400);
+	border: 5px solid var(--color-tertiary-400);
 }
 
 #start {
@@ -48,7 +48,7 @@ main {
 	width: auto;
 	max-width: 100%;
 	padding: 0 2rem;
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 	font-size: 2.5rem;
 	font-weight: bold;
 	line-height: 4;

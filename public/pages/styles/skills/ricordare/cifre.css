@@ -27,15 +27,12 @@
 	font-weight: bold;
 	line-height: 4;
 	text-align: center;
-	transition:
-		background 0.4s,
-		box-shadow 0.4s,
-		color 0.4s;
+	transition: background 0.4s, box-shadow 0.4s, color 0.4s;
 }
 
 .number:focus {
 	color: #fff;
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 }
 
 .number:focus,

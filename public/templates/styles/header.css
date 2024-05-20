@@ -156,8 +156,8 @@ header {
 
 .h-link-txt:hover,
 .h-link-txt.active {
-	border-color: var(--clr-primary-400);
-	color: var(--clr-primary-400);
+	border-color: var(--color-primary-400);
+	color: var(--color-primary-400);
 }
 
 .h-link-txt a {
@@ -179,7 +179,7 @@ header {
 
 /* Desktop dropdown menu */
 .h-drop {
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 	width: 300px;
 	max-height: 0;
 	position: absolute;

@@ -1,6 +1,6 @@
 {% block content %}
 
-<div class="grid4 grid3-1440w grid2-1024w grid1-768w gap1">
+<div class="grid4 grid3-1440w grid2-1024w grid1-768w gap-4">
 	<div class="panel">
 
 		<h1 class="title">Visibilità del sito:</h1>

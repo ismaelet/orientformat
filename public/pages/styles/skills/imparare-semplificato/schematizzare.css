@@ -42,7 +42,7 @@
 	place-content: center;
 	width: 100%;
 	min-height: 4.5rem;
-	background-color: var(--clr-tertiary-200);
+	background-color: var(--color-tertiary-200);
 	transition: box-shadow 0.3s;
 }
 
@@ -99,13 +99,13 @@
 
 .box--solid.active,
 .cause--solid {
-	background-color: var(--clr-tertiary-400);
+	background-color: var(--color-tertiary-400);
 }
 
 .box.active,
 .box.right,
 .box.wrong {
-	box-shadow: 0 22px 15px -20px var(--clr-tertiary-400);
+	box-shadow: 0 22px 15px -20px var(--color-tertiary-400);
 }
 
 .box.right {
@@ -118,13 +118,13 @@
 .box--dashed,
 .cause--dashed {
 	background-color: #ddd;
-	border: 2px dashed var(--clr-tertiary-400);
+	border: 2px dashed var(--color-tertiary-400);
 }
 
 .box--dashed:not(.right):not(.wrong) p,
 .cause--dashed:not(.right):not(.wrong) p {
-	color: var(--clr-tertiary-400);
-	font-weight: var(--fw-medium);
+	color: var(--color-tertiary-400);
+	font-weight: var(--font-weight-medium);
 }
 
 .reset {

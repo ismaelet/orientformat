@@ -29,13 +29,13 @@
 }
 
 .grades--middleschool .grade:nth-child(1) {
-	--_color: var(--clr-primary-400);
+	--_color: var(--color-primary-400);
 }
 .grades--middleschool .grade:nth-child(2) {
-	--_color: var(--clr-transition-400);
+	--_color: var(--color-transition-400);
 }
 .grades--middleschool .grade:nth-child(3) {
-	--_color: var(--clr-secondary-400);
+	--_color: var(--color-secondary-400);
 }
 
 .grades--highschool .grade:nth-child(1) {

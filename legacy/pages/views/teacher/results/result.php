@@ -23,7 +23,7 @@
 
 			<div id="area<?= $key ?>" class="area mar-b-3">
 
-				<p class="title fw-bold fa-center txt-2rem mar-b-2"><?= $area['name'] ?></p>
+				<p class="title font-bold fa-center txt-2rem mar-b-2"><?= $area['name'] ?></p>
 
 				<div class="grid gap2">
 
@@ -37,19 +37,19 @@
 									<div class="icon" <?= icon_svg('section' . $legacySection['id']) ?>></div>
 								</div>
 
-								<div class="result pad-v-1 pad-h-2">
+								<div class="result py-4 px-8">
 
 									<p class="title txt-13rem txt-sbold">
 										<?= $legacySection['name'] ?>
 									</p>
 
-									<p class="txt-1rem mar-t-05">
+									<p class="txt-1rem mt-2">
 										<?= $results[$i] ?: 'Non completato' ?>
 									</p>
 
 									<?php if ($results[$i] && isset($infos[$legacySection['id']])) { ?>
 
-										<p class="info br-t-1 br-e pad-t-1 txt-09rem mar-t-1"><?= $infos[$legacySection['id']] ?></p>
+										<p class="info br-t-1 br-e pt-4 txt-09rem mar-t-1"><?= $infos[$legacySection['id']] ?></p>
 
 									<?php } ?>
 

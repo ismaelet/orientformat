@@ -15,7 +15,7 @@
 		<?php foreach ($areas as $area) { ?>
 
 			<div class="area">
-				<h2 class="area_title txt-sbold brb2 br-c<?= $area->id ?> pad-b-1 fa-center txt-25px mar-b-1"><?= $area->name ?></h2>
+				<h2 class="area_title txt-sbold brb2 br-c<?= $area->id ?> pad-b-1 fa-center txt-25px mb-4"><?= $area->name ?></h2>
 
 				<div class="sections">
 

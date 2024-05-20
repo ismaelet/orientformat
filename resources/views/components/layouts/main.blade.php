@@ -44,7 +44,7 @@
 
 		{{-- Main --}}
 		<main>
-			<div class="content-grid">
+			<div class="content-grid min-h-full">
 				{{ $slot }}
 			</div>
 		</main>

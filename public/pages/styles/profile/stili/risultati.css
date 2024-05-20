@@ -41,13 +41,13 @@
 }
 
 .circle .bgr {
-	background-color: var(--clr-tertiary-400);
+	background-color: var(--color-tertiary-400);
 	border-radius: 100%;
 	transition: opacity 0.7s, transform 0.7s;
 }
 
 .circle.checked .bgr {
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 }
 
 .circle .load {
@@ -137,7 +137,7 @@
 }
 
 .title-box.focus {
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 }
 .title-box.blur {
 	opacity: 0.2;

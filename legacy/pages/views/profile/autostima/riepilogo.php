@@ -45,7 +45,7 @@
 
 								<?php } else if (!isSupervisor()) { ?>
 
-									<a href="<?= $dependentTest->clientUrl ?>" class="test-btn txt-c4 mar-t-1 fw-bold">Comincia</a>
+									<a href="<?= $dependentTest->clientUrl ?>" class="test-btn txt-c4 mar-t-1 font-bold">Comincia</a>
 
 								<?php } ?>
 

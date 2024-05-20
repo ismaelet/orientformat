@@ -24,7 +24,7 @@
 						?>
 
 							<div class="number-box number-box<?= $j ?>">
-								<p class="number txt-12rem fw-bold clickable <?= $active ? 'active' : '' ?>" data-question="<?= $j ?>" data-val="<?= 5 - $i ?>">
+								<p class="number txt-12rem font-bold clickable <?= $active ? 'active' : '' ?>" data-question="<?= $j ?>" data-val="<?= 5 - $i ?>">
 									<?= (4 - $i) ?>
 								</p>
 							</div>
@@ -38,7 +38,7 @@
 				<?php foreach ($questions as $key => $question) { ?>
 
 					<input type="hidden" id="field<?= $key ?>" class="filler-inp" name="field[]" value="<?= $legacyTest->completed ? $legacyTest->rawResults[$key - 1] : 0 ?>">
-					<p id="question<?= $key ?>" class="question txt-12rem fw-bold txt-c3"><?= $question ?></p>
+					<p id="question<?= $key ?>" class="question txt-12rem font-bold txt-c3"><?= $question ?></p>
 
 				<?php } ?>
 

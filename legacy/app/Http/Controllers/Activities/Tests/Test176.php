@@ -96,7 +96,7 @@ class Test176 extends Test {
 
 				<div id="text-box" class="section">
 
-					<h1 class="fa-center txt-3rem mar-b-2 mar-t-5 fw-bold txt-upp">Riassunto</h1>
+					<h1 class="fa-center txt-3rem mar-b-2 mar-t-5 font-bold txt-upp">Riassunto</h1>
 
 					<p id="text" class="mar-b-2 txt-1rem"><?= $this->parameters['text'] ?></p>
 
@@ -108,7 +108,7 @@ class Test176 extends Test {
 
 				<div id="original-box" class="section hidden">
 
-					<h1 class="fa-center txt-3rem mar-b-2 mar-t-5 fw-bold txt-upp">Testo</h1>
+					<h1 class="fa-center txt-3rem mar-b-2 mar-t-5 font-bold txt-upp">Testo</h1>
 
 					<p id="original" class="mar-b-2 txt-1rem">
 						Spesso, per divertirsi, gli uomini d’equipaggio<br>
@@ -185,7 +185,7 @@ class Test176 extends Test {
 				display: inline-block;
 				width: 15rem;
 				max-width: 100%;
-				color: var(--clr-tertiary-400);
+				color: var(--color-tertiary-400);
 				font-size: 1em;
 				line-height: 2;
 			}

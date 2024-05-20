@@ -51,7 +51,7 @@ main {
 }
 
 #body .search-bar.active .icon {
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 }
 
 #body .search-bar .inp {
@@ -139,12 +139,12 @@ main {
 	color: red;
 }
 .list .btn.c1 {
-	border-color: var(--clr-primary-400);
-	color: var(--clr-primary-400);
+	border-color: var(--color-primary-400);
+	color: var(--color-primary-400);
 }
 .list .btn.c3 {
-	border-color: var(--clr-tertiary-400);
-	color: var(--clr-tertiary-400);
+	border-color: var(--color-tertiary-400);
+	color: var(--color-tertiary-400);
 }
 .list .btn.c5 {
 	border-color: var(--clr-5);

@@ -110,7 +110,7 @@
 	z-index: 3;
 	color: #fff;
 	font-size: min(var(--fs-500), 4cqw);
-	font-weight: var(--fw-medium);
+	font-weight: var(--font-weight-medium);
 	font-family: var(--ff-titles);
 	line-height: 1.2;
 	text-align: center;
@@ -288,7 +288,7 @@
 	aspect-ratio: 1;
 	opacity: 0;
 	scale: 0.5;
-	background-color: var(--clr-secondary-400);
+	background-color: var(--color-secondary-400);
 	border-radius: 50%;
 	box-shadow: 0.5rem 1rem 2rem rgb(0, 0, 0, 0.3);
 	color: #fff;
@@ -302,7 +302,7 @@
 }
 
 .fruit__add:hover {
-	background-color: var(--clr-secondary-200);
+	background-color: var(--color-secondary-200);
 }
 
 .fruit__name {

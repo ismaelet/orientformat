@@ -109,7 +109,7 @@
 
 														<li class="role__data">
 															<div>
-																<span class="fw-bold">Dove lavora:</span> <?= $role['where'] ?>
+																<span class="font-bold">Dove lavora:</span> <?= $role['where'] ?>
 															</div>
 														</li>
 
@@ -129,7 +129,7 @@
 
 														<li class="role__data">
 															<div>
-																<span class="fw-bold">Attività:</span>
+																<span class="font-bold">Attività:</span>
 																<ul>
 																	<?php foreach ($role['activities'] as $activity) { ?>
 
@@ -184,7 +184,7 @@
 									<?php if (isset($pathData['explore'])) { ?>
 
 										<div class="grid-flow" data-spacing="400">
-											<p class="fw-bold txt-1rem">Per approfondire la tua ricerca puoi consultare questi siti:</p>
+											<p class="font-bold txt-1rem">Per approfondire la tua ricerca puoi consultare questi siti:</p>
 											<ul>
 												<?php foreach ($pathData['explore'] as $exploreLink) { ?>
 

@@ -22,5 +22,5 @@ main {
 * Login bar
 */
 .login-btn {
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 }

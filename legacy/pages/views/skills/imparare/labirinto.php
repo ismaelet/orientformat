@@ -7,7 +7,7 @@
 
 			<?php if (!$legacyTest->completed || $legacyTest->percentage == 100) { ?>
 
-				<p id="end" class="fa-center txt-c5 fw-bold txt-25rem">Hai risolto il labirinto!</p>
+				<p id="end" class="fa-center txt-c5 font-bold txt-25rem">Hai risolto il labirinto!</p>
 
 			<?php } else { ?>
 
@@ -36,14 +36,14 @@
 
 			<?php foreach ($questions as $key => $question) { ?>
 
-				<div id="question<?= $key + 1 ?>" class="question grid3 gap1 <?= $key ? '' : 'active' ?>" data-answer="<?= $question[1] ?>">
+				<div id="question<?= $key + 1 ?>" class="question grid3 gap-4 <?= $key ? '' : 'active' ?>" data-answer="<?= $question[1] ?>">
 
 					<input type="hidden" class="filler-inp" value="0">
 
 					<?php foreach ($question[0] as $key => $answer) { ?>
 
-						<div class="answer fa-center pad-h-2 pad-v-3 clickable" data-answer="<?= $key + 1 ?>">
-							<h1 class="txt-3rem txt-<?= $titles[$key][1] ?> fw-bold mar-b-3"><?= $titles[$key][0] ?></h1>
+						<div class="answer fa-center px-8 pad-v-3 clickable" data-answer="<?= $key + 1 ?>">
+							<h1 class="txt-3rem txt-<?= $titles[$key][1] ?> font-bold mar-b-3"><?= $titles[$key][0] ?></h1>
 							<p class="answer-txt txt-c3 txt-15rem"><?= $answer ?></p>
 						</div>
 
@@ -54,8 +54,8 @@
 			<?php } ?>
 
 
-			<p class="result right fa-center fw-bold txt-2rem">Corretto!</p>
-			<p class="result wrong fa-center fw-bold txt-2rem">Sbagliato, sei tornato all'inizio</p>
+			<p class="result right fa-center font-bold txt-2rem">Corretto!</p>
+			<p class="result wrong fa-center font-bold txt-2rem">Sbagliato, sei tornato all'inizio</p>
 		</div>
 	</div>
 </div>

@@ -69,7 +69,7 @@
 	padding: 2rem;
 	border-radius: var(--border-radius-700);
 	box-shadow: var(--shadow);
-	font-weight: var(--fw-medium);
+	font-weight: var(--font-weight-medium);
 	text-transform: uppercase;
 }
 

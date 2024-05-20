@@ -14,7 +14,7 @@ $name = $_GET['name'];
 	</h3>
 
 	<!-- Variant list -->
-	<div class='variants mar-t-05'>
+	<div class='variants mt-2'>
 		<div class='variant'>
 			<input type='text' class='inp' name='variation-1-variants[]' placeholder='Nome da variação' required>
 			<input type='text' class='inp' name='variation-1-prices[]' placeholder='Preço (opcional)'>
@@ -25,7 +25,7 @@ $name = $_GET['name'];
 	</div>
 
 	<!-- Add a variant -->
-	<button type='button' class='add-variant icon-box mar-t-05'>
+	<button type='button' class='add-variant icon-box mt-2'>
 		<?= embed_icon('add') ?>
 	</button>
 </div>

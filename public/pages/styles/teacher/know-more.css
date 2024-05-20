@@ -61,6 +61,6 @@ main {
 
 .section__title {
 	font-size: var(--fs-400);
-	font-weight: var(--fw-medium);
+	font-weight: var(--font-weight-medium);
 	transition: color 0.3s;
 }

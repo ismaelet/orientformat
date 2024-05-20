@@ -1,6 +1,6 @@
 /* Areas */
 #area1 > .title {
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 }
 #area2 > .title {
 	color: var(--clr-4);

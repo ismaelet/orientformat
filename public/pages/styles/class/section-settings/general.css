@@ -2,7 +2,7 @@
 * Layout
 */
 main {
-	--clr-1: var(--clr-tertiary-400);
+	--clr-1: var(--color-tertiary-400);
 }
 
 .form-body {
@@ -22,7 +22,7 @@ main {
 }
 
 .toggle-switch input:checked + .toggle-switch_bgr {
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 }
 
 .page-title {

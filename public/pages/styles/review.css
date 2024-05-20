@@ -44,7 +44,7 @@
 .question > .text .number {
 	display: inline-block;
 	width: max-content;
-	color: var(--clr-secondary-400);
+	color: var(--color-secondary-400);
 	line-height: 1.3rem;
 }
 

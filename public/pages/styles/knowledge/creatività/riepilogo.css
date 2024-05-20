@@ -67,27 +67,27 @@
 }
 
 .petal.thinking .body {
-	border-color: var(--clr-tertiary-400);
+	border-color: var(--color-tertiary-400);
 }
 
 .petal.skill .body {
-	border-color: var(--clr-primary-400);
+	border-color: var(--color-primary-400);
 }
 
 [data-style='highschool'] .petal.skill .body {
-	border-color: var(--clr-secondary-400);
+	border-color: var(--color-secondary-400);
 }
 
 .petal.thinking.active .name {
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 }
 
 .petal.skill.active .name {
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 }
 
 [data-style='highschool'] .petal.skill.active .name {
-	color: var(--clr-secondary-400);
+	color: var(--color-secondary-400);
 }
 
 .petal.thinking .color,

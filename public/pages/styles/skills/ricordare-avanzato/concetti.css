@@ -24,7 +24,7 @@
 }
 
 .concept-line {
-	border-bottom: 2px solid var(--clr-secondary-400);
+	border-bottom: 2px solid var(--color-secondary-400);
 	width: 100%;
 	position: absolute;
 	bottom: 0;
@@ -95,7 +95,7 @@
 
 .answer:has(:focus) .number,
 .answer:not(:has(:placeholder-shown)) .number {
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 	scale: 0.9;
 	transform: translateY(-3.5rem);
 }

@@ -50,7 +50,7 @@
 	5 Si riportano le opinioni di Kenneth Kraft, esperto di buddismo: in Goleman, Ray e Kaufman, cit., p. 53.<br>
 	6 D. Goleman, M. Ray e P. Kaufman, cit., p. 60.<br><br>
 
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- Beaudot A. (a cura di, 1977), <span class="fy-italic">La creatività</span>, Torino, Loescher<br>
 	- Cropley A. J. (1969), <span class="fy-italic">La creatività</span>, Firenze, La nuova Italia<br>
 	- De Bono E. (1998), <span class="fy-italic">Creatività e pensiero laterale</span>, Milano, Rizzoli<br>

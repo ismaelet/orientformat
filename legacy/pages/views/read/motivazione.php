@@ -45,7 +45,7 @@
 	6 Ivi, pp. 80-81.<br>
 	7 Ivi, pp. 79-90.<br><br>
 
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- Apter M. J. (1989), <span class="fy-italic">Reversal theory: Motivation, emotion and personality</span>, London, Routledge<br>
 	- De Beni R. e Moè A. (2000), <span class="fy-italic">Motivazione e apprendimento</span>, Bologna, Il Mulino<br>
 	- Deci E. L. e Ryan R. M. (1985), <span class="fy-italic">Intrinsic motivation and self-determination in human behavior</span>, New York, Plenum<br>

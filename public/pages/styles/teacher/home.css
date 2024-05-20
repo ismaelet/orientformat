@@ -35,7 +35,7 @@ h1::after {
 	left: -1rem;
 	bottom: 0.25em;
 	z-index: -1;
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 }
 
 .section-title {
@@ -116,7 +116,7 @@ h1::after {
 }
 
 .element-list_classes .element::before {
-	background: linear-gradient(135deg, var(--clr-primary-400), var(--clr-4));
+	background: linear-gradient(135deg, var(--color-primary-400), var(--clr-4));
 }
 
 .class-name {
@@ -141,7 +141,7 @@ h1::after {
 }
 
 .element-list_functionalities .element::before {
-	background: linear-gradient(135deg, var(--clr-secondary-400), var(--clr-5));
+	background: linear-gradient(135deg, var(--color-secondary-400), var(--clr-5));
 }
 
 .element_functionality svg {
@@ -166,7 +166,7 @@ h1::after {
 
 .feed-entry span {
 	font-weight: var(--fw-bold);
-	color: var(--clr-transition-400);
+	color: var(--color-transition-400);
 }
 
 .feed-entry:last-child {

@@ -30,7 +30,7 @@
 												if ($question->type == 'grid') { ?>
 
 													<!-- Grid answers -->
-													<span class=""><?= $resultTitle ?></span>: <span class="fw-bold"><?= $result ?></span><br>
+													<span class=""><?= $resultTitle ?></span>: <span class="font-bold"><?= $result ?></span><br>
 
 												<?php } else { ?>
 
@@ -58,7 +58,7 @@
 												foreach ($averages[$question->fullSlug] as $resultTitle => $result) {
 													print_r($averages[$question->fullSlug], true); ?>
 
-													<span class=""><?= $resultTitle ?></span>: <span class="fw-bold"><?= $result ?></span><br>
+													<span class=""><?= $resultTitle ?></span>: <span class="font-bold"><?= $result ?></span><br>
 
 												<?php }
 											} else { ?>
@@ -76,7 +76,7 @@
 		}
 	} else { ?>
 
-		<p class="txt-1rem fa-center fw-bold pad-b-5">È possibile visualizzare i risultati di questio questionario solo per gli studenti che l'hanno completato dopo il 29/09/2022</p>
+		<p class="txt-1rem fa-center font-bold pad-b-5">È possibile visualizzare i risultati di questio questionario solo per gli studenti che l'hanno completato dopo il 29/09/2022</p>
 
 	<?php } ?>
 

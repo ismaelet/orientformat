@@ -62,7 +62,7 @@
 	8 Temo i greci anche quando portano doni<br>
 	9 G. Axia (2002), <span class="fy-italic">QUIT</span>, cit., pp. 10-11<br><br>
 
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- Cervone D. e  Pervin L. A. (2017), <span class="fy-italic">La scienza della personalità</span>, Milano, Raffaello Cortina<br>
 	- Eysenck H. J. (1964), <span class="fy-italic">Eysenck Personality Inventory (EPI)</span>, <a class="link" href="https://chsresults.com/blog/test/eysencks-personality-inventory-epi-extroversionintroversion/">link</a><br>
 	- Gardner H. (1987), <span class="fy-italic">Formae mentis. Saggio sulla pluralità dell’intelligenza</span>, Milano, Feltrinelli.<br>

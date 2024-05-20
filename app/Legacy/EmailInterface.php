@@ -1,6 +1,6 @@
 <?php
 
-namespace Legacy\System\Classes;
+namespace App\Legacy;
 
 /**
  * Requires: phpmailer/phpmailer
@@ -29,7 +29,7 @@ class EmailInterface {
 
 	// send the email
 	static function sendEmail(array $emailData) {
-		$config = \App\Legacy\LegacyConfig::getInstance();
+		$config = LegacyConfig::getInstance();
 		$email = new PHPMailer();
 
 		// email setup
@@ -72,7 +72,7 @@ class EmailInterface {
 
 	// prepare a standard email body
 	static function generateEmailContent($emailBody) {
-		$config = \App\Legacy\LegacyConfig::getInstance();
+		$config = LegacyConfig::getInstance();
 
 		$logo = $config->logoAbsoluteImage;
 
@@ -118,7 +118,7 @@ class EmailInterface {
 					</td>
 				</tr>' : '';
 
-		$emailTemplate = file_get_contents(server_path('/app/templates/assets/template-emails/default-framework.html'));
+		$emailTemplate = file_get_contents(server_path('/app/templates/views/email-framework.html'));
 
 		$emailContent = str_replace('{{ logo }}', $logo, $emailTemplate);
 		$emailContent = str_replace('{{ content }}', $emailBody, $emailContent);

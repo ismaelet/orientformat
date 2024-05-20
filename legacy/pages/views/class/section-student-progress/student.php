@@ -35,7 +35,7 @@
 							<?php if ($result) { ?>
 								<h3 class="dashboard-panel_result">
 									<span class="inlb"><?= $legacySection['resultName'] ?? 'Risultato' ?>:</span><br>
-									<span class="dashboard-panel_value inlb fw-bold"><?= $result ?></span>
+									<span class="dashboard-panel_value inlb font-bold"><?= $result ?></span>
 								</h3>
 							<?php } ?>
 

@@ -30,7 +30,7 @@
 }
 
 .result__value {
-	color: var(--clr-secondary-400);
+	color: var(--color-secondary-400);
 	font-size: var(--fs-900);
 	font-weight: var(--fw-bold);
 }

@@ -10,7 +10,7 @@
 
 			<div id="score<?= $key ?>" class="score <?= $key == 1 ? 'active' : '' ?>">
 				<div class="score-grid grid">
-					<p id="desc1" class="desc fw-bold txt-12rem txt-c3 txt-rig padr2"><?= $question[0] ?></p>
+					<p id="desc1" class="desc font-bold txt-12rem txt-c3 txt-rig padr2"><?= $question[0] ?></p>
 					<input type="hidden" class="field" name="field[]">
 					<div id="dots">
 
@@ -28,7 +28,7 @@
 						<?php } ?>
 
 					</div>
-					<p id="desc2" class="desc fw-bold txt-12rem txt-c3 padl2"><?= $question[1] ?></p>
+					<p id="desc2" class="desc font-bold txt-12rem txt-c3 padl2"><?= $question[1] ?></p>
 
 				</div>
 				<div class="fa-center">

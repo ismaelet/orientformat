@@ -21,7 +21,7 @@
 }
 
 #title .icon-add:hover {
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 }
 
 #title .icon-add svg {
@@ -48,7 +48,7 @@
 
 .search-bar .icon-embed:hover,
 .search-bar.active .search-bar__icon--search .icon-embed {
-	fill: var(--clr-primary-400);
+	fill: var(--color-primary-400);
 }
 
 .search-bar input {
@@ -156,12 +156,12 @@
 }
 
 .admin-list__button {
-	--_color: var(--clr-primary-400);
+	--_color: var(--color-primary-400);
 	background-color: transparent;
 	border: none;
 	color: var(--_color);
 	font-size: var(--fs-250);
-	font-weight: var(--fw-medium);
+	font-weight: var(--font-weight-medium);
 	font-family: var(--ff-default);
 	cursor: pointer;
 }
@@ -214,7 +214,7 @@
 }
 
 .change-page__page.active {
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 	border-radius: 100%;
 	color: #fff;
 }

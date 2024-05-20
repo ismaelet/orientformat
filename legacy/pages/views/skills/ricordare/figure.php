@@ -23,7 +23,7 @@
 			<?php for ($i = 1; $i < 7; $i++) { ?>
 
 				<div id="image<?= $i ?>" class="image-box fa-center">
-					<p class="number txt-3rem fw-bold"><?= $i ?>.</p>
+					<p class="number txt-3rem font-bold"><?= $i ?>.</p>
 					<img class="image push-center block" src="<?= client_path($i . '.png') ?>">
 				</div>
 
@@ -38,7 +38,7 @@
 
 			<?php if ($legacyTest->completed) { ?>
 
-				<p id="result-text" class="mar-b-4 fa-center txt-12rem fw-bold <?= $legacyTest->percentage == 100 ? 'right' : 'wrong' ?>"><?= $legacyTest->percentage == 100 ? 'Hai scelto la figura giusta, ottimo lavoro!' : 'La soluzione è errata, ma puoi riprovare quando vuoi' ?></p>
+				<p id="result-text" class="mar-b-4 fa-center txt-12rem font-bold <?= $legacyTest->percentage == 100 ? 'right' : 'wrong' ?>"><?= $legacyTest->percentage == 100 ? 'Hai scelto la figura giusta, ottimo lavoro!' : 'La soluzione è errata, ma puoi riprovare quando vuoi' ?></p>
 
 			<?php } ?>
 

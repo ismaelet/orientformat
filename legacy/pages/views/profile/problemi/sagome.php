@@ -21,7 +21,7 @@
 
 						<?php if ($legacyTest->completed) { ?>
 
-							<p id="solution-txt" class="txt-11rem fw-bold <?= $legacyTest->percentage ? 'right' : 'wrong'; ?>">
+							<p id="solution-txt" class="txt-11rem font-bold <?= $legacyTest->percentage ? 'right' : 'wrong'; ?>">
 
 								<?php if (!$supervisorView) { ?>
 
@@ -43,7 +43,7 @@
 
 					</div>
 
-					<div id="solution-box" class="fa-center justify-center flex gap-4 pad-v-1 full-width">
+					<div id="solution-box" class="fa-center justify-center flex gap-4 py-4 full-width">
 
 						<?php for ($i = 1; $i <= $count; $i++) {
 							$val = $legacyTest->completed ? ($legacyTest->rawResults[$i - 1] ?? '') : '';
@@ -71,7 +71,7 @@
 
 						<div id="shape-box<?= $i; ?>" class="shape-box">
 
-							<h1 class="shape-num txt-2rem fw-bold mar-b-05"><?= $answers[$i - 1] ?>.</h1>
+							<h1 class="shape-num txt-2rem font-bold mar-b-05"><?= $answers[$i - 1] ?>.</h1>
 							<div class="shape" <?= background_image('shape' . $i . '.png'); ?>></div>
 
 						</div>

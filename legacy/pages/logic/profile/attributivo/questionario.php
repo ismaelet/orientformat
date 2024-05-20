@@ -5,14 +5,14 @@ use LogicManager\TestLogic;
 $colors = ['c4', 'c1', 'c5', 'c2'];
 
 $questions = [
-	"Se una verifica è andata <span class='fw-bold good'>bene</span> di solito è perché",
-	"Se una verifica è andata <span class='fw-bold bad'>male</span> di solito è perché",
-	"Quando il mio rapporto con i compagni è <span class='fw-bold good'>positivo</span> in genere è perché",
-	"Quando il mio rapporto con i compagni è <span class='fw-bold bad'>negativo</span> in genere è perché",
-	"Quando il mio rapporto con l’insegnante funziona <span class='fw-bold good'>bene</span> è perché",
-	"Quando il mio rapporto con l’insegnante funziona <span class='fw-bold bad'>male</span> è perché",
-	"Quando il mio rapporto con una persona funziona <span class='fw-bold good'>bene</span> è perché",
-	"Quando il mio rapporto con una persona funziona <span class='fw-bold bad'>male</span> è perché",
+	"Se una verifica è andata <span class='font-bold good'>bene</span> di solito è perché",
+	"Se una verifica è andata <span class='font-bold bad'>male</span> di solito è perché",
+	"Quando il mio rapporto con i compagni è <span class='font-bold good'>positivo</span> in genere è perché",
+	"Quando il mio rapporto con i compagni è <span class='font-bold bad'>negativo</span> in genere è perché",
+	"Quando il mio rapporto con l’insegnante funziona <span class='font-bold good'>bene</span> è perché",
+	"Quando il mio rapporto con l’insegnante funziona <span class='font-bold bad'>male</span> è perché",
+	"Quando il mio rapporto con una persona funziona <span class='font-bold good'>bene</span> è perché",
+	"Quando il mio rapporto con una persona funziona <span class='font-bold bad'>male</span> è perché",
 ];
 
 $answers = [

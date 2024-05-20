@@ -5,7 +5,7 @@
 	<?= title() ?>
 
 	<div>
-		<h2 id="text-title" class="fa-center txt-3rem mar-b-2 mar-t-5 fw-bold txt-upp">Testo</h2>
+		<h2 id="text-title" class="fa-center txt-3rem mar-b-2 mar-t-5 font-bold txt-upp">Testo</h2>
 
 		<div id="content" class="<?= $legacyTest->completed ? 'completed' : '' ?>">
 
@@ -40,16 +40,16 @@
 
 			<div id="selectors" class="grid4 col-gap2 gap-o-1-480w mar-t-5 mar-b-3">
 				<div class="selector clickable cenY rel argomento" data-select="argomento" data-count="2">
-					<p class="cenY rel fw-bold txt-2">Qual è l’argomento principale?</p>
+					<p class="cenY rel font-bold txt-2">Qual è l’argomento principale?</p>
 				</div>
 				<div class="selector clickable cenY rel causa" data-select="causa" data-count="3">
-					<p class="cenY rel fw-bold txt-2">Perché? (causa)</p>
+					<p class="cenY rel font-bold txt-2">Perché? (causa)</p>
 				</div>
 				<div class="selector clickable cenY rel scopo" data-select="scopo" data-count="1">
-					<p class="cenY rel fw-bold txt-2">Perché? (scopo)</p>
+					<p class="cenY rel font-bold txt-2">Perché? (scopo)</p>
 				</div>
 				<div class="selector clickable cenY rel dove" data-select="dove" data-count="1">
-					<p class="cenY rel fw-bold txt-2">Dove?</p>
+					<p class="cenY rel font-bold txt-2">Dove?</p>
 				</div>
 			</div>
 

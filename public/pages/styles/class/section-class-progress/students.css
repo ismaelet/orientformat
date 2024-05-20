@@ -2,7 +2,7 @@
 * Layout
 */
 .dashboard_body {
-	--clr-1: var(--clr-secondary-400);
+	--clr-1: var(--color-secondary-400);
 }
 
 .dashboard-list-body {

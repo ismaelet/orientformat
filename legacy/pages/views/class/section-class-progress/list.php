@@ -12,8 +12,8 @@
 	<?php /*
 	<!-- Title -->
 	<!-- <div class="title-box mar-t-1">
-		<h2 class="title txt-15rem txt-med">Sicurezza media nella scelta della scuola superiore: <span class="fw-bold"><?= $choicePercentage ?>%</span></h2>
-		<p class="stitle txt-1rem mar-t-05">Calcolata in base alle risposte date nel questionario iniziale o (se presente) finale.</p>
+		<h2 class="title txt-15rem txt-med">Sicurezza media nella scelta della scuola superiore: <span class="font-bold"><?= $choicePercentage ?>%</span></h2>
+		<p class="stitle txt-1rem mt-2">Calcolata in base alle risposte date nel questionario iniziale o (se presente) finale.</p>
 	</div> -->
 	*/ ?>
 
@@ -52,7 +52,7 @@
 
 										<!-- Ajax generated content -->
 
-										<section class="filters mar-b-1">
+										<section class="filters mb-4">
 										</section>
 
 										<div class="graph grid-flow center-content">
@@ -63,7 +63,7 @@
 
 										<h3 class="dashboard-panel_result">
 											<span class="inlb"><?= section_config($legacySection->id, 'recap-name-grade') ?: 'Risultato medio' ?>:</span><br>
-											<span class="dashboard-panel_value inlb fw-bold">...</span>
+											<span class="dashboard-panel_value inlb font-bold">...</span>
 										</h3>
 									</div>
 								</div>

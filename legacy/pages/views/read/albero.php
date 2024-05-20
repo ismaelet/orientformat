@@ -9,7 +9,7 @@
 <p class="text">L’albero dei saperi informali si potrà aggiornare nel tempo. Quando lo studente vorrà rendere pubbliche e disponibili le sue competenze nella comunità (la classe, l’istituto, una rete di istituti) di cui fa parte, invierà al tutor i suoi dati. Entreranno così a far parte di un archivio di disponibilità, di un database di risorse cui lui e gli altri membri della comunità potranno attingere, sulla base di regole che si dovranno dare e che saranno necessariamente diverse da comunità a comunità in base alla dimensione, alla collocazione territoriale, ai tipi di sapere che sono messi in comune e a molte altre variabili ancora. </p>
 
 <p class="foot">
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- Ajello A. M. e Belardi C. (2007), <span class="fy-italic">Valutare le competenze informali. Il portfolio digitale</span>, Roma, Carocci<br>
 	- Authier M. e Lévy P. (2000), <span class="fy-italic">Gli alberi di conoscenze</span>, Milano, Feltrinelli.<br>
 	- Castells M. (1996), <span class="fy-italic">La nascita della società in rete</span>, Milano, Egea-Università Bocconi<br>

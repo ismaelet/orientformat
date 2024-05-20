@@ -48,14 +48,25 @@
 	--theme-dark-s: 13%;
 
 	/* 2.1.1 Primary */
-	--color-primary-300-hsl: 247deg 70% 78%;
-	--color-primary-400-hsl: 35deg 100% 50%;
-	--color-primary-500-hsl: 30deg 100% 45%;
+	--color-primary-300-hsl: 41deg 88% 78%;
+	--color-primary-400-hsl: 41deg 88% 64%;
+	--color-primary-500-hsl: 41deg 88% 50%;
 
 	/* 2.1.2 Secondary */
 	--color-secondary-400-hsl: 216deg 86% 20%;
 	--color-secondary-500-hsl: 241deg 72% 46%;
 	--color-secondary-700-hsl: 216deg 70% 12%;
+
+	--color-tertiary-100-hsl: 216deg 30% 70%;
+	--color-tertiary-200-hsl: 216deg 30% 63%;
+	--color-tertiary-400-hsl: 216deg 86% 20%;
+	--color-tertiary-700-hsl: 216deg 70% 12%;
+	--color-tertiary-800-hsl: 216deg 60% 8%;
+
+	--color-transition-400: hsl(343, 48%, 53%);
+
+	--gradient-primary-secondary: var(--color-primary-400), var(--color-transition-400), var(--color-secondary-400);
+	--gradient: linear-gradient(120deg, var(--gradient-primary-secondary));
 
 	/* 2.1.3 Neutral light */
 	--color-neutral-light-100-hsl: var(--theme-h) var(--theme-light-s) 100%;
@@ -245,14 +256,14 @@ p :where(.font-bold) {
 	/* clr-tertiary-200: #849bbd; */
 	/* clr-tertiary-400: #072a5f; */
 	/* clr-transition: #ee7e59; */
-	--clr-secondary-hsl-200: 343, 48%, 75%;
-	--clr-secondary-hsl-300: 343, 48%, 63%;
-	--clr-secondary-hsl-400: 343, 48%, 53%;
-	--clr-transition-400: hsl(15, 81%, 64%);
+	--color-secondary-hsl-200: 343, 48%, 75%;
+	--color-secondary-hsl-300: 343, 48%, 63%;
+	--color-secondary-hsl-400: 343, 48%, 53%;
+	--color-transition-400: hsl(15, 81%, 64%);
 
 	/* gradients */
-	--gradient-primary-tertiary: var(--clr-primary-400), var(--clr-tertiary-400);
-	--gradient-secondary-tertiary: var(--clr-secondary-400), #753875, var(--clr-tertiary-400);
+	--gradient-primary-tertiary: var(--color-primary-400), var(--color-tertiary-400);
+	--gradient-secondary-tertiary: var(--color-secondary-400), #753875, var(--color-tertiary-400);
 
 	/* sets */
 	--color-1-of-4: #f4c152;
@@ -313,17 +324,17 @@ p :where(.font-bold) {
 	/* clr-tertiary-200: #849bbd; */
 	/* clr-tertiary-400: #082a5e */
 	/* clr-tertiary-400: hsl(216, 86%, 20%); */
-	--clr-primary-hsl-200: 216, 87%, 75%;
-	--clr-primary-hsl-400: 216, 87%, 35%;
-	--clr-secondary-hsl-200: 343, 48%, 75%;
-	--clr-secondary-hsl-300: 343, 48%, 63%;
-	--clr-secondary-hsl-400: 343, 48%, 53%;
+	--color-primary-hsl-200: 216, 87%, 75%;
+	--color-primary-hsl-400: 216, 87%, 35%;
+	--color-secondary-hsl-200: 343, 48%, 75%;
+	--color-secondary-hsl-300: 343, 48%, 63%;
+	--color-secondary-hsl-400: 343, 48%, 53%;
 
-	--clr-transition-400: hsl(301, 39%, 42%);
+	--color-transition-400: hsl(301, 39%, 42%);
 
 	/* gradients */
-	--gradient-primary-tertiary: var(--clr-primary-400), var(--clr-tertiary-400);
-	--gradient-secondary-tertiary: var(--clr-secondary-400), #753875, var(--clr-tertiary-400);
+	--gradient-primary-tertiary: var(--color-primary-400), var(--color-tertiary-400);
+	--gradient-secondary-tertiary: var(--color-secondary-400), #753875, var(--color-tertiary-400);
 
 	/* sets */
 	--color-1-of-4: #0c4aa8;

@@ -299,6 +299,6 @@
 }
 
 .selected-info__text span {
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 	font-weight: 800;
 }

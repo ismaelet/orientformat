@@ -131,11 +131,11 @@
 }
 .dashboard-home-more a {
 	border-bottom: 1px dashed;
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 	transition: color 0.2s;
 }
 .dashboard-home-more a:hover {
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 }
 
 .dashboard-panel-icon {
@@ -223,7 +223,7 @@
 	--_l-base: 35%;
 }
 .graph-info-title {
-	background-color: var(--clr-tertiary-400);
+	background-color: var(--color-tertiary-400);
 	color: #fff;
 }
 .graph-column_single,

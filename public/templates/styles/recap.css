@@ -42,7 +42,7 @@
 }
 
 .test-stitle.active {
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 }
 
 .test-texts {

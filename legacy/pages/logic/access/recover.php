@@ -1,5 +1,7 @@
 <?php
 
+use App\Legacy\EmailInterface;
+
 $submitted = false;
 $found = false;
 

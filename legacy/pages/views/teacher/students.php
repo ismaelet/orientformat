@@ -18,7 +18,7 @@
 		<p class="stitle txt-1rem mar-t-1">
 			Qui puoi controllare la lista degli studenti e dei corrispettivi username.<br><br>
 			Se uno studente si registrasse per errore più di una volta, o se vedessi nella lista uno studente che non fa parte della tua classe, puoi disabilitarlo cliccando su <strong>disattiva</strong> nella riga corrispondente all'account da disabilitare.<br><br>
-			Se uno studente si dimenticasse la password, puoi usare il bottone <span class="fw-bold">reset password</span> nella riga corrispondente per impostarne una nuova.<br>
+			Se uno studente si dimenticasse la password, puoi usare il bottone <span class="font-bold">reset password</span> nella riga corrispondente per impostarne una nuova.<br>
 			Se invece uno studente si dimenticasse l'username, puoi scoprire nella lista qui sotto qual è e comunicarglielo.
 		</p>
 

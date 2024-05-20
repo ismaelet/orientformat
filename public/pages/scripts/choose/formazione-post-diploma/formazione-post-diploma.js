@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
 	const schoolTypeSelector = '.school-type'
 	const colorPrimary200 = getComputedStyle(document.documentElement).getPropertyValue('--clr-primary-200')
-	const colorSecondary300 = getComputedStyle(document.documentElement).getPropertyValue('--clr-secondary-300')
-	const colorTertiary100 = getComputedStyle(document.documentElement).getPropertyValue('--clr-tertiary-100')
-	const colorTertiary400 = getComputedStyle(document.documentElement).getPropertyValue('--clr-tertiary-400')
+	const colorSecondary300 = getComputedStyle(document.documentElement).getPropertyValue('--color-secondary-300')
+	const colorTertiary100 = getComputedStyle(document.documentElement).getPropertyValue('--color-tertiary-100')
+	const colorTertiary400 = getComputedStyle(document.documentElement).getPropertyValue('--color-tertiary-400')
 
 	// lines
 	let parameters = { path: 'magnet', startSocket: 'bottom', endSocket: 'top', gradient: true, startPlugColor: colorTertiary400, endPlugColor: colorTertiary100, size: 3, dash: { animation: true } }

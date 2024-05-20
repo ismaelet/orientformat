@@ -16,7 +16,7 @@
 	padding: 1rem 1rem;
 	align-items: center;
 	position: relative;
-	border: 1px solid var(--clr-tertiary-400);
+	border: 1px solid var(--color-tertiary-400);
 }
 
 .question {
@@ -56,7 +56,7 @@
 
 /* Score bars */
 .score-box {
-	border: 1px solid var(--clr-tertiary-400);
+	border: 1px solid var(--color-tertiary-400);
 	border-left: none;
 	height: 100%;
 	box-sizing: border-box;

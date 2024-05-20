@@ -1,7 +1,7 @@
 {% block form-body %}
 
 <?php if (!$done) { ?>
-	<p class="pad-v-1 txt-1rem txt-jus">
+	<p class="py-4 txt-1rem txt-jus">
 		Inserisci qui sotto la nuova password desiderata:
 	</p>
 
@@ -13,7 +13,7 @@
 	<input type="password" class="inp" name="password-confirmation" placeholder="Conferma la password" required>
 
 <?php } else { ?>
-	<p class="fw-bold fa-center pad-v-1">Password cambiata con successo!</p>
+	<p class="font-bold fa-center py-4">Password cambiata con successo!</p>
 <?php } ?>
 
 {% end form-body %}

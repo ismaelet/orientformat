@@ -37,13 +37,13 @@
 
 .name {
 	display: inline-block;
-	background-color: var(--clr-tertiary-400);
+	background-color: var(--color-tertiary-400);
 	box-shadow: var(--shadow-strong);
 	border-radius: var(--border-radius-1000);
 	width: 11em;
 	padding-block: 1rem;
 	color: #fff;
-	font-weight: var(--fw-medium);
+	font-weight: var(--font-weight-medium);
 	font-size: var(--fs-400);
 	letter-spacing: 0.1em;
 	text-align: center;
@@ -59,11 +59,11 @@
 }
 
 .element.start .name {
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 	font-weight: var(--fw-bold);
 }
 .element.end .name {
-	background-color: var(--clr-secondary-400);
+	background-color: var(--color-secondary-400);
 	font-weight: var(--fw-bold);
 }
 

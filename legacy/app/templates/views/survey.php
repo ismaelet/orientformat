@@ -3,7 +3,7 @@
 {% block main %}
 
 <div class="background center-content grid-flow">
-	<h3 class="sec-title txt-cen txt-upp load--fade-in js-load" data-direction="right"><?= $legacySection->name ?></h3>
+	<h3 class="sec-title text-center txt-upp load--fade-in js-load" data-direction="right"><?= $legacySection->name ?></h3>
 </div>
 
 <form class="pos-rel" id="body" method="POST">

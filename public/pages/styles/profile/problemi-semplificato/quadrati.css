@@ -28,7 +28,7 @@ main {
 
 .result-text {
 	font-size: var(--fs-650);
-	font-weight: var(--fw-medium);
+	font-weight: var(--font-weight-medium);
 	text-decoration: underline;
 	text-decoration-color: var(--clr-bad-400);
 }

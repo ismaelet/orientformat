@@ -165,7 +165,7 @@
 	text-shadow: 1px 1px 0 orange;
 }
 #title3 {
-	text-shadow: 1px 1px 0 var(--clr-primary-400);
+	text-shadow: 1px 1px 0 var(--color-primary-400);
 }
 #title4 {
 	text-shadow: 1px 1px 0 green;
@@ -192,7 +192,7 @@
 	background-color: orange;
 }
 #title3 .score {
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 }
 #title4 .score {
 	background-color: green;

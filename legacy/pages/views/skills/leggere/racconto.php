@@ -5,7 +5,7 @@
 	<!-- Title -->
 	<?= title() ?>
 
-	<h1 class="fa-center fw-bold mar-t-4 mar-b-2">Il racconto</h1>
+	<h1 class="fa-center font-bold mar-t-4 mar-b-2">Il racconto</h1>
 
 	<p class="text txt-1rem txt-lh2 mar-b-3">
 		In questo momento la padrona di una bettola rincorre un ragazzo che si è comprato venti cents di patate fritte e, a parere di lei, ci ha versato sopra troppo aceto dalla bottiglia presa dal tavolo.<br>

@@ -80,7 +80,7 @@ class Test186 extends Test {
 									<?php for ($i = 5; $i > 0; $i--) { ?>
 
 										<div class="graph-ele bgr-e <?= test()->completed ? 'disabled' : '' ?>" data-val="<?= $i ?>">
-											<p class="score-txt fw-bold txt-09rem txt-wht cen"><?= $i ?></p>
+											<p class="score-txt font-bold txt-09rem txt-wht cen"><?= $i ?></p>
 										</div>
 
 									<?php } ?>
@@ -107,7 +107,7 @@ class Test186 extends Test {
 					?>
 
 						<div class="field-info grid-flow js-field-info" data-id="<?= $fieldID ?>" data-spacing="400">
-							<h3 class="desc-title txt-blk fw-bold txt-15rem"><?= $column[0] ?></h3>
+							<h3 class="desc-title txt-blk font-bold txt-15rem"><?= $column[0] ?></h3>
 							<p class="desc-txt txt-1rem txt-blk"><?= $column[1] ?></p>
 						</div>
 

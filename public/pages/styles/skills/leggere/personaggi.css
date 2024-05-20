@@ -41,7 +41,7 @@
 
 .bgr-c1 .selection {
 	--color1: #fff;
-	--color2: var(--clr-secondary-400);
+	--color2: var(--color-secondary-400);
 }
 .bgr-c2 .selection {
 	--color1: #202020;

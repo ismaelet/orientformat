@@ -11,9 +11,9 @@
 
 			<div id="method1" class="method" data-tilt>
 
-				<h3 class="subsection-title txt-15rem fw-bold br-b-1 br-5 pad-b-1 mar-b-2">Se sei molto <span class="highlight">intuitivo/a</span></h3>
+				<h3 class="subsection-title txt-15rem font-bold br-b-1 br-5 pad-b-1 mar-b-2">Se sei molto <span class="highlight">intuitivo/a</span></h3>
 
-				<p class="desc txt-1rem txt-2 mar-b-1">
+				<p class="desc txt-1rem txt-2 mb-4">
 					- avrai notato subito i diversi tipi di impronta e sarai giunto rapidamente alla conclusione: 6 (o 8 a seconda di come hai contato le biciclette)
 				</p>
 				<p class="desc txt-1rem txt-2">
@@ -24,9 +24,9 @@
 
 			<div id="method2" class="method" data-tilt>
 
-				<h3 class="subsection-title txt-15rem fw-bold br-b-1 br-5 pad-b-1 mar-b-2">Se sei molto <span class="highlight">sistematico/a</span></h3>
+				<h3 class="subsection-title txt-15rem font-bold br-b-1 br-5 pad-b-1 mar-b-2">Se sei molto <span class="highlight">sistematico/a</span></h3>
 
-				<p class="desc txt-1rem txt-2 mar-b-1">
+				<p class="desc txt-1rem txt-2 mb-4">
 					- ti sarai detto: ci sono sei (o otto) tipi di impronte, ma non si può escludere che la stessa persona sia passata più di una volta, con scarpe o mezzi diversi, oppure sullo stesso mezzo ci poteva essere più di una persona.
 				</p>
 				<p class="desc txt-1rem txt-2">

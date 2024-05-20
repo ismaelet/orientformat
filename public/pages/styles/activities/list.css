@@ -6,15 +6,15 @@
 }
 
 .title {
-	background: -webkit-linear-gradient(180deg, var(--clr-primary-400), var(--clr-secondary-400));
+	background: -webkit-linear-gradient(180deg, var(--color-primary-400), var(--color-secondary-400));
 	font-weight: bold;
-	text-shadow: 0 1rem 2rem hsl(var(--clr-primary-hsl-400), 0.15);
+	text-shadow: 0 1rem 2rem hsl(var(--color-primary-hsl-400), 0.15);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 
 .page__header span {
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 	font-weight: var(--fw-bold);
 }
 
@@ -168,7 +168,7 @@
 	--icon-size: 0.8em;
 	gap: 0.25rem;
 	margin-top: 0.25rem;
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 	font-size: var(--fs-400);
 }
 

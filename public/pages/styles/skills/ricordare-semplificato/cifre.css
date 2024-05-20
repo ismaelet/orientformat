@@ -31,7 +31,7 @@
 
 .number:focus {
 	color: #fff;
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 }
 
 .number:focus,

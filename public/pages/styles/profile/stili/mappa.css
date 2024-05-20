@@ -91,21 +91,21 @@
 
 .group:has(.circle:hover) .result__title-box {
 	opacity: 1;
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 }
 
 .circle .bgr {
-	background-color: var(--clr-tertiary-400);
+	background-color: var(--color-tertiary-400);
 	border-radius: 100%;
 	transition: translate 0.7s, opacity 0.7s;
 }
 
 .circle.checked .bgr {
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 }
 
 [data-style='highschool'] .circle.checked .bgr {
-	background-color: var(--clr-secondary-300);
+	background-color: var(--color-secondary-300);
 }
 
 [data-test-id='113'] .circle.checked .bgr {
@@ -114,7 +114,7 @@
 
 /* Borders */
 .border {
-	border: 1px dashed var(--clr-secondary-400);
+	border: 1px dashed var(--color-secondary-400);
 	border-radius: 100%;
 	position: absolute;
 	top: 50%;

@@ -46,10 +46,10 @@ while ($studentRow = $students->fetch_assoc()) {
 		if ($row && $row['completed']) {
 
 			if ($legacyTest['type'] != 2 && ($legacyTest['template'] == 'survey' || $legacyTest['type'] == 3))
-				$text = 'completato con<br>autovalutazione <span class="txt-c5 fw-bold">' . $row['percentage'] . '%</span>';
+				$text = 'completato con<br>autovalutazione <span class="txt-c5 font-bold">' . $row['percentage'] . '%</span>';
 
 			else if ($legacyTest['type'] == 1)
-				$text = 'completato con<br>risultato <span class="txt-c5 fw-bold">' . $row['percentage'] . '%</span>';
+				$text = 'completato con<br>risultato <span class="txt-c5 font-bold">' . $row['percentage'] . '%</span>';
 
 			else
 				$text = '<span class="txt-sbold">completato</span>';
@@ -58,11 +58,11 @@ while ($studentRow = $students->fetch_assoc()) {
 
 				$area = \App\Legacy\LegacyDB::find('slug FROM areas WHERE id = ?', [$legacyTest['areaID']]);
 
-				$text .= '<br><a href="' . client_url('/' . $area . '/section?id=' . $legacyTest['sectionID'] . '&step=' . $legacyTest['step'] . '&user=' . \Illuminate\Support\Facades\Auth::id()) . '" class="txt-c4 fw-bold view-result">Visualizza</a>';
+				$text .= '<br><a href="' . client_url('/' . $area . '/section?id=' . $legacyTest['sectionID'] . '&step=' . $legacyTest['step'] . '&user=' . \Illuminate\Support\Facades\Auth::id()) . '" class="txt-c4 font-bold view-result">Visualizza</a>';
 			}
 
 			if ($legacyTest['template'] == 'survey' && \App\Legacy\LegacyDB::exists('surveys WHERE testId = ?', [$legacyTest['id']]))
-				$text .= '<br><span class="clickable txt-gre fw-bold view-result">Scarica le risposte</span>';
+				$text .= '<br><span class="clickable txt-gre font-bold view-result">Scarica le risposte</span>';
 
 			$result['values'][] = $text;
 		} else
@@ -90,7 +90,7 @@ foreach ($legacyTests as $legacyTest) {
 
 		$percent = round($total / $resN);
 
-		$result[] = 'risultato medio: <span class="txt-c5 fw-bold">' . $percent . '%</span>';
+		$result[] = 'risultato medio: <span class="txt-c5 font-bold">' . $percent . '%</span>';
 	} else if ($legacyTest['type'] == 2) $result[] = '-';
 	else $result[] = '<span class="txt-sbold">È necessario che più alunni completino l\'attività per avere un valore attendibile</span>';
 }
@@ -112,7 +112,7 @@ foreach ($legacyTests as $legacyTest) {
 
 		$percent = round($total / $resN);
 
-		$result[] = 'risultato medio: <span class="txt-c5 fw-bold">' . $percent . '%</span>';
+		$result[] = 'risultato medio: <span class="txt-c5 font-bold">' . $percent . '%</span>';
 	} else if ($legacyTest['type'] == 2) $result[] = '-';
 	else $result[] = '<span class="txt-sbold">È necessario che più alunni completino l\'attività per avere un valore attendibile</span>';
 }

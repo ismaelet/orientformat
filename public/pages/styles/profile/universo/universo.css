@@ -92,7 +92,7 @@ body {
 }
 
 .orbit:hover {
-	border-color: var(--clr-primary-400);
+	border-color: var(--color-primary-400);
 	animation-play-state: paused;
 }
 

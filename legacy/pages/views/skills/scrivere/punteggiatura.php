@@ -9,7 +9,7 @@
 
 		<?php foreach ($sentencesHtml as $key => $sentence) { ?>
 
-			<p class="sentence"><span class="fw-bold"><?= $key + 1 ?>.</span> <?= $sentence ?></p>
+			<p class="sentence"><span class="font-bold"><?= $key + 1 ?>.</span> <?= $sentence ?></p>
 
 		<?php } ?>
 

@@ -70,7 +70,7 @@
 	2 H. Hemingway ,1996, <span class="fy-italic">Il principio dell’iceberg. Intervista sull’arte di scrivere e narrare</span>, Genova, Il
 	nuovo Melangolo, p.61.<br><br>
 
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- Bereiter C. e Scardamalia M. (1999), <span class="fy-italic">Psicologia della composizione scritta</span>, Firenze, La nuova Italia<br>
 	- Cisotto L. (2001), <span class="fy-italic">La scrittura</span>, in R. De Beni, L. Cisotto e B. Carretti, Psicologia della lettura e della scrittura, Erickson, Trento<br>
 	- Corno D. (2002), <span class="fy-italic">Scrivere e comunicare</span>, Milano, Bruno Mondadori<br>

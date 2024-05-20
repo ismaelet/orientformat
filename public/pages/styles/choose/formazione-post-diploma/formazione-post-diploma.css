@@ -26,16 +26,16 @@
 }
 
 .school-type.school-type--1 {
-	background-color: var(--clr-tertiary-400);
+	background-color: var(--color-tertiary-400);
 	color: #fff;
 }
 
 .school-type.school-type--2 {
-	background-color: var(--clr-tertiary-100);
+	background-color: var(--color-tertiary-100);
 }
 
 .school-type.school-type--3 {
-	background-color: var(--clr-secondary-300);
+	background-color: var(--color-secondary-300);
 }
 
 .school-type.school-type--4 {

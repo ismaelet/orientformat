@@ -19,7 +19,7 @@
 }
 
 .square:hover {
-	background: var(--clr-secondary-400);
+	background: var(--color-secondary-400);
 }
 
 .square::before {
@@ -150,7 +150,7 @@
 	top: 50%;
 	transform: translateY(-50%);
 	color: var(--fc-700);
-	font-weight: var(--fw-medium);
+	font-weight: var(--font-weight-medium);
 	font-size: min(1rem, 3vw);
 	white-space: nowrap;
 	transition: color 0.4s;
@@ -175,7 +175,7 @@
 }
 
 .category.active {
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 }
 
 .category.blur {

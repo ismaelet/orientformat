@@ -49,11 +49,11 @@
 }
 
 .result-grid__column:nth-child(1) {
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 	transition-delay: 0.1s;
 }
 .result-grid__column:nth-child(2) {
-	background-color: var(--clr-tertiary-400);
+	background-color: var(--color-tertiary-400);
 	color: #fff;
 	transition-delay: 0.2s;
 }
@@ -111,13 +111,13 @@
 	padding-inline: 0.75em;
 	border-radius: 100vw;
 	font-size: var(--fs-450);
-	font-weight: var(--fw-medium);
+	font-weight: var(--font-weight-medium);
 	cursor: pointer;
 	transition: background 0.3s;
 }
 
 :checked + .answer__text {
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 	box-shadow: var(--shadow);
 }
 

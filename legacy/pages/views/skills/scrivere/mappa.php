@@ -36,7 +36,7 @@
 
 				<?php foreach ($categories as $key => $category) { ?>
 
-					<p id="category<?= $key + 1 ?>" class="category txt-2rem fw-bold <?= $category[1] ?> <?= $key + 1 > 2 ? 'txt-vertical' : '' ?>"><?= $category[0] ?></p>
+					<p id="category<?= $key + 1 ?>" class="category txt-2rem font-bold <?= $category[1] ?> <?= $key + 1 > 2 ? 'txt-vertical' : '' ?>"><?= $category[0] ?></p>
 
 				<?php } ?>
 

@@ -13,9 +13,9 @@
 <section id="body" class="main-wrap pad-b-5">
 	
 	<!-- Title -->
-	<div class="title-box mar-t-4 txt-cen">
+	<div class="title-box mar-t-4 text-center">
 		
-		<h1 class="title txt-25rem txt-sbold mar-b-1"><?= $title ?></h1>
+		<h1 class="title txt-25rem txt-sbold mb-4"><?= $title ?></h1>
 		<a href="<?= $back ? $back[1] : client_url('/management') ?>" class="sbtn back"><?= $back ? $back[0] : 'Torna alla gestione'?></a><br>
 
 	</div>
@@ -144,7 +144,7 @@
 		</div>
 
 		<!-- Download -->
-		<form method="POST" class="txt-cen">
+		<form method="POST" class="text-center">
 
 			<button type="submit" name="download" class="button mar-t-3">
 				<span class="text-icon bgr-wht" <?= icon_svg('download') ?>></span>

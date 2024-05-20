@@ -1,14 +1,14 @@
 {% block content %}
 
-<div class="bgr bgr-c2"></div>
+<div class="bgr bg-secondary"></div>
 
 <div class="main-wrap pad-t-5 pad-b-5">
 
 	<?= title() ?>
 
-	<div id="circles" class="wrap mar-t-5 mar-b-10">
+	<div id="circles" class="wrap mar-t-5 mb-40">
 
-		<p id="title-center" class="cen fa-center txt-c3 fw-bold">Stili cognitivi</p>
+		<p id="title-center" class="cen fa-center txt-c3 font-bold">Stili cognitivi</p>
 
 		<?php for ($i = 1; $i < 5; $i++) { ?>
 

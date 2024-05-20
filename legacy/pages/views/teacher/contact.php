@@ -25,7 +25,7 @@
 			<!-- Contacts data -->
 			<section id="data" class="grid-cell">
 
-				<h1 class="stitle txt-3rem mar-b-2">Orientamento<br><span class="fw-bold">Formativo</span></h1>
+				<h1 class="stitle txt-3rem mar-b-2">Orientamento<br><span class="font-bold">Formativo</span></h1>
 
 				<div class="br-b-1 brb-dashed br-9 mar-v-2"></div>
 
@@ -41,7 +41,7 @@
 
 					<div id="form-anch" class="anchor"></div>
 
-					<h1 class="stitle txt-3rem fw-bold fa-center">Scrivici</h1>
+					<h1 class="stitle txt-3rem font-bold fa-center">Scrivici</h1>
 
 					<?php if ($sent) { ?>
 
@@ -51,7 +51,7 @@
 
 					<?php if ($error == 'word_bad') { ?>
 
-						<p class="error-warning">Errore: il messaggio non ha superato i nostri filtri anti-spam. Puoi scrivere direttamente a <a href="mailto:<?= $contact ?>" class="fw-bold"><?= $contact ?></a>, invece di usare questo modulo.</p>
+						<p class="error-warning">Errore: il messaggio non ha superato i nostri filtri anti-spam. Puoi scrivere direttamente a <a href="mailto:<?= $contact ?>" class="font-bold"><?= $contact ?></a>, invece di usare questo modulo.</p>
 
 					<?php } ?>
 

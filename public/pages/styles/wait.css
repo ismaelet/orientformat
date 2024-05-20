@@ -25,7 +25,7 @@
 	stroke-dasharray: var(--circle);
 	stroke-dashoffset: 0px;
 	stroke-width: var(--stroke);
-	stroke: var(--clr-tertiary-400);
+	stroke: var(--color-tertiary-400);
 	fill: none;
 	animation: countdown 10s linear infinite forwards;
 }

@@ -19,7 +19,7 @@
 
 .shape-inp {
 	background-color: #fff;
-	border: 2px solid var(--clr-primary-400);
+	border: 2px solid var(--color-primary-400);
 	width: 15%;
 	max-width: 150px;
 	font-size: 1.5rem;
@@ -30,8 +30,8 @@
 }
 
 .shape-inp:focus {
-	background-color: var(--clr-primary-400);
-	border-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
+	border-color: var(--color-primary-400);
 	box-shadow: 0 12px 20px -6px rgba(0, 0, 0, 0.4) !important;
 	color: #fff;
 }

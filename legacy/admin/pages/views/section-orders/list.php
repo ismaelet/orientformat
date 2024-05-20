@@ -12,7 +12,7 @@ use function Ecommerce\ecommerce_config;
 	<!-- Status -->
 	<div class="filter">
 		<div class="filter__title">
-			<h3 class="fw-bold flex-group">
+			<h3 class="font-bold flex-group">
 				Stato
 
 				<?php if ($selectedCartStatuses != $defaultCartStatuses) { ?>

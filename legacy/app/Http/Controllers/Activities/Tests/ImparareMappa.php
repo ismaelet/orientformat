@@ -206,7 +206,7 @@ class ImparareMappa extends Test {
 								path: 'magnet',
 								startSocket: anchors[0],
 								endSocket: anchors[1],
-								color: getComputedStyle(document.documentElement).getPropertyValue('--clr-secondary-400'),
+								color: getComputedStyle(document.documentElement).getPropertyValue('--color-secondary-400'),
 								size: 3
 							}
 
@@ -358,7 +358,7 @@ class ImparareMappa extends Test {
 				place-content: center;
 				width: 100%;
 				min-height: min(5rem, 10vh);
-				background-color: var(--clr-tertiary-200);
+				background-color: var(--color-tertiary-200);
 				transition: box-shadow 0.3s;
 
 				&:nth-child(1) {
@@ -513,13 +513,13 @@ class ImparareMappa extends Test {
 
 			.box--solid.active,
 			.cause--solid {
-				background-color: var(--clr-tertiary-400);
+				background-color: var(--color-tertiary-400);
 			}
 
 			.box.active,
 			.box.right,
 			.box.wrong {
-				box-shadow: 0 22px 15px -20px var(--clr-tertiary-400);
+				box-shadow: 0 22px 15px -20px var(--color-tertiary-400);
 			}
 
 			.box.right {
@@ -533,11 +533,11 @@ class ImparareMappa extends Test {
 			.box--dashed,
 			.cause--dashed {
 				background-color: #ddd;
-				border: 2px dashed var(--clr-tertiary-400);
+				border: 2px dashed var(--color-tertiary-400);
 
 				&:not(.right):not(.wrong) p {
-					color: var(--clr-tertiary-400);
-					font-weight: var(--fw-medium);
+					color: var(--color-tertiary-400);
+					font-weight: var(--font-weight-medium);
 				}
 			}
 

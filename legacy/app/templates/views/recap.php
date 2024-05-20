@@ -55,7 +55,7 @@
 
 								<?php if (!$obj->static) { ?>
 
-									<p class="test-stitle txt-upp mar-t-05 <?= !$obj->completed ? 'active' : ''; ?>"><?= $legacyTestM['desc'] ?></p>
+									<p class="test-stitle txt-upp mt-2 <?= !$obj->completed ? 'active' : ''; ?>"><?= $legacyTestM['desc'] ?></p>
 
 								<?php } ?>
 

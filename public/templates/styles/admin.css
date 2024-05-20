@@ -100,8 +100,8 @@ main {
 	width: 3px;
 	height: 50%;
 	opacity: 0;
-	background-color: var(--clr-primary-400);
-	box-shadow: 3px 0 1rem 0 var(--clr-primary-400), 3px 0 2rem 0 var(--clr-primary-400);
+	background-color: var(--color-primary-400);
+	box-shadow: 3px 0 1rem 0 var(--color-primary-400), 3px 0 2rem 0 var(--color-primary-400);
 	transition: opacity 0.3s;
 }
 
@@ -114,7 +114,7 @@ main {
 	overflow: hidden;
 	margin-left: 1rem;
 	font-family: var(--ff-titles);
-	font-weight: var(--fw-medium);
+	font-weight: var(--font-weight-medium);
 	line-height: 3.5rem;
 	transition: color 0.3s;
 }
@@ -182,7 +182,7 @@ main {
 
 .menu-subitem__title.active a,
 .menu-subitem__title a:hover {
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 }
 
 /**
@@ -273,7 +273,7 @@ main {
 }
 
 .panel__subtitle {
-	font-weight: var(--fw-medium);
+	font-weight: var(--font-weight-medium);
 	font-size: var(--fs-500);
 }
 

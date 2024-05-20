@@ -18,7 +18,7 @@
 	- Utilizzare le scoperte degli alunni come base e stimolo per elaborare e aggiornare il contratto formativo con gli alunni e con le famiglie.</p>
 
 <p class="foot">
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- Axia G. (1999), <span class="fy-italic">La timidezza</span>, Bologna, Il Mulino.<br>
 	- Bowlby J. (1969), <span class="fy-italic">Attaccamento e perdita</span>, Torino, Bollati Boringhieri<br>
 	- Bowlby J. (1982), <span class="fy-italic">Costruzione e rottura dei legami affettivi</span>, Milano, Raffaello Cortina.<br>

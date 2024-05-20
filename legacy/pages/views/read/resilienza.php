@@ -22,7 +22,7 @@
 	3 <span class="fy-italic">Questa nuova prospettiva è stata introdotta da R. S. Lazarus (</span>Emotion and adaptation<span class="fy-italic">, Oxford University Press, 1991) nel 1976, integrando significativamente le ricerche pionieristiche di Cannon e Selye risalenti agli anni cinquanta.</span><br>
 	4 <span class="fy-italic">H. Selye (1956),</span> The stress of life<span class="fy-italic">, New York, McGraw-Hill.</span><br><br>
 
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- Castelli C. (2011), <span class="fy-italic">Resilienza e creatività. Teorie e tecniche nei contesti di vulnerabilità</span>, Milano, FrancoAngeli<br>
 	- Cyrulnik B. (2009), <span class="fy-italic">Resilience: How your inner strength can set you free from the past</span>, London, Penguin Books Ltd<br>
 	- Oliverio Ferraris A. (2004), <span class="fy-italic">La forza d’animo</span>, Milano, Rizzoli.

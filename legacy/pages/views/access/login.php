@@ -42,7 +42,7 @@
 
 				<?php } ?>
 
-				<p class=""><a class="text-link" href="<?= client_url('/recover') ?>">Hai dimenticato i dati di accesso?</a></p>
+				<p class=""><a class="text-link" href="<?= route('auth.recover') ?>">Hai dimenticato i dati di accesso?</a></p>
 			</div>
 
 			<div class="form__footer">
@@ -106,7 +106,7 @@
 
 					<?php if ($error == 'invalid-email') { ?>
 
-						<p class="error-warning">Indirizzo email non supportato. Per vedere la lista dei domini email supportati dalla piattaforma clicca <a class="fw-bold" href="<?= client_url('/help?category=1&topic=11#topic11') ?>">qui</a></p>
+						<p class="error-warning">Indirizzo email non supportato. Per vedere la lista dei domini email supportati dalla piattaforma clicca <a class="font-bold" href="<?= client_url('/help?category=1&topic=11#topic11') ?>">qui</a></p>
 
 					<?php } ?>
 

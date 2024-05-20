@@ -129,7 +129,7 @@
 		</div>
 	</div>
 
-	<p id="mob-warning" class="fa-center txt-12rem fw-bold mar-t-2">Questo grafico non può essere visualizzato su dispositivi mobile</p>
+	<p id="mob-warning" class="fa-center txt-12rem font-bold mar-t-2">Questo grafico non può essere visualizzato su dispositivi mobile</p>
 
 	<?= submit() ?>
 

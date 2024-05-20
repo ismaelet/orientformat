@@ -1,7 +1,7 @@
 {% block main %}
 
 <!-- Body -->
-<div class="page-content pad-h-2 txt-cen">
+<div class="page-content px-8 text-center">
 	<img class="logo" src="<?= file_url(__LOGO__ . 'logo.png') ?>" alt="">
 	<h1 class="txt-bold txt-upp"><?= __('Offline Website') ?></h1>
 	<p class="mwid-600 txt-12rem">

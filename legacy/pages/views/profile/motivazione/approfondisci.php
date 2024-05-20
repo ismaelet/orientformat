@@ -33,7 +33,7 @@
 																												default:
 																													echo 'top';
 																											} ?>" data-delay="1">
-					<p class="area__title fa-center txt-12rem fw-bold"><?= $title[0] ?></p>
+					<p class="area__title fa-center txt-12rem font-bold"><?= $title[0] ?></p>
 				</div>
 
 			<?php } ?>
@@ -46,7 +46,7 @@
 						<div class="result cen score<?= $box['result'] ?>"></div>
 
 						<div class="question cen">
-							<h1 class="txt-1rem fa-center fw-bold mar-b-05">Domanda:</h1>
+							<h1 class="txt-1rem fa-center font-bold mar-b-05">Domanda:</h1>
 							<p class="fa-center txt-ita"><?= $box['question'] ?></p>
 						</div>
 					</div>

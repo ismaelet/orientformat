@@ -8,7 +8,7 @@
 
 		<div id="text-box" class="section">
 
-			<h1 class="fa-center txt-3rem mar-b-2 mar-t-5 fw-bold txt-upp">Riassunto</h1>
+			<h1 class="fa-center txt-3rem mar-b-2 mar-t-5 font-bold txt-upp">Riassunto</h1>
 
 			<p id="text" class="mar-b-2 txt-1rem"><?= $text ?></p>
 
@@ -20,7 +20,7 @@
 
 		<div id="original-box" class="section hidden">
 
-			<h1 class="fa-center txt-3rem mar-b-2 mar-t-5 fw-bold txt-upp">Testo</h1>
+			<h1 class="fa-center txt-3rem mar-b-2 mar-t-5 font-bold txt-upp">Testo</h1>
 
 			<p id="original" class="mar-b-2 txt-1rem">
 				Esemplare la fedeltà coniugale degli albatri, i grandi uccelli che veleggiano ad ali spiegate soprattutto nelle regioni subantartiche. E se ne comprende facilmente il motivo. Il loro uovo, uno solo, che pesa circa mezzo chilo, richiede un periodo d'incubazione lunghissimo, il più lungo che si conosca nel mondo degli uccelli: circa 80 giorni. In questo periodo i genitori si danno il cambio una volta alla settimana. Mentre l'uno cova, l'altro vola in mare a rifocillarsi. Nel momento in cui l'uno arriva dall’oceano e l'altro sta per involarsi, avviene un breve intermezzo di carezze volto a rinforzare il legame di coppia. Si lisciano reciprocamente le penne e lanciano acute grida quasi per infondersi coraggio reciprocamente. "Ci vuol pazienza. Abbiamo un figlio da allevare". Quando, infine, il piccolo sguscia dall’uovo, debbono passare ancora nove lunghi mesi prima che diventi autosufficiente. Nessun pulcino necessita di cure parentali così protratte nel tempo.<br>

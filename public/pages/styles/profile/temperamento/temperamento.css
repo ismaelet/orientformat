@@ -55,12 +55,12 @@
 #dot1,
 #dot2,
 #dot3 {
-	border-color: var(--clr-secondary-400);
+	border-color: var(--color-secondary-400);
 }
 #dot4,
 #dot5,
 #dot6 {
-	border-color: var(--clr-primary-400);
+	border-color: var(--color-primary-400);
 }
 
 #dot1:hover,
@@ -69,7 +69,7 @@
 #dot2.active,
 #dot3:hover,
 #dot3.active {
-	background-color: var(--clr-secondary-400);
+	background-color: var(--color-secondary-400);
 }
 
 #dot4:hover,
@@ -78,7 +78,7 @@
 #dot5.active,
 #dot6:hover,
 #dot6.active {
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 }
 
 .dot p {
@@ -92,13 +92,13 @@
 #dot1 p,
 #dot2 p,
 #dot3 p {
-	color: var(--clr-secondary-400);
+	color: var(--color-secondary-400);
 }
 
 #dot4 p,
 #dot5 p,
 #dot6 p {
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 }
 
 .dot:hover p,

@@ -95,7 +95,7 @@
 }
 
 .test-group span.pattern-1-original {
-	--_color-hsl: var(--clr-tertiary-hsl-400);
+	--_color-hsl: var(--color-tertiary-hsl-400);
 }
 
 .test-group span.pattern-2-original {
@@ -103,7 +103,7 @@
 }
 
 .test-group span.pattern-3-original {
-	--_color-hsl: var(--clr-secondary-hsl-400);
+	--_color-hsl: var(--color-secondary-hsl-400);
 }
 
 .test-group span.pattern-1-match {

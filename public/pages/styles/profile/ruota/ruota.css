@@ -37,7 +37,7 @@
 	z-index: 1;
 	width: 100%;
 	height: 100%;
-	background-color: var(--clr-tertiary-400);
+	background-color: var(--color-tertiary-400);
 	border-radius: 50%;
 	overflow: hidden;
 	transition: background 0.3s;

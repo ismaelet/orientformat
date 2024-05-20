@@ -9,12 +9,12 @@
 
 #questions.completed .right p,
 #questions.completed .wrong p {
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 }
 
 #questions.completed .right .icon,
 #questions.completed .wrong .icon {
-	outline-color: var(--clr-primary-400);
+	outline-color: var(--color-primary-400);
 }
 
 .checkbox.right {

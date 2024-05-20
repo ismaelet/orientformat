@@ -1,5 +1,7 @@
 <?php
 
+use App\Legacy\EmailInterface;
+
 $sent = false;
 $error = false;
 

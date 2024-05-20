@@ -59,7 +59,7 @@
 
 			<?php } else if ($levelOld) { ?>
 
-				<h1 id="completed" class="pad-v-5 fa-center txt-3rem fw-light"><span class="fc-primary fw-bold">Ottimo lavoro!</span> Hai completato l'attività</h1>
+				<h1 id="completed" class="pad-v-5 fa-center txt-3rem fw-light"><span class="fc-primary font-bold">Ottimo lavoro!</span> Hai completato l'attività</h1>
 
 				<div class="submit-box fa-center">
 					<button name="submit" class="button mar-b-2">Procedi</button>
@@ -116,7 +116,7 @@
 			<!-- View section -->
 			<div id="view-pan" class="pad-v-5">
 				<div class="grid">
-					<h1 id="view-txt" class="txt-c3 fw-bold fa-center"><?= $view_text ?></h1>
+					<h1 id="view-txt" class="txt-c3 font-bold fa-center"><?= $view_text ?></h1>
 				</div>
 
 				<div class="submit-box fa-center mar-t-5">

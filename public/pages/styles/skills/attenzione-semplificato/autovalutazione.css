@@ -100,7 +100,7 @@
 
 .number:hover,
 .number.active {
-	box-shadow: 5px 10px 1rem -0.3rem var(--clr-tertiary-400);
+	box-shadow: 5px 10px 1rem -0.3rem var(--color-tertiary-400);
 	color: #fff;
 }
 
@@ -110,19 +110,19 @@
 
 #hexagon1 .number:hover,
 #hexagon1 .number.active {
-	background-color: var(--clr-tertiary-400);
+	background-color: var(--color-tertiary-400);
 }
 #hexagon2 .number:hover,
 #hexagon2 .number.active {
-	background-color: var(--clr-tertiary-400);
+	background-color: var(--color-tertiary-400);
 }
 #hexagon3 .number:hover,
 #hexagon3 .number.active {
-	background-color: var(--clr-tertiary-400);
+	background-color: var(--color-tertiary-400);
 }
 #hexagon4 .number:hover,
 #hexagon4 .number.active {
-	background-color: var(--clr-tertiary-400);
+	background-color: var(--color-tertiary-400);
 }
 
 /* Questions */

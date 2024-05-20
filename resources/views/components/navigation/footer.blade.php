@@ -35,14 +35,15 @@
 	<style>
 		/* Containers */
 		footer {
-			--_fc-400: var(--clr-tertiary-100);
-			--_fc-700: #fff;
-			background-color: var(--clr-tertiary-700);
-			color: var(--_fc-400);
+			--content-width: 1400px;
+			--_color-neutral-400: var(--color-tertiary-100);
+			--_color-neutral-700: #fff;
+			background-color: var(--color-tertiary-700);
+			color: var(--_color-neutral-400);
 		}
 
 		footer .text-link {
-			color: var(--_fc-700);
+			color: var(--_color-neutral-700);
 		}
 
 		footer::before {
@@ -53,7 +54,7 @@
 		}
 
 		.footer__content {
-			padding-block: min(15vw, 5rem);
+			padding-top: min(15vw, 5rem);
 		}
 
 		#footer-body {
@@ -70,14 +71,14 @@
 			padding-left: 0;
 		}
 
-		footer .fw-bold {
-			color: var(--_fc-700);
-			font-weight: var(--fw-medium);
+		footer .font-bold {
+			color: var(--_color-neutral-700);
+			font-weight: var(--font-weight-medium);
 		}
 
 		.footer-title {
 			display: flex;
-			color: var(--_fc-700);
+			color: var(--_color-neutral-700);
 			align-items: center;
 			gap: 0.5rem;
 		}
@@ -87,7 +88,7 @@
 			display: block;
 			width: 3px;
 			height: 1.5em;
-			background-color: var(--clr-primary-400);
+			background-color: var(--color-primary-400);
 		}
 
 		#f-logo {
@@ -102,24 +103,17 @@
 		}
 
 		.f-contact {
-			color: var(--_fc-700);
-			width: 2.5rem;
-			height: 2.5rem;
+			color: var(--_color-neutral-400);
 			transition: background-color 0.4s;
 		}
 
 		.f-contact:hover {
-			color: var(--clr-primary-400);
-		}
-
-		.f-contact svg {
-			opacity: 0.8;
-			width: 50%;
+			color: var(--color-primary-400);
 		}
 
 		/*
-							* Credits
-							*/
+																																																																										* Credits
+																																																																										*/
 		#footer-credits {
 			border-color: hsl(0, 0%, 100%, 0.1);
 		}
@@ -131,10 +125,10 @@
 		}
 
 		/*
-							* Notes
-							*/
+																																																																										* Notes
+																																																																										*/
 		#footer-notes {
-			background-color: var(--clr-tertiary-800);
+			background-color: var(--color-tertiary-800);
 		}
 
 		/* Responsive */
@@ -166,7 +160,7 @@
 
 	<div
 		id="footer-wrap"
-		class="main-wrap"
+		class="content-grid"
 	>
 
 		<div class="footer__content">
@@ -175,16 +169,10 @@
 				class="al-top grid"
 			>
 
-				<?php if ($f_comp['contacts']) { ?>
 				<div
 					id="f-contacts"
 					class="footer-col"
 				>
-
-					<p class="footer-title fw-bold txt-1rem mar-b-1 hidden">
-						<span class="dent bgr-c2"></span>
-						Contatti
-					</p>
 
 					<a href="<?= config('custom.contacts.web.url') ?>">
 						<img
@@ -199,12 +187,12 @@
 						>
 					</a>
 
-					<p class="mar-b-1">
+					<p class="mb-4">
 						Via Tartarotti, 15 - 38068 Rovereto<br>
 						Tel. <a
 							class="text-link"
 							href="tel:+390461494360"
-						>+39 0461 494360</a>, <span class="inlb">Fax <span
+						>+39 0461 494360</a>, <span class="inline-block">Fax <span
 								class="text-link"
 								href="tel:+390461494399"
 							>+39 0461 494399</span></span><br>
@@ -217,26 +205,23 @@
 						>iprase@pec.provincia.tn.it</a>
 					</p>
 
-					<div
-						class="flex-group"
-						data-spacing="200"
-					>
+					<div class="flex gap-4">
 						<a
-							class="f-contact"
+							class="f-contact flex h-6"
 							href="<?= config('custom.contacts.twitter.url') ?>"
 						>
 							<?= embed_icon('contacts/twitter') ?>
 						</a>
 
 						<a
-							class="f-contact"
+							class="f-contact flex h-6"
 							href="<?= config('custom.contacts.facebook.url') ?>"
 						>
 							<?= embed_icon('contacts/facebook') ?>
 						</a>
 
 						<a
-							class="f-contact"
+							class="f-contact flex h-6"
 							href="<?= config('custom.contacts.instagram.url') ?>"
 						>
 							<?= embed_icon('contacts/instagram') ?>
@@ -244,66 +229,53 @@
 
 					</div>
 				</div>
-				<?php } ?>
 
-				<?php foreach ($f_columns as $f_column) { ?>
+				@foreach ($f_columns as $f_column)
+					<div class="footer-col pt-4">
 
-				<div class="footer-col pad-t-1">
-
-					<p class="footer-title txt-1rem mar-b-1 fw-bold">
-						<?= $f_column['title'] ?>
-					</p>
-
-					<div
-						class="footer__links grid-flow"
-						data-spacing="200"
-					>
-
-						<?php foreach ($f_column['links'] as $f_link) {
-
-								if (isset($f_link[1])) { ?>
-
-						<p class="footer-link">
-							<a
-								class="fc-hover-primary"
-								href="<?= $f_link[1] ?>"
-							><?= $f_link[0] ?></a>
+						<p class="footer-title mb-4 font-bold">
+							<?= $f_column['title'] ?>
 						</p>
 
-						<?php } else { ?>
+						<div class="footer__links grid gap-2">
 
-						<p class="footer-link"><?= $f_link[0] ?></p>
-
-						<?php } ?>
-
-						<?php } ?>
+							@foreach ($f_column['links'] as $f_link)
+								@if (isset($f_link[1]))
+									<p class="footer-link">
+										<a
+											class="hover:text-primary transition-colors"
+											href="<?= $f_link[1] ?>"
+										><?= $f_link[0] ?></a>
+									</p>
+								@else
+									<p class="footer-link"><?= $f_link[0] ?></p>
+								@endif
+							@endforeach
+						</div>
 					</div>
-
-				</div>
-
-				<?php } ?>
+				@endforeach
 
 			</div>
 
 			<div
 				id="footer-credits"
-				class="gap1 pad-t-2 br-t-1 br-d grid"
+				class="grid gap-4 pt-8"
 			>
 				<div class="footer-credit">
-					<p class="flex-line gap05">Autore:
-						<span class="fw-bold">Luigi Tuffanelli</span>
+					<p class="flex flex-wrap items-center gap-2">Autore:
+						<span class="font-bold">Luigi Tuffanelli</span>
 						&middot;
 						<a
-							class="text-link"
+							class="hover:text-primary flex items-center gap-2 transition-colors"
 							href="https://luigituffanelli.eu"
 							target="_blank"
 						>
 							Curriculum
-							<?= embed_icon('external-link') ?>
+							<?= embed_icon('external-link', ['w-3']) ?>
 						</a>
 					</p>
 
-					<p class="mar-t-05">
+					<p class="mt-2">
 						Insegnante, formatore e docente presso le Università di Trento e di Bolzano. Ha collaborato frequentemente con
 						l’Iprase e con il Centro Studi Edizioni Erickson. Ha numerose pubblicazioni con gli editori Giunti, La Nuova
 						Italia, Edizioni Erickson e diverse riviste di didattica e pedagogia.
@@ -311,9 +283,9 @@
 				</div>
 
 				<div class="footer-credit">
-					<p class="flex-line gap05">
+					<p class="flex flex-wrap items-center gap-2">
 						Sito web realizzato da: <a
-							class="text-link"
+							class="hover:text-primary text-neutral-100 transition-colors"
 							href="mailto:ismaele.tuffanelli@gmail.com"
 						>Ismaele Tuffanelli</a>
 					</p>
@@ -324,7 +296,7 @@
 
 	<p
 		id="footer-notes"
-		class="pad-v-1 pad-h-2 txt-cen"
+		class="mt-12 px-8 py-4 text-center"
 	>
 		Copyright © <?= getdate()['year'] ?> Iprase - Istituto provinciale per la ricerca e la sperimentazione educativa, Ente
 		strumentale della Provincia Autonoma di Trento

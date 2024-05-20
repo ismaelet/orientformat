@@ -25,10 +25,10 @@
 }
 
 .box.left {
-	background-color: var(--clr-tertiary-400);
+	background-color: var(--color-tertiary-400);
 }
 .box.right {
-	background-color: var(--clr-secondary-400);
+	background-color: var(--color-secondary-400);
 }
 
 .concept {
@@ -44,8 +44,8 @@
 }
 
 #box10 {
-	background-color: var(--clr-secondary-200);
-	border: 3px dashed var(--clr-secondary-400);
+	background-color: var(--color-secondary-200);
+	border: 3px dashed var(--color-secondary-400);
 }
 
 #mob-warning {

@@ -38,7 +38,7 @@ main {
 }
 
 .pbtn.bgr-c2 {
-	background-color: var(--clr-tertiary-400);
+	background-color: var(--color-tertiary-400);
 }
 
 /* Responsive */

@@ -66,7 +66,7 @@ main {
 	width: clamp(4rem, 10vw, 7rem);
 	max-width: 100%;
 	padding: var(--_padding);
-	background: conic-gradient(var(--clr-primary-400), var(--clr-transition-400), var(--clr-secondary-400), var(--_background));
+	background: conic-gradient(var(--color-primary-400), var(--color-transition-400), var(--color-secondary-400), var(--_background));
 	border-radius: 50%;
 }
 
@@ -129,8 +129,8 @@ main {
 .dashboard-category__header::before {
 	content: '';
 	opacity: 0;
-	background-color: var(--clr-primary-400);
-	box-shadow: 3px 0 1rem 0 var(--clr-primary-400), 3px 0 2rem 0 var(--clr-primary-400);
+	background-color: var(--color-primary-400);
+	box-shadow: 3px 0 1rem 0 var(--color-primary-400), 3px 0 2rem 0 var(--color-primary-400);
 	width: 3px;
 	height: 100%;
 	transition: opacity 0.2s;
@@ -139,7 +139,7 @@ main {
 .dashboard-category__label {
 	font-size: 1em;
 	font-family: var(--ff-titles);
-	font-weight: var(--fw-medium);
+	font-weight: var(--font-weight-medium);
 	text-wrap: nowrap;
 	transition: color 0.2s;
 	cursor: pointer;
@@ -332,8 +332,8 @@ main {
 	box-shadow: none;
 	font-family: var(--ff-default);
 	font-size: var(--fs-300);
-	font-weight: var(--fw-medium);
-	color: var(--clr-tertiary-400);
+	font-weight: var(--font-weight-medium);
+	color: var(--color-tertiary-400);
 	cursor: pointer;
 }
 

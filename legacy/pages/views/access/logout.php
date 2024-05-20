@@ -1,6 +1,6 @@
 {% block form-body %}
 
-<p class="pad-v-1">Sei sicuro di voler uscire?</p>
+<p class="py-4">Sei sicuro di voler uscire?</p>
 
 {% end form-body %}
 

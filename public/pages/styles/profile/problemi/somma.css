@@ -13,11 +13,11 @@
 
 /* Title */
 #stitle .txt-wht {
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 }
 
 .test__description span {
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 }
 
 /* Graph */
@@ -104,7 +104,7 @@
 }
 
 .page-graph-box .inp {
-	background-color: var(--clr-tertiary-400);
+	background-color: var(--color-tertiary-400);
 	border: none;
 	border-radius: 2px;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -123,7 +123,7 @@
 }
 
 .page-graph-box .inp:focus {
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 	box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
@@ -154,7 +154,7 @@
 }
 
 .page-graph-line.active {
-	background: var(--clr-primary-400);
+	background: var(--color-primary-400);
 }
 .page-graph-line.right {
 	background-color: #3cb144;

@@ -7,7 +7,7 @@
 
 	<div id="title-box" class="fa-center">
 
-		<h1 id="title" class="txt-whtpush-centerfw-bold txt-upp">Gestisci la classe</h1>
+		<h1 id="title" class="txt-whtpush-centerfont-bold txt-upp">Gestisci la classe</h1>
 
 	</div>
 
@@ -22,7 +22,7 @@
 
 			<p id="stitle" class="txt-upp txt-15rem txt-sbold txt-2">Funzionalità per l'insegnante</p>
 
-			<p id="desc" class="txt-09rem mar-t-1">Qui puoi controllare i progressi dei tuoi studenti e amministrare la classe <span class="fw-bold"><?= $grade->name ?></span></p>
+			<p id="desc" class="txt-09rem mar-t-1">Qui puoi controllare i progressi dei tuoi studenti e amministrare la classe <span class="font-bold"><?= $grade->name ?></span></p>
 
 			<?php if (!$grade->ended && $grade->year == 20211) { ?>
 				<div class="button button--secondary br-red mar-t-2 txt-red lbox-open" data-tar="#survey-lbox">Clicca qui per attivare il questionario finale</div>
@@ -47,9 +47,9 @@
 
 							<div class="section-texts">
 
-								<h1 class="section-title txt-upp txt-12rem fw-bold"><?= $legacySection['title'] ?></h1>
+								<h1 class="section-title txt-upp txt-12rem font-bold"><?= $legacySection['title'] ?></h1>
 
-								<p class="section-stitle mar-b-1 txt-upp mar-t-05"><?= $legacySection['stitle'] ?></p>
+								<p class="section-stitle mb-4 txt-upp mt-2"><?= $legacySection['stitle'] ?></p>
 
 								<p class=""><?= $legacySection['desc'] ?></p>
 
@@ -79,7 +79,7 @@
 		</div>
 
 		<h2>Vuoi attivare il questionario?</h2>
-		<p class="txt-1rem fa-center mar-t-2 mar-b-1">Se attivato, i tuoi studenti riceveranno un invito a completare il questionario quando accederanno alla piattaforma.</p>
+		<p class="txt-1rem fa-center mar-t-2 mb-4">Se attivato, i tuoi studenti riceveranno un invito a completare il questionario quando accederanno alla piattaforma.</p>
 		<button type="submit" name="activate-survey" class="wid-100 pbtn">Attiva</button>
 		<button type="button" class="wid-100 sbtn lbox-close">Annulla</button>
 	</form>

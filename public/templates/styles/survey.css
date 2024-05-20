@@ -68,12 +68,12 @@ main {
 	font-size: clamp(100px, 15vw, 220px);
 	transition-delay: 0.3s;
 	opacity: 0.03;
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 }
 
 .section-subtitle {
 	margin-bottom: 0.5em;
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 	font-size: min(var(--fs-500), 6vw);
 	letter-spacing: min(0.3em, 1.5vw);
 }
@@ -195,7 +195,7 @@ main {
 	max-width: 50%;
 	height: 100%;
 	opacity: 1;
-	background-color: var(--clr-tertiary-400);
+	background-color: var(--color-tertiary-400);
 	letter-spacing: 0.1em;
 	cursor: pointer;
 	transition: opacity 0.2s;

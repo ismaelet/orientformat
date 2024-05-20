@@ -37,15 +37,15 @@
 }
 
 .recap-item:nth-child(1) {
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 }
 
 .recap-item:nth-child(2) {
-	background-color: var(--clr-transition-400);
+	background-color: var(--color-transition-400);
 }
 
 .recap-item:nth-child(3) {
-	background-color: var(--clr-secondary-400);
+	background-color: var(--color-secondary-400);
 }
 
 .recap-item__label {

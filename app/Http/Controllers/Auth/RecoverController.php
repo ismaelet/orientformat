@@ -71,7 +71,7 @@ class RecoverController extends Controller {
 			Mail::to($email)->send($mail);
 		}
 
-		return redirect()->route('auth.recover')
+		return redirect()->route('recover')
 			->with('locationTag', 'recover')
 			->with('title', 'Recupero accesso')
 			->with('submitted', true)

@@ -66,7 +66,7 @@ Il tempo passava ma {! lei rimaneva lì seduta presso la finestra, la testa appo
 			.selectable {
 				text-decoration: underline;
 				text-decoration-thickness: 1px;
-				text-decoration-color: var(--clr-secondary-400);
+				text-decoration-color: var(--color-secondary-400);
 			}
 		</style>
 

@@ -32,7 +32,7 @@
 
 .score .circle {
 	position: relative;
-	border: 2px solid var(--clr-secondary-400);
+	border: 2px solid var(--color-secondary-400);
 	border-radius: 50%;
 }
 
@@ -62,7 +62,7 @@
 }
 
 .score p {
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 	font-size: 1rem;
 	font-weight: bold;
 }

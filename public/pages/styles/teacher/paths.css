@@ -53,10 +53,10 @@
 }
 
 .path:nth-child(1) .path_title {
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 }
 .path:nth-child(2) .path_title {
-	background-color: var(--clr-secondary-400);
+	background-color: var(--color-secondary-400);
 }
 .path:nth-child(3) .path_title {
 	background-color: var(--clr-4);

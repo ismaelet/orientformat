@@ -12,7 +12,7 @@
 <p class="text">Non è detto il ragazzo o la ragazza scelgano sicuramente la figura che più li rappresenterebbe. Possono intervenire meccanismi di rimozione, di autotutela o di autoillusione che possono costituire una remora all’<a href="#g-autorappresentazione" class="link">identificazione</a>. Il fatto tuttavia di poter esplorare le varie situazioni proposte, prendere atto, come viene esplicitato nell’introduzione all’attività, che sono modi in cui “ognuno di noi si può sentire in un certo momento della vita”, dovrebbe facilitare una presa d’atto di una situazione difficile e spingere a cercare qualche forma di aiuto. Il dato che emergerà dalla scelta della figura (o delle figure, nel caso di scelte diverse) dovrà naturalmente essere raffrontato con quanto si rileverà con l’osservazione diretta, con le informazioni che si riceveranno dai genitori e con i dati forniti dal test di autostima. Tuttavia occorre essere consapevoli che non è raro il caso di studenti che riescono a coprire forme anche gravi di malessere. Questo strumento sembra piuttosto utile, per la sua immediatezza, a farle emergere o, quanto meno, a stimolare qualche utile interrogativo.</p>
 
 <p class="foot">
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- Kelly G. K. (1955), <span class="fy-italic">The psychology of personal construct</span>, New York, Norton.<br>
 	- Koppitz E. (1968), P<span class="fy-italic">sychological Evaluation of Childrens Human Figure Drawings</span>, Grune & Stratton, New York.<br>
 	- Mariani U. e Schiralli R. (2002), <span class="fy-italic">Costruire il benessere personale in classe</span>, Trento, Erickson.<br>

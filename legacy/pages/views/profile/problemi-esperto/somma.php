@@ -52,7 +52,7 @@
 			<?php if ($legacyTest->completed && !$supervisorView) { ?>
 
 				<div class="grid-flow center-content" data-spacing="400">
-					<p class="txt-12rem">Hai risolto il test al <span class="fw-bold fc-primary"><?= $legacyTest->percentage ?>%</span></p>
+					<p class="txt-12rem">Hai risolto il test al <span class="font-bold fc-primary"><?= $legacyTest->percentage ?>%</span></p>
 
 					<?php if ($legacyTest->percentage != 100) {
 						echo renderRedoButton(true);

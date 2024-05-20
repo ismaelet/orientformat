@@ -57,7 +57,7 @@
 	3 Bowlby J. (1982), <span class="fy-italic">Costruzione e rottura dei legami affettivi</span>, Milano, Cortina, p. 140.<br>
 	4 Bowlby J. (1989), <span class="fy-italic">Una base sicura. Applicazioni cliniche della teoria dell’attaccamento</span>, Milano, Cortina, p.58.<br><br>
 
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- Apter M. J. (1989), <span class="fy-italic">Reversal theory: Motivation, emotion and personality</span>, London, Routledge<br>
 	- Bruner J. S, e Goodnow J. J. e Austin G. A. (1965), <span class="fy-italic">A study of thinking</span>, New York,Wiley<br>
 	- Cornoldi C. (1999), <span class="fy-italic">La diversità come fattore di apprendimento: stili cognitivi e intelligenze</span>, in L. Tuffanelli (a cura di, 1999), <span class="fy-italic">Intelligenze, emozioni e apprendimenti</span>, Trento, Erickson<br>

@@ -29,7 +29,7 @@ h1 {
 }
 
 .graph-box {
-	border-color: var(--clr-tertiary-400);
+	border-color: var(--color-tertiary-400);
 }
 
 .graph-info-title {

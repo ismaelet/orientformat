@@ -29,7 +29,7 @@
 </p>
 
 <p class="foot">
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- Kelly G. K. (1955), <span class="fy-italic">The psychology of personal construct</span>, New York, Norton.<br>
 	- Koppitz E. (1968), P<span class="fy-italic">sychological Evaluation of Childrens Human Figure Drawings</span>, Grune & Stratton, New York.<br>
 	- Mariani U. e Schiralli R. (2002), <span class="fy-italic">Costruire il benessere personale in classe</span>, Trento, Erickson.<br>

@@ -5,7 +5,7 @@
 <form class="js-list-form" method="POST">
 
 	<!-- Title -->
-	<section id="title" class="mar-b-1">
+	<section id="title" class="mb-4">
 		<h1 class="txt-med"><?= \App\Legacy\LegacyView::getInstance()->title ?></h1>
 
 		<!-- Add button -->

@@ -296,7 +296,7 @@ class Test149 extends Test {
 				transition: color 0.3s;
 			}
 
-			.test-selector.disabled .fw-bold {
+			.test-selector.disabled .font-bold {
 				color: inherit;
 			}
 

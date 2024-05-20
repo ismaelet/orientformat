@@ -23,7 +23,7 @@
 
 						<div class="area">
 							<h3 class="area_title"><?= $area ?></h3>
-							<p class="area_text mar-t-05"><?= implode('<br>', (array) $path['sections'][$areaSlug]) ?></p>
+							<p class="area_text mt-2"><?= implode('<br>', (array) $path['sections'][$areaSlug]) ?></p>
 						</div>
 
 					<?php } ?>

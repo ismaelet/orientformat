@@ -44,11 +44,11 @@
 }
 
 .result:nth-child(1) .result__icon {
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 }
 
 .result:nth-child(2) .result__icon {
-	background-color: var(--clr-secondary-400);
+	background-color: var(--color-secondary-400);
 }
 
 .result:nth-child(3) .result__icon {

@@ -174,7 +174,7 @@
 	border-width: 3px;
 	border-style: solid;
 	border-radius: 50%;
-	border-color: var(--clr-tertiary-200);
+	border-color: var(--color-tertiary-200);
 	position: relative;
 }
 
@@ -183,7 +183,7 @@
 	position: absolute;
 	inset: 0;
 	opacity: 0.7;
-	background-color: var(--clr-tertiary-200);
+	background-color: var(--color-tertiary-200);
 	border-radius: inherit;
 }
 

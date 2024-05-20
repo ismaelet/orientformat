@@ -56,7 +56,7 @@
 
 										<div class="section__body">
 											<div class="section__content grid-flow center-content" data-spacing="100">
-												<h3 class="section__title fw-bold txt-12rem"><?= $legacySection->name ?></h3>
+												<h3 class="section__title font-bold txt-12rem"><?= $legacySection->name ?></h3>
 												<p class="section-desc"><?= $legacySection->description ?></p>
 
 												<?php if ($legacySection->isStandard) { ?>
@@ -70,7 +70,7 @@
 
 														<?php } else { ?>
 
-															Attività completate: <span class="fw-bold"><?= $legacySection->completedTestCount . '/' . ($legacySection->testCount ?: '??') ?></span>
+															Attività completate: <span class="font-bold"><?= $legacySection->completedTestCount . '/' . ($legacySection->testCount ?: '??') ?></span>
 
 														<?php } ?>
 
@@ -82,7 +82,7 @@
 
 											<?php if (false) { ?>
 
-												<p class="mar-t-1 pad-t-05 br-t-1 br-d txt-09rem">Durata stimata<br>dell'attività: <span class="fw-bold"><?= $legacySection->time ?> minuti</span></p>
+												<p class="mar-t-1 pad-t-05 br-t-1 br-d txt-09rem">Durata stimata<br>dell'attività: <span class="font-bold"><?= $legacySection->time ?> minuti</span></p>
 
 											<?php } ?>
 

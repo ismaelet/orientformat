@@ -79,12 +79,12 @@
 
 .dashboard-home-more a {
 	border-bottom: 1px dashed;
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 	transition: color 0.2s;
 }
 
 .dashboard-home-more a:hover {
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 }
 
 .dashboard-panel-icon {

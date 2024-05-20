@@ -16,13 +16,13 @@
 <h1 class="section-title">Rilevare e interpretare il proprio stile cognitivo</h1>
 <p class="text">
 	Come in molti altri ambiti, anche in questo caso il massimo utilizzo delle proprie potenzialità presuppone come punto di partenza il prendere progressivamente consapevolezza degli stili che si impiegano di preferenza, con i vantaggi e gli svantaggi che essi comportano. Il questionario che lo studente ha completato gli ha permesso di individuare, con buona approssimazione, i suoi stili cognitivi. Occorre però avere una chiave per interpretarli.<br><br>
-	<span class="fw-bold">- Analitico/Globale</span><br>
+	<span class="font-bold">- Analitico/Globale</span><br>
 	Il globale privilegia l’insieme, ha bisogno di inquadrare complessivamente situazioni e problemi, che tenderà a ordinare schematicamente ma in modo approssimato, a ragnatela. Pregio e limite è la sua tendenza alla generalizzazione, all’ipotesi onnicomprensiva, che può risultare però azzardata ed eccessiva. L’analitico al contrario ha bisogno di ancorarsi a singoli dati certi, considerati uno dopo l’altro, in sequenza, estrapolati e catalogati. Ha un approccio tendenzialmente rigoroso, ma che rischia di risultare inconcludente, privo di riferimenti d’insieme, frammentario, disorganico.<br><br>
-	<span class="fw-bold">- Uditivo/Visivo </span><br>
+	<span class="font-bold">- Uditivo/Visivo </span><br>
 	Il visivo pensa e ricorda prevalentemente attraverso immagini visive, statiche o in movimento, che colloca agevolmente nello spazio. Nello stile visivo si può fare una distinzione fra il tipo verbale (preferenza per la parola scritta) e non-verbale (preferenza per raffigurazioni sinottiche come schemi, grafici e tabelle). L’uditivo invece privilegia l’ascolto e si trova a suo agio nella conversazione fluida. <br><br>
-	<span class="fw-bold">- Autonomo/Collaborativo </span><br>
+	<span class="font-bold">- Autonomo/Collaborativo </span><br>
 	Il collaborativo presenta una maggiore tendenza esplorativa che si valorizza nelle attività di gruppo, mentre nel lavoro autonomo tende di più a distrarsi o ad annoiarsi. L’autonomo invece ha una maggiore attitudine alla critica, che realizza di preferenza con un lavoro individuale, nel quale riesce ad essere più concentrato ed efficace. Perde però in tal modo tutti i vantaggi che derivano dalla collaborazione con gli altri: pluralità dei punti di vista, negoziazione delle strategie, acquisizione di abilità socio-affettive.<br><br>
-	<span class="fw-bold">- Sistematico/Intuitivo</span><br>
+	<span class="font-bold">- Sistematico/Intuitivo</span><br>
 	Il sistematico vuole far quadrare i conti, predilige la precisione e la completezza, per cui tende a considerare tutte le variabili in gioco e a vagliarle successivamente, una dopo l’altra. E’ un approccio che comporta tempo – non sempre disponibile – e fatica. Inoltre l’accumulo di dati può risultare dispersivo, perdendo di vista l’essenziale. L’intuitivo invece, spesso anche impulsivo, tende a bruciare i tempi, tralasciando tutti i passaggi intermedi, per giungere immediatamente a conclusioni precarie . E’ un aspetto che spesso caratterizza anche i soggetti superdotati (secondo le statistiche, il 20% dei bambini), che, paradossalmente, incontrano enormi difficoltà a scuola.
 </p>
 
@@ -30,7 +30,7 @@
 	1 <span class="fy-italic">Cornoldi C., De Beni R. e Gruppo MT,</span> Imparare a studiare 2<span class="fy-italic">, Trento, Erickson, 2001, p. 17.</span><br>
 	2 <span class="fy-italic">Sterberg R. J, 1998,</span> Stili di pensiero<span class="fy-italic">, Trento, Erickson, p. 24.</span><br><br>
 
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- Bruner J. S, e Goodnow J. J. e Austin G. A. (1965), <span class="fy-italic">A study of thinking</span>, New York, Wiley<br>
 	- Cornoldi C. (1999), <span class="fy-italic">La diversità come fattore di apprendimento: stili cognitivi e intelligenze</span>, in L. Tuffanelli (a cura di, 1999), <span class="fy-italic">Intelligenze, emozioni e apprendimenti</span>, Trento, Erickson<br>
 	- Cornoldi C. (2007), <span class="fy-italic">L’intelligenza</span>, Il Mulino, Bologna.<br>

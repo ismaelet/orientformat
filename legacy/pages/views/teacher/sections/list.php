@@ -23,7 +23,7 @@
 
 			<div class="area mar-b-3">
 
-				<p class="fw-bold txt-25px mar-b-1"><?= $area['name'] ?></p>
+				<p class="font-bold txt-25px mb-4"><?= $area['name'] ?></p>
 
 				<div class="grid4 grid3-1024w grid2-768w grid1-480w gap2 al-top">
 

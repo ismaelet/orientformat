@@ -14,7 +14,7 @@
 
 				<div class="method interactive">
 
-					<h3 class="subsection-title txt-15rem fw-bold br-b-1 br-5 pad-b-05 mar-b-05"><?= $method[0] ?></h3>
+					<h3 class="subsection-title txt-15rem font-bold br-b-1 br-5 pad-b-05 mar-b-05"><?= $method[0] ?></h3>
 
 					<?php foreach ($method[1] as $desc) { ?>
 

@@ -18,7 +18,7 @@ class ResetController extends Controller {
 		$email = $_GET['email'] ?? null;
 		$token = $_GET['token'] ?? null;
 
-		return view('auth.reset')
+		return view('reset')
 			->with([
 				'title' => 'Reset accesso',
 				'email' => $email,

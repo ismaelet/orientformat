@@ -36,8 +36,8 @@
 
 <div class="grid2 fa-center mar-t-1 mar-b-2 br1 br-d">
 
-	<p class="txt-1rem fw-bold pad5px bgr-f3 br1 br-d">Con ripetizioni</p>
-	<p class="txt-1rem fw-bold pad5px bgr-f3 br1 br-d">ricordo dopo 16 giorni</p>
+	<p class="txt-1rem font-bold pad5px bgr-f3 br1 br-d">Con ripetizioni</p>
+	<p class="txt-1rem font-bold pad5px bgr-f3 br1 br-d">ricordo dopo 16 giorni</p>
 	<p class="txt-09rem pad5px br1 br-d">1</p>
 	<p class="txt-09rem pad5px br1 br-d">2</p>
 	<p class="txt-09rem pad5px br1 br-d">2</p>
@@ -66,8 +66,8 @@
 
 <div class="grid2 fa-center mar-t-1 mar-b-2 br1 br-d">
 
-	<p class="txt-1rem fw-bold pad5px bgr-f3 br1 br-d">Ripassi</p>
-	<p class="txt-1rem fw-bold pad5px bgr-f3 br1 br-d">quando</p>
+	<p class="txt-1rem font-bold pad5px bgr-f3 br1 br-d">Ripassi</p>
+	<p class="txt-1rem font-bold pad5px bgr-f3 br1 br-d">quando</p>
 	<p class="txt-09rem pad5px br1 br-d">1</p>
 	<p class="txt-09rem pad5px br1 br-d">alla fine dell’unità di studio</p>
 	<p class="txt-09rem pad5px br1 br-d">2</p>
@@ -88,7 +88,7 @@
 	3 Laroche S., 2002, <span class="fy-italic">I meccanismi della memoria</span>, “Le Scienze – dossier” n° 14, p.29.<br>
 	4 T. Rey, <span class="fy-italic">Copia e riproduzione a memoria di figure geometriche complesse</span>, Centre de Psychologie Appliquée, Square Jouvenet, Paris, (1959), Edizione italiana Organizzazioni Speciali, Firenze, 1959.<br><br>
 
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- Baddeley A.D.,1990, <span class="fy-italic">La memoria di lavoro</span>, Milano, Raffaello Cortina.<br>
 	- Baddeley, A.D. & Della Sala S. (1996), <span class="fy-italic">Working memory and executive control, Philosophical Transactions of the Royal Society of London</span><br>
 	- Bartlett C.,1974, <span class="fy-italic">La memoria</span>, Franco Angeli, Milano.<br>

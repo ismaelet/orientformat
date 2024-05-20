@@ -55,7 +55,7 @@
 	giornalisti selezionati<br>
 	2 T. Kuhn (1969), <span class="fy-italic">La struttura delle rivoluzioni scientifiche</span>, Torino, Einaudi.<br><br>
 
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- AjelloA.M., Saul Meghnagi S., Catia Mastracci (1999), <span class="fy-italic">Orientare dentro e fuori la scuola</span>, Firenze, La Nuova Italia<br>
 	- Ajello A. M. e Belardi C. (2007), <span class="fy-italic">Valutare le competenze informali. Il portfolio digitale</span>, Roma, Carocci<br>
 	- Censis (2022-2023), <span class="fy-italic">La classifica delle Università italiane 2022/2023</span>, <a class="link" href="https://www.censis.it/formazione/la-classifica-censis-delle-universit%C3%A0-italiane-edizione-20222023-0">link</a><br>

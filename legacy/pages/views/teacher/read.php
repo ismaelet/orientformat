@@ -23,7 +23,7 @@
 
 			<div class="area mar-b-3">
 
-				<p class="fw-bold brb2 br-c<?= $key + 1 ?> pad-b-1 fa-center txt-25px mar-b-1"><?= $area['name'] ?></p>
+				<p class="font-bold brb2 br-c<?= $key + 1 ?> pad-b-1 fa-center txt-25px mb-4"><?= $area['name'] ?></p>
 
 				<div class="txt-0rem fa-center">
 

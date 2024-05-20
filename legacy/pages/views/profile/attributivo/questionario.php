@@ -15,11 +15,11 @@
 
 				<div class="main-wrap">
 
-					<p class="question txt-15rem mar-b-2 txt-sbold"><span class="number fw-bold"><?= $key ?>.</span> <?= $question ?>:</p>
+					<p class="question txt-15rem mar-b-2 txt-sbold"><span class="number font-bold"><?= $key ?>.</span> <?= $question ?>:</p>
 
 					<?php foreach ($answer as $i => $res) { ?>
 
-						<label class="answer checkbox mar-b-1">
+						<label class="answer checkbox mb-4">
 							<input type="checkbox" name="field[]" class="cbx-mirror filler-inp" <?= !empty($legacyTest->rawResults[$key - 1]) && $legacyTest->rawResults[$key - 1] == ($i + 1) ? 'checked' : '' ?> value="<?= $i + 1 ?>">
 							<span></span>
 							<p><?= $res ?></p>

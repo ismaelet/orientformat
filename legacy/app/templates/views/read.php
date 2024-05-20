@@ -27,7 +27,7 @@
 
 			<?php foreach ($glossary as $letter) { ?>
 
-				<div class="letter mar-b-1 br-b-1 br-c brb-dashed pad-b-1">
+				<div class="letter mb-4 br-b-1 br-c brb-dashed pad-b-1">
 
 					<p class="txt-25px txt-bold"><?= $letter[0] ?></p>
 
@@ -49,7 +49,7 @@
 
 				<div id="g-<?= $entry['tag'] ?>" class="entry mar-b-2">
 
-					<div class="title-box inlb mar-b-1">
+					<div class="title-box inlb mb-4">
 						<h1 class="entry__title"><?= $entry['title'] ?></h1>
 					</div>
 

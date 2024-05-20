@@ -30,8 +30,8 @@ $sets = _SETS;
 					$val = $legacyTest->completed && isset($legacyTest->rawResults[$key]) ?: null;
 				?>
 
-					<div class="num-row mar-t-2 pad-h-2 pad-v-1 <?php if ($legacyTest->completed) echo $right ? 'right' : 'wrong';
-																else echo 'clickable' ?>" onclick="$(this).find('.num-emp').focus();">
+					<div class="num-row mar-t-2 px-8 py-4 <?php if ($legacyTest->completed) echo $right ? 'right' : 'wrong';
+															else echo 'clickable' ?>" onclick="$(this).find('.num-emp').focus();">
 
 						<?php foreach ($numbers as $i => $number) {
 
@@ -67,7 +67,7 @@ $sets = _SETS;
 
 					<?php if ($legacyTest->completed) { ?>
 
-						<p class="result-txt txt-09rem mar-t-10px fw-bold txt-upp <?= $right ? 'right' : 'wrong' ?>">
+						<p class="result-txt txt-09rem mar-t-10px font-bold txt-upp <?= $right ? 'right' : 'wrong' ?>">
 							<span class="text-icon" <?= $right ? icon_css('correct/correct') : icon_css('errors/alert_red') ?>></span>
 							<?= $right ? 'Giusto' : 'Sbagliato' ?>
 						</p>

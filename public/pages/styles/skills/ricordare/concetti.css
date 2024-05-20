@@ -20,7 +20,7 @@
 }
 
 .concept-line {
-	border-bottom: 2px solid var(--clr-primary-400);
+	border-bottom: 2px solid var(--color-primary-400);
 	width: 100%;
 	position: absolute;
 	bottom: 0;
@@ -89,7 +89,7 @@
 }
 
 .inp:focus + .number {
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 	font-size: 1.2rem;
 	transform: translateY(-2.8rem);
 }

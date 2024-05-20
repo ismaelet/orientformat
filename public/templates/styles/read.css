@@ -4,7 +4,7 @@ html {
 }
 
 .link {
-	color: var(--clr-secondary-400);
+	color: var(--color-secondary-400);
 	font-weight: 700;
 }
 

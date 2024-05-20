@@ -69,7 +69,7 @@
 	2 Kintsch W. ,1988, <span class="fy-italic">The use of knowledge in discourse processing: A construction-integration model</span>, ”Psychological Review”, 95, pp. 163-82; Kintsch W. ,1994, <span class="fy-italic">The Psychology of discorse processing</span>, in M. A. Gernsbacher (a cura di), <span class="fy-italic">Handbook of psycholinguistics</span>, Academic Press.<br>
 	3 Wiener N.,1953, <span class="fy-italic">Introduzione alla cibernetica</span>, Torino, Boringhieri.<br><br>
 
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- Biancardi A. e Milano G. (2001), <span class="fy-italic">Le difficoltà di apprendimento a scuola. Vincere la dislessia e i disturbi dell’apprendimento</span>, Milano, Rizzoli<br>
 	- Boschi F. ,1977, <span class="fy-italic">Psicologia della lettura</span>, Firenze, Giunti Barbera<br>
 	- Crowder R.G. e Wagner R. (1998), <span class="fy-italic">Psicologia della lettura</span>, Bologna, Il Mulino<br>

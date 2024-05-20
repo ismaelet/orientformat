@@ -12,7 +12,7 @@ $panels = [
 	[
 		'slug' => 'students',
 		'title' => 'Studenti',
-		'info' => '<span class="fw-bold">' . $studentCount . '</span> studenti registrati',
+		'info' => '<span class="font-bold">' . $studentCount . '</span> studenti registrati',
 		'primary-button' => [
 			'type' => 'primary',
 			'label' => 'Lista degli studenti',
@@ -23,7 +23,7 @@ $panels = [
 	[
 		'slug' => 'teachers',
 		'title' => 'Docenti',
-		'info' => '<span class="fw-bold">' . $teacherCount . '</span> docenti registrati',
+		'info' => '<span class="font-bold">' . $teacherCount . '</span> docenti registrati',
 		'primary-button' => [
 			'type' => 'primary',
 			'label' => 'Lista dei docenti',
@@ -34,7 +34,7 @@ $panels = [
 	[
 		'slug' => 'school-classes',
 		'title' => 'Classi',
-		'info' => '<span class="fw-bold">' . $schoolClassCount . '</span> classi registrate',
+		'info' => '<span class="font-bold">' . $schoolClassCount . '</span> classi registrate',
 		'primary-button' => [
 			'type' => 'primary',
 			'label' => 'Lista delle classi',

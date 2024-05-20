@@ -30,7 +30,7 @@
 		</form>
 
 		<!-- List -->
-		<h1 class="mar-t-3 fw-bold txt-12rem mar-b-05">Risultati della classe</h1>
+		<h1 class="mar-t-3 font-bold txt-12rem mar-b-05">Risultati della classe</h1>
 
 		<div id="list" class="panel">
 
@@ -70,7 +70,7 @@
 		<?php if ($enableAverage) { ?>
 
 			<!-- Average -->
-			<h1 class="mar-t-3 fw-bold txt-12rem mar-b-05">Valori medi di confronto</h1>
+			<h1 class="mar-t-3 font-bold txt-12rem mar-b-05">Valori medi di confronto</h1>
 
 			<div id="average" class="panel">
 

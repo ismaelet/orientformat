@@ -199,13 +199,13 @@
 	essenziali nella memoria a lungo termine, è proprio il riassunto.<br>
 	Sapere riassumere bene significa praticare efficacemente quattro attività
 	fondamentali:<br><br>
-	<span class="fw-bold">- Selezionare</span><br>
+	<span class="font-bold">- Selezionare</span><br>
 	Si seleziona evidenziando. È importante sapere che questa attività non viene fatta
 	una volta per tutte, ma è ricorsiva: si ritorna più volte sulle parole e sulle parti
 
 	evidenziate con simboli diversi (penna rossa, evidenziatore usato di piatto ecc.), in
 	base anche a quanto si ricorda oppure si è dimenticato.<br><br>
-	<span class="fw-bold">- Ridurre e generalizzare</span><br>
+	<span class="font-bold">- Ridurre e generalizzare</span><br>
 	Sono due attività collegate: per poter ridurre il testo, si richiede, oltre che
 	trascurare le informazioni inessenziali, anche di poterle generalizzare, ricorrendo a
 	concetti sovraordinati e ad iperonimi (“fiore” è iperonimo di “margherita”, così come
@@ -213,7 +213,7 @@
 	“preparare i bagagli”, “prenotare l’albergo”, “fare il biglietto” ecc.) . Anche l’uso di
 	brevi titoli o “parole-concetto” di fianco alle unità di lettura già selezionate è
 	un’attività molto utile che evidenzia la capacità di generalizzare.<br><br>
-	<span class="fw-bold">- Ricostruire</span><br>
+	<span class="font-bold">- Ricostruire</span><br>
 	Il vero nodo della questione è però la quarta abilità, cioè la costruzione di un
 	riassunto che restituisca al destinatario la struttura semantica del testo di
 	partenza, svincolandosi dall’ordine di esposizione. Un modo per fare centro
@@ -281,9 +281,9 @@
 	queste forme di ragionamento: affermazione + spiegazione + affermazione, tra le
 	altre possibili forme: previsione, ipotesi, conclusione, proposta.
 
-	<span class="fa-center txt-12rem block fw-bold mar-b-1 mar-t-2">Simulazione di morte</span>
+	<span class="fa-center txt-12rem block font-bold mb-4 mar-t-2">Simulazione di morte</span>
 
-	<span class="span block pad-h-2"><span class="bgr-c1">Senza dubbio</span> (SICURO) l’astuzia più diffusa nel mondo animale è il trucco della
+	<span class="span block px-8"><span class="bgr-c1">Senza dubbio</span> (SICURO) l’astuzia più diffusa nel mondo animale è il trucco della
 		morte, simulata s’intende. (AFFERMAZIONE)<br><br>
 		Lo adottano molte specie, dalla biscia dal collare al re di quaglie, da altri uccelli
 		come i rallidi a mammiferi come i topi, gli opossum, i dinghi. Si sono accorti che il
@@ -307,7 +307,7 @@
 	motivo non ci si aspetta che un bambino possa leggere» (Postman N., 1984, La scomparsa dell’infanzia, Roma,
 	Armando Editore, pp. 99-100.)<br><br>
 
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- Cornoldi C. (1995), <span class="fy-italic">Metacognizione e apprendimento</span>, Bologna, Il Mulino<br>
 	- Cornoldi C. (1999), <span class="fy-italic">Le difficoltà di apprendimento nella scuola</span>, Bologna, Il Mulino.<br>
 	- Gardner H. (1993), <span class="fy-italic">Educare al comprendere. Stereotipi infantili e apprendimento scolastico</span>, Milano, Feltrinelli.<br>

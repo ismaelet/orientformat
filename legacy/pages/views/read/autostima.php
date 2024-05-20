@@ -37,7 +37,7 @@
 	4 <span class="fy-italic">Tajfel H. , 1982,</span> Social identity and intergroup relations<span class="fy-italic">, Cambridge, Cambridge University Press.</span><br>
 	5 <span class="fy-italic">Raimy V. C. , 1948,</span> Self-reference in counselling ineterviews, “Journal of Consulting Psychology”<span class="fy-italic">, vol. 12, pp.153-163.</span><br><br>
 
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- Bandura A. (2000), <span class="fy-italic">Autoefficacia. Teoria e applicazioni</span>, Trento, Erickson.<br>
 	- Branden N. (2006), <span class="fy-italic">I sei pilastri dell'autostima</span>, Milano, TEA<br>
 	- Bracken B. A. (2003), <span class="fy-italic">TMA. Test di valutazione multidimensionale dell’autostima</span>, Trento, Erickson.<br>

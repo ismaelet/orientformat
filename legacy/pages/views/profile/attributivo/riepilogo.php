@@ -20,9 +20,9 @@
 
 					<div id="column-positive<?= $key + 1 ?>" class="column column<?= $key + 1 ?> pos-rel" data-id="<?= $key + 1 ?>">
 						<div class="bar positive gradient-overlay" style="height: <?= $result['positive-height'] ?>%;">
-							<p class="score fw-bold txt-15rem txt-wht fa-center pad-v-10px wid-100"><?= $result['positive-result'] ?></p>
+							<p class="score font-bold txt-15rem txt-wht fa-center py-40px wid-100"><?= $result['positive-result'] ?></p>
 						</div>
-						<p class="result__label txt-vertical txt-13rem fw-bold txt-2"><?= $result['label'] ?></p>
+						<p class="result__label txt-vertical txt-13rem font-bold txt-2"><?= $result['label'] ?></p>
 					</div>
 
 				<?php } ?>
@@ -36,7 +36,7 @@
 
 						<div id="column-negative<?= $key + 1 ?>" class="column column<?= $key + 1 ?> " data-id="<?= $key + 1 ?>">
 							<div class="bar negative gradient-overlay" style="height: <?= $result['negative-height'] ?>%;">
-								<p class="score fw-bold txt-15rem txt-wht fa-center pad-v-10px wid-100"><?= $result['negative-result'] ?></p>
+								<p class="score font-bold txt-15rem txt-wht fa-center py-40px wid-100"><?= $result['negative-result'] ?></p>
 							</div>
 						</div>
 

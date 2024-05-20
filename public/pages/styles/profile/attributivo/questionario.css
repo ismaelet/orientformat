@@ -9,7 +9,7 @@
 
 .checkbox p {
 	color: var(--fc-700);
-	font-weight: var(--fw-medium);
+	font-weight: var(--font-weight-medium);
 }
 
 .question-box.bgr-c1 .question {
@@ -38,13 +38,13 @@
 	color: #fff;
 }
 .question-box.bgr-c5 .number {
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 }
 .question-box.bgr-c5 .good {
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 }
 .question-box.bgr-c5 .bad {
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 }
 .question-box.bgr-c5 .checkbox-txt {
 	color: #fff;
@@ -79,7 +79,7 @@
 }
 
 .question-box.bgr-c2 .question {
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 }
 .question-box.bgr-c2 .number {
 	color: var(--clr-4);
@@ -88,7 +88,7 @@
 	color: var(--clr-4);
 }
 .question-box.bgr-c2 .checkbox-txt {
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 }
 .question-box.bgr-c2 .checkbox span {
 	border-color: #fff;

@@ -11,7 +11,7 @@
 
 .num-row:hover,
 .num-row:active {
-	outline-color: var(--clr-tertiary-400);
+	outline-color: var(--color-tertiary-400);
 }
 
 .num-row.right {

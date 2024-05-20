@@ -28,7 +28,7 @@
 <p class="foot">
 	1 Questo è un assunto fondamentale del costruzionismo sociale, teoria introdotta da K. Gergen (1994), Realities and relationships. Soundings in social construction, Cambridge, MA, Harvard University Press. <br><br>
 
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- Bazzanella C. (1994), <span class="fy-italic">Le facce del parlare. Un approccio pragmatico all’italiano parlato</span>, Firenze, La Nuova Italia<br>
 	- Czerwinsky Domenis L. (2000), <span class="fy-italic">La discussione intelligente. Una strategia didattica per la costruzione sociale della conoscenza</span>, Trento, Erickson.<br>
 	- Galatolo R. e Pallotti G. (a cura di, 1999), <span class="fy-italic">La conversazione</span>, Milano, Raffaello Cortina<br>

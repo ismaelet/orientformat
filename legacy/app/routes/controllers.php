@@ -3,6 +3,9 @@
 /**
  * Email controllers
  */
+
+use App\Legacy\EmailInterface;
+
 // Send reminder email
 \App\Legacy\LegacyRoute::add('/emails/reminder', function () {
 	if (!isset($_SESSION['email-sent-reminder'])) {

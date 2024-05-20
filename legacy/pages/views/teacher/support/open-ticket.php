@@ -41,7 +41,7 @@
 
 					<?php if ($error == 'word_bad') { ?>
 
-						<p class="error-message">Errore: il messaggio non ha superato i nostri filtri anti-spam. Puoi scrivere direttamente a <a href="mailto:<?= $contact ?>" class="fw-bold"><?= $contact ?></a>, invece di usare questo modulo.</p>
+						<p class="error-message">Errore: il messaggio non ha superato i nostri filtri anti-spam. Puoi scrivere direttamente a <a href="mailto:<?= $contact ?>" class="font-bold"><?= $contact ?></a>, invece di usare questo modulo.</p>
 
 					<?php } ?>
 

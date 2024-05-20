@@ -13,7 +13,7 @@
 
 				<?php if ($item->id) { ?>
 					<!-- Slug -->
-					<div class="form-field mar-t-05">
+					<div class="form-field mt-2">
 						<p class="form-lbl">URL del prodotto</p>
 						<div class="slug">
 							<p class="slug-url"><?= str_replace('/', '<wbr>/', __PUBLIC_CLIENT_URL__ . '/' . __('item') . '/' . $item->id . '-') ?></p>
@@ -45,7 +45,7 @@
 
 			<?php if ($item->id && $item->images && !empty($item->images)) { ?>
 
-				<p class="mar-b-2 flex flex-wrap gap05 ha-cen va-cen">
+				<p class="mar-b-2 flex flex-wrap gap-2 ha-cen va-cen">
 					<span class="icon text-icon" <?= icon_svg('move') ?>></span>
 					Puoi trascinare le immagini per riordinarle
 				</p>
@@ -224,7 +224,7 @@
 					</div>
 					<button type="submit" class="pbtn wid-100 mar-t-1" name="delete-promotion" data-style='warning'>Elimina</button>
 				<?php } else { ?>
-					<h3 class="mar-b-1">Aggiungi una promozione:</h3>
+					<h3 class="mb-4">Aggiungi una promozione:</h3>
 					<div class="form-inputs">
 						<p class="">Nuovo prezzo:</p>
 						<input type="text" class="inp" name="promotion-price" placeholder="Prezzo in promozione">
@@ -270,7 +270,7 @@
 						</h3>
 
 						<!-- Variant list -->
-						<div class='variants mar-t-05'>
+						<div class='variants mt-2'>
 
 							<?php foreach ($variation['variants'] as $variant) { ?>
 
@@ -287,7 +287,7 @@
 						</div>
 
 						<!-- Add a variant -->
-						<button type='button' class='add-variant icon-box mar-t-05'>
+						<button type='button' class='add-variant icon-box mt-2'>
 							<?= icon_embed('add') ?>
 						</button>
 					</div>

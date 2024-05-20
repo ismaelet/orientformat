@@ -30,10 +30,10 @@
 	min-height: 4.5rem;
 	padding: 1.5rem 1rem;
 	z-index: 1;
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 	border: 1px solid transparent;
 	border-radius: 1.25rem;
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 }
 
 [data-style='highschool'] .box,
@@ -46,7 +46,7 @@
 }
 
 .box.locked {
-	background-color: var(--clr-tertiary-400);
+	background-color: var(--color-tertiary-400);
 	color: #fff;
 }
 
@@ -67,7 +67,7 @@
 
 .box.reader p,
 .cause.reader p {
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 	font-weight: 600;
 }
 

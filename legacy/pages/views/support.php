@@ -6,7 +6,7 @@
 
 		<section class="category-selector">
 			<h1 class="category-selector_title txt-sbold">Come possiamo aiutarti?</h1>
-			<p class="txt-12rem mar-t-05">Seleziona un argomento dalla lista qui sotto</p>
+			<p class="txt-12rem mt-2">Seleziona un argomento dalla lista qui sotto</p>
 			<div class="categories">
 
 				<?php while ($category = $categories->fetch_assoc()) { ?>

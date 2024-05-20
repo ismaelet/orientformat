@@ -24,16 +24,16 @@
 }
 
 .dashboard-panel:nth-child(1) .icon-box {
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 }
 .dashboard-panel:nth-child(2) .icon-box {
-	background-color: var(--clr-secondary-400);
+	background-color: var(--color-secondary-400);
 }
 .dashboard-panel:nth-child(3) .icon-box {
 	background-color: var(--clr-4);
 }
 .dashboard-panel:nth-child(4) .icon-box {
-	background-color: var(--clr-tertiary-400);
+	background-color: var(--color-tertiary-400);
 }
 
 /*
@@ -44,11 +44,11 @@
 }
 
 .dashboard-field_head {
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 }
 
 .dashboard-list:first-child .dashboard-list-header {
-	background-color: var(--clr-secondary-400);
+	background-color: var(--color-secondary-400);
 }
 
 .dashboard-list:last-child .dashboard-list-header {

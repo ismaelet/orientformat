@@ -4,7 +4,7 @@
 
 	<div id="body" class="">
 
-		<div id="content" class="pad-t-10 pad-b-4">
+		<div id="content" class="pt-40 pad-b-4">
 
 			<!-- Title and instructions -->
 			<?= title() ?>
@@ -49,7 +49,7 @@
 
 												<input type="checkbox" class="quiz-cbx hidden" value="<?= $i; ?>" <?= $legacyTest->completed ? 'disabled' : ''; ?> <?= $val == $i ? 'checked' : ''; ?>>
 
-												<p class="quiz-scor-txt fa-center fw-bold"><?= $i ?></p>
+												<p class="quiz-scor-txt fa-center font-bold"><?= $i ?></p>
 
 											</label>
 

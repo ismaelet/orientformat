@@ -16,7 +16,7 @@
 
 			<?php foreach (_CONCEPTS as $key => $concept) { ?>
 
-				<h2 class="concept txt-c3 mar-v-1 fw-bold inlb loadA pos-rel" style="--del: <?= $key / 10 ?>s">
+				<h2 class="concept txt-c3 mar-v-1 font-bold inlb loadA pos-rel" style="--del: <?= $key / 10 ?>s">
 					<span class="concept-line"></span>
 					<span class="block"><?= ucfirst($concept) ?></span>
 				</h2><br>
@@ -35,7 +35,7 @@
 
 				<div class="answer">
 					<input type="text" name="field_other[]" class="inp filler-inp <?php if ($legacyTest->completed) echo in_array(strtolower($results[$i]), _CONCEPTS) ? 'right' : 'wrong' ?>" maxlength="40" required value="<?= $results[$i] ?? '' ?>" <?= $legacyTest->completed ? 'readonly' : '' ?>>
-					<h3 class="number fw-bold txt-c3"><?= $i + 1 ?>.</h3>
+					<h3 class="number font-bold txt-c3"><?= $i + 1 ?>.</h3>
 				</div>
 
 			<?php } ?>

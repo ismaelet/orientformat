@@ -16,7 +16,7 @@
 		<!-- Graph -->
 		<div id="graph" class="fa-center pos-rel">
 			<div class="background bgr">
-				<h3 class="txt-upp txt-wht fw-bold txt-15rem cenY txt-vertical">Organizzazione</h3>
+				<h3 class="txt-upp txt-wht font-bold txt-15rem cenY txt-vertical">Organizzazione</h3>
 			</div>
 
 			<div class="element big start" data-delay="1">
@@ -51,11 +51,11 @@
 	<!-- Result -->
 	<section id="result">
 		<div class="grid va-items-cen">
-			<p class="txt-15rem fw-bold">Risultato:</p>
+			<p class="txt-15rem font-bold">Risultato:</p>
 
-			<input type="number" class="inp txt-15rem fw-bold fa-center inp-num filler-inp" name="field[]" min="1" max="10" <?= $legacyTest->completed || isSupervisor() ? 'readonly' : '' ?> value="<?= $legacyTest->completed ? $legacyTest->rawResults[0] : '' ?>" onKeyPress="if(this.value.length==2) return false;">
+			<input type="number" class="inp txt-15rem font-bold fa-center inp-num filler-inp" name="field[]" min="1" max="10" <?= $legacyTest->completed || isSupervisor() ? 'readonly' : '' ?> value="<?= $legacyTest->completed ? $legacyTest->rawResults[0] : '' ?>" onKeyPress="if(this.value.length==2) return false;">
 
-			<p class="fw-bold txt-15rem padl10px">/10</p>
+			<p class="font-bold txt-15rem padl10px">/10</p>
 		</div>
 	</section>
 

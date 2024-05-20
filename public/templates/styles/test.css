@@ -53,13 +53,13 @@
 	border-color: #fff !important;
 }
 #submit.br-c1 {
-	border-color: var(--clr-primary-400) !important;
+	border-color: var(--color-primary-400) !important;
 }
 #submit.br-c2 {
-	border-color: var(--clr-secondary-400) !important;
+	border-color: var(--color-secondary-400) !important;
 }
 #submit.br-c3 {
-	border-color: var(--clr-tertiary-400) !important;
+	border-color: var(--color-tertiary-400) !important;
 }
 
 #submit.br-c1:hover {
@@ -76,13 +76,13 @@
 	color: #fff;
 }
 #submit:not(:disabled).completed-c1 .btn-txt {
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 }
 #submit:not(:disabled).completed-c2 .btn-txt {
-	color: var(--clr-secondary-400);
+	color: var(--color-secondary-400);
 }
 #submit:not(:disabled).completed-c3 .btn-txt {
-	color: var(--clr-tertiary-400);
+	color: var(--color-tertiary-400);
 }
 
 #submit:hover .bgr.bgr-c2 {
@@ -106,7 +106,7 @@
 	position: absolute;
 	inset: 0;
 	z-index: -1;
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 	transition: width 0.4s;
 }
 
@@ -177,8 +177,8 @@
 .quiz-cbx:checked + .quiz-scor-txt,
 .quiz-scor-box:not(.disabled) .quiz-scor-txt:hover {
 	box-shadow: 0 5px 10px -6px rgba(0, 0, 0, 0.4);
-	background: var(--clr-primary-400);
-	border-color: var(--clr-primary-400);
+	background: var(--color-primary-400);
+	border-color: var(--color-primary-400);
 	color: #fff;
 }
 

@@ -10,7 +10,7 @@
 
 .num-row:hover,
 .num-row:active {
-	outline-color: var(--clr-tertiary-400);
+	outline-color: var(--color-tertiary-400);
 }
 
 .num-row.right {
@@ -40,7 +40,7 @@
 
 .num-emp:active,
 .num-emp:focus {
-	border-color: var(--clr-secondary-400);
+	border-color: var(--color-secondary-400);
 	width: 8rem;
 }
 

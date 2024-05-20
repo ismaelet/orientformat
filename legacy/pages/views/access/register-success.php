@@ -9,7 +9,7 @@
 		<h1 class="section-title">Ti sei registrato con successo</h1>
 
 		<p class="section-subtitle">
-			Il tuo username è: <span class="fw-bold"><?= user()->username ?></span><br>
+			Il tuo username è: <span class="font-bold"><?= user()->username ?></span><br>
 			Potrai usare questo username o l'indirizzo email per accedere nuovamente.
 		</p>
 

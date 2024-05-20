@@ -9,9 +9,9 @@
 
 		<div class="graph-wrapper">
 
-			<div id="circles" class="circles mar-t-10 mar-b-10" style="--group-count: <?= count($sortedResults) ?>">
+			<div id="circles" class="circles mar-t-10 mb-40" style="--group-count: <?= count($sortedResults) ?>">
 
-				<p id="title-center" class="cen fa-center txt-c3 fw-bold"><?= $title ?></p>
+				<p id="title-center" class="cen fa-center txt-c3 font-bold"><?= $title ?></p>
 
 				<?php for ($i = 1; $i < 5; $i++) { ?>
 

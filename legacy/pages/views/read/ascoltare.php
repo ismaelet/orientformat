@@ -68,7 +68,7 @@
 	&middot; A queste indicazioni generali se ne aggiungono di più specifiche, che dipendono cioè dalle situazioni e dai tipi di testo. </p>
 
 <p class="foot">
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- Bazzanella C. (1994), <span class="fy-italic">Le facce del parlare. Un approccio pragmatico all’italiano parlato</span>, Firenze, La Nuova Italia<br>
 	- Lugli L. e Mizzau M. (a cura di, 2010), <span class="fy-italic">L’ascolto</span>, Bologna, Il Mulino<br>
 	- Orsolini M. (1988), <span class="fy-italic">Guida al linguaggio orale</span>, Roma, Editori Riuniti<br>

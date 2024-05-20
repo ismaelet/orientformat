@@ -1,5 +1,5 @@
 <div class="grid">
-	<div class="bgr-c1 txt-cen padv1 pad-h-2">
+	<div class="bgr-c1 text-center padv1 px-8">
 
 		<div id="logo" class="inlb img cont" <?= background_image('/app/assets/logo/logo_wht.png'); ?>></div>
 

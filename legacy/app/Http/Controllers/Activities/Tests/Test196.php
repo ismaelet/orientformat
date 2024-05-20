@@ -172,7 +172,7 @@ class Test196 extends Test {
 				text-align: center;
 
 				& span {
-					font-weight: var(--fw-bold);
+					font-weight: var(--font-bold);
 				}
 			}
 		</style>

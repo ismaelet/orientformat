@@ -1,13 +1,13 @@
 /* Containers */
 footer {
-	--_fc-400: var(--clr-tertiary-100);
-	--_fc-700: #fff;
-	background-color: var(--clr-tertiary-700);
-	color: var(--_fc-400);
+	--_color-neutral-400: var(--color-tertiary-100);
+	--_color-neutral-700: #fff;
+	background-color: var(--color-tertiary-700);
+	color: var(--_color-neutral-400);
 }
 
 footer .text-link {
-	color: var(--_fc-700);
+	color: var(--_color-neutral-700);
 }
 
 footer::before {
@@ -36,13 +36,13 @@ footer::before {
 }
 
 footer .fw-bold {
-	color: var(--_fc-700);
-	font-weight: var(--fw-medium);
+	color: var(--_color-neutral-700);
+	font-weight: var(--font-weight-medium);
 }
 
 .footer-title {
 	display: flex;
-	color: var(--_fc-700);
+	color: var(--_color-neutral-700);
 	align-items: center;
 	gap: 0.5rem;
 }
@@ -52,7 +52,7 @@ footer .fw-bold {
 	display: block;
 	width: 3px;
 	height: 1.5em;
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 }
 
 #f-logo {
@@ -67,14 +67,14 @@ footer .fw-bold {
 }
 
 .f-contact {
-	color: var(--_fc-700);
+	color: var(--_color-neutral-700);
 	width: 2.5rem;
 	height: 2.5rem;
 	transition: background-color 0.4s;
 }
 
 .f-contact:hover {
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 }
 
 .f-contact svg {
@@ -99,7 +99,7 @@ footer .fw-bold {
 * Notes
 */
 #footer-notes {
-	background-color: var(--clr-tertiary-800);
+	background-color: var(--color-tertiary-800);
 }
 
 /* Responsive */

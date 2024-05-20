@@ -37,7 +37,7 @@ use \Legacy\UserSystem\Teacher;
 					<div class="load--fade-in js-load grid-flow" data-direction="bottom" data-delay="<?= $key % 3 ?>">
 						<a class="element element_class" href="<?= $schoolClass->url() ?>">
 							<div>
-								<h3 class="class-name fw-bold"><?= $schoolClass->name ?></h3>
+								<h3 class="class-name font-bold"><?= $schoolClass->name ?></h3>
 								<h3 class="fa-center txt-sbold">(<?= $schoolClass->yearRangeString() ?>)</h3>
 							</div>
 
@@ -76,8 +76,8 @@ use \Legacy\UserSystem\Teacher;
 								<?= embed_icon('functionality-' . $functionality['slug']) ?>
 							</div>
 							<div>
-								<h3 class="element-title txt-upp fw-bold"><?= $functionality['title'] ?></h3>
-								<p class="element-subtitle mar-t-05"><?= $functionality['desc'] ?></p>
+								<h3 class="element-title txt-upp font-bold"><?= $functionality['title'] ?></h3>
+								<p class="element-subtitle mt-2"><?= $functionality['desc'] ?></p>
 							</div>
 						</a>
 					</div>
@@ -91,7 +91,7 @@ use \Legacy\UserSystem\Teacher;
 	<aside class="feed-bar pos-rel">
 		<div class="feed-bar_container">
 			<h2 class="txt-15rem txt-sbold mar-b-2">Attività recenti</h2>
-			<div class="grid gap1">
+			<div class="grid gap-4">
 
 				<?php if ($feed) {
 					foreach ($feed as $feedEntry) { ?>

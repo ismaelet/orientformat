@@ -44,7 +44,7 @@
 	3 Da Fabio R. A., 2001, <span class="fy-italic">L’attenzione</span>, Milano, Franco Angeli, pp. 20-1.<br>
 	4 Si veda ad esempio Cornoldi C., 1999, <span class="fy-italic">Le difficoltà di apprendimento nella scuola</span>, Bologna, Il Mulino.<br><br>
 
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- Cornoldi C. et alii (1996), <span class="fy-italic">Impulsività e autocontrollo</span>, Trento, Erickson.<br>
 	- Dell’Acqua R. e Turatto M. (2006), <span class="fy-italic">Attenzione e percezione. I processi cognitivi tra psicologia e neuroscienze</span>, Roma, Carocci<br>
 	- Kahneman D. (1981), <span class="fy-italic">Psicologia dell’attenzione</span>, Firenze, Giunti<br>

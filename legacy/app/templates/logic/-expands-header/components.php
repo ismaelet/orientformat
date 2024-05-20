@@ -279,7 +279,7 @@ $headerComponent['megamenus'] = function () {
 		<?php foreach ((array) $header['megamenus'] as $megamenuName => $megamenu) { ?>
 
 			<div class="megamenu <?= isset($megamenu['type']) ? 'megamenu--' . $megamenu['type'] : '' ?>" id="megamenu-<?= $megamenuName ?>">
-				<div class="megamenu-content main-wrap pad-t-2 pad-b-2">
+				<div class="megamenu-content main-wrap pt-8 pad-b-2">
 
 					<?php if (isset($megamenu['type']) && $megamenu['type'] == 'free') {
 						foreach ($megamenu['links'] as $megamenulink) {
@@ -297,7 +297,7 @@ $headerComponent['megamenus'] = function () {
 
 							if (!isset($megamenuSection['mobile']) || !$megamenuSection['mobile']) { ?>
 
-								<div class="megamenu-group grid gap1">
+								<div class="megamenu-group grid gap-4">
 									<?php if ($megamenuSection['title']) { ?>
 
 										<h3 class="megamenu-title ">
@@ -306,7 +306,7 @@ $headerComponent['megamenus'] = function () {
 
 									<?php } ?>
 
-									<div class="megamenu-links grid gap1">
+									<div class="megamenu-links grid gap-4">
 										<?php foreach ($megamenuSection['links'] as $h_megamenuLink) { ?>
 											<p class=""><a href="<?= $h_megamenuLink[1] ?>"><?= $h_megamenuLink[0] ?></a></p>
 										<?php } ?>

@@ -16,8 +16,8 @@
 		<h1 class="title txt-25rem txt-sbold">Risultati complessivi</h1>
 
 		<p class="stitle txt-1rem mar-t-2">
-			Cliccando su <span class="fw-bold">Risultati</span> puoi controllare i risultati di ciascuno studente una volta che avrà completato le attività proposte.<br><br>
-			Se vuoi esaminare più nel dettaglio i risultati ottenuti dagli alunni, torna alla pagina principale e apri l'area <span class="fw-bold">Progesso per attività</span><br><br>
+			Cliccando su <span class="font-bold">Risultati</span> puoi controllare i risultati di ciascuno studente una volta che avrà completato le attività proposte.<br><br>
+			Se vuoi esaminare più nel dettaglio i risultati ottenuti dagli alunni, torna alla pagina principale e apri l'area <span class="font-bold">Progesso per attività</span><br><br>
 			Quando desideri puoi indicare il consiglio orientativo per ogni studente.
 		</p>
 
@@ -82,8 +82,8 @@
 
 						<div class="form">
 
-							<p class="pad-b-1 br-b-1 br-2 txt-2 txt-13rem">Consiglio orientativo per <span class="fw-bold"><?= $student['name'] ?></span></p>
-							<p class="mar-t-2 mar-b-1">È possibile selezionare qui sotto uno o più consigli orientativi. Si può indicare un'area generica (ad esempio "Liceo") oppure un indirizzo più specifico:</p>
+							<p class="pad-b-1 br-b-1 br-2 txt-2 txt-13rem">Consiglio orientativo per <span class="font-bold"><?= $student['name'] ?></span></p>
+							<p class="mar-t-2 mb-4">È possibile selezionare qui sotto uno o più consigli orientativi. Si può indicare un'area generica (ad esempio "Liceo") oppure un indirizzo più specifico:</p>
 
 							<?php for ($i = 0; $i < 3; $i++) { ?>
 

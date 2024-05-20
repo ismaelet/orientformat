@@ -25,8 +25,8 @@ use \Legacy\Activity\Test;
 		<!-- Results -->
 		<?php if ($legacyTest->completed) { ?>
 
-			<p class="mar-t-2 txt-12rem fw-bold">
-				Hai risposto correttamente al <span class="fc-primary fw-bold"><?= $legacyTest->percentage ?>%</span>.<br>
+			<p class="mar-t-2 txt-12rem font-bold">
+				Hai risposto correttamente al <span class="fc-primary font-bold"><?= $legacyTest->percentage ?>%</span>.<br>
 			</p>
 
 			<p class="txt-1rem">

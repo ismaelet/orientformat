@@ -13,7 +13,7 @@
 			<svg class="countdown-circle">
 				<circle>
 			</svg>
-			<p class="number txt-2rem fw-bold txt-c3"></p>
+			<p class="number txt-2rem font-bold txt-c3"></p>
 		</div>
 
 	</div>

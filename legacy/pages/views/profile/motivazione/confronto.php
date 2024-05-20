@@ -11,14 +11,14 @@
 
 			<div class="group pad-b-2">
 
-				<h3 class="subsection-title fw-bold txt-15rem mar-b-1"><?= $group ?></h3>
+				<h3 class="subsection-title font-bold txt-15rem mb-4"><?= $group ?></h3>
 
-				<div class="grid gap1">
+				<div class="grid gap-4">
 					<?php for ($i = 0; $i < 5; $i++) {
 						$key++; ?>
 
 						<div class="answer">
-							<h1 class="number fw-bold"><?= $i + 1 ?></h1>
+							<h1 class="number font-bold"><?= $i + 1 ?></h1>
 							<input type="text" name="field_other[]" class="inp filler-inp" value="<?= $results[$key] ?? '' ?>" placeholder="Attività n&#176;<?= $i + 1 ?>" maxlength="50" <?= test()->completed || isSupervisor() ? 'readonly' : '' ?>>
 						</div>
 

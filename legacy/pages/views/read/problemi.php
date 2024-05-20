@@ -39,7 +39,7 @@
 	1 PISA 2003-Valutazione dei quindicenni<span class="fy-italic">, Roma, Armando Editore 2004.</span><br>
 	2 <span class="fy-italic">Winnicott D. W., 1975,</span> Dalla pediatria alla psicanalisi<span class="fy-italic">, Firenze, mar-t-inelli.</span><br><br>
 
-	<span class="fw-bold">Bibliografia essenziale</span><br>
+	<span class="font-bold">Bibliografia essenziale</span><br>
 	- De Bono E. (1994), <span class="fy-italic">Sei cappelli per pensare</span>, Milano, Rizzoli<br>
 	- Morin E. (1999), <span class="fy-italic">La testa ben fatta</span>, Milano, 2000, Raffaello Cortina Editore<br>
 	- Oliverio A. (1997), <span class="fy-italic">L’arte di pensare</span>, Milano, Rizzoli<br>

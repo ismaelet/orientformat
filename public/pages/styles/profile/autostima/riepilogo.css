@@ -13,7 +13,7 @@
 /* Slider */
 .header__background {
 	opacity: 1;
-	background: var(--clr-tertiary-400);
+	background: var(--color-tertiary-400);
 }
 
 #bgr-img {

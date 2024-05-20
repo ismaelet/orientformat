@@ -2,7 +2,7 @@
 
 	<div id="h-pan">
 
-		<div id="h-bgr" class="bgr bgr-c2"></div>
+		<div id="h-bgr" class="bgr bg-secondary"></div>
 
 		<div class="h-bars">
 			<!-- Left bar -->
@@ -119,7 +119,7 @@
 					<!-- Mobile box -->
 					<div id="h-navM" class="txt-lef <?php if (!$h_comp['force-mob']) echo 'mob'; ?>" onClick="$('#h-cbxM').click();">
 
-						<div id="h-navM-bgr" class="bgr bgr-c2"></div>
+						<div id="h-navM-bgr" class="bgr bg-secondary"></div>
 
 						<div id="h-contM">
 

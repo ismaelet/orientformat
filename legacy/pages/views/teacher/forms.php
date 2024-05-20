@@ -27,7 +27,7 @@
 			<!-- Buttons -->
 			<div class="buttons fa-center mar-t-2">
 				<a href="<?= client_url('Consiglio-Orientativo.pdf') ?>" class="button wid-100">Scarica in PDF</a><br>
-				<a href="<?= client_url('Consiglio-Orientativo.docx') ?>" class="button wid-100 bgr-c2">Scarica in DOCX</a>
+				<a href="<?= client_url('Consiglio-Orientativo.docx') ?>" class="button wid-100 bg-secondary">Scarica in DOCX</a>
 			</div>
 
 		</section>
@@ -43,7 +43,7 @@
 			<!-- Buttons -->
 			<div class="buttons fa-center mar-t-2">
 				<a href="<?= client_url('Certificazione-delle-Competenze.pdf') ?>" class="button wid-100">Scarica in PDF</a><br>
-				<a href="<?= client_url('Certificazione-delle-Competenze.docx') ?>" class="button wid-100 bgr-c2">Scarica in DOCX</a>
+				<a href="<?= client_url('Certificazione-delle-Competenze.docx') ?>" class="button wid-100 bg-secondary">Scarica in DOCX</a>
 			</div>
 
 		</section>

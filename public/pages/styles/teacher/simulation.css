@@ -157,7 +157,7 @@ main {
 	background: linear-gradient(135deg, rgb(255, 215, 128), rgb(214, 128, 0));
 }
 .element:nth-child(2)::before {
-	background: linear-gradient(135deg, var(--clr-secondary-400), var(--clr-5));
+	background: linear-gradient(135deg, var(--color-secondary-400), var(--clr-5));
 }
 .element:nth-child(3)::before {
 	background: linear-gradient(135deg, rgb(109, 206, 70), rgb(74, 143, 28));

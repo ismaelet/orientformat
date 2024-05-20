@@ -19,7 +19,7 @@
 }
 
 .contact-icon .bgr:hover {
-	background-color: var(--clr-primary-400);
+	background-color: var(--color-primary-400);
 }
 
 .data-txt {
@@ -33,7 +33,7 @@
 }
 
 .data-txt a:hover {
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 }
 
 .main-img {
@@ -54,7 +54,7 @@
 }
 
 .focus .form-lbl {
-	color: var(--clr-primary-400);
+	color: var(--color-primary-400);
 	transform: translateY(0.5rem) scale(1);
 }
 

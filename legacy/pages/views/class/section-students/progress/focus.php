@@ -95,7 +95,7 @@ use Review\Review;
 												<?php if ($legacySectionResult->result) { ?>
 
 													<span class="inlb"><?= section_config($legacySection->id ?? null, 'recap-name-student') ?: 'Risultato' ?>:</span><br>
-													<span class="dashboard-panel_value inlb fw-bold"><?= $legacySectionResult->result ?></span>
+													<span class="dashboard-panel_value inlb font-bold"><?= $legacySectionResult->result ?></span>
 
 												<?php } else { ?>
 

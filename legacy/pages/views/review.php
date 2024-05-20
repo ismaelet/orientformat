@@ -124,7 +124,7 @@
 
 								case 'list': { ?>
 
-										<div class="answers answers--list mar-t-05">
+										<div class="answers answers--list mt-2">
 
 											<?php foreach ($question->rows as $row) { ?>
 
