@@ -68,7 +68,7 @@ class Test {
 	}
 
 	private function getUrl() {
-		return '/' . $this->area->slug . '/section?id=' . $this->section->id . '&test-id=' . $this->id;
+		return '/activities/tests/' . $this->id;
 	}
 
 	private function getClientUrl() {
