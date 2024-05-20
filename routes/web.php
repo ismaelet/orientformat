@@ -28,15 +28,14 @@ use Illuminate\Support\Facades\Route;
  */
 // ~ Home
 Route::get('', [HomeController::class, 'index'])->middleware('auth')->name('home');
-Route::get('/', [HomeController::class, 'index'])->middleware('auth')->name('home');
 
 // ~ Surveys
-Route::get('/2024-highschool-survey', [SurveysHighschool2024Controller::class, 'index'])->name('2024-highschool-survey');
+Route::get('2024-highschool-survey', [SurveysHighschool2024Controller::class, 'index'])->name('2024-highschool-survey');
 
 /**
  * * Workarounds
  */
-Route::get('/run-migrations', function () {
+Route::get('run-migrations', function () {
 	Artisan::call('migrate', [
 		'--force' => true
 	]);
@@ -46,20 +45,15 @@ Route::get('/run-migrations', function () {
  * * Parcially legacy routes
  */
 // ~ Home pages
-Route::any('/student', [StudentHomeController::class, 'index'])->middleware(Student::class)->name('student');
+Route::any('student', [StudentHomeController::class, 'index'])->middleware(Student::class)->name('student');
 
-Route::any('/teacher-dashboard', [TeacherDashboardController::class, 'index'])->middleware(Teacher::class)->name('teacher.dashboard');
+Route::any('teacher-dashboard', [TeacherDashboardController::class, 'index'])->middleware(Teacher::class)->name('teacher.dashboard');
 
 // ~ Student Activities
-Route::any('/activities/tests/{test}', [TestController::class, 'show'])->middleware(['auth'])->name('activities.tests');
+Route::any('activities/tests/{test}', [TestController::class, 'show'])->middleware(['auth'])->name('activities.tests');
 
 // ~ Student Analisys
-Route::any('/analysis/student/areas/{area}', [StudentAnalysisController::class, 'show'])->middleware(['auth'])->name('analysis.student.area');
-Route::any('/analysis/student/sections/{section}', [StudentAnalysisController::class, 'show'])->name('analysis.student.section');
+Route::any('analysis/student/areas/{area}', [StudentAnalysisController::class, 'show'])->middleware(['auth'])->name('analysis.student.area');
+Route::any('analysis/student/sections/{section}', [StudentAnalysisController::class, 'show'])->name('analysis.student.section');
 
-/**
- * * Legacy routes
- */
-Route::get('/logout', LegacyController::class)->name('logout');
-
-Route::any('{path}', LegacyController::class)->where('path', '^(?!api\/).*');
+Route::get('logout', LegacyController::class)->name('logout');

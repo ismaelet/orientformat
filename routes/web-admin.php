@@ -13,10 +13,3 @@ use Illuminate\Support\Facades\Route;
  */
 // Admin dashboard home
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-/**
- * * Resources
- */
-// Users
-Route::resource('users', UserController::class)->only(['index', 'edit', 'update', 'destroy']);
-Route::post('/users/{id}/login', [UserController::class, 'login'])->name('users.login');

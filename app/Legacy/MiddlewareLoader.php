@@ -30,13 +30,7 @@ class MiddlewareLoader {
 				}
 			},
 
-			'maintenance' => function () {
-				// dd('maintenance');
-				redirect_old('/maintenance');
-			},
-
 			'logged' => function () {
-				// dd('logged');
 				if (!logged()) {
 					redirect_old('/login');
 				}

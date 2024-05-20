@@ -4,9 +4,9 @@
 	<div class="page-background fill-all background-fill" <?= background_image('background') ?>></div>
 
 	<div class="page-body grid-flow center-content" data-spacing="400">
-		<h1 class="title"><?= __('Error 404') ?></h1>
-		<p class="section-subtitle"><?= __('Page not found') ?></p>
-		<a class="button button--secondary button--auto-width" href="<?= client_url('/') ?>"><?= __('Back to home') ?></a>
+		<h1 class="title">Errore 404</h1>
+		<p class="section-subtitle">Pagina non trovata</p>
+		<a class="button button--secondary button--auto-width" href="<?= route('home') ?>">Torna alla Home</a>
 	</div>
 </div>
 

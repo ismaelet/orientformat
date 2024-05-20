@@ -35,24 +35,6 @@
 		->show();
 });
 
-// offline
-\App\Legacy\LegacyRoute::add('/offline', function () {
-	\App\Legacy\LegacyView::setPage('errors/offline')
-		->setTemplate('void')
-		->setMiddlewares([])
-		->setTitle('Offline')
-		->show();
-});
-
-// maintenance page
-\App\Legacy\LegacyRoute::add('/maintenance', function () {
-	\App\Legacy\LegacyView::setPage('errors/maintenance')
-		->setTitle('Mantenimento')
-		->setTemplate('void')
-		->setMiddlewares([])
-		->show();
-});
-
 // recover
 \App\Legacy\LegacyRoute::add('/recover', function () {
 	\App\Legacy\LegacyView::setPage('access/recover')

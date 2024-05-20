@@ -2,8 +2,6 @@
 
 $areas = [];
 
-// redirect_old('/maintenance');
-
 // content
 foreach (schoolClass()->doableAreas as $doableArea) {
 	$area['name'] = $doableArea->name;

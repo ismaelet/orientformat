@@ -4,7 +4,6 @@ use \Legacy\Activity\Section;
 
 $areas = [];
 
-// redirect_old('/maintenance');
 $availableGrades = [];
 
 if (schoolClass()->isMiddleSchool) {
