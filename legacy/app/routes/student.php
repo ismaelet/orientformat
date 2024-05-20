@@ -3,6 +3,7 @@
 use App\Helpers\ArrayHelper;
 use App\Models\Activities\Section;
 use App\Models\Activities\Test;
+use Illuminate\Support\Facades\Auth;
 use \Legacy\Activity\Section as LegacySection;
 use \Legacy\Activity\Test as LegacyTest;
 
@@ -21,10 +22,10 @@ use \Legacy\Activity\Test as LegacyTest;
 // tests
 \App\Legacy\LegacyRoute::add(['/profile/section', '/skills/section', '/knowledge/section', '/choose/section'], function () {
 	// get test and section
-	$sectionId = $_GET['id'] ?? null;
-	$testId = $_GET['test-id'] ?? null;
+	$sectionId = request()->id;
+	$testId = request()->test_id;
+	$studentId = request()->student_id;
 	$legacySection = new LegacySection($sectionId);
-	$supervisorView = false;
 
 	if (!$legacySection->id) {
 		redirect_old('/');
@@ -42,7 +43,7 @@ use \Legacy\Activity\Test as LegacyTest;
 	// page data
 	if ($testId) {
 		$test = Test::find($testId);
-		redirect_old($test->url());
+		redirect_old($test->url($studentId));
 	} else {
 		$section = Section::find($sectionId);
 		redirect_old($section->url());

@@ -4,6 +4,7 @@ use \Legacy\Activity\Test as LegacyTest;
 
 $legacyTest = test();
 $legacySection = $legacyTest->section;
+$supervisorView = request()->student_id;
 
 include_once('-expands-test/components.php');
 

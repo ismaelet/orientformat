@@ -37,8 +37,8 @@ class Test extends Model {
 	/**
 	 * URL
 	 */
-	public function url(): string {
-		return '/activities/tests/' . $this->id;
+	public function url(?int $studentId): string {
+		return '/activities/tests/' . $this->id . ($studentId ? '?student_id=' . $studentId : '');
 	}
 
 	/**

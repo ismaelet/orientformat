@@ -36,7 +36,7 @@ use Review\Review;
 
 								<a href="review?id=<?= $reviewRow['id'] ?>" class="section section-color section-color--area-reviews" style="--i: <?= $key + 1 ?>">
 									<div class="dashboard-panel-icon js-load load--fade-in" data-delay="2" data-direction="bottom">
-										<?= embed_icon(APP_ICONS_DIR . 'sections/review') ?>
+										<?= embed_icon('sections/review') ?>
 									</div>
 
 									<p class="dashboard-panel-title"><?= $review->title ?></p>
@@ -85,7 +85,7 @@ use Review\Review;
 
 										<div class="section section-color section-color--area-<?= $area['id'] ?>" style="--i: <?= $key + 1 ?>">
 											<div class="dashboard-panel-icon js-load load--fade-in" data-delay="2" data-direction="bottom">
-												<?= embed_icon(APP_ICONS_DIR . 'sections/section-' . $legacySection->mainSectionId) ?>
+												<?= embed_icon('sections/section-' . $legacySection->mainSectionId) ?>
 											</div>
 
 											<p class="dashboard-panel-title"><?= $legacySection->title ?? $legacySection['title'] ?></p>

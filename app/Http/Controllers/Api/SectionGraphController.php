@@ -21,7 +21,7 @@ class SectionGraphController extends Controller {
 			$results = $resultsModel->rawResult;
 		}
 
-		$averages = $results['values'];
+		$averages = $results['values'] ?? null;
 		$type = section_config($id, 'type');
 		$condensedType = section_config($id, 'condensedType');
 

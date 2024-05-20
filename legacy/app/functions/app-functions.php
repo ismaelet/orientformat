@@ -25,7 +25,7 @@ function isStudent() {
 }
 
 function watchedStudentId() {
-	return $_GET['studentId'] ?? \Illuminate\Support\Facades\Auth::id();
+	return request()->student_id ?? \Illuminate\Support\Facades\Auth::id();
 }
 
 function watchedStudent() {

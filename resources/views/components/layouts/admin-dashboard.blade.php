@@ -16,7 +16,7 @@
 	$mainGroup[] = $dashboardHome;
 
 	// Fetch the categories
-	$categories = is_supervisor()
+	$categories = is_superadmin()
 	    ? AdminCategory::orderBy('for_superadmin')->orderBy('order')->orderBy('name')->with('sections')->get()
 	    : AdminCategory::where('for_superadmin', false)
 	        ->orderBy('for_superadmin')
@@ -31,7 +31,7 @@
 	    $category['icon'] = $categoryRecord->slug;
 	    $category['slug'] = $categoryRecord->slug;
 
-	    $sections = is_supervisor()
+	    $sections = is_superadmin()
 	        ? $categoryRecord->sections
 	            ->where('hidden', false)
 	            ->sortBy('order')

@@ -81,7 +81,7 @@ class User extends Authenticatable {
 	/**
 	 * Check if the user is an admin
 	 */
-	public function isSupervisor(): bool {
+	public function isSuperadmin(): bool {
 		return (bool) $this->admin_level == 2;
 	}
 

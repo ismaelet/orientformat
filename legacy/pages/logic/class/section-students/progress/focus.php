@@ -37,7 +37,7 @@ for ($i = schoolClass()->currentGrade; $i >= schoolClass()->minimumGrade; $i--) 
 
 		while ($legacySectionData = $legacySections->fetch_assoc()) {
 			$legacySection = new Section($legacySectionData['id']);
-			$urlTemplate = $legacySection->area->slug . '/section?id=' . $legacySection->id . '&studentId=' . $watchedStudentId . '&test-id=';
+			$urlTemplate = $legacySection->area->slug . '/section?id=' . $legacySection->id . '&student_id=' . $watchedStudentId . '&test_id=';
 
 			switch ($legacySection->id) {
 					// Stili

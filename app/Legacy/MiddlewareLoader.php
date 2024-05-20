@@ -65,7 +65,7 @@ class MiddlewareLoader {
 							$reviewId = 4;
 							break;
 
-						case student()->isHighSchoolStudent():
+						case $student->isHighSchoolStudent():
 							// other higschool years
 							$reviewId = 5;
 							break;
