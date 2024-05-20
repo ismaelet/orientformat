@@ -11,4 +11,4 @@ $area = new Area($areaId);
 
 $returnLink = $legacySection->id ?
 	client_url('/profile/section?id=' . $legacySection->id) :
-	client_url('/activities');
+	route('activities.grades.index');

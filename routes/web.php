@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Activities\GradeController;
 use App\Http\Controllers\Activities\StudentAnalysisController;
 use App\Http\Controllers\Activities\TestController;
 use App\Http\Controllers\HomeController;
@@ -50,7 +51,8 @@ Route::any('student', [StudentHomeController::class, 'index'])->middleware(Stude
 Route::any('teacher-dashboard', [TeacherDashboardController::class, 'index'])->middleware(Teacher::class)->name('teacher.dashboard');
 
 // ~ Student Activities
-// Route::any('activities/tests/{test}', [TestController::class, 'show'])->middleware(['auth'])->name('activities.tests');
+Route::any('activities/grades', [GradeController::class, 'index'])->middleware([Student::class])->name('activities.grades.index');
+Route::any('activities/grades/{grade}', [GradeController::class, 'show'])->middleware([Student::class])->name('activities.grades.show');
 
 // ~ Student Analisys
 Route::any('analysis/student/areas/{area}', [StudentAnalysisController::class, 'show'])->middleware(['auth'])->name('analysis.student.area');

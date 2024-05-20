@@ -2,6 +2,7 @@
 
 namespace Legacy\SchoolSystem;
 
+use Illuminate\Support\Facades\Auth;
 use \Legacy\Activity\Area;
 use \Legacy\Activity\Result\GradeResult;
 use \Legacy\Activity\Result\TestResult;
@@ -43,7 +44,7 @@ class Grade {
 
 	function __construct(int $gradeNumber, object $schoolClass = null) {
 		$this->id = $gradeNumber;
-		$this->schoolClass = $schoolClass ?: (is_teacher() ? 0 : student()->schoolClass);
+		$this->schoolClass = $schoolClass ?: (is_teacher() ? 0 : new SchoolClass(Auth::user()->student->school_class->id));
 	}
 
 	/*

@@ -52,22 +52,6 @@ function schoolClassId() {
 }
 
 /**
- * Grades
- */
-function realGradeId($oldGradeId) {
-	switch (true) {
-		case strpos($oldGradeId, 'P'):
-			return $oldGradeId[0] + 3;
-
-		case strpos($oldGradeId, 'L'):
-			return $oldGradeId[0];
-
-		default:
-			return $oldGradeId;
-	}
-}
-
-/**
  * Misc
  */
 function sysDashboardGraphsConfig($field) {

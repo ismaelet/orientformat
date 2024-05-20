@@ -6,10 +6,10 @@
 		<div class="page__header pad-v-5">
 			<div class="grid-flow center-content main-wrap" data-spacing="700">
 				<div>
-					<h1 class="title"><?= ucfirst($grade->adjective) ?> anno</h1>
-					<p class="subtitle">Attività completate al <span><?= $gradeModel->completedPercentage() ?> %</span></p>
+					<h1 class="title"><?= ucfirst($legacyGrade->adjective) ?> anno</h1>
+					<p class="subtitle">Attività completate al <span><?= $legacyGradeModel->completedPercentage() ?> %</span></p>
 				</div>
-				<a href="<?= client_url('/activities') ?>" class="button button--secondary">Cambia anno</a>
+				<a href="<?= route('activities.grades.index') ?>" class="button button--secondary">Cambia anno</a>
 			</div>
 		</div>
 
@@ -19,7 +19,7 @@
 
 			use App\Models\Activities\Area;
 
-			foreach ($grade->areas as $legacyArea) {
+			foreach ($legacyGrade->areas as $legacyArea) {
 				$area = Area::find($legacyArea->id);
 			?>
 
@@ -43,7 +43,7 @@
 
 						<div class="sections">
 
-							<?php foreach ($legacyArea->getSections($grade->fullId) as $key => $legacySection) { ?>
+							<?php foreach ($legacyArea->getSections($legacyGrade->fullId) as $key => $legacySection) { ?>
 
 								<div class="section-wrapper js-load load--fade-in section-color section-color--area-<?= $legacySection->areaId ?>" data-direction="bottom" data-delay="<?= $key % 3 ?>">
 									<a class="section <?= $legacySection->progressPercentage == 100 ? 'completed' : '' ?>" <?= 'href="' . $legacySection->clientUrl . '&slug=' . $legacySection->slug . '"' ?>>

@@ -81,4 +81,26 @@ class SchoolClass extends Model {
 	public function yearRangeString(): string {
 		return $this->lastActiveYear() . ' - ' . ($this->lastActiveYear() + 1);
 	}
+
+	/**
+	 * Get grade numbers
+	 */
+	public function gradeNumbers(): array {
+		if ($this->professional) {
+			return range(4, 7);
+		}
+
+		if ($this->isHighSchool()) {
+			return range(4, 8);
+		}
+
+		return range(1, 3);
+	}
+
+	/**
+	 * Check if the class has a grade
+	 */
+	public function hasGrade(int $gradeNumber): bool {
+		return in_array($gradeNumber, $this->gradeNumbers());
+	}
 }

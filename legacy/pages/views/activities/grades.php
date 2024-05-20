@@ -14,7 +14,7 @@ use \Legacy\SchoolSystem\Grade as SchoolSystemGrade;
 		$grade = new Grade($i);
 	?>
 
-		<a class="grade <?= $year->id == $schoolClass->currentGrade ? 'grade--highlighted' : '' ?>" href="?grade=<?= $year->id ?>">
+		<a class="grade <?= $year->id == $schoolClass->currentGrade ? 'grade--highlighted' : '' ?>" href="<?= route('activities.grades.show', $year->id) ?>">
 			<div class="js-load load--fade-in" data-direction="bottom" data-delay="<?= $i ?>">
 				<h3 class="grade__number ff-serif"><?= $year->romanNumeral ?></h3>
 

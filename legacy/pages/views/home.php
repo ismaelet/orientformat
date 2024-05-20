@@ -5,7 +5,7 @@
 		<h1 class="">Orientamento<br><span class="highlight">Formativo</span></h1>
 		<p class="page__subtitle">Stai per iniziare un percorso di autoscoperta, di responsabilizzazione nelle scelte da compiere e di confronto.</p>
 
-		<a href="<?= client_url('/activities') ?>" class="page__button button">Inizia</a>
+		<a href="<?= route('activities.grades.index') ?>" class="page__button button">Inizia</a>
 	</div>
 
 	<div class="page__images grid-flow center-content stack-content">

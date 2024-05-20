@@ -7,18 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use \Legacy\Activity\Section as LegacySection;
 use \Legacy\Activity\Test as LegacyTest;
 
-// grade selection and activities
-\App\Legacy\LegacyRoute::add('/activities', function () {
-	$grade = $_GET['grade'] ?? null;
-	$page = in_array($grade, [1, 2, 3, 4, 5, 6, 7, 8]) ? 'activities/list' : 'activities/grades';
-
-	add_grade_style();
-
-	\App\Legacy\LegacyView::setPage($page)
-		->setMiddlewares(['public', 'logged', 'active', 'beginner-review', 'required-email'])
-		->show();
-});
-
 // tests
 \App\Legacy\LegacyRoute::add(['/profile/section', '/skills/section', '/knowledge/section', '/choose/section'], function () {
 	// get test and section

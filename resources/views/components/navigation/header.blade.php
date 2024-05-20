@@ -41,7 +41,7 @@
 	    [
 	        'title' => 'Attività',
 	        'loc' => 'activities',
-	        'url' => client_url('/activities'),
+	        'url' => route('activities.grades.index'),
 	        'logged' => true,
 	        'student' => true,
 	    ],

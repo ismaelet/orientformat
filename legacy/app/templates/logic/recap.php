@@ -10,10 +10,10 @@ $section = Section::find($legacySection->id);
 $area = Area::find($legacyArea->id);
 
 if (is_teacher()) {
-	$backUrl = '/teacher/simulation';
+	$backUrl = client_url('/teacher/simulation');
 } else {
 	$gradeNumber = $_SESSION['activities-year'] ?? student()->schoolClass->relativeGrade;
-	$backUrl = '/activities?grade=' . $gradeNumber;
+	$backUrl = route('activities.grades.show', $gradeNumber);
 }
 
 // get tests

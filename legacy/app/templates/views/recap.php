@@ -29,7 +29,7 @@
 		<div class="grid-flow center-content" data-spacing="400">
 			<h2 class="subsection-title">Riepilogo della sezione</h2>
 			<p class="subsection-subtitle">Qui puoi controllare i tuoi progressi in questa sezione, ricominciare una attività o rivisitarla.</p>
-			<a class="button button--secondary button--auto-width mar-t-1" href="<?= client_url($backUrl) ?>">Scegli un'altra sezione</a>
+			<a class="button button--secondary button--auto-width mar-t-1" href="<?= $backUrl ?>">Scegli un'altra sezione</a>
 		</div>
 
 		<!-- Tests -->

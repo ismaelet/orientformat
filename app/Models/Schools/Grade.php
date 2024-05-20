@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class Grade {
 
-	private $number;
-	private $is_professional;
+	public $number;
+	public $is_professional;
 
 	public function __construct(int $number, bool $isProfessional) {
 		$this->number = $number;

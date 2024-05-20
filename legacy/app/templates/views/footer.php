@@ -77,7 +77,7 @@
 			<div id="footer-credits" class="gap-4 pt-8 br-t-1 br-d grid">
 				<div class="footer-credit">
 					<p class="flex-line gap-2">Autore:
-						<span class="font-bold">Luigi Tuffanelli</span>
+						<span class="font-bold text-neutral-100">Luigi Tuffanelli</span>
 						&middot;
 						<a class="text-link" href="https://luigituffanelli.eu" target="_blank">
 							Curriculum
