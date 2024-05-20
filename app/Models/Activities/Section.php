@@ -22,4 +22,15 @@ class Section extends Model {
 	public function area(): BelongsTo {
 		return $this->belongsTo(Area::class, 'areaId');
 	}
+
+	/**
+	 * * Attributes
+	 */
+
+	/**
+	 * URL
+	 */
+	public function url(): string {
+		return '/activities/sections/' . $this->id;
+	}
 }

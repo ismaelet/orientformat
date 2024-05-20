@@ -35,6 +35,13 @@ class Test extends Model {
 	 */
 
 	/**
+	 * URL
+	 */
+	public function url(): string {
+		return '/activities/tests/' . $this->id;
+	}
+
+	/**
 	 * File Path
 	 */
 	public function filePath(): string {

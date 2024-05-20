@@ -1,7 +1,10 @@
 <?php
 
-use \Legacy\Activity\Section;
-use \Legacy\Activity\Test;
+use App\Helpers\ArrayHelper;
+use App\Models\Activities\Section;
+use App\Models\Activities\Test;
+use \Legacy\Activity\Section as LegacySection;
+use \Legacy\Activity\Test as LegacyTest;
 
 // grade selection and activities
 \App\Legacy\LegacyRoute::add('/activities', function () {
@@ -20,46 +23,65 @@ use \Legacy\Activity\Test;
 	// get test and section
 	$sectionId = $_GET['id'] ?? null;
 	$testId = $_GET['test-id'] ?? null;
-	$section = new Section($sectionId);
+	$legacySection = new LegacySection($sectionId);
 	$supervisorView = false;
 
-	if (!$section->id) {
+	if (!$legacySection->id) {
 		redirect_old('/');
 	}
 
 	// add the style
 	add_grade_style();
 
-	if (!$section->isStandard) {
-		$testId = \App\Legacy\LegacyDB::find(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ?', [$section->id]);
-	} else if (!$testId && !$section->completed) {
-		$testId = $section->checkpointId;
+	if (!$legacySection->isStandard) {
+		$testId = \App\Legacy\LegacyDB::find(LegacyTest::INDEX . ' FROM ' . LegacyTest::TABLE . ' WHERE ' . LegacyTest::SECTION_INDEX . ' = ?', [$legacySection->id]);
+	} else if (!$testId && !$legacySection->completed) {
+		$testId = $legacySection->checkpointId;
 	}
 
 	// page data
 	if ($testId) {
-		if (!isset($_GET['test-id'])) redirect_old($section->url . '&test-id=' . $testId);
-		$test = new Test($testId);
-		$page = $test->filePath;
-		$template = $test->template;
-		$title = $test->title;
+		$test = Test::find($testId);
+		redirect_old($test->url());
 	} else {
-		$page = $section->filePath . '/recap';
-		$template = 'recap';
-		$title = 'Riepilogo ' . $section->name;
+		$section = Section::find($sectionId);
+		redirect_old($section->url());
 	}
+});
+
+\App\Legacy\LegacyRoute::add('/activities/tests/*', function ($path) {
+	$testId = ArrayHelper::explodeLast('/', $path)[1];
+	$legacyTest = new LegacyTest($testId);
+	$page = $legacyTest->filePath;
+	$template = $legacyTest->template;
+	$title = $legacyTest->title;
 
 	// render
 	\App\Legacy\LegacyView::setPage($page)
 		->setTemplate($template)
 		->setTitle($title)
 		->setMiddlewares(['public', 'logged', 'active', 'beginner-review', 'required-email'])
-		->set('section', $section)
-		->set('test', $test ?? null)
-		->set('supervisorView', $supervisorView)
+		->set('section', $legacyTest->section)
+		->set('test', $legacyTest ?? null)
 		->show();
 });
 
+\App\Legacy\LegacyRoute::add('/activities/sections/*', function ($path) {
+	$sectionId = ArrayHelper::explodeLast('/', $path)[1];
+	$legacySection = new LegacySection($sectionId);
+
+	$page = $legacySection->filePath . '/recap';
+	$template = 'recap';
+	$title = 'Riepilogo ' . $legacySection->name;
+
+	// render
+	\App\Legacy\LegacyView::setPage($page)
+		->setTemplate($template)
+		->setTitle($title)
+		->setMiddlewares(['public', 'logged', 'active', 'beginner-review', 'required-email'])
+		->set('section', $legacySection)
+		->show();
+});
 
 // interests
 \App\Legacy\LegacyRoute::add('/interest', function () {

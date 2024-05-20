@@ -50,7 +50,7 @@ Route::any('student', [StudentHomeController::class, 'index'])->middleware(Stude
 Route::any('teacher-dashboard', [TeacherDashboardController::class, 'index'])->middleware(Teacher::class)->name('teacher.dashboard');
 
 // ~ Student Activities
-Route::any('activities/tests/{test}', [TestController::class, 'show'])->middleware(['auth'])->name('activities.tests');
+// Route::any('activities/tests/{test}', [TestController::class, 'show'])->middleware(['auth'])->name('activities.tests');
 
 // ~ Student Analisys
 Route::any('analysis/student/areas/{area}', [StudentAnalysisController::class, 'show'])->middleware(['auth'])->name('analysis.student.area');
