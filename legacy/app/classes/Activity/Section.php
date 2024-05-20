@@ -5,7 +5,6 @@ namespace Legacy\Activity;
 use Illuminate\Support\Facades\Auth;
 use \Legacy\Activity\Result\SectionResult;
 use \Legacy\Activity\Result\TestResult;
-use Legacy\System\Classes\User as LegacyUser;
 use LegacyModels\Activities\Results\CondensedSectionResult;
 use LegacyModels\Activities\Section as SectionModel;
 use \App\Legacy\User;
@@ -170,7 +169,7 @@ class Section {
 			[$completedTestCount, $lastCompletedStep, $percentage, $completed, \Illuminate\Support\Facades\Auth::id(), $this->id]
 		);
 
-		\App\Legacy\LegacyDB::delete(CondensedSectionResult::table() . ' WHERE ' . CondensedSectionResult::linkedIndexName(LegacyUser::class) . ' = ? AND ' . CondensedSectionResult::linkedIndexName(SectionModel::class) . ' = ?', [\Illuminate\Support\Facades\Auth::id(), $this->id]);
+		\App\Legacy\LegacyDB::delete(CondensedSectionResult::table() . ' WHERE ' . CondensedSectionResult::linkedIndexName(User::class) . ' = ? AND ' . CondensedSectionResult::linkedIndexName(SectionModel::class) . ' = ?', [\Illuminate\Support\Facades\Auth::id(), $this->id]);
 
 		// update grade progress
 		if (!is_teacher()) {
