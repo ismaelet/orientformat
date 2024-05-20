@@ -187,7 +187,10 @@ class ImparareMappa extends Test {
 	protected function scripts() {
 		ob_start();
 	?>
-		<script defer>
+
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+		<script>
 			document.addEventListener('DOMContentLoaded', function() {
 				const boxes = document.querySelectorAll('.box')
 
@@ -280,8 +283,6 @@ class ImparareMappa extends Test {
 				})
 			})
 		</script>
-
-		<script defer src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<?php return ob_get_clean();
 	}

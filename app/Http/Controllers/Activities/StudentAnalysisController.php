@@ -17,7 +17,7 @@ class StudentAnalysisController extends Controller {
 			$area = $section->area;
 		}
 
-		$page = $section->id ? $section->slug : ($area->id ? 'area-' . $area->slug : null);
+		$page = $section->id ? $section->main_section->slug : ($area->id ? 'area-' . $area->slug : null);
 
 		if (!$page) {
 			return redirect()->back();

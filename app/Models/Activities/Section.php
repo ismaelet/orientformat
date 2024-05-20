@@ -24,6 +24,17 @@ class Section extends Model {
 	}
 
 	/**
+	 * Main section
+	 */
+	public function main_section(): BelongsTo {
+		if (!$this->mainSectionId) {
+			return $this->belongsTo(Section::class, 'id');
+		}
+
+		return $this->belongsTo(Section::class, 'mainSectionId');
+	}
+
+	/**
 	 * * Attributes
 	 */
 

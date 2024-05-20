@@ -84,7 +84,6 @@
 /* Results */
 .result {
 	position: absolute;
-	font-size: 0;
 	pointer-events: none;
 	z-index: 20;
 }
@@ -93,24 +92,24 @@
 	width: 100%;
 	position: absolute;
 	top: calc(100% + 3px);
+	transition: opacity 0.4s, translate 0.4s;
+}
+
+@media (min-width: 1024px) {
+	.result:not(.active) .title-box {
+		translate: 0 -1rem;
+		opacity: 0;
+	}
 }
 
 .title {
-	opacity: 0;
 	background-color: hsl(0, 0%, 0%, 0.8);
 	border-radius: 5px;
-	transform: translateY(-2rem);
 	color: #fff;
 	font-size: 1.4rem;
 	padding: 0 10px;
 	letter-spacing: 0.05em;
-	transition: opacity 0.4s, transform 0.4s;
 	z-index: 1;
-}
-
-.result .title {
-	opacity: 1;
-	transform: none;
 }
 
 .reset {

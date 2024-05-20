@@ -2,7 +2,7 @@
 
 <h1 class="title">SCRIVERE</h1>
 
-<p class="text">La scrittura è una tecnica molto complessa, che richiede intelligenza, fatica, tempo e impegno per essere appresa. Però si deve sapere che è uno strumento straordinariamente potente, che serve non solo per comunicare idee, inventare storie, raggiungere degli obiettivi, fare delle richieste, ma anche e soprattutto per pensare, elaborare idee, scoprire. 
+<p class="text">La scrittura è una tecnica molto complessa, che richiede intelligenza, fatica, tempo e impegno per essere appresa. Però si deve sapere che è uno strumento straordinariamente potente, che serve non solo per comunicare idee, inventare storie, raggiungere degli obiettivi, fare delle richieste, ma anche e soprattutto per pensare, elaborare idee, scoprire.
 </p>
 
 <h2 class="section-title">Interpretare i risultati</h2>
