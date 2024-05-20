@@ -135,8 +135,8 @@
 					<div id="pulse" class="bgr bgr-c3 round js-pulse"></div>
 					<div id="play" class="bgr bgr-c3 clickable">
 
-						<div class="icon cen bgr-wht" <?= icon_svg('play') ?>></div>
-						<div class="icon cen bgr-wht" <?= icon_svg('listen') ?>></div>
+						<div class="icon cen text-neutral-100"><?= embed_icon('play') ?></div>
+						<div class="icon cen text-neutral-100"><?= embed_icon('listen') ?></div>
 
 					</div>
 				</div>
