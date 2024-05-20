@@ -2,10 +2,10 @@
 
 namespace app\Http\Controllers\Activities;
 
-use app\Http\Controllers\LegacyController;
+use App\Legacy\LegacyTestController;
 use LegacyModels\Activities\Test as TestModel;
 
-class Test extends LegacyController {
+class Test extends LegacyTestController {
 
 	protected $resultCount = 0;
 	protected $buttonIsProgressive = false;
@@ -66,7 +66,7 @@ class Test extends LegacyController {
 					'buttonIsProgressive' => $this->buttonIsProgressive,
 					'skipEnabled' => $this->skipEnabled,
 					'retryEnabled' => $this->retryEnabled,
-					'testController' => $this,
+					'legacyTestController' => $this,
 				]
 			)
 		);

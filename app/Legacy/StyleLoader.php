@@ -4,9 +4,8 @@ namespace App\Legacy;
 
 class StyleLoader {
 
-	use Singleton;
-
 	private static $list = [];
+	private static $inlineStyles = [];
 
 	public static function __constructStatic() {
 	}
@@ -34,6 +33,8 @@ class StyleLoader {
 				}
 
 				break;
+			case 'inline':
+				self::$inlineStyles[] = $fileName;
 		}
 
 		// store the file URL in the list
@@ -72,6 +73,11 @@ class StyleLoader {
 		foreach (self::$list as $style) $list[] = '<link href="' . asset($style[1]) . '" rel="stylesheet" type="text/css">';
 
 		return implode(PHP_EOL, $list);
+	}
+
+	// load the inline script to be placed at the end of the body
+	public static function loadInline() {
+		return implode(self::$inlineStyles);
 	}
 
 	// get the file name

@@ -1,8 +1,8 @@
 <?php
 
-namespace app\Http\Controllers;
+namespace App\Legacy;
 
-class LegacyController {
+class LegacyTestController {
 
 	protected $template = '';
 	protected $inlineStyles = [];
@@ -15,12 +15,12 @@ class LegacyController {
 	public function index() {
 		// preload the scripts
 		foreach ($this->inlineScripts as $script) {
-			\App\Legacy\ScriptLoader::getInstance()->add($script, 'inline');
+			\App\Legacy\ScriptLoader::add($script, 'inline');
 		}
 
 		// preload the styles
 		foreach ($this->inlineStyles as $style) {
-			\App\Legacy\StyleLoader::getInstance()->add($style, 'inline');
+			\App\Legacy\StyleLoader::add($style, 'inline');
 		}
 
 		// store the parameters

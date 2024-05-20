@@ -4,8 +4,6 @@ namespace App\Legacy;
 
 class ScriptLoader {
 
-	use Singleton;
-
 	private static $list = [];
 	private static $headInlineScripts = [];
 	private static $footInlineScripts = [];
@@ -30,6 +28,8 @@ class ScriptLoader {
 					if (!$priority) $priority = 4;
 				}
 				break;
+			case 'inline':
+				self::$footInlineScripts[] = $fileName;
 		}
 
 		// store the file URL in the list
@@ -75,6 +75,6 @@ class ScriptLoader {
 
 	// load the inline script to be placed at the end of the body
 	public static function loadFootInline() {
-		return implode(PHP_EOL . PHP_EOL, self::$footInlineScripts);
+		return implode(self::$footInlineScripts);
 	}
 }
