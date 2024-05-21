@@ -8,6 +8,7 @@ use App\Http\Controllers\LegacyController;
 use App\Http\Controllers\StudentHomeController;
 use App\Http\Controllers\SurveysHighschool2024Controller;
 use App\Http\Controllers\TeacherDashboardController;
+use App\Http\Middleware\Admin;
 use App\Http\Middleware\Student;
 use App\Http\Middleware\Teacher;
 use Illuminate\Support\Facades\Artisan;
@@ -40,7 +41,17 @@ Route::get('run-migrations', function () {
 	Artisan::call('migrate', [
 		'--force' => true
 	]);
-});
+})->middleware(Admin::class);
+
+Route::get('dump-autoload', function () {
+	$output = shell_exec('composer dump-autoload');
+	dd($output);
+})->middleware(Admin::class);
+
+Route::get('composer-install', function () {
+	$output = shell_exec('composer install');
+	dd($output);
+})->middleware(Admin::class);
 
 /**
  * * Parcially legacy routes

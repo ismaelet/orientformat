@@ -1,15 +1,22 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
 $solution = $solution ?? [4, 5, 8, 1];
 $answers = $answers ?? [1, 2, 3, 4, 5, 6, 7, 8];
 $count = count($solution);
 
 \LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function () use ($solution) {
-		foreach ($_POST['field'] as $key => $answer) {
-			if (strtolower($answer) != strtolower($solution[$key])) {
-				return 0;
+		try {
+			foreach ($_POST['field'] as $key => $answer) {
+				if (strtolower($answer) != strtolower($solution[$key])) {
+					return 0;
+				}
 			}
+		} catch (\Exception $e) {
+			Log::error('Post results not set in "Sagome"', ['userId' => Auth::id(), 'post' => $_POST ?? null]);
 		}
 
 		return 100;
