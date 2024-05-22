@@ -46,7 +46,7 @@
 		@if (session('error'))
 			<x-form.button
 				variant="secondary"
-				:href="route('recover')"
+				href="{{ route('auth.recover') }}"
 			>{{ __('Richiedi un nuovo codice') }}</x-form.button>
 		@else
 			@if (!session('submitted'))
