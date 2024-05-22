@@ -4,7 +4,6 @@ namespace LegacyModels\Reviews;
 
 use LegacyModels\Model;
 use LegacyModels\User\Student;
-use LegacyDB;
 
 /**
  * @property int studentId
@@ -33,7 +32,7 @@ class ReviewResult extends Model {
 	 * Get the associated review
 	 */
 	public function review() {
-		return $this->reviewId ? Re\App\Legacy\LegacyView::find($this->reviewId) : null;
+		return $this->reviewId ? Review::find($this->reviewId) : null;
 	}
 
 	/**
