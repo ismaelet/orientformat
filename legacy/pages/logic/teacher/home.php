@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Schools\SchoolClass;
+use App\Models\Survey\SurveyHighschool_2024Result;
+use App\Models\User\Teacher;
 use Illuminate\Support\Facades\Auth;
 use LegacyModels\Helpers\Notification;
 
@@ -66,4 +69,18 @@ if (isset($_POST['decline-collaboration'])) {
 	\App\Legacy\LegacyDB::delete('grade_requests WHERE id = ?', [$collaborationId]);
 
 	redirect_old();
+}
+
+/**
+ * ! TEMP FOR SURVEY
+ */
+$showSurvey = false;
+$surveyedSchools = [14, 67, 77, 24];
+
+$teacherClassIds = $teacher->schoolClassIds;
+$teacherSchoolClasses = SchoolClass::whereIn('id', $teacherClassIds)->where('startingGrade', '>', 3)->get();
+$teacherSchools = $teacherSchoolClasses->pluck('schoolId')->unique();
+
+if (count($teacherSchools) > 0 && !SurveyHighschool_2024Result::where('teacher_id', Auth::id())->exists()) {
+	$showSurvey = count(array_intersect($surveyedSchools, $teacherSchools->toArray())) > 0;
 }

@@ -32,7 +32,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('', [HomeController::class, 'index'])->middleware('auth')->name('home');
 
 // ~ Surveys
-Route::get('2024-highschool-survey', [SurveysHighschool2024Controller::class, 'index'])->name('2024-highschool-survey');
+Route::get('2024-highschool-survey', [SurveysHighschool2024Controller::class, 'index'])->name('2024-highschool-survey')->middleware(Teacher::class);
+
+Route::post('2024-highschool-survey', [SurveysHighschool2024Controller::class, 'store'])->middleware(Teacher::class);
 
 /**
  * * Workarounds

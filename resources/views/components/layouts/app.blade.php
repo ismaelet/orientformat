@@ -20,7 +20,7 @@
 <html
 	lang="{{ str_replace('_', '-', app()->getLocale()) }}"
 	data-color-scheme="{{ $colorScheme }}"
-	data-theme="{{ $theme }}"
+	data-theme="modern"
 >
 
 <head>

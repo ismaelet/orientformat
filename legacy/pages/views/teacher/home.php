@@ -12,6 +12,15 @@ use \Legacy\UserSystem\Teacher;
 		<!-- Title -->
 		<h1 class="txt-sbold">Funzionalità<br>per l'insegnante</h1>
 
+		<?php if (false && $showSurvey) { ?>
+
+			<div class="dashboard-warning text-center grid gap-2 justify-items-center">
+				<p>Cliccando qui sotto puoi accedere al questionario proposto al termine dell'incontro del <strong>24 maggio</strong></p>
+				<a href="<?= route('2024-highschool-survey') ?>" class="button">Partecipa</a>
+			</div>
+
+		<?php } ?>
+
 		<!-- Classes -->
 		<section class="elements mar-t-3">
 			<h2 class="section-title">Le tue classi</h2>
