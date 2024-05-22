@@ -33,11 +33,6 @@ trait DynamicProperties {
 
 				$error = 'Undefined property ' . self::class . '::' . $property;
 
-				if (DEBUG) {
-					trigger_error($error);
-					debug_print_backtrace();
-				}
-
 				error_log($error);
 		}
 	}

@@ -67,21 +67,6 @@ class Setup {
 	 * Migrate
 	 */
 	static private function migrate() {
-		// $config = \App\Legacy\LegacyConfig::getInstance();
-
-		// if ($config->hasDatabase && $config->migrate) {
-		// 	$migrationList = Migration::allMigrations();
-
-		// 	foreach (scan('/app/migration', 'php') as $migrationModule) {
-		// 		$migrationModuleName = basename(explode('.php', $migrationModule)[0]);
-
-		// 		if (($migrationModuleName[0] != '-') && (!in_array($migrationModuleName, $migrationList) || ($migrationModuleName[0] == '+' && DEBUG))) {
-		// 			include_once($migrationModule);
-
-		// 			Migration::add(['migration' => ltrim($migrationModuleName, '+')]);
-		// 		}
-		// 	}
-		// }
 	}
 
 	/**

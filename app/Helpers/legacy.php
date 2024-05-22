@@ -127,3 +127,25 @@ function assets_directory(string $pagePath = null) {
 
 	return $path;
 }
+
+function redirect_old($path = false) {
+	if (empty($path)) {
+		$url = $_SERVER['REQUEST_URI'];
+	} else if ($path[0] == '?') {
+		$url = explode('?', $_SERVER['REQUEST_URI'])[0] . $path;
+	} else if ($path[0] == '#') {
+		$url = explode('#', $_SERVER['REQUEST_URI'])[0] . $path;
+	} else if ($path[0] == '&') {
+		$url = $_SERVER['REQUEST_URI'] . $path;
+	} else if ($path[0] == '/') {
+		$url = client_url($path);
+	} else {
+		$url = $path;
+	}
+
+	\App\Legacy\ConnectionInterface::getInstance()->close();
+
+	header('Location: ' . $url);
+
+	exit();
+}

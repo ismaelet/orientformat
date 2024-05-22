@@ -90,13 +90,7 @@ function add_grade_style() {
  * Misc
  */
 function printConnectionTime() {
-	if (DEBUG) {
-		echo 'Connection time: ' . round(microtime(true) - \App\Legacy\ConnectionInterface::$timeOpen, 3) * 1000 . ' ms<br>';
-	}
 }
 
 function printQueriesCount() {
-	if (DEBUG) {
-		echo 'Queries count: ' . \App\Legacy\ConnectionInterface::$queryCount . '<br>';
-	}
 }
