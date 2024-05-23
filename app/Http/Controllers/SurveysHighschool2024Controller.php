@@ -96,7 +96,7 @@ class SurveysHighschool2024Controller extends Controller {
 						'options' => [
 							'Tutta la classe',
 							'La maggior parte della classe',
-							'Solo da alcuni studenti',
+							'Alcuni studenti',
 						],
 					],
 

@@ -12,7 +12,7 @@ use \Legacy\UserSystem\Teacher;
 		<!-- Title -->
 		<h1 class="txt-sbold">Funzionalità<br>per l'insegnante</h1>
 
-		<?php if (false && $showSurvey) { ?>
+		<?php if ($showSurvey) { ?>
 
 			<div class="dashboard-warning text-center grid gap-2 justify-items-center">
 				<p>Cliccando qui sotto puoi accedere al questionario proposto a conclusione del percorso di sperimentazione</p>

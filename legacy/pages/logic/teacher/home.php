@@ -76,6 +76,7 @@ if (isset($_POST['decline-collaboration'])) {
  */
 $showSurvey = false;
 $surveyedSchools = [14, 67, 77, 24];
+$extraTeachers = [4917, 4677, 6031];
 
 $teacherClassIds = $teacher->schoolClassIds;
 $teacherSchoolClasses = SchoolClass::whereIn('id', $teacherClassIds)->where('startingGrade', '>', 3)->get();
@@ -83,4 +84,8 @@ $teacherSchools = $teacherSchoolClasses->pluck('schoolId')->unique();
 
 if (count($teacherSchools) > 0 && !SurveyHighschool_2024Result::where('teacher_id', Auth::id())->exists()) {
 	$showSurvey = count(array_intersect($surveyedSchools, $teacherSchools->toArray())) > 0;
+}
+
+if (in_array(Auth::id(), $extraTeachers)) {
+	$showSurvey = true;
 }
