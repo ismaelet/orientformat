@@ -16,7 +16,7 @@ $count = count($solution);
 				}
 			}
 		} catch (\Exception $e) {
-			Log::error('Post results not set in "Sagome"', ['userId' => Auth::id(), 'post' => $_POST ?? null]);
+			Log::error('Post results not set in "Sagome"', ['userId' => Auth::id(), 'request' => request()->all()]);
 		}
 
 		return 100;

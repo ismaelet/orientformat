@@ -18,9 +18,9 @@
 }
 
 .checkbox.right {
-	--clr-primary-400: var(--clr-good-400);
+	--color-primary-400: var(--clr-good-400);
 }
 
 .checkbox.wrong {
-	--clr-primary-400: var(--clr-bad-400);
+	--color-primary-400: var(--clr-bad-400);
 }

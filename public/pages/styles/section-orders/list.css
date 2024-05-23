@@ -10,7 +10,7 @@
 }
 
 .status-filter {
-	--clr-primary-400: var(--_color, var(--fc-700));
+	--color-primary-400: var(--_color, var(--fc-700));
 }
 
 /**

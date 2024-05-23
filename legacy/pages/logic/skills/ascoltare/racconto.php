@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use LogicManager\TestLogic;
 
 $legacyTest = test();
@@ -91,8 +93,12 @@ $count = count($questions);
 
 		$rightN = 0;
 
-		foreach ($_POST['field'] as $key => $value) {
-			if ($value == $answers[$key]['right']) $rightN++;
+		try {
+			foreach ($_POST['field'] as $key => $value) {
+				if ($value == $answers[$key]['right']) $rightN++;
+			}
+		} catch (\Exception $e) {
+			Log::error('Post results not set in "Racconto"', ['userId' => Auth::id(), 'request' => request()->all()]);
 		}
 
 		return round($rightN / $count * 100);
