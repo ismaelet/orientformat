@@ -92,7 +92,7 @@ class SurveysHighschool2024Controller extends Controller {
 					// ~ Question B.1
 					[
 						'type' => 'radio-rows',
-						'text' => 'Il percorso orientativo proposto è stato svolto',
+						'text' => 'Il percorso orientativo proposto è stato svolto da',
 						'options' => [
 							'Tutta la classe',
 							'La maggior parte della classe',

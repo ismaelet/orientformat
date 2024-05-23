@@ -70,6 +70,7 @@ svg {
 	--color-neutral-light-100: hsl(var(--color-neutral-light-100-hsl));
 	--color-neutral-light-200: hsl(var(--color-neutral-light-200-hsl));
 	--color-neutral-light-300: hsl(var(--color-neutral-light-300-hsl));
+	--color-neutral-light-350: hsl(var(--color-neutral-light-350-hsl));
 	--color-neutral-light-400: hsl(var(--color-neutral-light-400-hsl));
 	--color-neutral-light-700: hsl(var(--color-neutral-light-700-hsl));
 	--color-neutral-light-900: hsl(var(--color-neutral-light-900-hsl));

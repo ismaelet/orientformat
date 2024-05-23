@@ -15,7 +15,7 @@ use \Legacy\UserSystem\Teacher;
 		<?php if (false && $showSurvey) { ?>
 
 			<div class="dashboard-warning text-center grid gap-2 justify-items-center">
-				<p>Cliccando qui sotto puoi accedere al questionario proposto al termine dell'incontro del <strong>24 maggio</strong></p>
+				<p>Cliccando qui sotto puoi accedere al questionario proposto a conclusione del percorso di sperimentazione</p>
 				<a href="<?= route('2024-highschool-survey') ?>" class="button">Partecipa</a>
 			</div>
 

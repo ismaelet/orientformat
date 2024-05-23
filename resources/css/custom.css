@@ -72,6 +72,7 @@
 	--color-neutral-light-100-hsl: var(--theme-h) var(--theme-light-s) 100%;
 	--color-neutral-light-200-hsl: var(--theme-h) var(--theme-light-s) 93%;
 	--color-neutral-light-300-hsl: var(--theme-h) var(--theme-light-s) 87%;
+	--color-neutral-light-350-hsl: var(--theme-h) var(--theme-light-s) 65%;
 	--color-neutral-light-400-hsl: var(--theme-h) var(--theme-light-s) 31%;
 	--color-neutral-light-700-hsl: var(--theme-h) var(--theme-light-s) 13%;
 	--color-neutral-light-900-hsl: var(--theme-h) var(--theme-light-s) 0%;
@@ -172,6 +173,7 @@
 	--color-neutral-100-hsl: var(--color-neutral-light-100-hsl);
 	--color-neutral-200-hsl: var(--color-neutral-light-200-hsl);
 	--color-neutral-300-hsl: var(--color-neutral-light-300-hsl);
+	--color-neutral-350-hsl: var(--color-neutral-light-350-hsl);
 	--color-neutral-400-hsl: var(--color-neutral-light-400-hsl);
 	--color-neutral-700-hsl: var(--color-neutral-light-700-hsl);
 	--color-neutral-900-hsl: var(--color-neutral-light-900-hsl);

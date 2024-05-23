@@ -27,7 +27,7 @@
 			display: flex;
 			width: calc(1.25rem + 2px);
 			aspect-ratio: 1;
-			border: var(--border-width) solid var(--border-color);
+			border: var(--border-width) solid var(--color-neutral-350);
 			border-radius: 50%;
 			cursor: pointer;
 			transition: border-color 0.2s;
