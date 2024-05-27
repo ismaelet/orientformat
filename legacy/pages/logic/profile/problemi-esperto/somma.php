@@ -1,6 +1,7 @@
 <?php
 
-use LogicManager\TestLogic;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 $count = 13;
 
@@ -9,8 +10,12 @@ $count = 13;
 		function () {
 			$correctN = 0;
 
-			foreach ($_POST['field'] as $key => $_looping) {
-				if (eval_num($_POST['field'], $key)) $correctN++;
+			try {
+				foreach ($_POST['field'] as $key => $_looping) {
+					if (eval_num($_POST['field'], $key)) $correctN++;
+				}
+			} catch (\Exception $e) {
+				Log::error('Post results not set in "Racconto"', ['userId' => Auth::id(), 'request' => request()->all()]);
 			}
 
 			return round($correctN / \LogicManager\TestLogic::$parameterCount * 100, 0);

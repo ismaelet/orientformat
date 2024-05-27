@@ -1,4 +1,4 @@
-@props(['groups'])
+@props(['navigationGroups'])
 
 @push('styles')
 	<style>
@@ -29,19 +29,16 @@
 
 		<div class="">
 			<!-- Dashboard title -->
-			<div class="navigation-header mb-12 mt-10 grid justify-items-center text-center text-neutral-700">
-				<img
-					src="<?= asset('images/logo/logo.png') ?>"
-					alt=""
-					class="h-16"
-				>
+			<div class="navigation-header mb-12 mt-10 grid gap-2 text-center text-neutral-700">
+				{!! embed_svg('logo/logo', ['w-full', 'h-10']) !!}
+				<p class="font-heading text-2xl font-semibold tracking-wider">{{ config('app.name') }}</p>
 			</div>
 
 			<!-- Dashboard groups -->
 			<div class="js-open-navigation grid gap-4">
 
-				@foreach ($groups as $group)
-					<x-dashboard.navigation.group :navigation-group="$group" />
+				@foreach ($navigationGroups as $navigationGroup)
+					<x-dashboard.navigation.group :navigation-group="$navigationGroup" />
 				@endforeach
 			</div>
 

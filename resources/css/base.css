@@ -205,7 +205,7 @@ svg {
 /*
 	* 3.3 Borders
 	*/
-:where(.border) {
+.border {
 	border-width: var(--border-width);
 	border-style: solid;
 	border-color: var(--border-color);

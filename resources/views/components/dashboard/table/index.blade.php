@@ -1,21 +1,27 @@
 <x-layouts.admin-dashboard>
 
-    <div class="grid gap-8">
-        {{-- Title bar --}}
-        <x-dashboard.table.title :$title />
+	<div class="grid gap-8">
+		{{-- Title bar --}}
+		<x-dashboard.table.title :title="$title" />
 
-        @session('status')
-            {{-- Status alert --}}
-            <x-inputs.alert-success>{{ $value }}</x-inputs.alert-success>
-        @endsession
+		@if (session('status'))
+			{{-- Status alert --}}
+			<x-inputs.alert-success>{{ session('status') }}</x-inputs.alert-success>
+		@endif
 
-        @session('error')
-            {{-- Error alert --}}
-            <x-inputs.alert-error>{{ $value }}</x-inputs.alert-error>
-        @endsession
+		@if (session('error'))
+			{{-- Error alert --}}
+			<x-inputs.alert-error>{{ session('error') }}</x-inputs.alert-error>
+		@endif
 
-        {{-- Table --}}
-        <x-table :$columns :$records :$recordCount :$mainOrderBy :$buttons />
-    </div>
+		{{-- Table --}}
+		<x-table
+			:columns="$columns"
+			:records="$records"
+			:recordCount="$recordCount"
+			:mainOrderBy="$mainOrderBy"
+			:buttons="$buttons"
+		/>
+	</div>
 
 </x-layouts.admin-dashboard>

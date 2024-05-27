@@ -209,10 +209,14 @@ class SchoolClassSectionResult {
 		return $results;
 	}
 
-	private function calcTierResult() {
+	private function calcTierResult(): array {
 		$count = 0;
 		$results = [];
 		$rawResults = [['Basso', 0], ['Medio', 0], ['Alto', 0], ['Molto alto', 0]];
+
+		if (!count(self::getStudentIds())) {
+			return $results = ['values' => $rawResults, 'count' => $count];
+		}
 
 		foreach (self::getStudentIds() as $studentId) {
 			$result = (new StudentSectionResult($this->sectionId, $studentId))->result;

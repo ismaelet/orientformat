@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\AdminSection;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,19 +15,19 @@ class ResourceController extends Controller {
 	/**
 	 * ~ Action Configuration: Index
 	 */
-	protected Builder $query;
-	protected array $orderItemBy = ['id' => 'desc'];
-	protected string $orderDirection = 'desc';
-	protected array $columns = [];
-	protected array $buttons = [];
-	protected int $pageSize = 50;
-	protected bool $searchBar = true;
+	protected $query;
+	protected $orderItemBy = ['id' => 'desc'];
+	protected $orderDirection = 'desc';
+	protected $columns = [];
+	protected $buttons = [];
+	protected $pageSize = 50;
+	protected $searchBar = true;
 
 	/**
 	 * ~ Action Configuration: Edit
 	 */
-	protected string $recordClass;
-	protected string $titleField;
+	protected $recordClass;
+	protected $titleField;
 
 	/**
 	 * * Action: Index
@@ -78,7 +77,7 @@ class ResourceController extends Controller {
 	 * @return RedirectResponse The redirect response.
 	 */
 	protected function update(int $recordId, Request $request): RedirectResponse {
-		$routeName = legacy_explode_last('.', Route::currentRouteName())[0] . '.index';
+		$routeName = explode_last('.', Route::currentRouteName())[0] . '.index';
 
 		$routeParameters = json_decode($request->route()->index_parameters, true);
 

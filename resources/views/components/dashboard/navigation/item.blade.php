@@ -65,7 +65,7 @@
 		.navigation-item-title a:hover {
 			color: var(--color-primary-400);
 
-			[data-color-scheme="dark"] & {
+			.dark & {
 				color: #fff;
 			}
 		}

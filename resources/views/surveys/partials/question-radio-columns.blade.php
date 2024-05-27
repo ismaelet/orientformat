@@ -1,8 +1,8 @@
 <div class="flex w-full flex-wrap justify-between gap-x-8 gap-y-4 lg:flex-nowrap">
 	@foreach ($question['options'] as $optionKey => $option)
 		<x-inputs.checkbox
-			type="radio"
-			name="{{ $letter }}-{{ $questionKey + 1 }}"
+			type="checkbox"
+			name="{{ $letter }}-{{ $questionKey + 1 }}[]"
 			value="{{ $option }}"
 			text="{{ $option }}"
 		/>

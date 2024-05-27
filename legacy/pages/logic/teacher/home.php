@@ -2,7 +2,6 @@
 
 use App\Models\Schools\SchoolClass;
 use App\Models\Survey\SurveyHighschool_2024Result;
-use App\Models\User\Teacher;
 use Illuminate\Support\Facades\Auth;
 use LegacyModels\Helpers\Notification;
 
@@ -75,17 +74,22 @@ if (isset($_POST['decline-collaboration'])) {
  * ! TEMP FOR SURVEY
  */
 $showSurvey = false;
-$surveyedSchools = [14, 67, 77, 24];
-$extraTeachers = [4917, 4677, 6031];
+$completedSurvey = false;
+$surveyedSchools = [14, 40, 67, 77, 24];
+$extraTeachers = [4677, 4912, 4914, 4915, 4917, 5393, 5394, 5840, 6031, 6032, 6033];
 
 $teacherClassIds = $teacher->schoolClassIds;
 $teacherSchoolClasses = SchoolClass::whereIn('id', $teacherClassIds)->where('startingGrade', '>', 3)->get();
 $teacherSchools = $teacherSchoolClasses->pluck('schoolId')->unique();
 
-if (count($teacherSchools) > 0 && !SurveyHighschool_2024Result::where('teacher_id', Auth::id())->exists()) {
+if (count($teacherSchools) > 0) {
 	$showSurvey = count(array_intersect($surveyedSchools, $teacherSchools->toArray())) > 0;
 }
 
 if (in_array(Auth::id(), $extraTeachers)) {
 	$showSurvey = true;
+}
+
+if (SurveyHighschool_2024Result::where('teacher_id', Auth::id())->exists()) {
+	$completedSurvey = true;
 }

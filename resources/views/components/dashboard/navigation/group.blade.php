@@ -59,7 +59,12 @@
 				@else
 					<div class="category-header categorys-center cursor-pointer items-center">
 						{{-- <input type="checkbox" name="navigation_category" class="hidden js-radio-checkbox"> --}}
-						{!! embed_icon($category['icon']) !!}
+						<span
+							class="aspect-square"
+							stye="--icon-size: 100%"
+						>
+							{!! embed_icon($category['icon']) !!}
+						</span>
 						<p class="category-title font-heading ml-4">{{ $category['name'] }}</p>
 					</div>
 
@@ -78,4 +83,4 @@
 
 </ul>
 
-<span class="navigation-divisor border-border border-b"></span>
+<span class="navigation-divisor border-b"></span>
