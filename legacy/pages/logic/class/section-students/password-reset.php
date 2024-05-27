@@ -1,8 +1,11 @@
 <?php
 
-// setup variables
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 $valid = false;
 $studentId = $_GET['id'] ?? null;
+$user = User::find($studentId);
 $student = new \Legacy\UserSystem\Student($studentId);
 
 if ($student->schoolClassId == schoolClassId() && isset($_SESSION['student-password-reset'])) {
@@ -18,4 +21,6 @@ if (!$valid) {
 // generate new password
 $password = bin2hex(random_bytes(5));
 
-\App\Legacy\LegacyDB::update('users SET password = ? WHERE id = ?', [$password, $studentId]);
+$user->update([
+	'password' => Hash::make($password),
+]);
