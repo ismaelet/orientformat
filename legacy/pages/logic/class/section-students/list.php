@@ -6,15 +6,15 @@ $studentCount = schoolClass()->studentCount;
 
 // activate a student
 if (isset($_POST['activate'])) {
-	\App\Legacy\LegacyDB::update(User::TABLE . ' SET status = 1 WHERE ' . User::INDEX . ' = ?', [$_POST['activate']]);
-	\App\Legacy\LegacyDB::update(Student::TABLE . ' SET status = 1 WHERE ' . Student::INDEX . ' = ?', [$_POST['activate']]);
+	\App\Legacy\LegacyDB::update('users SET status = 1 WHERE id = ?', [$_POST['activate']]);
+	\App\Legacy\LegacyDB::update('students SET status = 1 WHERE ' . Student::INDEX . ' = ?', [$_POST['activate']]);
 
 	redirect_old();
 }
 
 if (isset($_POST['deactivate'])) {
-	\App\Legacy\LegacyDB::update(User::TABLE . ' SET status = 0 WHERE ' . User::INDEX . ' = ?', [$_POST['deactivate']]);
-	\App\Legacy\LegacyDB::update(Student::TABLE . ' SET status = 0 WHERE ' . Student::INDEX . ' = ?', [$_POST['deactivate']]);
+	\App\Legacy\LegacyDB::update('users SET status = 0 WHERE id = ?', [$_POST['deactivate']]);
+	\App\Legacy\LegacyDB::update('students SET status = 0 WHERE ' . Student::INDEX . ' = ?', [$_POST['deactivate']]);
 
 	redirect_old();
 }

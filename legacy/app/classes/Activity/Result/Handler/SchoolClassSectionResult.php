@@ -141,7 +141,7 @@ class SchoolClassSectionResult {
 	}
 
 	// the IDs of the students fitting the current selection
-	private function getStudentIds() {
+	private function getStudentIds(): ?array {
 		if (!$this->filterBy) {
 			$students = $this->schoolClassId ?
 				\App\Legacy\LegacyDB::select(Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ?', [$this->schoolClassId])->res :
@@ -214,7 +214,7 @@ class SchoolClassSectionResult {
 		$results = [];
 		$rawResults = [['Basso', 0], ['Medio', 0], ['Alto', 0], ['Molto alto', 0]];
 
-		if (!count(self::getStudentIds())) {
+		if (empty(self::getStudentIds())) {
 			return $results = ['values' => $rawResults, 'count' => $count];
 		}
 
