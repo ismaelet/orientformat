@@ -2,6 +2,7 @@
 
 namespace Legacy\SchoolSystem;
 
+use Illuminate\Support\Facades\Log;
 use \Legacy\Activity\Area;
 use \Legacy\Activity\Section;
 use \Legacy\UserSystem\Student;
@@ -104,6 +105,10 @@ class SchoolClass {
 	}
 
 	private function getGrade() {
+		if (!$this->databaseEntry['grade']) {
+			Log::error('No grade found for class ' . $this->id, ['class' => $this, 'user' => auth()->user()]);
+		}
+
 		return new Grade($this->databaseEntry['grade'], $this);
 	}
 
