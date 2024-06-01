@@ -13,6 +13,8 @@ class UpdateAdminSections extends Migration {
 	 */
 	public function up() {
 		AdminSection::where('name', 'Lista degli studenti')->update(['resource' => 'students', 'action' => 'index']);
+		AdminSection::where('name', 'Modifica uno studente')->update(['resource' => 'students', 'action' => 'edit']);
+		AdminSection::where('name', 'Lista delle classi')->update(['resource' => 'school_classes', 'action' => 'index']);
 	}
 
 	/**
