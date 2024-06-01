@@ -43,15 +43,26 @@ class SchoolClassResource extends ResourceController {
 			$this->query = $this->query->where('school_classes.id', $request->search)
 				->orWhere('grade', $request->search)
 				->orWhere('letter', $request->search)
-				->orWhere('code', 'like', '%' . $request->search . '%')
+				->orWhere('code', $request->search)
 				->orWhere('referents.firstName', 'like', '%' . $request->search . '%')
 				->orWhere('referents.lastName', 'like', '%' . $request->search . '%')
 				->orWhere('schools.name', 'like', '%' . $request->search . '%');
 		}
 
 		// Add the buttons
-		$this->buttons = [];
+		$this->buttons = [
+			['type' => 'delete'],
+		];
 
 		return parent::index($request);
+	}
+
+	/**
+	 * * Action: Destroy
+	 */
+	public function destroy(SchoolClass $schoolClass, Request $request): RedirectResponse {
+		$schoolClass->delete();
+
+		return redirect()->back();
 	}
 }

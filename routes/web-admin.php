@@ -21,7 +21,7 @@ Route::resource('users', UserResource::class)->only(['index']);
 Route::post('users/login', [UserResource::class, 'login'])->name('users.login');
 
 // Students
-Route::resource('students', StudentResource::class)->only(['index', 'edit', 'update']);
+Route::resource('students', StudentResource::class)->only(['index', 'edit', 'update', 'destroy']);
 
 // Classes
-Route::resource('school_classes', SchoolClassResource::class)->only(['index']);
+Route::resource('school_classes', SchoolClassResource::class)->only(['index', 'destroy']);

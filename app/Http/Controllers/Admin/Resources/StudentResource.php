@@ -56,9 +56,8 @@ class StudentResource extends ResourceController {
 
 		// Add the buttons
 		$this->buttons = [
-			[
-				'type' => 'edit',
-			],
+			['type' => 'edit'],
+			['type' => 'delete'],
 		];
 
 		return parent::index($request);
@@ -88,5 +87,14 @@ class StudentResource extends ResourceController {
 		$user->update($request->only(['schoolClassId']));
 
 		return parent::update($userId, $request);
+	}
+
+	/**
+	 * * Action: Destroy
+	 */
+	public function destroy(Student $student): RedirectResponse {
+		$student->delete();
+
+		return redirect()->back();
 	}
 }

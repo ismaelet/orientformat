@@ -41,18 +41,32 @@
 	@break
 
 	@case('delete')
-		<button
-			type="submit"
-			name="destroy"
-			title="{{ 'Elimina' }}"
-			@class($classes)
-			value="{{ $record->id }}"
-			x-data
-			@click="window.confirm(['Confermi di voler eliminare questo elemento?']);
-					"
+		@php
+			$deleteRoute = str_replace('index', 'destroy', request()->route()->getName());
+			$deleteRoute = route($deleteRoute, [$record, 'index_parameters' => json_encode(request()->all())]);
+		@endphp
+
+		<form
+			class="flex"
+			action="{{ $deleteRoute }}"
+			method="POST"
 		>
-			{!! embed_icon('delete') !!}
-		</button>
+			@csrf
+			@method('DELETE')
+
+			<button
+				type="submit"
+				name="destroy"
+				title="{{ 'Elimina' }}"
+				@class($classes)
+				value="{{ $record->id }}"
+				x-data
+				@click="window.confirm(['Confermi di voler eliminare questo elemento?']);
+					"
+			>
+				{!! embed_icon('delete') !!}
+			</button>
+		</form>
 	@break
 
 	@case('download')

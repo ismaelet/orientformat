@@ -6,8 +6,11 @@ use App\Models\Schools\Grade;
 use App\Models\Schools\SchoolClass;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Student extends Model {
+
+	use SoftDeletes;
 
 	/**
 	 * The attributes that are mass assignable

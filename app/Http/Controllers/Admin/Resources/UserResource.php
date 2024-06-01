@@ -50,12 +50,6 @@ class UserResource extends ResourceController {
 				'color' => 'green',
 				'route' => 'admin.users.login',
 			],
-			[
-				'type' => 'edit',
-			],
-			[
-				'type' => 'delete',
-			],
 		];
 
 		return parent::index($request);

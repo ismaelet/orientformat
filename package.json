@@ -26,7 +26,7 @@
     },
     "dependencies": {
         "@sentry/browser": "^7.40.0",
-        "alpinejs": "^3.13.8",
+        "alpinejs": "^3.14.0",
         "chartjs-plugin-annotation": "^3.0.1",
         "ts-node": "^10.9.2",
         "vanilla-tilt": "^1.8.1"
