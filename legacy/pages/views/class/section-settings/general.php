@@ -35,7 +35,7 @@
 		<div class="form-footer mar-t-2 grid-flow center-content" data-spacing="400">
 			<button class="button" name="submit">Salva</button>
 
-			<?php if (!schoolClass()->studentCount) { ?>
+			<?php if (!$schoolClass->students->count()) { ?>
 
 				<button class="button button--secondary button--bad" name="delete">Elimina la classe</button>
 

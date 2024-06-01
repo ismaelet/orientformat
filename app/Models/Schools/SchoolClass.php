@@ -2,8 +2,10 @@
 
 namespace App\Models\Schools;
 
+use App\Models\User\Student;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SchoolClass extends Model {
@@ -35,6 +37,13 @@ class SchoolClass extends Model {
 	 */
 	public function school(): BelongsTo {
 		return $this->belongsTo(School::class, 'schoolId');
+	}
+
+	/**
+	 * Students
+	 */
+	public function students(): HasMany {
+		return $this->hasMany(Student::class, 'schoolClassId');
 	}
 
 	/**

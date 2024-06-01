@@ -1,9 +1,11 @@
 <?php
 
+use App\Models\Schools\SchoolClass as SchoolsSchoolClass;
 use \Legacy\SchoolSystem\SchoolClass;
 
 $done = $_GET['done'] ?? false;
 $error = false;
+$schoolClass = SchoolsSchoolClass::find(schoolClassId());
 
 $inputs = [
 	schoolClass()->isMiddleSchool ? [
