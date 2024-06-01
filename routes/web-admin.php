@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\Pages\DashboardController;
-use App\Http\Controllers\Admin\Resources\UserController;
+use App\Http\Controllers\Admin\Resources\StudentResource;
+use App\Http\Controllers\Admin\Resources\UserResource;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -14,5 +15,9 @@ use Illuminate\Support\Facades\Route;
 // Admin dashboard home
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::resource('users', UserController::class)->only(['index']);
-Route::post('users/login', [UserController::class, 'login'])->name('users.login');
+// Users
+Route::resource('users', UserResource::class)->only(['index']);
+Route::post('users/login', [UserResource::class, 'login'])->name('users.login');
+
+// Students
+Route::resource('students', StudentResource::class)->only(['index', 'edit', 'update']);

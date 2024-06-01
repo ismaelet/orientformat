@@ -8,7 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class UserController extends ResourceController {
+class UserResource extends ResourceController {
 
 	/**
 	 * ~ Action Configuration: Index

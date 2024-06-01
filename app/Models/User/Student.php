@@ -13,7 +13,8 @@ class Student extends Model {
 	 * The attributes that are mass assignable
 	 */
 	protected $fillable = [
-		'created_at'
+		'schoolClassId',
+		'created_at',
 	];
 
 	/**

@@ -15,7 +15,7 @@
 	    $editRoute = str_replace('index', 'edit', $currentRoute);
 
 	    $editRoute = Route::has($editRoute)
-	        ? route($editRoute, [$modelName => $record->id, 'index_parameters' => json_encode(request()->all())])
+	        ? route($editRoute, [$record, 'index_parameters' => json_encode(request()->all())])
 	        : null;
 	}
 @endphp

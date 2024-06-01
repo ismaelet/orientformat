@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Activities\GradeController;
 use App\Http\Controllers\Activities\StudentAnalysisController;
-use App\Http\Controllers\Activities\TestController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LegacyController;
 use App\Http\Controllers\StudentHomeController;
