@@ -47,6 +47,8 @@ class StudentResource extends ResourceController {
 			$this->query = $this->query->where('users.id', $request->search)
 				->orWhere('users.firstName', 'like', '%' . $request->search . '%')
 				->orWhere('users.lastName', 'like', '%' . $request->search . '%')
+				->orWhereRaw("CONCAT(users.firstName, ' ', users.lastName) LIKE ?", ['%' . $request->search . '%'])
+				->orWhereRaw("CONCAT(users.lastName, ' ', users.firstName) LIKE ?", ['%' . $request->search . '%'])
 				->orWhere('referents.firstName', 'like', '%' . $request->search . '%')
 				->orWhere('referents.lastName', 'like', '%' . $request->search . '%')
 				->orWhere('schools.name', 'like', '%' . $request->search . '%');
