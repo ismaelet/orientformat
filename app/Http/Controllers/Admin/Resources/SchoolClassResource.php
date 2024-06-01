@@ -19,7 +19,7 @@ class SchoolClassResource extends ResourceController {
 		['label' => 'Sezione', 'name' => 'letter'],
 		['label' => 'Istituto', 'name' => 'school_name'],
 		['label' => 'Referente', 'name' => 'referent_name'],
-		['label' => 'Registrazione', 'name' => 'created_at', 'type' => 'date'],
+		['label' => 'Codice', 'name' => 'code'],
 	];
 
 	/**
@@ -41,8 +41,9 @@ class SchoolClassResource extends ResourceController {
 		// Add search filter
 		if ($request->search) {
 			$this->query = $this->query->where('school_classes.id', $request->search)
-				->orWhere('grade', 'like', '%' . $request->search . '%')
-				->orWhere('letter', 'like', '%' . $request->search . '%')
+				->orWhere('grade', $request->search)
+				->orWhere('letter', $request->search)
+				->orWhere('code', 'like', '%' . $request->search . '%')
 				->orWhere('referents.firstName', 'like', '%' . $request->search . '%')
 				->orWhere('referents.lastName', 'like', '%' . $request->search . '%')
 				->orWhere('schools.name', 'like', '%' . $request->search . '%');
