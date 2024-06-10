@@ -21,10 +21,6 @@ use \Legacy\UserSystem\Teacher;
 
 		<?php } ?>
 
-		<?php if ($completedSurvey) { ?>
-			<div class="confirmation-message mt-12">Grazie per aver completato il questionario proposto a conclusione del percorso di sperimentazione</div>
-		<?php } ?>
-
 		<!-- Classes -->
 		<section class="elements mar-t-3">
 			<h2 class="section-title">Le tue classi</h2>
