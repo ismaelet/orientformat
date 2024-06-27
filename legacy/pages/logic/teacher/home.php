@@ -76,7 +76,7 @@ if (isset($_POST['decline-collaboration'])) {
 $showSurvey = false;
 $completedSurvey = false;
 $surveyedSchools = [14, 40, 67, 77, 24];
-$extraTeachers = [4677, 4912, 4914, 4915, 4917, 5393, 5394, 5840, 6031, 6032, 6033];
+$extraTeachers = [4719, 4677, 4912, 4914, 4915, 4917, 5393, 5394, 5840, 6031, 6032, 6033];
 
 $teacherClassIds = $teacher->schoolClassIds;
 $teacherSchoolClasses = SchoolClass::whereIn('id', $teacherClassIds)->where('startingGrade', '>', 3)->get();
