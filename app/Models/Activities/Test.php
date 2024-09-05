@@ -16,7 +16,14 @@ class Test extends Model {
 	 * The attributes that are mass assignable.
 	 */
 	protected $fillable = [
+		'sectionId',
+		'areaId',
+		'title',
 		'description',
+		'shortDescription',
+		'slug',
+		'step',
+		'template',
 	];
 
 	/**
