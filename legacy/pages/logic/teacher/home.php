@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Schools\SchoolClass;
-use App\Models\Survey\SurveyHighschool_2024Result;
 use Illuminate\Support\Facades\Auth;
 use LegacyModels\Helpers\Notification;
 
@@ -46,7 +44,7 @@ $functionalities = [
 	],
 ];
 
-$feed = Notification::getAll([], 8);
+$feed = Notification::getAll([], 5);
 
 // collaboration requests
 $collaborations = \App\Legacy\LegacyDB::select('* FROM grade_requests WHERE referentId = ?', [Auth::id()]);
@@ -68,28 +66,4 @@ if (isset($_POST['decline-collaboration'])) {
 	\App\Legacy\LegacyDB::delete('grade_requests WHERE id = ?', [$collaborationId]);
 
 	redirect_old();
-}
-
-/**
- * ! TEMP FOR SURVEY
- */
-$showSurvey = false;
-$completedSurvey = false;
-$surveyedSchools = [14, 40, 67, 77, 24];
-$extraTeachers = [4719, 4677, 4912, 4914, 4915, 4917, 5393, 5394, 5840, 6031, 6032, 6033];
-
-$teacherClassIds = $teacher->schoolClassIds;
-$teacherSchoolClasses = SchoolClass::whereIn('id', $teacherClassIds)->where('startingGrade', '>', 3)->get();
-$teacherSchools = $teacherSchoolClasses->pluck('schoolId')->unique();
-
-if (count($teacherSchools) > 0) {
-	$showSurvey = count(array_intersect($surveyedSchools, $teacherSchools->toArray())) > 0;
-}
-
-if (in_array(Auth::id(), $extraTeachers)) {
-	$showSurvey = true;
-}
-
-if (SurveyHighschool_2024Result::where('teacher_id', Auth::id())->exists()) {
-	$completedSurvey = true;
 }

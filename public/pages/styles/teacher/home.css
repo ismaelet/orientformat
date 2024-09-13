@@ -1,3 +1,7 @@
+[data-show-all='false'] .school-class[data-ended='true'] {
+	display: none;
+}
+
 /*
 * Layout
 */

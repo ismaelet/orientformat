@@ -15,7 +15,11 @@ class SchoolClass extends Model {
 	/**
 	 * The attributes that are mass assignable
 	 */
-	protected $fillable = [];
+	protected $fillable = [
+		'grade',
+		'year',
+		'ended',
+	];
 
 	/**
 	 * * Accessors
@@ -84,7 +88,7 @@ class SchoolClass extends Model {
 	 * Get the last active year
 	 */
 	function lastActiveYear(): int {
-		return $this->startingYear + $this->currentGrade - $this->startingGrade;
+		return $this->year;
 	}
 
 	/**

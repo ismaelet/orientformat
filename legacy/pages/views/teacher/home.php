@@ -12,18 +12,9 @@ use \Legacy\UserSystem\Teacher;
 		<!-- Title -->
 		<h1 class="txt-sbold">Funzionalità<br>per l'insegnante</h1>
 
-		<?php if ($showSurvey && !$completedSurvey) { ?>
-
-			<div class="dashboard-warning text-center grid gap-2 justify-items-center">
-				<p>Cliccando qui sotto puoi accedere al questionario proposto a conclusione del percorso di sperimentazione</p>
-				<a href="<?= route('2024-highschool-survey') ?>" class="button">Partecipa</a>
-			</div>
-
-		<?php } ?>
-
 		<!-- Classes -->
 		<section class="elements mar-t-3">
-			<h2 class="section-title">Le tue classi</h2>
+			<h2 class="section-title">Le mie classi</h2>
 
 			<?php while ($collaboration = $collaborations->fetch_assoc()) {
 				$collaborationGrade = new SchoolClass($collaboration['gradeId']);
@@ -39,35 +30,45 @@ use \Legacy\UserSystem\Teacher;
 
 			<?php } ?>
 
-			<div class="element-list element-list_classes mar-t-2">
+			<div class="js-school-class-list" data-show-all="false">
 
-				<?php foreach ($teacher->school_classes() as $key => $schoolClass) { ?>
+				<label class="checkbox mt-2 clickable">
+					<input type="checkbox" class="" onchange="document.querySelector('.js-school-class-list').dataset.showAll = this.checked ? 'true' : 'false'">
+					<span></span>
+					<p>Mostra le classi che hanno terminato il percorso</p>
+				</label>
 
-					<div class="load--fade-in js-load grid-flow" data-direction="bottom" data-delay="<?= $key % 3 ?>">
-						<a class="element element_class" href="<?= $schoolClass->url() ?>">
-							<div>
-								<h3 class="class-name font-bold"><?= $schoolClass->name ?></h3>
-								<h3 class="fa-center txt-sbold">(<?= $schoolClass->yearRangeString() ?>)</h3>
+				<div class="element-list element-list_classes mar-t-2">
+
+					<?php foreach ($teacher->school_classes() as $key => $schoolClass) {
+					?>
+
+						<div class="load--fade-in js-load grid-flow school-class" data-direction="bottom" data-delay="<?= $key % 3 ?>" data-ended="<?= $schoolClass->ended ? 'true' : 'false' ?>">
+							<a class="element element_class" href="<?= $schoolClass->url() ?>">
+								<div>
+									<h3 class="class-name font-bold"><?= $schoolClass->name ?></h3>
+									<h3 class="fa-center txt-sbold">(<?= $schoolClass->yearRangeString() ?>)</h3>
+								</div>
+
+								<div>
+									<p class="element-subtitle txt-sbold"><?= $schoolClass->school->name ?></p>
+								</div>
+							</a>
+						</div>
+
+					<?php } ?>
+
+					<div class="load--fade-in js-load" data-direction="bottom" data-delay="<?= $teacher->schoolClassesCount() % 4 ?>">
+						<a class="element element_functionality" href="<?= client_url('/teacher/add-class') ?>">
+							<div class="element-icon icon-box">
+								<?= embed_icon('add') ?>
 							</div>
 
 							<div>
-								<p class="element-subtitle txt-sbold"><?= $schoolClass->school->name ?></p>
+								<p class="element-subtitle txt-sbold">Aggiungi una classe</p>
 							</div>
 						</a>
 					</div>
-
-				<?php } ?>
-
-				<div class="load--fade-in js-load" data-direction="bottom" data-delay="<?= $teacher->schoolClassesCount() % 4 ?>">
-					<a class="element element_functionality" href="<?= client_url('/teacher/add-class') ?>">
-						<div class="element-icon icon-box">
-							<?= embed_icon('add') ?>
-						</div>
-
-						<div>
-							<p class="element-subtitle txt-sbold">Aggiungi una classe</p>
-						</div>
-					</a>
 				</div>
 			</div>
 		</section>
