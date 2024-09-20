@@ -3,7 +3,6 @@
 use App\Helpers\ArrayHelper;
 use App\Models\Activities\Section;
 use App\Models\Activities\Test;
-use Illuminate\Support\Facades\Auth;
 use \Legacy\Activity\Section as LegacySection;
 use \Legacy\Activity\Test as LegacyTest;
 
@@ -18,9 +17,6 @@ use \Legacy\Activity\Test as LegacyTest;
 	if (!$legacySection->id) {
 		redirect_old('/');
 	}
-
-	// add the style
-	add_grade_style();
 
 	if (!$legacySection->isStandard) {
 		$testId = \App\Legacy\LegacyDB::find(LegacyTest::INDEX . ' FROM ' . LegacyTest::TABLE . ' WHERE ' . LegacyTest::SECTION_INDEX . ' = ?', [$legacySection->id]);
@@ -44,6 +40,8 @@ use \Legacy\Activity\Test as LegacyTest;
 	$page = $legacyTest->filePath;
 	$template = $legacyTest->template;
 	$title = $legacyTest->title;
+
+
 
 	// render
 	\App\Legacy\LegacyView::setPage($page)
@@ -74,7 +72,7 @@ use \Legacy\Activity\Test as LegacyTest;
 
 // interests
 \App\Legacy\LegacyRoute::add('/interest', function () {
-	add_grade_style();
+
 
 	\App\Legacy\LegacyView::setPage('interest')
 		->setMiddlewares(['public', 'logged', 'active', 'beginner-review',  'required-email'])

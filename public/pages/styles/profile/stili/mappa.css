@@ -71,7 +71,7 @@
 	--canv: calc(var(--base-canv) / 2);
 	--size: var(--base-size);
 }
-.circle:nth-child(4) {
+.circle:nth-child(4) .bgr {
 	transition-delay: 0.4s;
 }
 
