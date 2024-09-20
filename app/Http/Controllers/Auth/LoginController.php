@@ -37,7 +37,7 @@ class LoginController extends Controller {
 		}
 
 		// sign in the user
-		if (!Auth::attempt(['username' => $username, 'password' => $request->password])) {
+		if (!Auth::attempt(['username' => $username, 'password' => $request->password, 'active' => true])) {
 			return redirect()->route('login', [
 				'error' => 'login_failed',
 			]);

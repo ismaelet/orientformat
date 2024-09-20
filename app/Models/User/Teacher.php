@@ -3,8 +3,10 @@
 namespace App\Models\User;
 
 use App\Models\Schools\SchoolClass;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Teacher extends Model {
 
@@ -12,19 +14,26 @@ class Teacher extends Model {
 	 * The attributes that are mass assignable
 	 */
 	protected $fillable = [
-		'created_at'
+		'created_at',
 	];
 
 	/**
-	 * * Accessors
+	 * Get the school class ids
+	 * 
+	 * @return array
 	 */
 	public function getSchoolClassIdsAttribute(): array {
 		return $this->classes ? array_filter(explode(',', $this->classes)) : [];
 	}
 
 	/**
-	 * * Relationships
+	 * Get the user associated with the teacher
+	 * 
+	 * @return BelongsTo
 	 */
+	public function user(): BelongsTo {
+		return $this->belongsTo(User::class, 'userId');
+	}
 
 	/**
 	 * School classes

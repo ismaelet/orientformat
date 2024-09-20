@@ -61,7 +61,7 @@
 
 	default: ?>
 		<a href="?type=new-middleschool" class="button">Aggiungi una classe della scuola secondaria di primo grado</a>
-		<a href="?type=new-highschool" class="button">Aggiungi una classe della scuola secondaria di secondo grado</a>
+		<!-- <a href="?type=new-highschool" class="button">Aggiungi una classe della scuola secondaria di secondo grado</a> -->
 		<a href="?type=collaborate" class="button button--secondary">Aggiungi una classe già esistente</a>
 <?php
 		break;
