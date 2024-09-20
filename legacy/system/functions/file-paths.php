@@ -76,7 +76,7 @@ function icon_embed(string $file, array $customClasses = []) {
 
 	$classes = implode(' ', $_old_classes);
 
-	$url = SERVER_ROOT . icon_url_raw($file);
+	$url = base_path() . '/public' . icon_url_raw($file);
 
 	if (!file_exists($url)) return null;
 
