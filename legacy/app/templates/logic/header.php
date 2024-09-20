@@ -136,7 +136,7 @@ if (
 	$logged &&
 	!$userGroupId &&
 	\App\Legacy\LegacyView::getInstance()->location != 'review' &&
-	!\App\Legacy\LegacyDB::exists('review_results WHERE studentId = ? AND reviewId = 3', [$userId])
+	!\App\Legacy\LegacyDB::exists('review_results WHERE studentId = ? AND (reviewId = 3 OR reviewId = 6)', [$userId])
 ) {
 	$h_grade = (new Student($userId))->schoolClass;
 	$header['survey-end'] = $h_grade && $h_grade->ended;
