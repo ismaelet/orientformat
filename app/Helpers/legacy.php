@@ -1,5 +1,20 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Legacy\UserSystem\ActiveStudent;
+
+function student() {
+	return is_teacher() ? teacher() : ActiveStudent::getInstance();
+}
+
+function userId() {
+	if (Auth::id()) {
+		\App\Legacy\ActiveUser::getInstance()->setId(Auth::id());
+	}
+
+	return \App\Legacy\ActiveUser::getInstance()->id;
+}
+
 function client_url(string $parcialUrl = '') {
 	return '/orientamento' . $parcialUrl;
 }

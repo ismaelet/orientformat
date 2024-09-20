@@ -8,9 +8,6 @@ use \Legacy\UserSystem\Student;
 /**
  * Student & teachers
  */
-function student() {
-	return is_teacher() ? teacher() : ActiveStudent::getInstance();
-}
 
 function teacher() {
 	return ActiveTeacher::getInstance();
@@ -75,15 +72,23 @@ function profile_config($type) {
 function get_grade_style() {
 	if (isSupervisor()) {
 		return watchedStudent()->isInMiddleSchool ? 'middleschool' : 'highschool';
-	} else if (is_teacher()) {
+	}
+
+	if (is_teacher()) {
 		return 'highschool';
-	} else {
+	}
+
+	if (is_student()) {
 		return student()->isInMiddleSchool ? 'middleschool' : 'highschool';
 	}
 }
 
 function add_grade_style() {
-	\App\Legacy\StyleLoader::add('specific-styles/' . get_grade_style(), 'app', 5);
+	$style = get_grade_style();
+
+	if ($style) {
+		\App\Legacy\StyleLoader::add('specific-styles/' . get_grade_style(), 'app', 5);
+	}
 }
 
 /**

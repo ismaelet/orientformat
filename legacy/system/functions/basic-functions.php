@@ -25,14 +25,6 @@ function user() {
 	return \App\Legacy\ActiveUser::getInstance();
 }
 
-function userId() {
-	if (Auth::id()) {
-		\App\Legacy\ActiveUser::getInstance()->setId(Auth::id());
-	}
-
-	return \App\Legacy\ActiveUser::getInstance()->id;
-}
-
 function logged() {
 	return Auth::check();
 }
