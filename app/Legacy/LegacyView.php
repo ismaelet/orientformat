@@ -178,7 +178,5 @@ class LegacyView {
 
 		// render page
 		Viewer::render();
-
-		ConnectionInterface::getInstance()->close();
 	}
 }

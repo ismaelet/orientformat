@@ -5,6 +5,7 @@ namespace Legacy\System\Classes;
 require_once __DIR__ . '/../../public/index.php';
 
 class Setup {
+
 	/**
 	 * Initialize constants
 	 */
@@ -64,18 +65,6 @@ class Setup {
 	}
 
 	/**
-	 * Migrate
-	 */
-	static private function migrate() {
-	}
-
-	/**
-	 * Set session user
-	 */
-	static private function setSessionUser() {
-	}
-
-	/**
 	 * Set session language
 	 */
 	static private function setSessionLanguage() {
@@ -119,9 +108,6 @@ class Setup {
 		self::initializeFunctions();
 		self::initializeVendor();
 
-		// migrate the database
-		self::migrate();
-
 		// initalize the routes
 		self::initializeRoutes();
 
@@ -130,7 +116,6 @@ class Setup {
 
 		date_default_timezone_set(\App\Legacy\LegacyConfig::getInstance()->timezone);
 
-		self::setSessionUser();
 		self::setSessionLanguage();
 		self::setSessionTheme();
 	}
