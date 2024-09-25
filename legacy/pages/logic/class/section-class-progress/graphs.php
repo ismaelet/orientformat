@@ -31,7 +31,7 @@ foreach (schoolClass()->doableAreas as $doableArea) {
 	$doableSections = [];
 
 	foreach ($availableGrades as $gradeId) {
-		$legacySectionRes = \App\Legacy\LegacyDB::select(Section::INDEX . ' FROM ' . Section::TABLE . ' WHERE ' . Section::AREA_INDEX . ' = ? AND FIND_IN_SET(?, grades) ORDER BY grades ASC', [$area['id'], $gradeId]);
+		$legacySectionRes = \App\Legacy\LegacyDB::select(Section::INDEX . ' FROM activities_sections WHERE ' . Section::AREA_INDEX . ' = ? AND FIND_IN_SET(?, grades) ORDER BY grades ASC', [$area['id'], $gradeId]);
 
 		if (!empty($legacySectionRes->res)) {
 			$doableSections = array_merge($doableSections, $legacySectionRes->res);
@@ -45,13 +45,19 @@ foreach (schoolClass()->doableAreas as $doableArea) {
 	foreach ($doableSections as $doableSectionId) {
 		if (in_array($doableSectionId, [
 			// Profilo - Stili cognitivi
-			1, 28, 36, 37,
+			1,
+			28,
+			36,
+			37,
 			// Profilo - Resilienza
 			3,
 			// Profilo - Autostima
-			4, 29, 41,
+			4,
+			29,
+			41,
 			// Profilo - Risolvere i problemi
-			5, 30,
+			5,
+			30,
 			// Profilo - Stile atributivo
 			6,
 			// Profilo - Motivazione
@@ -61,15 +67,19 @@ foreach (schoolClass()->doableAreas as $doableArea) {
 			// Profilo - La ruota delle emozioni
 			27,
 			// Competenze - Stare Attenti
-			9, 31,
+			9,
+			31,
 			// Competenze - Ricordare
-			10, 32,
+			10,
+			32,
 			// Competenze - Ascoltare
-			11,	33,
+			11,
+			33,
 			// Competenze - Parlare
 			12,
 			// Competenze - Scrivere
-			14, 34,
+			14,
+			34,
 			// Competenze - Leggere
 			39,
 			// Competenze - Imparare
@@ -77,7 +87,8 @@ foreach (schoolClass()->doableAreas as $doableArea) {
 			// Saperi - Creatività
 			17,
 			// Scegliere - Interessi
-			24, 45,
+			24,
+			45,
 		])) {
 			$area['sections'][] = new Section($doableSectionId);
 		}

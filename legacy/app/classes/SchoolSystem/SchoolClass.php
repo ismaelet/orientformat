@@ -159,7 +159,7 @@ class SchoolClass {
 	}
 
 	private function getDoableAreas() {
-		return rows_to_objects(\App\Legacy\LegacyDB::select(Area::INDEX . ' FROM ' . Area::TABLE . ' WHERE ' . Area::INDEX . ' IN (SELECT ' . Section::AREA_INDEX . ' FROM ' . Section::TABLE . ' WHERE FIND_IN_SET(' . Section::INDEX . ', "' . $this->doableSectionIdsString . '"))', []), Area::class);
+		return rows_to_objects(\App\Legacy\LegacyDB::select(Area::INDEX . ' FROM ' . Area::TABLE . ' WHERE ' . Area::INDEX . ' IN (SELECT ' . Section::AREA_INDEX . ' FROM activities_sections WHERE FIND_IN_SET(id, "' . $this->doableSectionIdsString . '"))', []), Area::class);
 	}
 
 	private function getReferent() {

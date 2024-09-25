@@ -145,7 +145,7 @@ class SchoolClassSectionResult {
 		if (!$this->filterBy) {
 			$students = $this->schoolClassId ?
 				\App\Legacy\LegacyDB::select(Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ?', [$this->schoolClassId])->res :
-				\App\Legacy\LegacyDB::select(Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE ' . Student::INDEX . ' IN (SELECT ' . SectionResult::USER_INDEX . ' FROM ' . SectionResult::TABLE . ' WHERE completed = 1 AND ' . SectionResult::SECTION_INDEX . ' = ?) ORDER BY ' . Student::INDEX . ' DESC', [$this->sectionId])->res;
+				\App\Legacy\LegacyDB::select(Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE ' . Student::INDEX . ' IN (SELECT studentId FROM ' . SectionResult::TABLE . ' WHERE completed = 1 AND sectionId = ?) ORDER BY ' . Student::INDEX . ' DESC', [$this->sectionId])->res;
 		} else {
 			$students = $this->schoolClassId ?
 				\App\Legacy\LegacyDB::select('* FROM ' . Student::TABLE . ' INNER JOIN students_data ON students.userId = students_data.studentId WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ? AND ' . $this->filterBy . ' >= ? AND ' . $this->filterBy . ' <= ?', [$this->schoolClassId, min($this->range), max($this->range)])->res :

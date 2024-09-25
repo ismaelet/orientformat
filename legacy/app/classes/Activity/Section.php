@@ -89,7 +89,7 @@ class Section {
 	}
 
 	private function getResultId() {
-		$resultId = \App\Legacy\LegacyDB::find(SectionResult::INDEX . ' FROM ' . SectionResult::TABLE . ' WHERE ' . SectionResult::SECTION_INDEX . ' = ?  AND ' . SectionResult::USER_INDEX . ' = ?', [$this->id, $this->studentId]);
+		$resultId = \App\Legacy\LegacyDB::find(SectionResult::INDEX . ' FROM ' . SectionResult::TABLE . ' WHERE sectionId = ?  AND studentId = ?', [$this->id, $this->studentId]);
 
 		return $resultId ?: (SectionResult::new($this->id))->id;
 	}
@@ -164,7 +164,7 @@ class Section {
 		\App\Legacy\LegacyDB::update(
 			SectionResult::TABLE .
 				' SET completedTestCount = ?, lastCompletedStep = ?, progressPercentage = ?, completed = ? 
-				WHERE ' . SectionResult::USER_INDEX . ' = ? AND ' . SectionResult::SECTION_INDEX . ' = ?',
+				WHERE studentId = ? AND sectionId = ?',
 
 			[$completedTestCount, $lastCompletedStep, $percentage, $completed, \Illuminate\Support\Facades\Auth::id(), $this->id]
 		);

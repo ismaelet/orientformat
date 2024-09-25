@@ -15,5 +15,7 @@ RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 # RUN apt-get install -y libonig-dev
 # RUN docker-php-ext-install mbstring
 
+RUN echo "memory_limit = 2560M" > /usr/local/etc/php/conf.d/memory-limit.ini
+
 # Enable .htaccess rewrite
 RUN a2enmod rewrite

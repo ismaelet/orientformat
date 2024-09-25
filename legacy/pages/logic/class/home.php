@@ -1,6 +1,6 @@
 <?php
 
-use \Legacy\Activity\Result\SectionResult;
+use App\Models\Results\User\SectionResult;
 use \Legacy\Activity\Result\TestResult;
 use \Legacy\Activity\Section;
 
@@ -12,7 +12,17 @@ $advicesPercentage = $schoolClass->studentCount ? round($advicesCount / $schoolC
 
 // data
 $legacySectionsCount = \App\Legacy\LegacyDB::count(Section::TABLE . ' WHERE isStandard = 1 AND active = 1 AND FIND_IN_SET(?, years)', [$schoolClass->fullGrade]);
-$progressCount = $schoolClass->studentCount ? \App\Legacy\LegacyDB::count(SectionResult::TABLE . ' WHERE completed = 1 AND ' . SectionResult::USER_INDEX . ' IN (' . $schoolClass->activeStudentIdsString . ') AND ' . SectionResult::SECTION_INDEX . ' IN (SELECT ' . Section::INDEX . ' FROM ' . Section::TABLE . ' WHERE isStandard = 1 AND active = 1 AND FIND_IN_SET(?, years))', [$schoolClass->fullGrade]) : 0;
+
+$progressCount = SectionResult::where('completed', true)
+	->whereIn('studentId', $schoolClass->activeStudentIds)
+	->whereIn('sectionId', function ($query) use ($schoolClass) {
+		$query->select('id')
+			->from('activities_sections')
+			->where('isStandard', true)
+			->where('active', true)
+			->whereRaw('FIND_IN_SET(?, years)', [$schoolClass->fullGrade]);
+	})
+	->count() ?: 0;
 
 $maxProgressCount = $legacySectionsCount * $schoolClass->activeStudentCount;
 $progressPercent = $maxProgressCount ? round($progressCount / $maxProgressCount * 100) : 0;

@@ -33,7 +33,7 @@ for ($i = schoolClass()->currentGrade; $i >= schoolClass()->minimumGrade; $i--) 
 		$area['name'] = $areaObject->name;
 		$area['sections'] = [];
 
-		$legacySections = \App\Legacy\LegacyDB::select('id FROM ' . Section::TABLE . ' WHERE ' . Section::INDEX . ' IN (' . $grade->doableSectionIdsString . ') AND ' . Section::AREA_INDEX . ' = ? ORDER BY id ASC', [$areaObject->id]);
+		$legacySections = \App\Legacy\LegacyDB::select('id FROM activities_sections WHERE id IN (' . $grade->doableSectionIdsString . ') AND ' . Section::AREA_INDEX . ' = ? ORDER BY id ASC', [$areaObject->id]);
 
 		while ($legacySectionData = $legacySections->fetch_assoc()) {
 			$legacySection = new Section($legacySectionData['id']);

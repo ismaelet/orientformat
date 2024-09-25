@@ -85,15 +85,15 @@ class Grade {
 	}
 
 	private function getAreas() {
-		return rows_to_objects(\App\Legacy\LegacyDB::select(Area::INDEX . ' FROM ' . Area::TABLE . ' WHERE id IN (SELECT ' . Section::AREA_INDEX . ' FROM ' . Section::TABLE . ' WHERE FIND_IN_SET(?, years))', [$this->fullId]), Area::class);
+		return rows_to_objects(\App\Legacy\LegacyDB::select(Area::INDEX . ' FROM ' . Area::TABLE . ' WHERE id IN (SELECT ' . Section::AREA_INDEX . ' FROM activities_sections WHERE FIND_IN_SET(?, years))', [$this->fullId]), Area::class);
 	}
 
 	private function getSections() {
-		return rows_to_objects(\App\Legacy\LegacyDB::select(Section::INDEX . ' FROM ' . Section::TABLE . ' WHERE FIND_IN_SET(?, years) AND active = 1', [$this->fullId]), Section::class);
+		return rows_to_objects(\App\Legacy\LegacyDB::select(Section::INDEX . ' FROM activities_sections WHERE FIND_IN_SET(?, years) AND active = 1', [$this->fullId]), Section::class);
 	}
 
 	private function getDoableSections() {
-		return rows_to_objects(\App\Legacy\LegacyDB::select(Section::INDEX . ' FROM ' . Section::TABLE . ' WHERE FIND_IN_SET(?, years) AND active = 1 AND isStandard = 1', [$this->fullId]), Section::class);
+		return rows_to_objects(\App\Legacy\LegacyDB::select(Section::INDEX . ' FROM activities_sections WHERE FIND_IN_SET(?, years) AND active = 1 AND isStandard = 1', [$this->fullId]), Section::class);
 	}
 
 	private function getDoableSectionIds() {
@@ -136,8 +136,8 @@ class Grade {
 	private function getStandardTestIds() {
 		$res = \App\Legacy\LegacyDB::select(
 			Test::TABLE . '.' . Test::INDEX . ' FROM ' . Test::TABLE . ' INNER JOIN ' .
-				Section::TABLE . ' ON ' . Test::TABLE . '.' . Test::SECTION_INDEX . ' = ' . Section::TABLE . '.' . Section::INDEX . '
-				WHERE isStandard = 1 AND ' . Test::TABLE . '.active = 1 AND ' . Section::TABLE . '.active = 1 AND FIND_IN_SET(?, years)',
+				Section::TABLE . ' ON ' . Test::TABLE . '.' . Test::SECTION_INDEX . ' = activities_sections.id
+				WHERE isStandard = 1 AND ' . Test::TABLE . '.active = 1 AND activities_sections.active = 1 AND FIND_IN_SET(?, years)',
 			[$this->fullId]
 		);
 
