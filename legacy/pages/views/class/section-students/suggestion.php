@@ -9,7 +9,7 @@
 	<div class="page-content">
 		<a class="dashboard-panel" href="<?= client_url('/class/students/suggestion/give') ?>">
 			<div class="dashboard-panel_icon icon-box">
-				<?= embed_icon('section1') ?>
+				<?= embed_icon('suggestion') ?>
 			</div>
 			<h2 class="dashboard-panel_title">Attribuisci i consigli orientativi</h2>
 		</a>

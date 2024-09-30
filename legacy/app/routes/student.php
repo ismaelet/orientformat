@@ -14,6 +14,8 @@ use \Legacy\Activity\Test as LegacyTest;
 	$studentId = request()->student_id;
 	$legacySection = new LegacySection($sectionId);
 
+	add_grade_style();
+
 	if (!$legacySection->id) {
 		redirect_old('/');
 	}
@@ -42,6 +44,7 @@ use \Legacy\Activity\Test as LegacyTest;
 	$title = $legacyTest->title;
 
 
+	add_grade_style();
 
 	// render
 	\App\Legacy\LegacyView::setPage($page)
@@ -61,6 +64,9 @@ use \Legacy\Activity\Test as LegacyTest;
 	$template = 'recap';
 	$title = 'Riepilogo ' . $legacySection->name;
 
+
+	add_grade_style();
+
 	// render
 	\App\Legacy\LegacyView::setPage($page)
 		->setTemplate($template)
@@ -74,6 +80,8 @@ use \Legacy\Activity\Test as LegacyTest;
 \App\Legacy\LegacyRoute::add('/interest', function () {
 
 
+	add_grade_style();
+
 	\App\Legacy\LegacyView::setPage('interest')
 		->setMiddlewares(['public', 'logged', 'active', 'beginner-review',  'required-email'])
 		->show();
@@ -81,6 +89,9 @@ use \Legacy\Activity\Test as LegacyTest;
 
 // review
 \App\Legacy\LegacyRoute::add('/review', function () {
+
+	add_grade_style();
+
 	\App\Legacy\LegacyView::setPage('review')
 		->setMiddlewares(['public', 'student', 'logged', 'active', 'required-email'])
 		->show();

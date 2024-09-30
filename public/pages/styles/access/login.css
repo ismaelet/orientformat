@@ -1,7 +1,7 @@
 /* Structure */
 main {
 	display: grid;
-	min-height: 100svh;
+	min-height: calc(100svh - 86px);
 }
 
 .page-body {

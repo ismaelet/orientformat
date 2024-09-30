@@ -18,7 +18,6 @@ class LegacyRoute {
 	}
 
 	public static function run() {
-		add_grade_style();
 
 		$path_found = false;
 		$path = parse_url($_SERVER['REQUEST_URI'])['path'] ?? null;

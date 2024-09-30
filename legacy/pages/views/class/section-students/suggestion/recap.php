@@ -17,7 +17,7 @@
 			<div class="results mar-t-2">
 				<div class="result">
 					<div class="result__icon">
-						<?= embed_icon(APP_ICONS_DIR . 'questionnaires/start') ?>
+						<?= embed_icon('questionnaires/start') ?>
 					</div>
 
 					<div class="result__content">
@@ -36,7 +36,7 @@
 
 				<div class="result">
 					<div class="result__icon">
-						<?= embed_icon(APP_ICONS_DIR . 'sections/section-7') ?>
+						<?= embed_icon('sections/section-7') ?>
 					</div>
 
 					<div class="result__content">
@@ -47,7 +47,7 @@
 
 				<div class="result">
 					<div class="result__icon">
-						<?= embed_icon(APP_ICONS_DIR . 'sections/section-24') ?>
+						<?= embed_icon('sections/section-24') ?>
 					</div>
 
 					<div class="result__content">
