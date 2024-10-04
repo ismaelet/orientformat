@@ -36,8 +36,12 @@ class StyleLoader {
 			case 'inline':
 				self::$inlineStyles[] = $fileName;
 
+				break;
+
 			case 'app':
 				$file = '/legacy/app/styles/' . $fileName . '.css';
+
+				break;
 
 			default:
 				break;

@@ -1,9 +1,8 @@
 <?php
 
-namespace Student;
+namespace App\Legacy;
 
-use LegacyDB;
-use Review\Area;
+use Legacy\Review\Area;
 use Review\Question;
 
 class Questionnaire {

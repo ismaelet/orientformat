@@ -1,10 +1,18 @@
 <?php
 
-use Review\Review;
+use Illuminate\Support\Facades\Log;
+use Legacy\Review\Review;
 
 $debugger = false;
 $reviewId = $_GET['id'] ?? 1;
 $review = new Review($reviewId);
+
+if (is_string($reviewId)) {
+	Log::error('Review ID is a string', [
+		'userId' => auth()->id(),
+		'reviewId' => $reviewId,
+	]);
+}
 
 // save results
 if (!empty($_POST)) {

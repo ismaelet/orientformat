@@ -170,6 +170,144 @@
 			</form>
 		</div>
 
+		<!-- Reviews -->
+		<div class="panel surface">
+			<h2 class="panel_title">Questionari</h2>
+
+			{{-- First second year --}}
+			<form
+				class="download-buttons"
+				method="POST"
+				action="{{ route('admin.database.download.reviews') }}"
+			>
+				<input
+					type="hidden"
+					name="reviewId"
+					value="1"
+				>
+
+				<button
+					class="download-button font-bold"
+					name="cypher"
+					value="1"
+				>
+					Scarica il cifrario dei questionari iniziali di prima e seconda
+					{!! embed_icon('download') !!}
+				</button>
+
+				<button
+					class="download-button"
+					name="year"
+					value="all"
+				>
+					Scarica la lista dei questionari iniziali di prima e seconda
+					{!! embed_icon('download') !!}
+				</button>
+
+				@for ($i = $currentYear; $i >= $startingYear; $i--)
+					<button
+						class="download-button"
+						name="year"
+						value="{{ $i }}"
+					>
+						Scarica la lista dei questionari iniziali di prima e seconda per l'anno {{ $i }}/{{ $i + 1 }}
+						{!! embed_icon('download') !!}
+					</button>
+				@endfor
+
+			</form>
+
+			<hr class="text-neutral-300">
+
+			{{-- Third year --}}
+			<form
+				class="download-buttons"
+				method="POST"
+				action="{{ route('admin.database.download.reviews') }}"
+			>
+				<input
+					type="hidden"
+					name="reviewId"
+					value="2"
+				>
+
+				<button
+					class="download-button font-bold"
+					name="cypher"
+					value="1"
+				>
+					Scarica il cifrario dei questionari di terza
+					{!! embed_icon('download') !!}
+				</button>
+
+				<button
+					class="download-button"
+					name="year"
+					value="all"
+				>
+					Scarica la lista dei questionari di terza
+					{!! embed_icon('download') !!}
+				</button>
+
+				@for ($i = $currentYear; $i >= $startingYear; $i--)
+					<button
+						class="download-button"
+						name="year"
+						value="{{ $i }}"
+					>
+						Scarica la lista dei questionari di terza per l'anno {{ $i }}/{{ $i + 1 }}
+						{!! embed_icon('download') !!}
+					</button>
+				@endfor
+
+			</form>
+
+			<hr class="text-neutral-300">
+
+			{{-- End questionaire --}}
+			<form
+				class="download-buttons"
+				method="POST"
+				action="{{ route('admin.database.download.reviews') }}"
+			>
+				<input
+					type="hidden"
+					name="reviewId"
+					value="3"
+				>
+
+				<button
+					class="download-button font-bold"
+					name="cypher"
+					value="1"
+				>
+					Scarica il cifrario dei questionari finali
+					{!! embed_icon('download') !!}
+				</button>
+
+				<button
+					class="download-button"
+					name="year"
+					value="all"
+				>
+					Scarica la lista dei questionari finali
+					{!! embed_icon('download') !!}
+				</button>
+
+				@for ($i = $currentYear; $i >= $startingYear; $i--)
+					<button
+						class="download-button"
+						name="year"
+						value="{{ $i }}"
+					>
+						Scarica la lista dei questionari finali per l'anno {{ $i }}/{{ $i + 1 }}
+						{!! embed_icon('download') !!}
+					</button>
+				@endfor
+
+			</form>
+		</div>
+
 		<!-- Results -->
 		<!-- <div class="panel surface" method="POST">
 		<h2 class="panel_title">Risultati</h2>
@@ -189,26 +327,6 @@
 					<div class="text-icon text-icon--small icon-box">
 						{!! embed_icon('download') !!}
 					</div>
-				</button>
-@endfor
-
-		</div>
-	</div> -->
-
-		<!-- Reviews -->
-		<!-- <div class="panel surface" method="POST">
-		<h2 class="panel_title">Questionari</h2>
-
-		<div class="download-buttons">
-			<button class="download-button" name="download-reviews" value="all">
-				Scarica la lista di tutti i risultati dei questionari iniziali e finali
-				{!! embed_icon('download') !!}
-			</button>
-
-			@for ($i = $currentYear; $i >= $startingYear; $i--)
-<button class="download-button" name="download-reviews" value="{{ $i }}">
-					Scarica i risultati dei questionari compilati nell'anno scolastico {{ $i }}/{{ $i + 1 }}
-					{!! embed_icon('download') !!}
 				</button>
 @endfor
 

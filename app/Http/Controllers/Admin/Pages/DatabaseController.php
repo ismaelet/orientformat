@@ -4,10 +4,15 @@ namespace App\Http\Controllers\Admin\Pages;
 
 use App\Http\Controllers\Controller;
 use App\Legacy\LegacyDB;
+use App\Legacy\Questionnaire;
 use App\Legacy\User as LegacyUser;
+use App\Models\Review;
+use App\Models\ReviewQuestion;
+use App\Models\ReviewResult;
 use App\Models\Schools\SchoolClass;
 use App\Models\User\Student;
 use App\Models\User\Teacher;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Legacy\Activity\Result\TestResult as LegacyTestResult;
 use Legacy\SchoolSystem\School as LegacySchool;
@@ -144,7 +149,7 @@ class DatabaseController extends Controller {
 	}
 
 	public function downloadSchoolClasses() {
-		$gradesArray = [];
+		$schoolClassesArray = [];
 		$yearFilter = $_POST['year'] != 'all' ? $_POST['year'] : false;
 		$fileTitle = $yearFilter ? 'Lista delle classi - ' . $yearFilter . '-' . ($yearFilter + 1) : 'Lista di tutte le classi';
 
@@ -158,7 +163,7 @@ class DatabaseController extends Controller {
 			$schoolClasses->where('startingYear', $yearFilter);
 		}
 
-		$schoolClasses->chunk(100, function ($schoolClasses) use (&$gradesArray) {
+		$schoolClasses->chunk(100, function ($schoolClasses) use (&$schoolClassesArray) {
 			foreach ($schoolClasses as $schoolClass) {
 				$gradeData = [
 					'Nome' => $schoolClass->name,
@@ -167,9 +172,94 @@ class DatabaseController extends Controller {
 					'Anno di corso' => $schoolClass->grade,
 				];
 
-				$gradesArray[] = $gradeData;
+				$schoolClassesArray[] = $gradeData;
 			}
 		});
+
+		download_csv($schoolClassesArray, $fileTitle);
+	}
+
+
+	public function downloadReviews(Request $request) {
+		if ($request->cypher) {
+			$resultsArray = [];
+			$reviewId = $request->reviewId;
+			$review = Review::find($reviewId);
+			$reviewQuestions = ReviewQuestion::whereRaw("FIND_IN_SET(?, reviewIds)", [$reviewId])
+				->orWhere('reviewIds', '')
+				->orderBy('full_slug')
+				->get();
+
+			foreach ($reviewQuestions as $question) {
+				$resultsArray[0][$question->full_slug] = str_replace(["\r", "\n"], '', str_replace(',', ';', $question->text));
+
+				if ($question->rows && $question->type == 'grid' && $question->grouppedBy == 'rows') {
+					foreach ($question->options() as $optionKey => $option) {
+						$resultsArray[0][$question->full_slug . '_' . ($optionKey + 1)] = $option;
+					}
+				}
+			}
+
+			$fileTitle = $review->title . ' - Cifrario';
+
+			download_csv($resultsArray, $fileTitle);
+		} else {
+
+			$reviewsArray = [];
+			$yearFilter = $_POST['year'] != 'all' ? $_POST['year'] : false;
+			$reviewId = $_POST['reviewId'] ?? false;
+
+			$reviews = Review::all();
+
+			// Generate questions mockup
+			$results = ReviewResult::where('reviewId', $reviewId)
+				->join('students', 'review_results.studentId', 'students.userId')
+				->join('users', 'students.userId', 'users.id')
+				->with('student', 'student.user')
+				->where('users.status', true)
+				->where('admin_level', false);
+
+
+			if ($yearFilter) {
+				$results->where('review_results.time', '>=', $yearFilter . '-09-01')
+					->where('review_results.time', '<', ($yearFilter + 1) . '-09-01');
+			}
+
+			$results = $results->get();
+
+			// Get the result keys
+			$resultKeys = [];
+
+			foreach ($results as $result) {
+				foreach (array_keys($result->results()) as $key) {
+					if (!in_array($key, $resultKeys)) {
+						$resultKeys[] = $key;
+					}
+				}
+			}
+
+			asort($resultKeys);
+
+			// Generate results
+			foreach ($results as $result) {
+				$reviewResults = [
+					'ID' => $result->student->userId,
+					'Cognome' => $result->student->user->lastName,
+					'Nome' => $result->student->user->firstName,
+				];
+
+				foreach ($resultKeys as $key) {
+					$reviewResults[$key] = $result->results()[$key] ?? '.';
+				}
+
+				$reviewsArray[] = $reviewResults;
+			}
+
+			$review = $reviews->where('id', $reviewId)->first();
+			$fileTitle = $yearFilter ? $review->title . ' - Lista - ' . $yearFilter . '-' . ($yearFilter + 1) : $review->title . ' - Lista';
+
+			download_csv($reviewsArray, $fileTitle);
+		}
 	}
 
 	public function downloadResults() {
@@ -232,78 +322,6 @@ class DatabaseController extends Controller {
 		}
 
 		download_csv($resultsArray, $fileTitle);
-	}
-
-	public function downloadReviews() {
-		$reviewsArray = [];
-		$yearFilter = $_POST['download-reviews'] != 'all' ? $_POST['download-reviews'] : false;
-		$yearSql = $yearFilter ? 'AND year = ?' : '';
-		$parameters = $yearFilter ? [$yearFilter] : [];
-		$fileTitle = $yearFilter ? 'Lista dei risultati dei questionari - ' . $yearFilter . '-' . ($yearFilter + 1) : 'Lista dei risultati dei questionari';
-
-		// generate questions mockup
-		$startQuestions = [];
-		$endQuestions = [];
-
-		$mockupStartProfileId = LegacyDB::find('id FROM review_results WHERE reviewId IN (1, 2) ORDER BY reviewId DESC');
-		$mockupStartProfile = new Profile($mockupStartProfileId);
-
-		foreach ($mockupStartProfile->numericResults as $questionSlug => $_looping) {
-			$startQuestions[] = $questionSlug;
-		}
-
-		$mockupEndProfileId = LegacyDB::find('id FROM review_results WHERE reviewId = 3 ORDER BY reviewId DESC');
-		$mockupEndProfile = new Profile($mockupEndProfileId);
-
-		foreach ($mockupEndProfile->numericResults as $questionSlug => $_looping) {
-			$endQuestions[] = $questionSlug;
-		}
-
-		asort($startQuestions);
-		asort($endQuestions);
-
-		// fetch students
-		$students = LegacyDB::select('
-	userId, firstname, lastname, CONCAT (grade, letter) as gradeName, year as gradeYear, grade as grade, schools.name as schoolName
-		FROM students
-			INNER JOIN users ON students.userId = users.id
-			INNER JOIN classes ON students.classId = classes.id
-			INNER JOIN schools ON classes.school = schools.id
-			INNER JOIN review_results ON students.userId = review_results.studentId
-	WHERE users.status = 1 ' . $yearSql . '
-	ORDER BY users.id ASC', $parameters);
-
-		while ($student = $students->fetch_assoc()) {
-			$reviewResults = [
-				'ID' => $student['userId'],
-				'Cognome' => $student['lastname'],
-				'Nome' => $student['firstname'],
-				'Classe' => $student['gradeName'],
-				'Istituto' => $student['schoolName'],
-				'Anno scolastico' => $student['gradeYear'] . '/' . ($student['gradeYear'] + 1),
-				'Anno di corso' => $student['grade'],
-			];
-
-			// reviews results
-			$startProfileId = LegacyDB::find('id FROM review_results WHERE studentId = ? AND reviewId IN (1, 2) ORDER BY reviewId DESC', [$student['userId']]);
-			$endProfileId = LegacyDB::find('id FROM review_results WHERE studentId = ? AND reviewId = 3', [$student['userId']]);
-
-			$startProfile = $startProfileId ? new Profile($startProfileId) : null;
-
-			foreach ($startQuestions as $questionSlug) {
-				$reviewResults['Iniziale - ' . $questionSlug] = $startProfile->numericResults[$questionSlug] ?? '.';
-			}
-
-			$endProfile = $endProfileId ? new Profile($endProfileId) : null;
-
-			foreach ($endQuestions as $questionSlug) {
-				$reviewResults['Finale - ' . $questionSlug] = $endProfile->numericResults[$questionSlug] ?? '.';
-			}
-
-			$reviewsArray[] = $reviewResults;
-		}
-
-		download_csv($reviewsArray, $fileTitle);
 	}
 
 	public function downloadAdvices() {

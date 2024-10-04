@@ -50,7 +50,7 @@
 								<?= $debugger ? '(' . $question->fullSlug . ')' : '' ?>
 								<?php if ($question->text) { ?>
 
-									<span class="icon" <?= icon_svg('correct') ?>></span>
+									<?= embed_icon('correct') ?>
 									<span class="number"><?= $i ?>.</span> <?= $question->text ?>
 
 								<?php } ?>

@@ -1,9 +1,6 @@
 <?php
 
-namespace Review;
-
-use DatabaseObject;
-use LegacyDB;
+namespace Legacy\Review;
 
 class Review {
 

@@ -1,9 +1,6 @@
 <?php
 
-namespace Review;
-
-use \DB;
-use System\Traits\DynamicProperties;
+namespace Legacy\Review;
 
 class Question {
 

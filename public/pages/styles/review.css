@@ -52,16 +52,16 @@
 	display: none;
 }
 
-.question > .text .icon {
+.question > .text .icon-embed {
 	display: none;
-	background-color: green;
+	color: green;
 	width: 1.5rem;
 	height: 1rem;
 	top: -3px;
 	vertical-align: middle;
 }
 
-.question.question--completed > .text .icon {
+.question.question--completed > .text .icon-embed {
 	display: inline-block;
 }
 

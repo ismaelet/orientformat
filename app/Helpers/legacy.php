@@ -177,6 +177,7 @@ function download_csv($array, $title, $separator = ',', $download = true) {
 		ob_start();
 
 		$df = fopen("php://output", 'w');
+		fputs($df, "\xEF\xBB\xBF");
 		fputcsv($df, array_keys(reset($array)), $separator);
 		foreach ($array as $row) fputcsv($df, $row, $separator);
 
