@@ -3,6 +3,8 @@
 namespace App\Models\Schools;
 
 use App\Models\User\Student;
+use App\Models\User\Teacher;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -57,6 +59,10 @@ class SchoolClass extends Model {
 	 */
 	public function grade(): Grade {
 		return new Grade($this->grade, $this->professional);
+	}
+
+	public function teachers() {
+		return Teacher::whereRaw("FIND_IN_SET(?, classes)", [$this->id])->get();
 	}
 
 	/**

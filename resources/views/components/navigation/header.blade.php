@@ -63,6 +63,7 @@
 	        'loc' => '',
 	        'url' => client_url('/teacher/support/open-ticket'),
 	        'teacher' => true,
+	        'administrator' => true,
 	    ],
 	    [
 	        'title' => 'Supporto',
@@ -111,7 +112,7 @@
 	    }
 
 	    // check teacher filter
-	    if (isset($link['teacher']) && $userGroupId != 1) {
+	    if (isset($link['teacher']) && ($userGroupId != 1 || (is_administrator() && !isset($link['administrator'])))) {
 	        $valid = false;
 	    }
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User\Administrator;
 use App\Models\User\Student;
 use App\Models\User\Teacher;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -58,6 +59,15 @@ class User extends Authenticatable {
 	}
 
 	/**
+	 * Get the administrator record associated with the user
+	 * 
+	 * @return HasOne
+	 */
+	public function administrator(): HasOne {
+		return $this->hasOne(Administrator::class);
+	}
+
+	/**
 	 * * Attributes
 	 */
 
@@ -66,8 +76,8 @@ class User extends Authenticatable {
 	 */
 	public function fullName(): string {
 		$fullName = [];
-		$fullName[] = $this->first_name;
-		$fullName[] = $this->last_name;
+		$fullName[] = $this->firstName;
+		$fullName[] = $this->lastName;
 
 		return implode(' ', $fullName);
 	}

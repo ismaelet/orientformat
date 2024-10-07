@@ -3,7 +3,6 @@
 // teacher panel
 
 use \Legacy\Activity\Area;
-use \Legacy\Activity\Section;
 
 \App\Legacy\LegacyRoute::add('/teacher', function () {
 	\App\Legacy\LegacyView::setPage('teacher/home')
@@ -51,7 +50,7 @@ use \Legacy\Activity\Section;
 
 \App\Legacy\LegacyRoute::add('/teacher/support/open-ticket', function () {
 	\App\Legacy\LegacyView::setPage('teacher/support/open-ticket')
-		->addMiddlewares(['teacher'])
+		->addMiddlewares(['teacherOrAdministrator'])
 		->setTitle('Supporto')
 		->show();
 });

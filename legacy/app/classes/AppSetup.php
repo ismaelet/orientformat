@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Schools\SchoolClass;
 use \Legacy\UserSystem\Teacher;
 
 class AppSetup {
@@ -57,6 +58,12 @@ class AppSetup {
 			}
 		});
 
+		$middlewares->add('teacherOrAdministrator', function () {
+			if (!is_teacher() && !is_administrator()) {
+				redirect_old('/');
+			}
+		});
+
 		$middlewares->add('class', function () {
 			$schoolClassId = null;
 
@@ -66,12 +73,20 @@ class AppSetup {
 				$schoolClassId = $_SESSION['dashboard-schoolClassId'];
 			}
 
-			if (!is_teacher()) {
+			$schoolClass = SchoolClass::find($schoolClassId);
+
+			if (!is_teacher() && !is_administrator()) {
 				redirect_old('/');
 			}
 
-			if (!$schoolClassId || !\App\Legacy\LegacyDB::exists(Teacher::TABLE . ' WHERE ' . Teacher::INDEX . ' = ? AND FIND_IN_SET (?, classes)', [teacherId(), $schoolClassId])) {
+			if (is_administrator() && $schoolClass->schoolId != administrator()->school_id) {
 				redirect_old('/teacher');
+			}
+
+			if (is_teacher()) {
+				if (!$schoolClassId || !\App\Legacy\LegacyDB::exists(Teacher::TABLE . ' WHERE ' . Teacher::INDEX . ' = ? AND FIND_IN_SET (?, classes)', [teacherId(), $schoolClassId])) {
+					redirect_old('/teacher');
+				}
 			}
 		});
 	}

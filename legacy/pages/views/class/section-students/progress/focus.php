@@ -1,7 +1,7 @@
 <?php
 
 use \Legacy\Activity\Result\Handler\StudentSectionResult;
-use Review\Review;
+use Legacy\Review\Review;
 
 ?>
 

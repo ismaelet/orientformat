@@ -29,7 +29,7 @@ function is_student(): bool {
  * Check if the user is a teacher
  */
 function is_teacher(): bool {
-	return Auth::check() && Auth::user()->isTeacher();
+	return Auth::check() && Auth::user()->isTeacher() && !is_administrator();
 }
 
 /**

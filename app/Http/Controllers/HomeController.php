@@ -10,6 +10,10 @@ class HomeController extends Controller {
 	 * * Action: Index
 	 */
 	public function index(): RedirectResponse {
+		if (is_administrator()) {
+			return redirect()->route('administrator.dashboard');
+		}
+
 		if (is_admin()) {
 			return redirect()->route('admin.dashboard');
 		}

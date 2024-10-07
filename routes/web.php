@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Activities\GradeController;
 use App\Http\Controllers\Activities\StudentAnalysisController;
+use App\Http\Controllers\AdministratorDashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LegacyController;
 use App\Http\Controllers\StudentHomeController;
 use App\Http\Controllers\TeacherDashboardController;
 use App\Http\Middleware\Admin;
+use App\Http\Middleware\Administrator;
 use App\Http\Middleware\Student;
 use App\Http\Middleware\Teacher;
 use Illuminate\Support\Facades\Artisan;
@@ -55,6 +57,8 @@ Route::get('composer-install', function () {
 Route::any('student', [StudentHomeController::class, 'index'])->middleware(Student::class)->name('student');
 
 Route::any('teacher-dashboard', [TeacherDashboardController::class, 'index'])->middleware(Teacher::class)->name('teacher.dashboard');
+
+Route::any('administrator-dashboard', [AdministratorDashboardController::class, 'index'])->middleware(Administrator::class)->name('administrator.dashboard');
 
 // ~ Student Activities
 Route::any('activities/grades', [GradeController::class, 'index'])->middleware([Student::class])->name('activities.grades.index');

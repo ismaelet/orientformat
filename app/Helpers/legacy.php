@@ -1,10 +1,19 @@
 <?php
 
+use App\Models\User\Administrator;
 use Illuminate\Support\Facades\Auth;
 use Legacy\UserSystem\ActiveStudent;
 
 function student() {
 	return is_teacher() ? teacher() : ActiveStudent::getInstance();
+}
+
+function is_administrator(): bool {
+	return Auth::check() && administrator();
+}
+
+function administrator() {
+	return Auth::check() ? Administrator::where('user_id', Auth::id())->first() : false;
 }
 
 function userId() {
