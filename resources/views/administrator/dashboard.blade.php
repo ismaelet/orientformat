@@ -46,34 +46,38 @@
 				<p class="list-header"></p>
 			</div>
 
-			@foreach ($school->school_classes->sortByDesc('grade')->sortBy('letter') as $schoolClass)
-				@php
-					$teachers = [];
+			@if ($school->school_classes->isEmpty())
+				<p class="p-8 text-center">Nessuna classe registrata</p>
+			@else
+				@foreach ($school->school_classes->sortByDesc('grade')->sortBy('letter') as $schoolClass)
+					@php
+						$teachers = [];
 
-					foreach ($schoolClass->teachers() as $teacher) {
-					    if ($teacher->user) {
-					        $teachers[] = $teacher->user->fullName();
-					    }
-					}
+						foreach ($schoolClass->teachers() as $teacher) {
+						    if ($teacher->user) {
+						        $teachers[] = $teacher->user->fullName();
+						    }
+						}
 
-					$teachersString = empty($teachers) ? '-' : implode(',<br>', $teachers);
+						$teachersString = empty($teachers) ? '-' : implode(',<br>', $teachers);
 
-				@endphp
+					@endphp
 
-				<div class="list-row">
-					<p class="font-medium">{{ $schoolClass->name }}</p>
-					<p class="font-medium">{{ $schoolClass->yearRangeString() }}</p>
+					<div class="list-row">
+						<p class="font-medium">{{ $schoolClass->name }}</p>
+						<p class="font-medium">{{ $schoolClass->yearRangeString() }}</p>
 
-					<p>
-						{{ $teachersString }}
-					</p>
+						<p>
+							{{ $teachersString }}
+						</p>
 
-					<p><a
-							href="{{ $schoolClass->url() }}"
-							class="text-primary border-b"
-						>Apri</a></p>
-				</div>
-			@endforeach
+						<p><a
+								href="{{ $schoolClass->url() }}"
+								class="text-primary border-b"
+							>Apri</a></p>
+					</div>
+				@endforeach
+			@endif
 		</div>
 	</div>
 

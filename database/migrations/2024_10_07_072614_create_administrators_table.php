@@ -12,6 +12,8 @@ class CreateAdministratorsTable extends Migration {
 	 * @return void
 	 */
 	public function up() {
+		Schema::dropIfExists('administrators');
+
 		Schema::create('administrators', function (Blueprint $table) {
 			$table->id();
 			$table->unsignedBigInteger('user_id');
