@@ -78,7 +78,7 @@
 						<p>
 							<a
 								href="{{ $schoolClass->url() }}"
-								class="text-primary-500 hover:text-primary-400 flex items-center gap-1 border-b transition-colors"
+								class="text-primary hover:text-primary-600 flex items-center gap-1 border-b transition-colors"
 							>
 								Apri
 								{!! embed_icon('link', ['shrink-0', 'w-4']) !!}

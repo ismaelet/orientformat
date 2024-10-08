@@ -9,11 +9,13 @@ export default {
 			'primary-300': 'hsl(var(--color-primary-300-hsl) / <alpha-value>)',
 			'primary-400': 'hsl(var(--color-primary-400-hsl) / <alpha-value>)',
 			'primary-500': 'hsl(var(--color-primary-500-hsl) / <alpha-value>)',
+			'primary-600': 'hsl(var(--color-primary-600-hsl) / <alpha-value>)',
 			'primary-700': 'hsl(var(--color-primary-700-hsl) / <alpha-value>)',
 
 			// Secondary
 			secondary: 'hsl(var(--color-secondary-400-hsl) / <alpha-value>)',
 			'secondary-400': 'hsl(var(--color-secondary-400-hsl) / <alpha-value>)',
+			'secondary-700': 'hsl(var(--color-secondary-700-hsl) / <alpha-value>)',
 
 			// Neutral light
 			'neutral-light-100': 'hsl(var(--color-neutral-light-100-hsl) / <alpha-value>)',

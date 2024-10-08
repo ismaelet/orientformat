@@ -54,7 +54,6 @@ class MiddlewareLoader {
 					$currentGrade = $student->school_class->grade;
 
 					switch (true) {
-
 						case $student->isMiddleSchoolStudent() && $relativeGrade == 3:
 							// third middleschool year
 							$reviewId = 2;
