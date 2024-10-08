@@ -30,6 +30,10 @@
 		.list-header {
 			font-weight: var(--font-weight-semibold);
 		}
+
+		.empty-results {
+			grid-column: 1 / -1;
+		}
 	</style>
 @endpush
 
@@ -47,7 +51,7 @@
 			</div>
 
 			@if ($school->school_classes->isEmpty())
-				<p class="p-8 text-center">Nessuna classe registrata</p>
+				<p class="empty-results col-[1/-1] p-8 text-center">Nessuna classe registrata</p>
 			@else
 				@foreach ($school->school_classes->sortByDesc('grade')->sortBy('letter') as $schoolClass)
 					@php
@@ -68,13 +72,18 @@
 						<p class="font-medium">{{ $schoolClass->yearRangeString() }}</p>
 
 						<p>
-							{{ $teachersString }}
+							{!! $teachersString !!}
 						</p>
 
-						<p><a
+						<p>
+							<a
 								href="{{ $schoolClass->url() }}"
-								class="text-primary border-b"
-							>Apri</a></p>
+								class="text-primary-500 hover:text-primary-400 flex items-center gap-1 border-b transition-colors"
+							>
+								Apri
+								{!! embed_icon('link', ['shrink-0', 'w-4']) !!}
+							</a>
+						</p>
 					</div>
 				@endforeach
 			@endif
