@@ -236,7 +236,7 @@ class Test149 extends Test {
 				background-color: var(--_type-color);
 
 				&.wrong {
-					background-color: var(--clr-bad-400);
+					background-color: var(--color-bad-400);
 				}
 			}
 

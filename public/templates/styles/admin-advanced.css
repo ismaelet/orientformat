@@ -160,7 +160,7 @@ textarea[name='info'] {
 }
 
 .item-img-upload:hover svg {
-	fill: var(--clr-1);
+	fill: var(--color-1);
 }
 
 .item-img-delete:hover svg {
@@ -366,7 +366,7 @@ textarea[name='info'] {
 	--icon-size: 4rem;
 	visibility: hidden;
 	opacity: 0.75;
-	background-color: var(--clr-background);
+	background-color: var(--color-background);
 	position: fixed;
 	inset: 0;
 	z-index: 1;

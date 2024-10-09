@@ -197,11 +197,11 @@ class Test176 extends Test {
 				font-weight: bold;
 
 				&.test-answer--right {
-					color: var(--clr-good-400);
+					color: var(--color-good-400);
 				}
 
 				&.test-answer--wrong {
-					color: var(--clr-bad-400);
+					color: var(--color-bad-400);
 				}
 			}
 		</style>

@@ -67,7 +67,7 @@
 }
 
 #page-graph.disabled .dot.active {
-	background-color: var(--clr-4);
+	background-color: var(--color-4);
 }
 
 #count-box {

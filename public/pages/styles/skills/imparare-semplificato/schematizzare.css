@@ -84,7 +84,7 @@
 	justify-content: center;
 	gap: 1rem;
 	padding: 3rem var(--wrap-padding);
-	background-color: var(--clr-surface-400);
+	background-color: var(--color-surface-400);
 	border-radius: var(--border-radius-400);
 	box-shadow: var(--shadow-strong);
 }
@@ -109,10 +109,10 @@
 }
 
 .box.right {
-	background-color: var(--clr-good-400);
+	background-color: var(--color-good-400);
 }
 .box.wrong {
-	background-color: var(--clr-bad-400);
+	background-color: var(--color-bad-400);
 }
 
 .box--dashed,

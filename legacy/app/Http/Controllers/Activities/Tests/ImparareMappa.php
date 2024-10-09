@@ -524,11 +524,11 @@ class ImparareMappa extends Test {
 			}
 
 			.box.right {
-				background-color: var(--clr-good-400);
+				background-color: var(--color-good-400);
 			}
 
 			.box.wrong {
-				background-color: var(--clr-bad-400);
+				background-color: var(--color-bad-400);
 			}
 
 			.box--dashed,

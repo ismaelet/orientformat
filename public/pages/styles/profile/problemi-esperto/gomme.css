@@ -18,9 +18,9 @@
 }
 
 .result--correct {
-	color: var(--clr-good-400);
+	color: var(--color-good-400);
 }
 
 .result--wrong {
-	color: var(--clr-bad-400);
+	color: var(--color-bad-400);
 }

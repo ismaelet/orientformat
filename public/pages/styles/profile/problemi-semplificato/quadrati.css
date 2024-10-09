@@ -17,24 +17,24 @@ main {
 
 .image-box--empty,
 .image-box--answer {
-	background-color: var(--clr-bad-400);
+	background-color: var(--color-bad-400);
 	border-radius: var(--border-radius-400);
 	box-shadow: var(--shadow);
 }
 
 .image-box--correct {
-	background-color: var(--clr-good-400);
+	background-color: var(--color-good-400);
 }
 
 .result-text {
 	font-size: var(--fs-650);
 	font-weight: var(--font-weight-medium);
 	text-decoration: underline;
-	text-decoration-color: var(--clr-bad-400);
+	text-decoration-color: var(--color-bad-400);
 }
 
 .result-text--good {
-	text-decoration-color: var(--clr-good-400);
+	text-decoration-color: var(--color-good-400);
 }
 
 /**

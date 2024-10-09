@@ -58,7 +58,7 @@
 	transition-delay: 0.2s;
 }
 .result-grid__column:nth-child(3) {
-	background-color: var(--clr-bad-400);
+	background-color: var(--color-bad-400);
 	transition-delay: 0.3s;
 }
 

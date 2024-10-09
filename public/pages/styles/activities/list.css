@@ -28,7 +28,7 @@
 }
 
 .area-wrapper:nth-child(2n + 1) {
-	background-color: var(--clr-surface-200);
+	background-color: var(--color-surface-200);
 	clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--_slope)), 0 100%);
 }
 
@@ -43,7 +43,7 @@
 	position: relative;
 	overflow: hidden;
 	padding-block: 1rem;
-	background-color: var(--clr-surface-400);
+	background-color: var(--color-surface-400);
 	border-bottom-left-radius: inherit;
 	border-bottom-right-radius: inherit;
 	text-align: center;
@@ -101,7 +101,7 @@
 
 .section-img {
 	overflow: hidden;
-	background-color: var(--clr-surface-400);
+	background-color: var(--color-surface-400);
 	color: var(--_color);
 }
 

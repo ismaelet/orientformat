@@ -338,11 +338,11 @@ main {
 }
 
 .dashboard-list__button[data-color='red'] {
-	color: var(--clr-bad-400);
+	color: var(--color-bad-400);
 }
 
 .dashboard-list__button[data-color='green'] {
-	color: var(--clr-good-400);
+	color: var(--color-good-400);
 }
 
 /*

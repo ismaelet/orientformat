@@ -18,7 +18,7 @@
 .panel_title::after {
 	content: '';
 	display: block;
-	border-bottom: 3px solid var(--clr-2);
+	border-bottom: 3px solid var(--color-2);
 }
 
 hr {

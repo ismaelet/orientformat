@@ -58,24 +58,24 @@
 }
 
 .cryptogram--correct {
-	border-color: var(--clr-good-400);
+	border-color: var(--color-good-400);
 }
 
 .cryptogram--correct::before {
-	color: var(--clr-good-400);
+	color: var(--color-good-400);
 }
 
 .cryptogram--correct .solutionFragment {
-	background-color: var(--clr-good-400);
+	background-color: var(--color-good-400);
 	color: #fff;
 }
 
 .cryptogram--wrong {
-	border-color: var(--clr-bad-400);
+	border-color: var(--color-bad-400);
 }
 
 .cryptogram--wrong::before {
-	color: var(--clr-bad-400);
+	color: var(--color-bad-400);
 }
 
 .result__text {

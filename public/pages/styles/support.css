@@ -35,9 +35,9 @@ main {
 }
 
 .category:hover {
-	background-color: var(--clr-4);
+	background-color: var(--color-4);
 	box-shadow: 0.5rem 1rem 2rem hsl(32, 40%, 85%);
-	border-color: var(--clr-4);
+	border-color: var(--color-4);
 	--text-color: #fff;
 }
 
@@ -118,7 +118,7 @@ main {
 }
 
 .topic_text a {
-	color: var(--clr-5);
+	color: var(--color-5);
 	font-weight: bold;
 }
 

@@ -10,6 +10,6 @@
 	width: 7rem;
 	aspect-ratio: 1;
 	border: 10px solid;
-	color: var(--clr-good-400);
+	color: var(--color-good-400);
 	border-radius: 50%;
 }

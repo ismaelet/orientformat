@@ -69,7 +69,7 @@
 }
 
 .selectable.wrong {
-	background-color: var(--clr-bad-400) !important;
+	background-color: var(--color-bad-400) !important;
 }
 
 /* Selectors */

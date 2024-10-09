@@ -115,7 +115,7 @@
 
 .grade__footer {
 	padding-block: 0.5rem;
-	background-color: var(--clr-surface-400);
+	background-color: var(--color-surface-400);
 	overflow: hidden;
 	border-bottom-left-radius: inherit;
 	border-bottom-right-radius: inherit;

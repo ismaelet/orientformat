@@ -120,7 +120,7 @@
 .reset {
 	opacity: 0;
 	transform: translateY(-1rem);
-	color: var(--clr-bad-400);
+	color: var(--color-bad-400);
 	transition: opacity 0.4s, transform 0.4s;
 }
 

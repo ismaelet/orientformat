@@ -147,8 +147,8 @@ main {
 	color: var(--color-tertiary-400);
 }
 .list .btn.c5 {
-	border-color: var(--clr-5);
-	color: var(--clr-5);
+	border-color: var(--color-5);
+	color: var(--color-5);
 }
 
 /* Empty */

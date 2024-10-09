@@ -53,7 +53,7 @@
 }
 
 .graph-info-title {
-	background-color: var(--clr-4);
+	background-color: var(--color-4);
 	color: #fff;
 }
 
@@ -63,7 +63,7 @@
 
 .graph-legend-row:nth-child(1) .graph-legend-icon {
 	opacity: 0.8;
-	border-color: var(--clr-4);
+	border-color: var(--color-4);
 }
 .graph-legend-row:nth-child(2) .graph-legend-icon {
 	opacity: 0.8;

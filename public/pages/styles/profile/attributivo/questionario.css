@@ -82,10 +82,10 @@
 	color: var(--color-tertiary-400);
 }
 .question-box.bgr-c2 .number {
-	color: var(--clr-4);
+	color: var(--color-4);
 }
 .question-box.bgr-c2 .good {
-	color: var(--clr-4);
+	color: var(--color-4);
 }
 .question-box.bgr-c2 .checkbox-txt {
 	color: var(--color-tertiary-400);
@@ -94,7 +94,7 @@
 	border-color: #fff;
 }
 .question-box.bgr-c2 .checkbox span::after {
-	background-color: var(--clr-4);
+	background-color: var(--color-4);
 }
 
 .checkbox {

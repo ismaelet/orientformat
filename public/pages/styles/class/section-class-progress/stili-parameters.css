@@ -5,7 +5,7 @@
 .graph-subcolumn:nth-child(1),
 .graph-info-row:nth-child(1) .graph-info-icon,
 .graph-legend-row:nth-child(1) .graph-legend-icon {
-	background-color: var(--clr-4);
+	background-color: var(--color-4);
 }
 
 .graph-subcolumn:nth-child(2),

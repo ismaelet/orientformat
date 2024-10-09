@@ -59,10 +59,10 @@
 	background-color: var(--color-secondary-400);
 }
 .path:nth-child(3) .path_title {
-	background-color: var(--clr-4);
+	background-color: var(--color-4);
 }
 .path:nth-child(4) .path_title {
-	background-color: var(--clr-5);
+	background-color: var(--color-5);
 }
 
 .path_text {

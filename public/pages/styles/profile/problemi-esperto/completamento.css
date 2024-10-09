@@ -14,10 +14,10 @@
 }
 
 .num-row.right {
-	background: var(--clr-good-400);
+	background: var(--color-good-400);
 }
 .num-row.wrong {
-	background: var(--clr-bad-400);
+	background: var(--color-bad-400);
 }
 
 .num {
@@ -45,10 +45,10 @@
 }
 
 .result-txt.right {
-	color: var(--clr-good-400);
+	color: var(--color-good-400);
 }
 .result-txt.wrong {
-	color: var(--clr-bad-400);
+	color: var(--color-bad-400);
 }
 
 #submit {

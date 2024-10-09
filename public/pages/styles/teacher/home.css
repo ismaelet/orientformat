@@ -120,7 +120,7 @@ h1::after {
 }
 
 .element-list_classes .element::before {
-	background: linear-gradient(135deg, var(--color-primary-400), var(--clr-4));
+	background: linear-gradient(135deg, var(--color-primary-400), var(--color-4));
 }
 
 .class-name {
@@ -145,7 +145,7 @@ h1::after {
 }
 
 .element-list_functionalities .element::before {
-	background: linear-gradient(135deg, var(--color-secondary-400), var(--clr-5));
+	background: linear-gradient(135deg, var(--color-secondary-400), var(--color-5));
 }
 
 .element_functionality svg {

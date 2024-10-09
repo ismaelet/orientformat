@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 	const schoolTypeSelector = '.school-type'
-	const colorPrimary200 = getComputedStyle(document.documentElement).getPropertyValue('--clr-primary-200')
+	const colorPrimary200 = getComputedStyle(document.documentElement).getPropertyValue('--color-primary-200')
 	const colorSecondary300 = getComputedStyle(document.documentElement).getPropertyValue('--color-secondary-300')
 	const colorTertiary100 = getComputedStyle(document.documentElement).getPropertyValue('--color-tertiary-100')
 	const colorTertiary400 = getComputedStyle(document.documentElement).getPropertyValue('--color-tertiary-400')

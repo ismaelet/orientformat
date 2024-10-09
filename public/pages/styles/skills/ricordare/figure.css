@@ -62,7 +62,7 @@ main {
 
 .solution.active,
 .solution:hover {
-	background-color: var(--clr-4);
+	background-color: var(--color-4);
 }
 
 .solution.active,

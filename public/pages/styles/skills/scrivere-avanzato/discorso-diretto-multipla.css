@@ -12,15 +12,15 @@
 }
 
 .correct .checkbox:has(:checked) {
-	--color-primary-400: var(--clr-good-400);
-	--border-clr-400: var(--clr-good-400);
-	--fc-700: var(--clr-good-400);
-	color: var(--clr-good-400);
+	--color-primary-400: var(--color-good-400);
+	--border-clr-400: var(--color-good-400);
+	--fc-700: var(--color-good-400);
+	color: var(--color-good-400);
 }
 
 .wrong .checkbox:has(:checked) {
-	--color-primary-400: var(--clr-bad-400);
-	--border-clr-400: var(--clr-bad-400);
-	--fc-700: var(--clr-bad-400);
-	color: var(--clr-bad-400);
+	--color-primary-400: var(--color-bad-400);
+	--border-clr-400: var(--color-bad-400);
+	--fc-700: var(--color-bad-400);
+	color: var(--color-bad-400);
 }

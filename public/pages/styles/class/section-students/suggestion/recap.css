@@ -52,7 +52,7 @@
 }
 
 .result:nth-child(3) .result__icon {
-	background-color: var(--clr-4);
+	background-color: var(--color-4);
 }
 
 .result__title {

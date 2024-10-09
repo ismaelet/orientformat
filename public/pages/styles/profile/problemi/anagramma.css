@@ -37,10 +37,10 @@
 }
 
 .test-input--wrong {
-	border: 2px solid var(--clr-bad-400) !important;
-	color: var(--clr-bad-400) !important;
+	border: 2px solid var(--color-bad-400) !important;
+	color: var(--color-bad-400) !important;
 }
 .test-input--correct {
-	border: 2px solid var(--clr-good-400) !important;
-	color: var(--clr-good-400) !important;
+	border: 2px solid var(--color-good-400) !important;
+	color: var(--color-good-400) !important;
 }

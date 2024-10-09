@@ -3,10 +3,10 @@
 	color: var(--color-tertiary-400);
 }
 #area2 > .title {
-	color: var(--clr-4);
+	color: var(--color-4);
 }
 #area3 > .title {
-	color: var(--clr-5);
+	color: var(--color-5);
 }
 
 /* Sections */

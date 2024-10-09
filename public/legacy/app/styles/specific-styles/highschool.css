@@ -10,17 +10,17 @@
 	/* clr-tertiary-200: #849bbd; */
 	/* clr-tertiary-400: #082a5e */
 	/* clr-tertiary-400: hsl(216, 86%, 20%); */
-	--clr-primary-hsl-200: 216, 87%, 75%;
-	--clr-primary-hsl-400: 216, 87%, 35%;
-	--clr-secondary-hsl-200: 343, 48%, 75%;
-	--clr-secondary-hsl-300: 343, 48%, 63%;
-	--clr-secondary-hsl-400: 343, 48%, 53%;
+	--color-primary-hsl-200: 216, 87%, 75%;
+	--color-primary-hsl-400: 216, 87%, 35%;
+	--color-secondary-hsl-200: 343, 48%, 75%;
+	--color-secondary-hsl-300: 343, 48%, 63%;
+	--color-secondary-hsl-400: 343, 48%, 53%;
 
-	--clr-transition-400: hsl(301, 39%, 42%);
+	--color-transition-400: hsl(301, 39%, 42%);
 
 	/* gradients */
-	--gradient-primary-tertiary: var(--clr-primary-400), var(--clr-tertiary-400);
-	--gradient-secondary-tertiary: var(--clr-secondary-400), #753875, var(--clr-tertiary-400);
+	--gradient-primary-tertiary: var(--color-primary-400), var(--color-tertiary-400);
+	--gradient-secondary-tertiary: var(--color-secondary-400), #753875, var(--color-tertiary-400);
 
 	/* sets */
 	--color-1-of-4: #0c4aa8;

@@ -79,7 +79,7 @@
 }
 
 .inp:focus {
-	border: 1px dashed var(--clr-5);
+	border: 1px dashed var(--color-5);
 }
 
 .number {

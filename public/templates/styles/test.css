@@ -63,13 +63,13 @@
 }
 
 #submit.br-c1:hover {
-	border-color: var(--clr-1-h) !important;
+	border-color: var(--color-1-h) !important;
 }
 #submit.br-c2:hover {
-	border-color: var(--clr-2-strong) !important;
+	border-color: var(--color-2-strong) !important;
 }
 #submit.br-c3:hover {
-	border-color: var(--clr-3-h) !important;
+	border-color: var(--color-3-h) !important;
 }
 
 #submit:not(:disabled).completed-wht .btn-txt {
@@ -86,7 +86,7 @@
 }
 
 #submit:hover .bgr.bgr-c2 {
-	background-color: var(--clr-2-strong);
+	background-color: var(--color-2-strong);
 }
 
 #submit .btn-fill.static {

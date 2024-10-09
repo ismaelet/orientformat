@@ -45,7 +45,7 @@
 }
 .bgr-c2 .selection {
 	--color1: #202020;
-	--color2: var(--clr-4);
+	--color2: var(--color-4);
 }
 .bgr-c4 .selection {
 	--color1: #202020;

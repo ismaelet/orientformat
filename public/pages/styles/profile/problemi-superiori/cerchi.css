@@ -24,12 +24,12 @@
 }
 
 .test-group.solution.correct:not(.js-load) {
-	outline-color: var(--clr-good-400);
+	outline-color: var(--color-good-400);
 	transition: outline 0.5s 0.2s;
 }
 
 .test-group.solution.wrong:not(.js-load) {
-	outline-color: var(--clr-bad-400);
+	outline-color: var(--color-bad-400);
 	transition: outline 0.5s 0.2s;
 }
 
@@ -142,9 +142,9 @@
 }
 
 .result__text.correct {
-	color: var(--clr-good-400);
+	color: var(--color-good-400);
 }
 
 .result__text.wrong {
-	color: var(--clr-bad-400);
+	color: var(--color-bad-400);
 }

@@ -30,7 +30,7 @@
 	background-color: var(--color-secondary-400);
 }
 .dashboard-panel:nth-child(3) .icon-box {
-	background-color: var(--clr-4);
+	background-color: var(--color-4);
 }
 .dashboard-panel:nth-child(4) .icon-box {
 	background-color: var(--color-tertiary-400);
@@ -52,7 +52,7 @@
 }
 
 .dashboard-list:last-child .dashboard-list-header {
-	background-color: var(--clr-2-strong);
+	background-color: var(--color-2-strong);
 }
 
 .dashboard-list-body {

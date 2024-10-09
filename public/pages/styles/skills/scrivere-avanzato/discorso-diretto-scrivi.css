@@ -17,11 +17,11 @@
 }
 
 .wrong .test-input {
-	color: var(--clr-bad-400);
-	border-color: var(--clr-bad-400);
+	color: var(--color-bad-400);
+	border-color: var(--color-bad-400);
 }
 
 .correct .test-input {
-	color: var(--clr-good-400);
-	border-color: var(--clr-good-400);
+	color: var(--color-good-400);
+	border-color: var(--color-good-400);
 }

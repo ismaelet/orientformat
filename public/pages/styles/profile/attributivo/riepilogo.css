@@ -50,7 +50,7 @@
 }
 
 .bar.positive {
-	background-color: var(--clr-5);
+	background-color: var(--color-5);
 	bottom: 0;
 }
 .bar.negative {

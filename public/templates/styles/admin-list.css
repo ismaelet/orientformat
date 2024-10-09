@@ -25,7 +25,7 @@
 }
 
 #title .icon-add svg {
-	fill: var(--clr-surface-400);
+	fill: var(--color-surface-400);
 }
 
 /* Search bar */
@@ -36,7 +36,7 @@
 	padding-block: 0.25rem;
 	padding-inline: 1.5rem;
 	margin-top: 2rem;
-	background-color: var(--clr-surface-400);
+	background-color: var(--color-surface-400);
 	border: var(--surface-border);
 	border-radius: var(--surface-border-radius);
 	box-shadow: var(--surface-shadow);
@@ -70,7 +70,7 @@
 .admin-list-wrapper {
 	overflow-x: auto;
 	margin-top: 2rem;
-	background-color: var(--clr-surface-400);
+	background-color: var(--color-surface-400);
 	border-radius: var(--border-radius-400);
 	border: var(--surface-border);
 	box-shadow: var(--surface-shadow);
@@ -87,7 +87,7 @@
 }
 
 .admin-list__head .admin-list__field {
-	background-color: var(--clr-surface-600);
+	background-color: var(--color-surface-600);
 }
 
 .admin-list__head p {
@@ -103,7 +103,7 @@
 }
 
 .admin-list__row:nth-child(2n + 1) .admin-list__field {
-	background-color: var(--clr-surface-500);
+	background-color: var(--color-surface-500);
 }
 
 /* Fields */

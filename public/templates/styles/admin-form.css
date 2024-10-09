@@ -11,7 +11,7 @@
 	grid-template-columns: minmax(0, 1fr);
 	grid-template-rows: max-content 1fr max-content;
 	overflow: hidden;
-	background-color: var(--clr-surface-400);
+	background-color: var(--color-surface-400);
 	border: var(--surface-border);
 	border-radius: var(--surface-border-radius);
 	box-shadow: var(--surface-shadow);
@@ -19,7 +19,7 @@
 
 /* Head */
 #form .head {
-	background-color: var(--clr-surface-500);
+	background-color: var(--color-surface-500);
 }
 
 .admin-form__title {
@@ -38,7 +38,7 @@
 }
 
 [data-theme='dark'] #form .body {
-	background-color: var(--clr-surface-400);
+	background-color: var(--color-surface-400);
 }
 
 /* Footer */
@@ -80,7 +80,7 @@
 	}
 
 	[data-theme='light'] .page-content {
-		background-color: var(--clr-background);
+		background-color: var(--color-background);
 		border-left: 1px solid var(--border-clr-200);
 	}
 

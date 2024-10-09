@@ -32,7 +32,14 @@ class Test196 extends Test {
 		E poi c’era un giocattolaio{{ selector }} l’eroe della nostra storia. Era un ometto piccolo{{ selector }} curvato dagli anni{{ selector }} con le mani fini e inquiete{{ selector }} gli occhi stellanti.";
 
 		$this->arguments['correctAnswers'] = [
-			3, 4, 1, 1, 1, 1, 1, 1
+			3,
+			4,
+			1,
+			1,
+			1,
+			1,
+			1,
+			1
 		];
 	}
 
@@ -157,12 +164,12 @@ class Test196 extends Test {
 				cursor: pointer;
 
 				&.right {
-					color: var(--clr-good-400);
+					color: var(--color-good-400);
 					cursor: default;
 				}
 
 				&.wrong {
-					color: var(--clr-bad-400);
+					color: var(--color-bad-400);
 					cursor: default;
 				}
 			}
