@@ -39,9 +39,8 @@ class RegisterController extends Controller {
 			'scuole.provincia.tn.it',
 			'sdbmezzano.it',
 			'sdbtrento.it',
+			'buonarroti.tn.it',
 		]);
-
-
 
 		// parameters
 		$loginType = $request->type;
