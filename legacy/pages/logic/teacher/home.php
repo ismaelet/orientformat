@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use LegacyModels\Helpers\Notification;
 
 $teacher = Auth::user()->teacher;
+$teacherSchools = $teacher->schools();
+$teacherSchoolIds = $teacherSchools->pluck('id')->toArray();
 
 // setup page
 $functionalities = [
@@ -28,21 +30,27 @@ $functionalities = [
 		'url' => client_url('/teacher/support/open-ticket'),
 		'slug' => 'support'
 	],
-	[
-		'title' => 'Modulistica',
-		'subtitle' => 'Documenti e informative',
-		'desc' => 'Qui puoi scaricare i moduli della <span class="txt-sbold">Certificazione delle competenze</span>, del <span class="txt-sbold">Consiglio orientativo</span> e altri documenti di supporto.',
-		'url' => client_url('/teacher/documents'),
-		'slug' => 'documents'
-	],
+];
+
+if (!in_array(78, $teacherSchoolIds)) {
+	$functionalities[] =
+		[
+			'title' => 'Modulistica',
+			'subtitle' => 'Documenti e informative',
+			'desc' => 'Qui puoi scaricare i moduli della <span class="txt-sbold">Certificazione delle competenze</span>, del <span class="txt-sbold">Consiglio orientativo</span> e altri documenti di supporto.',
+			'url' => client_url('/teacher/documents'),
+			'slug' => 'documents'
+		];
+}
+
+$functionalities[] =
 	[
 		'title' => 'Impostazioni account',
 		'subtitle' => '',
 		'desc' => 'Qui puoi cambiare i dati associati al tuo account e modificare le impostazioni di base.',
 		'url' => client_url('/teacher/settings'),
 		'slug' => 'settings'
-	],
-];
+	];
 
 $feed = Notification::getAll([], 5);
 

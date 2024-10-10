@@ -53,4 +53,10 @@ class Teacher extends Model {
 	public function schoolClassesCount(): int {
 		return $this->school_classes()->count();
 	}
+
+	public function schools(): Collection {
+		return $this->school_classes()->map(function ($schoolClass) {
+			return $schoolClass->school;
+		})->unique();
+	}
 }
