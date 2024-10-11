@@ -12,7 +12,7 @@
 
 		<?php if (schoolClass()->studentCount) { ?>
 
-			<div class="dashboard-list">
+			<div class="dashboard-list" style="--columns: 2;">
 				<div class="dashboard-list__row dashboard-list__row--header">
 					<p class="dashboard-list__field">Studente</p>
 					<div class="dashboard-list__field"></div>

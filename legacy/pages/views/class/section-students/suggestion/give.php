@@ -12,7 +12,7 @@
 
 		<?php if ($students->num_rows) { ?>
 
-			<div class="dashboard-list">
+			<div class="dashboard-list" style="--columns: 3;">
 				<div class="dashboard-list__row dashboard-list__row--header">
 					<p class="dashboard-list__field">Studente\Studentessa</p>
 					<p class="dashboard-list__field">Consigli orientativi</p>

@@ -6,11 +6,11 @@
 
 	<?php if ($studentCount) { ?>
 
-		<div class="dashboard-list">
+		<div class="dashboard-list" style="--columns: 6;">
 			<div class="dashboard-list__row dashboard-list__row--header">
-				<p class="dashboard-list__field">Cognome</p>
-				<p class="dashboard-list__field">Nome</p>
+				<p class="dashboard-list__field">Cognome e nome</p>
 				<p class="dashboard-list__field">Username</p>
+				<p class="dashboard-list__field">E-mail</p>
 				<p class="dashboard-list__field">Registrato il</p>
 				<p class="dashboard-list__field">Attivo</p>
 				<div class="dashboard-list__field"></div>
@@ -19,9 +19,9 @@
 			<?php foreach (schoolClass()->students as $student) { ?>
 
 				<form class="dashboard-list__row" id="row<?= $student->id ?>" method="POST" action="#row<?= $student->id ?>">
-					<p class="dashboard-list__field"><?= $student->lastName ?></p>
-					<p class="dashboard-list__field"><?= $student->firstName ?></p>
+					<p class="dashboard-list__field"><?= $student->lastName ?> <?= $student->firstName ?></p>
 					<p class="dashboard-list__field"><?= $student->username ?></p>
+					<p class="dashboard-list__field"><?= $student->user->email ?></p>
 					<p class="dashboard-list__field"><?= $student->user->time ?></p>
 
 					<div class="dashboard-list__field"><?= snippet_binary_icon($student->status) ?></div>
