@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // Users
-Route::resource('users', UserResource::class)->only(['index']);
+Route::resource('users', UserResource::class)->only(['index', 'destroy']);
 Route::post('users/login', [UserResource::class, 'login'])->name('users.login');
 
 // Students

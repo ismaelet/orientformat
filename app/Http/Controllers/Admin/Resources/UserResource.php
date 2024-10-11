@@ -44,6 +44,7 @@ class UserResource extends ResourceController {
 
 		// Add the buttons
 		$this->buttons = [
+			['type' => 'delete'],
 			[
 				'label' => 'Login',
 				'icon' => 'login',
@@ -62,6 +63,14 @@ class UserResource extends ResourceController {
 		User::findOrFail($userId);
 
 		return parent::edit($userId);
+	}
+
+	public function destroy(int $userId): RedirectResponse {
+		$user = User::findOrFail($userId);
+
+		$user->delete();
+
+		return redirect()->route('admin.users.index');
 	}
 
 	/**
