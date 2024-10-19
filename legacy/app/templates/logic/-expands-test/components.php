@@ -8,7 +8,6 @@ function title(string $title = null, string $description = null) {
 	$description = $description ?: $legacyTest->description;
 
 	ob_start();
-
 ?>
 
 	<section class="test__title-block">
@@ -20,6 +19,10 @@ function title(string $title = null, string $description = null) {
 <?php
 
 	return ob_get_clean();
+}
+
+function test_description(): string {
+	return test()->description;
 }
 
 function submit(bool $progressiveButton = false) {
