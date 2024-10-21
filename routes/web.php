@@ -40,16 +40,6 @@ Route::get('run-migrations', function () {
 	]);
 })->middleware(Admin::class);
 
-Route::get('dump-autoload', function () {
-	$output = shell_exec('composer dump-autoload');
-	dd($output);
-})->middleware(Admin::class);
-
-Route::get('composer-install', function () {
-	$output = shell_exec('composer install');
-	dd($output);
-})->middleware(Admin::class);
-
 /**
  * * Parcially legacy routes
  */
