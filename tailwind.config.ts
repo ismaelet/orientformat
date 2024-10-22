@@ -26,6 +26,7 @@ export default {
 			'neutral-light-900': 'hsl(var(--color-neutral-light-900-hsl) / <alpha-value>)',
 
 			// Neutral dark
+			'neutral-dark-100': 'hsl(var(--color-neutral-dark-100-hsl) / <alpha-value>)',
 			'neutral-dark-900': 'hsl(var(--color-neutral-dark-900-hsl) / <alpha-value>)',
 
 			// Neutral theme
