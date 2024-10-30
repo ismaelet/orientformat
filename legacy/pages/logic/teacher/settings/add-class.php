@@ -82,7 +82,7 @@ array_push(
 	] : [
 		'type' => 'select',
 		'name' => 'schoolId',
-		'query' => '* FROM schools WHERE status = 1 AND id IN (40,67,14,48,78,79) ORDER BY name ASC',
+		'query' => '* FROM schools WHERE status = 1 AND id IN (40, 67, 14, 48, 78, 79, 80) ORDER BY name ASC',
 		'field-name' => 'id',
 		'field-show' => 'name',
 		'value' => $defaultSchoolId
