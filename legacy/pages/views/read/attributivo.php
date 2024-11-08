@@ -14,7 +14,10 @@
 <p class="text">Non è raro il caso di alunni brillanti, di successo, che si sentono tuttavia inadeguati e in preda a un’ansia cronica, preoccupati per il loro livello di capacità. Che cosa c’è alla base di questa elevata vulnerabilità? Secondo Carol S. Dweck<sup>4</sup> essa dipende da una “teoria” per lo più implicita, definita dell’entità o dell’intelligenza fissa, che questi alunni hanno riguardo alle loro capacità intellettive. <br>
 	Non sfuggirà il nesso molto forte con lo stile attributivo che abbiamo definito “abilità”, che attribuisce alla propria capacità o incapacità le ragioni fondamentali del successo o dell’insuccesso. A questa teoria dell’entità (stile attributivo “abilità”) Dweck contrappone la teoria incrementale (o dell’intelligenza flessibile/variabile) molto più funzionale di quella fissa. Naturalmente la teoria incrementale si sovrappone con lo stile attributivo che abbiamo definito “<a href="#g-strategia" class="link">strategia</a>”, in base al quale le ragioni del successo o dell’insuccesso si devono rintracciare nel livello di impegno investito. <br>
 	La <a href="#g-personalita" class="link">personalità</a>, secondo Dweck, si struttura in base all’ interpretazione delle situazioni affrontate. Anche le <a href="#g-emozione" class="link">emozioni</a> dipendono dalle cognizioni, che mediano e costruiscono l’interazione col mondo. Tra questi costrutti fondamentali ci sono appunto le teorie implicite sulla propria intelligenza, adottate dalle persone fin dalla più tenera infanzia, come hanno dimostrato alcune ricerche richiamate dalla psicologa americana. Tra la sfida, che può essere un compito scolastico o qualsiasi situazione di vita, e la risposta che ne consegue, si interpone un complesso sistema di convinzioni che dovrebbero emergere nella sezione sullo stile attributivo.
-	Teoria dell’intelligenza e reazione all’insuccesso
+</p>
+
+<h1 class="section-title">Teoria dell’intelligenza e reazione all’insuccesso</h1>
+<p>
 	Le persone con obiettivi di conferma attraverso la prestazione hanno “una percezione contingente del valore di sé”<sup>5</sup>: il successo le gratifica, ma l’insuccesso le fa sentire indegne, suona come un atto di accusa al Sé. Di fronte all’insuccesso c’è una risposta di impotenza che non corrisponde a una valutazione precisa di sé. Si tende ad esempio a svalutare o dimenticare meriti precedentemente acquisiti e oggettivamente dimostrati e dimostrabili (Figura 1).
 
 	<img src="<?= client_path('img1.png') ?>" alt="" class="block mar-v-2 mwid800">
@@ -25,8 +28,12 @@
 
 <h1 class="section-title">Le conseguenze sull’impegno</h1>
 <p class="text">Per l’entitario l’impegno misura l’intelligenza: un impegno basso, in caso di successo, è prova di elevata <a href="#g-intelligenza" class="link">intelligenza</a>, mentre, in caso di insuccesso, dimostra scarsa intelligenza. In generale, si ritiene l’impegno come indizio di scarsa abilità: chi è veramente bravo si impegna poco e ottiene buoni risultati lo stesso. Così, di fronte a compiti difficili e a sfide complesse, gli entitari si trovano ad un bivio: se si impegnano, dimostrano scarsa abilità; se non si impegnano, hanno scarsa possibilità di riuscire, ma hanno una scusa accettabile per giustificare l’insuccesso. Questo conflitto determina così un comportamento autosabotante, ossia la tendenza a procurarsi degli impedimenti che consentano di “salvare la faccia”, danneggiando però il rendimento e la capacità di adattamento.
-	Teoria dell’intelligenza e autostima
-	Anche sull’<a href="#g-autostima" class="link">autostima</a> le teorie dell’intelligenza hanno un’incidenza rilevante. Nella prospettiva dell’intelligenza fissa, un’autostima positiva è vissuta come qualcosa che si ha o non si ha. Per questo, genitori e insegnanti “entitari” cercano di preservare l’autostima positiva enfatizzando i successi ed evitando sfide minacciose. Invece in una prospettiva incrementale l’autostima è un modo di sperimentare sé stessi, che dipende dal fatto di mettersi alla prova con impegno e con strategie efficaci. Se non si riesce, occorrerà rimuovere le cause dell’insuccesso, se si è realisticamente in grado di farlo.</p>
+</p>
+
+<h1 class="section-title">Teoria dell’intelligenza e autostima</h1>
+<p>
+	Anche sull’<a href="#g-autostima" class="link">autostima</a> le teorie dell’intelligenza hanno un’incidenza rilevante. Nella prospettiva dell’intelligenza fissa, un’autostima positiva è vissuta come qualcosa che si ha o non si ha. Per questo, genitori e insegnanti “entitari” cercano di preservare l’autostima positiva enfatizzando i successi ed evitando sfide minacciose. Invece in una prospettiva incrementale l’autostima è un modo di sperimentare sé stessi, che dipende dal fatto di mettersi alla prova con impegno e con strategie efficaci. Se non si riesce, occorrerà rimuovere le cause dell’insuccesso, se si è realisticamente in grado di farlo.
+</p>
 
 <p class="foot">
 	1 Heider F., 1958, <span class="fy-italic">The psychology of interpersonal relations</span>, New York, Wiley & Sons.<br>
