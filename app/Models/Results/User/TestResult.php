@@ -18,5 +18,12 @@ class TestResult extends Model {
 	 * 
 	 * @var array
 	 */
-	protected $fillable = [];
+	protected $fillable = [
+		'studentId',
+		'testId',
+		'completed',
+		'result',
+		'percentage',
+		'speed',
+	];
 }

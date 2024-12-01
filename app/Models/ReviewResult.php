@@ -16,6 +16,7 @@ class ReviewResult extends Model {
 	protected $fillable = [
 		'studentId',
 		'reviewId',
+		'results',
 	];
 
 	/**

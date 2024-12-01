@@ -11,9 +11,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Teacher extends Model {
 
 	/**
+	 * The primary key associated with the table.
+	 *
+	 * @var string
+	 */
+	protected $primaryKey = 'userId';
+
+	/**
 	 * The attributes that are mass assignable
 	 */
 	protected $fillable = [
+		'classes',
 		'created_at',
 	];
 

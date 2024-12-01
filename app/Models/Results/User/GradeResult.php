@@ -14,5 +14,9 @@ class GradeResult extends Model {
 	/**
 	 * The attributes that are mass assignable
 	 */
-	protected $fillable = ['studentId', 'gradeId', 'progressPercentage'];
+	protected $fillable = [
+		'studentId',
+		'gradeId',
+		'progressPercentage'
+	];
 }

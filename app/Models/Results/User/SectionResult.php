@@ -18,5 +18,12 @@ class SectionResult extends Model {
 	 * 
 	 * @var array
 	 */
-	protected $fillable = [];
+	protected $fillable = [
+		'studentId',
+		'sectionId',
+		'completedTestCount',
+		'lastCompletedStep',
+		'progressPercentage',
+		'completed',
+	];
 }

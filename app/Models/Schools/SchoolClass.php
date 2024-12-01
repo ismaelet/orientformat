@@ -4,7 +4,6 @@ namespace App\Models\Schools;
 
 use App\Models\User\Student;
 use App\Models\User\Teacher;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,10 +14,16 @@ class SchoolClass extends Model {
 	use SoftDeletes;
 
 	/**
-	 * The attributes that are mass assignable
+	 * The attributes that are mass assignable\
 	 */
 	protected $fillable = [
+		'schoolId',
+		'referentId',
 		'grade',
+		'startingGrade',
+		'letter',
+		'code',
+		'startingYear',
 		'year',
 		'ended',
 	];
