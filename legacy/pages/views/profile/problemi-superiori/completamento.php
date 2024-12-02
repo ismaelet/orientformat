@@ -27,27 +27,26 @@ $sets = _SETS;
 						$right = ($legacyTest->rawResults[$key] ?? 0) == $set[1];
 					}
 
-					$val = $legacyTest->completed && isset($legacyTest->rawResults[$key]) ?: null;
+					$value = $test->completed && isset($test->rawResults[$key]) ? $test->rawResults[$key] : null;
 				?>
 
-					<div class="num-row mar-t-2 px-8 py-4 <?php if ($legacyTest->completed) echo $right ? 'right' : 'wrong';
+					<div class="num-row mar-t-2 px-8 py-4 <?php if ($test->completed) echo $right ? 'right' : 'wrong';
 															else echo 'clickable' ?>" onclick="$(this).find('.num-emp').focus();">
-
 						<?php foreach ($numbers as $i => $number) {
 
 							if ($number == 'e') {
 
-								if ($legacyTest->completed) { ?>
+								if ($test->completed) { ?>
 
-									<input type="hidden" class="filler-inp" value="<?= $val ?>" readonly>
+									<input type="hidden" class="filler-inp" value="<?= $value ?>" readonly>
 
-									<h1 class="num num<?= $i + 1 ?> txt-wht inlb va-cen no-mob"><?= $val ?></h1>
+									<h1 class="num num<?= $i + 1 ?> txt-wht inlb va-cen no-mob"><?= $value ?></h1>
 
 								<?php } else { ?>
 
 									<div class="num-emp-box num<?= $i + 1 ?> inlb no-mob">
 
-										<input type="number" class="num-emp inp inp-num filler-inp txt-blk fa-center va-cen" name="field[]" onKeyPress="if(this.value.length==2) return false;" value="<?= $val ?>" required>
+										<input type="number" class="num-emp inp inp-num filler-inp txt-blk fa-center va-cen" name="field[]" onKeyPress="if(this.value.length==2) return false;" value="<?= $value ?>" required>
 
 									</div>
 
