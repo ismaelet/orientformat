@@ -12,7 +12,10 @@ class School extends Model {
 	 * 
 	 * @var array
 	 */
-	protected $fillable = ['name'];
+	protected $fillable = [
+		'name',
+		'has_high_school',
+	];
 
 	/**
 	 * The classes that belong to the school.

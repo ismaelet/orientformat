@@ -27,7 +27,7 @@ $sets = _SETS;
 						$right = ($legacyTest->rawResults[$key] ?? 0) == $set[1];
 					}
 
-					$value = $test->completed && isset($test->rawResults[$key]) ? $test->rawResults[$key] : null;
+					$value = $test->completed && isset($test->rawResults[$key]) ? $test->rawResultsPa[$key] : null;
 				?>
 
 					<div class="num-row mar-t-2 px-8 py-4 <?php if ($test->completed) echo $right ? 'right' : 'wrong';
