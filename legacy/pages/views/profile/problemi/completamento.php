@@ -37,7 +37,7 @@ $sets = _SETS;
 
 								if ($legacyTest->completed) { ?>
 
-									<input type="hidden" class="filler-inp" value="<?= $val ?>" readonly>
+									<input type="hidden" class="filler-inp" value="<?= $val ?>" readonly name="field[]">
 
 									<h1 class="num num<?= $i + 1 ?> txt-wht inlb va-cen no-mob"><?= $val ?></h1>
 

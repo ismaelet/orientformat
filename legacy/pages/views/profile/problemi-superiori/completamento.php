@@ -27,7 +27,7 @@ $sets = _SETS;
 						$right = ($legacyTest->rawResults[$key] ?? 0) == $set[1];
 					}
 
-					$value = $test->completed && isset($test->rawResults[$key]) ? $test->rawResultsPa[$key] : null;
+					$value = $test->completed && isset($test->rawResults[$key]) ? $test->rawResults[$key] : null;
 				?>
 
 					<div class="num-row mar-t-2 px-8 py-4 <?php if ($test->completed) echo $right ? 'right' : 'wrong';
@@ -38,7 +38,7 @@ $sets = _SETS;
 
 								if ($test->completed) { ?>
 
-									<input type="hidden" class="filler-inp" value="<?= $value ?>" readonly>
+									<input type="hidden" class="filler-inp" value="<?= $value ?>" readonly name="field[]">
 
 									<h1 class="num num<?= $i + 1 ?> txt-wht inlb va-cen no-mob"><?= $value ?></h1>
 
