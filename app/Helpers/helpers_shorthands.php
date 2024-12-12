@@ -33,6 +33,13 @@ function is_teacher(): bool {
 }
 
 /**
+ * Check if the user is a teacher
+ */
+function is_teacher_or_administrator(): bool {
+	return Auth::check() && (Auth::user()->isTeacher() || is_administrator());
+}
+
+/**
  * Get the path of a file in the public storage directory
  */
 function public_asset(string $path): string {

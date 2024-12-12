@@ -9,7 +9,7 @@ $legacyArea = $legacySection->area;
 $section = Section::find($legacySection->id);
 $area = Area::find($legacyArea->id);
 
-if (is_teacher()) {
+if (is_teacher_or_administrator()) {
 	$backUrl = client_url('/teacher/simulation');
 } else {
 	$gradeNumber = $_SESSION['activities-year'] ?? student()->schoolClass->relativeGrade;

@@ -44,7 +44,7 @@ class Grade {
 
 	function __construct(int $gradeNumber, object $schoolClass = null) {
 		$this->id = $gradeNumber;
-		$this->schoolClass = $schoolClass ?: (is_teacher() ? 0 : new SchoolClass(Auth::user()->student->school_class->id));
+		$this->schoolClass = $schoolClass ?: (is_teacher_or_administrator() ? 0 : new SchoolClass(Auth::user()->student->school_class->id));
 	}
 
 	/*

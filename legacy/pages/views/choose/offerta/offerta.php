@@ -1,4 +1,4 @@
-{% block content %}is_teacher()
+{% block content %}
 
 <div class="main-wrap pad-t-4 pad-b-7">
 
@@ -6,7 +6,7 @@
 		<?= title() ?>
 
 		<div class="center-content">
-			<a href="<?= is_teacher() ? client_url('/teacher/simulation') : route('activities.grades.show', 3) ?>" class="button button--secondary">Indietro</a>
+			<a href="<?= is_teacher_or_administrator() ? client_url('/teacher/simulation') : route('activities.grades.show', 3) ?>" class="button button--secondary">Indietro</a>
 		</div>
 	</div>
 

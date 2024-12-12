@@ -6,7 +6,7 @@ use \Legacy\Activity\Area;
 
 \App\Legacy\LegacyRoute::add('/teacher', function () {
 	\App\Legacy\LegacyView::setPage('teacher/home')
-		->addMiddlewares(['teacher'])
+		->addMiddlewares(['teacherOrAdministrator'])
 		->setTitle('Gestione della classe')
 		->show();
 });
@@ -21,28 +21,28 @@ use \Legacy\Activity\Area;
 
 \App\Legacy\LegacyRoute::add('/teacher/simulation', function () {
 	\App\Legacy\LegacyView::setPage('teacher/simulation')
-		->addMiddlewares(['teacher'])
+		->addMiddlewares(['teacherOrAdministrator'])
 		->setTitle('Simulazione studente')
 		->show();
 });
 
 \App\Legacy\LegacyRoute::add('/teacher/know-more', function () {
 	\App\Legacy\LegacyView::setPage('teacher/know-more')
-		->addMiddlewares(['teacher'])
+		->addMiddlewares(['teacherOrAdministrator'])
 		->setTitle('Saperne di più')
 		->show();
 });
 
 \App\Legacy\LegacyRoute::add('/teacher/documents', function () {
 	\App\Legacy\LegacyView::setPage('teacher/documents')
-		->addMiddlewares(['teacher'])
+		->addMiddlewares(['teacherOrAdministrator'])
 		->setTitle('Modulistica')
 		->show();
 });
 
 \App\Legacy\LegacyRoute::add('/teacher/settings', function () {
 	\App\Legacy\LegacyView::setPage('teacher/settings')
-		->addMiddlewares(['teacher'])
+		->addMiddlewares(['teacherOrAdministrator'])
 		->setTemplate('form')
 		->setTitle('Impostazioni')
 		->show();
@@ -57,14 +57,14 @@ use \Legacy\Activity\Area;
 
 \App\Legacy\LegacyRoute::add('/teacher/support', function () {
 	\App\Legacy\LegacyView::setPage('teacher/support/ticket-list')
-		->addMiddlewares(['teacher'])
+		->addMiddlewares(['teacherOrAdministrator'])
 		->setTitle('Supporto')
 		->show();
 });
 
 \App\Legacy\LegacyRoute::add('/teacher/paths', function () {
 	\App\Legacy\LegacyView::setPage('teacher/paths')
-		->addMiddlewares(['teacher'])
+		->addMiddlewares(['teacherOrAdministrator'])
 		->setTitle('Percorsi')
 		->show();
 });

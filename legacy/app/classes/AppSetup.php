@@ -58,6 +58,12 @@ class AppSetup {
 			}
 		});
 
+		$middlewares->add('administrator', function () {
+			if (!is_administrator()) {
+				redirect_old('/');
+			}
+		});
+
 		$middlewares->add('teacherOrAdministrator', function () {
 			if (!is_teacher() && !is_administrator()) {
 				redirect_old('/');

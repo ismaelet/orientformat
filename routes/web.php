@@ -11,6 +11,7 @@ use App\Http\Middleware\Admin;
 use App\Http\Middleware\Administrator;
 use App\Http\Middleware\Student;
 use App\Http\Middleware\Teacher;
+use App\Http\Middleware\TeacherOrAdministrator;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -46,7 +47,7 @@ Route::get('run-migrations', function () {
 // ~ Home pages
 Route::any('student', [StudentHomeController::class, 'index'])->middleware(Student::class)->name('student');
 
-Route::any('teacher-dashboard', [TeacherDashboardController::class, 'index'])->middleware(Teacher::class)->name('teacher.dashboard');
+Route::any('teacher-dashboard', [TeacherDashboardController::class, 'index'])->middleware(TeacherOrAdministrator::class)->name('teacher.dashboard');
 
 Route::any('administrator-dashboard', [AdministratorDashboardController::class, 'index'])->middleware(Administrator::class)->name('administrator.dashboard');
 

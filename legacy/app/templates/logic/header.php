@@ -84,16 +84,7 @@ $raw_links = [
 		'loc' => 'login',
 		'url' => client_url('/logout'),
 		'logged' => true,
-		'mobile' => true,
 	],
-	[
-		'title' => 'Logout',
-		'loc' => 'login',
-		'url' => client_url('/logout'),
-		'logged' => true,
-		'teacher' => true,
-		'mobile' => false,
-	]
 ];
 
 foreach ($raw_links as $link) {
@@ -111,7 +102,7 @@ foreach ($raw_links as $link) {
 	if (isset($link['student']) && $userGroupId != 0) $valid = false;
 
 	// check teacher filter
-	if (isset($link['teacher']) && ($userGroupId != 1 || is_administrator())) $valid = false;
+	if (isset($link['teacher']) && ($userGroupId != 1 || !is_administrator())) $valid = false;
 
 	// check manager filter
 	if (isset($link['manager']) && !manager()) $valid = false;

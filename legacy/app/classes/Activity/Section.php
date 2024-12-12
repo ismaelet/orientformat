@@ -172,7 +172,7 @@ class Section {
 		\App\Legacy\LegacyDB::delete(CondensedSectionResult::table() . ' WHERE ' . CondensedSectionResult::linkedIndexName(User::class) . ' = ? AND ' . CondensedSectionResult::linkedIndexName(SectionModel::class) . ' = ?', [\Illuminate\Support\Facades\Auth::id(), $this->id]);
 
 		// update grade progress
-		if (!is_teacher()) {
+		if (!is_teacher_or_administrator()) {
 			Auth::user()->student->grade()->updateProgress();
 		}
 

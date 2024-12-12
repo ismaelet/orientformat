@@ -23,6 +23,6 @@ class School extends Model {
 	 * @return HasMany
 	 */
 	public function school_classes(): HasMany {
-		return $this->hasMany(SchoolClass::class, 'schoolId');
+		return $this->hasMany(SchoolClass::class, 'schoolId')->orderByDesc('year')->orderByDesc('grade')->orderBy('letter');
 	}
 }

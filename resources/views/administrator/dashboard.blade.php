@@ -53,7 +53,7 @@
 			@if ($school->school_classes->isEmpty())
 				<p class="empty-results col-[1/-1] p-8 text-center">Nessuna classe registrata</p>
 			@else
-				@foreach ($school->school_classes->sortByDesc('grade')->sortBy('letter') as $schoolClass)
+				@foreach ($school->school_classes as $schoolClass)
 					@php
 						$teachers = [];
 

@@ -26,7 +26,7 @@ function watchedStudentId() {
 }
 
 function watchedStudent() {
-	if (isSupervisor() && (!is_teacher() || !in_array(watchedStudentId(), teacher()->studentIds))) {
+	if (isSupervisor() && (!is_teacher_or_administrator() || !in_array(watchedStudentId(), teacher()->studentIds))) {
 		return student();
 	} else {
 		return new Student(watchedStudentId());
@@ -74,7 +74,7 @@ function get_grade_style() {
 		return watchedStudent()->isInMiddleSchool ? 'middleschool' : 'highschool';
 	}
 
-	if (is_teacher()) {
+	if (is_teacher_or_administrator()) {
 		return 'highschool';
 	}
 

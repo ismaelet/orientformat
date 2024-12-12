@@ -10,68 +10,74 @@ use \Legacy\UserSystem\Teacher;
 <div class="page-content full-wrap_left">
 	<div class="main-content pos-rel">
 		<!-- Title -->
-		<h1 class="txt-sbold">Funzionalità<br>per l'insegnante</h1>
+		<h1 class="txt-sbold">Funzionalità<br>per <?= is_administrator() ? 'l\'amministratore' : 'l\'insegnante' ?></h1>
 
 		<!-- Classes -->
-		<section class="elements mar-t-3">
-			<h2 class="section-title">Le mie classi</h2>
+		<?php if (is_administrator()) {
+			include_once(__DIR__ . '/../administrator/class-list.php');
+		} ?>
 
-			<?php while ($collaboration = $collaborations->fetch_assoc()) {
-				$collaborationGrade = new SchoolClass($collaboration['gradeId']);
-				$collaborationTeacher = new Teacher($collaboration['teacherId']);
-			?>
+		<?php if (is_teacher()) { ?>
+			<section class="elements mar-t-3">
+				<h2 class="section-title">Le mie classi</h2>
 
-				<form class="dashboard-warning" method="POST">
-					<p><strong><?= $collaborationTeacher->fullName ?></strong> ha chiesto di poter collaborare alla gestione della classe <strong><?= $collaborationGrade->name . ' - ' . $collaborationGrade->yearRange ?></strong></p>
+				<?php while ($collaboration = $collaborations->fetch_assoc()) {
+					$collaborationGrade = new SchoolClass($collaboration['gradeId']);
+					$collaborationTeacher = new Teacher($collaboration['teacherId']);
+				?>
 
-					<button name="accept-collaboration" value="<?= $collaboration['id'] ?>" class="button">Accetta</button>
-					<button name="decline-collaboration" value="<?= $collaboration['id'] ?>" class="button button--secondary">Rifiuta</button>
-				</form>
+					<form class="dashboard-warning" method="POST">
+						<p><strong><?= $collaborationTeacher->fullName ?></strong> ha chiesto di poter collaborare alla gestione della classe <strong><?= $collaborationGrade->name . ' - ' . $collaborationGrade->yearRange ?></strong></p>
 
-			<?php } ?>
+						<button name="accept-collaboration" value="<?= $collaboration['id'] ?>" class="button">Accetta</button>
+						<button name="decline-collaboration" value="<?= $collaboration['id'] ?>" class="button button--secondary">Rifiuta</button>
+					</form>
 
-			<div class="js-school-class-list" data-show-all="false">
+				<?php } ?>
 
-				<label class="checkbox mt-2 clickable">
-					<input type="checkbox" class="" onchange="document.querySelector('.js-school-class-list').dataset.showAll = this.checked ? 'true' : 'false'">
-					<span></span>
-					<p>Mostra le classi che hanno terminato il percorso</p>
-				</label>
+				<div class="js-school-class-list" data-show-all="false">
 
-				<div class="element-list element-list_classes mar-t-2">
+					<label class="checkbox mt-2 clickable">
+						<input type="checkbox" class="" onchange="document.querySelector('.js-school-class-list').dataset.showAll = this.checked ? 'true' : 'false'">
+						<span></span>
+						<p>Mostra le classi che hanno terminato il percorso</p>
+					</label>
 
-					<?php foreach ($teacher->school_classes() as $key => $schoolClass) {
-					?>
+					<div class="element-list element-list_classes mar-t-2">
 
-						<div class="load--fade-in js-load grid-flow school-class" data-direction="bottom" data-delay="<?= $key % 3 ?>" data-ended="<?= $schoolClass->ended ? 'true' : 'false' ?>">
-							<a class="element element_class" href="<?= $schoolClass->url() ?>">
-								<div>
-									<h3 class="class-name font-bold"><?= $schoolClass->name ?></h3>
-									<h3 class="fa-center txt-sbold">(<?= $schoolClass->yearRangeString() ?>)</h3>
+						<?php foreach ($teacher->school_classes() as $key => $schoolClass) {
+						?>
+
+							<div class="load--fade-in js-load grid-flow school-class" data-direction="bottom" data-delay="<?= $key % 3 ?>" data-ended="<?= $schoolClass->ended ? 'true' : 'false' ?>">
+								<a class="element element_class" href="<?= $schoolClass->url() ?>">
+									<div>
+										<h3 class="class-name font-bold"><?= $schoolClass->name ?></h3>
+										<h3 class="fa-center txt-sbold">(<?= $schoolClass->yearRangeString() ?>)</h3>
+									</div>
+
+									<div>
+										<p class="element-subtitle txt-sbold"><?= $schoolClass->school->name ?></p>
+									</div>
+								</a>
+							</div>
+
+						<?php } ?>
+
+						<div class="load--fade-in js-load" data-direction="bottom" data-delay="<?= $teacher->schoolClassesCount() % 4 ?>">
+							<a class="element element_functionality" href="<?= client_url('/teacher/add-class') ?>">
+								<div class="element-icon icon-box">
+									<?= embed_icon('add') ?>
 								</div>
 
 								<div>
-									<p class="element-subtitle txt-sbold"><?= $schoolClass->school->name ?></p>
+									<p class="element-subtitle txt-sbold">Aggiungi una classe</p>
 								</div>
 							</a>
 						</div>
-
-					<?php } ?>
-
-					<div class="load--fade-in js-load" data-direction="bottom" data-delay="<?= $teacher->schoolClassesCount() % 4 ?>">
-						<a class="element element_functionality" href="<?= client_url('/teacher/add-class') ?>">
-							<div class="element-icon icon-box">
-								<?= embed_icon('add') ?>
-							</div>
-
-							<div>
-								<p class="element-subtitle txt-sbold">Aggiungi una classe</p>
-							</div>
-						</a>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
+		<?php } ?>
 
 		<!-- Functionalities -->
 		<section class="elements mar-t-3">
