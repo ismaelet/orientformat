@@ -19,6 +19,7 @@ class RegisterController extends Controller {
 		define('AVAILABLE_EMAIL_DOMAINS', [
 			'arcivescoviletrento.it',
 			'artigianelli.tn.it',
+			'buonarroti.tn.it',
 			'centromoda.tn.it',
 			'cfp-upt.it',
 			'cfpgveronesi.it',
@@ -29,6 +30,7 @@ class RegisterController extends Controller {
 			'iprase.tn.it',
 			'istitutodecarneri.it',
 			'istitutosacrocuore.it',
+			'liceodellearti.tn.it',
 			'mileschool.it',
 			'operaarmidabarelli.org',
 			'pavoniani.tn.it',
@@ -39,7 +41,6 @@ class RegisterController extends Controller {
 			'scuole.provincia.tn.it',
 			'sdbmezzano.it',
 			'sdbtrento.it',
-			'buonarroti.tn.it',
 		]);
 
 		// parameters
