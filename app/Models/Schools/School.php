@@ -2,8 +2,10 @@
 
 namespace App\Models\Schools;
 
+use App\Models\User\Student;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class School extends Model {
 
@@ -24,5 +26,14 @@ class School extends Model {
 	 */
 	public function school_classes(): HasMany {
 		return $this->hasMany(SchoolClass::class, 'schoolId')->orderByDesc('year')->orderByDesc('grade')->orderBy('letter');
+	}
+
+	/**
+	 * The students that belong to the school.
+	 * 
+	 * @return HasManyThrough 
+	 */
+	public function students(): HasManyThrough {
+		return $this->hasManyThrough(Student::class, SchoolClass::class, 'schoolId', 'schoolClassId');
 	}
 }
