@@ -73,7 +73,11 @@ use \Legacy\SchoolSystem\Grade;
 
 															<div>
 																<h3 class="element-title"><?= $legacySection->name ?></h3>
-																<p class="element-subtitle"><?= $legacySection->description ?></p>
+																<p class="element-subtitle mt-2"><?= $legacySection->description ?></p>
+
+																<?php if ($legacySection->estimated_duration) { ?>
+																	<p class="element-subtitle mt-1">Tempo stimato: <span class="font-bold"><?= $legacySection->estimated_duration ?></span> <?= $legacySection->estimated_duration == 1 ? 'ora' : 'ore' ?></p>
+																<?php } ?>
 															</div>
 														</a>
 													</div>
