@@ -107,7 +107,7 @@ function skip() {
 	if (!$legacyTest->completed && !isSupervisor()) { ?>
 
 		<button type="submit" name="skip" class="skip interactive" formnovalidate>
-			<?= $legacyTest->everCompleted ? 'Continua in un\'altro momento' : 'Salta questa attività e riprendila più tardi' ?>
+			<?= $legacyTest->everCompleted ? 'Continua in un altro momento' : 'Salta questa attività e riprendila più tardi' ?>
 		</button>
 
 	<?php }
