@@ -5,7 +5,7 @@
 			"label": "Artisan: Migrate",
 			"type": "shell",
 			"command": "docker",
-			"args": ["exec", "orientformat-laravel", "php", "artisan", "migrate"],
+			"args": ["exec", "orientformat-app-1", "php", "artisan", "migrate"],
 			"group": "build",
 			"problemMatcher": []
 		},
@@ -13,7 +13,7 @@
 			"label": "Artisan: Rollback",
 			"type": "shell",
 			"command": "docker",
-			"args": ["exec", "orientformat-laravel", "php", "artisan", "migrate:rollback"],
+			"args": ["exec", "orientformat-app-1", "php", "artisan", "migrate:rollback"],
 			"group": "build",
 			"problemMatcher": []
 		},
@@ -21,7 +21,7 @@
 			"label": "Artisan: Run Tests",
 			"type": "shell",
 			"command": "docker",
-			"args": ["exec", "orientformat-laravel", "php", "artisan", "test"],
+			"args": ["exec", "orientformat-app-1", "php", "artisan", "test"],
 			"group": {
 				"kind": "test",
 				"isDefault": false
@@ -34,7 +34,7 @@
 			"label": "Artisan: Get Route List",
 			"type": "shell",
 			"command": "php",
-			"args": ["artisan", "route:list"],
+			"args": ["app/artisan", "route:list"],
 			"group": {
 				"kind": "test",
 				"isDefault": false
@@ -47,7 +47,7 @@
 			"label": "Artisan: Make Controller",
 			"type": "shell",
 			"command": "php",
-			"args": ["artisan", "make:controller", "${input:name}Controller"],
+			"args": ["app/artisan", "make:controller", "${input:name}Controller"],
 			"group": {
 				"kind": "build",
 				"isDefault": true
@@ -60,7 +60,7 @@
 			"label": "Artisan: Make Migration",
 			"type": "shell",
 			"command": "php",
-			"args": ["artisan", "make:migration", "${input:name}"],
+			"args": ["app/artisan", "make:migration", "${input:name}"],
 			"group": {
 				"kind": "build",
 				"isDefault": false
@@ -73,7 +73,7 @@
 			"label": "Artisan: Make Model",
 			"type": "shell",
 			"command": "php",
-			"args": ["artisan", "make:model", "${input:name}"],
+			"args": ["app/artisan", "make:model", "${input:name}"],
 			"group": {
 				"kind": "build",
 				"isDefault": false
@@ -86,7 +86,7 @@
 			"label": "Artisan: Make Test",
 			"type": "shell",
 			"command": "php",
-			"args": ["artisan", "make:test", "${input:name}Test"],
+			"args": ["app/artisan", "make:test", "${input:name}Test"],
 			"group": {
 				"kind": "build",
 				"isDefault": false
@@ -99,7 +99,7 @@
 			"label": "Artisan: Make View",
 			"type": "shell",
 			"command": "php",
-			"args": ["artisan", "make:view", "${input:name}"],
+			"args": ["app/artisan", "make:view", "${input:name}"],
 			"group": {
 				"kind": "build",
 				"isDefault": false

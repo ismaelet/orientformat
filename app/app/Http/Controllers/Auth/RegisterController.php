@@ -41,6 +41,7 @@ class RegisterController extends Controller {
 			'scuole.provincia.tn.it',
 			'sdbmezzano.it',
 			'sdbtrento.it',
+			'icfondorevo.it',
 		]);
 
 		// parameters

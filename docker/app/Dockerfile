@@ -1,5 +1,5 @@
 # Use the official PHP image with Apache
-FROM php:7.3-apache
+FROM php:8.4-apache
 
 # Set working directory
 WORKDIR /app
@@ -19,7 +19,7 @@ RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install Node.js
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - 
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - 
 RUN apt-get install -y nodejs
 
 # Install dependencies
