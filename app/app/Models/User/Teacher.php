@@ -50,6 +50,7 @@ class Teacher extends Model {
 	 */
 	public function school_classes(): Collection {
 		return SchoolClass::whereIn('id', $this->school_class_ids)
+			->with('school')
 			->orderBy('year', 'desc')
 			->orderBy('grade', 'desc')
 			->get();
@@ -63,8 +64,10 @@ class Teacher extends Model {
 	}
 
 	public function schools(): Collection {
-		return $this->school_classes()->map(function ($schoolClass) {
-			return $schoolClass->school;
-		})->unique();
+		return $this->school_classes()
+			->load('school')
+			->map(function ($schoolClass) {
+				return $schoolClass->school;
+			})->unique();
 	}
 }

@@ -6,21 +6,13 @@
 
 	$title = $title ? $title . ' | ' . $appName : $appName . ' | ' . config('custom.meta_data.short_description');
 
-	if (!$colorScheme) {
-	    $colorScheme =
-	        env('APP_DYNAMIC_COLOR_SCHEME') == 'true' &&
-	        isset($_COOKIE['color-scheme']) &&
-	        in_array($_COOKIE['color-scheme'], ['light', 'dark'])
-	            ? $_COOKIE['color-scheme']
-	            : config('custom.meta_data.default_color_scheme');
-	}
+	$colorScheme = $colorScheme ?: get_color_scheme();
 @endphp
 
 <!DOCTYPE html>
 <html
+	class="{{ $colorScheme }}"
 	lang="{{ str_replace('_', '-', app()->getLocale()) }}"
-	data-color-scheme="{{ $colorScheme }}"
-	data-theme="modern"
 >
 
 <head>
@@ -33,6 +25,10 @@
 		name="description"
 		content="{{ $description ?? $appDescription }}"
 	>
+	<meta
+		property="og:image"
+		content="{{ Vite::image('thumbnail.jpg') }}"
+	>
 	<link
 		rel="icon"
 		href="{{ asset('favicon.ico') }}"
@@ -42,15 +38,8 @@
 	</title>
 
 	<livewire:styles />
-	<link
-		rel="stylesheet"
-		href="{{ asset('main.css') }}"
-	>
-	<script
-		src="{{ asset('app.js') }}"
-		defer
-	></script>
 
+	@vite(['resources/css/app.css', 'resources/js/app.ts'])
 	@stack('styles')
 	@stack('scripts')
 

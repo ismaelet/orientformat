@@ -2,6 +2,7 @@
 
 use App\Helpers\ArrayHelper;
 use App\Helpers\FileHelper;
+use App\Helpers\SettingsHelper;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -72,4 +73,13 @@ function embed_icon(string $fileName, array $customClasses = []): ?string {
  */
 function explode_last($separator, $string): array {
 	return ArrayHelper::explodeLast($separator, $string);
+}
+
+/**
+ * Get the app color scheme
+ * 
+ * @return string
+ */
+function get_color_scheme(): string {
+	return SettingsHelper::getColorScheme();
 }

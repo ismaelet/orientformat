@@ -10,7 +10,6 @@ use App\Http\Controllers\TeacherDashboardController;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\Administrator;
 use App\Http\Middleware\Student;
-use App\Http\Middleware\Teacher;
 use App\Http\Middleware\TeacherOrAdministrator;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -31,15 +30,6 @@ use Illuminate\Support\Facades\Route;
  */
 // ~ Home
 Route::get('', [HomeController::class, 'index'])->middleware('auth')->name('home');
-
-/**
- * * Workarounds
- */
-Route::get('run-migrations', function () {
-	Artisan::call('migrate', [
-		'--force' => true
-	]);
-})->middleware(Admin::class);
 
 /**
  * * Parcially legacy routes

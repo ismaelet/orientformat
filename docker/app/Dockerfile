@@ -24,7 +24,4 @@ RUN apt-get install -y nodejs
 
 # Install dependencies
 RUN composer update
-# RUN npm install && npm run build && rm -r node_modules
-
-# Enable .htaccess rewrite
-RUN a2enmod rewrite
+RUN rm -r node_modules && npm install && npm run build 
