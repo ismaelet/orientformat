@@ -1,5 +1,7 @@
 <?php
 
+namespace Legacy;
+
 use App\Models\Schools\SchoolClass;
 use \Legacy\UserSystem\Teacher;
 

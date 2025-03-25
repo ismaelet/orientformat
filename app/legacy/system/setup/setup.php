@@ -3,6 +3,9 @@
 /**
  * Import Composer dependencies
  */
+
+use Legacy\AppSetup;
+
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 (Dotenv\Dotenv::createImmutable(__DIR__ . '/../../../'))->load();
@@ -38,9 +41,7 @@ spl_autoload_register(function ($name) {
 // Run the setup
 \Legacy\System\Classes\Setup::run();
 
-if (class_exists('AppSetup')) {
-	AppSetup::run();
-}
+AppSetup::run();
 
 // Render the page
 \App\Legacy\LegacyRoute::run();
