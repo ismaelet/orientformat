@@ -107,6 +107,13 @@
 			"presentation": {
 				"reveal": "always"
 			}
+		},
+		{
+			"label": "Docker Build Production",
+			"type": "shell",
+			"command": "docker",
+			"args": ["compose", "-f", "production-compose.yml", "up", "-d", "--build"],
+			"problemMatcher": []
 		}
 	],
 	"inputs": [

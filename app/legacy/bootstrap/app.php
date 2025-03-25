@@ -7,8 +7,6 @@
 
 use App\Support\Database\MigrationHandler;
 
-(Dotenv\Dotenv::createImmutable(__DIR__ . '/../../'))->load();
-
 /**
  * Set the root of the project
  */
