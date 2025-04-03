@@ -960,15 +960,10 @@
 							} ?>
 
 							<!-- Language -->
-							<?php if ($h_comp['lang-bar']) { ?>
-
 							<p
 								id="h-lang"
 								class="txt-wht"
 							><a href="?lang=it">IT</a> <span style="padding: 0 1rem">|</span> <a href="?lang=en">EN</a></p>
-
-							<?php } ?>
-
 						</div>
 					</div>
 				</div>

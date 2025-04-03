@@ -209,34 +209,6 @@ $headerComponent['search-simple'] = '
 ';
 
 /*
-* Languages
-*/
-/*$headerComponent['languages'] = '
-
-	<div class="h-languages load ld-bot ld-del2">
-
-			<div class="h-language-icon h-language-icon_active bgr-fill" <?= icon_css('languages/' . $_SESSION['language']) ?>></div>
-
-			<div class="h-languages-ddown">
-
-				<?php foreach ($header['languages'] as $h_lang) { ?>
-
-					<a href="?lang=<?= $h_lang[1] ?>" class="h-language <?= $_SESSION['language'] == $h_lang[1] ? 'active' : '' ?>">
-
-						<div class="h-language-icon bgr-fill" <?= icon_css('languages/' . $h_lang[1]) ?>></div>
-
-						<p class="h-language-name"><?= $h_lang[0] ?></p>
-
-					</a>
-
-				<?php } ?>
-
-			</div>
-
-	</div>
-';*/
-
-/*
 * Theme switch
 */
 /*$headerComponent['theme-switch'] = '

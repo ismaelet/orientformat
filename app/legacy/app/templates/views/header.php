@@ -8,7 +8,11 @@
 			<!-- Left bar -->
 			<section id="h-nav-lef" class="h-nav-bar">
 
-				<?php if ($h_comp['logo']) { ?>
+				<?php
+
+				use Illuminate\Support\Facades\App;
+
+				if ($h_comp['logo']) { ?>
 
 					<!-- Logo -->
 					<a href="<?= config('custom.contacts.web.url') ?>" id="h-logo">
@@ -76,6 +80,26 @@
 					</div>
 
 				<?php } ?>
+
+				<!-- Language bar -->
+				<div class="h-languages">
+					<div class="w-8"><?= embed_icon(App::currentLocale()) ?></div>
+
+					<div class="">
+
+						<?php foreach (['it' => 'Italiano', 'en' => 'English', 'de' => 'Deutsch'] as $locale => $language) { ?>
+
+							<a href="<?= route('locale.switch', $locale) ?>" class="h-language <?= App::currentLocale() == $locale ? 'active' : '' ?>">
+
+								<div class="w-8"><?= embed_icon($locale) ?></div>
+
+								<p class=""><?= $language ?></p>
+
+							</a>
+
+						<?php } ?>
+					</div>
+				</div>
 
 				<!-- Login bar -->
 				<?php if ($h_comp['login']) { ?>
@@ -193,11 +217,7 @@
 							} ?>
 
 							<!-- Language -->
-							<?php if ($h_comp['lang-bar']) { ?>
-
-								<p id="h-lang" class="txt-wht"><a href="?lang=it">IT</a> <span style="padding: 0 1rem">|</span> <a href="?lang=en">EN</a></p>
-
-							<?php } ?>
+							<p id="h-lang" class="txt-wht"><a href="?lang=it">IT</a> <span style="padding: 0 1rem">|</span> <a href="?lang=en">EN</a></p>
 
 						</div>
 					</div>

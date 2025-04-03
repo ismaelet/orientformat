@@ -26,6 +26,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 /**
+ * * Localization
+ */
+Route::get('locale/{locale}', [\App\Http\Controllers\LocaleController::class, 'switchLocale'])->name('locale.switch');
+
+/**
  * * App routes
  */
 // ~ Home
