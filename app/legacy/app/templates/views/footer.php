@@ -86,15 +86,12 @@
 					</p>
 
 					<p class="mt-2">
-						Insegnante, formatore e docente presso le Università di Trento e di Bolzano. Ha collaborato frequentemente con
-						l’Iprase e con il Centro Studi Edizioni Erickson. Ha numerose pubblicazioni con gli editori Giunti, La Nuova
-						Italia, Edizioni Erickson e diverse riviste di didattica e pedagogia.
+						<?= __('footer.creator') ?>
 					</p>
 				</div>
 
 				<div class="footer-credit">
-					<p class="flex-line gap-2">
-						Sito web realizzato da: <a class="text-link" href="mailto:ismaele.tuffanelli@gmail.com">Ismaele Tuffanelli</a>
+					<p class="flex-line gap-2"><?= __('footer.developer') ?>: <a class="text-link" href="mailto:ismaele.tuffanelli@gmail.com">Ismaele Tuffanelli</a>
 					</p>
 				</div>
 			</div>

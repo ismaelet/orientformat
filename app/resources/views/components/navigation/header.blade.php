@@ -39,7 +39,7 @@
 	        'mobile' => true,
 	    ],
 	    [
-	        'title' => 'Attività',
+	        'title' => 'Activities',
 	        'loc' => 'activities',
 	        'url' => route('activities.grades.index'),
 	        'logged' => true,
@@ -66,7 +66,7 @@
 	        'administrator' => true,
 	    ],
 	    [
-	        'title' => 'Supporto',
+	        'title' => 'Support',
 	        'loc' => 'help',
 	        'url' => client_url('/help'),
 	    ],

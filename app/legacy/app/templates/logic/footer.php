@@ -7,20 +7,20 @@ $f_comp['contacts'] = true;
 // links
 $f_columns = [
 	[
-		'title' => 'Esplora',
+		'title' => __('Explore'),
 		'links' => [
 			['Home', client_url('/')],
 			['Supporto', client_url('/help')],
 		]
 	],
 	[
-		'title' => 'Legali',
+		'title' => __('Legal Information'),
 		'links' => [
 			['C.F. 96023310228'],
 		]
 	],
 	[
-		'title' => 'Link utili',
+		'title' => __('Useful Links'),
 		'links' => [
 			['Indire', 'http://www.indire.it'],
 			['Invalsi', 'http://www.invalsi.it'],

@@ -54,7 +54,7 @@
 								<div class="h-link relative">
 									<p class="h-link-txt <?php if (\App\Legacy\LegacyView::getInstance()->location == $h_link['loc']) echo 'active'; ?>">
 										<a href="<?= $h_link['url']; ?>">
-											<?= $h_link['title'];
+											<?= __($h_link['title']);
 											if (isset($h_link['drop'])) echo ' <span class="h-drop-ico">&#x25BC;</span>' ?>
 										</a>
 									</p>
@@ -87,7 +87,7 @@
 
 					<div class="">
 
-						<?php foreach (['it' => 'Italiano', 'en' => 'English', 'de' => 'Deutsch'] as $locale => $language) { ?>
+						<?php foreach (config('app.locales') as $locale => $language) { ?>
 
 							<a href="<?= route('locale.switch', $locale) ?>" class="h-language <?= App::currentLocale() == $locale ? 'active' : '' ?>">
 

@@ -1,5 +1,15 @@
 {
-	"Back": "Indietro",
-	"The email has already been taken.": "L'indirizzo email è già stato utilizzato.",
-	"The email field must be a valid email address.": "Il campo email deve essere un indirizzo email valido."
+	"Activities": "Attività",
+	"Author": "Autore",
+	"Explore": "Esplora",
+	"Legal Information": "Informazioni legali",
+	"Start": "Inizia",
+	"Support": "Supporto",
+	"Useful Links": "Link utili",
+
+	"first": "primo",
+	"second": "secondo",
+	"third": "terzo",
+	"fourth": "quarto",
+	"fifth": "quinto"
 }
