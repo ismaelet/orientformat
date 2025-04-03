@@ -11,7 +11,7 @@ class Setup {
 	 */
 	static private function initializeConstants() {
 		define('SERVER_ROOT', explode('/system', str_replace("\\", "/", __DIR__))[0]);
-		define('CLIENT_ROOT', '/orientamento');
+		define('CLIENT_ROOT', '/' . env('APP_SUBDOMAIN'));
 		define('ICONS_DIR', '/system/assets/icons/');
 		define('APP_ICONS_DIR', '/app/assets/icons/');
 		define('IMG_DIR', '/app/assets/images/');

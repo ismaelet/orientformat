@@ -25,7 +25,7 @@ function userId() {
 }
 
 function client_url(string $parcialUrl = '') {
-	return '/orientamento' . $parcialUrl;
+	return '/' . env('APP_SUBDOMAIN') . $parcialUrl;
 }
 
 function server_path(string $relativePath): string {

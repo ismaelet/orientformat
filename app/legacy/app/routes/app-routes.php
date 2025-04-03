@@ -1,6 +1,6 @@
 <?php
 
-\App\Legacy\LegacyRoute::add(['/', '/orientamento'], function () {
+\App\Legacy\LegacyRoute::add(['/', '/' . env('APP_SUBDOMAIN')], function () {
 	redirect_old('/login');
 });
 

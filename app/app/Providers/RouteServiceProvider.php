@@ -18,7 +18,7 @@ class RouteServiceProvider extends ServiceProvider {
 	 *
 	 * @var string
 	 */
-	public const HOME = '/orientamento';
+	public const HOME = '/';
 
 	/**
 	 * Define your route model bindings, pattern filters, etc.
@@ -30,19 +30,19 @@ class RouteServiceProvider extends ServiceProvider {
 
 		$this->routes(function () {
 			Route::middleware(['web', Admin::class])
-				->prefix('orientamento/admin')
+				->prefix(env('APP_SUBDOMAIN') . '/admin')
 				->name('admin.')
 				->group(base_path('routes/web-admin.php'));
 
 			Route::middleware('web')
-				->prefix('orientamento')
+				->prefix(env('APP_SUBDOMAIN'))
 				->group(base_path('routes/web-auth.php'));
 
 			Route::middleware('web')
-				->prefix('orientamento')
+				->prefix(env('APP_SUBDOMAIN'))
 				->group(base_path('routes/web.php'));
 
-			Route::prefix('orientamento/api')
+			Route::prefix(env('APP_SUBDOMAIN') . '/api')
 				->middleware('api')
 				->group(base_path('routes/api.php'));
 
