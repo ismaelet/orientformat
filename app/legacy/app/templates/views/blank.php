@@ -35,6 +35,8 @@
 			gtag('config', 'G-8WZ7THPZ57');
 		</script>
 	<?php } ?>
+
+	<script src="//unpkg.com/alpinejs" defer></script>
 </head>
 
 <body>

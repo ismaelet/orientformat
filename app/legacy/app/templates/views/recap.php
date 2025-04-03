@@ -7,13 +7,13 @@
 	<div class="page-header__overlay gradient-overlay fill-all background-fill"></div>
 
 	<div class="page-header__content grid-flow center-content main-wrap" data-spacing="700">
-		<h1 class="page-header__title title"><?= $section->name ?></h1>
+		<h1 class="page-header__title title"><?= __('sections.' . $section->id) ?></h1>
 
 		<?php if ($area->id <> 4) { ?>
 
 			<a class="button" href="<?= route('analysis.student.section', $section) ?>">
 				<?= embed_icon('read') ?>
-				Saperne di più
+				<?= __('Know More') ?>
 			</a>
 
 		<?php } ?>
@@ -27,9 +27,9 @@
 
 		<!-- Subtitle and description -->
 		<div class="grid-flow center-content" data-spacing="400">
-			<h2 class="subsection-title">Riepilogo della sezione</h2>
-			<p class="subsection-subtitle">Qui puoi controllare i tuoi progressi in questa sezione, ricominciare una attività o rivisitarla.</p>
-			<a class="button button--secondary button--auto-width mar-t-1" href="<?= $backUrl ?>">Scegli un'altra sezione</a>
+			<h2 class="subsection-title"><?= __('Section summary') ?></h2>
+			<p class="subsection-subtitle"><?= __("Here you can check your progress in this section, restart an activity, or revisit it.") ?></p>
+			<a class="button button--secondary button--auto-width mar-t-1" href="<?= $backUrl ?>"><?= __('Choose another section') ?></a>
 		</div>
 
 		<!-- Tests -->

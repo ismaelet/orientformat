@@ -24,8 +24,8 @@ while ($row = $res->fetch_assoc()) {
 
 	$legacyTestM = new Test($row['id']);
 
-	if ($legacyTestM->completed) $desc = $legacyTestM->percentage == 100 || $legacyTestM->template == 'survey' || $legacySection->id == 8 ? 'Già completata' : 'Risultato: <strong>' . $legacyTestM->percentage . '%</strong>';
-	else $desc = 'Non completata';
+	if ($legacyTestM->completed) $desc = $legacyTestM->percentage == 100 || $legacyTestM->template == 'survey' || $legacySection->id == 8 ? __("Already completed") : __('Result') . ': <strong>' . $legacyTestM->percentage . '%</strong>';
+	else $desc = __('Not completed');
 
 	$legacyTest_arr = [
 		'obj' => $legacyTestM,

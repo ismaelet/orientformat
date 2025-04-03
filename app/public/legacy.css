@@ -239,8 +239,8 @@ svg {
 	--border-radius-400: 0.5rem;
 	--border-radius-700: 1rem;
 	--border-radius-900: 2rem;
-	--shadow-400: 0 2rem 3rem -1rem rgba(0, 0, 0, 0.1);
-	--shadow-700: 0 4rem 6rem -2rem rgba(0, 0, 0, 0.1);
+	--shadow-400: 0 2rem 3rem -1rem rgba(0, 0, 0, 0.2);
+	--shadow-700: 0 4rem 6rem -2rem rgba(0, 0, 0, 0.2);
 	--font-family-paragraph: 'Open Sans', system-ui, sans-serif;
 	--font-family-heading: 'Poppins', system-ui, sans-serif;
 	--font-family-serif: 'Libre Caslon Display', serif;
@@ -9400,5 +9400,27 @@ body {
 	footer,
 	.js-print {
 		display: none !important;
+	}
+}
+
+:root {
+	--border-radius-200: 0.5rem;
+}
+
+.p-2 {
+	padding: 0.5rem;
+}
+
+.p-4 {
+	padding: 1rem;
+}
+
+.shadow-rg {
+	box-shadow: 0 0.5rem 3rem -1rem rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 1024px) {
+	.lg\:block {
+		display: block !important;
 	}
 }

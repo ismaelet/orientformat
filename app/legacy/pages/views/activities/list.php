@@ -6,10 +6,10 @@
 		<div class="page__header pad-v-5">
 			<div class="grid-flow center-content main-wrap" data-spacing="700">
 				<div>
-					<h1 class="title"><?= ucfirst($legacyGrade->adjective) ?> anno</h1>
-					<p class="subtitle">Attività completate al <span><?= $legacyGradeModel->completedPercentage() ?> %</span></p>
+					<h1 class="title"><?= ucfirst(__($legacyGrade->adjective)) ?> <?= __('year') ?></h1>
+					<p class="subtitle"><?= __('misc.grade-percentage') ?> <span><?= $legacyGradeModel->completedPercentage() ?>%</span></p>
 				</div>
-				<a href="<?= route('activities.grades.index') ?>" class="button button--secondary">Cambia anno</a>
+				<a href="<?= route('activities.grades.index') ?>" class="button button--secondary"><?= __('misc.change-year') ?></a>
 			</div>
 		</div>
 
@@ -26,15 +26,15 @@
 				<div class="area-wrapper">
 					<section class="area grid-flow main-wrap full-width" data-spacing="700">
 						<div class="area__header fa-center grid-flow" data-spacing="400">
-							<h2 class="section-title"><?= $legacyArea->name ?></h2>
-							<p class="section-subtitle"><?= $legacyArea->description ?></p>
+							<h2 class="section-title"><?= __('areas.' . $legacyArea->id) ?></h2>
+							<p class="section-subtitle"><?= __('areas.' . $legacyArea->id . '-description') ?></p>
 
 							<!-- Read more -->
 							<?php if ($legacyArea->id == 4) { ?>
 
 								<a class="button button--secondary push-center" href="<?= route('analysis.student.area', $area) ?>">
 									<?= embed_icon('read') ?>
-									Saperne di più
+									<?= __('Know More') ?>
 								</a>
 
 							<?php } ?>
@@ -56,8 +56,8 @@
 
 										<div class="section__body">
 											<div class="section__content grid-flow center-content" data-spacing="100">
-												<h3 class="section__title font-bold txt-12rem"><?= $legacySection->name ?></h3>
-												<p class="section-desc"><?= $legacySection->description ?></p>
+												<h3 class="section__title font-bold txt-12rem"><?= __('sections.' . $legacySection->id) ?></h3>
+												<p class="section-desc"><?= __('sections.description-' . $legacySection->id) ?></p>
 
 												<?php if ($legacySection->isStandard) { ?>
 
@@ -66,11 +66,11 @@
 														<?php if ($legacySection->progressPercentage == 100) { ?>
 
 															<?= embed_icon('correct') ?>
-															Sezione completata
+															<?= __('Section completed') ?>
 
 														<?php } else { ?>
 
-															Attività completate: <span class="font-bold"><?= $legacySection->completedTestCount . '/' . ($legacySection->testCount ?: '??') ?></span>
+															<?= __('Completed activities') ?>: <span class="font-bold"><?= $legacySection->completedTestCount . '/' . ($legacySection->testCount ?: '??') ?></span>
 
 														<?php } ?>
 
@@ -80,14 +80,8 @@
 
 											</div>
 
-											<?php if (false) { ?>
-
-												<p class="mar-t-1 pad-t-05 br-t-1 br-d txt-09rem">Durata stimata<br>dell'attività: <span class="font-bold"><?= $legacySection->time ?> minuti</span></p>
-
-											<?php } ?>
-
 											<div class="section__cta-wrapper">
-												<div class="section__cta button button--secondary">esplora</div>
+												<div class="section__cta button button--secondary"><?= __('explore') ?></div>
 											</div>
 										</div>
 									</a>

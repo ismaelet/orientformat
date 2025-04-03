@@ -20,8 +20,10 @@ use \Legacy\SchoolSystem\Grade as SchoolSystemGrade;
 
 				<div class="grade__content">
 					<div class="grade__body grid-flow center-content" data-spacing="700">
-						<h3 class="grade__name colored-title">Attività del<br><?= strtolower($year->adjective) ?> anno</h3>
-						<p class="grade__text">Clicca qui ver visualizzare tutte le attività previste per il <?= $year->adjective ?> anno</p>
+						<h3 class="grade__name colored-title"><?= __('misc.grade-description', ['numeral' => __($year->adjective)]) ?></h3>
+						<p class="grade__text">
+							<?= __('misc.grade-cta', ['numeral' => __($year->adjective)]) ?>
+						</p>
 					</div>
 
 					<div class="grade__footer grid-flow contrasting-background" style="--_percentage: <?= $grade->completedPercentage() ?>">

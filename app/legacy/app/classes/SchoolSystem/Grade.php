@@ -37,7 +37,7 @@ class Grade {
 
 	private const NAMES = ['Prima', 'Seconda', 'Terza', 'Quarta', 'Quinta'];
 	private const ROMAN_NUMERALS = ['I', 'II', 'III', 'IV', 'V'];
-	private const ADJECTIVES = ['primo', 'secondo', 'terzo', 'quarto', 'quinto'];
+	private const ADJECTIVES = ['first', 'second', 'third', 'fourth', 'fifth'];
 
 	public $id = null;
 	private $schoolClass = null;

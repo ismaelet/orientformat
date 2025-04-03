@@ -514,3 +514,15 @@ header.floating #h-pan:not(.fixed) #h-bgr {
 .dark .h-icoM-rot {
 	background-color: #eee;
 }
+
+.language-dropdown {
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.4s, visibility 0 0.4s;
+}
+
+input:checked + .language-dropdown {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 0.4s;
+}

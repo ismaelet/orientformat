@@ -1,15 +1,30 @@
 {
+	"Explore": "Esplora",
+	"explore": "esplora",
+	"Start": "Inizia",
+
 	"Activities": "Attività",
 	"Author": "Autore",
-	"Explore": "Esplora",
+	"Result": "Risultato",
+
 	"Legal Information": "Informazioni legali",
-	"Start": "Inizia",
+	"Know More": "Saperne di più",
 	"Support": "Supporto",
 	"Useful Links": "Link utili",
+
+	"Completed activities": "Attività completate",
+	"Section completed": "Sezione completata",
+	"Section summary": "Riepilogo della sezione",
+	"Choose another section": "Scegli un'altra sezione",
+	"Here you can check your progress in this section, restart an activity, or revisit it.": "Qui puoi controllare i tuoi progressi in questa sezione, ricominciare una attività o rivisitarla.",
+	"Already completed": "Già completata",
+	"Not completed": "Non completata",
 
 	"first": "primo",
 	"second": "secondo",
 	"third": "terzo",
 	"fourth": "quarto",
-	"fifth": "quinto"
+	"fifth": "quinto",
+
+	"year": "anno"
 }

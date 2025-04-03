@@ -82,19 +82,18 @@
 				<?php } ?>
 
 				<!-- Language bar -->
-				<div class="h-languages">
-					<div class="w-8"><?= embed_icon(App::currentLocale()) ?></div>
+				<div class="h-languages relative hidden lg:block" x-data="{ open: false }" @click.away="open = false" @click="open = !open">
+					<div class="w-8 cursor-pointer"><?= embed_icon(App::currentLocale()) ?></div>
 
-					<div class="">
+					<input type="checkbox" class="hidden" :checked="open">
+
+					<div class="absolute left-1/2 -translate-x-1/2 z-100 bg-background shadow-rg p-4 rounded-sm language-dropdown">
 
 						<?php foreach (config('app.locales') as $locale => $language) { ?>
 
 							<a href="<?= route('locale.switch', $locale) ?>" class="h-language <?= App::currentLocale() == $locale ? 'active' : '' ?>">
 
 								<div class="w-8"><?= embed_icon($locale) ?></div>
-
-								<p class=""><?= $language ?></p>
-
 							</a>
 
 						<?php } ?>
@@ -217,8 +216,16 @@
 							} ?>
 
 							<!-- Language -->
-							<p id="h-lang" class="txt-wht"><a href="?lang=it">IT</a> <span style="padding: 0 1rem">|</span> <a href="?lang=en">EN</a></p>
+							<div class="flex justify-center items-center gap-8 w-full mt-12">
+								<?php foreach (config('app.locales') as $locale => $language) { ?>
 
+									<a href="<?= route('locale.switch', $locale) ?>" class="h-language <?= App::currentLocale() == $locale ? 'active' : '' ?>">
+
+										<div class="w-8"><?= embed_icon($locale) ?></div>
+									</a>
+
+								<?php } ?>
+							</div>
 						</div>
 					</div>
 				</div>

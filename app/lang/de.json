@@ -1,9 +1,30 @@
 {
+	"Explore": "Erkunden",
+	"explore": "erkunden",
+	"Start": "Starten",
+
 	"Activities": "Aktivitäten",
 	"Author": "Autor",
-	"Explore": "Erkunden",
+	"Result": "Ergebnis",
+
 	"Legal Information": "Rechtliche Informationen",
-	"Start": "Starten",
-	"Support": "Support",
-	"Useful Links": "Nützliche Links"
+	"Know More": "Mehr erfahren",
+	"Support": "Unterstützung",
+	"Useful Links": "Nützliche Links",
+
+	"Completed activities": "Abgeschlossene Aktivitäten",
+	"Section completed": "Sektion abgeschlossen",
+	"Section summary": "Zusammenfassung des Abschnitts",
+	"Choose another section": "Wähle einen anderen Abschnitt",
+	"Here you can check your progress in this section, restart an activity, or revisit it.": "Hier kannst du deinen Fortschritt in diesem Abschnitt überprüfen, eine Aktivität neu starten oder sie erneut besuchen.",
+	"Already completed": "Bereits abgeschlossen",
+	"Not completed": "Nicht abgeschlossen",
+
+	"first": "erste",
+	"second": "zweite",
+	"third": "dritte",
+	"fourth": "vierte",
+	"fifth": "fünfte",
+
+	"year": "Jahr"
 }
