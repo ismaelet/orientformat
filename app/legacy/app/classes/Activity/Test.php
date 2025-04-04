@@ -67,6 +67,18 @@ class Test {
 		return watchedStudentId();
 	}
 
+	private function getTitle() {
+		return __('tests.' . $this->id);
+	}
+
+	private function getSummary() {
+		return __('tests.summary-' . $this->id);
+	}
+
+	private function getDescription() {
+		return __('tests.description-' . $this->id);
+	}
+
 	private function getUrl() {
 		return '/activities/tests/' . $this->id;
 	}

@@ -16,7 +16,15 @@ class Survey {
 	 * Get methods
 	 */
 	private function getAnswers() {
-		return $this->id ? explode(',', $this->databaseEntry['answers']) : null;
+		if (!$this->id) {
+			return null;
+		}
+
+		$answers = explode(',', $this->databaseEntry['answers']);
+
+		return array_map(function ($answer) {
+			return __(__($answer, [], 'en'));
+		}, $answers);
 	}
 
 	private function getAnswerCount() {
@@ -25,10 +33,10 @@ class Survey {
 
 	private function getQuestions() {
 		$questions = [];
-		$res = \App\Legacy\LegacyDB::select('text, positive FROM surveys_questions WHERE surveyId = ?', [$this->id]);
+		$res = \App\Legacy\LegacyDB::select('id, text, positive FROM surveys_questions WHERE surveyId = ?', [$this->id]);
 
 		while ($row = $res->fetch_assoc()) {
-			$questions[] = [$row['text'], $row['positive']];
+			$questions[] = [__('surveys.' . $row['id']), $row['positive']];
 		}
 
 		return $questions;

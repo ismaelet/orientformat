@@ -59,7 +59,7 @@
 
 								<?php } ?>
 
-								<p class="mar-t-1"><?= $obj->shortDescription ?></p>
+								<p class="mar-t-1"><?= $obj->summary ?></p>
 							</div>
 
 							<div class="test-btn-box">
@@ -74,16 +74,16 @@
 
 								<?php if ($obj->template == 'survey' && $obj->completed) { ?>
 
-									<p class="test-btn fc-confirmation" onclick="$(this).next().click()">Scarica risposte</p>
+									<p class="test-btn fc-confirmation" onclick="$(this).next().click()"><?= __('Download answers') ?></p>
 									<button type="submit" class="hidden" name="download"></button>
 
 								<?php } ?>
 
 								<?php if ($obj->completed && !$obj->static) { ?>
 
-									<p class="test-btn fc-warning" onclick="$(this).next().click()">Ricomincia</p>
+									<p class="test-btn fc-warning" onclick="$(this).next().click()"><?= __('Restart') ?></p>
 
-									<button type="submit" name="reset" class="hidden" onclick="return confirm('Sei sicuro/a di voler ricominciare l\'attività?')"></button>
+									<button type="submit" name="reset" class="hidden" onclick="return confirm('<?= __('Are you sure you want to restart the activity?') ?>')"></button>
 
 								<?php } ?>
 

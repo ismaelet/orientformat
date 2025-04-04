@@ -518,7 +518,7 @@ header.floating #h-pan:not(.fixed) #h-bgr {
 .language-dropdown {
 	opacity: 0;
 	visibility: hidden;
-	transition: opacity 0.4s, visibility 0 0.4s;
+	transition: opacity 0.4s, visibility 0s 0.4s;
 }
 
 input:checked + .language-dropdown {

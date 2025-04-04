@@ -1,8 +1,7 @@
 <?php
 
-// use App\Models\Activities\Section;
-// use App\Models\Activities\Test;
+use App\Models\Activities\SurveyQuestion;
 
-// Test::orderBy('id', 'asc')->skip(150)->take(30)->get()->each(function ($test) {
-// 	echo '"description-' . $test->id . '" => "' . htmlspecialchars(str_replace('"', '\"', $test->description)) . '",<br>';
-// });
+SurveyQuestion::orderBy('id', 'asc')->skip(0)->take(3000)->get()->each(function ($element) {
+	echo $element->id . ' => "' . $element->text . '",<br>';
+});

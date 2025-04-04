@@ -30,7 +30,7 @@
 			<?php } ?>
 
 			<div class="question-box">
-				<p class="question total txt-c3 txt-bold txt-line">Totale</p>
+				<p class="question total txt-c3 txt-bold txt-line"><?= __('Total') ?></p>
 			</div>
 
 			<div class="score-box">

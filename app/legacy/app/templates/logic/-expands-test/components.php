@@ -2,7 +2,7 @@
 
 use App\Models\Activities\Section;
 
-function title(string $title = null, string $description = null) {
+function title(?string $title = null, ?string $description = null) {
 	$legacyTest = test();
 	$title = $title ?: $legacyTest->title;
 	$description = $description ?: $legacyTest->description;
@@ -11,7 +11,7 @@ function title(string $title = null, string $description = null) {
 ?>
 
 	<section class="test__title-block">
-		<p class="test__counter colored-title">attività <?= $legacyTest->step ?> di <?= $legacyTest->section->testCount ?></p>
+		<p class="test__counter colored-title"><?= __('misc.section-progress', ['step' => $legacyTest->step, 'total' => $legacyTest->section->testCount]) ?></p>
 		<h1 class="section-title colored-title"><?= $title ?></h1>
 		<p class="test__description subsection-subtitle"><?= nl2br($description) ?></p>
 	</section>
@@ -30,33 +30,33 @@ function submit(bool $progressiveButton = false) {
 	$section = Section::find($legacyTest->sectionId);
 
 	switch (true) {
-			// supervisor view
+		// supervisor view
 		case isSupervisor():
-			$label = 'Torna alla lista dei risultati';
+			$label = __('Return to the list of results');
 			$name = null;
 			break;
 
-			// completed test and section
+		// completed test and section
 		case $legacyTest->completed && $legacyTest->section->completed:
-			$label = 'Torna al riepilogo';
+			$label = __('Return to the summary');
 			$name = null;
 			break;
 
-			// test that requires review
+		// test that requires review
 		case $legacyTest->reviewResult && !$legacyTest->completed:
-			$label = 'Verifica';
+			$label = __('Check your answer');
 			$name = 'review';
 			break;
 
-			// uncompleted test, completed section
+		// uncompleted test, completed section
 		case $legacyTest->section->completed:
-			$label = 'Salva il nuovo risultato';
+			$label = __('Save the new result');
 			$name = 'submit';
 			break;
 
-			// default button
+		// default button
 		default:
-			$label = 'Procedi';
+			$label = __('Proceed');
 			$name = 'submit';
 	}
 
@@ -65,7 +65,7 @@ function submit(bool $progressiveButton = false) {
 
 	<?php switch (true) {
 
-			// supervisor go back button
+		// supervisor go back button
 		case isSupervisor(): ?>
 
 			<div class="fa-center">
@@ -74,7 +74,7 @@ function submit(bool $progressiveButton = false) {
 
 		<?php break;
 
-			// go back button
+		// go back button
 		case $legacyTest->completed && $legacyTest->section->completed: ?>
 
 			<div class="fa-center">
@@ -83,14 +83,14 @@ function submit(bool $progressiveButton = false) {
 
 		<?php break;
 
-			// progressive button
+		// progressive button
 		case $progressiveButton && !test()->completed: ?>
 
 			<button type="submit" class="button button--filling button--full-width js-submit-button js-progressive-submit-button" name="<?= $name ?>" disabled><?= $label ?></button>
 
 		<?php break;
 
-			// normal button
+		// normal button
 		default: ?>
 
 			<button type="submit" class="button button--full-width js-submit-button" name="<?= $name ?>"><?= $label ?></button>
@@ -107,7 +107,7 @@ function skip() {
 	if (!$legacyTest->completed && !isSupervisor()) { ?>
 
 		<button type="submit" name="skip" class="skip interactive" formnovalidate>
-			<?= $legacyTest->everCompleted ? 'Continua in un altro momento' : 'Salta questa attività e riprendila più tardi' ?>
+			<?= $legacyTest->everCompleted ? __('Continue at another time') : __('Skip this activity and resume it later') ?>
 		</button>
 
 	<?php }
@@ -132,7 +132,7 @@ function no_results() {
 
 			<?php } else { ?>
 
-				<p>Per poter vedere i risultati devi completare l'attività precedente, <a class="text-link" href="<?= $legacyTest->requiredTest->clientUrl ?>">clicca qui</a> per svolgerla</p>
+				<p><?= __('misc.required-test-warning', ['url' => $legacyTest->requiredTest->clientUrl]) ?></p>
 
 			<?php } ?>
 
@@ -150,7 +150,7 @@ function renderRedoButton(bool $fullWith = true) {
 
 	if (test()->completed && test()->percentage != 100 && !isSupervisor()) { ?>
 
-		<button type="submit" class="button button--secondary <?= $fullWith ? 'button--full-width' : '' ?>" name="redo" value="<?= testId() ?>">Riprova</button>
+		<button type="submit" class="button button--secondary <?= $fullWith ? 'button--full-width' : '' ?>" name="redo" value="<?= testId() ?>"><?= __('Try again') ?></button>
 
 	<?php }
 
@@ -162,7 +162,7 @@ function renderSaveButton(bool $fullWith = false) {
 
 	if (test()->completed && !isSupervisor()) { ?>
 
-		<button type="submit" class="button <?= $fullWith ? 'button--full-width' : '' ?>" name="submit">Salva le modifiche</button>
+		<button type="submit" class="button <?= $fullWith ? 'button--full-width' : '' ?>" name="submit"><?= __('Save changes') ?></button>
 
 <?php }
 

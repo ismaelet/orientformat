@@ -59,11 +59,11 @@
 				<?= embed_icon('navigation/arrow2-left') ?>
 			</div>
 
-			<p class="slide-arrow-text">Precedente</p>
+			<p class="slide-arrow-text"><?= __('Previous') ?></p>
 		</div>
 
 		<div class="slide-arrow disabled" data-direction="right">
-			<p class="slide-arrow-text">Successivo</p>
+			<p class="slide-arrow-text"><?= __('Next') ?></p>
 
 			<div class="slide-arrow-icon icon-box">
 				<?= embed_icon('navigation/arrow2-right') ?>

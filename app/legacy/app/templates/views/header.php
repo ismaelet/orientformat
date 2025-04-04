@@ -82,23 +82,27 @@
 				<?php } ?>
 
 				<!-- Language bar -->
-				<div class="h-languages relative hidden lg:block" x-data="{ open: false }" @click.away="open = false" @click="open = !open">
-					<div class="w-8 cursor-pointer"><?= embed_icon(App::currentLocale()) ?></div>
+				<?php if (is_student()) { ?>
+					<div class="h-languages relative hidden lg:block" x-data="{ open: false }" @click.away="open = false" @click="open = !open">
+						<div class="w-8 cursor-pointer"><?= embed_icon(App::currentLocale()) ?></div>
 
-					<input type="checkbox" class="hidden" :checked="open">
+						<input type="checkbox" class="hidden" :checked="open">
 
-					<div class="absolute left-1/2 -translate-x-1/2 z-100 bg-background shadow-rg p-4 rounded-sm language-dropdown">
+						<div class="absolute left-1/2 -translate-x-1/2 z-100 shadow-rg p-3 rounded-sm language-dropdown bg-background">
 
-						<?php foreach (config('app.locales') as $locale => $language) { ?>
+							<?php foreach (config('app.locales') as $locale => $language) {
+								if ($locale != App::currentLocale()) { ?>
 
-							<a href="<?= route('locale.switch', $locale) ?>" class="h-language <?= App::currentLocale() == $locale ? 'active' : '' ?>">
+									<a href="<?= route('locale.switch', $locale) ?>" class="h-language <?= App::currentLocale() == $locale ? 'active' : '' ?>">
 
-								<div class="w-8"><?= embed_icon($locale) ?></div>
-							</a>
+										<div class="w-8"><?= embed_icon($locale) ?></div>
+									</a>
 
-						<?php } ?>
+							<?php }
+							} ?>
+						</div>
 					</div>
-				</div>
+				<?php } ?>
 
 				<!-- Login bar -->
 				<?php if ($h_comp['login']) { ?>
@@ -216,16 +220,18 @@
 							} ?>
 
 							<!-- Language -->
-							<div class="flex justify-center items-center gap-8 w-full mt-12">
-								<?php foreach (config('app.locales') as $locale => $language) { ?>
+							<?php if (is_student()) { ?>
+								<div class="flex justify-center items-center gap-8 w-full mt-12">
+									<?php foreach (config('app.locales') as $locale => $language) { ?>
 
-									<a href="<?= route('locale.switch', $locale) ?>" class="h-language <?= App::currentLocale() == $locale ? 'active' : '' ?>">
+										<a href="<?= route('locale.switch', $locale) ?>" class="h-language <?= App::currentLocale() == $locale ? 'active' : '' ?>">
 
-										<div class="w-8"><?= embed_icon($locale) ?></div>
-									</a>
+											<div class="w-8"><?= embed_icon($locale) ?></div>
+										</a>
 
-								<?php } ?>
-							</div>
+									<?php } ?>
+								</div>
+							<?php } ?>
 						</div>
 					</div>
 				</div>

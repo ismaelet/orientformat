@@ -48,8 +48,12 @@ class Section {
 		return Auth::id();
 	}
 
+	private function getName() {
+		return __('sections.' . $this->id);
+	}
+
 	private function getTitle() {
-		return $this->name;
+		return $this->getName();
 	}
 
 	private function getUrl() {

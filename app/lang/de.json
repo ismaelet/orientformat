@@ -2,10 +2,19 @@
 	"Explore": "Erkunden",
 	"explore": "erkunden",
 	"Start": "Starten",
+	"Download answers": "Antworten herunterladen",
+	"Restart": "Neustart",
+	"Next": "Nächster",
+	"Previous": "Vorherige",
+	"Check your answer": "Überprüfen",
+	"Proceed": "Fortfahren",
+	"Try again": "Erneut versuchen",
 
 	"Activities": "Aktivitäten",
 	"Author": "Autor",
 	"Result": "Ergebnis",
+	"year": "Jahr",
+	"Total": "Gesamt",
 
 	"Legal Information": "Rechtliche Informationen",
 	"Know More": "Mehr erfahren",
@@ -19,6 +28,13 @@
 	"Here you can check your progress in this section, restart an activity, or revisit it.": "Hier kannst du deinen Fortschritt in diesem Abschnitt überprüfen, eine Aktivität neu starten oder sie erneut besuchen.",
 	"Already completed": "Bereits abgeschlossen",
 	"Not completed": "Nicht abgeschlossen",
+	"Are you sure you want to restart the activity?": "Willst du die Aktivität wirklich neu starten?",
+	"Return to the list of results": "Zurück zur Ergebnisliste",
+	"Return to the summary": "Zurück zur Zusammenfassung",
+	"Save the new result": "Das neue Ergebnis speichern",
+	"Continue at another time": "Zu einem anderen Zeitpunkt fortfahren",
+	"Skip this activity and resume it later": "Diese Aktivität überspringen und später fortsetzen",
+	"Save changes": "Änderungen speichern",
 
 	"first": "erste",
 	"second": "zweite",
@@ -26,5 +42,14 @@
 	"fourth": "vierte",
 	"fifth": "fünfte",
 
-	"year": "Jahr"
+	"False": "Falsch",
+	"Somewhat false": "Eher falsch",
+	"Somewhat true": "Eher wahr",
+	"True": "Wahr",
+	"Not at all": "Überhaupt nicht",
+	"A little": "Ein wenig",
+	"Fairly": "Ziemlich",
+	"Very": "Sehr",
+	"Extremely": "Äußerst",
+	"I don't know": "Ich weiß nicht"
 }
