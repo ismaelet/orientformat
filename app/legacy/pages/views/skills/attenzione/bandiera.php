@@ -7,7 +7,7 @@
 
 		<?= title() ?>
 
-		<div id="start" class="button mar-t-4">Comincia</div>
+		<div id="start" class="button mar-t-4"><?= __('Start') ?></div>
 	</div>
 </div>
 

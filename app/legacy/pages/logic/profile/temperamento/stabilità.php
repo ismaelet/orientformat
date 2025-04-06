@@ -1,10 +1,10 @@
 <?php
 
 $questions = [
-	['Mi sento spesso irrequieto/a', 'Generalmente sono calmo/a'],
-	['Mi spazientisco facilmente', 'Sono piuttosto paziente'],
-	['Sono impulsivo/a', 'Sono controllato/a'],
-	['Mi sento spesso in ansia', 'Sono perlopiù sereno/a'],
+	[__('I often feel restless'), __('I am generally calm')],
+	[__('I get impatient easily'), __('I am rather patient')],
+	[__('I am impulsive'), __('I am controlled')],
+	[__('I often feel anxious'), __('I am mostly serene')],
 ];
 
 include_once('temperamento.php');

@@ -35,7 +35,7 @@
 						</div>
 
 						<div class="result__title-box txt-c3" data-group="<?= $result['name'] ?>">
-							<p class="result__title txt-15rem js-load"><?= $result['name'] ?></p>
+							<p class="result__title txt-15rem js-load"><?= $result['translated_name'] ?></p>
 							<p class="stitle txt-c3 js-load"><?= $result['info'] ?></p>
 						</div>
 

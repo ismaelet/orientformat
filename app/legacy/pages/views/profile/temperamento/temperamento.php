@@ -32,7 +32,7 @@
 
 				</div>
 				<div class="fa-center">
-					<div class="confirm button mar-t-4">Conferma</div>
+					<div class="confirm button mar-t-4"><?= __('Confirm') ?></div>
 				</div>
 			</div>
 

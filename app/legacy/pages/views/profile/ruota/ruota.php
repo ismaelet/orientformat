@@ -31,7 +31,7 @@
 							<p class="<?= !$legacyTest->completed && !$chosen ? 'js-emotion-value' : null ?>"><?= $chosen ? $intensity : null ?></p>
 						</div>
 
-						<p class="emotion__name" data-emotion="<?= $emotion ?>"><?= $emotion ?></p>
+						<p class="emotion__name" data-emotion="<?= $emotion ?>" style="--i: <?= $key ?>;"><?= $emotion ?></p>
 
 						<div class="emotion__scores">
 

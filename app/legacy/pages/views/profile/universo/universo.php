@@ -40,7 +40,7 @@
 
 		<div class="star grid-flow stack-content center-content">
 			<img class="star__image" src="<?= client_path('star.svg') ?>">
-			<p class="star__me heading-like">IO</p>
+			<p class="star__me heading-like"><?= __('ME') ?></p>
 		</div>
 	</div>
 </section>

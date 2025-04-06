@@ -9,7 +9,7 @@
 	<div id="content" class="mar-t-4 <?= $legacyTest->completed ? 'completed' : '' ?>">
 
 		<div class="fa-center">
-			<div id="start" class="button">Comincia</div>
+			<div id="start" class="button"><?= __('Start') ?></div>
 		</div>
 
 		<div id="concepts" class="fa-center">

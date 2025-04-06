@@ -14,7 +14,7 @@
 
 .emotion {
 	--size: 5rem;
-	--rotation: calc(360deg / var(--emotion-count) * (var(--i) - 1));
+	--rotation: calc(360deg / var(--emotion-count) * (var(--i) - 1) + 90deg);
 	position: absolute;
 	top: 50%;
 	left: 0;
@@ -24,9 +24,20 @@
 }
 
 .emotion__content {
+	display: grid;
+	align-items: center;
+	justify-items: center;
+	grid-template-columns: minmax(0, 1fr);
+	grid-template-rows: minmax(0, 1fr);
 	width: var(--size);
 	aspect-ratio: 1;
 	rotate: calc(-1 * var(--rotation));
+	position: relative;
+}
+
+.emotion__content > * {
+	grid-row: 1;
+	grid-column: 1;
 }
 
 .emotion__dot {
@@ -36,7 +47,7 @@
 	position: absolute;
 	z-index: 1;
 	width: 100%;
-	height: 100%;
+	aspect-ratio: 1;
 	background-color: var(--color-tertiary-400);
 	border-radius: 50%;
 	overflow: hidden;
@@ -125,105 +136,20 @@
 }
 
 .emotion__name {
-	position: absolute;
 	font-size: var(--fs-450);
 	font-weight: var(--fw-semibold);
+	pointer-events: none;
+	z-index: 1;
 }
 
-.emotion__name[data-emotion='paura'] {
-	top: 50%;
-	left: 0%;
-	translate: calc(-100% - 0.5rem) -50%;
-}
-
-.emotion__name[data-emotion='spavento'] {
-	top: 50%;
-	left: 0%;
-	translate: calc(-100% - 0.5rem) -50%;
-}
-
-.emotion__name[data-emotion='sorpresa'] {
-	top: 50%;
-	left: 0%;
-	translate: calc(-100% - 0.5rem) -50%;
-}
-
-.emotion__name[data-emotion='delusione'] {
-	top: calc(-1 * var(--offset));
-	left: 50%;
-	translate: -50% -100%;
-}
-
-.emotion__name[data-emotion='tristezza'] {
-	top: calc(-1 * var(--offset));
-	left: 50%;
-	translate: -50% -100%;
-}
-
-.emotion__name[data-emotion='rimorso'] {
-	top: calc(-1 * var(--offset));
-	left: 50%;
-	translate: -50% -100%;
-}
-
-.emotion__name[data-emotion='schifo'] {
-	top: 50%;
-	left: 100%;
-	translate: 0.5rem -50%;
-}
-
-.emotion__name[data-emotion='disprezzo'] {
-	top: 50%;
-	left: 100%;
-	translate: 0.5rem -50%;
-}
-
-.emotion__name[data-emotion='collera'] {
-	top: 50%;
-	left: 100%;
-	translate: 0.5rem -50%;
-}
-
-.emotion__name[data-emotion='aggressività'] {
-	top: 50%;
-	left: 100%;
-	translate: 0.5rem -50%;
-}
-
-.emotion__name[data-emotion='aspettativa'] {
-	top: 50%;
-	left: 100%;
-	translate: 0.5rem -50%;
-}
-
-.emotion__name[data-emotion='ottimismo'] {
-	top: 100%;
-	left: 50%;
-	translate: -50% 0;
-}
-
-.emotion__name[data-emotion='gioia'] {
-	top: 100%;
-	left: 50%;
-	translate: -50% 0;
-}
-
-.emotion__name[data-emotion='amore'] {
-	top: 100%;
-	left: 50%;
-	translate: -50% 0;
-}
-
-.emotion__name[data-emotion='accettazione'] {
-	top: 50%;
-	left: 0%;
-	translate: calc(-100% - 0.5rem) -50%;
-}
-
-.emotion__name[data-emotion='sottomissione'] {
-	top: 50%;
-	left: 0%;
-	translate: calc(-100% - 0.5rem) -50%;
+.emotion__name {
+	--angle: calc(90deg - 360deg / var(--emotion-count) * (var(--i)));
+	position: relative;
+	line-height: 1;
+	padding: 1em;
+	top: calc(sin(var(--angle)) * -50%);
+	left: calc(cos(var(--angle)) * 50%);
+	translate: calc(cos(var(--angle)) * 50%) calc(sin(var(--angle)) * -50%);
 }
 
 /*

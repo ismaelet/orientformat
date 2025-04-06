@@ -10,7 +10,7 @@
 
 	<div class="selected-info js-selected-info <?= test()->completed ? 'active' : '' ?>">
 		<div class="grid-flow" data-spacing="200">
-			<h3 class="subsection-title colored-title">Hai selezionato:</h3>
+			<h3 class="subsection-title colored-title"><?= __('You have selected') ?>:</h3>
 			<p class="selected-info__text js-selected-info-text"><?= test()->completed ? $characters[$selectedCharacterId] : '-' ?></p>
 		</div>
 	</div>

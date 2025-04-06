@@ -8,7 +8,7 @@
 
 	<div id="circles" class="wrap mar-t-5 mb-40">
 
-		<p id="title-center" class="cen fa-center txt-c3 font-bold">Stili cognitivi</p>
+		<p id="title-center" class="cen fa-center txt-c3 font-bold"><?= __('Cognitive styles') ?></p>
 
 		<?php for ($i = 1; $i < 5; $i++) { ?>
 

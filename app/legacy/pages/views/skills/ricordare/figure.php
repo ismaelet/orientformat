@@ -12,7 +12,7 @@
 			<img class="image push-center" src="<?= client_path('0.png') ?>">
 
 			<div class="fa-center mar-t-5">
-				<div class="button js-start">Comincia</div>
+				<div class="button js-start"><?= __('Start') ?></div>
 			</div>
 
 		</div>

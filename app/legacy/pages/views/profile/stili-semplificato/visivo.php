@@ -10,7 +10,7 @@
 			<?php if (!test()->completed && !isSupervisor()) { ?>
 
 				<div class="">
-					<div class="start-button button js-start">Comincia</div>
+					<div class="start-button button js-start"><?= __('Start') ?></div>
 				</div>
 
 			<?php } ?>
@@ -20,7 +20,7 @@
 	<?php } else if (test()->completed) { ?>
 
 		<div class="title__wrapper center-content">
-			<?= title(null, 'Qui sotto è indicato quanti oggetti hai identificato tra quelli che hai visto o udito e quanti errori hai fatto.') ?>
+			<?= title(null, __('Below is indicated how many objects you have identified among those you have seen or heard and how many mistakes you have made.')) ?>
 		</div>
 
 		<div class="grid-flow mar-t-2 mar-b-4" data-spacing="700">
@@ -35,9 +35,9 @@
 				<div class="result-grid__column gradient-overlay js-load" style="height: <?= max($errorScore, 10) ?>%;">
 					<p class="result-grid__score"><?= $errorCount . '/' . $maxErrors ?></p>
 				</div>
-				<p class="result-grid__column-name">Stile<br>visivo</p>
-				<p class="result-grid__column-name">Stile<br>uditivo</p>
-				<p class="result-grid__column-name">Errori</p>
+				<p class="result-grid__column-name"><?= __('Visual style') ?></p>
+				<p class="result-grid__column-name"><?= __('Auditory style') ?></p>
+				<p class="result-grid__column-name"><?= __('Mistakes') ?></p>
 			</div>
 		</div>
 

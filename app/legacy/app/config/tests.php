@@ -107,7 +107,13 @@ $testsConfig = [
 
 	// stile attributivo > riepilogo
 	46 => [
-		'sections' => ['Stabilità emotiva', 'Estroversione', 'Socievolezza', 'Coscienziosità', 'Risposta alle novità']
+		'sections' => [
+			__('tests.46-section-1'),
+			__('tests.46-section-2'),
+			__('tests.46-section-3'),
+			__('tests.46-section-4'),
+			__('tests.46-section-5'),
+		]
 	],
 
 	// stile attributivo > riepilogo
@@ -163,22 +169,26 @@ $testsConfig = [
 		'groups' => [
 			1 => [
 				'name' => 'Visivo',
-				'info' => "apprende e ricorda attraverso immagini",
+				'translated_name' => __('tests.109-1-name'),
+				'info' => __('tests.109-1-info'),
 				'questionIds' => [2, 4, 7],
 			],
 			2 => [
 				'name' => 'Uditivo',
-				'info' => "è a suo agio quando può ascoltare",
+				'translated_name' => __('tests.109-2-name'),
+				'info' => __('tests.109-2-info'),
 				'questionIds' => [1, 8, 11],
 			],
 			3 => [
 				'name' => 'Collaborativo',
-				'info' => "lavora meglio in gruppo, mentre da solo si annoia",
+				'translated_name' => __('tests.109-3-name'),
+				'info' => __('tests.109-3-info'),
 				'questionIds' => [3, 5, 9],
 			],
 			4 => [
 				'name' => 'Autonomo',
-				'info' => "preferisce lavorare da solo, è a disagio nei lavori di gruppo",
+				'translated_name' => __('tests.109-4-name'),
+				'info' => __('tests.109-4-info'),
 				'questionIds' => [0, 6, 10],
 			],
 		]
@@ -951,26 +961,26 @@ $testsConfig = [
 
 	// 101 L'albero della vita
 	101 => ['characters' => [
-		'Ha fatto tanta strada ed è soddisfatto',
-		'Ha fatto tanta strada, ma qualcosa non va',
-		'Ha fatto molta strada con un’altra persona, ma ha rischiato troppo e, nonostante i suoi sforzi, l’ha persa',
-		'Non è arrivato proprio in cima, ma è molto contento così',
-		'È contento di essere arrivato in alto, grazie all’aiuto di altre persone',
-		'È arrivato in alto ed è soddisfatto di avere aiutato altri',
-		'È contento di avere collaborato nel gruppo per arrivare su insieme',
-		'È arrivato in alto, ma poi ha perso la presa e dovrà ricominciare tutto di nuovo',
-		'Non è proprio in cima, ma si sente bene e al sicuro dove sta',
-		'Sicuri e tranquilli insieme',
-		'Ha fatto strada, ma si sente isolato e poco sicuro',
-		'Ha proceduto, ma ora è spaventatoSta aspettando che qualcuno lo aiuti',
-		'È salito un po’, ma ora gli interessa di più aiutare un altro',
-		'Ha fatto della strada, ma ora non sa più come procedere e si sente depresso e solo',
-		'Sta cominciando a salire con fatica, per fortuna c’è qualcuno che gli dà una mano',
-		'È appena partito, ma non sa come procedere ed è molto spaventato',
-		'È ancora all’inizio, ma contento di dare una mano',
-		'È tranquillo e gli basta osservare gli altri senza mettersi alla prova',
-		'È contento così e non ha voglia di fare cose faticose',
-		'È così depresso che non ha neanche voglia di iniziare',
+		__("tests.101-choice-1"),
+		__("tests.101-choice-2"),
+		__("tests.101-choice-3"),
+		__("tests.101-choice-4"),
+		__("tests.101-choice-5"),
+		__("tests.101-choice-6"),
+		__("tests.101-choice-7"),
+		__("tests.101-choice-8"),
+		__("tests.101-choice-9"),
+		__("tests.101-choice-10"),
+		__("tests.101-choice-11"),
+		__("tests.101-choice-12"),
+		__("tests.101-choice-13"),
+		__("tests.101-choice-14"),
+		__("tests.101-choice-15"),
+		__("tests.101-choice-16"),
+		__("tests.101-choice-17"),
+		__("tests.101-choice-18"),
+		__("tests.101-choice-19"),
+		__("tests.101-choice-20"),
 	]],
 
 	// 116 la ruota delle emozioni

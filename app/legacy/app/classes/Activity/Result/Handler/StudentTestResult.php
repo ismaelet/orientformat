@@ -242,6 +242,7 @@ class StudentTestResult {
 			foreach ($groups as $groupId => $group) {
 				$results[$groupId] = [];
 				$results[$groupId]['name'] = $group['name'];
+				$results[$groupId]['translated_name'] = $group['translated_name'];
 				$results[$groupId]['value'] = 0;
 				$results[$groupId]['max'] = 9;
 

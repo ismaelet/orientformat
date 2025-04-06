@@ -67,7 +67,7 @@
 								<?php if (($obj->template != 'survey' || !$obj->completed) && $obj->type != 3) { ?>
 
 									<p class="test-btn fc-tertiary">
-										<a href="<?= $obj->clientUrl ?>">Visualizza</a>
+										<a href="<?= $obj->clientUrl ?>"><?= __('View') ?></a>
 									</p>
 
 								<?php } ?>

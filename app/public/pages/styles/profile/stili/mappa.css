@@ -147,7 +147,7 @@
 #title-center {
 	max-width: 23vw;
 	line-height: 1;
-	font-size: min(2rem, 5vw);
+	font-size: min(1.5rem, 4vw);
 }
 
 .result__title-box {

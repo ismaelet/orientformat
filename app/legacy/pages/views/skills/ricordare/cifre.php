@@ -96,7 +96,7 @@
 					</div>
 
 					<div class="submit-box fa-center mar-t-5">
-						<button type="submit" id="check" name="check" class="button mar-b-2">Conferma</button><br>
+						<button type="submit" id="check" name="check" class="button mar-b-2"><?= __('Confirm') ?></button><br>
 
 						<?php if (!$legacyTest->completed) { ?>
 

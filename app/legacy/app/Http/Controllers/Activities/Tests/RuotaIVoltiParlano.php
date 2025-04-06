@@ -65,7 +65,7 @@ class RuotaIVoltiParlano extends Test {
 				?>
 
 					<div class="grid justify-items-center gap-8">
-						<p class="text-xl text-center font-bold">Hai scelto la seguente emozione:</p>
+						<p class="text-xl text-center font-bold"><?= __('You have chosen the following emotion:') ?></p>
 
 						<div class="face max-w-64">
 							<img class="eye" src="<?= public_asset('test-volti/eye-' . $faceId . '.png') ?>" alt="">
@@ -75,7 +75,7 @@ class RuotaIVoltiParlano extends Test {
 						<p class="text-center font-semibold text-lg text-success"><?= $emotion ?></p>
 
 						<?php if (!isSupervisor()) { ?>
-							<button class="button button--secondary button--auto-width" name="redo" value="<?= test()->id ?>">Scegli un'altra emozione</button>
+							<button class="button button--secondary button--auto-width" name="redo" value="<?= test()->id ?>"><?= __('Choose another emotion') ?></button>
 						<?php } ?>
 					</div>
 
@@ -107,7 +107,7 @@ class RuotaIVoltiParlano extends Test {
 										</div>
 
 										<div class="flex emotion-label-wrapper gap-2 items-center">
-											<input type="text" class="emotion-label js-emotion-label" placeholder="Emozione" maxlength="18">
+											<input type="text" class="emotion-label js-emotion-label" placeholder="<?= __('Emotion') ?>" maxlength="18">
 
 											<button type="button" class="w-4 flex-0 js-reset">
 												<?= embed_icon('close') ?>

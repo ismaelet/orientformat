@@ -1,7 +1,7 @@
 <?php
 
 $legacyTest = test();
-$title = $title ?? 'Stili Cognitivi';
+$title = $title ?? __('Cognitive styles');
 
 $sortedResults = [];
 $unsoredResults = $legacyTest->detailedResult;

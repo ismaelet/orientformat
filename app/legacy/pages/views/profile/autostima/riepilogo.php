@@ -36,16 +36,16 @@
 								<h3 class="score mar-t-10px <?= $dependentTest->completed ? 'completed txt-2rem' : 'uncompleted txt-11rem' ?>"><?= $dependentTest->completed ? $dependentTest->percentage . '%' : 'da completare' ?></h3>
 
 								<p class="test-desc">
-									<?= $dependentTest->completed ? 'Hai completato questa autovalutazione. Per ripeterla clicca qui sotto:' : 'Non hai ancora completato questa autovalutazione, clicca qui sotto per cominciarla:' ?>
+									<?= $dependentTest->completed ? __('You have completed this self-assessment. Click below to repeat it:') : __('You have not completed this self-assessment yet. Click below to start it:') ?>
 								</p>
 
 								<?php if ($dependentTest->completed && !isSupervisor()) { ?>
 
-									<button type="submit" name="reset-test" class="test-btn txt-c3 mar-t-1" value="<?= $dependentTest->id ?>" onclick="return confirm('Sei sicuro di voler ripetere la valutazione?')">Ricomincia</button>
+									<button type="submit" name="reset-test" class="test-btn txt-c3 mar-t-1" value="<?= $dependentTest->id ?>" onclick="return confirm('Sei sicuro di voler ripetere la valutazione?')"><?= __('Restart') ?></button>
 
 								<?php } else if (!isSupervisor()) { ?>
 
-									<a href="<?= $dependentTest->clientUrl ?>" class="test-btn txt-c4 mar-t-1 font-bold">Comincia</a>
+									<a href="<?= $dependentTest->clientUrl ?>" class="test-btn txt-c4 mar-t-1 font-bold"><?= __('Start') ?></a>
 
 								<?php } ?>
 
