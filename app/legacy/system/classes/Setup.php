@@ -16,6 +16,8 @@ class Setup {
 		define('APP_ICONS_DIR', '/app/assets/icons/');
 		define('IMG_DIR', '/app/assets/images/');
 		define('LOGO_DIR', '/app/assets/logo/');
+
+		// dd(CLIENT_ROOT);
 	}
 
 	/**
