@@ -17,7 +17,7 @@ class StyleLoader {
 
 		switch ($type) {
 			case 'template':
-				if (file_exists(base_path() . '/public' . $fetchingFile = '/templates/styles/' . $fileName . '.css')) {
+				if (file_exists(base_path() . '/public/legacy/' . $fetchingFile = '/templates/styles/' . $fileName . '.css')) {
 					$priority = $priority ?: 3;
 					$file = $fetchingFile;
 				}
@@ -27,7 +27,7 @@ class StyleLoader {
 				break;
 
 			case 'page':
-				if (file_exists(base_path() . '/public' . $fetchingFile = '/pages/styles/' . $fileName . '.css')) {
+				if (file_exists(base_path() . '/public/legacy/' . $fetchingFile = '/pages/styles/' . $fileName . '.css')) {
 					$priority = $priority ?: 4;
 					$file = $fetchingFile;
 				}
@@ -49,14 +49,14 @@ class StyleLoader {
 
 		// store the file URL in the list
 		if ($file) {
-			$file .= '?v=' . filemtime(base_path() . '/public' . $file);
+			$file .= '?v=' . filemtime(base_path() . '/public/legacy/' . $file);
 			self::$list[] = [$priority, $file];
 		}
 	}
 
 	// add template style
 	private static function addAdditionalTemplateStyles($templateName) {
-		$additionalSystemStyles = glob(base_path() . '/public' . '/templates/styles/-expands-' . $templateName . '/*.css');
+		$additionalSystemStyles = glob(base_path() . '/public/legacy/' . '/templates/styles/-expands-' . $templateName . '/*.css');
 
 		foreach ($additionalSystemStyles as $additionalStyle) {
 			self::add($additionalStyle, 'template-expansion', 2);
@@ -65,7 +65,7 @@ class StyleLoader {
 
 	// add the page style
 	public static function addPageStyles($pageName) {
-		$additionalStyles = glob(base_path() . '/public' . '/pages/styles/-expands-' . $pageName . '/*.css');
+		$additionalStyles = glob(base_path() . '/public/legacy/' . '/pages/styles/-expands-' . $pageName . '/*.css');
 
 		self::add($pageName, 'page');
 
@@ -80,7 +80,7 @@ class StyleLoader {
 
 		sort_subvalue(self::$list, 0);
 
-		foreach (self::$list as $style) $list[] = '<link href="' . asset($style[1]) . '" rel="stylesheet" type="text/css">';
+		foreach (self::$list as $style) $list[] = '<link href="' . asset('legacy' . $style[1]) . '" rel="stylesheet" type="text/css">';
 
 		return implode(PHP_EOL, $list);
 	}

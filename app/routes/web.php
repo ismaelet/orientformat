@@ -34,7 +34,11 @@ Route::get('locale/{locale}', [\App\Http\Controllers\LocaleController::class, 's
  * * App routes
  */
 // ~ Home
-Route::get('', [HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('', function () {
+	return view('welcome');
+})->name('home');
+
+// Route::get('', [HomeController::class, 'index'])->middleware('auth')->name('home');
 
 /**
  * * Parcially legacy routes

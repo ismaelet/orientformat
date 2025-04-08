@@ -10,8 +10,8 @@
 	<link rel="icon" href="<?= asset('favicon.ico') ?>">
 
 	<!-- Styles -->
-	<link href="<?= asset('legacy.css') ?>" rel="stylesheet">
-	<link href="<?= asset('main.css') ?>" rel="stylesheet">
+	<link href="<?= asset('legacy/legacy.css') . '?v=' . filemtime(base_path() . '/public/legacy/legacy.css') ?>" rel="stylesheet" type="text/css">
+	<link href="<?= asset('legacy/legacy.css') . '?v=' . filemtime(base_path() . '/public/legacy/main.css') ?>" rel="stylesheet" type="text/css">
 	<?= PHP_EOL . \App\Legacy\StyleLoader::load() ?>
 	<?= PHP_EOL . \App\Legacy\StyleLoader::loadInline() ?>
 

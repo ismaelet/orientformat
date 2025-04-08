@@ -118,7 +118,7 @@ function client_path(?string $file = '') {
 }
 
 function file_time($file, bool $publicRoot = false) {
-	$root = base_path();
+	$root = base_path() . '/public';
 
 	if (!strpos($file, '?=') && file_exists($url = $root . $file)) {
 		$file .= '?=' . filemtime($url);
@@ -138,7 +138,7 @@ function generate_base_url(?string $file = '') {
 		$url = assets_directory(\App\Legacy\LegacyView::getInstance()->url) . $file;
 	}
 
-	return $url;
+	return '/legacy' . $url;
 }
 
 function assets_directory(string $pagePath = null) {
