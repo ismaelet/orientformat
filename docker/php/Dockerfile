@@ -22,8 +22,8 @@ RUN composer install
 # Install NPM dependencies and build the project
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
     apt-get install -y nodejs && \
-    rm -rf node_modules || true
-RUN npm install
-RUN npm run build
+    rm -rf node_modules || true && \
+	npm install && \
+	npm run build
 
 RUN sed -i 's|^listen = 127\.0\.0\.1:9010|listen = 0.0.0.0:9010|' /usr/local/etc/php-fpm.d/www.conf
