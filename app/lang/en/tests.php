@@ -577,4 +577,37 @@ return [
 	"109-2-info" => "feels comfortable when they can listen",
 	"109-3-info" => "works better in a group, gets bored when alone",
 	"109-4-info" => "prefers to work alone, feels uncomfortable in group work",
+
+	"119-name-1" => "I recognize the problem",
+	"119-name-2" => "I have a clear goal",
+	"119-name-3" => "I accept the challenge",
+	"119-name-4" => "I use the resources",
+	"119-name-5" => "I respect the constraints",
+	"119-name-6" => "I react to difficulties",
+	"119-name-7" => "I know how to ask for help",
+	"119-name-8" => "I make decisions",
+	"119-name-9" => "I take action",
+
+	"119-description-1" => "It's easier to avoid problems than to face them, which is why people often don't talk about them. How do you react?",
+	"119-description-2" => "Solving a problem means achieving a result. How clearly do you see the goal you want to achieve?",
+	"119-description-3" => "To take on a problem, you need to manage anxiety and fear of failure. How well can you do that?",
+	"119-description-4" => "To reach a goal, you need the necessary means. Do you ask yourself whether you have them or not?",
+	"119-description-5" => "You can't ‘bite off more than you can chew’. You need to know your limits—and respect them.",
+	"119-description-6" => "When I encounter a problem, I don’t get discouraged: I tell myself I can handle it.",
+	"119-description-7" => "You can't always do it alone. That’s when you need to know how to ask someone for help. How good are you at that?",
+	"119-description-8" => "Sometimes you know what you should do, but you lack the will or the strength to go through with it.",
+	"119-description-9" => "Making decisions is necessary, but not enough. You also have to put them into practice. How often do you do that?",
+
+	"120-student-right" => "Great! The chosen combination is correct.",
+	"120-student-wrong" => "The chosen combination is not correct, but you can try again whenever you want.",
+	"120-supervisor-right" => "The chosen combination is correct.",
+	"120-supervisor-wrong" => "The chosen combination is not correct.",
+
+	"121-title" => "Possible solutions:",
+	"121-right" => "You completed the sequence!",
+	"121-wrong" => "The chosen figure is not correct",
+
+	"122-title" => "Possible solutions:",
+	"122-right" => "You completed the sequence!",
+	"122-wrong" => "The chosen figure is not correct",
 ];

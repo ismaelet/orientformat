@@ -567,4 +567,37 @@ return [
 	"109-3-info" => "arbeitet besser in der Gruppe, langweilt sich allein",
 	"109-4-info" => "arbeitet lieber allein, fühlt sich in Gruppenarbeit unwohl",
 
+	"119-name-1" => "Ich erkenne das Problem",
+	"119-name-2" => "Ich habe ein klares Ziel",
+	"119-name-3" => "Ich nehme die Herausforderung an",
+	"119-name-4" => "Ich nutze die Ressourcen",
+	"119-name-5" => "Ich respektiere die Einschränkungen",
+	"119-name-6" => "Ich reagiere auf Schwierigkeiten",
+	"119-name-7" => "Ich kann um Hilfe bitten",
+	"119-name-8" => "Ich treffe Entscheidungen",
+	"119-name-9" => "Ich handle",
+
+	"119-description-1" => "Probleme zu vermeiden ist oft einfacher, als sich ihnen zu stellen – deshalb spricht man selten darüber. Wie reagierst du?",
+	"119-description-2" => "Ein Problem zu lösen bedeutet, ein Ergebnis zu erzielen. Wie klar ist dir das Ziel, das du erreichen willst?",
+	"119-description-3" => "Um ein Problem anzugehen, muss man Angst und Unsicherheit überwinden. Wie gut gelingt dir das?",
+	"119-description-4" => "Um ein Ziel zu erreichen, braucht man die nötigen Mittel. Fragst du dich, ob du sie hast?",
+	"119-description-5" => "Man darf nicht «größer auftreten, als man ist». Man muss seine Grenzen kennen – und sie respektieren.",
+	"119-description-6" => "Wenn ich auf ein Problem stoße, lasse ich mich nicht entmutigen: Ich sage mir, dass ich es schaffen kann.",
+	"119-description-7" => "Allein schafft man es nicht immer. Dann muss man wissen, wie man um Hilfe bittet. Wie gut kannst du das?",
+	"119-description-8" => "Manchmal weiß man, was zu tun ist, aber es fehlt der Wille oder die Kraft, es auch wirklich zu tun.",
+	"119-description-9" => "Entscheidungen zu treffen ist wichtig – aber nicht genug. Man muss sie auch umsetzen. Wie oft tust du das?",
+
+	"120-student-right" => "Super! Die gewählte Kombination ist korrekt.",
+	"120-student-wrong" => "Die gewählte Kombination ist nicht korrekt, aber du kannst es jederzeit erneut versuchen.",
+	"120-supervisor-right" => "Die gewählte Kombination ist korrekt.",
+	"120-supervisor-wrong" => "Die gewählte Kombination ist nicht korrekt.",
+
+	"121-title" => "Mögliche Lösungen:",
+	"121-right" => "Du hast die Sequenz abgeschlossen!",
+	"121-wrong" => "Die gewählte Figur ist nicht korrekt",
+
+	"122-title" => "Mögliche Lösungen:",
+	"122-right" => "Du hast die Sequenz abgeschlossen!",
+	"122-wrong" => "Die gewählte Figur ist nicht korrekt",
+
 ];

@@ -10,7 +10,7 @@
 	<?php if (test()->completed) { ?>
 
 		<div class="center-content grid-flow" data-spacing="700">
-			<p class="result-text <?= test()->percentage == 100 ? 'result-text--good' : 'result-text--bad' ?>"><?= test()->percentage == 100 ? 'Hai completato la sequenza!' : 'La figura scelta non è corretta' ?></p>
+			<p class="result-text <?= test()->percentage == 100 ? 'result-text--good' : 'result-text--bad' ?>"><?= test()->percentage == 100 ? __('tests.' . test()->id . '-right') : __('tests.' . test()->id . '-wrong') ?></p>
 
 			<?= renderRedoButton() ?>
 		</div>
@@ -36,7 +36,7 @@
 	<?php if (!test()->completed) { ?>
 
 		<div class="center-content grid-flow" data-spacing="700">
-			<h3 class="subsection-title">Soluzioni possibili:</h3>
+			<h3 class="subsection-title"><?= __('tests.' . test()->id . '-title') ?></h3>
 			<div class="answers">
 
 				<?php for ($i = 1; $i <= 8; $i++) { ?>

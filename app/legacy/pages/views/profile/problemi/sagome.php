@@ -17,7 +17,7 @@
 				<div id="solution" class="mar-t-3 mar-b-3 grid-flow center-content  <?php if ($legacyTest->completed) echo $legacyTest->percentage ? 'right' : 'wrong'; ?>" data-spacing="700">
 
 					<div class="grid-flow center-content" data-spacing="400">
-						<h3 class="subsection-title txt-c3 mar-b-05">Soluzione</h3>
+						<h3 class="subsection-title txt-c3 mar-b-05"><?= __('Solution') ?></h3>
 
 						<?php if ($legacyTest->completed) { ?>
 
@@ -25,11 +25,11 @@
 
 								<?php if (!$supervisorView) { ?>
 
-									<?= $legacyTest->percentage ? 'Ottimo! La combinazione scelta è corretta.' : 'La combinazione scelta non è corretta, ma puoi ritentare quando vuoi.' ?>
+									<?= $legacyTest->percentage ? __('tests.' . $legacyTest->id . '-student-right') : __('tests.' . $legacyTest->id . '-student-wrong') ?>
 
 								<?php } else { ?>
 
-									<?= $legacyTest->percentage ? 'La combinazione scelta è corretta.' : 'La combinazione scelta non è corretta.' ?>
+									<?= $legacyTest->percentage ? __('tests.' . $legacyTest->id . '-supervisor-right') : __('tests.' . $legacyTest->id . '-supervisor-wrong') ?>
 
 								<?php } ?>
 

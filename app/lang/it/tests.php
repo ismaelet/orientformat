@@ -577,4 +577,37 @@ return [
 	"109-2-info" => "è a suo agio quando può ascoltare",
 	"109-3-info" => "lavora meglio in gruppo, mentre da solo si annoia",
 	"109-4-info" => "preferisce lavorare da solo, è a disagio nei lavori di gruppo",
+
+	"119-name-1" => "Mi rendo conto del problema",
+	"119-name-2" => "Ho chiaro l’obiettivo",
+	"119-name-3" => "Accetto la sfida",
+	"119-name-4" => "Utilizzo le risorse",
+	"119-name-5" => "Rispetto i vincoli",
+	"119-name-6" => "Reagisco alle difficoltà",
+	"119-name-7" => "So chiedere aiuto",
+	"119-name-8" => "Prendo delle decisioni",
+	"119-name-9" => "Agisco",
+
+	"119-description-1" => "I problemi è più facile evitarli che affrontarli, per questo spesso nessuno ne parla. Tu come reagisci?",
+	"119-description-2" => "Risolvere un problema significa ottenere un risultato. Tu quanto hai chiaro l’obiettivo da ottenere? ",
+	"119-description-3" => "Per farsi carico di un problema, occorre controllare l’ansia e la paura di non farcela. Tu quanto ci riesci?",
+	"119-description-4" => "Per raggiungere uno scopo bisogna disporre dei mezzi necessari. Ti chiedi se li hai oppure no?",
+	"119-description-5" => "Non si può «fare il passo più lungo della gamba». Bisogna conoscere i limiti di ciò che si può fare. E rispettarli.",
+	"119-description-6" => "Quando incontro un problema non mi scoraggio: mi dico che ce la posso fare.",
+	"119-description-7" => "Non sempre da soli si riesce. Allora occorre saper chiedere l’aiuto di qualcuno. Tu quanto ne sei capace? ",
+	"119-description-8" => "A volte si sa che cosa si dovrebbe fare, ma non si ha la voglia o la forza per decidersi a farlo.",
+	"119-description-9" => "Prendere delle decisioni è necessario, ma non basta. Bisogna poi anche metterle in pratica. Quanto lo fai?",
+
+	"120-student-right" => "Ottimo! La combinazione scelta è corretta.",
+	"120-student-wrong" => "La combinazione scelta non è corretta, ma puoi ritentare quando vuoi.",
+	"120-supervisor-right" => "La combinazione scelta è corretta.",
+	"120-supervisor-wrong" => "La combinazione scelta non è corretta.",
+
+	"121-title" => "Soluzioni possibili:",
+	"121-right" => "Hai completato la sequenza!",
+	"121-wrong" => "La figura scelta non è corretta",
+
+	"122-title" => "Soluzioni possibili:",
+	"122-right" => "Hai completato la sequenza!",
+	"122-wrong" => "La figura scelta non è corretta",
 ];

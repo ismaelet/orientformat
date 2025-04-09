@@ -11,12 +11,12 @@
 		<section id="graphic" class="">
 			<div id="graphic-pan">
 
-				<?php foreach ($graph_data as $key => $column) {
-					$fieldID = $key + 1;
+				<?php for ($key = 0; $key < $count; $key++) {
+					$fieldId = $key + 1;
 					$val = $legacyTest->completed ? $legacyTest->rawResults[$key] : 0;
 				?>
 
-					<div id="graph-col<?= $fieldID; ?>" class="graph-col js-load load--fade-in" data-direction="top" data-id="<?= $fieldID; ?>">
+					<div id="graph-col<?= $fieldId; ?>" class="graph-col js-load load--fade-in" data-direction="top" data-id="<?= $fieldId; ?>">
 						<input type="hidden" class="filler-inp" name="field[]" value="<?= $val; ?>">
 						<div class="ele-box">
 
@@ -29,7 +29,7 @@
 							<?php } ?>
 
 						</div>
-						<p class="name txt-09rem"><?= $column[0]; ?></p>
+						<p class="name txt-09rem"><?= __('tests.' . $legacyTest->id . '-name-' . $fieldId) ?></p>
 					</div>
 
 				<?php } ?>
@@ -47,14 +47,13 @@
 	<div id="desc-pan" class="">
 		<div id="desc-box" class="grid-flow stack-content">
 
-			<?php foreach ($graph_data as $key => $column) {
-				$fieldID = $key + 1;
-
+			<?php for ($key = 0; $key < $count; $key++) {
+				$fieldId = $key + 1;
 			?>
 
-				<div class="field-info grid-flow js-field-info" data-id="<?= $fieldID ?>" data-spacing="400">
-					<h3 class="desc-title txt-blk font-bold txt-15rem"><?= $column[0] ?></h3>
-					<p class="desc-txt txt-1rem txt-blk"><?= $column[1] ?></p>
+				<div class="field-info grid-flow js-field-info" data-id="<?= $fieldId ?>" data-spacing="400">
+					<h3 class="desc-title txt-blk font-bold txt-15rem"><?= __('tests.' . $legacyTest->id . '-name-' . $fieldId) ?></h3>
+					<p class="desc-txt txt-1rem txt-blk"><?= __('tests.' . $legacyTest->id . '-description-' . $fieldId) ?></p>
 				</div>
 
 			<?php } ?>
