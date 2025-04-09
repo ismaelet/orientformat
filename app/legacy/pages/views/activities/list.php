@@ -24,7 +24,7 @@
 			?>
 
 				<div class="area-wrapper">
-					<section class="area grid-flow main-wrap full-width" data-spacing="700">
+					<section class="area main-wrap full-width gap-8">
 						<div class="area__header fa-center grid-flow" data-spacing="400">
 							<h2 class="section-title"><?= __('areas.' . $legacyArea->id) ?></h2>
 							<p class="section-subtitle"><?= __('areas.' . $legacyArea->id . '-description') ?></p>

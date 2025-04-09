@@ -16,7 +16,7 @@
 
 					<!-- Logo -->
 					<a href="<?= config('custom.contacts.web.url') ?>" id="h-logo">
-						<img src="<?= asset('images/logo/logo.png') ?>" alt="">
+						<img src="<?= asset('legacy/images/logo/logo.png') ?>" alt="">
 					</a>
 
 				<?php } ?>

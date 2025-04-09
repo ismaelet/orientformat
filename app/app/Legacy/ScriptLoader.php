@@ -17,13 +17,13 @@ class ScriptLoader {
 
 		switch ($type) {
 			case 'template':
-				if (file_exists(base_path() . '/public' . $fetchingFile = '/templates/scripts/' . $fileName . '.js')) {
+				if (file_exists(base_path() . '/public/legacy' . $fetchingFile = '/templates/scripts/' . $fileName . '.js')) {
 					$file = $fetchingFile;
 					if (!$priority) $priority = 3;
 				}
 				break;
 			case 'page':
-				if (file_exists(base_path() . '/public' . $fetchingFile = '/pages/scripts/' . $fileName . '.js')) {
+				if (file_exists(base_path() . '/public/legacy' . $fetchingFile = '/pages/scripts/' . $fileName . '.js')) {
 					$file = $fetchingFile;
 					if (!$priority) $priority = 4;
 				}
@@ -34,13 +34,13 @@ class ScriptLoader {
 
 		// store the file URL in the list
 		if ($file) {
-			$file .= '?v=' . filemtime(base_path() . '/public' . $file);
+			$file .= '?v=' . filemtime(base_path() . '/public/legacy' . $file);
 			self::$list[] = [$priority, $file];
 		}
 	}
 
 	public static function addPageScripts($pageName) {
-		$pageScripts = glob(base_path() . '/public' . '/pages/scripts/-expands-' . $pageName . '/*.js');
+		$pageScripts = glob(base_path() . '/public/legacy' . '/pages/scripts/-expands-' . $pageName . '/*.js');
 
 		self::add($pageName, 'page');
 
@@ -63,7 +63,7 @@ class ScriptLoader {
 
 		sort_subvalue(self::$list, 0);
 
-		foreach (self::$list as $style) $list[] = '<script src="' . asset($style[1]) . '"></script>';
+		foreach (self::$list as $style) $list[] = '<script src="' . asset('legacy' . $style[1]) . '"></script>';
 
 		return implode(PHP_EOL, $list);
 	}

@@ -14,8 +14,8 @@
 						</p>
 
 						<a href="<?= config('custom.contacts.web.url') ?>">
-							<img id="f-logo" class="footer__logo--light" src="<?= asset('/images/logo/logo-white.webp') ?>">
-							<img id="f-logo" class="footer__logo--dark" src="<?= asset('/images/logo/logo.webp') ?>">
+							<img id="f-logo" class="footer__logo--light" src="<?= asset('legacy/images//logo/logo-white.webp') ?>">
+							<img id="f-logo" class="footer__logo--dark" src="<?= asset('legacy/images//logo/logo.webp') ?>">
 						</a>
 
 						<p class="mb-4">

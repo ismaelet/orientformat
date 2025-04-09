@@ -67,7 +67,7 @@
 								<center>
 									<img
 										style="max-width: 40%; max-height: 80px;"
-										src="{{ asset('images/logo/logo.png') }}"
+										src="{{ asset('legacy/images/logo/logo.png') }}"
 										alt=""
 									/>
 								</center>
@@ -111,7 +111,7 @@
 												>
 													<img
 														style="max-width: 20px; max-height: 20px; margin: 0px 8px;"
-														src="{{ asset('images/contacts/' . $contactSlug . '.png') }}""
+														src="{{ asset('legacy/images/contacts/' . $contactSlug . '.png') }}""
 														alt=""
 													>
 												</a>

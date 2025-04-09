@@ -11,14 +11,12 @@
 
 	<!-- Styles -->
 	<link href="<?= asset('legacy/legacy.css') . '?v=' . filemtime(base_path() . '/public/legacy/legacy.css') ?>" rel="stylesheet" type="text/css">
-	<link href="<?= asset('legacy/legacy.css') . '?v=' . filemtime(base_path() . '/public/legacy/main.css') ?>" rel="stylesheet" type="text/css">
 	<?= PHP_EOL . \App\Legacy\StyleLoader::load() ?>
 	<?= PHP_EOL . \App\Legacy\StyleLoader::loadInline() ?>
 
 	<!-- Scripts -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-	<script src="<?= asset('legacy.js') ?>"></script>
-	<script src="<?= asset('main.js') ?>"></script>
+	<script src="<?= asset('legacy/legacy.js') . '?v=' . filemtime(base_path() . '/public/legacy/legacy.js') ?>"></script>
 	<?= PHP_EOL . \App\Legacy\ScriptLoader::load() ?>
 
 	<!-- Google tag (gtag.js) -->

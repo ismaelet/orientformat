@@ -745,7 +745,7 @@
 					id="h-logo"
 				>
 					<img
-						src="<?= asset('images/logo/logo.png') ?>"
+						src="<?= asset('legacy/images/logo/logo.png') ?>"
 						alt=""
 					>
 				</a>

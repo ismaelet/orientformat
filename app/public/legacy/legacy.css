@@ -9437,3 +9437,69 @@ body {
 	--tw-bg-opacity: 1;
 	background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
+
+.mb-4 {
+	margin-bottom: 1rem;
+}
+
+.gap-2 {
+	gap: 0.5rem;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.left-1\/2 {
+	left: calc(1 / 2 * 100%);
+}
+
+.-translate-x-1\/2 {
+	--tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
+	translate: var(--tw-translate-x) var(--tw-translate-y);
+}
+@property --tw-translate-x {
+	syntax: '*';
+	inherits: false;
+	initial-value: 0;
+}
+@property --tw-translate-y {
+	syntax: '*';
+	inherits: false;
+	initial-value: 0;
+}
+@property --tw-translate-z {
+	syntax: '*';
+	inherits: false;
+	initial-value: 0;
+}
+
+.z-100 {
+	z-index: 100;
+}
+
+[data-school-group='middleschool'] {
+	--color-primary-400-hsl: 41deg 88% 64%;
+	--color-secondary-400-hsl: 343deg 48% 53%;
+	--color-secondary-hsl-200: 343, 48%, 75%;
+	--color-secondary-hsl-300: 343, 48%, 63%;
+	--color-secondary-hsl-400: 343, 48%, 53%;
+	--color-transition-400: #ee7e59;
+	--gradient-primary-tertiary: var(--color-primary-400), var(--color-tertiary-400);
+	--gradient-secondary-tertiary: var(--color-secondary-400), #753875, var(--color-tertiary-400);
+	--color-1-of-4: #f4c152;
+	--color-2-of-4: #f69e52;
+	--color-3-of-4: #dd6564;
+	--color-4-of-4: #c14e6e;
+	--color-1-of-5: #f4c152;
+	--color-2-of-5: #f69f52;
+	--color-3-of-5: #ee7f5a;
+	--color-4-of-5: #dc6464;
+	--color-5-of-5: #c14e6e;
+	--color-1-of-6: #f4c152;
+	--color-2-of-6: #f6b350;
+	--color-3-of-6: #f49254;
+	--color-4-of-6: #e46e60;
+	--color-5-of-6: #cd566a;
+	--color-6-of-6: #c14e6e;
+}

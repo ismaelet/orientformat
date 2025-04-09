@@ -39,7 +39,7 @@ class StyleLoader {
 				break;
 
 			case 'app':
-				$file = '/legacy/app/styles/' . $fileName . '.css';
+				$file = '/app/styles/' . $fileName . '.css';
 
 				break;
 

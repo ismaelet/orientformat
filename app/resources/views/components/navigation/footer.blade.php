@@ -112,8 +112,8 @@
 		}
 
 		/*
-																																																																											* Credits
-																																																																											*/
+																																																																												* Credits
+																																																																												*/
 		#footer-credits {
 			border-color: hsl(0, 0%, 100%, 0.1);
 		}
@@ -125,8 +125,8 @@
 		}
 
 		/*
-																																																																											* Notes
-																																																																											*/
+																																																																												* Notes
+																																																																												*/
 		#footer-notes {
 			background-color: var(--color-tertiary-800);
 		}
@@ -178,12 +178,12 @@
 						<img
 							id="f-logo"
 							class="footer__logo--light"
-							src="<?= asset('/images/logo/logo-white.webp') ?>"
+							src="<?= asset('legacy/images//logo/logo-white.webp') ?>"
 						>
 						<img
 							id="f-logo"
 							class="footer__logo--dark"
-							src="<?= asset('/images/logo/logo.webp') ?>"
+							src="<?= asset('legacy/images//logo/logo.webp') ?>"
 						>
 					</a>
 
