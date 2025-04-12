@@ -18,10 +18,10 @@ if ($sibling->completed) {
 }
 
 $categories = [
-	['Pubblica', 'top'],
-	['Privata', 'bottom'],
-	['Testuale', 'left'],
-	['Non testuale', 'right'],
+	[__('tests.63-group-1'), 'top'],
+	[__('tests.63-group-2'), 'bottom'],
+	[__('tests.63-group-3'), 'left'],
+	[__('tests.63-group-4'), 'right'],
 ];
 
 $count = count($types);

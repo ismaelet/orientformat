@@ -1,14 +1,12 @@
 <?php
 
-use LogicManager\TestLogic;
-
 $questions = [
-	'Mi accorgo quando mi distraggo',
-	'So che cosa mi distrae',
-	'Riesco a recuperare l’attenzione',
-	'So mantenere l’attenzione per il tempo necessario',
-	'Ho una mia strategia per evitare di distrarmi',
-	'Riesco a svolgere diverse attività nello stesso tempo'
+	__('tests.16-field-1'),
+	__('tests.16-field-2'),
+	__('tests.16-field-3'),
+	__('tests.16-field-4'),
+	__('tests.16-field-5'),
+	__('tests.16-field-6'),
 ];
 
 $count = count($questions);

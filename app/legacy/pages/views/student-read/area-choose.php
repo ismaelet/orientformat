@@ -8,7 +8,7 @@
 	ci dà un’apertura sulla realtà e un orientamento sul futuro.
 </p>
 
-<h2 class="section-title">Interpretare i risultati</h2>
+<h2 class="section-title"><?= __('Interpret the results') ?></h2>
 
 <p class="text">
 	Tieni presente che gli interessi non coincidono necessariamente con le abilità. Ad esempio, potresti essere

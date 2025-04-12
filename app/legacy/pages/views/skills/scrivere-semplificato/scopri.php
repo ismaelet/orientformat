@@ -9,7 +9,7 @@
 
 	<?php if (test()->completed) { ?>
 
-		<p class="result__text">Hai identificato il <span class="result__score"><?= test()->percentage ?>%</span> degli errori.</p>
+		<p class="result__text"><?= __('tests.135-result', ['percentage' => test()->percentage]) ?></p>
 
 	<?php } ?>
 
@@ -36,13 +36,13 @@
 		<p class="fa-right">Da D’Orta M. (1994),<span class="fy-italic">Io speriamo che me la cavo. Sessanta temi di bambini napoletani</span>, Mondadori, Milano</p>
 
 		<section class="markers grid-flow <?= test()->completed ? 'markers--completed' : '' ?>" data-spacing="400">
-			<div class="marker grid-flow center-content" data-marker-type="1">LETTERE SBAGLIATE O MANCANTI</div>
-			<div class="marker grid-flow center-content" data-marker-type="2">SEPARAZIONI O FUSIONI SBAGLIATE</div>
-			<div class="marker grid-flow center-content" data-marker-type="3">PAROLE SCELTE MALE O DI TROPPO</div>
-			<div class="marker grid-flow center-content" data-marker-type="4">VERBI SBAGLIATI</div>
+			<div class="marker grid-flow center-content" data-marker-type="1"><?= __('tests.135-error-type-1') ?></div>
+			<div class="marker grid-flow center-content" data-marker-type="2"><?= __('tests.135-error-type-2') ?></div>
+			<div class="marker grid-flow center-content" data-marker-type="3"><?= __('tests.135-error-type-3') ?></div>
+			<div class="marker grid-flow center-content" data-marker-type="4"><?= __('tests.135-error-type-4') ?></div>
 
 			<?php if (test()->completed) { ?>
-				<div class="marker grid-flow center-content" data-marker-type="5">Errori non individuati</div>
+				<div class="marker grid-flow center-content" data-marker-type="5"><?= __('tests.135-missed') ?></div>
 			<?php } ?>
 		</section>
 	</div>

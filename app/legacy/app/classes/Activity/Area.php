@@ -15,6 +15,10 @@ class Area {
 	/**
 	 * Get methods
 	 */
+	private function getName() {
+		return __('areas.' . $this->id);
+	}
+
 	private function getIcon() {
 		return APP_ICONS_DIR . '/areas/area-' . $this->id;
 	}

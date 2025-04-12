@@ -22,9 +22,9 @@
 	<?php } else { ?>
 
 		<div class="result grid-flow center-content" data-spacing="600">
-			<p class="result__text">hai trovato il</p>
+			<p class="result__text"><?= __('tests.118-result-1') ?></p>
 			<h3 class="result__value"><?= test()->percentage ?>%</h3>
-			<p class="result__text">delle combinazioni</p>
+			<p class="result__text"><?= __('tests.118-result-2') ?></p>
 		</div>
 
 	<?php } ?>
@@ -32,7 +32,7 @@
 	<div class="grid-flow" data-spacing="700">
 		<?= renderRedoButton(true) ?>
 
-		<div>
+		<div class="">
 			<?= submit() ?>
 			<?= skip() ?>
 		</div>

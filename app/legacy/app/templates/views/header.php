@@ -82,7 +82,7 @@
 				<?php } ?>
 
 				<!-- Language bar -->
-				<?php if (is_student()) { ?>
+				<?php if (is_student() || is_teacher()) { ?>
 					<div class="h-languages relative hidden lg:block" x-data="{ open: false }" @click.away="open = false" @click="open = !open">
 						<div class="w-8 cursor-pointer"><?= embed_icon(App::currentLocale()) ?></div>
 

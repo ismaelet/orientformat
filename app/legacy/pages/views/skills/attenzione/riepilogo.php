@@ -9,8 +9,8 @@
 		<div class="page-content mar-t-5 mar-b-5">
 
 			<div class="page-grid page-grid--header">
-				<h3 class="page-grid_title txt-line font-bold txt-c3">Distraibilità</h3>
-				<h3 class="page-grid_title txt-line font-bold txt-c3">Iperattività</h3>
+				<h3 class="page-grid_title txt-line font-bold txt-c3"><?= __('tests.21-title-1') ?></h3>
+				<h3 class="page-grid_title txt-line font-bold txt-c3"><?= __('tests.21-title-2') ?></h3>
 			</div>
 
 			<div class="page-grid page-grid--body">
@@ -25,14 +25,14 @@
 						</div>
 
 						<div class="number-box left">
-							<h3 class="number">Domanda <?= $key ?></h3>
+							<h3 class="number"><?= __('Question') ?> <?= $key ?></h3>
 							<p class="question cen txt-09rem txt-ita fa-center"><?= $answer['question'] ?></p>
 						</div>
 
 					<?php } else { ?>
 
 						<div class="number-box right">
-							<h3 class="number">Domanda <?= $key ?></h3>
+							<h3 class="number"><?= __('Question') ?> <?= $key ?></h3>
 							<p class="question cen txt-09rem txt-ita fa-center"><?= $answer['question'] ?></p>
 						</div>
 
@@ -54,14 +54,14 @@
 
 				<div class="number-box left">
 					<h1 class="number total font-bold txt-line left">
-						<span class="total_name">Totale Distraibilità:</span><br>
+						<span class="total_name"><?= __('tests.21-result-1') ?></span><br>
 						<?= round($focus['width']) ?> %
 					</h1>
 				</div>
 
 				<div class="number-box right">
 					<h1 class="number total font-bold txt-line right">
-						<span class="total_name">Totale Iperattività:</span><br>
+						<span class="total_name"><?= __('tests.21-result-2') ?></span><br>
 						<?= round($hyper['width']) ?> %
 					</h1>
 				</div>

@@ -3,22 +3,22 @@
 use LogicManager\TestLogic;
 
 $types = [
-	'Scrivere un\'esposizione',
-	'Scrivere un post su un social network',
-	'Scrivere una poesia da leggere a qualcuno',
-	'Scrivere un racconto',
-	'Scrivere un riassunto per un compito o per qualcuno',
-	'Scrivere delle istruzioni',
-	'Scrivere un\'e-mail',
-	'Scrivere in un diario',
-	'Scrivere un riassunto per te',
-	'Scrivere una poesia che non verrà letta da altri',
-	'Fare uno schema per te',
-	'Fare un brainstorming',
-	'Fare uno schema da mostrare ad altri',
-	'Fare una mappa',
-	'Scrivere un promemoria',
-	'Prendere appunti',
+	__('tests.62-question-1'),
+	__('tests.62-question-2'),
+	__('tests.62-question-3'),
+	__('tests.62-question-4'),
+	__('tests.62-question-5'),
+	__('tests.62-question-6'),
+	__('tests.62-question-7'),
+	__('tests.62-question-8'),
+	__('tests.62-question-9'),
+	__('tests.62-question-10'),
+	__('tests.62-question-11'),
+	__('tests.62-question-12'),
+	__('tests.62-question-13'),
+	__('tests.62-question-14'),
+	__('tests.62-question-15'),
+	__('tests.62-question-16'),
 ];
 
 $count = count($types);

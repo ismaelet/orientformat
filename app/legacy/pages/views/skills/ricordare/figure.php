@@ -38,7 +38,7 @@
 
 			<?php if ($legacyTest->completed) { ?>
 
-				<p id="result-text" class="mar-b-4 fa-center txt-12rem font-bold <?= $legacyTest->percentage == 100 ? 'right' : 'wrong' ?>"><?= $legacyTest->percentage == 100 ? 'Hai scelto la figura giusta, ottimo lavoro!' : 'La soluzione è errata, ma puoi riprovare quando vuoi' ?></p>
+				<p id="result-text" class="mar-b-4 fa-center txt-12rem font-bold <?= $legacyTest->percentage == 100 ? 'right' : 'wrong' ?>"><?= $legacyTest->percentage == 100 ? __('tests.54-right') : __('tests.54-wrong') ?></p>
 
 			<?php } ?>
 

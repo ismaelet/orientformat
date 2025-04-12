@@ -275,6 +275,14 @@ class RuotaIVoltiParlano extends Test {
 				padding-block: 2rem;
 			}
 
+			@media (min-width: 1024px) {
+				.mobile-wrapper {
+					overflow-x: unset;
+					padding-inline: 0;
+					padding-block: 0;
+				}
+			}
+
 			.page-wrapper {
 				display: grid;
 				grid-template-columns: var(--face-width) minmax(0, 1fr) var(--face-width);

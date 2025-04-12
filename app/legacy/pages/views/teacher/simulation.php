@@ -47,7 +47,7 @@ use \Legacy\SchoolSystem\Grade;
 					?>
 
 						<div class="grade">
-							<h3 class="grade__title">Attività del <?= $grade->adjective ?> anno</h3>
+							<h3 class="grade__title"><?= __('misc.grade-description', ['numeral' => __($grade->adjective)]) ?></h3>
 
 							<div class="areas">
 
@@ -76,7 +76,7 @@ use \Legacy\SchoolSystem\Grade;
 																<p class="element-subtitle mt-2"><?= $legacySection->description ?></p>
 
 																<?php if ($legacySection->estimated_duration) { ?>
-																	<p class="element-subtitle mt-1">Tempo stimato: <span class="font-bold"><?= $legacySection->estimated_duration ?></span> <?= $legacySection->estimated_duration == 1 ? 'ora' : 'ore' ?></p>
+																	<p class="element-subtitle mt-1"><?= trans_choice('misc.estimated-time', $legacySection->estimated_duration, ['hours' => $legacySection->estimated_duration]) ?></p>
 																<?php } ?>
 															</div>
 														</a>

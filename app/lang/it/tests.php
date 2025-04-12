@@ -1,6 +1,9 @@
 <?php
 
 return [
+
+	// * Titles
+
 	2 => "Approfondisci",
 	3 => "Completamento numerico",
 	4 => "Somma numerica",
@@ -181,6 +184,10 @@ return [
 	207 => "La ruota delle emozioni - 2",
 	208 => "La ruota delle emozioni - 3",
 	209 => "I Volti Parlano",
+
+
+	// * Short descriptions
+
 	"summary-2" => "Approfondisci la tua autovalutazione riguardo alla capacità di risolvere problemi",
 	"summary-3" => "Cerca di capire come sono strutturate delle sequenze di numeri e completale",
 	"summary-4" => "Completa una figura circolare inserendo i numeri che ritieni corretti negli spazi vuoti",
@@ -361,6 +368,8 @@ return [
 	"summary-207" => "Dare un nome a ciò che sento",
 	"summary-208" => "Dare un nome a ciò che sento",
 	"summary-209" => "Crea emozioni, associando sguardo e bocca.",
+
+	// * Long descriptions
 	"description-2" => "Come valuto la mia capacità nel risolvere problemi? Scoprilo passo passo. Per ciascuna domanda seleziona il livello che ritieni più adeguato per te. Ricorda che 1 è il minimo e 5 il massimo. Dopo aver approfondito, esserti messo/a alla prova ed esserti confrontato/a, è consigliabile rifare questa autovalutazione.",
 	"description-3" => "Cerca di capire come sono strutturate le sequenze di numeri qui sotto in modo da <strong>completarle</strong> con il numero che ritieni corretto.",
 	"description-4" => "Completa la figura inserendo un numero in ogni casella, seguendo queste regole:<br><span class=\"txt-bold txt-wht\">1.</span> Escludi lo <span class=\"txt-bold txt-wht\">zero</span>.<br><span class=\"txt-bold txt-wht\">2.</span> La somma delle tre caselle di ogni linea deve essere <span class=\"txt-bold txt-wht\">22</span>.<br><span class=\"txt-bold txt-wht\">3.</span> Non puoi lasciare caselle <span class=\"txt-bold txt-wht\">vuote</span>.<br><span class=\"txt-bold txt-wht\">4.</span> Non puoi usare due volte lo <span class=\"txt-bold txt-wht\">stesso numero</span>.",
@@ -542,11 +551,71 @@ return [
 	"description-208" => "Scegli tra queste l’emozione che provi più spesso, cliccando sul livello di intensità: da 1 = poco intensa a 4 = molto intensa. Puoi ripetere più volte la tua scelta.",
 	"description-209" => "Associa, trascinando col mouse, bocca e sguardo: ottieni così una particolare emozione. Qual è la tua in questo momento? Se riesci, puoi anche associare un nome all’emozione che hai realizzato col disegno.",
 
+
+	// * Test specific
+
+	"16-field-1" => "Mi accorgo quando mi distraggo",
+	"16-field-2" => "So che cosa mi distrae",
+	"16-field-3" => "Riesco a recuperare l’attenzione",
+	"16-field-4" => "So mantenere l’attenzione per il tempo necessario",
+	"16-field-5" => "Ho una mia strategia per evitare di distrarmi",
+	"16-field-6" => "Riesco a svolgere diverse attività nello stesso tempo",
+
+	"21-title-1" => "Distraibilità",
+	"21-title-2" => "Iperattività",
+	"21-result-1" => "Totale Distraibilità:",
+	"21-result-2" => "Totale Iperattività:",
+
+	"22-text-1" => "Bravo! Ora concentrati, ad occhi chiusi, sulla bandierina per un minuto.",
+	"22-text-2" => "Ottimo!<br>Clicca qui sotto per continuare.",
+
 	"46-section-1" => 'Stabilità emotiva',
 	"46-section-2" => 'Estroversione',
 	"46-section-3" => 'Socievolezza',
 	"46-section-4" => 'Coscienziosità',
 	"46-section-5" => 'Risposta alle novità',
+
+	"54-right" => "Hai scelto la figura giusta, ottimo lavoro!",
+	"54-wrong" => "La soluzione è errata, ma puoi riprovare quando vuoi.",
+
+	"62-question-1" => 'Scrivere un\'esposizione',
+	"62-question-2" => 'Scrivere un post su un social network',
+	"62-question-3" => 'Scrivere una poesia da leggere a qualcuno',
+	"62-question-4" => 'Scrivere un racconto',
+	"62-question-5" => 'Scrivere un riassunto per un compito o per qualcuno',
+	"62-question-6" => 'Scrivere delle istruzioni',
+	"62-question-7" => 'Scrivere un\'e-mail',
+	"62-question-8" => 'Scrivere in un diario',
+	"62-question-9" => 'Scrivere un riassunto per te',
+	"62-question-10" => 'Scrivere una poesia che non verrà letta da altri',
+	"62-question-11" => 'Fare uno schema per te',
+	"62-question-12" => 'Fare un brainstorming',
+	"62-question-13" => 'Fare uno schema da mostrare ad altri',
+	"62-question-14" => 'Fare una mappa',
+	"62-question-15" => 'Scrivere un promemoria',
+	"62-question-16" => 'Prendere appunti',
+
+	"63-title" => "Tipi di scrittura",
+	"63-group-1" => "Pubblica",
+	"63-group-2" => "Privata",
+	"63-group-3" => "Testuale",
+	"63-group-4" => "Non testuale",
+	"63-type-1" => 'Esposizione',
+	"63-type-2" => 'Post',
+	"63-type-3" => 'Poesia pubblica',
+	"63-type-4" => 'Racconto',
+	"63-type-5" => 'Riassunto pubblico',
+	"63-type-6" => 'Istruzioni',
+	"63-type-7" => 'E-mail',
+	"63-type-8" => 'Diario',
+	"63-type-9" => 'Riassunto privato',
+	"63-type-10" => 'Poesia privata',
+	"63-type-11" => 'Schema pubblico',
+	"63-type-12" => 'Brainstorming',
+	"63-type-13" => 'Schema privato',
+	"63-type-14" => 'Mappa',
+	"63-type-15" => 'Promemoria',
+	"63-type-16" => 'Appunti',
 
 	"101-choice-1" => 'Ha fatto tanta strada ed è soddisfatto',
 	"101-choice-2" => 'Ha fatto tanta strada, ma qualcosa non va',
@@ -577,6 +646,9 @@ return [
 	"109-2-info" => "è a suo agio quando può ascoltare",
 	"109-3-info" => "lavora meglio in gruppo, mentre da solo si annoia",
 	"109-4-info" => "preferisce lavorare da solo, è a disagio nei lavori di gruppo",
+
+	"118-result-1" => "hai trovato il",
+	"118-result-2" => "delle combinazioni",
 
 	"119-name-1" => "Mi rendo conto del problema",
 	"119-name-2" => "Ho chiaro l’obiettivo",
@@ -610,4 +682,56 @@ return [
 	"122-title" => "Soluzioni possibili:",
 	"122-right" => "Hai completato la sequenza!",
 	"122-wrong" => "La figura scelta non è corretta",
+
+	"135-result" => "Hai identificato il <span class='result__score'>:percentage%</span> degli errori.",
+	"135-missed" => "Errori non individuati",
+	"135-error-type-1" => "LETTERE SBAGLIATE O MANCANTI",
+	"135-error-type-2" => "SEPARAZIONI O FUSIONI SBAGLIATE",
+	"135-error-type-3" => "PAROLE SCELTE MALE O DI TROPPO",
+	"135-error-type-4" => "VERBI SBAGLIATI",
+
+	"138-question-1" => "L’armadio di nonna Betta conteneva",
+	"138-question-2" => "La pupazzetta aveva in testa",
+	"138-question-3" => "Bettina amava molto la pupazzetta perché",
+	"138-question-4" => "Un brutto giorno, quando aveva cinque anni, nonna Betta",
+	"138-question-5" => "Perché Bettina decide di chiamarla Sovrana?",
+	"138-question-6" => "Bettina abbandona la pupazzetta",
+	"138-question-7" => "Una sera d’agosto la pupazzetta si butta di sotto e fa un gran botto",
+	"138-question-8" => "La pupazzetta ha perso un braccio ed una gamba",
+	"138-question-9" => "Cosa significa la parola “malandrino”?",
+	"138-question-10" => "La pupazzetta è chiamata “cenciosa”",
+	"138-answers-1-1" => "Balocchi di fanciullezza",
+	"138-answers-1-2" => "Vecchie fotografie",
+	"138-answers-1-3" => "Una bambola di pezza e cartapesta",
+	"138-answers-2-1" => "Tanti riccioli",
+	"138-answers-2-2" => "Pochi capelli",
+	"138-answers-2-3" => "Nessun capello",
+	"138-answers-3-1" => "Era la sua prima bambola",
+	"138-answers-3-2" => "Era la sua prediletta",
+	"138-answers-3-3" => "Aveva sul vestito una spilletta",
+	"138-answers-4-1" => "Trova in un armadio una bambola di pezza",
+	"138-answers-4-2" => "Riceve in regalo una bambola di porcellana",
+	"138-answers-4-3" => "Riceve in regalo una bambola di lana",
+	"138-answers-5-1" => "Perché ha una corona in testa",
+	"138-answers-5-2" => "Perché le piaceva comandare a tutte le bambole",
+	"138-answers-5-3" => "Era bella ed elegante come una regina",
+	"138-answers-6-1" => "Perché Sovrana prende il suo posto",
+	"138-answers-6-2" => "Perché si è dimostrata cattiva nei confronti di Sovrana",
+	"138-answers-6-3" => "Perché le mancano un braccio e una gamba",
+	"138-answers-7-1" => "Perché Bettina abbraccia Sovrana ed è gelosa",
+	"138-answers-7-2" => "Perché il malandrino l’ha fatta cadere",
+	"138-answers-7-3" => "Per avvisare Bettina di un pericolo imminente",
+	"138-answers-8-1" => "Per salvare Bettina dal ladro di bambini",
+	"138-answers-8-2" => "In una rissa con Sovrana",
+	"138-answers-8-3" => "Perché nel tempo la stoffa si è rovinata",
+	"138-answers-9-1" => "Furfante",
+	"138-answers-9-2" => "Venditore di mandarini",
+	"138-answers-9-3" => "Sempliciotto",
+	"138-answers-10-1" => "Perché fa i capricci",
+	"138-answers-10-2" => "Perché ha tanti nodi tra i capelli",
+	"138-answers-10-3" => "Perché ha un vestito di pezza tutto rovinato",
+
+	"163-right" => "Ottimo lavoro! Hai completato l'attività.",
+	"163-stop" => "Non riesco a memorizzare tutte le cifre e preferisco fermarmi qui.",
+	"163-insert" => "Inserisci i numeri",
 ];

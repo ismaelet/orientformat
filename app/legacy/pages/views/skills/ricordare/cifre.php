@@ -31,7 +31,7 @@
 					<?php if ($right) { ?>
 
 						<div class="submit-box fa-center mar-t-5">
-							<div id="start" class="button resume mar-b-2">Procedi</div>
+							<div id="start" class="button resume mar-b-2"><?= __('Continue') ?></div>
 						</div>
 
 					<?php } else { ?>
@@ -39,12 +39,12 @@
 						<div class="submit-box fa-center mar-t-5">
 
 							<?php if (!isSupervisor()) { ?>
-								<div id="reset" class="button resume mar-b-2">Riprova</div><br>
+								<div id="reset" class="button resume mar-b-2"><?= __('Try again') ?></div><br>
 
 								<?php if (!$legacyTest->completed) { ?>
 
 									<label>
-										<p class="interactive">Non riesco a memorizzare tutte le cifre e preferisco fermarmi qui.</p>
+										<p class="interactive"><?= __('tests.163-stop') ?></p>
 										<input type="checkbox" name="skip-cbx" class="hidden" onchange="$(this).next().click();">
 										<button type="submit" name="submit" class="hidden" formnovalidate></button>
 									</label>
@@ -59,10 +59,10 @@
 
 			<?php } else if ($levelOld) { ?>
 
-				<h1 id="completed" class="pad-v-5 fa-center txt-3rem fw-light"><span class="fc-primary font-bold">Ottimo lavoro!</span> Hai completato l'attività</h1>
+				<h1 id="completed" class="pad-v-5 fa-center txt-3rem fw-light"><?= __('tests.163-right') ?></h1>
 
 				<div class="submit-box fa-center">
-					<button name="submit" class="button mar-b-2">Procedi</button>
+					<button name="submit" class="button mar-b-2"><?= __('Continue') ?></button>
 				</div>
 
 			<?php } ?>
@@ -74,12 +74,12 @@
 					<div class="grid2 ha-cen mar-t-4">
 						<div id="view" class="button button--secondary">
 							<?= embed_icon('view') ?>
-							Vedi
+							<?= __('See') ?>
 						</div>
 
 						<div id="listen" class="button button--secondary">
 							<?= embed_icon('listen') ?>
-							Ascolta
+							<?= __('Listen') ?>
 						</div>
 					</div>
 
@@ -101,7 +101,7 @@
 						<?php if (!$legacyTest->completed) { ?>
 
 							<label>
-								<p class="txt-a clickable inlb">Non riesco a memorizzare tutte le cifre e preferisco fermarmi qui.</p>
+								<p class="txt-a clickable inlb"><?= __('tests.163-stop') ?></p>
 								<input type="checkbox" name="skip-cbx" class="hidden" onchange="$(this).next().click();">
 								<button type="submit" name="submit" class="hidden" formnovalidate></button>
 							</label>
@@ -120,7 +120,7 @@
 				</div>
 
 				<div class="submit-box fa-center mar-t-5">
-					<div class="back button mar-b-2">Inserisci i numeri</div>
+					<div class="back button mar-b-2"><?= __('tests.163-insert') ?></div>
 				</div>
 			</div>
 
@@ -128,7 +128,7 @@
 			<div id="listen-pan" class="pad-v-5 fa-center">
 				<audio id="audio">
 					<source src="<?= client_path('/pages/assets/' . test()->area->slug . '/' . test()->section->mainSection->slug . '/' . test()->slug . '/' . 'audio' . $level . '.mp3') ?>" type="audio/mpeg">
-					Il tuo browser non supporta gli audio MP3.
+					<?= __('mp3-error') ?>
 				</audio>
 
 				<div id="play-box" class="inlb round pos-rel js-listen-button">
@@ -142,7 +142,7 @@
 				</div>
 
 				<div class="submit-box fa-center mar-t-5">
-					<div class="back button mar-b-2">Inserisci i numeri</div>
+					<div class="back button mar-b-2"><?= __('tests.163-insert') ?></div>
 				</div>
 			</div>
 		</div>

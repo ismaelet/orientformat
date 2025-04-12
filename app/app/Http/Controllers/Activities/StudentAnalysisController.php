@@ -28,6 +28,7 @@ class StudentAnalysisController extends Controller {
 			->setTemplate('student-read')
 			->set('sectionId', $section->id)
 			->set('areaId', $area->id)
+			->set('page', $page)
 			->show();
 	}
 }

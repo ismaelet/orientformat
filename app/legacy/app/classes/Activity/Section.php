@@ -52,6 +52,10 @@ class Section {
 		return __('sections.' . $this->id);
 	}
 
+	private function getDescription() {
+		return __('sections.description-' . $this->id);
+	}
+
 	private function getTitle() {
 		return $this->getName();
 	}

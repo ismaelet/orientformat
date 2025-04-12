@@ -11,6 +11,10 @@
 	"Proceed": "Fortfahren",
 	"Try again": "Erneut versuchen",
 	"Confirm": "Bestätigen",
+	"Back": "Zurück",
+	"Continue": "Fortsetzen",
+	"Listen": "Hören",
+	"See": "Sehen",
 
 	"Activities": "Aktivitäten",
 	"Author": "Autor",
@@ -20,6 +24,8 @@
 	"ME": "ICH",
 	"Emotion": "Emotion",
 	"Solution": "Lösung",
+	"Question": "Frage",
+	"Questions": "Fragen",
 
 	"Legal Information": "Rechtliche Informationen",
 	"Know More": "Mehr erfahren",
@@ -41,6 +47,8 @@
 	"Skip this activity and resume it later": "Diese Aktivität überspringen und später fortsetzen",
 	"Save changes": "Änderungen speichern",
 	"You have selected": "Du hast ausgewählt",
+	"Interpret the results": "Ergebnisse interpretieren",
+	"Print this page": "Diese Seite drucken",
 
 	"first": "erste",
 	"second": "zweite",
@@ -72,6 +80,7 @@
 	"You have chosen the following emotion:": "Du hast die folgende Emotion gewählt:",
 	"Choose another emotion": "Wähle eine andere Emotion",
 	"Below is indicated how many objects you have identified among those you have seen or heard and how many mistakes you have made.": "Unten ist angegeben, wie viele Objekte du unter denen identifiziert hast, die du gesehen oder gehört hast, und wie viele Fehler du gemacht hast.",
+	"Listen to the story:": "Die Geschichte anhören:",
 
 	"fear": "Angst",
 	"fright": "Schrecken",

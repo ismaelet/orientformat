@@ -40,7 +40,7 @@
 
 				<?php } ?>
 
-				<h1 id="center" class="cen txt-2rem bgr-c3 txt-wht">Tipi di scrittura</h1>
+				<h1 id="center" class="cen txt-2rem bgr-c3 txt-wht"><?= __('tests.63-title') ?></h1>
 
 			</div>
 		</section>

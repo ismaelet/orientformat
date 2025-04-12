@@ -29,7 +29,7 @@
 							<?php } ?>
 
 						</div>
-						<p class="name txt-09rem"><?= __('tests.' . $legacyTest->id . '-name-' . $fieldId) ?></p>
+						<p class="name txt-09rem"><?= __('tests.119-name-' . $fieldId) ?></p>
 					</div>
 
 				<?php } ?>
@@ -52,8 +52,8 @@
 			?>
 
 				<div class="field-info grid-flow js-field-info" data-id="<?= $fieldId ?>" data-spacing="400">
-					<h3 class="desc-title txt-blk font-bold txt-15rem"><?= __('tests.' . $legacyTest->id . '-name-' . $fieldId) ?></h3>
-					<p class="desc-txt txt-1rem txt-blk"><?= __('tests.' . $legacyTest->id . '-description-' . $fieldId) ?></p>
+					<h3 class="desc-title txt-blk font-bold txt-15rem"><?= __('tests.119-name-' . $fieldId) ?></h3>
+					<p class="desc-txt txt-1rem txt-blk"><?= __('tests.119-description-' . $fieldId) ?></p>
 				</div>
 
 			<?php } ?>

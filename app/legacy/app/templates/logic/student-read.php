@@ -5,6 +5,7 @@ use \Legacy\Activity\Section;
 
 $sectionId = \App\Legacy\LegacyView::getInstance()->get('sectionId');
 $areaId = \App\Legacy\LegacyView::getInstance()->get('sectionId');
+$page = \App\Legacy\LegacyView::getInstance()->get('page');
 
 $legacySection = new Section($sectionId);
 $area = new Area($areaId);

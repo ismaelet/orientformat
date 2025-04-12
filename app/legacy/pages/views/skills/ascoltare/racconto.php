@@ -8,15 +8,15 @@
 
 		<div class="fa-center mar-t-4">
 
-			<p class="font-bold txt-12rem mb-4 fc-primary clickable" onclick="$(this).next()[0].play();">Ascolta il racconto:</p>
+			<p class="font-bold txt-12rem mb-4 fc-primary clickable" onclick="$(this).next()[0].play();"><?= __('Listen to the story:') ?></p>
 
 			<audio id="audio" controls>
 				<source src="<?= client_path('audio.mp3') ?>" type="audio/mpeg">
-				Il tuo browser non supporta gli audio MP3.
+				<?= __('mp3-error') ?>
 			</audio>
 		</div>
 
-		<h1 class="mar-t-5 txt-2rem mar-b-2">Domande:</h1>
+		<h1 class="mar-t-5 txt-2rem mar-b-2"><?= __('Questions') ?>:</h1>
 
 		<div id="questions" class="mar-b-4 <?= $legacyTest->completed ? 'completed' : '' ?>">
 
