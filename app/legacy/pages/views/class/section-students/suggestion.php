@@ -11,7 +11,11 @@
 			<div class="dashboard-panel_icon icon-box">
 				<?= embed_icon('suggestion') ?>
 			</div>
-			<h2 class="dashboard-panel_title">Attribuisci i consigli orientativi</h2>
+			<div class="">
+				<h2 class="text-6xl font-bold tracking-wide">POI</h2>
+				<p class="text-2xl"><span class="font-bold">P</span>rofilo <span class="font-bold">O</span>rientativo <span class="font-bold">I</span>ndividualizzato</p>
+				<p class="text-lg text-neutral-350">- Certificazione delle competenze -</p>
+			</div>
 		</a>
 
 		<!-- <a class="dashboard-panel" href="<?= client_url('/class/students/suggestion/compare') ?>">

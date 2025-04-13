@@ -40,7 +40,7 @@ for ($i = schoolClass()->currentGrade; $i >= schoolClass()->minimumGrade; $i--) 
 			$urlTemplate = $legacySection->area->slug . '/section?id=' . $legacySection->id . '&student_id=' . $watchedStudentId . '&test_id=';
 
 			switch ($legacySection->id) {
-					// Stili
+				// Stili
 				case 1:
 					$actions[$legacySection->id] = [
 						['Mappa degli stili', 31, $urlTemplate],
@@ -61,7 +61,7 @@ for ($i = schoolClass()->currentGrade; $i >= schoolClass()->minimumGrade; $i--) 
 					];
 					break;
 
-					// Autostima
+				// Autostima
 				case 4:
 					$actions[$legacySection->id] = [
 						['Grafico dei risultati', 15, $urlTemplate],
@@ -73,7 +73,7 @@ for ($i = schoolClass()->currentGrade; $i >= schoolClass()->minimumGrade; $i--) 
 					];
 					break;
 
-					// Risolvere i problemi
+				// Risolvere i problemi
 				case 5:
 					$actions[$legacySection->id] = [
 						['Risultati dell\'autovalutazione', 94, $urlTemplate],
@@ -123,7 +123,7 @@ for ($i = schoolClass()->currentGrade; $i >= schoolClass()->minimumGrade; $i--) 
 					];
 					break;
 
-					// Ricordare
+				// Ricordare
 				case 10:
 					$actions[$legacySection->id] = [
 						['Risultati dell\'autovalutazione', 52, $urlTemplate],
@@ -137,7 +137,7 @@ for ($i = schoolClass()->currentGrade; $i >= schoolClass()->minimumGrade; $i--) 
 					];
 					break;
 
-					// Ascoltare
+				// Ascoltare
 				case 11:
 					$actions[$legacySection->id] = [
 						['Risultati dell\'autovalutazione', 27, $urlTemplate],
@@ -151,7 +151,7 @@ for ($i = schoolClass()->currentGrade; $i >= schoolClass()->minimumGrade; $i--) 
 					];
 					break;
 
-					// Parlare
+				// Parlare
 				case 12:
 					$actions[$legacySection->id] = [
 						['Risultati dell\'autovalutazione', 59, $urlTemplate],
@@ -165,7 +165,7 @@ for ($i = schoolClass()->currentGrade; $i >= schoolClass()->minimumGrade; $i--) 
 					];
 					break;
 
-					// Leggere
+				// Leggere
 				case 13:
 					$actions[$legacySection->id] = [
 						['Risultati dell\'autovalutazione', 98, $urlTemplate],
@@ -192,7 +192,7 @@ for ($i = schoolClass()->currentGrade; $i >= schoolClass()->minimumGrade; $i--) 
 					];
 					break;
 
-					// Scrivere
+				// Scrivere
 				case 14:
 					$actions[$legacySection->id] = [
 						['Risultati dell\'autovalutazione', 61, $urlTemplate],
@@ -222,7 +222,7 @@ for ($i = schoolClass()->currentGrade; $i >= schoolClass()->minimumGrade; $i--) 
 					break;
 
 
-					// Imparare
+				// Imparare
 				case 15:
 					$actions[$legacySection->id] = [
 						['Risultati dell\'autovalutazione', 35, $urlTemplate],
@@ -269,7 +269,7 @@ for ($i = schoolClass()->currentGrade; $i >= schoolClass()->minimumGrade; $i--) 
 					];
 					break;
 
-					// La Ruota delle Emozioni
+				// La Ruota delle Emozioni
 				case 27:
 					$actions[$legacySection->id] = [
 						['Vedi i risultati della ruota', 116, $urlTemplate],
@@ -364,7 +364,7 @@ for ($i = schoolClass()->currentGrade; $i >= schoolClass()->minimumGrade; $i--) 
 	}
 
 	$grades[] = [
-		'title' => 'Attività del ' . $grade->adjective . ' anno',
+		'title' => __('misc.grade-description', ['numeral' => $grade->adjective]),
 		'areas' => $areas,
 	];
 }

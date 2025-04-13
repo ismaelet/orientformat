@@ -75,6 +75,10 @@ abstract class OldModel extends DatabaseModel {
 	}
 
 	public function post() {
+		if (empty($column)) {
+			return;
+		}
+
 		// columns
 		$columnQuery = array_map(function ($column) {
 			return $column . ' = ?';
@@ -86,8 +90,10 @@ abstract class OldModel extends DatabaseModel {
 		$values = array_values($this->preparedData);
 		array_push($values, $this->id);
 
+		$query = static::TABLE . ' SET ' . $columnQuery . ' WHERE ' . self::indexName() . ' = ?';
+
 		// execute
-		\App\Legacy\LegacyDB::update(static::TABLE . ' SET ' . $columnQuery . ' WHERE ' . self::indexName() . ' = ?', $values);
+		\App\Legacy\LegacyDB::update($query . ' = ?', $values);
 	}
 
 	/**

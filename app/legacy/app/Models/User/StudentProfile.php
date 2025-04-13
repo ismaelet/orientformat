@@ -19,13 +19,19 @@ class StudentProfile extends OldModel {
 	/**
 	 * Dynamic get methods
 	 */
-	public function dynamicChoice() {
+	public function dynamicChoice(array|int|null $questionnaireId = 2) {
 		$mappedChoiches = [];
 		$relevantKeys = ['s2d2_1', 's2d2_2', 's2d2_3', 's2d2_4'];
 		$intensities = ['Lo esclude', 'Lo sta valutando', 'Ne è quasi sicuro/a', 'Ne è sicuro/a'];
 		$choices = explode(',', \App\Legacy\LegacyDB::find('`rows` FROM review_questions WHERE id = 2'));
 
-		$answers = \App\Legacy\LegacyDB::find('results FROM review_results WHERE studentId = ? ORDER BY reviewId DESC', [$this->id]);
+		if (is_array($questionnaireId)) {
+			$answers = \App\Legacy\LegacyDB::find('results FROM review_results WHERE studentId = ? AND reviewId IN (' . (implode(',', $questionnaireId)) . ') ORDER BY reviewId DESC', [$this->id]);
+		} else if (is_numeric($questionnaireId)) {
+			$answers = \App\Legacy\LegacyDB::find('results FROM review_results WHERE studentId = ? AND reviewId = ? ORDER BY reviewId DESC', [$this->id, $questionnaireId]);
+		} else {
+			$answers = \App\Legacy\LegacyDB::find('results FROM review_results WHERE studentId = ? ORDER BY reviewId DESC', [$this->id]);
+		}
 
 		if ($answers) {
 			$answers = explode(',', $answers);

@@ -2,7 +2,7 @@
 
 <div class="page__content">
 	<div class="page__header">
-		<h1 class="section-title">Consigli orientativi</h1>
+		<h1 class="section-title"><span class="font-bold">P</span>rofilo <span class="font-bold">O</span>rientativo <span class="font-bold">I</span>ndividualizzato</h1>
 		<p class="section-subtitle">Alla fine del percorso ti consigliamo di attribuire i consigli orientativi a tutti i tuoi studenti. Ogni studente può ricevere fino a tre consigli.</p>
 	</div>
 

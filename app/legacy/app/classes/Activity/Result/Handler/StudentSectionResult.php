@@ -2,6 +2,7 @@
 
 namespace Legacy\Activity\Result\Handler;
 
+use App\Http\Middleware\Student;
 use \Legacy\Activity\Result\TestResult;
 use \Legacy\Activity\Section;
 use \Legacy\Activity\Test;
@@ -188,6 +189,10 @@ class StudentSectionResult {
 			case 31:
 				// stare attenti
 				return $this->calcFullSectionResults();
+
+				// Creatività
+			case 17:
+				return (new StudentTestResult(81, $this->studentId))->detailedResult;
 
 			default:
 				if (isset(self::MAIN_TEST_IDS[$this->sectionId])) {

@@ -81,7 +81,7 @@ class Grade {
 	}
 
 	private function getAdjective() {
-		return self::ADJECTIVES[$this->relativeId - 1];
+		return __(self::ADJECTIVES[$this->relativeId - 1]);
 	}
 
 	private function getAreas() {

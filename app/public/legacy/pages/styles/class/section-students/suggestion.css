@@ -25,7 +25,22 @@
 }
 
 .dashboard-panel:hover {
-	--fc-700: #fff;
+	color: #fff;
+}
+
+.dashboard-panel h2,
+.dashboard-panel p {
+	color: inherit;
+	transition: color 0.25s;
+}
+
+.dashboard-panel:hover .font-bold {
+	color: var(--color-primary-400);
+}
+
+.dashboard-panel svg {
+	fill: currentColor;
+	transition: fill 0.25s;
 }
 
 .dashboard-panel::before {

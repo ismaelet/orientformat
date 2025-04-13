@@ -2,7 +2,7 @@
 * Layout
 */
 .dashboard-panel {
-	grid-template-rows: max-content 1fr;
+	grid-template-rows: max-content max-content auto;
 }
 
 .result {
@@ -55,11 +55,21 @@
 	background-color: var(--color-4);
 }
 
+.result:nth-child(4) .result__icon {
+	background-color: var(--color-transition-400);
+}
+
 .result__title {
-	font-size: var(--fs-300);
+	font-size: var(--fs-400);
 	font-weight: var(--fw-semibold);
 }
 
 .answer {
-	font-size: var(--fs-450);
+	font-size: var(--fs-400);
+}
+
+.panel-title {
+	margin-bottom: 2rem;
+	font-size: 1.75rem;
+	font-weight: 600;
 }

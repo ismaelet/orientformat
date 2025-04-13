@@ -1,15 +1,28 @@
 <?php
 
+use \Legacy\Activity\Result\Handler\StudentSectionResult;
 use \Legacy\Activity\Result\Handler\StudentTestResult;
 use \Legacy\UserSystem\Student;
 
 $studentId = $_GET['studentId'] ?? null;
 $student = new Student($studentId);
 $profile = $student->profile;
-$choice = $profile->dynamicChoice();
+$beginnerChoice = $profile->dynamicChoice([1, 2, 4, 5]);
+$endChoice = $profile->dynamicChoice([3, 6]);
 
-$motivationArea = (new StudentTestResult(20, $studentId))->result ?: '<span class="fw-semibold">Non ancora completata</span>';
-$interestArea = (new StudentTestResult(92, $studentId))->result ?: '<span class="fw-semibold">Non ancora completata</span>';
+$results = [
+	'ascoltare' => (new StudentSectionResult(11, $studentId))->result,
+	'parlare' => (new StudentSectionResult(12, $studentId))->result,
+	'leggere' => (new StudentSectionResult(39, $studentId))->result,
+	'scrivere' => (new StudentSectionResult(14, $studentId))->result,
+	'attenzione' => (new StudentSectionResult(9, $studentId))->result,
+	'ricordare' => (new StudentSectionResult(10, $studentId))->result,
+	'problemi' => (new StudentSectionResult(5, $studentId))->result,
+	'imparare' => (new StudentSectionResult(40, $studentId))->result,
+	'creatività' => (new StudentSectionResult(17, $studentId))->detailedResult,
+	'motivazione' => (new StudentSectionResult(7, $studentId))->result,
+	'interessi' => (new StudentSectionResult(24, $studentId))->result,
+];
 
 
 // fetch advices
