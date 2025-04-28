@@ -40,6 +40,7 @@
 	"Already completed": "Bereits abgeschlossen",
 	"Not completed": "Nicht abgeschlossen",
 	"Are you sure you want to restart the activity?": "Willst du die Aktivität wirklich neu starten?",
+	"Are you sure you want to repeat the assessment?": "Bist du sicher, dass du die Bewertung wiederholen möchtest?",
 	"Return to the list of results": "Zurück zur Ergebnisliste",
 	"Return to the summary": "Zurück zur Zusammenfassung",
 	"Save the new result": "Das neue Ergebnis speichern",
@@ -49,6 +50,7 @@
 	"You have selected": "Du hast ausgewählt",
 	"Interpret the results": "Ergebnisse interpretieren",
 	"Print this page": "Diese Seite drucken",
+	"to complete": "abzuschließen",
 
 	"first": "erste",
 	"second": "zweite",
@@ -61,6 +63,7 @@
 	"Somewhat true": "Eher wahr",
 	"True": "Wahr",
 	"Not at all": "Überhaupt nicht",
+	"Very little": "Sehr wenig",
 	"A little": "Ein wenig",
 	"Fairly": "Ziemlich",
 	"Very": "Sehr",

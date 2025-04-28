@@ -3,7 +3,7 @@
 $legacyTest = test();
 $sibling = $legacyTest->requiredTest;
 
-$titles = ['Pochissimo', 'Poco', 'Abbastanza', 'Molto', 'Moltissimo'];
+$titles = [__('Very little'), __('A little'), __('Fairly'), __('Very'), __('Extremely')];
 
 bump($titles);
 

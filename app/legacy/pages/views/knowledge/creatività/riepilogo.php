@@ -35,7 +35,7 @@
 								<?php if ($result['completed']) { ?>
 
 									<p class="reset hide inlb font-bold" onclick="$(this).next().click()">ripeti</p>
-									<button type="submit" name="reset-test" value="<?= $result['id'] ?>" class="hidden" onclick="return confirm('Sei sicuro di voler ricominciare l\'attività?')"></button>
+									<button type="submit" name="reset-test" value="<?= $result['id'] ?>" class="hidden" onclick="return confirm('Sei sicuro/a di voler ricominciare l\'attività?')"></button>
 
 								<?php } else { ?>
 

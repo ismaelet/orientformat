@@ -26,13 +26,13 @@
 		<div class="grid-flow mar-t-2 mar-b-4" data-spacing="700">
 
 			<div class="result-grid">
-				<div class="result-grid__column gradient-overlay js-load" style="height: <?= $viewScore ?>%;">
+				<div class="result-grid__column gradient-overlay js-load" style="height: <?= 10 + $viewScore * 0.9 ?>%;">
 					<p class="result-grid__score"><?= $viewCount . '/' . $maxView  ?></p>
 				</div>
-				<div class="result-grid__column gradient-overlay js-load" style="height: <?= $hearScore ?>%;">
+				<div class="result-grid__column gradient-overlay js-load" style="height: <?= 10 + $hearScore * 0.9 ?>%;">
 					<p class="result-grid__score"><?= $hearCount . '/' . $maxHear ?></p>
 				</div>
-				<div class="result-grid__column gradient-overlay js-load" style="height: <?= max($errorScore, 10) ?>%;">
+				<div class="result-grid__column gradient-overlay js-load" style="height: <?= 10 + $errorScore * 0.9 ?>%;">
 					<p class="result-grid__score"><?= $errorCount . '/' . $maxErrors ?></p>
 				</div>
 				<p class="result-grid__column-name"><?= __('Visual style') ?></p>

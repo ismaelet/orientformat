@@ -20,7 +20,7 @@ return [
 	'Seconds' => 'Secondi',
 
 	// Access pages
-	'Are you sure you want to leave?' => 'Sei sicuro di voler uscire?',
+	'Are you sure you want to leave?' => 'Sei sicuro/a di voler uscire?',
 	'Stay connected' => 'Resta connesso',
 	'Forgot the password?' => 'Hai dimenticato la password?',
 	'Register' => 'Registrati',
@@ -50,5 +50,5 @@ return [
 	// Admin
 	'Panel' => 'Pannello',
 	'Search in this list' => 'Cerca in questa lista',
-	'Are you sure you want to delete the item?' => 'Sei sicuro di voler eliminare questo elemento?',
+	'Are you sure you want to delete the item?' => 'Sei sicuro/a di voler eliminare questo elemento?',
 ];

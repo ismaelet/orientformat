@@ -4,19 +4,19 @@ use LogicManager\TestLogic;
 
 $characters = [
 	[
-		'text' => 'La mia arma non è un pugnale.',
+		'text' => __('tests.124-description-1'),
 		'weaponId' => 4
 	],
 	[
-		'text' => 'La mia arma ha la punta rivolta verso l\'alto.',
+		'text' => __('tests.124-description-2'),
 		'weaponId' => 3
 	],
 	[
-		'text' => 'L\'arma con la punta non pericolosa non è di un uomo.',
+		'text' => __('tests.124-description-3'),
 		'weaponId' => 1
 	],
 	[
-		'text' => 'La mia arma non ha la punta rivolta verso il basso.',
+		'text' => __('tests.124-description-4'),
 		'weaponId' => 2
 	],
 ];

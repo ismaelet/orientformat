@@ -15,7 +15,7 @@
 			<div class="wheel__center grid-flow center-content stack-content">
 				<img class="wheel__arrow js-arrow" src="<?= client_path('/pages/assets/profile/ruota/ruota/arrow.svg') ?>">
 				<p class="wheel__counter" data-step="<?= $step ?>">
-					<?= $stepNames[$step - 1] ?><br>ruota
+					<?= __('tests.102-center-' . $step) ?>
 				</p>
 			</div>
 

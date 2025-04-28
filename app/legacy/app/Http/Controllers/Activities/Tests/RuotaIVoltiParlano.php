@@ -109,7 +109,7 @@ class RuotaIVoltiParlano extends Test {
 										<div class="flex emotion-label-wrapper gap-2 items-center">
 											<input type="text" class="emotion-label js-emotion-label" placeholder="<?= __('Emotion') ?>" maxlength="18">
 
-											<button type="button" class="w-4 flex-0 js-reset">
+											<button type="button" class="w-4 flex-0 js-reset reset">
 												<?= embed_icon('close') ?>
 											</button>
 										</div>
@@ -131,6 +131,7 @@ class RuotaIVoltiParlano extends Test {
 					<input type="hidden" name="field[]" class="js-chosen-face js-field">
 					<input type="hidden" name="field[]" class="js-chosen-mouth js-field">
 					<input type="hidden" name="field[]" class="js-chosen-emotion js-field">
+
 				<?php } ?>
 			<?php } ?>
 
@@ -332,7 +333,7 @@ class RuotaIVoltiParlano extends Test {
 				padding: .8rem;
 				background-color: var(--color-background);
 				border-radius: 50%;
-				box-shadow: 0 0 2rem 0 hsl(var(--color-tertiary-400-hsl) / .15);
+				box-shadow: 0 0 2rem 0 hsl(0deg 0% 0% / .15);
 
 				img {
 					user-select: none;
@@ -344,6 +345,7 @@ class RuotaIVoltiParlano extends Test {
 				position: relative;
 				z-index: 10;
 				cursor: pointer;
+				mix-blend-mode: multiply;
 
 				&::before {
 					content: '';
@@ -393,12 +395,18 @@ class RuotaIVoltiParlano extends Test {
 			}
 
 			.emotion-label {
-				padding: .4rem .5rem;
+				padding: 0 .5em;
 				background-color: #fff;
 				border: 1px solid var(--color-tertiary-400);
 				color: #222;
-				font-weight: 500;
+				line-height: 2;
+				font-size: 1rem;
 				text-align: center;
+			}
+
+			.reset {
+				--icon-size: 1rem;
+				background-color: transparent;
 			}
 		</style>
 

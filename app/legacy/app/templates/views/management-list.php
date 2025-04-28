@@ -117,7 +117,7 @@
 
 										<?php } else if ($action['type'] == 'delete') { ?>
 
-											<button type="submit" name="delete" class="btn red" onclick="return confirm('Sei sicuro di voler l\'elemento? Una volta eliminato non potrà essere recuperato')">Elimina</button>
+											<button type="submit" name="delete" class="btn red" onclick="return confirm('Sei sicuro/a di voler l\'elemento? Una volta eliminato non potrà essere recuperato')">Elimina</button>
 
 										<?php } else if ($action['type'] == 'link') { ?>
 

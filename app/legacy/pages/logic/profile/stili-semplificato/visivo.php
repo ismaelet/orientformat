@@ -2,46 +2,11 @@
 
 $legacyTest = test();
 
-$options = [
-	'CARTA',
-	'TELEFONO',
-	'STUFA',
-	'OCCHIO',
-	'SALTO',
-	'COLLA',
-	'SCHERMO',
-	'SASSO',
-	'QUADERNO',
-	'LAMPADINA',
-	'CANE',
-	'AUTO',
-	'BICICLETTA',
-	'MANO',
-	'SOLE',
-	'STRADA',
-	'NUVOLA',
-	'VENTO',
-	'RAMO',
-	'MOSCA',
-	'CAPPELLO',
-	'ROCCIA',
-	'CAMICIA',
-	'CAPPOTTO',
-	'FORCHETTA',
-	'LUNA',
-	'GOMMA',
-	'PENNA',
-	'PIATTO',
-	'FERROVIA',
-	'ERBA',
-	'CASA',
-	'NEVE',
-	'BOTTE',
-	'TRENO',
-	'ALBERO',
-	'COLLA',
-	'TORRE',
-];
+$options = [];
+
+for ($i = 1; $i <= 38; $i++) {
+	$options[] = __('tests.114-option-' . $i);
+}
 
 $viewMatch = [4, 10, 12, 13, 15, 19, 21, 24, 26, 29, 32, 34];
 $hearMatch = [1, 5, 8, 11, 14, 16, 22, 27, 28, 31, 35, 36];
