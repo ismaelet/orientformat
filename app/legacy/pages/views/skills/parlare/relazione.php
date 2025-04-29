@@ -16,32 +16,32 @@
 		<!-- Graph -->
 		<div id="graph" class="fa-center pos-rel">
 			<div class="background bgr">
-				<h3 class="txt-upp txt-wht font-bold txt-15rem cenY txt-vertical">Organizzazione</h3>
+				<h3 class="txt-upp txt-wht font-bold txt-15rem cenY txt-vertical"><?= __('tests.65-title') ?></h3>
 			</div>
 
 			<div class="element big start" data-delay="1">
-				<p id="element1" class="name">Scelta</p>
-				<p class="desc cen bgr-f3 pad-1 z1 txt-ita">Un argomento o un problema che mi interessa.</p>
+				<p id="element1" class="name"><?= __('tests.65-step-1-title') ?></p>
+				<p class="desc cen bgr-f3 pad-1 z1 txt-ita"><?= __('tests.65-step-1-text') ?></p>
 			</div>
 
 			<div class="element small" data-delay="2">
-				<p id="element2" class="name">Introduzione</p>
-				<p class="desc cen bgr-f3 pad-1 z1 txt-ita">Dico in breve di che cosa parlerò.</p>
+				<p id="element2" class="name"><?= __('tests.65-step-2-title') ?></p>
+				<p class="desc cen bgr-f3 pad-1 z1 txt-ita"><?= __('tests.65-step-2-text') ?></p>
 			</div>
 
 			<div class="element small" data-delay="3">
-				<p id="element3" class="name">Sviluppo</p>
-				<p class="desc cen bgr-f3 pad-1 z1 txt-ita">Spiego per punti con dati ed esempi.</p>
+				<p id="element3" class="name"><?= __('tests.65-step-3-title') ?></p>
+				<p class="desc cen bgr-f3 pad-1 z1 txt-ita"><?= __('tests.65-step-3-text') ?></p>
 			</div>
 
 			<div class="element small" data-delay="4">
-				<p id="element4" class="name">Conclusione</p>
-				<p class="desc cen bgr-f3 pad-1 z1 txt-ita">Il mio punto di vista sull'argomento.</p>
+				<p id="element4" class="name"><?= __('tests.65-step-4-title') ?></p>
+				<p class="desc cen bgr-f3 pad-1 z1 txt-ita"><?= __('tests.65-step-4-text') ?></p>
 			</div>
 
 			<div class="element big end" data-delay="5">
-				<p id="element5" class="name">Esposizione</p>
-				<p class="desc cen bgr-f3 pad-1 z1 txt-ita">Parlo scegliendo le parole e il ritmo giusti.</p>
+				<p id="element5" class="name"><?= __('tests.65-step-5-title') ?></p>
+				<p class="desc cen bgr-f3 pad-1 z1 txt-ita"><?= __('tests.65-step-5-text') ?></p>
 			</div>
 
 		</div>
@@ -51,7 +51,7 @@
 	<!-- Result -->
 	<section id="result">
 		<div class="grid va-items-cen">
-			<p class="txt-15rem font-bold">Risultato:</p>
+			<p class="txt-15rem font-bold"><?= __('Result') ?>:</p>
 
 			<input type="number" class="inp txt-15rem font-bold fa-center inp-num filler-inp" name="field[]" min="1" max="10" <?= $legacyTest->completed || isSupervisor() ? 'readonly' : '' ?> value="<?= $legacyTest->completed ? $legacyTest->rawResults[0] : '' ?>" onKeyPress="if(this.value.length==2) return false;">
 

@@ -16,6 +16,7 @@
 	"Listen": "Hören",
 	"See": "Sehen",
 
+	"Activity": "Aktivität",
 	"Activities": "Aktivitäten",
 	"Author": "Autor",
 	"Result": "Ergebnis",
@@ -84,6 +85,8 @@
 	"Choose another emotion": "Wähle eine andere Emotion",
 	"Below is indicated how many objects you have identified among those you have seen or heard and how many mistakes you have made.": "Unten ist angegeben, wie viele Objekte du unter denen identifiziert hast, die du gesehen oder gehört hast, und wie viele Fehler du gemacht hast.",
 	"Listen to the story:": "Die Geschichte anhören:",
+	"Discover this area": "Entdecke diesen Bereich",
+	"of interest": "von Interesse",
 
 	"fear": "Angst",
 	"fright": "Schrecken",

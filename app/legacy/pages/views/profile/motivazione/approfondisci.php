@@ -46,7 +46,7 @@
 						<div class="result cen score<?= $box['result'] ?>"></div>
 
 						<div class="question cen">
-							<h1 class="txt-1rem fa-center font-bold mar-b-05">Domanda:</h1>
+							<h1 class="txt-1rem fa-center font-bold mar-b-05"><?= __('Question') ?>:</h1>
 							<p class="fa-center txt-ita"><?= $box['question'] ?></p>
 						</div>
 					</div>

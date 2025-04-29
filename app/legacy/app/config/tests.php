@@ -64,42 +64,50 @@ $testsConfig = [
 		'groups' => [
 			1 => [
 				'name' => 'Visivo',
-				'info' => "apprende e ricorda attraverso immagini",
+				'translated_name' => __('tests.31-1-name'),
+				'info' => __('tests.31-1-info'),
 				'questionIds' => [3, 9, 13],
 			],
 			2 => [
 				'name' => 'Uditivo',
-				'info' => "è a suo agio quando può ascoltare",
+				'translated_name' => __('tests.31-2-name'),
+				'info' => __('tests.31-2-info'),
 				'questionIds' => [1, 18, 23],
 			],
 			3 => [
 				'name' => 'Globale',
-				'info' => "ricerca l’insieme, la totalità, trascurando i dettagli",
+				'translated_name' => __('tests.31-3-name'),
+				'info' => __('tests.31-3-info'),
 				'questionIds' => [5, 11, 16],
 			],
 			4 => [
 				'name' => 'Analitico',
-				'info' => "si concentra sui particolari, perdendo di vista l’insieme",
+				'translated_name' => __('tests.31-4-name'),
+				'info' => __('tests.31-4-info'),
 				'questionIds' => [2, 4, 17],
 			],
 			5 => [
 				'name' => 'Collaborativo',
-				'info' => "lavora meglio in gruppo, mentre da solo si annoia",
+				'translated_name' => __('tests.31-5-name'),
+				'info' => __('tests.31-5-info'),
 				'questionIds' => [6, 10, 19],
 			],
 			6 => [
 				'name' => 'Autonomo',
-				'info' => "preferisce lavorare da solo, è a disagio nei lavori di gruppo",
+				'translated_name' => __('tests.31-6-name'),
+				'info' => __('tests.31-6-info'),
 				'questionIds' => [0, 12, 21],
 			],
 			7 => [
 				'name' => 'Sistematico',
-				'info' => "predilige la precisione e la completezza, a costo di risultare dispersivo",
+				'translated_name' => __('tests.31-7-name'),
+				'info' => __('tests.31-7-info'),
 				'questionIds' => [8, 14, 20],
 			],
 			8 => [
 				'name' => 'Intuitivo',
-				'info' => "vuole arrivare subito alla conclusione, rischiando soluzioni avventate",
+				'translated_name' => __('tests.31-8-name'),
+				'info' => __('tests.31-8-info'),
 				'questionIds' => [7, 15, 22],
 			],
 		]
@@ -169,26 +177,26 @@ $testsConfig = [
 		'groups' => [
 			1 => [
 				'name' => 'Visivo',
-				'translated_name' => __('tests.109-1-name'),
-				'info' => __('tests.109-1-info'),
+				'translated_name' => __('tests.31-1-name'),
+				'info' => __('tests.31-1-info'),
 				'questionIds' => [2, 4, 7],
 			],
 			2 => [
 				'name' => 'Uditivo',
-				'translated_name' => __('tests.109-2-name'),
-				'info' => __('tests.109-2-info'),
+				'translated_name' => __('tests.31-2-name'),
+				'info' => __('tests.31-2-info'),
 				'questionIds' => [1, 8, 11],
 			],
 			3 => [
 				'name' => 'Collaborativo',
-				'translated_name' => __('tests.109-3-name'),
-				'info' => __('tests.109-3-info'),
+				'translated_name' => __('tests.31-5-name'),
+				'info' => __('tests.31-5-info'),
 				'questionIds' => [3, 5, 9],
 			],
 			4 => [
 				'name' => 'Autonomo',
-				'translated_name' => __('tests.109-4-name'),
-				'info' => __('tests.109-4-info'),
+				'translated_name' => __('tests.31-6-name'),
+				'info' => __('tests.31-6-info'),
 				'questionIds' => [0, 6, 10],
 			],
 		]
@@ -544,247 +552,98 @@ $testsConfig = [
 	92 => [
 		'groups' => [
 			1 => [
-				'name' => 'Agricoltura e ambiente',
-				'info' => 'L’Operatore agricolo può svolgere diverse attività: ara,
-				pianta, zappa, semina, concima, innesta, pota, tratta le
-				piante con anticrittogamici per proteggerle da malattie e
-				insetti, miete, coltiva piante da semina e da frutto,
-				raccoglie frutta e ortaggi, provvedere alla manutenzione,
-				alla messa a punto e a piccole riparazioni di macchinari
-				agricoli. La sua attività può comprendere anche
-				l’allevamento di animali di bassa corte e/o di bestiame di
-				grande taglia.',
+				'name' => __('tests.92-name-1'),
+				'info' => __('tests.92-info-1'),
 				'questionIds' => [1, 20, 33, 51, 70, 93],
 			],
 			2 => [
-				'name' => 'Amministrazione, finanza e marketing',
-				'info' => 'Chi opera in quest’area ha competenze generali nel campo
-				dei fenomeni economici, si occupa dei processi aziendali
-				(organizzazione, pianificazione, programmazione,
-				amministrazione, finanza e controllo). Integra queste
-				competenze specifiche con quelle linguistiche e
-				informatiche, per favorire le relazioni dell’impresa nel
-				contesto nazionale e internazionale.',
+				'name' => __('tests.92-name-2'),
+				'info' => __('tests.92-info-2'),
 				'questionIds' => [3, 19, 37, 67, 75, 94],
 			],
 			3 => [
-				'name' => 'Arti visive e moda',
-				'info' => 'Nel campo delle arti visive troviamo molte figure
-				professionali: pittori, scultori, grafici, fumettisti,
-				pubblicitari, arredatori, designer, scenografi, insegnanti di
-				educazione artistica, fotografi artistici, architetti,
-				costumisti, stilisti. Ciò che accomuna queste diverse
-				professioni è l’interesse ad esprimersi in modo personale
-				e creativo ma attento alle richieste di chi acquista i prodotti
-				realizzati. ',
+				'name' => __('tests.92-name-3'),
+				'info' => __('tests.92-info-3'),
 				'questionIds' => [2, 15, 29, 45, 62, 85],
 			],
 			4 => [
-				'name' => 'Benessere e cura',
-				'info' => 'Applica metodologie mirate al benessere psicofisico della
-				persona. Il suo obiettivo primario è di favorire il
-				mantenimento o il miglioramento della forma del cliente,
-				dando i consigli migliori per la tutela della salute e della
-				bellezza. In quest’area operano estetiste, parrucchieri,
-				badanti, personale delle case di riposo, infermieri,
-				fisioterapisti, ottici, odontotecnici.',
+				'name' => __('tests.92-name-4'),
+				'info' => __('tests.92-info-4'),
 				'questionIds' => [9, 30, 48, 71, 86, 99],
 			],
 			5 => [
-				'name' => 'Chimica, materiali e biotecnologie',
-				'info' => 'Sono numerose le professioni relative a quest’area:
-				genetisti. analisti degli ospedali, ricercatori in chimica e
-				biologia, chimici delle industrie, tecnici farmaceutici,
-				insegnanti di chimica e biologia nelle scuole e nelle
-				università. IL diplomato in quest’area ha competenze
-				specifiche nel campo delle analisi strumentali chimicobiologiche, dei materiali, nei processi di produzione negli
-				ambiti chimico, merceologico, biologico, farmaceutico,
-				tintorio e conciario. Inoltre è competente nel settore della
-				prevenzione e della gestione di situazioni a rischio
-				ambientale e sanitario.',
+				'name' => __('tests.92-name-5'),
+				'info' => __('tests.92-info-5'),
 				'questionIds' => [6, 25, 39, 56, 78, 103],
 			],
 			6 => [
-				'name' => 'Commercio e vendita',
-				'info' => 'Gestisce acquisti e vendite, occupandosi delle forniture di
-				un negozio, redigendo e archiviando fatture commerciali,
-				compilando listini dei prezzi, presentando o diffondendo
-				nuovi prodotti, registrando gli incassi. Operano in
-				quest’area i negozianti, gli agenti di commercio, gli
-				ambulanti, i commessi, il personale dei grandi magazzini,
-				gli studiosi del mercato e delle esigenze dei clienti.',
+				'name' => __('tests.92-name-6'),
+				'info' => __('tests.92-info-6'),
 				'questionIds' => [11, 28, 50, 69, 84, 96],
 			],
 			7 => [
-				'name' => 'Corpo, movimento e sport',
-				'info' => 'Gli interessa il movimento per il benessere e l’efficienza
-				fisica propria o altrui. Partecipa direttamente, o prepara
-				altri, a competizioni sportive oppure ad attività che
-				coinvolgono il corpo in modo armonioso, come ad esempio
-				la danza. In quest’area troviamo atleti, allenatori, ballerini
-				e danzatori professionisti, insegnanti di educazione
-				motoria.',
+				'name' => __('tests.92-name-7'),
+				'info' => __('tests.92-info-7'),
 				'questionIds' => [5, 14, 36, 46, 63, 82],
 			],
 			8 => [
-				'name' => 'Edilizia e costruzioni',
-				'info' => 'L’Operatore edile si occupa della progettazione,
-				costruzione e manutenzione di edifici residenziali e non
-				residenziali, utilizza macchine operatrici edili, esegue
-				lavori generali di scavo e movimentazione di materiali, è
-				esperto nel disegno tecnico (architettonico, strutturale,
-				impiantistico) e nel calcolo di pendenze, altezze e quote.
-				È interessato alla trasformazione e conservazione di
-				immobili, alla tutela del territorio e alla valorizzazione
-				dell’ambiente. Progetta spazi abitativi e urbani, arredo di
-				interni ed esterni. Progetta opere speciali di
-				contenimento, opere idrauliche e di consolidamento del
-				suolo. In quest’area troviamo vari tipi di lavoro: operai
-				edili, conduttori di macchinari per il movimento terra, per
-				la perforazione in edilizia, di apparecchi di sollevamento;
-				esperti per la salvaguardia del territorio e la prevenzione
-				dei rischi ambientali; geometri, architetti, ingegneri edili,
-				capi cantiere.',
+				'name' => __('tests.92-name-8'),
+				'info' => __('tests.92-info-8'),
 				'questionIds' => [21, 32, 73, 98, 88, 114],
 			],
 			9 => [
-				'name' => 'Elettronica e elettrotecnica',
-				'info' => 'Collabora nella progettazione, costruzione e collaudo di
-				sistemi elettrici, elettronici e di automazione. Integra
-				conoscenze di elettrotecnica, di elettronica e di informatica
-				per intervenire nell’automazione industriale e nel
-				controllo dei processi produttivi. Contribuisce al
-				mantenimento della sicurezza sul lavoro e nella tutela
-				ambientale. In quest’area troviamo elettricisti, riparatori di
-				radio, televisioni e telefoni, ingegneri elettrici ed
-				elettronici, elettrauto.',
+				'name' => __('tests.92-name-9'),
+				'info' => __('tests.92-info-9'),
 				'questionIds' => [10, 24, 49, 66, 81, 95],
 			],
 			10 => [
-				'name' => 'Informatica e telecomunicazioni',
-				'info' => 'La figura dell’informatico si distingue in diverse professioni
-				in base all’informazione trattata e alla modalità con la
-				quale si tratta: si passa dall’interconnessione di computer
-				e server al mondo del web marketing, fino ad arrivare
-				all’analisi di grandi quantità di dati o alla creazione di siti
-				web. In quest’area troviamo programmatori, addetti alle
-				comunicazioni, riparatori di sistemi informatici, tecnici nei
-				laboratori delle scuole, insegnanti di matematica e
-				informatica nelle scuole e nelle università.',
+				'name' => __('tests.92-name-10'),
+				'info' => __('tests.92-info-10'),
 				'questionIds' => [12, 35, 53, 64, 87, 101],
 			],
 			11 => [
-				'name' => 'Letteraria e umanistica',
-				'info' => 'Studia e trasmette i valori della civiltà classica e della
-				cultura umanistica. Con la sua educazione letteraria,
-				storica e filosofica, può contribuire direttamente allo
-				sviluppo della cultura contemporanea attraverso la
-				scrittura di racconti, romanzi, opere teatrali, poesie, saggi
-				o articoli per giornali e riviste specializzate oppure,
-				attraverso l’insegnamento, favorisce l’accesso delle nuove
-				generazioni a questo mondo culturale.',
+				'name' => __('tests.92-name-11'),
+				'info' => __('tests.92-info-11'),
 				'questionIds' => [22, 44, 68, 89, 97, 112],
 			],
 			12 => [
-				'name' => 'Linguistica',
-				'info' => 'È attratto dalle culture, dalle lingue e dai modi di vita di
-				popoli diversi dal suo.
-				Ama viaggiare e interagire con i cittadini di un paese
-				straniero, sia per motivi di lavoro che di svago. Pratica
-				diverse lingue straniere sia in forma orale che scritta.
-				Conosce le strutture grammaticali delle lingue per farne un
-				uso corretto. La padronanza delle lingue apre la strada a
-				diverse professioni: interpreti, traduttori, guide turistiche,
-				responsabili dei rapporti internazionali delle ditte,
-				insegnanti di lingua e letteratura straniera nelle scuole e
-				all’università.',
+				'name' => __('tests.92-name-12'),
+				'info' => __('tests.92-info-12'),
 				'questionIds' => [26, 40, 60, 74, 106, 108],
 			],
 			13 => [
-				'name' => 'Meccanica, meccatronica, energia',
-				'info' => 'Si occupa della progettazione e costruzione di sistemi
-				meccanici ed elettro-meccanici. È interessato ai processi
-				produttivi e segue la fabbricazione e il monitoraggio di
-				componenti meccanici. Conosce il funzionamento delle
-				macchine di un’officina e sa individuare eventuali guasti.
-				Opera nel campo delle diverse fonti di energia e del
-				risparmio nei consumi energetici. Diverse sono le
-				professioni che riguardano quest’area: progettisti di
-				impianti, operai e tecnici che collaudano e controllano le
-				macchine di una fabbrica, ingegneri, insegnanti in istituti
-				tecnici, professionali o all’università.',
+				'name' => __('tests.92-name-13'),
+				'info' => __('tests.92-info-13'),
 				'questionIds' => [8, 23, 41, 58, 83, 105],
 			],
 			14 => [
-				'name' => 'Musicale',
-				'info' => 'Presenta talento e interessi per la musica in tutte le sue
-				varie forme ed espressioni, come suonare uno strumento,
-				leggere musica, cantare, assistere a spettacoli musicali,
-				comporre. Sono molte le professioni di chi opera in questo
-				campo: strumentisti, cantanti, compositori, direttori
-				d’orchestra, arrangiatori, critici musicali, insegnanti di
-				musica nelle scuole e nei conservatori.',
+				'name' => __('tests.92-name-14'),
+				'info' => __('tests.92-info-14'),
 				'questionIds' => [7, 38, 57, 80, 100, 110],
 			],
 			15 => [
-				'name' => 'Ristorazione',
-				'info' => 'Consente alle persone che si trovano fuori casa di bere e
-				mangiare, cucinando o servendo cibi caldi o freddi, preparando
-				la sala di un ristorante, consigliando vini o altre bevande,
-				prendendo le ordinazioni dei clienti, conoscendo le norme
-				igieniche per la conservazione dei cibi. In quest’area operano
-				camerieri, cuochi, pasticcieri, sommelier, maitre.',
+				'name' => __('tests.92-name-15'),
+				'info' => __('tests.92-info-15'),
 				'questionIds' => [13, 43, 77, 92, 104, 113],
 			],
 			16 => [
-				'name' => 'Scientifica',
-				'info' => 'Conosciamo la realtà che ci circonda e noi stessi attraverso
-				teorie che si sviluppano nel tempo e si trasformano
-				quando emergono nuovi dati che le mettono in
-				discussione. Anche se non possiamo avere certezze
-				assolute, l’approccio scientifico è il solo che ci permette di
-				sperimentare ipotesi e comunicare risultati in modo
-				rigoroso. La scienza, nei suoi svariati campi, si avvale di
-				strumentazioni tecniche che permettono a ricercatori di
-				rimediare alle debolezze dei nostri apparati sensoriali.',
+				'name' => __('tests.92-name-16'),
+				'info' => __('tests.92-info-16'),
 				'questionIds' => [16, 31, 54, 76, 91, 107],
 			],
 			17 => [
-				'name' => 'Scienze umane',
-				'info' => 'È interessato alla formazione e alla socializzazione, in
-				particolare delle persone in difficoltà. Conosce i vari
-				sistemi educativi e ha le competenze per operare su
-				diverse fasce d’età, dai bambini delle materne agli
-				adolescenti delle scuole superiori. Lavorano in
-				quest’ambito insegnanti, educatori, assistenti sociali,
-				animatori, pedagogisti, orientatori.',
+				'name' => __('tests.92-name-17'),
+				'info' => __('tests.92-info-17'),
 				'questionIds' => [42, 59, 61, 65, 102, 109],
 			],
 			18 => [
-				'name' => 'Trasporti e logistica',
-				'info' => 'In un mondo sempre più globalizzato, il trasporto di merci
-				e persone diventa sempre più importante. Perché il
-				trasferimento di merci da un luogo all’altro avvenga nei
-				tempi previsti, in modo efficiente e al minor costo
-				possibile, ci devono essere degli esperti che organizzano al
-				meglio lo smistamento, la movimentazione e lo
-				stoccaggio. In quest’area troviamo diverse mansioni, che
-				vanno dall’autista di camion all’ingegnere, dal pilota di
-				aereo al controllore di scali ferroviari.',
+				'name' => __('tests.92-name-18'),
+				'info' => __('tests.92-info-18'),
 				'questionIds' => [17, 27, 55, 79, 90, 111],
 			],
 			19 => [
-				'name' => 'Turismo',
-				'info' => 'Conosce il patrimonio culturale, artistico, artigianale,
-				enogastronomico, paesaggistico ed ambientale del
-				territorio, contribuendo alla sua valorizzazione e al suo
-				sviluppo turistico. Dovendo interagire anche con ospiti
-				stranieri, riesce a comunicare agevolmente in inglese o
-				nella lingua straniera prevalentemente usata dalla
-				clientela. Lavorano in questo campo gli addetti delle
-				agenzie turistiche, gli steward e le hostess degli aerei, i
-				portieri d’albergo, le guide turistiche, gli animatori dei
-				villaggi turistici.',
+				'name' => __('tests.92-name-19'),
+				'info' => __('tests.92-info-19'),
 				'questionIds' => [4, 18, 34, 47, 52, 72],
 			],
 		]

@@ -5,18 +5,13 @@ $sibling = $legacyTest->requiredTest;
 
 $max = 0;
 $results = [];
-$fields = ['Tenacia', 'Pregiudizio', 'Abilità', 'Destino', 'Strategia', 'Dipendenza', 'Emozione', 'Caso'];
+$fields = [];
+$descriptions = [];
 
-$descriptions = [
-	'<strong>Tenacia:</strong> quando si è determinati e costanti',
-	'<strong>Pregiudizio:</strong> quando dipende dalle convinzioni che gli altri hanno su di te',
-	'<strong>Abilità:</strong> quando dipende soprattutto dalla propria capacità',
-	'<strong>Destino:</strong> quando tutto sembra già deciso',
-	'<strong>Strategia:</strong> quando si sa ciò che si vuole e come fare per ottenerlo',
-	'<strong>Dipendenza:</strong> quando sono gli altri a determinare i risultati',
-	'<strong>Emozione:</strong> quando è lo stato d\'animo a essere determinante',
-	'<strong>Caso:</strong> quando tutto o quasi dipende dalla fortuna o dalla sfortuna',
-];
+for ($i = 1; $i <= 8; $i++) {
+	$fields[] = __('tests.48-field-' . $i);
+	$descriptions[] = __('tests.48-description-' . $i);
+}
 
 if ($sibling->completed) {
 	foreach ($fields as $key => $field) {

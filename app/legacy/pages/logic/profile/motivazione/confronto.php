@@ -6,7 +6,12 @@ $legacyTest = test();
 
 $count = 20;
 
-$groups = ['La tua opinione', 'Docente o orientatore', 'Genitori o parenti', 'Amici'];
+$groups = [];
+
+for ($i = 1; $i <= 4; $i++) {
+	$groups[] = __('tests.24-group-' . $i);
+}
+
 $results = \App\Legacy\LegacyDB::find('result FROM results_others WHERE userID = ? AND testID = ?', [watchedStudentId(), $legacyTest->id]);
 
 if ($results) {

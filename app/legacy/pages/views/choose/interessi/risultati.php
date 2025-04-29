@@ -22,11 +22,11 @@
 
 				<?php if ($i == 1) { ?>
 
-					<h2 class="area_title subsection-title">Area di interesse principale:</h2>
+					<h2 class="area_title subsection-title"><?= __('tests.92-subtitle-1') ?></h2>
 
 				<?php } else if ($i == 2) { ?>
 
-					<h2 class="area_title subsection-title">Altre aree che potrebbero interessarti:</h2>
+					<h2 class="area_title subsection-title"><?= __('tests.92-subtitle-2') ?></h2>
 
 				<?php } ?>
 
@@ -34,12 +34,12 @@
 					<img src="<?= client_path($isMiddleSchool ? '/pages/assets/interests/highschool/' . $result['id'] . '.jpg' : '/pages/assets/interests/universities/' . $result['id']) ?>" alt="" class="interest_img img-fill">
 					<div class="interest_content">
 						<h3 class="interest_title"><?= $interests[$result['id']]['name'] ?></h3>
-						<h3 class="interest_value"><span class="txt-sbold"><?= $result['percentage'] ?>%</span> di interesse</h3>
+						<h3 class="interest_value"><span class="txt-sbold"><?= $result['percentage'] ?>%</span> <?= __('of interest') ?></h3>
 						<p class="interest_info"><?= $interests[$result['id']]['info'] ?></p>
 
 						<?php if (!$supervisorView) { ?>
 
-							<div class="interest_link ebtn">Scopri quest'area</div>
+							<div class="interest_link ebtn"><?= __('Discover this area') ?></div>
 
 						<?php } ?>
 

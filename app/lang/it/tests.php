@@ -561,6 +561,19 @@ return [
 	"16-field-5" => "Ho una mia strategia per evitare di distrarmi",
 	"16-field-6" => "Riesco a svolgere diverse attività nello stesso tempo",
 
+	"20-area-1" => "Area tecnico-organizzativa",
+	"20-area-2" => "Area naturalistica",
+	"20-area-3" => "Area figurativo-spaziale",
+	"20-area-4" => "Area logico-matematica",
+	"20-area-5" => "Area esistenziale",
+	"20-area-6" => "Area musicale",
+	"20-area-7" => "Area verbale-interpersonale",
+	"20-area-8" => "Area motoria",
+	"20-area-9" => "Pratica",
+	"20-area-10" => "Introspettiva",
+	"20-area-11" => "Analitica",
+	"20-area-12" => "Interattiva",
+
 	"21-title-1" => "Distraibilità",
 	"21-title-2" => "Iperattività",
 	"21-result-1" => "Totale Distraibilità:",
@@ -569,14 +582,162 @@ return [
 	"22-text-1" => "Bravo! Ora concentrati, ad occhi chiusi, sulla bandierina per un minuto.",
 	"22-text-2" => "Ottimo!<br>Clicca qui sotto per continuare.",
 
+	"24-group-1" => 'La tua opinione',
+	"24-group-2" => 'Docente o orientatore',
+	"24-group-3" => 'Genitori o parenti',
+	"24-group-4" => 'Amici',
+
+	"31-1-name" => "Visivo",
+	"31-2-name" => "Uditivo",
+	"31-3-name" => "Globale",
+	"31-4-name" => "Analitico",
+	"31-5-name" => "Collaborativo",
+	"31-6-name" => "Autonomo",
+	"31-7-name" => "Sistematico",
+	"31-8-name" => "Intuitivo",
+	"31-1-info" => "apprende e ricorda attraverso immagini",
+	"31-2-info" => "è a suo agio quando può ascoltare",
+	"31-3-info" => "ricerca l’insieme, la totalità, trascurando i dettagli",
+	"31-4-info" => "si concentra sui particolari, perdendo di vista l’insieme",
+	"31-5-info" => "lavora meglio in gruppo, mentre da solo si annoia",
+	"31-6-info" => "preferisce lavorare da solo, è a disagio nei lavori di gruppo",
+	"31-7-info" => "predilige la precisione e la completezza, a costo di risultare dispersivo",
+	"31-8-info" => "vuole arrivare subito alla conclusione, rischiando soluzioni avventate",
+
+	"32-title" => "Quale strategia hai adottato?",
+	"32-description" => "Leggi le descrizioni qui sotto e cerca di capire quali di queste corrispondono maggiormente al modo in cui hai esaminato il disegno.",
+	"32-cta" => "Esamina la tua risposta",
+	"32-title-1" => "Se sei molto <span class=\"highlight\">intuitivo/a</span>",
+	"32-info-1-1" => "hai cercato subito di dare un significato al disegno",
+	"32-info-1-2" => "hai capito subito perché ti è stato proposto questo disegno",
+	"32-title-2" => "Se sei molto <span class=\"highlight\">sistematico/a</span>",
+	"32-info-2-1" => "hai voluto raccogliere molti dati, prima di giungere a una conclusione",
+	"32-info-2-2" => "hai continuato a chiederti perché ti è stato proposto proprio questo disegno",
+	"32-title-3" => "Se sei molto <span class=\"highlight\">globale</span>",
+	"32-info-3-1" => "hai cercato subito l’organizzazione d’insieme: alto/basso, sinistra/destra, pieni/vuoti, luce/ombra",
+	"32-info-3-2" => "hai colto immediatamente la specularità dell’immagine (giorno/notte) e la complementarietà delle figure (anatre bianche/nere)",
+	"32-title-4" => "Se sei molto <span class=\"highlight\">analitico/a</span>",
+	"32-info-4-1" => "hai soffermato l’attenzione su molti dettagli: anatre, campi, villaggi, fiumi, imbarcazioni, mulini ecc.",
+	"32-info-4-2" => "ti sei concentrato prima su un aspetto (ad es. anatre bianche dall’alto in basso) e poi su un altro (ad es. gli elementi del paesaggio di giorno confrontandoli con quelli del paesaggio di notte)",
+
+	"33-title" => "A quale conclusione sei arrivato?",
+	"33-description" => "La conclusione qui è incerta, però:",
+	"33-cta" => "Esamina la tua risposta",
+	"33-title-1" => "Se sei molto <span class=\"highlight\">intuitivo/a</span>",
+	"33-info-1-1" => "- avrai notato subito i diversi tipi di impronta e sarai giunto rapidamente alla conclusione: 6 (o 8 a seconda di come hai contato le biciclette)",
+	"33-info-1-2" => "- In questo caso la rapidità della conclusione è pericolosa, anche se in altre situazioni essere intuitivo può aiutarti a raggiungere più velocemente il risultato.",
+	"33-title-2" => "Se sei molto <span class=\"highlight\">sistematico/a</span>",
+	"33-info-2-1" => "- ti sarai detto: ci sono sei (o otto) tipi di impronte, ma non si può escludere che la stessa persona sia passata più di una volta, con scarpe o mezzi diversi, oppure sullo stesso mezzo ci poteva essere più di una persona.",
+	"33-info-2-2" => "- In questo caso l’accuratezza e la prudenza del sistematico erano necessarie.",
+
 	"46-section-1" => 'Stabilità emotiva',
 	"46-section-2" => 'Estroversione',
 	"46-section-3" => 'Socievolezza',
 	"46-section-4" => 'Coscienziosità',
 	"46-section-5" => 'Risposta alle novità',
 
+	"47-question-1" => "Se una verifica è andata <span class='font-bold good'>bene</span> di solito è perché",
+	"47-question-2" => "Se una verifica è andata <span class='font-bold bad'>male</span> di solito è perché",
+	"47-question-3" => "Quando il mio rapporto con i compagni è <span class='font-bold good'>positivo</span> in genere è perché",
+	"47-question-4" => "Quando il mio rapporto con i compagni è <span class='font-bold bad'>negativo</span> in genere è perché",
+	"47-question-5" => "Quando il mio rapporto con l’insegnante funziona <span class='font-bold good'>bene</span> è perché",
+	"47-question-6" => "Quando il mio rapporto con l’insegnante funziona <span class='font-bold bad'>male</span> è perché",
+	"47-question-7" => "Quando il mio rapporto con una persona funziona <span class='font-bold good'>bene</span> è perché",
+	"47-question-8" => "Quando il mio rapporto con una persona funziona <span class='font-bold bad'>male</span> è perché",
+	"47-answer-1-1" => "Sono stato attento durante le lezioni e ho imparato bene l’argomento",
+	"47-answer-1-2" => "Sono simpatico all'insegnante",
+	"47-answer-1-3" => "Sono portato per quella materia",
+	"47-answer-1-4" => "Era molto facile e avevo tutto il tempo necessario",
+	"47-answer-1-5" => "Mi sono impegnato molto",
+	"47-answer-1-6" => "Sono stato aiutato (dall’insegnante o da un compagno)",
+	"47-answer-1-7" => "Ero di buon umore",
+	"47-answer-1-8" => "Ho avuto fortuna",
+	"47-answer-2-1" => "Mi sono distratto durante le lezioni e non ho imparato bene l’argomento",
+	"47-answer-2-2" => "L’insegnante mi trascura",
+	"47-answer-2-3" => "Non sono portato per quella materia",
+	"47-answer-2-4" => "Era troppo difficile",
+	"47-answer-2-5" => "Mi sono impegnato troppo poco",
+	"47-answer-2-6" => "Nessuno mi ha aiutato durante la prova",
+	"47-answer-2-7" => "Ero di cattivo umore o troppo in ansia",
+	"47-answer-2-8" => "Sono stato sfortunato",
+	"47-answer-3-1" => "Sono sempre disponibile verso di loro",
+	"47-answer-3-2" => "Mi ritengono simpatico",
+	"47-answer-3-3" => "Sono una persona estroversa e aperta",
+	"47-answer-3-4" => "La mia è una classe dove tutti si troverebbero bene",
+	"47-answer-3-5" => "Cerco sempre di capire il loro punto di vista",
+	"47-answer-3-6" => "I miei compagni sono sempre disponibili",
+	"47-answer-3-7" => "Solitamente sono di buon umore",
+	"47-answer-3-8" => "In genere le cose mi vanno bene",
+	"47-answer-4-1" => "Sono poco disponibile verso di loro",
+	"47-answer-4-2" => "Sono antipatici",
+	"47-answer-4-3" => "Sono chiuso/a e timido/a",
+	"47-answer-4-4" => "La mia è una classe dove chiunque si troverebbe male",
+	"47-answer-4-5" => "Non mi sforzo abbastanza per capire il loro punto di vista",
+	"47-answer-4-6" => "I miei compagni sono egoisti e poco disponibili",
+	"47-answer-4-7" => "Solitamente sono di cattivo umore",
+	"47-answer-4-8" => "Le cose in genere mi vanno male",
+	"47-answer-5-1" => "Partecipo sempre alle sue lezioni e sono disponibile",
+	"47-answer-5-2" => "Gli sono simpatico/a",
+	"47-answer-5-3" => "Sono una persona estroversa e aperta",
+	"47-answer-5-4" => "L’insegnante è tranquillo/a e poco esigente",
+	"47-answer-5-5" => "Cerco di capire cosa vuole che faccia e come vuole che mi comporti",
+	"47-answer-5-6" => "L’insegnante mi aiuta se mi vede in difficoltà",
+	"47-answer-5-7" => "Solitamente sono di buon umore",
+	"47-answer-5-8" => "Di solito ho fortuna",
+	"47-answer-6-1" => "Spesso mi comporto male",
+	"47-answer-6-2" => "Ce l’ha con me",
+	"47-answer-6-3" => "Sono chiuso/a e timido/a",
+	"47-answer-6-4" => "Ce l’hanno tutti con me",
+	"47-answer-6-5" => "Faccio poco o niente per avere un buon rapporto",
+	"47-answer-6-6" => "Non fa niente per venirmi incontro",
+	"47-answer-6-7" => "Sono spesso scontroso/a e di cattivo umore",
+	"47-answer-6-8" => "Non ho proprio fortuna",
+	"47-answer-7-1" => "Ci tengo molto ad avere un buon rapporto con lei",
+	"47-answer-7-2" => "Le sono simpatico/a",
+	"47-answer-7-3" => "Sono una persona estroversa e aperta",
+	"47-answer-7-4" => "È un tipo sereno e poco esigente",
+	"47-answer-7-5" => "Cerco di capire che cosa si aspetta da me",
+	"47-answer-7-6" => "Si mostra sempre disponibile nei miei confronti",
+	"47-answer-7-7" => "Solitamente sono di buon umore",
+	"47-answer-7-8" => "Di solito ho fortuna",
+	"47-answer-8-1" => "Spesso mi comporto male con lei",
+	"47-answer-8-2" => "Ce l’ha con me",
+	"47-answer-8-3" => "Sono chiuso/a e timido/a",
+	"47-answer-8-4" => "Ce l’hanno tutti con me",
+	"47-answer-8-5" => "Faccio poco o niente per avere un buon rapporto",
+	"47-answer-8-6" => "Non fa niente per venirmi incontro",
+	"47-answer-8-7" => "Sono spesso scontroso/a e di cattivo umore",
+	"47-answer-8-8" => "Non ho proprio fortuna",
+
+	"48-field-1" => "Tenacia",
+	"48-field-2" => "Pregiudizio",
+	"48-field-3" => "Abilità",
+	"48-field-4" => "Destino",
+	"48-field-5" => "Strategia",
+	"48-field-6" => "Dipendenza",
+	"48-field-7" => "Emozione",
+	"48-field-8" => "Caso",
+	"48-description-1" => "<strong>Tenacia:</strong> quando si è determinati e costanti",
+	"48-description-2" => "<strong>Pregiudizio:</strong> quando dipende dalle convinzioni che gli altri hanno su di te",
+	"48-description-3" => "<strong>Abilità:</strong> quando dipende soprattutto dalla propria capacità",
+	"48-description-4" => "<strong>Destino:</strong> quando tutto sembra già deciso",
+	"48-description-5" => "<strong>Strategia:</strong> quando si sa ciò che si vuole e come fare per ottenerlo",
+	"48-description-6" => "<strong>Dipendenza:</strong> quando sono gli altri a determinare i risultati",
+	"48-description-7" => "<strong>Emozione:</strong> quando è lo stato d'animo a essere determinante",
+	"48-description-8" => "<strong>Caso:</strong> quando tutto o quasi dipende dalla fortuna o dalla sfortuna",
+
 	"54-right" => "Hai scelto la figura giusta, ottimo lavoro!",
 	"54-wrong" => "La soluzione è errata, ma puoi riprovare quando vuoi.",
+
+	"61-question-1" => "Cerco idee",
+	"61-question-2" => "Organizzo le idee",
+	"61-question-3" => "Resto in argomento",
+	"61-question-4" => "Aggiorno il progetto",
+	"61-question-5" => "Verifico la coerenza",
+	"61-question-6" => "Controllo la punteggiatura",
+	"61-question-7" => "Mi accorgo quando sbaglio",
+	"61-question-8" => "Rileggo per correggere",
+	"61-question-9" => "Rivedo e modifico il testo",
 
 	"62-question-1" => 'Scrivere un\'esposizione',
 	"62-question-2" => 'Scrivere un post su un social network',
@@ -617,6 +778,374 @@ return [
 	"63-type-15" => 'Promemoria',
 	"63-type-16" => 'Appunti',
 
+	"65-title" => "Organizzazione",
+	"65-step-1-title" => "Scelta",
+	"65-step-1-text" => "Un argomento o un problema che mi interessa.",
+	"65-step-2-title" => "Introduzione",
+	"65-step-2-text" => "Dico in breve di che cosa parlerò.",
+	"65-step-3-title" => "Sviluppo",
+	"65-step-3-text" => "Spiego per punti con dati ed esempi.",
+	"65-step-4-title" => "Conclusione",
+	"65-step-4-text" => "Il mio punto di vista sull'argomento.",
+	"65-step-5-title" => "Esposizione",
+	"65-step-5-text" => "Parlo scegliendo le parole e il ritmo giusti.",
+
+	'91-question-1' => 'Conoscere ed essere aggiornato sui metodi per allevare il bestiame',
+	'91-question-2' => 'Studiare la storia dell’arte',
+	'91-question-3' => 'Tenere la contabilità di un’azienda',
+	'91-question-4' => 'Conoscere e valorizzare le caratteristiche del territorio in cui si opera',
+	'91-question-5' => 'Fare la guida alpina',
+	'91-question-6' => 'Preparare composti chimici ad uso farmaceutico',
+	'91-question-7' => 'Leggere uno spartito musicale',
+	'91-question-8' => 'Integrare la meccanica con nozioni di elettronica ed informatica finalizzate all\'automazione industriale',
+	'91-question-9' => 'Eseguire trattamenti estetici o curativi',
+	'91-question-10' => 'Realizzare e collaudare impianti elettrici in case e uffici',
+	'91-question-11' => 'Occuparsi delle forniture e redigere il listino dei prezzi',
+	'91-question-12' => 'Conoscere e utilizzare i linguaggi di programmazione',
+	'91-question-13' => 'Ricevere le ordinazioni dei clienti in un ristorante o in un bar',
+	'91-question-14' => 'Praticare il balletto o la danza in modo dilettantesco o professionistico',
+	'91-question-15' => 'Progettare e realizzare prodotti grafici su supporto cartaceo e digitale',
+	'91-question-16' => 'Studiare a applicare la matematica ai diversi ambiti scientifici',
+	'91-question-17' => 'Guidare mezzi di trasporto come furgoni o camion',
+	'91-question-18' => 'Organizzare convegni e manifestazioni',
+	'91-question-19' => 'Gestire gli adempimenti di natura fiscale',
+	'91-question-20' => 'Gestire o lavorare in un’azienda agricola',
+	'91-question-21' => 'Manovrare gru o macchinari per l’edilizia',
+	'91-question-22' => 'Approfondire temi storici e filosofici, anche nella prospettiva dell’insegnamento',
+	'91-question-23' => 'Studiare le leggi fisiche che permettono a un motore di funzionare',
+	'91-question-24' => 'Sapere come funziona una centrale elettrica',
+	'91-question-25' => 'Analizzare gli elementi chimici delle sostanze nutrizionali e inquinanti',
+	'91-question-26' => 'Sostenere la conversazione con cittadini stranieri',
+	'91-question-27' => 'Monitorare le consegne e l’integrità delle merci',
+	'91-question-28' => 'Seguire l’andamento dei prezzi di mercato e programmare vendite e sconti',
+	'91-question-29' => 'Illustrare libri, opuscoli o siti web',
+	'91-question-30' => 'Interagire con pazienza e gentilezza anche con persone che vivono disagi',
+	'91-question-31' => 'Fare attività di laboratorio',
+	'91-question-32' => 'Progettare o sovrintendere alla costruzione di un edificio',
+	'91-question-33' => 'Studiare le varie tecniche per la conservazione degli alimenti',
+	'91-question-34' => 'Accompagnare gruppi di persone nei tour turistici',
+	'91-question-35' => 'Programmare siti Internet',
+	'91-question-36' => 'Allenare una squadra',
+	'91-question-37' => 'Essere interessati ai problemi economici',
+	'91-question-38' => 'Esibirsi in pubblico nell’esecuzione di un brano musicale',
+	'91-question-39' => 'Studiare al microscopio la struttura delle cellule',
+	'91-question-40' => 'Fare l’interprete nei congressi, nelle fiere e negli incontri internazionali',
+	'91-question-41' => 'Controllare e ottimizzare i flussi energetici nel rispetto delle normative di sicurezza e di tutela dell’ambiente',
+	'91-question-42' => 'Costruire alleanze tra soggetti diversi per aiutare persone in difficoltà, come disabili o immigrati',
+	'91-question-43' => 'Consigliare l’abbinamento di cibi e bevande',
+	'91-question-44' => 'Cimentarsi nella scrittura di articoli, racconti o poesie',
+	'91-question-45' => 'Progettare oggetti di arredamento o arredare case e appartamenti',
+	'91-question-46' => 'Diventare maestro di sci',
+	'91-question-47' => 'Accogliere i clienti di un albergo, interagendo in diverse lingue',
+	'91-question-48' => 'Lavorare con persone anziane o bisognose di cura',
+	'91-question-49' => 'Saper leggere schemi di circuiti elettrici ed elettronici',
+	'91-question-50' => 'Organizzare la disposizione delle merci in un negozio o in un supermercato',
+	'91-question-51' => 'Riconoscere le malattie delle piante e applicare tecniche di prevenzione e cura',
+	'91-question-52' => 'Fare la guida in un museo o in una città, comunicando anche con una lingua straniera',
+	'91-question-53' => 'Progettare reti informatiche per le aziende',
+	'91-question-54' => 'Documentarsi su riviste, giornali e nel web su importanti sviluppi scientifici',
+	'91-question-55' => 'Controllare uno scalo ferroviario, marittimo o aereo',
+	'91-question-56' => 'Utilizzare apparecchiature per la diagnosi e la cura delle malattie',
+	'91-question-57' => 'Suonare uno strumento',
+	'91-question-58' => 'Progettare e collaudare impianti termici e idraulici',
+	'91-question-59' => 'Proporre e sviluppare iniziative educative e culturale per i giovani nei quartieri disagiati',
+	'91-question-60' => 'Viaggiare all’estero',
+	'91-question-61' => 'Approfondire le problematiche sociali attraverso studi e ricerche',
+	'91-question-62' => 'Praticare forme d’arte come la pittura, la scultura, la fotografia, la grafica',
+	'91-question-63' => 'Partecipare a competizioni sportive',
+	'91-question-64' => 'Fornire assistenza per problemi di hardware e software',
+	'91-question-65' => 'Fare animazione in una colonia o nel doposcuola',
+	'91-question-66' => 'Installare e riparare apparecchiature telefoniche e televisive.',
+	'91-question-67' => 'Riconoscere i diversi modelli organizzativi aziendali e ricercare soluzioni efficaci',
+	'91-question-68' => 'Interpretare testi classici in lingua italiana e tradurre dal latino e dal greco',
+	'91-question-69' => 'Registrare incassi, fatture, spese e fare versamenti in banca',
+	'91-question-70' => 'Fare studi approfonditi di botanica e zoologia',
+	'91-question-71' => 'Essere documentati sui metodi e sui prodotti per la cura e l’estetica della persona',
+	'91-question-72' => 'Gestire le prenotazioni per aerei, treni e alberghi',
+	'91-question-73' => 'Usare strumenti manuali per realizzare disegni tecnici',
+	'91-question-74' => 'Leggere testi di vario tipo in lingua originale.',
+	'91-question-75' => 'Gestire gli stipendi del personale e archiviare fatture commerciali',
+	'91-question-76' => 'Porsi domande su aspetti fondamentali come la materia, la vita, l’universo',
+	'91-question-77' => 'Conoscere le norme igieniche per la conservazione e la manipolazione dei cibi',
+	'91-question-78' => 'Condurre analisi batteriologiche',
+	'91-question-79' => 'Organizzare e aggiornare il sistema informatizzato degli ordini',
+	'91-question-80' => 'Studiare storia della musica, solfeggio e composizione',
+	'91-question-81' => 'Montare impianti stereo e antifurti in case e automobili',
+	'91-question-82' => 'Insegnare ginnastica o educazione motoria in una scuola o in una palestra',
+	'91-question-83' => 'Installare e gestire impianti industriali',
+	'91-question-84' => 'Reclamizzare nuovi prodotti',
+	'91-question-85' => 'Creare disegni per tessuti e ideare modelli di vestiario',
+	'91-question-86' => 'Saper cogliere le potenzialità estetiche di una persona',
+	'91-question-87' => 'Fornire assistenza e manutenzione nelle aule di informatica',
+	'91-question-88' => 'Analizzare e valutare le caratteristiche dei terreni edificabili',
+	'91-question-89' => 'Studiare e applicare le regole grammaticali (fonologia, morfologia e sintassi)',
+	'91-question-90' => 'Pilotare aerei o elicotteri',
+	'91-question-91' => 'Seguire nei diversi media i dibattiti e le controversie fra scienziati',
+	'91-question-92' => 'Saper servire ai tavoli in modo rapido e discreto',
+	'91-question-93' => 'Conoscere i vantaggi e gli svantaggi delle coltivazioni biologiche',
+	'91-question-94' => 'Utilizzare tecnologie e software applicativi per la gestione integrata di un’azienda',
+	'91-question-95' => 'Conoscere le leggi dell’elettricità, utilizzando batterie e trasformatori',
+	'91-question-96' => 'Dirigere un grande magazzino o un ipermercato',
+	'91-question-97' => 'Effettuare collegamenti e confronti fra diverse forme letterarie e artistiche, italiane e straniere',
+	'91-question-98' => 'Montare o smontare impalcature, edificare muri, fare gettate di cemento',
+	'91-question-99' => 'Mettersi da punto di vista di chi manifesta sofferenza o disagio',
+	'91-question-100' => 'Partecipare a concerti e manifestazioni musicali',
+	'91-question-101' => 'Mettere in connessione le strutture di elaborazione dati in reti di computer',
+	'91-question-102' => 'Supportare i docenti nella gestione di classi difficili e di casi problematici',
+	'91-question-103' => 'Occuparsi della prevenzione e della gestione di situazioni a rischio ambientale e sanitario',
+	'91-question-104' => 'Conoscere e combinare gli ingredienti di cibi dolci o salati',
+	'91-question-105' => 'Approfondire le problematiche collegate alla conversione ed utilizzazione delle diverse fonti di energia',
+	'91-question-106' => 'Insegnare lingua e letteratura straniera',
+	'91-question-107' => 'Seguire gli sviluppi di una scienza dalle origini ad oggi',
+	'91-question-108' => 'Conoscere usi e costumi di paesi diversi dal nostro',
+	'91-question-109' => 'Conoscere i linguaggi, le metodologie e le tecniche di indagine nel campo delle scienze umane, in particolare psicologia, sociologia, antropologia',
+	'91-question-110' => 'Insegnare educazione musicale',
+	'91-question-111' => 'Risolvere i problemi relativi al trasporto delle merci',
+	'91-question-112' => 'Insegnare materie letterarie nella scuola',
+	'91-question-113' => 'Predisporre la sala di un ristorante o di una mensa aziendale',
+	'91-question-114' => 'Fare misurazioni di terre per la costruzione di strade, case, ponti, gallerie',
+
+	"92-subtitle-1" => "Area di interesse principale:",
+	"92-subtitle-1" => "Altre aree che potrebbero interessarti:",
+	"92-name-1" => "Agricoltura e ambiente",
+	"92-info-1" => "L’Operatore agricolo può svolgere diverse attività: ara,
+		pianta, zappa, semina, concima, innesta, pota, tratta le
+		piante con anticrittogamici per proteggerle da malattie e
+		insetti, miete, coltiva piante da semina e da frutto,
+		raccoglie frutta e ortaggi, provvedere alla manutenzione,
+		alla messa a punto e a piccole riparazioni di macchinari
+		agricoli. La sua attività può comprendere anche
+		l’allevamento di animali di bassa corte e/o di bestiame di
+		grande taglia.",
+	"92-name-2" => "Amministrazione, finanza e marketing",
+	"92-info-2" => "Chi opera in quest’area ha competenze generali nel campo
+		dei fenomeni economici, si occupa dei processi aziendali
+		(organizzazione, pianificazione, programmazione,
+		amministrazione, finanza e controllo). Integra queste
+		competenze specifiche con quelle linguistiche e
+		informatiche, per favorire le relazioni dell’impresa nel
+		contesto nazionale e internazionale.",
+	"92-name-3" => "Arti visive e moda",
+	"92-info-3" => "Nel campo delle arti visive troviamo molte figure
+		professionali: pittori, scultori, grafici, fumettisti,
+		pubblicitari, arredatori, designer, scenografi, insegnanti di
+		educazione artistica, fotografi artistici, architetti,
+		costumisti, stilisti. Ciò che accomuna queste diverse
+		professioni è l’interesse ad esprimersi in modo personale
+		e creativo ma attento alle richieste di chi acquista i prodotti
+		realizzati.",
+	"92-name-4" => "Benessere e cura",
+	"92-info-4" => "Applica metodologie mirate al benessere psicofisico della
+		persona. Il suo obiettivo primario è di favorire il
+		mantenimento o il miglioramento della forma del cliente,
+		dando i consigli migliori per la tutela della salute e della
+		bellezza. In quest’area operano estetiste, parrucchieri,
+		badanti, personale delle case di riposo, infermieri,
+		fisioterapisti, ottici, odontotecnici.",
+	"92-name-5" => "Chimica, materiali e biotecnologie",
+	"92-info-5" => "Sono numerose le professioni relative a quest’area:
+		genetisti. analisti degli ospedali, ricercatori in chimica e
+		biologia, chimici delle industrie, tecnici farmaceutici,
+		insegnanti di chimica e biologia nelle scuole e nelle
+		università. IL diplomato in quest’area ha competenze
+		specifiche nel campo delle analisi strumentali chimicobiologiche, dei materiali, nei processi di produzione negli
+		ambiti chimico, merceologico, biologico, farmaceutico,
+		tintorio e conciario. Inoltre è competente nel settore della
+		prevenzione e della gestione di situazioni a rischio
+		ambientale e sanitario.",
+	"92-name-6" => "Commercio e vendita",
+	"92-info-6" => "Gestisce acquisti e vendite, occupandosi delle forniture di
+		un negozio, redigendo e archiviando fatture commerciali,
+		compilando listini dei prezzi, presentando o diffondendo
+		nuovi prodotti, registrando gli incassi. Operano in
+		quest’area i negozianti, gli agenti di commercio, gli
+		ambulanti, i commessi, il personale dei grandi magazzini,
+		gli studiosi del mercato e delle esigenze dei clienti.",
+	"92-name-7" => "Corpo, movimento e sport",
+	"92-info-7" => "Gli interessa il movimento per il benessere e l’efficienza
+		fisica propria o altrui. Partecipa direttamente, o prepara
+		altri, a competizioni sportive oppure ad attività che
+		coinvolgono il corpo in modo armonioso, come ad esempio
+		la danza. In quest’area troviamo atleti, allenatori, ballerini
+		e danzatori professionisti, insegnanti di educazione
+		motoria.",
+	"92-name-8" => "Edilizia e costruzioni",
+	"92-info-8" => "L’Operatore edile si occupa della progettazione,
+		costruzione e manutenzione di edifici residenziali e non
+		residenziali, utilizza macchine operatrici edili, esegue
+		lavori generali di scavo e movimentazione di materiali, è
+		esperto nel disegno tecnico (architettonico, strutturale,
+		impiantistico) e nel calcolo di pendenze, altezze e quote.
+		È interessato alla trasformazione e conservazione di
+		immobili, alla tutela del territorio e alla valorizzazione
+		dell’ambiente. Progetta spazi abitativi e urbani, arredo di
+		interni ed esterni. Progetta opere speciali di
+		contenimento, opere idrauliche e di consolidamento del
+		suolo. In quest’area troviamo vari tipi di lavoro: operai
+		edili, conduttori di macchinari per il movimento terra, per
+		la perforazione in edilizia, di apparecchi di sollevamento;
+		esperti per la salvaguardia del territorio e la prevenzione
+		dei rischi ambientali; geometri, architetti, ingegneri edili,
+		capi cantiere.",
+	"92-name-9" => "Elettronica e elettrotecnica",
+	"92-info-9" => "Collabora nella progettazione, costruzione e collaudo di
+		sistemi elettrici, elettronici e di automazione. Integra
+		conoscenze di elettrotecnica, di elettronica e di informatica
+		per intervenire nell’automazione industriale e nel
+		controllo dei processi produttivi. Contribuisce al
+		mantenimento della sicurezza sul lavoro e nella tutela
+		ambientale. In quest’area troviamo elettricisti, riparatori di
+		radio, televisioni e telefoni, ingegneri elettrici ed
+		elettronici, elettrauto.",
+	"92-name-10" => "Informatica e telecomunicazioni",
+	"92-info-10" => "La figura dell’informatico si distingue in diverse professioni
+		in base all’informazione trattata e alla modalità con la
+		quale si tratta: si passa dall’interconnessione di computer
+		e server al mondo del web marketing, fino ad arrivare
+		all’analisi di grandi quantità di dati o alla creazione di siti
+		web. In quest’area troviamo programmatori, addetti alle
+		comunicazioni, riparatori di sistemi informatici, tecnici nei
+		laboratori delle scuole, insegnanti di matematica e
+		informatica nelle scuole e nelle università.",
+	"92-name-11" => "Letteraria e umanistica",
+	"92-info-11" => "Studia e trasmette i valori della civiltà classica e della
+		cultura umanistica. Con la sua educazione letteraria,
+		storica e filosofica, può contribuire direttamente allo
+		sviluppo della cultura contemporanea attraverso la
+		scrittura di racconti, romanzi, opere teatrali, poesie, saggi
+		o articoli per giornali e riviste specializzate oppure,
+		attraverso l’insegnamento, favorisce l’accesso delle nuove
+		generazioni a questo mondo culturale.",
+	"92-name-12" => "Linguistica",
+	"92-info-12" => "È attratto dalle culture, dalle lingue e dai modi di vita di
+		popoli diversi dal suo.
+		Ama viaggiare e interagire con i cittadini di un paese
+		straniero, sia per motivi di lavoro che di svago. Pratica
+		diverse lingue straniere sia in forma orale che scritta.
+		Conosce le strutture grammaticali delle lingue per farne un
+		uso corretto. La padronanza delle lingue apre la strada a
+		diverse professioni: interpreti, traduttori, guide turistiche,
+		responsabili dei rapporti internazionali delle ditte,
+		insegnanti di lingua e letteratura straniera nelle scuole e
+		all’università.",
+	"92-name-13" => "Meccanica, meccatronica, energia",
+	"92-info-13" => "Si occupa della progettazione e costruzione di sistemi
+		meccanici ed elettro-meccanici. È interessato ai processi
+		produttivi e segue la fabbricazione e il monitoraggio di
+		componenti meccanici. Conosce il funzionamento delle
+		macchine di un’officina e sa individuare eventuali guasti.
+		Opera nel campo delle diverse fonti di energia e del
+		risparmio nei consumi energetici. Diverse sono le
+		professioni che riguardano quest’area: progettisti di
+		impianti, operai e tecnici che collaudano e controllano le
+		macchine di una fabbrica, ingegneri, insegnanti in istituti
+		tecnici, professionali o all’università.",
+	"92-name-14" => "Musicale",
+	"92-info-14" => "Presenta talento e interessi per la musica in tutte le sue
+		varie forme ed espressioni, come suonare uno strumento,
+		leggere musica, cantare, assistere a spettacoli musicali,
+		comporre. Sono molte le professioni di chi opera in questo
+		campo: strumentisti, cantanti, compositori, direttori
+		d’orchestra, arrangiatori, critici musicali, insegnanti di
+		musica nelle scuole e nei conservatori.",
+	"92-name-15" => "Ristorazione",
+	"92-info-15" => "Consente alle persone che si trovano fuori casa di bere e
+		mangiare, cucinando o servendo cibi caldi o freddi, preparando
+		la sala di un ristorante, consigliando vini o altre bevande,
+		prendendo le ordinazioni dei clienti, conoscendo le norme
+		igieniche per la conservazione dei cibi. In quest’area operano
+		camerieri, cuochi, pasticcieri, sommelier, maitre.",
+	"92-name-16" => "Scientifica",
+	"92-info-16" => "Conosciamo la realtà che ci circonda e noi stessi attraverso
+		teorie che si sviluppano nel tempo e si trasformano
+		quando emergono nuovi dati che le mettono in
+		discussione. Anche se non possiamo avere certezze
+		assolute, l’approccio scientifico è il solo che ci permette di
+		sperimentare ipotesi e comunicare risultati in modo
+		rigoroso. La scienza, nei suoi svariati campi, si avvale di
+		strumentazioni tecniche che permettono a ricercatori di
+		rimediare alle debolezze dei nostri apparati sensoriali.",
+	"92-name-17" => "Scienze umane",
+	"92-info-17" => "È interessato alla formazione e alla socializzazione, in
+		particolare delle persone in difficoltà. Conosce i vari
+		sistemi educativi e ha le competenze per operare su
+		diverse fasce d’età, dai bambini delle materne agli
+		adolescenti delle scuole superiori. Lavorano in
+		quest’ambito insegnanti, educatori, assistenti sociali,
+		animatori, pedagogisti, orientatori.",
+	"92-name-18" => "Trasporti e logistica",
+	"92-info-18" => "In un mondo sempre più globalizzato, il trasporto di merci
+		e persone diventa sempre più importante. Perché il
+		trasferimento di merci da un luogo all’altro avvenga nei
+		tempi previsti, in modo efficiente e al minor costo
+		possibile, ci devono essere degli esperti che organizzano al
+		meglio lo smistamento, la movimentazione e lo
+		stoccaggio. In quest’area troviamo diverse mansioni, che
+		vanno dall’autista di camion all’ingegnere, dal pilota di
+		aereo al controllore di scali ferroviari.",
+	"92-name-19" => "Turismo",
+	"92-info-19" => "Conosce il patrimonio culturale, artistico, artigianale,
+		enogastronomico, paesaggistico ed ambientale del
+		territorio, contribuendo alla sua valorizzazione e al suo
+		sviluppo turistico. Dovendo interagire anche con ospiti
+		stranieri, riesce a comunicare agevolmente in inglese o
+		nella lingua straniera prevalentemente usata dalla
+		clientela. Lavorano in questo campo gli addetti delle
+		agenzie turistiche, gli steward e le hostess degli aerei, i
+		portieri d’albergo, le guide turistiche, gli animatori dei
+		villaggi turistici.",
+
+	"96-question-1" => "La vicenda è ambientata",
+	"96-question-2" => "Il THOLOS è",
+	"96-question-3" => "In che periodo dell’anno si svolge il fatto",
+	"96-question-4" => "Il padre e il nonno di Giovanni erano",
+	"96-question-5" => "Qual è la corretta successione dei fatti",
+	"96-question-6" => "Il lupo dal pelo argentato era",
+	"96-question-7" => "Le prime parole del lupo sono",
+	"96-question-8" => "L’uomo ha saccheggiato l’ambiente del lupo e ha lasciato solo",
+	"96-question-9" => "Cos’è successo realmente a Giovanni",
+	"96-question-10" => "Il messaggio che vuole trasmetterci l’autore è",
+	"96-answer-1-1" => "sugli Appennini tosco‐emiliani",
+	"96-answer-1-2" => "sull’Altopiano della Sila",
+	"96-answer-1-3" => "sulle Alpi",
+	"96-answer-1-4" => "sugli Appennini abruzzesi",
+	"96-answer-2-1" => "metà grotta e metà capanna",
+	"96-answer-2-2" => "metà ovile e metà trullo",
+	"96-answer-2-3" => "metà baita e metà rifugio",
+	"96-answer-2-4" => "un ovile circondato da un muretto a secco",
+	"96-answer-3-1" => "in estate",
+	"96-answer-3-2" => "nel periodo autunnale",
+	"96-answer-3-3" => "in inverno",
+	"96-answer-3-4" => "allo scioglimento delle nevi",
+	"96-answer-4-1" => "cacciatori",
+	"96-answer-4-2" => "boscaioli",
+	"96-answer-4-3" => "contadini",
+	"96-answer-4-4" => "pastori",
+	"96-answer-5-1" => "a. mette le tagliole, b. i morsi della la fame, c. le due pecore uccise, d. Giovanni capisce, e. il corpo si trasforma, f. incontro col lupo",
+	"96-answer-5-2" => "a. i morsi della la fame, b. incontro col lupo, c. le due pecore uccise, d. mette le tagliole, e. Giovanni capisce, f. il corpo si trasforma",
+	"96-answer-5-3" => "a. le due pecore uccise, b. mette le tagliole, c. incontro col lupo, d. il corpo si trasforma, e. i morsi della la fame, f. Giovanni capisce",
+	"96-answer-5-4" => "a. le due pecore uccise, b. mette le tagliole, c. incontro col lupo, d. i morsi della la fame, e. il corpo si trasforma, f. Giovanni capisce",
+	"96-answer-6-1" => "Fiero, immobile, tranquillo",
+	"96-answer-6-2" => "Minaccioso e vendicativo",
+	"96-answer-6-3" => "Mansueto e docile",
+	"96-answer-6-4" => "Scaltro e dispettoso",
+	"96-answer-7-1" => "“Uccidere è difficile, capire è più facile”",
+	"96-answer-7-2" => "“Uccidere è sbagliato ma necessario”",
+	"96-answer-7-3" => "“Uccidere è facile, capire è più difficile”",
+	"96-answer-7-4" => "“Uccidere è questione d’istinto”",
+	"96-answer-8-1" => "erbacce e qualche pecora",
+	"96-answer-8-2" => "immondizia e qualche agnello da rubare",
+	"96-answer-8-3" => "boschi e avanzi di cibo",
+	"96-answer-8-4" => "ovili da saccheggiare",
+	"96-answer-9-1" => "Cadendo, ha battuto la testa ed ha sognato tutto",
+	"96-answer-9-2" => "Non si è mai spostato dal suo tholos",
+	"96-answer-9-3" => "Complice la luna piena, si è trasformato effettivamente in lupo‐mannaro",
+	"96-answer-9-4" => "Ha subito un incantesimo",
+	"96-answer-10-1" => "Bisogna proteggere l’ambiente da inquinamento e rifiuti",
+	"96-answer-10-2" => "Il lupo uccide solo per la propria sopravvivenza e non per crudeltà",
+	"96-answer-10-3" => "È crudele posare tagliole",
+	"96-answer-10-4" => "Andare per i boschi di notte è pericoloso",
+
 	"101-choice-1" => 'Ha fatto tanta strada ed è soddisfatto',
 	"101-choice-2" => 'Ha fatto tanta strada, ma qualcosa non va',
 	"101-choice-3" => 'Ha fatto molta strada con un’altra persona, ma ha rischiato troppo e, nonostante i suoi sforzi, l’ha persa',
@@ -641,15 +1170,6 @@ return [
 	"102-center-1" => "prima<br>ruota",
 	"102-center-2" => "seconda<br>ruota",
 	"102-center-3" => "terza<br>ruota",
-
-	"109-1-name" => "Visivo",
-	"109-2-name" => "Uditivo",
-	"109-3-name" => "Collaborativo",
-	"109-4-name" => "Autonomo",
-	"109-1-info" => "apprende e ricorda attraverso immagini",
-	"109-2-info" => "è a suo agio quando può ascoltare",
-	"109-3-info" => "lavora meglio in gruppo, mentre da solo si annoia",
-	"109-4-info" => "preferisce lavorare da solo, è a disagio nei lavori di gruppo",
 
 	'114-option-1' => 'CARTA',
 	'114-option-2' => 'TELEFONO',

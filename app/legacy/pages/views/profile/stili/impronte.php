@@ -5,32 +5,32 @@
 
 	<div id="results-sec" class="grid-flow main-wrap pad-t-5 pad-b-5" data-spacing="700">
 
-		<?= title('A quale conclusione sei arrivato?', 'La conclusione qui è incerta, però:') ?>
+		<?= title(__('tests.33-title'), __('tests.33-description')) ?>
 
 		<div class="grid-flow" data-columns="25rem" data-spacing="700">
 
 			<div id="method1" class="method" data-tilt>
 
-				<h3 class="subsection-title txt-15rem font-bold br-b-1 br-5 pad-b-1 mar-b-2">Se sei molto <span class="highlight">intuitivo/a</span></h3>
+				<h3 class="subsection-title txt-15rem font-bold br-b-1 br-5 pad-b-1 mar-b-2"><?= __('tests.33-title-1') ?></h3>
 
 				<p class="desc txt-1rem txt-2 mb-4">
-					- avrai notato subito i diversi tipi di impronta e sarai giunto rapidamente alla conclusione: 6 (o 8 a seconda di come hai contato le biciclette)
+					<?= __('tests.33-info-1-1') ?>
 				</p>
 				<p class="desc txt-1rem txt-2">
-					- In questo caso la rapidità della conclusione è pericolosa, anche se in altre situazioni essere intuitivo può aiutarti a raggiungere più velocemente il risultato.
+					<?= __('tests.33-info-1-2') ?>
 				</p>
 
 			</div>
 
 			<div id="method2" class="method" data-tilt>
 
-				<h3 class="subsection-title txt-15rem font-bold br-b-1 br-5 pad-b-1 mar-b-2">Se sei molto <span class="highlight">sistematico/a</span></h3>
+				<h3 class="subsection-title txt-15rem font-bold br-b-1 br-5 pad-b-1 mar-b-2"><?= __('tests.33-title-2') ?></h3>
 
 				<p class="desc txt-1rem txt-2 mb-4">
-					- ti sarai detto: ci sono sei (o otto) tipi di impronte, ma non si può escludere che la stessa persona sia passata più di una volta, con scarpe o mezzi diversi, oppure sullo stesso mezzo ci poteva essere più di una persona.
+					<?= __('tests.33-info-2-1') ?>
 				</p>
 				<p class="desc txt-1rem txt-2">
-					- In questo caso l’accuratezza e la prudenza del sistematico erano necessarie.
+					<?= __('tests.33-info-2-2') ?>
 				</p>
 
 			</div>
@@ -49,7 +49,7 @@
 			<?= title() ?>
 		</div>
 		<img id="img" class="" src="<?= client_path('img.jpg') ?>">
-		<button type="submit" name="review" class="button button--full-width">Esamina la tua risposta</button>
+		<button type="submit" name="review" class="button button--full-width"><?= __('tests.33-cta') ?></button>
 	</div>
 
 <?php } ?>

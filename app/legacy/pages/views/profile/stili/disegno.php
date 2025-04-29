@@ -5,7 +5,7 @@
 
 	<div id="results-sec" class="grid-flow main-wrap pad-t-5 pad-b-5" data-spacing="700">
 
-		<?= title('Quale strategia hai adottato?', 'Leggi le descrizioni qui sotto e cerca di capire quali di queste corrispondono maggiormente al modo in cui hai esaminato il disegno.') ?>
+		<?= title(__('tests.32-title'), __('tests.32-description')) ?>
 
 		<!-- Methods -->
 		<div class="grid-flow" data-columns="25rem" data-spacing="700">
@@ -42,7 +42,7 @@
 
 		<img id="img" class="mar-t-2" src="<?= client_path('img.jpg') ?>">
 
-		<button type="submit" name="review" class="button button--full-width mar-t-5">Esamina la tua risposta</button>
+		<button type="submit" name="review" class="button button--full-width mar-t-5"><?= __('tests.32-cta') ?></button>
 
 	</div>
 
