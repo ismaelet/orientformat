@@ -39,12 +39,15 @@ main {
 	text-orientation: sideways;
 	text-align: center;
 	padding-right: 1rem;
+	max-height: 25rem;
 }
 
 .graph-col {
 	display: grid;
 	grid-template-columns: min(5rem, 20vw) 1fr;
+	grid-template-rows: minmax(0, 1fr);
 	justify-items: left;
+	align-items: center;
 	width: 100%;
 }
 

@@ -8,7 +8,7 @@
 
 	<?php if ($legacyTest->completed || !isSupervisor()) { ?>
 
-		<h3 class="section-title center-content">Schema</h3>
+		<h3 class="section-title center-content"><?= __('Scheme') ?></h3>
 
 		<div id="graph-box" class="pos-rel">
 			<div id="graph" class="pos-rel">

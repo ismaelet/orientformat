@@ -10,13 +10,12 @@
 
 	<?= title() ?>
 
-	<div class="mar-t-5 center-content">
+	<div class="mar-t-5 flex justify-center">
 		<a href="<?= client_path('Curriculum.pdf') ?>" target="_blank" class="button button--auto-width">
 			<?= embed_icon('download') ?>
-			Scarica il curriculum
+			<?= __('Download the curriculum') ?>
 		</a>
 	</div>
-
 </div>
 
 {% end content %}

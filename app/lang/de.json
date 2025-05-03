@@ -27,6 +27,9 @@
 	"Solution": "Lösung",
 	"Question": "Frage",
 	"Questions": "Fragen",
+	"Scheme": "Schema",
+	"Summary": "Zusammenfassung",
+	"Text": "Text",
 
 	"Legal Information": "Rechtliche Informationen",
 	"Know More": "Mehr erfahren",
@@ -52,6 +55,8 @@
 	"Interpret the results": "Ergebnisse interpretieren",
 	"Print this page": "Diese Seite drucken",
 	"to complete": "abzuschließen",
+	"Click here to read the text again": "Hier klicken, um den Text erneut zu lesen",
+	"Download the curriculum": "Lade den Lehrplan herunter",
 
 	"first": "erste",
 	"second": "zweite",

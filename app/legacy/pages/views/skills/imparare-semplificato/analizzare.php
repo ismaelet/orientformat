@@ -5,7 +5,7 @@
 	<?= title() ?>
 
 	<div>
-		<h2 id="text-title" class="fa-center txt-3rem mar-b-2 mar-t-5 font-bold txt-upp">Testo</h2>
+		<h2 id="text-title" class="fa-center txt-3rem mar-b-2 mar-t-5 font-bold txt-upp"><?= __('Text') ?></h2>
 
 		<div id="content" class="<?= $legacyTest->completed ? 'completed' : '' ?>">
 

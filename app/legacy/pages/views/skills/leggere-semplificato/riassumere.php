@@ -8,13 +8,13 @@
 
 		<div id="text-box" class="section">
 
-			<h1 class="fa-center txt-3rem mar-b-2 mar-t-5 font-bold txt-upp">Riassunto</h1>
+			<h1 class="fa-center txt-3rem mar-b-2 mar-t-5 font-bold txt-upp"><?= __('Summary') ?></h1>
 
 			<p id="text" class="mar-b-2 txt-1rem"><?= $text ?></p>
 
 			<p class="clickable mar-b-2 txt-c3 fc-primary-h inlb" onclick="$('.section').toggleClass('hidden');">
 				<span class="text-icon bgr-c3" <?= icon_svg('read') ?>></span>
-				<span class="btn-txt">Clicca qui per rileggere il testo</span>
+				<span class="btn-txt"><?= __('Click here to read the text again') ?></span>
 			</p>
 		</div>
 
