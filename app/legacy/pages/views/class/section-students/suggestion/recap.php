@@ -60,7 +60,10 @@
 
 		<!-- Competenza alfabetica -->
 		<div class="dashboard-panel grid-flow">
-			<h2 class="panel-title">Area Competenza Alfabetica Funzionale</h2>
+			<div class="">
+				<h2 class="panel-title">Area Competenza Alfabetica Funzionale</h2>
+				<p class="text-lg">(Comunicazione nella lingua italiana)</p>
+			</div>
 			<p>Qui puoi trovare i risultati conseguiti nelle sezioni relative alle competenze alfabetiche funzionali</p>
 
 			<div class="results mar-t-2">
@@ -161,7 +164,10 @@
 	<div class="grid-flow page-content" data-columns="30rem" data-spacing="700">
 		<!-- Imparare -->
 		<div class="dashboard-panel grid-flow">
-			<h2 class="panel-title">Area Competenza Imprenditoriale</h2>
+			<div>
+				<h2 class="panel-title">Area Competenza Imprenditoriale</h2>
+				<p class="text-lg">(Spirito di iniziativa e imprenditorialità)</p>
+			</div>
 			<p>Qui puoi trovare i risultati relativi ai tipi di pensiero e alle capacità autoimprenditoriali</p>
 
 			<div class="results mar-t-2">
@@ -190,7 +196,10 @@
 
 		<!-- Motivazione e interessi -->
 		<div class="dashboard-panel grid-flow">
-			<h2 class="panel-title">Area Motivazionale</h2>
+			<div>
+				<h2 class="panel-title">Area Motivazionale</h2>
+				<p class="text-lg">(Consapevolezza ed espressione culturali)</p>
+			</div>
 			<p>Qui puoi trovare i risultati relativi a ciò che motiva ed interessa di più lo studente/la studentessa</p>
 
 			<div class="results mar-t-2">
