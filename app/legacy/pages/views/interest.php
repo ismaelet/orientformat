@@ -78,8 +78,8 @@
 
 			<div class="main-wrap">
 				<section class="mar-t-3">
-					<h2 class="section-title <?= $watch ? 'section-title--watching' : '' ?>"><?= $highschool ? 'Oltre il diploma' : 'Indirizzi e scuole' ?></h2>
-					<p class="fa-center"><?= $highschool ? '' : 'Queste sono le scuole presenti sul territorio provinciale che prevedono studi specifici per questa area.' ?></p>
+					<h2 class="section-title <?= $watch ? 'section-title--watching' : '' ?>"><?= $highschool ? 'Oltre il diploma' : __('Programs and schools') ?></h2>
+					<p class="fa-center"><?= $highschool ? '' : __('These are the schools in the provincial area that offer specialized studies in this field.') ?></p>
 
 					<ul class="school-list mar-t-4">
 
