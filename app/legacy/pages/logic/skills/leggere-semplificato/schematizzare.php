@@ -5,18 +5,22 @@ use LogicManager\TestLogic;
 $legacyTest = test();
 
 $boxes = [
-	['content' => "L'albatro", 'autofilled' => 1],
-	['content' => "il piccolo muore", 'autofilled' => 1],
-	['content' => "un solo uovo molto grosso", 'autofilled' => 0],
-	['content' => "80 giorni di incubazione", 'autofilled' => 0],
-	['content' => "cure per 9 mesi", 'autofilled' => 0],
-	['content' => "i genitori si danno il cambio", 'autofilled' => 1],
-	['content' => "scambio di carezze", 'autofilled' => 0],
-	['content' => "riproduzione dopo un anno", 'autofilled' => 0],
-	['content' => "si rinforza il legame", 'autofilled' => 0],
-	['content' => "unione permanente", 'autofilled' => 0],
-	['content' => "fedeltà dell’albatro", 'autofilled' => 1],
+	['autofilled' => 1],
+	['autofilled' => 1],
+	['autofilled' => 0],
+	['autofilled' => 0],
+	['autofilled' => 0],
+	['autofilled' => 1],
+	['autofilled' => 0],
+	['autofilled' => 0],
+	['autofilled' => 0],
+	['autofilled' => 0],
+	['autofilled' => 1],
 ];
+
+foreach ($boxes as $key => &$box) {
+	$box['content'] = __('tests.38-box-' . ($key + 1));
+}
 
 bump($boxes);
 

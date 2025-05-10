@@ -18,8 +18,8 @@
 		<div id="graph-box" class="pos-rel">
 			<div id="graph" class="pos-rel">
 
-				<p id="graph-text1" class="graph-text txt-12rem font-bold txt-c3">se</p>
-				<p id="graph-text2" class="graph-text txt-12rem font-bold txt-c3">normalmente</p>
+				<p id="graph-text1" class="graph-text txt-12rem font-bold txt-c3"><?= __('if') ?></p>
+				<p id="graph-text2" class="graph-text txt-12rem font-bold txt-c3"><?= __('normally') ?></p>
 
 				<?php for ($i = 1; $i < 15; $i++) { ?>
 

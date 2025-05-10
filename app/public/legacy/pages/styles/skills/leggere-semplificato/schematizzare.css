@@ -126,11 +126,16 @@
 .box {
 	display: grid;
 	place-content: center;
-	background-color: #ddd;
 	position: absolute;
 	transform: translate(-50%, -50%);
 	height: 12%;
+	padding-inline: 1rem;
+	background-color: #ddd;
 	transition: box-shadow 0.3s;
+
+	p {
+		line-height: 1;
+	}
 }
 
 .box::before {
