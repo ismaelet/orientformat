@@ -9523,6 +9523,14 @@ body {
 	--color-6-of-6: #c14e6e;
 }
 
+[data-school-group='highschool'] {
+	--color-1-of-5: #0c4aa8;
+	--color-2-of-5: #6945a0;
+	--color-3-of-5: #944192;
+	--color-4-of-5: #b04480;
+	--color-5-of-5: #c14e6e;
+}
+
 .tracking-wide {
 	letter-spacing: 0.025em;
 }

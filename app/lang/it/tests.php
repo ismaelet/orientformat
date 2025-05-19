@@ -1427,4 +1427,18 @@ return [
 	"163-right" => "Ottimo lavoro! Hai completato l'attività.",
 	"163-stop" => "Non riesco a memorizzare tutte le cifre e preferisco fermarmi qui.",
 	"163-insert" => "Inserisci i numeri",
+
+	'205-emotion-1' => 'Ammirazione',
+	'205-emotion-2' => 'Attenzione interessata',
+	'205-emotion-3' => 'Gioia fiduciosa',
+	'205-emotion-4' => 'Interesse',
+	'205-emotion-5' => 'Meraviglia',
+	'205-emotion-6' => 'Noia',
+	'205-emotion-7' => 'Ribrezzo',
+	'205-emotion-8' => 'Rimpianto',
+	'205-emotion-9' => 'Sorpresa piacevole',
+	'205-emotion-10' => 'Sorpresa preoccupata',
+	'205-emotion-11' => 'Tenerezza',
+	'205-emotion-12' => 'Tristezza',
+	'205-completed' => "Hai associato il <strong>:percentage%</strong> delle emozioni correttamente.",
 ];

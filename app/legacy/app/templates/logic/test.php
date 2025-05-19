@@ -12,6 +12,7 @@ include_once('-expands-test/components.php');
  * Form handling
  */
 if (isset($_POST['submit']) || isset($_POST['review']) || isset($_POST['skip'])) {
+
 	if (test()->template != 'test-next') {
 		// get the score
 		$score = \LogicManager\TestLogic::$legacyTestSubmitFunction ? \LogicManager\TestLogic::runTestSubmitFunction() : 100;

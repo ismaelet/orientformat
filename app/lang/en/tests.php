@@ -1269,4 +1269,18 @@ return [
 	"163-right" => "Great job! You completed the activity.",
 	"163-stop" => "I can't memorize all the digits and prefer to stop here.",
 	"163-insert" => "Enter the numbers",
+
+	'205-emotion-1' => 'Admiration',
+	'205-emotion-2' => 'Interested Attention',
+	'205-emotion-3' => 'Trustful Joy',
+	'205-emotion-4' => 'Interest',
+	'205-emotion-5' => 'Wonder',
+	'205-emotion-6' => 'Boredom',
+	'205-emotion-7' => 'Disgust',
+	'205-emotion-8' => 'Regret',
+	'205-emotion-9' => 'Pleasant Surprise',
+	'205-emotion-10' => 'Worried Surprise',
+	'205-emotion-11' => 'Tenderness',
+	'205-emotion-12' => 'Sadness',
+	'205-completed' => "You have correctly matched <strong>:percentage%</strong> of the emotions.",
 ];

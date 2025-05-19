@@ -1258,4 +1258,18 @@ return [
 	"163-right" => "Großartige Arbeit! Du hast die Aktivität abgeschlossen.",
 	"163-stop" => "Ich kann mir nicht alle Zahlen merken und ziehe es vor, hier aufzuhören.",
 	"163-insert" => "Gib die Zahlen ein",
+
+	'205-emotion-1' => 'Bewunderung',
+	'205-emotion-2' => 'Interessierte Aufmerksamkeit',
+	'205-emotion-3' => 'Vertrauensvolle Freude',
+	'205-emotion-4' => 'Interesse',
+	'205-emotion-5' => 'Erstaunen',
+	'205-emotion-6' => 'Langeweile',
+	'205-emotion-7' => 'Ekel',
+	'205-emotion-8' => 'Bedauern',
+	'205-emotion-9' => 'Angenehme Überraschung',
+	'205-emotion-10' => 'Besorgte Überraschung',
+	'205-emotion-11' => 'Zärtlichkeit',
+	'205-emotion-12' => 'Traurigkeit',
+	'205-completed' => "Du hast <strong>:percentage%</strong> der Emotionen korrekt zugeordnet.",
 ];

@@ -28,23 +28,25 @@ class RuotaAvanzatoCaravaggio extends Test {
 	 * Initialize
 	 */
 	private function __construct() {
-		$this->arguments['emotions'] = [
-			'Ammirazione',
-			'Attenzione interessata',
-			'Gioia fiduciosa',
-			'Interesse',
-			'Meraviglia',
-			'Noia',
-			'Ribrezzo',
-			'Rimpianto',
-			'Sorpresa piacevole',
-			'Sorpresa preoccupata',
-			'Tenerezza',
-			'Tristezza',
-		];
+		$this->arguments['emotions'] = [];
+
+		for ($i = 1; $i <= 12; $i++) {
+			$this->arguments['emotions'][] = __('tests.205-emotion-' . $i);
+		}
 
 		$this->arguments['correctResults'] = [
-			9, 8, 3, 6, 7, 1, 12, 10, 4, 11, 5, 2
+			9,
+			8,
+			3,
+			6,
+			7,
+			1,
+			12,
+			10,
+			4,
+			11,
+			5,
+			2
 		];
 
 		$this->resultCount = count($this->arguments['correctResults']);
@@ -78,7 +80,7 @@ class RuotaAvanzatoCaravaggio extends Test {
 
 				<?php if (test()->completed) { ?>
 
-					<p class="txt-15rem fa-center mb-12">Hai associato il <strong><?= test()->percentage ?>%</strong> delle emozioni correttamente.</p>
+					<p class="txt-15rem fa-center mb-12"><?= __('tests.205-completed', ['percentage' => test()->percentage]) ?></p>
 
 				<?php } ?>
 
