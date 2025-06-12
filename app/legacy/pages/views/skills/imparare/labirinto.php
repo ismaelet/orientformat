@@ -7,11 +7,11 @@
 
 			<?php if (!$legacyTest->completed || $legacyTest->percentage == 100) { ?>
 
-				<p id="end" class="fa-center txt-c5 font-bold txt-25rem">Hai risolto il labirinto!</p>
+				<p id="end" class="fa-center txt-c5 font-bold txt-25rem"><?= __('tests.36-right') ?></p>
 
 			<?php } else { ?>
 
-				<p id="end" class="fa-center txt-red txt-sbold txt-25px">Puoi riprovare cliccando su "Riprova" qui sotto</p>
+				<p id="end" class="fa-center txt-red txt-sbold txt-25px"><?= __('tests.36-wrong') ?></p>
 
 			<?php } ?>
 
@@ -21,7 +21,7 @@
 				<?php if (!$legacyTest->completed) { ?>
 
 					<label>
-						<p class="txt-c3 clickable inlb">Non riesco ad uscire dal labirinto e preferisco saltare l'attività.</p>
+						<p class="txt-c3 clickable inlb"><?= __('tests.36-skip') ?></p>
 						<input type="checkbox" name="skip-cbx" class="hidden" onchange="$(this).next().click();">
 						<button type="submit" name="submit" class="hidden"></button>
 					</label>
@@ -54,8 +54,8 @@
 			<?php } ?>
 
 
-			<p class="result right fa-center font-bold txt-2rem">Corretto!</p>
-			<p class="result wrong fa-center font-bold txt-2rem">Sbagliato, sei tornato all'inizio</p>
+			<p class="result right fa-center font-bold txt-2rem"><?= __('tests.36-step-right') ?></p>
+			<p class="result wrong fa-center font-bold txt-2rem"><?= __('tests.36-step-wrong') ?></p>
 		</div>
 	</div>
 </div>

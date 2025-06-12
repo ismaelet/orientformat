@@ -16,7 +16,7 @@ use \Legacy\Activity\Test;
 			<?php if (!$supervisorView) { ?>
 
 				<a href="<?= (new Test(70))->clientUrl ?>">
-					<p class="txt-c5 txt-1rem br-b-1 br-c5 inlb">Rileggi il racconto</p>
+					<p class="txt-c5 txt-1rem br-b-1 br-c5 inlb"><?= __('Read the story again') ?></p>
 				</a>
 
 			<?php } ?>
@@ -25,7 +25,7 @@ use \Legacy\Activity\Test;
 		<?php if ($legacyTest->completed && !$supervisorView) { ?>
 			<div>
 
-				<p class="result txt-15rem mar-b-2 pad-1 br-2 br-c1 fa-center">Sei riuscito a riordinare il <span class="fc-primary font-bold"><?= $legacyTest->percentage ?> %</span> delle cause ed effetti.</p>
+				<p class="result txt-15rem mar-b-2 pad-1 br-2 br-c1 fa-center"><?= __('tests.69-result', ['percentage' => $legacyTest->percentage]) ?></p>
 
 				<?= renderRedoButton(true) ?>
 

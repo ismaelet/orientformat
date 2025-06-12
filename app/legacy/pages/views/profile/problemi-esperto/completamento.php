@@ -67,7 +67,7 @@ $sets = _SETS;
 
 						<p class="result-txt txt-09rem mar-t-10px font-bold txt-upp <?= $right ? 'right' : 'wrong' ?>">
 							<span class="text-icon" <?= $right ? icon_css('correct/correct') : icon_css('errors/alert_red') ?>></span>
-							<?= $right ? 'Giusto' : 'Sbagliato' ?>
+							<?= $right ? __('Right') : __('Wrong') ?>
 						</p>
 
 					<?php } ?>

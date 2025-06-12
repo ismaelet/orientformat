@@ -15,7 +15,6 @@
 	"Continue": "Procedi",
 	"Listen": "Ascolta",
 	"See": "Guarda",
-
 	"Activity": "Attività",
 	"Activities": "Attività",
 	"Author": "Autore",
@@ -32,12 +31,10 @@
 	"Text": "Testo",
 	"if": "se",
 	"normally": "normalmente",
-
 	"Legal Information": "Informazioni legali",
 	"Know More": "Saperne di più",
 	"Support": "Supporto",
 	"Useful Links": "Link utili",
-
 	"Completed activities": "Attività completate",
 	"Section completed": "Sezione completata",
 	"Section summary": "Riepilogo della sezione",
@@ -60,14 +57,13 @@
 	"Click here to read the text again": "Clicca qui per rileggere il testo",
 	"Download the curriculum": "Scarica il curriculum",
 	"Programs and schools": "Indirizzi e scuole",
+	"Beyond the diploma": "Oltre il diploma",
 	"These are the schools in the provincial area that offer specialized studies in this field.": "Queste sono le scuole presenti sul territorio provinciale che prevedono studi specifici per questa area.",
-
 	"first": "primo",
 	"second": "secondo",
 	"third": "terzo",
 	"fourth": "quarto",
 	"fifth": "quinto",
-
 	"False": "Falso",
 	"Somewhat false": "Abbastanza falso",
 	"Somewhat true": "Abbastanza vero",
@@ -79,7 +75,6 @@
 	"Very": "Molto",
 	"Extremely": "Moltissimo",
 	"I don't know": "Non so",
-
 	"You have completed this self-assessment. Click below to repeat it:": "Hai completato questa autovalutazione. Clicca qui sotto per ripeterla:",
 	"You have not completed this self-assessment yet. Click below to start it:": "Non hai ancora completato questa autovalutazione. Clicca qui sotto per iniziarla:",
 	"I often feel restless": "Mi sento spesso irrequieto/a",
@@ -96,7 +91,6 @@
 	"Listen to the story:": "Ascolta il racconto:",
 	"Discover this area": "Scopri quest'area",
 	"of interest": "di interesse",
-
 	"fear": "paura",
 	"fright": "spavento",
 	"surprise": "sorpresa",
@@ -113,9 +107,12 @@
 	"love": "amore",
 	"acceptance": "accettazione",
 	"submission": "sottomissione",
-
 	"Cognitive styles": "Stili cognitivi",
 	"Visual style": "Stile visivo",
 	"Auditory style": "Stile uditivo",
-	"Mistakes": "Errori"
+	"Mistakes": "Errori",
+	"Right": "Giusto",
+	"Wrong": "Sbagliato",
+	"repeat": "ripeti",
+	"Read the story again": "Rileggi il racconto"
 }

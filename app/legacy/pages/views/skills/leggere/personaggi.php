@@ -17,7 +17,7 @@ use \Legacy\Activity\Test;
 
 			<!-- Link to the tale -->
 			<a href="<?= (new Test(70))->clientUrl ?>">
-				<p class="txt-c5 txt-1rem br-b-1 br-c5 inlb">Rileggi il racconto</p>
+				<p class="txt-c5 txt-1rem br-b-1 br-c5 inlb"><?= __('Read the story again') ?></p>
 			</a>
 
 		<?php } ?>
@@ -26,11 +26,11 @@ use \Legacy\Activity\Test;
 		<?php if ($legacyTest->completed) { ?>
 
 			<p class="mar-t-2 txt-12rem font-bold">
-				Hai risposto correttamente al <span class="fc-primary font-bold"><?= $legacyTest->percentage ?>%</span>.<br>
+				<?= __('tests.71-result', ['percentage' => $legacyTest->percentage]) ?>
 			</p>
 
 			<p class="txt-1rem">
-				Qui sotto puoi controllare i tuoi risultati. Le risposte in verde sono corrette, quelle in rosso errate e quelle in giallo sono risposte corrette che non hai scelto.
+				<?= __('tests.71-description') ?>
 			</p>
 
 		<?php } ?>
@@ -56,7 +56,7 @@ use \Legacy\Activity\Test;
 						<!-- Answers -->
 						<div class="qustion__body">
 
-							<p class="question txt-2 fa-center txt-1rem txt-sbold mar-t-2">A chi si riferisce l'espressione?</p>
+							<p class="question txt-2 fa-center txt-1rem txt-sbold mar-t-2"><?= __('tests.71-question-1') ?></p>
 
 							<div class="answers answers--characters">
 
@@ -89,7 +89,7 @@ use \Legacy\Activity\Test;
 						<!-- Emotions -->
 						<div class="emotions">
 							<input type="hidden" name="field_other[]" class="filler-inp js-field" value="">
-							<p class="question txt-2 fa-center txt-1rem txt-sbold mar-t-2">Quale o quali emozioni mette in evidenza?</p>
+							<p class="question txt-2 fa-center txt-1rem txt-sbold mar-t-2"><?= __('tests.71-question-2') ?></p>
 							<div class="answers answers--emotions">
 
 								<?php foreach ($question['emotions'] as $i => $emotion) {

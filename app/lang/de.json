@@ -15,7 +15,6 @@
 	"Continue": "Fortsetzen",
 	"Listen": "Hören",
 	"See": "Sehen",
-
 	"Activity": "Aktivität",
 	"Activities": "Aktivitäten",
 	"Author": "Autor",
@@ -32,12 +31,10 @@
 	"Text": "Text",
 	"if": "wenn",
 	"normally": "normalerweise",
-
 	"Legal Information": "Rechtliche Informationen",
 	"Know More": "Mehr erfahren",
 	"Support": "Unterstützung",
 	"Useful Links": "Nützliche Links",
-
 	"Completed activities": "Abgeschlossene Aktivitäten",
 	"Section completed": "Sektion abgeschlossen",
 	"Section summary": "Zusammenfassung des Abschnitts",
@@ -60,14 +57,13 @@
 	"Click here to read the text again": "Hier klicken, um den Text erneut zu lesen",
 	"Download the curriculum": "Lade den Lehrplan herunter",
 	"Programs and schools": "Programme und Schulen",
+	"Beyond the diploma": "Über das Diplom",
 	"These are the schools in the provincial area that offer specialized studies in this field.": "Dies sind die Schulen im Provinzgebiet, die spezialisierte Studien in diesem Bereich anbieten.",
-
 	"first": "erste",
 	"second": "zweite",
 	"third": "dritte",
 	"fourth": "vierte",
 	"fifth": "fünfte",
-
 	"False": "Falsch",
 	"Somewhat false": "Eher falsch",
 	"Somewhat true": "Eher wahr",
@@ -79,7 +75,6 @@
 	"Very": "Sehr",
 	"Extremely": "Äußerst",
 	"I don't know": "Ich weiß nicht",
-
 	"You have completed this self-assessment. Click below to repeat it:": "Du hast diese Selbsteinschätzung abgeschlossen. Klicke unten, um sie zu wiederholen:",
 	"You have not completed this self-assessment yet. Click below to start it:": "Du hast diese Selbsteinschätzung noch nicht abgeschlossen. Klicke unten, um sie zu starten:",
 	"I often feel restless": "Ich fühle mich oft unruhig",
@@ -96,7 +91,6 @@
 	"Listen to the story:": "Die Geschichte anhören:",
 	"Discover this area": "Entdecke diesen Bereich",
 	"of interest": "von Interesse",
-
 	"fear": "Angst",
 	"fright": "Schrecken",
 	"surprise": "Überraschung",
@@ -113,9 +107,12 @@
 	"love": "Liebe",
 	"acceptance": "Akzeptanz",
 	"submission": "Unterwerfung",
-
 	"Cognitive styles": "Kognitive Stile",
 	"Visual style": "Visueller Stil",
 	"Auditory style": "Auditiver Stil",
-	"Mistakes": "Fehler"
+	"Mistakes": "Fehler",
+	"Right": "Richtig",
+	"Wrong": "Falsch",
+	"repeat": "wiederholen",
+	"Read the story again": "Lies die Geschichte erneut"
 }

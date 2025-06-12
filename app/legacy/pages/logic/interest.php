@@ -21,7 +21,12 @@ $result = ((new StudentTestResult($resultTestId, $studentId))->detailedResult)[$
 $survey = (new Test($surveyTestId))->setStudentId($studentId);
 
 // questions
-$questions = test_config($surveyTestId, 'questions');
+$questions = [];
+
+for ($i = 1; $i <= count(test_config($surveyTestId, 'questions')); $i++) {
+	$questions[] = __('tests.' . $surveyTestId . '-question-' . $i);
+}
+
 $questionIds = $interest['questionIds'];
 
 bump($questions);

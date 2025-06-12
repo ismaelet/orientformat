@@ -8,7 +8,7 @@
 	<?php if (test()->completed) { ?>
 
 		<p class="result__text <?= test()->percentage == 100 ? 'correct' : 'wrong' ?>">
-			<?= test()->percentage == 100 ? 'Hai trovato la soluzione corretta' : 'La soluzione scelta è sbagliata' ?>
+			<?= test()->percentage == 100 ? __('tests.148-right') : __('tests.148-wrong') ?>
 		</p>
 
 	<?php } ?>
@@ -62,7 +62,7 @@
 
 	</div>
 
-	<div class="grid-flow full-width" data-spacing="400">
+	<div class="" data-spacing="400">
 		<?= submit(true) ?>
 		<?= renderRedoButton() ?>
 	</div>
