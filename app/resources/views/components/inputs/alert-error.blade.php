@@ -1,4 +1,4 @@
-@push('styles')
+@pushOnce('styles')
 	<style>
 		.error-message {
 			padding-block: .5em;
@@ -17,6 +17,6 @@
 			}
 		}
 	</style>
-@endpush
+@endPushOnce
 
 <p {{ $attributes->merge(['class' => 'error-message text-error']) }}">{{ $slot }}</p>

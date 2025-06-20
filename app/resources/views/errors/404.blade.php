@@ -1,10 +1,10 @@
-@push('styles')
+@pushOnce('styles')
 	<style>
 		.page-background {
 			opacity: 0.3;
 		}
 	</style>
-@endpush
+@endPushOnce
 
 <x-layouts.empty>
 	<div class="grid content-center justify-items-center gap-8">

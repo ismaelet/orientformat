@@ -4,7 +4,7 @@
 	$checked = trim($item['route_name'], '.') == Route::currentRouteName();
 @endphp
 
-@push('styles')
+@pushOnce('styles')
 	<style>
 		.navigation-item {
 			display: grid;
@@ -70,7 +70,7 @@
 			}
 		}
 	</style>
-@endpush
+@endPushOnce
 
 <li class="navigation-item flex items-center">
 	<input

@@ -1,22 +1,25 @@
 @props(['theme' => null, 'colorScheme' => null])
 
-@push('styles')
-    <style>
-        main {
-            display: grid;
-            min-height: 100svh;
-        }
+@pushOnce('styles')
+	<style>
+		main {
+			display: grid;
+			min-height: 100svh;
+		}
 
-        @supports not (min-height: 100svh) {
-            main {
-                min-height: 100vh;
-            }
-        }
-    </style>
-@endpush
+		@supports not (min-height: 100svh) {
+			main {
+				min-height: 100vh;
+			}
+		}
+	</style>
+@endPushOnce
 
-<x-layouts.app :theme="$theme" :colorScheme="$colorScheme">
+<x-layouts.app
+	:theme="$theme"
+	:colorScheme="$colorScheme"
+>
 
-    <main>{{ $slot }}</main>
+	<main>{{ $slot }}</main>
 
 </x-layouts.app>

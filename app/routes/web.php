@@ -26,35 +26,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 /**
- * * Localization
+ * Localization
  */
 Route::get('locale/{locale}', [\App\Http\Controllers\LocaleController::class, 'switchLocale'])->name('locale.switch');
 
 /**
- * * App routes
+ * App routes
  */
-// ~ Home
+// Home
 Route::get('', [HomeController::class, 'index'])->middleware('auth')->name('home');
 
 /**
- * * Parcially legacy routes
+ * Parcially legacy routes
  */
-// ~ Home pages
+// Home pages
 Route::any('student', [StudentHomeController::class, 'index'])->middleware(Student::class)->name('student');
-
-Route::any('teacher-dashboard', [TeacherDashboardController::class, 'index'])->middleware(TeacherOrAdministrator::class)->name('teacher.dashboard');
 
 Route::any('administrator-dashboard', [AdministratorDashboardController::class, 'index'])->middleware(Administrator::class)->name('administrator.dashboard');
 
-// ~ Student Activities
+// Student Activities
 Route::any('activities/grades', [GradeController::class, 'index'])->middleware([Student::class])->name('activities.grades.index');
 Route::any('activities/grades/{grade}', [GradeController::class, 'show'])->middleware([Student::class])->name('activities.grades.show');
 
-// ~ Student Analisys
+// Student Analisys
 Route::any('analysis/student/areas/{area}', [StudentAnalysisController::class, 'show'])->middleware(['auth'])->name('analysis.student.area');
 Route::any('analysis/student/sections/{section}', [StudentAnalysisController::class, 'show'])->name('analysis.student.section');
 
 Route::get('logout', LegacyController::class)->name('logout');
-
-// Route::get('2024-highschool-survey', [SurveysHighschool2024Controller::class, 'index'])->name('2024-highschool-survey')->middleware(Teacher::class);
-// Route::post('2024-highschool-survey', [SurveysHighschool2024Controller::class, 'store'])->middleware(Teacher::class);

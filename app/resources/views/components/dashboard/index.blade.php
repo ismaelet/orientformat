@@ -1,13 +1,13 @@
 @props(['navigationGroups'])
 
-@push('styles')
+@pushOnce('styles')
 	<style>
 		.dashboard {
 			display: grid;
 			grid-template-columns: max-content minmax(0, 1fr);
 		}
 	</style>
-@endpush
+@endPushOnce
 
 <div class="dashboard">
 	<!-- Navigation bar -->

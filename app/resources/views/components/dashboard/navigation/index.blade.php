@@ -1,6 +1,6 @@
 @props(['navigationGroups'])
 
-@push('styles')
+@pushOnce('styles')
 	<style>
 		.navigation {
 			position: relative;
@@ -22,7 +22,7 @@
 			}
 		}
 	</style>
-@endpush
+@endPushOnce
 
 <aside class="navigation js-navigation">
 	<div class="navigation-content">

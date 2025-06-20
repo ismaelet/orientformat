@@ -6,7 +6,7 @@
     'required' => false,
 ])
 
-@push('styles')
+@pushOnce('styles')
 	<style>
 		.open-input {
 			border: none;
@@ -20,7 +20,7 @@
 			}
 		}
 	</style>
-@endPush
+@endPushOnce
 
 <input
 	type="{{ $type }}"

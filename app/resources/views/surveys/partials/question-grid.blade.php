@@ -1,4 +1,4 @@
-@push('styles')
+@pushOnce('styles')
 	<style>
 		.survey-grid {
 			display: grid;
@@ -31,7 +31,7 @@
 			display: block;
 		}
 	</style>
-@endpush
+@endPushOnce
 
 <div class="survey-grid w-full gap-x-4 gap-y-2 text-center">
 	{{-- Headers --}}

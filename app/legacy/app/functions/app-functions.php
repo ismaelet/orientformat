@@ -8,11 +8,6 @@ use \Legacy\UserSystem\Student;
 /**
  * Student & teachers
  */
-
-function teacher() {
-	return ActiveTeacher::getInstance();
-}
-
 function teacherId() {
 	return teacher()->id;
 }

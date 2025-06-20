@@ -1,16 +1,15 @@
 @props([
-    'type' => 'text',
     'name' => null,
     'value' => null,
-    'placeholder' => null,
     'required' => false,
 ])
 
-@push('styles')
+@pushOnce('styles')
 	<style>
-		.input {
-			padding-inline: .5em;
-			border-radius: var(--input-border-radius);
+		.select {
+			padding-inline: .75em;
+			padding-block: .75em;
+			border-radius: var(--radius-sm);
 			outline: var(--border);
 			line-height: 2.8;
 			background-color: var(--color-surface-500);
@@ -25,13 +24,13 @@
 			}
 		}
 	</style>
-@endPush
+@endPushOnce
 
-<input
-	type="{{ $type }}"
+<select
 	name="{{ $name }}"
-	value="{{ $value }}"
-	placeholder="{{ $placeholder }}"
-	{{ $required ? 'required' : '' }}
-	{{ $attributes->class(['input text-sm sm:text-base']) }}"
-/>
+	@if ($value) value="{{ $value }}" @endif
+	@required($required)
+	{{ $attributes->merge(['class' => 'select']) }}
+>
+	{{ $slot }}
+</select>

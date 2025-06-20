@@ -1,12 +1,12 @@
 @props(['page', 'currentPage' => null])
 
-@push('styles')
+@pushOnce('styles')
 	<style>
 		[data-color-scheme="light"] .pagination-page.active {
 			color: #fff;
 		}
 	</style>
-@endpush
+@endPushOnce
 
 <button
 	type="submit"

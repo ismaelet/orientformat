@@ -5,15 +5,10 @@
 	$appDescription = config('custom.meta_data.description');
 
 	$title = $title ? $title . ' | ' . $appName : $appName . ' | ' . config('custom.meta_data.short_description');
-
-	$colorScheme = $colorScheme ?: get_color_scheme();
 @endphp
 
 <!DOCTYPE html>
-<html
-	class="{{ $colorScheme }}"
-	lang="{{ str_replace('_', '-', app()->getLocale()) }}"
->
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
 	<meta charset="utf-8">

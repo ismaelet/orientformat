@@ -7,14 +7,10 @@ use Illuminate\Http\RedirectResponse;
 class HomeController extends Controller {
 
 	/**
-	 * * Action: Index
+	 * Redirects to the appropriate dashboard based on user role
 	 */
 	public function index(): RedirectResponse {
-		if (is_admin()) {
-			return redirect()->route('admin.dashboard');
-		}
-
-		if (is_teacher() || is_administrator()) {
+		if (is_teacher()) {
 			return redirect()->route('teacher.dashboard');
 		}
 

@@ -5,7 +5,7 @@
     'required' => false,
 ])
 
-@push('styles')
+@pushOnce('styles')
 	<style>
 		.textarea {
 			--input-background: var(--color-surface-400);
@@ -51,7 +51,7 @@
 			}
 		}
 	</style>
-@endPush
+@endPushOnce
 
 <textarea
  name="{{ $name }}"

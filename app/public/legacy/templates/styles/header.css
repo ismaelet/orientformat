@@ -148,7 +148,6 @@ header {
 }
 
 .h-link-txt {
-	font-size: 0.9rem;
 	font-weight: 600;
 	line-height: 80px;
 	transition: color 0.2s, border-color 0.2s;

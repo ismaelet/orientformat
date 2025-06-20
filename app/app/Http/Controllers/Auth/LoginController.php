@@ -7,24 +7,29 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class LoginController extends Controller {
 
 	/**
-	 * Render the login page
+	 * Show the login form.
+	 * 
+	 * @return View
 	 */
-	public function index() {
+	public function index(): View {
 		return view('auth.login')
 			->with('locationTag', 'login')
 			->with('title', 'Login');
 	}
 
 	/**
-	 * Authenticate the user
+	 * Authenticate the user.
+	 * 
+	 * @param Request $request
+	 * @return RedirectResponse
 	 */
 	public function auth(Request $request): RedirectResponse {
-
-		// validation
+		// Validation
 		$request->validate([
 			'login' => 'required',
 			'password' => 'required',
@@ -36,14 +41,14 @@ class LoginController extends Controller {
 			$username = $request->login;
 		}
 
-		// sign in the user
+		// Sign in
 		if (!Auth::attempt(['username' => $username, 'password' => $request->password, 'active' => true])) {
 			return redirect()->route('login', [
 				'error' => 'login_failed',
 			]);
 		}
 
-		// redirect
+		// Redirect
 		return redirect()->route('home');
 	}
 }

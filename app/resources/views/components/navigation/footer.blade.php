@@ -31,7 +31,7 @@
 
 @endphp
 
-@push('styles')
+@pushOnce('styles')
 	<style>
 		/* Containers */
 		footer {
@@ -111,9 +111,6 @@
 			color: var(--color-primary-400);
 		}
 
-		/*
-																																																																												* Credits
-																																																																												*/
 		#footer-credits {
 			border-color: hsl(0, 0%, 100%, 0.1);
 		}
@@ -124,14 +121,10 @@
 			vertical-align: middle;
 		}
 
-		/*
-																																																																												* Notes
-																																																																												*/
 		#footer-notes {
 			background-color: var(--color-tertiary-800);
 		}
 
-		/* Responsive */
 		@media (max-width: 768px) {
 			#footer-body {
 				grid-template-columns: repeat(3, 1fr);
@@ -154,7 +147,7 @@
 			}
 		}
 	</style>
-@endpush
+@endPushOnce
 
 <footer class="">
 
@@ -210,21 +203,21 @@
 							class="f-contact flex h-6"
 							href="<?= config('custom.contacts.twitter.url') ?>"
 						>
-							<?= embed_icon('contacts/twitter') ?>
+							<x-icon-twitter />
 						</a>
 
 						<a
 							class="f-contact flex h-6"
 							href="<?= config('custom.contacts.facebook.url') ?>"
 						>
-							<?= embed_icon('contacts/facebook') ?>
+							<x-icon-facebook />
 						</a>
 
 						<a
 							class="f-contact flex h-6"
 							href="<?= config('custom.contacts.instagram.url') ?>"
 						>
-							<?= embed_icon('contacts/instagram') ?>
+							<x-icon-instagram />
 						</a>
 
 					</div>
@@ -271,7 +264,7 @@
 							target="_blank"
 						>
 							Curriculum
-							<?= embed_icon('external-link', ['w-3']) ?>
+							<x-icon-external-link class="w-3" />
 						</a>
 					</p>
 

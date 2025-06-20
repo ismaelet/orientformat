@@ -1,6 +1,6 @@
 @props(['title', 'body', 'footer', 'method' => null, 'action' => null])
 
-@push('styles')
+@pushOnce('styles')
 	<style>
 		main {
 			--content-width: 60ch;
@@ -10,14 +10,14 @@
 			border-block: var(--border);
 		}
 	</style>
-@endpush
+@endPushOnce
 
-<x-layouts.main :title="$title">
+<x-layouts.main :$title>
 	<x-form
-		:title="$title"
-		:body="$body"
-		:footer="$footer"
-		:action="$action"
-		:method="$method"
+		:$title
+		:$body
+		:$footer
+		:$action
+		:$method
 	/>
 </x-layouts.main>

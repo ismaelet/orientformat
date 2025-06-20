@@ -66,7 +66,7 @@
 	        'administrator' => true,
 	    ],
 	    [
-	        'title' => 'Support',
+	        'title' => 'Supporto',
 	        'loc' => 'help',
 	        'url' => client_url('/help'),
 	    ],
@@ -161,7 +161,7 @@
 
 @endphp
 
-@push('styles')
+@pushOnce('styles')
 	<style>
 		/*Containers*/
 		header {
@@ -218,7 +218,6 @@
 		/* Logo */
 		#h-logo {
 			display: inline-block;
-			background-image: url(/app/assets/logo/logo_wht.png);
 			background-size: contain;
 			background-position: left;
 			width: 10rem;
@@ -318,7 +317,6 @@
 		}
 
 		.h-link-txt {
-			font-size: 0.9rem;
 			font-weight: 600;
 			line-height: 80px;
 			transition: color 0.2s, border-color 0.2s;
@@ -688,9 +686,9 @@
 			background-color: #eee;
 		}
 	</style>
-@endpush
+@endPushOnce
 
-@push('scripts')
+@pushOnce('scripts')
 	<script
 		src="https://code.jquery.com/jquery-3.7.1.min.js"
 		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -721,7 +719,7 @@
 
 		});
 	</script>
-@endpush
+@endPushOnce
 
 <header class="<?= $header['color'] ?> <?= $header['floating'] ? 'floating' : '' ?>">
 
@@ -767,7 +765,7 @@
 				<!-- Links -->
 				<?php if (!$h_comp['force-mob']) { ?>
 
-				<div class="h-nav-box inlb va-cen txt-wht hidden lg:flex">
+				<div class="h-nav-box va-cen txt-wht hidden lg:flex">
 
 					<?php foreach ($h_links as $h_link) {
 							if (!isset($h_link['mobile']) || !$h_link['mobile']) { ?>

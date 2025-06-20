@@ -2,6 +2,8 @@
 
 use App\Http\Middleware\Administrator;
 use App\Http\Middleware\Locale;
+use App\Http\Middleware\Teacher;
+use App\Http\Middleware\TeacherBelongsToSchool;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -30,6 +32,11 @@ return Application::configure(basePath: dirname(__DIR__))
 			Route::prefix(env('APP_SUBDOMAIN') . '/api')
 				->middleware('api')
 				->group(base_path('routes/api.php'));
+
+			Route::middleware(['web', Teacher::class])
+				->prefix(env('APP_SUBDOMAIN') . '/teacher')
+				->name('teacher.')
+				->group(base_path('routes/web-teacher.php'));
 
 			Route::middleware('web')
 				->group(base_path('routes/web-legacy.php'));

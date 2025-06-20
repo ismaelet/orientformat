@@ -1,4 +1,4 @@
-@push('styles')
+@pushOnce('styles')
 	<style>
 		h1 {
 			font-size: min(3rem, 10vw);
@@ -35,7 +35,7 @@
 			grid-column: 1 / -1;
 		}
 	</style>
-@endpush
+@endPushOnce
 
 <x-layouts.main theme="classic">
 

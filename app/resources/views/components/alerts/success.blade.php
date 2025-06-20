@@ -1,4 +1,4 @@
-@push('styles')
+@pushOnce('styles')
 	<style>
 		.success-message {
 			padding-block: .5em;
@@ -17,6 +17,6 @@
 			}
 		}
 	</style>
-@endpush
+@endPushOnce
 
 <p {{ $attributes->merge(['class' => 'success-message text-success']) }}">{{ $slot }}</p>

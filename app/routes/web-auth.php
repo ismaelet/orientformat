@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 /**
  * Auth routes
  */
-Route::get('/login', LegacyController::class)->middleware('guest')->name('login');
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'auth'])->middleware('guest')->name('login.auth');
 
 // Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');

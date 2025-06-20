@@ -23,11 +23,11 @@
 	}
 @endphp
 
-@push('scripts')
+@pushOnce('scripts')
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-@endpush
+@endPushOnce
 
-@push('scripts')
+@pushOnce('scripts')
 	<script defer>
 		// Get the styling for the graph
 		const colorScheme = document.documentElement.getAttribute('data-color-scheme');
@@ -89,7 +89,7 @@
 			});
 		});
 	</script>
-@endpush
+@endPushOnce
 
 <x-dashboard.widget
 	title="Panoramica"

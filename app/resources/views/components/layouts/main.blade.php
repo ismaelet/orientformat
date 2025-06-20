@@ -1,6 +1,6 @@
 @props(['title' => null, 'colorScheme' => null, 'theme' => null])
 
-@push('styles')
+@pushOnce('styles')
 	<style>
 		.main-content {
 			display: grid;
@@ -20,7 +20,7 @@
 			grid-area: main;
 		}
 	</style>
-@endpush
+@endPushOnce
 
 <x-layouts.app
 	title="{{ $title }}"

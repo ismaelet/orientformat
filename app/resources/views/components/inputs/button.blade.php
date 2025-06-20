@@ -10,7 +10,7 @@
 	$classes = 'button px-8 rounded-full font-heading text-center text-sm sm:text-base transition-colors';
 @endphp
 
-@push('styles')
+@pushOnce('styles')
 	<style>
 		.button {
 			--icon-size: 1em;
@@ -86,7 +86,7 @@
 			}
 		}
 	</style>
-@endPush
+@endPushOnce
 
 @if ($href)
 	<a

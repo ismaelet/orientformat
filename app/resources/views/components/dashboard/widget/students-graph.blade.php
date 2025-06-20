@@ -22,11 +22,11 @@
 	}
 @endphp
 
-@push('scripts')
+@pushOnce('scripts')
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-@endpush
+@endPushOnce
 
-@push('scripts')
+@pushOnce('scripts')
 	<script defer>
 		document.addEventListener("DOMContentLoaded", function() {
 
@@ -89,7 +89,7 @@
 			});
 		});
 	</script>
-@endpush
+@endPushOnce
 
 <x-dashboard.widget
 	title="Studenti registrati"

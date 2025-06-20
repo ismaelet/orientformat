@@ -1,4 +1,4 @@
-@push('styles')
+@pushOnce('styles')
 	<style>
 		.survey-complex-grid {
 			display: grid;
@@ -38,7 +38,7 @@
 			grid-column: 2 / -1;
 		}
 	</style>
-@endpush
+@endPushOnce
 
 <div class="survey-complex-grid w-full gap-x-4 gap-y-8">
 	{{-- Headers --}}

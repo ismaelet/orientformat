@@ -1,6 +1,6 @@
 @props(['navigationGroup'])
 
-@push('styles')
+@pushOnce('styles')
 	<style>
 		@scope (.navigation-group)
 
@@ -41,7 +41,7 @@
 			display: none;
 		}
 	</style>
-@endpush
+@endPushOnce
 
 <ul class="navigation-group">
 

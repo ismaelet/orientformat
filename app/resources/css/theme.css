@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap');
+
+@theme {
+	/* Colors */
+	--theme-h: 210deg;
+	--theme-light-s: 0%;
+	--theme-dark-s: 13%;
+
+	--color-primary-300: hsl(41deg 88% 78%);
+	--color-primary-400: hsl(41deg 88% 64%);
+	--color-primary-500: hsl(41deg 88% 50%);
+	--color-primary-600: hsl(41deg 88% 40%);
+	--color-primary-700: hsl(41deg 88% 30%);
+
+	--color-secondary-400: hsl(216deg 86% 20%);
+	--color-secondary-500: hsl(241deg 72% 46%);
+	--color-secondary-700: hsl(216deg 70% 12%);
+
+	--color-tertiary-100: hsl(216deg 30% 70%);
+	--color-tertiary-200: hsl(216deg 30% 63%);
+	--color-tertiary-400: hsl(216deg 86% 20%);
+	--color-tertiary-700: hsl(216deg 70% 12%);
+	--color-tertiary-800: hsl(216deg 60% 8%);
+
+	--color-transition-400: hsl(343, 48%, 53%);
+
+	--color-success-400: hsl(145deg 63% 40%);
+	--color-error-400: hsl(0deg 100% 50%);
+
+	--color-neutral-400: var(--color-slate-600);
+	--color-neutral-700: var(--color-slate-800);
+
+	--gradient-primary-secondary: var(--color-primary-400), var(--color-transition-400), var(--color-secondary-400);
+	--gradient: linear-gradient(120deg, var(--gradient-primary-secondary));
+
+	--color-background-s: var(--theme-light-s);
+	--color-background-l: 100%;
+	--color-background: hsl(var(--theme-h), var(--theme-dark-s), va) r(--color-background-l);
+	--color-background: hsl(var(--theme-h), var(--theme-dark-s), var(--color-background-l));
+
+	--color-surface-700: hsl(0deg 0% 70%);
+
+	/* Shadows */
+	--shadow-400: 0 2rem 3rem -1rem hsl(0deg, 0%, 0%, 0.1);
+	--shadow-700: 0 4rem 6rem -2rem hsl(0deg, 0%, 0%, 0.1);
+
+	/* Typography */
+	--default-font-family: 'Open Sans', system-ui, sans-serif;
+	--font-heading: 'Source Sans Pro', system-ui, sans-serif;
+	--font-serif: 'Libre Caslon Display', serif;
+
+	--text-100: 0.625rem;
+	--text-200: 0.75rem;
+	--text-300: 0.875rem;
+	--text-400: 1rem;
+	--text-700: min(2rem, 6vw);
+	--text-800: min(3rem, 10vw);
+	--text-800--line-height: 1;
+	--text-900: min(5rem, 15vw);
+
+	/* Spacing */
+	--content-padding: 1.5rem;
+	--content-width: 1200px;
+	--breakout-width: 1400px;
+
+	/* Borders */
+	--border-width: 1px;
+	--border-color: var(--color-neutral-300);
+	--border: var(--border-width) solid var(--border-color);
+}
+
+/* Responsive spacing */
+@media (min-width: 481px) {
+	:root {
+		--content-padding: 2rem;
+	}
+}
+
+/* Basic setup */
+body {
+	background-color: var(--color-background);
+	color: var(--color-neutral-400);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--color-neutral-700);
+	font-family: var(--font-heading);
+}
+
+/* Utilities */
+
+/* ! Old */
+:where(.surface) {
+	background-color: var(--color-surface-400);
+	border-radius: var(--border-radius-700);
+	box-shadow: var(--shadow-400);
+
+	[data-theme='modern'] & {
+		background-color: transparent;
+		border: var(--border);
+		box-shadow: none;
+	}
+}
+
+:where(.surface-2) {
+	background-color: var(--color-surface-500);
+	border-radius: var(--border-radius-700);
+	box-shadow: var(--shadow-400);
+
+	[data-theme='modern'] & {
+		background-color: transparent;
+		border: var(--border-width) solid var(--color-neutral-300);
+		box-shadow: none;
+	}
+}
+
+:where(p.font-bold),
+p :where(.font-bold) {
+	color: var(--color-neutral-700);
+}
+
+[data-school-group='middleschool'] {
+	--color-primary-400: hsl(41deg 88% 64%);
+	--color-secondary-400: hsl(343deg 48% 53%);
+
+	/* clr-primary-400: #f4c152; */
+	/* clr-secondary-200: #dea1b2 */
+	/* clr-secondary-300: #ce738d; */
+	/* clr-secondary-400: #c14e6e; */
+	/* clr-tertiary-200: #849bbd; */
+	/* clr-tertiary-400: #072a5f; */
+	/* clr-transition: #ee7e59; */
+	--color-secondary-hsl-200: 343, 48%, 75%;
+	--color-secondary-hsl-300: 343, 48%, 63%;
+	--color-secondary-hsl-400: 343, 48%, 53%;
+	--color-transition-400: hsl(15, 81%, 64%);
+
+	/* gradients */
+	--gradient-primary-tertiary: var(--color-primary-400), var(--color-tertiary-400);
+	--gradient-secondary-tertiary: var(--color-secondary-400), #753875, var(--color-tertiary-400);
+
+	/* sets */
+	--color-1-of-4: #f4c152;
+	--color-2-of-4: #f69e52;
+	--color-3-of-4: #dd6564;
+	--color-4-of-4: #c14e6e;
+
+	--color-1-of-5: #f4c152;
+	--color-2-of-5: #f69f52;
+	--color-3-of-5: #ee7f5a;
+	--color-4-of-5: #dc6464;
+	--color-5-of-5: #c14e6e;
+
+	--color-1-of-6: #f4c152;
+	--color-2-of-6: #f6b350;
+	--color-3-of-6: #f49254;
+	--color-4-of-6: #e46e60;
+	--color-5-of-6: #cd566a;
+	--color-6-of-6: #c14e6e;
+}
+
+.section-color--area-1 {
+	--_h-start: 41;
+	--_h-range: -5;
+	--_s: 100%;
+	--_l: 50%;
+}
+
+.section-color--area-2 {
+	--_h-start: 300;
+	--_h-range: 15;
+	--_s: 100%;
+	--_l: 37%;
+}
+
+.section-color--area-3 {
+	--_h-start: 15;
+	--_h-range: 40;
+	--_s: 100%;
+	--_l: 35%;
+}
+
+.section-color--area-4 {
+	--_h-start: 310;
+	--_h-range: 20;
+	--_s: 100%;
+	--_l: 35%;
+}
+
+[data-school-group='highschool'] {
+	--color-primary-400: hsl(216deg 87% 35%);
+	--color-secondary-400: hsl(343deg 48% 53%);
+
+	/* clr-primary-400: #0c4aa8; */
+	/* clr-secondary-200: #dea1b2 */
+	/* clr-secondary-300: #ce738d; */
+	/* clr-secondary-400: #1fded4; */
+	/* clr-tertiary-200: #849bbd; */
+	/* clr-tertiary-400: #082a5e */
+	/* clr-tertiary-400: hsl(216, 86%, 20%); */
+	--color-primary-hsl-200: 216, 87%, 75%;
+	--color-primary-hsl-400: 216, 87%, 35%;
+	--color-secondary-hsl-200: 343, 48%, 75%;
+	--color-secondary-hsl-300: 343, 48%, 63%;
+	--color-secondary-hsl-400: 343, 48%, 53%;
+
+	--color-transition-400: hsl(301, 39%, 42%);
+
+	/* gradients */
+	--gradient-primary-tertiary: var(--color-primary-400), var(--color-tertiary-400);
+	--gradient-secondary-tertiary: var(--color-secondary-400), #753875, var(--color-tertiary-400);
+
+	/* sets */
+	--color-1-of-4: #0c4aa8;
+	--color-2-of-4: #79449c;
+	--color-3-of-4: #a84286;
+	--color-4-of-4: #c14e6e;
+
+	--color-1-of-5: #0c4aa8;
+	--color-2-of-5: #6945a0;
+	--color-3-of-5: #944192;
+	--color-4-of-5: #b04480;
+	--color-5-of-5: #c14e6e;
+
+	--color-1-of-5--light: hsl(216, 87%, 65%);
+	--color-2-of-5--light: hsl(264, 40%, 65%);
+	--color-3-of-5--light: hsl(301, 39%, 62%);
+	--color-4-of-5--light: hsl(327, 44%, 65%);
+	--color-5-of-5--light: hsl(343, 48%, 60%);
+
+	--color-1-of-6: #f4c152;
+	--color-2-of-6: #f6b350;
+	--color-3-of-6: #f49254;
+	--color-4-of-6: #e46e60;
+	--color-5-of-6: #cd566a;
+	--color-6-of-6: #c14e6e;
+}
+
+.section-color--area-1 {
+	--_h-start: 216;
+	--_s: 100%;
+	--_l: 40%;
+}
+
+.section-color--area-2 {
+	--_h-start: 301;
+}
+
+.section-color--area-3 {
+	--_h-start: 360;
+}
+
+.section-color--area-4 {
+	--_h-start: 206;
+	--_s: 86%;
+	--_l: 30%;
+}

@@ -29,7 +29,7 @@ class User extends Authenticatable {
 	];
 
 	/**
-	 * The attributes that should be hidden for serialization.
+	 * The attributes that should be hidden for serialization
 	 */
 	protected $hidden = [
 		'password',
@@ -44,10 +44,6 @@ class User extends Authenticatable {
 	];
 
 	/**
-	 * * Relationships
-	 */
-
-	/**
 	 * Get the student record associated with the user
 	 */
 	public function student(): HasOne {
@@ -58,21 +54,15 @@ class User extends Authenticatable {
 	 * Get the teacher record associated with the user
 	 */
 	public function teacher(): HasOne {
-		return $this->hasOne(Teacher::class, 'userId');
+		return $this->hasOne(Teacher::class);
 	}
 
 	/**
 	 * Get the administrator record associated with the user
-	 * 
-	 * @return HasOne
 	 */
 	public function administrator(): HasOne {
 		return $this->hasOne(Administrator::class);
 	}
-
-	/**
-	 * * Attributes
-	 */
 
 	/**
 	 * Get the user's full name

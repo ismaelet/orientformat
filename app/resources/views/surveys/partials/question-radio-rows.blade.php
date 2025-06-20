@@ -1,10 +1,10 @@
-@push('styles')
+@pushOnce('styles')
 	<style>
 		.survey-row:has(:checked) {
 			background-color: hsl(var(--color-success-400-hsl) / .2);
 		}
 	</style>
-@endpush
+@endPushOnce
 
 <div class="grid grid-cols-1 gap-2">
 	@foreach ($question['options'] as $optionKey => $option)

@@ -7,7 +7,7 @@
     'isolate' => false,
 ])
 
-@push('styles')
+@pushOnce('styles')
 	<style>
 		.input {
 			--input-background: transparent;
@@ -67,7 +67,7 @@
 			}
 		}
 	</style>
-@endPush
+@endPushOnce
 
 <input
 	type="{{ $type }}"
@@ -80,6 +80,6 @@
 
 @if ($isolate)
 	<span
-		class="input-backgrond group-has-[:focus]:opacity-5 pointer-events-none fixed inset-0 z-10 opacity-0 transition-opacity peer-[:focus]:opacity-5"
+		class="input-backgrond pointer-events-none fixed inset-0 z-10 opacity-0 transition-opacity peer-[:focus]:opacity-5 group-has-[:focus]:opacity-5"
 	></span>
 @endif

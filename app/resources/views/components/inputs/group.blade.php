@@ -1,4 +1,4 @@
-@push('styles')
+@pushOnce('styles')
 	<style>
 		.form-group {
 			grid-template-columns: minmax(0, 1fr);
@@ -27,7 +27,7 @@
 			}
 		}
 	</style>
-@endpush
+@endPushOnce
 
 <div {{ $attributes->class(['form-group grid grid-cols-1 gap-x-2 gap-y-2']) }}>
 	{{ $slot }}

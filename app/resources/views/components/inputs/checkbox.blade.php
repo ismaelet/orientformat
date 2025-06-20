@@ -7,7 +7,7 @@
     'required' => false,
 ])
 
-@push('styles')
+@pushOnce('styles')
 	<style>
 		.checkbox {
 			display: flex;
@@ -68,7 +68,7 @@
 			cursor: pointer;
 		}
 	</style>
-@endPush
+@endPushOnce
 
 <label {{ $attributes->class(['checkbox']) }}>
 

@@ -8,10 +8,6 @@ function student() {
 	return is_teacher() ? teacher() : ActiveStudent::getInstance();
 }
 
-function is_administrator(): bool {
-	return Auth::check() && administrator();
-}
-
 function administrator() {
 	return Auth::check() ? Administrator::where('user_id', Auth::id())->first() : false;
 }

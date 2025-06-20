@@ -1,4 +1,4 @@
-@push('styles')
+@pushOnce('styles')
 	<style>
 		.panel {
 			display: grid;
@@ -43,7 +43,7 @@
 			}
 		}
 	</style>
-@endpush
+@endPushOnce
 
 <x-layouts.admin-dashboard>
 
