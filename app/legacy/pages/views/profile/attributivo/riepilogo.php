@@ -2,7 +2,7 @@
 
 <div class="bgr bgr-wht"></div>
 
-<div class="main-wrap pad-t-5 pos-rel grid-flow" data-spacing="400">
+<div class="main-wrap pad-t-5 pos-rel grid" data-spacing="400">
 
 	<?= title() ?>
 	<?= no_results() ?>

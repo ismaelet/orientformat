@@ -11,7 +11,7 @@ use Legacy\UserSystem\Student;
 class RegisterController extends Controller {
 	public function index() {
 		return view('auth.register')
-			->with('locationTag', 'login')
+			->with('location', 'login')
 			->with('title', 'Registrati');
 	}
 
@@ -77,33 +77,31 @@ class RegisterController extends Controller {
 		switch (true) {
 			case strlen($password) < 8:
 				// password too short
-				$error = 'password-short';
-				break;
+				return redirect()->back()->withErrors(['password' => 'La password deve avere almeno 8 caratteri']);
 
 			case $password != $passwordConfirmation:
 				// password and password confirmation don't match
-				$error = 'password-match';
-				break;
+				return redirect()->back()->withErrors(['password' => 'Le password non coincidono']);
 
 			case \App\Legacy\LegacyDB::exists('users WHERE email = ?', [$email]):
 				// email already used
-				$error = 'duplicate-email';
-				break;
+				return redirect()->back()->withErrors(['email' => 'Esiste già un account associato a questo indirizzo email']);
 
 			case $loginType == $studentType && !$schoolClassId:
 				// no school class found matching the student class code
-				$error = 'class-wrong';
-				break;
+				return redirect()->back()->withErrors(['class' => 'Codice della classe non riconosciuto']);
 
 			case $loginType == $studentType && \App\Legacy\LegacyDB::exists('users WHERE firstName = ? AND lastName = ? AND id IN (SELECT ' . Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ?)', [$firstname, $lastname, $schoolClassId]):
 				// already exists a student in the selected school class with the same firstname and lastname
-				$error = 'duplicate-name';
-				break;
+				return redirect()->back()->withErrors(['name' => 'Esiste già un account con questo nome e cognome registrato a questa classe.']);
 
 			case $loginType == $teacherType && !in_array($emailDomain, AVAILABLE_EMAIL_DOMAINS):
 				// the teacher's email is not in the allowed list
-				$error = 'invalid-email';
-				break;
+				return redirect()->back()->withErrors(['email' => 'Indirizzo email non supportato. Per vedere la lista dei domini email supportati dalla
+							piattaforma clicca <a
+								class="font-bold"
+								href="' . client_url('/help?category=1&topic=11#topic11') . '"
+							>qui</a>']);
 
 			default:
 				// generate the user
@@ -129,7 +127,6 @@ class RegisterController extends Controller {
 		}
 
 		return redirect()->route('login', [
-			'error' => $error,
 			'login-type' => $loginType,
 			'register' => true,
 		]);

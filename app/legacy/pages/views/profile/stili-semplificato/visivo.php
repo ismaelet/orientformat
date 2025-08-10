@@ -23,7 +23,7 @@
 			<?= title(null, __('Below is indicated how many objects you have identified among those you have seen or heard and how many mistakes you have made.')) ?>
 		</div>
 
-		<div class="grid-flow mar-t-2 mar-b-4" data-spacing="700">
+		<div class="grid mar-t-2 mar-b-4" data-spacing="700">
 
 			<div class="result-grid">
 				<div class="result-grid__column gradient-overlay js-load" style="height: <?= 10 + $viewScore * 0.9 ?>%;">
@@ -45,7 +45,7 @@
 
 	<?php } ?>
 
-	<section class="test-images grid-flow stack-content center-content js-images">
+	<section class="test-images grid stack-content center-content js-images">
 
 		<?php for ($i = 1; $i <= 6; $i++) { ?>
 
@@ -69,7 +69,7 @@
 
 	</section>
 
-	<section class="answers grid-flow js-answers" data-spacing="700">
+	<section class="answers grid js-answers" data-spacing="700">
 		<div class="answer-list">
 
 			<?php foreach ($options as $key => $option) { ?>

@@ -1,6 +1,6 @@
 {% block content %}
 
-<div class="main-wrap grid-flow" data-spacing="900">
+<div class="main-wrap grid" data-spacing="900">
 	<div class="title__wrapper center-content">
 		<?= title() ?>
 
@@ -17,7 +17,7 @@
 
 	<?php if (test()->completed || !isSupervisor()) { ?>
 
-		<div class="characters grid-flow" data-columns="25rem" data-row-spacing="800" data-column-spacing="800">
+		<div class="characters grid" data-columns="25rem" data-row-spacing="800" data-column-spacing="800">
 
 			<?php foreach ($characters as $characterKey => $character) { ?>
 
@@ -44,7 +44,7 @@
 
 		<?php if (!test()->completed) { ?>
 
-			<div class="weapons grid-flow" data-spacing="700">
+			<div class="weapons grid" data-spacing="700">
 				<h2 class="section-title center-content">Oggetti</h2>
 
 				<div class="weapon-list flex-group">

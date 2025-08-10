@@ -1,6 +1,6 @@
 {% block content %}
 
-<div class="main-wrap pad-t-5 pad-b-5 grid-flow" data-spacing="700" data-test-id="<?= testId() ?>">
+<div class="main-wrap pad-t-5 pad-b-5 grid" data-spacing="700" data-test-id="<?= testId() ?>">
 
 	<?= title() ?>
 	<?= no_results() ?>

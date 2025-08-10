@@ -12,21 +12,26 @@ use Illuminate\View\View;
 class LoginController extends Controller {
 
 	/**
-	 * Show the login form.
-	 * 
-	 * @return View
+	 * Show the login form
 	 */
-	public function index(): View {
+	public function index(Request $request): View {
+		$studentType = 'student';
+		$teacherType = 'teacher';
+		$loginType = $request->query('login-type', $studentType);
+		$loginType = in_array($loginType, [$studentType, $teacherType]) ? $loginType : $studentType;
+
 		return view('auth.login')
-			->with('locationTag', 'login')
-			->with('title', 'Login');
+			->with([
+				'location' => 'login',
+				'title' => 'Login',
+				'loginType' => $loginType,
+				'studentType' => $studentType,
+				'teacherType' => $teacherType
+			]);
 	}
 
 	/**
-	 * Authenticate the user.
-	 * 
-	 * @param Request $request
-	 * @return RedirectResponse
+	 * Authenticate the user
 	 */
 	public function auth(Request $request): RedirectResponse {
 		// Validation
@@ -43,9 +48,9 @@ class LoginController extends Controller {
 
 		// Sign in
 		if (!Auth::attempt(['username' => $username, 'password' => $request->password, 'active' => true])) {
-			return redirect()->route('login', [
-				'error' => 'login_failed',
-			]);
+			return redirect()->back()
+				->withInput($request->only('login'))
+				->withErrors(['login' => 'Invalid credentials or account not active.']);
 		}
 
 		// Redirect

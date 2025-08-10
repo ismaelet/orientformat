@@ -1,6 +1,6 @@
 {% block content %}
 
-<div class="test__body main-wrap grid-flow" data-spacing="800">
+<div class="test__body main-wrap grid" data-spacing="800">
 	<div class="title__wrapper">
 		<?= title() ?>
 	</div>
@@ -13,7 +13,7 @@
 
 	<?php } ?>
 
-	<div class="test-content grid-flow center-content" data-spacing="800">
+	<div class="test-content grid center-content" data-spacing="800">
 
 		<?php if (!test()->completed) { ?>
 

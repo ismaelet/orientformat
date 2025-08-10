@@ -2,11 +2,11 @@
 
 {% block main %}
 
-<div class="page-header grid-flow center-content stack-content contrasting-background">
+<div class="page-header grid center-content stack-content contrasting-background">
 	<div class="page-header__background fill-all background-fill" <?= background_image($coverImage) ?>></div>
 	<div class="page-header__overlay gradient-overlay fill-all background-fill"></div>
 
-	<div class="page-header__content grid-flow center-content main-wrap" data-spacing="700">
+	<div class="page-header__content grid center-content main-wrap" data-spacing="700">
 		<h1 class="page-header__title title"><?= __('sections.' . $section->id) ?></h1>
 
 		<?php if ($area->id <> 4) { ?>
@@ -26,21 +26,21 @@
 	<div class="main-wrap">
 
 		<!-- Subtitle and description -->
-		<div class="grid-flow center-content" data-spacing="400">
+		<div class="grid center-content" data-spacing="400">
 			<h2 class="subsection-title"><?= __('Section summary') ?></h2>
 			<p class="subsection-subtitle"><?= __("Here you can check your progress in this section, restart an activity, or revisit it.") ?></p>
 			<a class="button button--secondary button--auto-width mar-t-1" href="<?= $backUrl ?>"><?= __('Choose another section') ?></a>
 		</div>
 
 		<!-- Tests -->
-		<div class="tests mar-t-5 grid-flow" data-columns="25rem" data-spacing="700">
+		<div class="tests mar-t-5 grid" data-columns="25rem" data-spacing="700">
 
 			<?php foreach ($legacyTests as $key => $legacyTestM) {
 				$obj = $legacyTestM['obj'];
 			?>
 
 				<div class="pos-rel load--fade-in js-load" data-direction="bottom" data-delay="<?= $key % 3 ?>">
-					<form id="test<?= $obj->id ?>" class="test bgr-wht grid-flow" method="POST">
+					<form id="test<?= $obj->id ?>" class="test bgr-wht grid" method="POST">
 						<input type="hidden" name="testId" value="<?= $obj->id ?>">
 
 						<div class="test-img">

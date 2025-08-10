@@ -1,6 +1,6 @@
 {% block content %}
 
-<div class="test__body main-wrap grid-flow" data-spacing="800">
+<div class="test__body main-wrap grid" data-spacing="800">
 	<div class="title__wrapper">
 		<?= title() ?>
 	</div>
@@ -13,7 +13,7 @@
 
 	<?php } ?>
 
-	<div class="cryptograms grid-flow" data-spacing="800">
+	<div class="cryptograms grid" data-spacing="800">
 
 		<?php foreach ($texts as $cryptogramKey => $cryptogram) {
 			$cryptogram = explode(' ', $cryptogram);
@@ -43,7 +43,7 @@
 
 	</div>
 
-	<div class="grid-flow" data-spacing="400">
+	<div class="grid" data-spacing="400">
 		<div>
 			<?= submit() ?>
 			<?= skip() ?>

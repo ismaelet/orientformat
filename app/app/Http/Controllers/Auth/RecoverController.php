@@ -18,7 +18,7 @@ class RecoverController extends Controller {
 	public function index() {
 
 		return view('auth.recover')
-			->with('locationTag', 'recover')
+			->with('location', 'recover')
 			->with('title', 'Recupero accesso');
 	}
 

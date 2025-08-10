@@ -61,7 +61,7 @@ class Test186 extends Test {
 		ob_start();
 ?>
 
-		<div class="grid-flow" data-spacing="700">
+		<div class="grid" data-spacing="700">
 			<!-- Graphic -->
 			<?php if (!isSupervisor() || test()->completed) { ?>
 
@@ -100,13 +100,13 @@ class Test186 extends Test {
 
 			<!-- Columns descriptions -->
 			<section id="desc-pan" class="">
-				<div id="desc-box" class="grid-flow stack-content">
+				<div id="desc-box" class="grid stack-content">
 
 					<?php foreach ($this->arguments['columns'] as $key => $column) {
 						$fieldID = $key + 1;
 					?>
 
-						<div class="field-info grid-flow js-field-info" data-id="<?= $fieldID ?>" data-spacing="400">
+						<div class="field-info grid js-field-info" data-id="<?= $fieldID ?>" data-spacing="400">
 							<h3 class="desc-title txt-blk font-bold txt-15rem"><?= $column[0] ?></h3>
 							<p class="desc-txt txt-1rem txt-blk"><?= $column[1] ?></p>
 						</div>

@@ -1,7 +1,7 @@
 {% block main %}
 
-<div class="page__content grid-flow center-content main-wrap pad-v-5">
-	<div class="grid-flow center-content" data-spacing="700">
+<div class="page__content grid center-content main-wrap pad-v-5">
+	<div class="grid center-content" data-spacing="700">
 		<div class="success-icon">
 			<?= embed_icon('correct') ?>
 		</div>

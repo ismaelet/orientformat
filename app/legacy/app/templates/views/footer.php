@@ -49,7 +49,7 @@
 							<?= $f_column['title'] ?>
 						</p>
 
-						<div class="footer__links grid-flow" data-spacing="200">
+						<div class="footer__links grid" data-spacing="200">
 
 							<?php foreach ($f_column['links'] as $f_link) {
 

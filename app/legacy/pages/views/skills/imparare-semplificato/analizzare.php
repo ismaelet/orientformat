@@ -1,6 +1,6 @@
 {% block content %}
 
-<div class="pad-t-5 main-wrap grid-flow" data-spacing="700">
+<div class="pad-t-5 main-wrap grid" data-spacing="700">
 
 	<?= title() ?>
 
@@ -31,7 +31,7 @@
 			</p>
 
 
-			<div id="selectors" class="grid-flow mar-t-5 mar-b-3" data-columns="10rem" data-spacing="400">
+			<div id="selectors" class="grid mar-t-5 mar-b-3" data-columns="10rem" data-spacing="400">
 				<div class="test-selector clickable js-test-selector" data-type="chi" data-count="<?= $parameterCount['chi'] ?>">
 					<p class=""><?= __('tests.132-category-1') ?></p>
 				</div>

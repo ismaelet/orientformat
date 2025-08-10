@@ -1,9 +1,9 @@
 {% block main %}
 
-<div class="page-body grid-flow js-page-content <?= isset($_GET['register']) ? 'register-page' : '' ?>">
+<div class="page-body grid js-page-content <?= isset($_GET['register']) ? 'register-page' : '' ?>">
 
 	<!-- Images -->
-	<div class="images grid-flow stack-content">
+	<div class="images grid stack-content">
 		<div class="page-background page-background--login" <?= background_image($loginType . '-login-image') ?>>
 			<p class="page-background__title">Login</p>
 		</div>
@@ -15,7 +15,7 @@
 	</div>
 
 	<!-- Forms -->
-	<div class="forms grid-flow stack-content">
+	<div class="forms grid stack-content">
 
 		<!-- Login form -->
 		<form class="form form--login" method="POST" action="<?= route('login.auth') ?>" autocomplete="off">

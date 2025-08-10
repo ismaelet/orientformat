@@ -1,6 +1,6 @@
 {% block content %}
 
-<div class="grid-flow" data-columns="25rem" data-spacing="700">
+<div class="grid" data-columns="25rem" data-spacing="700">
 
 	<?php foreach ($panels as $panel) { ?>
 

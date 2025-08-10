@@ -13,10 +13,10 @@ class UserDashboard extends Controller {
 	 * Render the user dashboard
 	 */
 	public function index() {
-		View::share('dashboardLocationTag', 'recap');
+		View::share('dashboardlocation', 'recap');
 
 		return view('user-dashboard.recap')
-			->with('locationTag', 'user-dashboard')
+			->with('location', 'user-dashboard')
 
 			->with('title', Auth::user()->name . ' - Profilo');
 	}
@@ -25,10 +25,10 @@ class UserDashboard extends Controller {
 	 * Render the courses page
 	 */
 	public function indexCourses() {
-		View::share('dashboardLocationTag', 'courses');
+		View::share('dashboardlocation', 'courses');
 
 		return view('user-dashboard.courses')
-			->with('locationTag', 'user-dashboard')
+			->with('location', 'user-dashboard')
 			->with('title', 'Profilo - Videocorsi');
 	}
 }

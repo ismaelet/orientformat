@@ -15,7 +15,7 @@
 
 		<p class="text"><?= __('student-read.' . $page . '-results') ?></p>
 
-		<div class="page-footer grid-flow center-content max-width--480 place-center mar-t-4" data-spacing="400">
+		<div class="page-footer grid center-content max-width--480 place-center mar-t-4" data-spacing="400">
 			<a href="<?= $returnLink ?>" class="button button--secondary button--full-width"><?= __('Back') ?></a>
 
 			<div id="print" class="button button--full-width" onClick="window.print();">

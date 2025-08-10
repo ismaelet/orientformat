@@ -1,9 +1,9 @@
 {% block content %}
 
-<div class="header grid-flow stack-content center-content contrasting-background">
+<div class="header grid stack-content center-content contrasting-background">
 	<div class="header__background gradient-overlay background-fill fill-all"></div>
 
-	<div id="title-box" class="fa-center pad-t-5 pos-rel grid-flow center-content max-width--1024 full-width" data-spacing="700">
+	<div id="title-box" class="fa-center pad-t-5 pos-rel grid center-content max-width--1024 full-width" data-spacing="700">
 		<?= title() ?>
 
 		<div class="max-width--300 full-width">

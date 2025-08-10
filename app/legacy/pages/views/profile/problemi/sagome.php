@@ -14,9 +14,9 @@
 				<div id="full-shape" class="mar-t-3" <?= background_image('shape.png'); ?>></div>
 
 				<!-- Solution -->
-				<div id="solution" class="mar-t-3 mar-b-3 grid-flow center-content  <?php if ($legacyTest->completed) echo $legacyTest->percentage ? 'right' : 'wrong'; ?>" data-spacing="700">
+				<div id="solution" class="mar-t-3 mar-b-3 grid center-content  <?php if ($legacyTest->completed) echo $legacyTest->percentage ? 'right' : 'wrong'; ?>" data-spacing="700">
 
-					<div class="grid-flow center-content" data-spacing="400">
+					<div class="grid center-content" data-spacing="400">
 						<h3 class="subsection-title txt-c3 mar-b-05"><?= __('Solution') ?></h3>
 
 						<?php if ($legacyTest->completed) { ?>

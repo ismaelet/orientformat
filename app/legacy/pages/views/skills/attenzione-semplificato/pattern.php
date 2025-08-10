@@ -2,7 +2,7 @@
 
 <input type="hidden" class="js-score" name="field[]" value="0">
 
-<div class="main-wrap grid-flow" data-spacing="800">
+<div class="main-wrap grid" data-spacing="800">
 	<section class="title__wrapper">
 
 		<?php if (!test()->completed) {
@@ -21,7 +21,7 @@
 
 	<?php } else { ?>
 
-		<div class="result grid-flow center-content" data-spacing="600">
+		<div class="result grid center-content" data-spacing="600">
 			<p class="result__text"><?= __('tests.118-result-1') ?></p>
 			<h3 class="result__value"><?= test()->percentage ?>%</h3>
 			<p class="result__text"><?= __('tests.118-result-2') ?></p>
@@ -29,7 +29,7 @@
 
 	<?php } ?>
 
-	<div class="grid-flow" data-spacing="700">
+	<div class="grid" data-spacing="700">
 		<?= renderRedoButton(true) ?>
 
 		<div class="">

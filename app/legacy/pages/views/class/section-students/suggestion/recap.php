@@ -10,10 +10,10 @@
 	</div>
 
 	<!-- Row 1 -->
-	<div class="grid-flow page-content" data-columns="25rem" data-spacing="700">
+	<div class="grid page-content" data-columns="25rem" data-spacing="700">
 
 		<!-- Questionnaire -->
-		<div class="dashboard-panel grid-flow">
+		<div class="dashboard-panel grid">
 			<h2 class="panel-title">Scelta indicata nei questionari</h2>
 			<p>Qui puoi trovare quale scelta è stata effettuata nei questionari iniziale e finale, e il grado di sicurezza</p>
 
@@ -59,7 +59,7 @@
 		</div>
 
 		<!-- Competenza alfabetica -->
-		<div class="dashboard-panel grid-flow">
+		<div class="dashboard-panel grid">
 			<div class="">
 				<h2 class="panel-title">Area Competenza Alfabetica Funzionale</h2>
 				<p class="text-lg">(Comunicazione nella lingua italiana)</p>
@@ -111,7 +111,7 @@
 		</div>
 
 		<!-- Imparare -->
-		<div class="dashboard-panel grid-flow">
+		<div class="dashboard-panel grid">
 			<h2 class="panel-title">Area Imparare a imparare</h2>
 			<p>Qui puoi trovare i risultati conseguiti nelle sezioni relative alle abilità e strumenti inerenti alle competenze di apprendimento</p>
 
@@ -161,9 +161,9 @@
 	</div>
 
 	<!-- Row 2 -->
-	<div class="grid-flow page-content" data-columns="30rem" data-spacing="700">
+	<div class="grid page-content" data-columns="30rem" data-spacing="700">
 		<!-- Imparare -->
-		<div class="dashboard-panel grid-flow">
+		<div class="dashboard-panel grid">
 			<div>
 				<h2 class="panel-title">Area Competenza Imprenditoriale</h2>
 				<p class="text-lg">(Spirito di iniziativa e imprenditorialità)</p>
@@ -195,7 +195,7 @@
 		</div>
 
 		<!-- Motivazione e interessi -->
-		<div class="dashboard-panel grid-flow">
+		<div class="dashboard-panel grid">
 			<div>
 				<h2 class="panel-title">Area Motivazionale</h2>
 				<p class="text-lg">(Consapevolezza ed espressione culturali)</p>
@@ -230,11 +230,11 @@
 	<!-- Row 3 -->
 	<div class="">
 		<!-- Consiglio Orientativo -->
-		<form class="dashboard-panel grid-flow" data-spacing="400" method="POST">
+		<form class="dashboard-panel grid" data-spacing="400" method="POST">
 			<h2 class="dashboard-panel__title">Consiglio orientativo</h2>
 			<p>È possibile selezionare qui sotto uno o più consigli orientativi. Si può indicare un'area generica (ad esempio "Liceo") oppure un indirizzo più specifico:</p>
 
-			<div class="grid-flow mar-t-2" data-spacing="400">
+			<div class="grid mar-t-2" data-spacing="400">
 
 				<?php for ($i = 0; $i < 3; $i++) { ?>
 

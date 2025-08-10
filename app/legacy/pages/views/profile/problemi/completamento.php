@@ -81,7 +81,7 @@ $sets = _SETS;
 
 		<?php } ?>
 
-		<div class="mar-t-4 grid-flow" data-spacing="400">
+		<div class="mar-t-4 grid" data-spacing="400">
 			<?= renderRedoButton(true) ?>
 
 			<div>

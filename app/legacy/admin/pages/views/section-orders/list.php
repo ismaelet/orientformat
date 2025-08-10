@@ -7,7 +7,7 @@ use function Ecommerce\ecommerce_config;
 
 {% block filter %}
 
-<div class="filters mar-t-1 grid-flow" data-spacing="700">
+<div class="filters mar-t-1 grid" data-spacing="700">
 
 	<!-- Status -->
 	<div class="filter">

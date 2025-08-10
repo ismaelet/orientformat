@@ -4,7 +4,7 @@
 
 <?= snippet_breadcrumbs($breadcrumbs) ?>
 
-<div class="grid-flow center-content" data-spacing="400">
+<div class="grid center-content" data-spacing="400">
 	<h1><?= $pageTitle ?></h1>
 
 	<a href="<?= client_url('/class/class-progress/list') ?>" class="sbtn block push-center mb-4">Indietro</a>
@@ -33,7 +33,7 @@
 
 <p class="text-center txt-1rem mar-t-2"><?= section_config($sectionId, 'desc') ?></p>
 
-<div class="center-content grid-flow">
+<div class="center-content grid">
 	<a href="<?= client_url('/read?id=' . $sectionId) ?>" class="button button--auto-width mar-t-2">
 		<?= embed_icon('read') ?>
 		Saperne di più

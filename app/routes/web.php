@@ -11,6 +11,9 @@ use App\Http\Middleware\Admin;
 use App\Http\Middleware\Administrator;
 use App\Http\Middleware\Student;
 use App\Http\Middleware\TeacherOrAdministrator;
+use App\Models\Schools\SchoolClass;
+use App\Models\User\Student as UserStudent;
+use App\Models\User\Teacher;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -52,4 +55,4 @@ Route::any('activities/grades/{grade}', [GradeController::class, 'show'])->middl
 Route::any('analysis/student/areas/{area}', [StudentAnalysisController::class, 'show'])->middleware(['auth'])->name('analysis.student.area');
 Route::any('analysis/student/sections/{section}', [StudentAnalysisController::class, 'show'])->name('analysis.student.section');
 
-Route::get('logout', LegacyController::class)->name('logout');
+include __DIR__ . '/web-db.php';

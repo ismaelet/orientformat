@@ -1,6 +1,6 @@
 {% block content %}
 
-<div class="main-wrap pad-t-4 pad-b-5 grid-flow" data-spacing="700">
+<div class="main-wrap pad-t-4 pad-b-5 grid" data-spacing="700">
 
 	<?= title() ?>
 

@@ -6,7 +6,7 @@
 	<?= title() ?>
 
 	<!-- Content -->
-	<section id="grid" class="grid-flow mar-t-5 mar-b-5" data-align="center">
+	<section id="grid" class="grid mar-t-5 mar-b-5" data-align="center">
 
 		<!-- Image -->
 		<div class="img-box js-load load--fade-in" data-direction="bottom" data-delay="3">

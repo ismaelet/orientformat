@@ -44,7 +44,7 @@
 	</section>
 
 	<!-- Print -->
-	<div class="grid-flow center-content">
+	<div class="grid center-content">
 		<div class="button mar-t-3 js-print">
 			<?= embed_icon('print') ?>
 			Stampa

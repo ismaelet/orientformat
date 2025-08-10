@@ -2,7 +2,7 @@
 
 {% block main %}
 
-<div class="background center-content grid-flow">
+<div class="background center-content grid">
 	<h3 class="sec-title text-center txt-upp load--fade-in js-load" data-direction="right"><?= $legacySection->name ?></h3>
 </div>
 

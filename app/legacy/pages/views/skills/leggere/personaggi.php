@@ -127,7 +127,7 @@ use \Legacy\Activity\Test;
 
 	<?php } ?>
 
-	<div class="main-wrap grid-flow" data-spacing="700">
+	<div class="main-wrap grid" data-spacing="700">
 		<?= no_results() ?>
 
 		<div>

@@ -1,11 +1,11 @@
 {% block content %}
 
-<div class="main-wrap grid-flow" data-spacing="800">
+<div class="main-wrap grid" data-spacing="800">
 	<div class="title__wrapper">
 		<?= title() ?>
 	</div>
 
-	<div class="sentences grid-flow" data-spacing="700">
+	<div class="sentences grid" data-spacing="700">
 
 		<?php foreach ($sentencesHtml as $key => $sentence) { ?>
 
@@ -15,7 +15,7 @@
 
 	</div>
 
-	<div class="grid-flow" data-spacing="700">
+	<div class="grid" data-spacing="700">
 		<div>
 			<?= submit(true) ?>
 		</div>

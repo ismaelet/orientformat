@@ -7,7 +7,7 @@
 		<div class="main-wrap">
 			<section class="presentation">
 				<img src="<?= client_path(!$highschool ? '/pages/assets/interests/highschool/' . $interestId . '.jpg' : '/pages/assets/interests/universities/' . $interestId) ?>" alt="" class="interest_img img-fill">
-				<div class="interest_content grid-flow" data-spacing="400">
+				<div class="interest_content grid" data-spacing="400">
 					<h1 class="interest_title"><?= $interest['name'] ?></h1>
 
 					<?php if (!$watch) { ?>
@@ -87,7 +87,7 @@
 							foreach ($schoolList as $pathName => $pathData) { ?>
 
 								<!-- School type -->
-								<li class="school-type grid-flow" data-spacing="700">
+								<li class="school-type grid" data-spacing="700">
 									<h3 class="school-type_title txt-sbold txt-15rem"><?= $pathName ?></h3>
 
 									<?php if (!empty($pathData['description'])) { ?>
@@ -101,7 +101,7 @@
 										<?php foreach ($pathData['roles'] as $roleName => $role) { ?>
 
 											<!-- Course -->
-											<li class="course grid-flow" data-spacing="200">
+											<li class="course grid" data-spacing="200">
 												<h3 class="txt-sbold txt-125rem"><?= $roleName ?></h3>
 												<ul class="role__data-list">
 
@@ -183,7 +183,7 @@
 
 									<?php if (isset($pathData['explore'])) { ?>
 
-										<div class="grid-flow" data-spacing="400">
+										<div class="grid" data-spacing="400">
 											<p class="font-bold txt-1rem">Per approfondire la tua ricerca puoi consultare questi siti:</p>
 											<ul>
 												<?php foreach ($pathData['explore'] as $exploreLink) { ?>

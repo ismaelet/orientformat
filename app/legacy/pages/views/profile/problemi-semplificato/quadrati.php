@@ -2,14 +2,14 @@
 
 <input type="hidden" class="js-field" name="field[]" value="">
 
-<div class="main-wrap grid-flow" data-spacing="800">
+<div class="main-wrap grid" data-spacing="800">
 	<div class="title__wrapper">
 		<?= title() ?>
 	</div>
 
 	<?php if (test()->completed) { ?>
 
-		<div class="center-content grid-flow" data-spacing="700">
+		<div class="center-content grid" data-spacing="700">
 			<p class="result-text <?= test()->percentage == 100 ? 'result-text--good' : 'result-text--bad' ?>"><?= test()->percentage == 100 ? __('tests.' . test()->id . '-right') : __('tests.' . test()->id . '-wrong') ?></p>
 
 			<?= renderRedoButton() ?>
@@ -17,7 +17,7 @@
 
 	<?php } ?>
 
-	<div class="image-grid grid-flow">
+	<div class="image-grid grid">
 
 		<?php for ($i = 1; $i <= 8; $i++) { ?>
 
@@ -35,7 +35,7 @@
 
 	<?php if (!test()->completed) { ?>
 
-		<div class="center-content grid-flow" data-spacing="700">
+		<div class="center-content grid" data-spacing="700">
 			<h3 class="subsection-title"><?= __('tests.' . test()->id . '-title') ?></h3>
 			<div class="answers">
 

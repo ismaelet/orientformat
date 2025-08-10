@@ -2,9 +2,9 @@
 
 <!-- Content -->
 <div class="page-body">
-	<div class="grid-flow">
+	<div class="grid">
 		<div class="page__header pad-v-5">
-			<div class="grid-flow center-content main-wrap" data-spacing="700">
+			<div class="grid center-content main-wrap" data-spacing="700">
 				<div>
 					<h1 class="title"><?= ucfirst(__($legacyGrade->adjective)) ?> <?= __('year') ?></h1>
 					<p class="subtitle"><?= __('misc.grade-percentage') ?> <span><?= $legacyGradeModel->completedPercentage() ?>%</span></p>
@@ -25,7 +25,7 @@
 
 				<div class="area-wrapper">
 					<section class="area main-wrap full-width gap-8">
-						<div class="area__header fa-center grid-flow" data-spacing="400">
+						<div class="area__header fa-center grid" data-spacing="400">
 							<h2 class="section-title"><?= __('areas.' . $legacyArea->id) ?></h2>
 							<p class="section-subtitle"><?= __('areas.' . $legacyArea->id . '-description') ?></p>
 
@@ -47,7 +47,7 @@
 
 								<div class="section-wrapper js-load load--fade-in section-color section-color--area-<?= $legacySection->areaId ?>" data-direction="bottom" data-delay="<?= $key % 3 ?>">
 									<a class="section <?= $legacySection->progressPercentage == 100 ? 'completed' : '' ?>" <?= 'href="' . $legacySection->clientUrl . '&slug=' . $legacySection->slug . '"' ?>>
-										<div class="section-img gradient-overlay grid-flow stack-content center-content">
+										<div class="section-img gradient-overlay grid stack-content center-content">
 											<div class="section-img-over"></div>
 											<div class="section__icon">
 												<?= embed_icon($legacySection->icon) ?>
@@ -55,7 +55,7 @@
 										</div>
 
 										<div class="section__body">
-											<div class="section__content grid-flow center-content" data-spacing="100">
+											<div class="section__content grid center-content" data-spacing="100">
 												<h3 class="section__title font-bold txt-12rem"><?= __('sections.' . $legacySection->id) ?></h3>
 												<p class="section-desc"><?= __('sections.description-' . $legacySection->id) ?></p>
 

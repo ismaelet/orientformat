@@ -226,7 +226,7 @@
 				@foreach ($f_columns as $f_column)
 					<div class="footer-col pt-4">
 
-						<p class="footer-title mb-4 font-bold">
+						<p class="footer-title mb-4 text-lg font-bold">
 							<?= $f_column['title'] ?>
 						</p>
 

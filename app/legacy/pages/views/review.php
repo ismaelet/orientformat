@@ -4,7 +4,7 @@
 
 	<?php if ($review->completed) { ?>
 
-		<div class="completed pad-v-2 grid-flow center-content" data-spacing="700">
+		<div class="completed pad-v-2 grid center-content" data-spacing="700">
 			<div class="success-icon">
 				<?= embed_icon('correct') ?>
 			</div>

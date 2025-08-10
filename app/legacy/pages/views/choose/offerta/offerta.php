@@ -15,7 +15,7 @@
 
 		<?php foreach ($interests as $interestId => $interest) { ?>
 
-			<a class="interest grid-flow center-content stack-content js-load load--fade-in" data-direction="bottom" data-delay="<?= $interestId % 2 ?>" id="area<?= $interestId ?>" href="<?= client_url('/interest?id=' . $interestId . '&watch=1' . ($legacyTestResultId == 151 ? '&highschool=1' : '')) ?>">
+			<a class="interest grid center-content stack-content js-load load--fade-in" data-direction="bottom" data-delay="<?= $interestId % 2 ?>" id="area<?= $interestId ?>" href="<?= client_url('/interest?id=' . $interestId . '&watch=1' . ($legacyTestResultId == 151 ? '&highschool=1' : '')) ?>">
 				<img src="<?= client_path($legacyTestResultId != 151 ? '/pages/assets/interests/highschool/' . $interestId . '.jpg' : '/pages/assets/interests/universities/' . $interestId) ?>" alt="" class="interest_img img-fill">
 				<div class="interest_overflow"></div>
 				<div class="interest_content">

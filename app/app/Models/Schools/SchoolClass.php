@@ -130,4 +130,17 @@ class SchoolClass extends Model {
 	public function hasGrade(int $gradeNumber): bool {
 		return in_array($gradeNumber, $this->gradeNumbers());
 	}
+
+	/**
+	 * Get the grade number at a specific date
+	 */
+	public function gradeWhen(string $date): int {
+		$lastYear = $this->isHighSchool() ? ($this->isprofessional ? 7 : 8) : 3;
+		$year = date('Y', strtotime($date));
+		$month = date('m', strtotime($date));
+		$year = $month >= 9 ? $year : $year - 1;
+		$diffYear = $year - $this->startingYear;
+
+		return min($this->startingGrade + $diffYear, $lastYear);
+	}
 }

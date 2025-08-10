@@ -1,6 +1,6 @@
 {% block content %}
 
-<div class="main-wrap grid-flow" data-spacing="800">
+<div class="main-wrap grid" data-spacing="800">
 	<div class="title__wrapper">
 		<?= title() ?>
 	</div>
@@ -11,13 +11,13 @@
 
 	<?php } ?>
 
-	<div class="text grid-flow" data-spacing="700">
+	<div class="text grid" data-spacing="700">
 
 		<p class="text"><?= $textHtml ?></p>
 
 	</div>
 
-	<div class="grid-flow" data-spacing="700">
+	<div class="grid" data-spacing="700">
 		<div>
 			<?= submit(true) ?>
 			<?= skip() ?>

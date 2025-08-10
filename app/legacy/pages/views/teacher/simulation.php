@@ -9,7 +9,7 @@ use \Legacy\SchoolSystem\Grade;
 {% block main %}
 
 <div class="main-wrap">
-	<div class="grid-flow center-content" data-spacing="700">
+	<div class="grid center-content" data-spacing="700">
 		<h1 class="page-title">Simulazione studente</h1>
 		<a href="<?= client_url('/teacher') ?>" class="button button--secondary">Indietro</a>
 		<p class="txt-1rem">
@@ -19,7 +19,7 @@ use \Legacy\SchoolSystem\Grade;
 	</div>
 
 	<div class="page-content mar-t-5">
-		<div class="school-types grid-flow js-school-type-selectors <?= $selectedSchoolType ? '' : 'active' ?>" data-columns="20rem" data-spacing="700">
+		<div class="school-types grid js-school-type-selectors <?= $selectedSchoolType ? '' : 'active' ?>" data-columns="20rem" data-spacing="700">
 
 			<?php foreach ($schoolTypes as $schoolTypeSlug => $schoolType) { ?>
 
@@ -61,7 +61,7 @@ use \Legacy\SchoolSystem\Grade;
 										<div class="area">
 											<h3 class="area__title"><?= $area->name ?></h3>
 
-											<div class="activities grid-flow" data-columns='20rem' data-spacing="400">
+											<div class="activities grid" data-columns='20rem' data-spacing="400">
 
 												<?php foreach ($legacySections as $legacySectionKey => $legacySection) { ?>
 

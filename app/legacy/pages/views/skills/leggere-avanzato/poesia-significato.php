@@ -1,6 +1,6 @@
 {% block content %}
 
-<div class="test__body grid-flow main-wrap" data-spacing="700">
+<div class="test__body grid main-wrap" data-spacing="700">
 	<div class="title__wrapper">
 		<?= title() ?>
 	</div>

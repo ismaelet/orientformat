@@ -3,12 +3,12 @@
 <!-- Review view -->
 <?php if ($legacyTest->completed) { ?>
 
-	<div id="results-sec" class="grid-flow main-wrap pad-t-5 pad-b-5" data-spacing="700">
+	<div id="results-sec" class="grid main-wrap pad-t-5 pad-b-5" data-spacing="700">
 
 		<?= title(__('tests.32-title'), __('tests.32-description')) ?>
 
 		<!-- Methods -->
-		<div class="grid-flow" data-columns="25rem" data-spacing="700">
+		<div class="grid" data-columns="25rem" data-spacing="700">
 
 			<?php foreach ($methods as $method) { ?>
 

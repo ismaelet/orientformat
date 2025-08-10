@@ -58,7 +58,7 @@
 
 			</div>
 
-			<div class="grid-flow" data-spacing="400">
+			<div class="grid" data-spacing="400">
 				<?= submit(true) ?>
 				<?= renderRedoButton() ?>
 			</div>

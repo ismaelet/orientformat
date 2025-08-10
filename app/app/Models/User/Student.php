@@ -25,16 +25,12 @@ class Student extends Model {
 	use SoftDeletes;
 
 	/**
-	 * The primary key associated with the table.
-	 * 
-	 * @var string
+	 * The primary key associated with the table
 	 */
 	protected $primaryKey = 'userId';
 
 	/**
 	 * The attributes that are mass assignable.
-	 * 
-	 * @var array
 	 */
 	protected $fillable = [
 		'userId',
@@ -45,8 +41,6 @@ class Student extends Model {
 
 	/**
 	 * The user linked to the student
-	 * 
-	 * @return BelongsTo
 	 */
 	public function user(): BelongsTo {
 		return $this->belongsTo(User::class, 'userId');
@@ -54,8 +48,6 @@ class Student extends Model {
 
 	/**
 	 * The class the student is in
-	 * 
-	 * @return BelongsTo
 	 */
 	public function school_class(): BelongsTo {
 		return $this->belongsTo(SchoolClass::class, 'schoolClassId');
@@ -63,8 +55,6 @@ class Student extends Model {
 
 	/**
 	 * Get the student's given advice
-	 * 
-	 * @return HasOne
 	 */
 	public function advice(): HasOne {
 		return $this->hasOne(Advice::class, 'userID', 'userId');
@@ -72,8 +62,6 @@ class Student extends Model {
 
 	/**
 	 * The test results of the student
-	 * 
-	 * @return HasMany
 	 */
 	public function test_results(): HasMany {
 		return $this->hasMany(TestResult::class, 'studentId');
@@ -81,8 +69,6 @@ class Student extends Model {
 
 	/**
 	 * The section results of the student
-	 * 
-	 * @return HasMany
 	 */
 	public function section_results(): HasMany {
 		return $this->hasMany(SectionResult::class, 'studentId');
@@ -90,8 +76,6 @@ class Student extends Model {
 
 	/**
 	 * The condensed section results of the student
-	 * 
-	 * @return HasMany
 	 */
 	public function condensed_section_results(): HasMany {
 		return $this->hasMany(CondensedSectionResult::class, 'student_id');
@@ -99,8 +83,6 @@ class Student extends Model {
 
 	/**
 	 * The grade results of the student
-	 * 
-	 * @return HasMany
 	 */
 	public function grade_results(): HasMany {
 		return $this->hasMany(GradeResult::class, 'studentId');
@@ -108,8 +90,6 @@ class Student extends Model {
 
 	/**
 	 * The test additional results of the student
-	 * 
-	 * @return HasMany
 	 */
 	public function additional_results(): HasMany {
 		return $this->hasMany(AdditionalResult::class, 'studentId');
@@ -117,8 +97,6 @@ class Student extends Model {
 
 	/**
 	 * The test other results of the student
-	 * 
-	 * @return HasMany
 	 */
 	public function other_results(): HasMany {
 		return $this->hasMany(OtherResult::class, 'userID');
@@ -126,8 +104,6 @@ class Student extends Model {
 
 	/**
 	 * The test permanent results of the student
-	 * 
-	 * @return HasMany
 	 */
 	public function permanent_results(): HasMany {
 		return $this->hasMany(PermanentResult::class, 'studentId');
@@ -135,8 +111,6 @@ class Student extends Model {
 
 	/**
 	 * The review results of the student
-	 * 
-	 * @return HasMany
 	 */
 	public function review_results(): HasMany {
 		return $this->hasMany(ReviewResult::class, 'studentId');
@@ -144,7 +118,6 @@ class Student extends Model {
 
 	/**
 	 * Grade
-	 * 
 	 * !TO FIX: Grade isn't a real model
 	 */
 	public function grade(): Grade {
@@ -153,8 +126,6 @@ class Student extends Model {
 
 	/**
 	 * Check if the student is in middle school
-	 * 
-	 * @return bool
 	 */
 	public function isMiddleSchoolStudent(): bool {
 		return $this->school_class->isMiddleSchool();
@@ -165,5 +136,18 @@ class Student extends Model {
 	 */
 	public function isHighSchoolStudent(): bool {
 		return $this->school_class->isHighschool();
+	}
+
+	/**
+	 * Get the student's grade number at a specific date
+	 */
+	public function gradeWhen(string $date): ?int {
+		$grade = $this->school_class?->gradeWhen($date);
+
+		if ($grade) {
+			return $grade;
+		}
+
+		return null;
 	}
 }

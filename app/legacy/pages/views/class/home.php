@@ -17,14 +17,14 @@
 	});
 </script>
 
-<div class="grid-flow" data-spacing="800">
+<div class="grid" data-spacing="800">
 	<section class="slider__header">
-		<div class="slider__title-block grid-flow">
+		<div class="slider__title-block grid">
 			<h1 class="title">Pannello della<br>classe <?= schoolClass()->name ?></h1>
 			<p class="section-subtitle">Qui puoi controllare il progresso della classe e modificarne le impostazioni</p>
 		</div>
 
-		<ul class="recap-panel grid-flow" data-spacing="800">
+		<ul class="recap-panel grid" data-spacing="800">
 
 			<a class="recap-item js-load load--fade-in" data-direction="bottom" data-delay="1" href="<?= client_url('/class/students/list') ?>" data-tilt data-tilt-max="5" data-tilt-glare="true" data-tilt-max-glare="0.5">
 				<?= embed_icon('dashboards/students') ?>
@@ -66,7 +66,7 @@
 	</section>
 
 
-	<section class="lists grid-flow" data-spacing="800">
+	<section class="lists grid" data-spacing="800">
 
 		<!-- Recent activities -->
 		<div class="dashboard-panel js-load load--fade-in" data-direction="bottom" data-delay="0" data-load-type="always">

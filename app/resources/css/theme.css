@@ -28,6 +28,7 @@
 	--color-success-400: hsl(145deg 63% 40%);
 	--color-error-400: hsl(0deg 100% 50%);
 
+	--color-neutral-50: #fff;
 	--color-neutral-400: var(--color-slate-600);
 	--color-neutral-700: var(--color-slate-800);
 
@@ -260,4 +261,10 @@ p :where(.font-bold) {
 	--_h-start: 206;
 	--_s: 86%;
 	--_l: 30%;
+}
+
+.background-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }

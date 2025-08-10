@@ -111,14 +111,14 @@ class Test196 extends Test {
 		ob_start();
 ?>
 
-		<section class="grid-flow" data-spacing="700">
+		<section class="grid" data-spacing="700">
 			<?php if (test()->completed) { ?>
 
 				<p class="txt-15rem fa-center">Hai inserito il <strong><?= test()->percentage ?>%</strong> dei segni di punteggiatura corretti.</p>
 
 			<?php } ?>
 
-			<div class="text grid-flow" data-spacing="700">
+			<div class="text grid" data-spacing="700">
 
 				<p class="text"><?= $this->parameters['text'] ?></p>
 

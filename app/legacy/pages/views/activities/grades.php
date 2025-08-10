@@ -19,14 +19,14 @@ use \Legacy\SchoolSystem\Grade as SchoolSystemGrade;
 				<h3 class="grade__number ff-serif"><?= $year->romanNumeral ?></h3>
 
 				<div class="grade__content">
-					<div class="grade__body grid-flow center-content" data-spacing="700">
+					<div class="grade__body grid center-content" data-spacing="700">
 						<h3 class="grade__name colored-title"><?= __('misc.grade-description', ['numeral' => __($year->adjective)]) ?></h3>
 						<p class="grade__text">
 							<?= __('misc.grade-cta', ['numeral' => __($year->adjective)]) ?>
 						</p>
 					</div>
 
-					<div class="grade__footer grid-flow contrasting-background" style="--_percentage: <?= $grade->completedPercentage() ?>">
+					<div class="grade__footer grid contrasting-background" style="--_percentage: <?= $grade->completedPercentage() ?>">
 						<p class="grade__progress"><?= $grade->completedPercentage() ?> %</p>
 					</div>
 				</div>

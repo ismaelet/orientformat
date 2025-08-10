@@ -38,7 +38,7 @@
 
 							@foreach ($teacher->school_classes as $key => $schoolClass)
 								<div
-									class="load--fade-in js-load grid-flow school-class"
+									class="load--fade-in js-load school-class grid"
 									data-direction="bottom"
 									data-delay="<?= $key % 3 ?>"
 									data-ended="<?= $schoolClass->ended ? 'true' : 'false' ?>"

@@ -1,7 +1,7 @@
 {% block dashboard-body %}
 
-<div class="grid-flow" data-spacing="800">
-	<div class="center-content grid-flow" data-spacing="700">
+<div class="grid" data-spacing="800">
+	<div class="center-content grid" data-spacing="700">
 		<h1 class="section-title">Compara i consigli orientativi</h1>
 		<p class="section-subtitle">Qui puoi comparare i consigli orientativi dati alle intenzioni indicate dagli studenti riguardo alla scelta della scuola superiore<br><br>In <span class="font-bold txt-green">verde</span> sono indicati i consigli orientativi che combaciano con le scelte dello studente.<br>In <span class="font-bold txt-orange">arancione</span> quelli che suggeriscono un indirizzo che non coincide con la scelta dello studente, ma che fa parte della stessa area.<br>In <span class="font-bold txt-red">rosso</span> quelli che non trovano corrispondenza tra le scelte dello studente.</p>
 	</div>

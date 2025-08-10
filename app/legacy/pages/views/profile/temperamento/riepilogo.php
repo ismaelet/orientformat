@@ -5,7 +5,7 @@
 	<?= submit() ?>
 </div>
 
-<div id="img-box" class="mar-t-2 mar-b-5 stack-items grid-flow">
+<div id="img-box" class="mar-t-2 mar-b-5 stack-items grid">
 	<div id="img" class="bgr-fit" <?= background_image('bgr.jpg') ?>></div>
 	<div id="gradient" class="bgr-fit"></div>
 	<div id="shape" class="bgr-fit" <?= background_image('shape.png') ?>></div>

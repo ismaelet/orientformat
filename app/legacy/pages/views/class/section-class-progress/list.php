@@ -55,7 +55,7 @@
 										<section class="filters mb-4">
 										</section>
 
-										<div class="graph grid-flow center-content">
+										<div class="graph grid center-content">
 											<div class="load-icon">
 												<?= embed_icon('loading') ?>
 											</div>

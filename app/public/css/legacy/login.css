@@ -27,21 +27,25 @@ main {
 	background-size: 100% 100%;
 	background-size: cover;
 	background-position: right;
+	object-position: right;
 	transition: translate 0.5s, opacity 0.3s;
 }
 
 .page-background__title {
+	position: relative;
+	justify-self: left;
 	margin-inline: auto;
 	padding-left: 3rem;
-	opacity: 0.5;
+	opacity: 0.7;
 	color: #fff;
 	font-family: var(--ff-titles);
 	font-weight: var(--fw-bold);
-	font-size: max(6vw, 5rem);
+	font-size: max(5vw, 4.5rem);
 	line-height: 0.8;
 	letter-spacing: 0.05em;
 	writing-mode: vertical-rl;
 	text-orientation: mixed;
+	transition: translate 0.5s, opacity 0.3s;
 }
 
 /*
@@ -104,19 +108,21 @@ main {
 /*
 * Register switch
 */
-.page-background--register {
+.login-page .page-background--register,
+.login-page [data-page='register'] {
 	translate: -100% 0;
 	opacity: 0;
 }
 
-.register-page .page-background--login {
+.register-page .page-background--login,
+.register-page [data-page='login'] {
 	translate: -100% 0;
 	opacity: 0;
 }
 
-.register-page .page-background--register {
+.register-page .page-background--register,
+.register-page [data-page='register'] {
 	translate: 0 0;
-	opacity: 1;
 }
 
 .form--register {
@@ -137,7 +143,7 @@ main {
 /*
 * Responsive
 */
-@media (max-width: 1600px) {
+@media (max-width: 1280px) {
 	.page-background__title {
 		display: none;
 	}

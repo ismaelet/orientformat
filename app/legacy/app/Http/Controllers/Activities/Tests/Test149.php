@@ -93,8 +93,8 @@ class Test149 extends Test {
 		ob_start();
 ?>
 
-		<div class="grid-flow" data-spacing="800">
-			<div class="grid-flow" data-spacing="700">
+		<div class="grid" data-spacing="800">
+			<div class="grid" data-spacing="700">
 
 				<?php if (test()->completed) { ?>
 

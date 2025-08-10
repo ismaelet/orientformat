@@ -1,6 +1,6 @@
 {% block content %}
 
-<div class="main-wrap grid-flow" data-spacing="800">
+<div class="main-wrap grid" data-spacing="800">
 	<div class="title__wrapper">
 		<?= title() ?>
 	</div>
@@ -21,7 +21,7 @@
 		</div>
 	</div>
 
-	<div class="grid-flow" data-spacing="700">
+	<div class="grid" data-spacing="700">
 		<?= submit(true) ?>
 	</div>
 </div>

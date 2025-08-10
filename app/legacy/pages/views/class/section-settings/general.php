@@ -1,6 +1,6 @@
 {% block dashboard-body %}
 
-<div class="grid-flow center-content">
+<div class="grid center-content">
 	<form class="dashboard-panel fa-left" method="POST">
 		<h1 class="dashboard-panel__title center-content">Impostazioni della classe</h1>
 
@@ -32,7 +32,7 @@
 
 		</div>
 
-		<div class="form-footer mar-t-2 grid-flow center-content" data-spacing="400">
+		<div class="form-footer mar-t-2 grid center-content" data-spacing="400">
 			<button class="button" name="submit">Salva</button>
 
 			<?php if (!$schoolClass->students->count()) { ?>

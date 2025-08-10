@@ -1,6 +1,6 @@
 {% block content %}
 
-<div class="main-wrap pad-t-5 mar-b-5 grid-flow" data-spacing="800">
+<div class="main-wrap pad-t-5 mar-b-5 grid" data-spacing="800">
 
 	<?= title() ?>
 	<?= submit(true) ?>
@@ -45,14 +45,14 @@
 
 	<!-- Columns descriptions -->
 	<div id="desc-pan" class="">
-		<div id="desc-box" class="grid-flow stack-content">
+		<div id="desc-box" class="grid stack-content">
 
 			<?php foreach ($graph_data as $key => $column) {
 				$fieldID = $key + 1;
 
 			?>
 
-				<div class="field-info grid-flow js-field-info" data-id="<?= $fieldID ?>" data-spacing="400">
+				<div class="field-info grid js-field-info" data-id="<?= $fieldID ?>" data-spacing="400">
 					<h3 class="desc-title txt-blk font-bold txt-15rem"><?= $column[0] ?></h3>
 					<p class="desc-txt txt-1rem txt-blk"><?= $column[1] ?></p>
 				</div>

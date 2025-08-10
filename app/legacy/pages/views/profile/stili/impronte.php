@@ -3,11 +3,11 @@
 <!-- Review view -->
 <?php if ($legacyTest->completed) { ?>
 
-	<div id="results-sec" class="grid-flow main-wrap pad-t-5 pad-b-5" data-spacing="700">
+	<div id="results-sec" class="grid main-wrap pad-t-5 pad-b-5" data-spacing="700">
 
 		<?= title(__('tests.33-title'), __('tests.33-description')) ?>
 
-		<div class="grid-flow" data-columns="25rem" data-spacing="700">
+		<div class="grid" data-columns="25rem" data-spacing="700">
 
 			<div id="method1" class="method" data-tilt>
 
@@ -44,7 +44,7 @@
 	<!-- Initial view -->
 <?php } else { ?>
 
-	<div id="image-sec" class="main-wrap grid-flow" data-spacing="800">
+	<div id="image-sec" class="main-wrap grid" data-spacing="800">
 		<div class="title__wrapper">
 			<?= title() ?>
 		</div>

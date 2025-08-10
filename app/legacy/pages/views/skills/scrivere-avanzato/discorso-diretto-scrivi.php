@@ -1,21 +1,21 @@
 {% block content %}
 
-<div class="test__body main-wrap grid-flow" data-spacing="800">
+<div class="test__body main-wrap grid" data-spacing="800">
 	<div class="title__wrapper">
 		<?= title() ?>
 	</div>
 
-	<div class="sentences grid-flow" data-spacing="700">
+	<div class="sentences grid" data-spacing="700">
 
 		<?php foreach ($sentences as $sentenceKey => $sentence) { ?>
 
-			<div class="sentence surface grid-flow <?= test()->completed ? (strtolower(test()->rawResults[$sentenceKey]) == strtolower($correctAnswers[$sentenceKey]) ? 'correct' : 'wrong') : 0 ?>" data-spacing="700">
-				<div class="grid-flow" data-spacing="400">
+			<div class="sentence surface grid <?= test()->completed ? (strtolower(test()->rawResults[$sentenceKey]) == strtolower($correctAnswers[$sentenceKey]) ? 'correct' : 'wrong') : 0 ?>" data-spacing="700">
+				<div class="grid" data-spacing="400">
 					<h3 class="subsection-title">Discorso indiretto</h3>
 					<p class=""><?= $sentence[0] ?></p>
 				</div>
 
-				<div class="grid-flow" data-spacing="400">
+				<div class="grid" data-spacing="400">
 					<h3 class="subsection-title">Discorso diretto</h3>
 					<div class="flex-group">
 						<p class="test-text"><?= $sentence[1] ?>: "</p>
@@ -29,7 +29,7 @@
 
 	</div>
 
-	<div class="grid-flow" data-spacing="400">
+	<div class="grid" data-spacing="400">
 		<?= submit(true) ?>
 		<?= renderRedoButton() ?>
 	</div>

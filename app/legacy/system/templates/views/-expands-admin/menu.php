@@ -9,7 +9,7 @@
 			</div>
 
 			<!-- Admin sections -->
-			<div class="menu__groups grid-flow js-open-menu" data-spacing="400">
+			<div class="menu__groups grid js-open-menu" data-spacing="400">
 				<!-- <div class="menu__group">
 					<div class="menu-item">
 						<a class="menu-item__header" href="/" target="_blank">

@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form class="content-wrap grid-flow js-form" data-spacing="400" id="form" method="POST" enctype="multipart/form-data">
+<form class="content-wrap grid js-form" data-spacing="400" id="form" method="POST" enctype="multipart/form-data">
 
 	<!-- Title -->
 	<div class="page-title flex-group" data-spacing="200">

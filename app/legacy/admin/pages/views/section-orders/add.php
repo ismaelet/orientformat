@@ -1,14 +1,14 @@
 {% block page-body %}
 
 <!-- Main content -->
-<div class="main-content grid-flow" data-spacing="700">
+<div class="main-content grid" data-spacing="700">
 
 	<!-- Orders -->
 	<section>
 		<h3 class="panel__subtitle panel__subtitle--outside">Dati dell'ordine</h3>
 
 		<div class="panel">
-			<div class="order-data grid-flow" data-spacing="400">
+			<div class="order-data grid" data-spacing="400">
 				<div class="order-data__item">
 					<div class="title-block flex-group">
 						<div class="status-icon status-color--<?= $cart->statusCode ?>">

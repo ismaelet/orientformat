@@ -50,7 +50,7 @@
 
 		<?php } ?>
 
-		<div class="page-footer mar-t-2 grid-flow" data-spacing="700">
+		<div class="page-footer mar-t-2 grid" data-spacing="700">
 			<div>
 				<?= submit(true) ?>
 				<?= skip() ?>

@@ -1,6 +1,6 @@
 {% block content %}
 
-<div class="test__body main-wrap grid-flow" data-spacing="800">
+<div class="test__body main-wrap grid" data-spacing="800">
 	<div class="title__wrapper center-content">
 		<?= title() ?>
 
@@ -10,7 +10,7 @@
 	</div>
 
 	<div class="schools-types__wrapper">
-		<div class="school-types grid-flow">
+		<div class="school-types grid">
 
 			<?php foreach ($schools as $school) { ?>
 

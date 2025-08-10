@@ -2,7 +2,7 @@
 
 <input type="hidden" class="js-score" name="field[]" value="<?= test()->completed ? test()->rawResults[0] : 0 ?>">
 
-<div class="main-wrap grid-flow" data-spacing="900">
+<div class="main-wrap grid" data-spacing="900">
 	<div class="title__wrapper">
 		<?= title() ?>
 	</div>
@@ -13,7 +13,7 @@
 
 	<?php } ?>
 
-	<div class="page-content grid-flow" data-spacing="800">
+	<div class="page-content grid" data-spacing="800">
 		<h3 class="subsection-title center-content">L'8 MARZO È LA FESTA DELLA DONNA. PARLA DELLA CONDIZIONE FEMMINILE</h3>
 
 		<p class="test-text js-text <?= test()->completed ? 'test-text--right-version' : '' ?>">
@@ -35,19 +35,19 @@
 
 		<p class="fa-right">Da D’Orta M. (1994),<span class="fy-italic">Io speriamo che me la cavo. Sessanta temi di bambini napoletani</span>, Mondadori, Milano</p>
 
-		<section class="markers grid-flow <?= test()->completed ? 'markers--completed' : '' ?>" data-spacing="400">
-			<div class="marker grid-flow center-content" data-marker-type="1"><?= __('tests.135-error-type-1') ?></div>
-			<div class="marker grid-flow center-content" data-marker-type="2"><?= __('tests.135-error-type-2') ?></div>
-			<div class="marker grid-flow center-content" data-marker-type="3"><?= __('tests.135-error-type-3') ?></div>
-			<div class="marker grid-flow center-content" data-marker-type="4"><?= __('tests.135-error-type-4') ?></div>
+		<section class="markers grid <?= test()->completed ? 'markers--completed' : '' ?>" data-spacing="400">
+			<div class="marker grid center-content" data-marker-type="1"><?= __('tests.135-error-type-1') ?></div>
+			<div class="marker grid center-content" data-marker-type="2"><?= __('tests.135-error-type-2') ?></div>
+			<div class="marker grid center-content" data-marker-type="3"><?= __('tests.135-error-type-3') ?></div>
+			<div class="marker grid center-content" data-marker-type="4"><?= __('tests.135-error-type-4') ?></div>
 
 			<?php if (test()->completed) { ?>
-				<div class="marker grid-flow center-content" data-marker-type="5"><?= __('tests.135-missed') ?></div>
+				<div class="marker grid center-content" data-marker-type="5"><?= __('tests.135-missed') ?></div>
 			<?php } ?>
 		</section>
 	</div>
 
-	<div class="grid-flow" data-spacing="700">
+	<div class="grid" data-spacing="700">
 		<?= renderRedoButton(true) ?>
 
 		<div>

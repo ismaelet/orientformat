@@ -1,18 +1,18 @@
 {% block content %}
 
-<div class="test__body main-wrap grid-flow" data-spacing="800">
+<div class="test__body main-wrap grid" data-spacing="800">
 	<div class="title__wrapper">
 		<?= title() ?>
 	</div>
 
-	<div class="sentences grid-flow" data-spacing="700">
+	<div class="sentences grid" data-spacing="700">
 
 		<?php foreach ($sentences as $sentenceKey => $sentence) { ?>
 
-			<div class="sentence grid-flow <?= test()->completed ? (test()->rawResults[$sentenceKey] == $correctAnswers[$sentenceKey] ? 'correct' : 'wrong') : null ?>" data-spacing="400">
+			<div class="sentence grid <?= test()->completed ? (test()->rawResults[$sentenceKey] == $correctAnswers[$sentenceKey] ? 'correct' : 'wrong') : null ?>" data-spacing="400">
 				<p class="original-sentence"><?= $sentence['original'] ?></p>
 
-				<div class="choices grid-flow" data-spacing="200">
+				<div class="choices grid" data-spacing="200">
 
 					<?php foreach ($sentence['choices'] as $choiceKey => $choice) { ?>
 
@@ -31,7 +31,7 @@
 
 	</div>
 
-	<div class="grid-flow" data-spacing="700">
+	<div class="grid" data-spacing="700">
 		<?= submit(true) ?>
 		<?= renderRedoButton() ?>
 	</div>

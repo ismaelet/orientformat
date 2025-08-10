@@ -50,8 +50,8 @@
 						<div class="fruit js-fruit <?= empty($fruitsResults[$fruitId]) ? '' : 'active' ?>" data-fruit-id="<?= $fruitId ?>">
 							<input type="hidden" class="js-fruit-value" name="fruit[]" value="<?= $fruitsResults[$fruitId] ?? null ?>" data-fruit-id="<?= $fruitId ?>">
 
-							<div class="fruit__content grid-flow stack-content center-content js-fruit-interaction js-open-modal" data-target="fruit-modal">
-								<div class="fruit__images grid-flow stack-content">
+							<div class="fruit__content grid stack-content center-content js-fruit-interaction js-open-modal" data-target="fruit-modal">
+								<div class="fruit__images grid stack-content">
 									<img class="fruit__image" src="<?= client_path('fruit-' . $i) ?>">
 									<img class="fruit__image fruit__image--highlight " src="<?= client_path('fruit-' . $i . '-highlight') ?>">
 								</div>
@@ -75,7 +75,7 @@
 </section>
 
 <section class="modal" id="branch-modal">
-	<div class="modal__content grid-flow center-content" data-spacing="700">
+	<div class="modal__content grid center-content" data-spacing="700">
 		<h2 class="subsection-title">Inserisci il nome della categoria</h2>
 		<input type="text" class="input fa-center js-branch-name-input" placeholder="Per es. musica, arte, sport o abilità manuali" maxlength="25">
 		<button type="button" class="button js-add-branch js-close-modal">Inserisci</button>
@@ -83,7 +83,7 @@
 </section>
 
 <section class="modal" id="fruit-modal">
-	<div class="modal__content grid-flow center-content" data-spacing="700">
+	<div class="modal__content grid center-content" data-spacing="700">
 		<h2 class="subsection-title">Inserisci la competenza</h2>
 		<input type="text" class="input fa-center js-fruit-name-input" placeholder="Per es. suonare la chitarra, giocare a calcio, disegnare, ecc." maxlength="25">
 		<button type="button" class="button js-add-fruit js-close-modal">Inserisci</button>
