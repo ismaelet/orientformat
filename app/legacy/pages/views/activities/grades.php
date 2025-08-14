@@ -7,7 +7,7 @@ use \Legacy\SchoolSystem\Grade as SchoolSystemGrade;
 
 {% block main %}
 
-<div class="grades flex-group main-wrap <?= $schoolClass->isMiddleSchool ? 'grades--middleschool' : 'grades--highschool' ?>">
+<div class="grades flex main-wrap <?= $schoolClass->isMiddleSchool ? 'grades--middleschool' : 'grades--highschool' ?>">
 
 	<?php for ($i = $schoolClass->minimumGrade; $i <= $schoolClass->currentGrade; $i++) {
 		$year = new SchoolSystemGrade($i);
@@ -19,7 +19,7 @@ use \Legacy\SchoolSystem\Grade as SchoolSystemGrade;
 				<h3 class="grade__number ff-serif"><?= $year->romanNumeral ?></h3>
 
 				<div class="grade__content">
-					<div class="grade__body grid center-content" data-spacing="700">
+					<div class="grade__body grid center-content gap-4">
 						<h3 class="grade__name colored-title"><?= __('misc.grade-description', ['numeral' => __($year->adjective)]) ?></h3>
 						<p class="grade__text">
 							<?= __('misc.grade-cta', ['numeral' => __($year->adjective)]) ?>

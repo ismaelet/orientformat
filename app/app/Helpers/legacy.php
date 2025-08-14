@@ -215,3 +215,17 @@ function download_csv($array, $title, $separator = ',', $download = true) {
 	echo generate_csv($array, $separator);
 	die();
 }
+
+function embed_icon($icon): string {
+	$iconPath = base_path() . '/resources/svg/icons/' . $icon . '.svg';
+
+	if (file_exists($iconPath)) {
+		return str_replace('<svg ', '<svg class="icon-embed"', file_get_contents($iconPath));
+	}
+
+	return '';
+}
+
+function is_teacher_or_administrator(): bool {
+	return is_teacher() || is_administrator();
+}

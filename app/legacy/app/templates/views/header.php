@@ -88,7 +88,7 @@
 
 						<input type="checkbox" class="hidden" :checked="open">
 
-						<div class="absolute left-1/2 -translate-x-1/2 z-100 shadow-rg p-3 rounded-sm language-dropdown bg-background">
+						<div class="absolute left-1/2 -translate-x-1/2 z-100 shadow-rg p-3 rounded-sm language-dropdown bg-background grid gap-4">
 
 							<?php foreach (config('app.locales') as $locale => $language) {
 								if ($locale != App::currentLocale()) { ?>

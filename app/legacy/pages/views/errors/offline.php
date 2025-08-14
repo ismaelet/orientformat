@@ -9,7 +9,7 @@
 	</p>
 </div>
 <!-- Login button -->
-<form class="flex-group center-content" method="POST">
+<form class="flex center-content" method="POST">
 	<button class="login-button button button--empty button--auto-width" type="submit" name="submit">
 		<?= embed_icon('key') ?>
 		<?= __('Admin login') ?>

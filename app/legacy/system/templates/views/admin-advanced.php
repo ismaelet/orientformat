@@ -5,7 +5,7 @@
 <form class="content-wrap grid js-form" data-spacing="400" id="form" method="POST" enctype="multipart/form-data">
 
 	<!-- Title -->
-	<div class="page-title flex-group" data-spacing="200">
+	<div class="page-title flex" data-spacing="200">
 		<a href="list" class="title-arrow border border-radius">
 			<?= embed_icon('navigation/arrow1-left') ?>
 		</a>

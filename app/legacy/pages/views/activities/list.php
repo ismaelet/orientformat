@@ -33,7 +33,9 @@
 							<?php if ($legacyArea->id == 4) { ?>
 
 								<a class="button button--secondary push-center" href="<?= route('analysis.student.area', $area) ?>">
-									<?= embed_icon('read') ?>
+									<span class="w-5 block">
+										<?= embed_icon('read') ?>
+									</span>
 									<?= __('Know More') ?>
 								</a>
 
@@ -47,9 +49,9 @@
 
 								<div class="section-wrapper js-load load--fade-in section-color section-color--area-<?= $legacySection->areaId ?>" data-direction="bottom" data-delay="<?= $key % 3 ?>">
 									<a class="section <?= $legacySection->progressPercentage == 100 ? 'completed' : '' ?>" <?= 'href="' . $legacySection->clientUrl . '&slug=' . $legacySection->slug . '"' ?>>
-										<div class="section-img gradient-overlay grid stack-content center-content">
+										<div class="section-img gradient-overlay grid stack-content items-center justify-items-center">
 											<div class="section-img-over"></div>
-											<div class="section__icon">
+											<div class="section__icon w-20 flex justify-center">
 												<?= embed_icon($legacySection->icon) ?>
 											</div>
 										</div>
@@ -61,11 +63,13 @@
 
 												<?php if ($legacySection->isStandard) { ?>
 
-													<p class="section__progress flex-group center-content fw-semibold">
+													<p class="section__progress flex center-content fw-semibold">
 
 														<?php if ($legacySection->progressPercentage == 100) { ?>
 
-															<?= embed_icon('correct') ?>
+															<span class="w-4">
+																<?= embed_icon('correct') ?>
+															</span>
 															<?= __('Section completed') ?>
 
 														<?php } else { ?>

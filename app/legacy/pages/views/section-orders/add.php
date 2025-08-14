@@ -10,7 +10,7 @@
 		<div class="panel">
 			<div class="order-data grid" data-spacing="400">
 				<div class="order-data__item">
-					<div class="title-block flex-group">
+					<div class="title-block flex">
 						<div class="status-icon status-color--<?= $cart->statusCode ?>">
 							<?= embed_icon($cart->statusIcon) ?>
 						</div>
@@ -80,7 +80,7 @@
 		</div>
 	</section>
 
-	<section class="cart-actions flex-group">
+	<section class="cart-actions flex">
 		<?php if ($cart->statusCode != 'canceled') { ?>
 
 			<button type="submit" class="cart-action button button--auto-width button--secondary button--bad" name="statusId" value="-1">

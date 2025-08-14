@@ -17,7 +17,7 @@
 
 				<div class="grid" data-spacing="400">
 					<h3 class="subsection-title">Discorso diretto</h3>
-					<div class="flex-group">
+					<div class="flex">
 						<p class="test-text"><?= $sentence[1] ?>: "</p>
 						<input type="text" class="js-field test-input" name="field[]" value="<?= test()->rawResults[$sentenceKey] ?? null ?>" placeholder="Discroso diretto">
 						<p class="test-text">"</p>

@@ -109,7 +109,7 @@ class Test149 extends Test {
 
 				<?php if (!test()->completed && !isSupervisor()) { ?>
 
-					<div class="test__text-selectors flex-group center-content" data-columns="15rem" data-spacing="400">
+					<div class="test__text-selectors flex center-content" data-columns="15rem" data-spacing="400">
 
 						<?php foreach ($this->parameters['markers'] as $markerKey => $marker) { ?>
 

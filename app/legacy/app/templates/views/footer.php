@@ -24,7 +24,7 @@
 							<a class="text-link" href="mailto:iprase@iprase.tn.it">iprase@iprase.tn.it</a>, <a class="text-link" href="mailto:iprase@pec.provincia.tn.it">iprase@pec.provincia.tn.it</a>
 						</p>
 
-						<div class="flex-group" data-spacing="200">
+						<div class="flex" data-spacing="200">
 							<a class="f-contact" href="<?= config('custom.contacts.twitter.url') ?>">
 								<?= embed_icon('contacts/twitter') ?>
 							</a>

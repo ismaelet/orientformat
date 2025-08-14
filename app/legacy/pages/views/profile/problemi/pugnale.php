@@ -47,7 +47,7 @@
 			<div class="weapons grid" data-spacing="700">
 				<h2 class="section-title center-content">Oggetti</h2>
 
-				<div class="weapon-list flex-group">
+				<div class="weapon-list flex">
 
 					<?php for ($i = 1; $i <= 4; $i++) { ?>
 

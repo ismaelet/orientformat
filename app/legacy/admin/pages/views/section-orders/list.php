@@ -12,7 +12,7 @@ use function Ecommerce\ecommerce_config;
 	<!-- Status -->
 	<div class="filter">
 		<div class="filter__title">
-			<h3 class="font-bold flex-group">
+			<h3 class="font-bold flex">
 				Stato
 
 				<?php if ($selectedCartStatuses != $defaultCartStatuses) { ?>
@@ -26,7 +26,7 @@ use function Ecommerce\ecommerce_config;
 			</h3>
 		</div>
 
-		<div class="flex-group mar-t-1" data-spacing="200">
+		<div class="flex mar-t-1" data-spacing="200">
 			<input type="checkbox" class="hidden js-empty-filter-status" name="empty-filter-status" <?= empty($selectedCartStatuses) ? 'checked' : '' ?> data-default-status="0">
 
 			<?php foreach (ecommerce_config('cart-statuses') as $statusId => $status) { ?>

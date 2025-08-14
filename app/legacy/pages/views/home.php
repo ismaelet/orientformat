@@ -1,7 +1,7 @@
 {% block main %}
 
 <div class="page__wrapper grid">
-	<div class="page__content grid" data-spacing="800">
+	<div class="page__content grid gap-8" data-spacing="800">
 		<h1 class="">Orientamento<br><span class="highlight">Formativo</span></h1>
 		<p class="page__subtitle"><?= __('home.description') ?></p>
 

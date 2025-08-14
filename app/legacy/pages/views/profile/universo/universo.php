@@ -48,7 +48,7 @@
 <section class="modal" id="interest-modal">
 	<div class="modal__content contrasting-background grid center-content" data-spacing="700">
 		<h2 class="subsection-title">Inserisci l'interesse</h2>
-		<input type="text" class="modal-input js-interest" placeholder="Interesse" maxlength="50">
+		<input type="text" class="modal-input js-interest bg-white" placeholder="Interesse" maxlength="50">
 		<button type="button" class="button js-add-interest js-close-modal">Inserisci</button>
 	</div>
 </section>

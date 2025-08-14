@@ -17,7 +17,7 @@
 
 		<?php if (!test()->completed) { ?>
 
-			<div class="flex-group center-content" data-spacing="800">
+			<div class="flex center-content" data-spacing="800">
 				<div class="test-group test-group--linear js-load">
 					<span class="pattern-1-original"></span>
 					<span class="pattern-2-original"></span>
@@ -45,7 +45,7 @@
 
 		<?php } ?>
 
-		<div class="flex-group center-content <?= test()->completed ? 'completed' : null ?>" data-spacing="700">
+		<div class="flex center-content <?= test()->completed ? 'completed' : null ?>" data-spacing="700">
 
 			<?php for ($i = 1; $i <= 4; $i++) { ?>
 
