@@ -39,4 +39,11 @@ class Teacher extends Model {
 	public function school_classes(): BelongsToMany {
 		return $this->belongsToMany(SchoolClass::class);
 	}
+
+	/**
+	 * Check if the teacher has access to a specific class
+	 */
+	public function hasAccessToClass(SchoolClass $class): bool {
+		return $this->school_classes->pluck('id')->contains($class->id);
+	}
 }

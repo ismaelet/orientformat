@@ -78,7 +78,7 @@ class SchoolClass extends Model {
 	 * Get the class's url
 	 */
 	public function url(): string {
-		return client_url('/class?class-id=' . $this->id);
+		return route('class.show', ['class' => $this->id]);
 	}
 
 	/**
