@@ -265,3 +265,8 @@ function hypens_to_camel_case(string $string, bool $capitalizeFirstCharacter = f
 
 	return $string;
 }
+
+function bump(&$array) {
+	array_unshift($array, '');
+	unset($array[0]);
+}

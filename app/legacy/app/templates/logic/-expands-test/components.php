@@ -78,7 +78,7 @@ function submit(bool $progressiveButton = false) {
 		case $legacyTest->completed && $legacyTest->section->completed: ?>
 
 			<div class="fa-center">
-				<a class="button button--secondary button--full-width js-submit-button" href="<?= client_url($section->url()) ?>"><?= $label ?></a>
+				<a class="button button--secondary button--full-width js-submit-button" href="<?= $section->url() ?>"><?= $label ?></a>
 			</div>
 
 		<?php break;

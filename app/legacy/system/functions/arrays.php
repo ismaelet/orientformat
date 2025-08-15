@@ -23,11 +23,6 @@ function extract_subvalue(array $array, $subKey) {
 	return $array;
 }
 
-function bump(&$array) {
-	array_unshift($array, '');
-	unset($array[0]);
-}
-
 function array_to_sql($array) {
 	$sqlArray = is_array($array) ? "'" . implode("','", $array) . "'" : '';
 	return $sqlArray;

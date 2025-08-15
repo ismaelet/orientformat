@@ -8,10 +8,10 @@
 
 	<?php if ($legacyTest->completed || !$supervisorView) { ?>
 
-		<div id="content" class="wrap">
+		<div id="content" class="wrap aspect-square">
 
 			<!-- Hexagons -->
-			<div id=" hexagons" class="<?= $legacyTest->completed ? 'completed' : '' ?>">
+			<div id="hexagons" class="<?= $legacyTest->completed ? 'completed' : '' ?>">
 
 				<?php for ($i = 1; $i < 5; $i++) { ?>
 
