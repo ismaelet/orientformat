@@ -36,7 +36,7 @@ class SchoolClassResource extends ResourceController {
 		$this->query = SchoolClass::join('schools', 'schools.id', '=', 'school_classes.schoolId')
 			->leftJoin('users as referents', 'referents.id', '=', 'school_classes.referentId')
 			->select('school_classes.*', 'schools.name as school_name')
-			->selectRaw('CONCAT(referents.firstName, " ", referents.lastName) as referent_name');
+			->selectRaw('CONCAT(referents.first_name, " ", referents.last_name) as referent_name');
 
 		// Add search filter
 		if ($request->search) {
@@ -44,8 +44,8 @@ class SchoolClassResource extends ResourceController {
 				->orWhere('grade', $request->search)
 				->orWhere('letter', $request->search)
 				->orWhere('code', $request->search)
-				->orWhere('referents.firstName', 'like', '%' . $request->search . '%')
-				->orWhere('referents.lastName', 'like', '%' . $request->search . '%')
+				->orWhere('referents.first_name', 'like', '%' . $request->search . '%')
+				->orWhere('referents.last_name', 'like', '%' . $request->search . '%')
 				->orWhere('schools.name', 'like', '%' . $request->search . '%');
 		}
 

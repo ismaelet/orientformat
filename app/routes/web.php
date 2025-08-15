@@ -1,58 +1,22 @@
 <?php
 
-use App\Http\Controllers\Activities\GradeController;
-use App\Http\Controllers\Activities\StudentAnalysisController;
-use App\Http\Controllers\AdministratorDashboardController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LegacyController;
-use App\Http\Controllers\StudentHomeController;
-use App\Http\Controllers\TeacherDashboardController;
-use App\Http\Middleware\Admin;
-use App\Http\Middleware\Administrator;
-use App\Http\Middleware\Student;
-use App\Http\Middleware\TeacherOrAdministrator;
-use App\Models\Schools\SchoolClass;
-use App\Models\User\Student as UserStudent;
-use App\Models\User\Teacher;
-use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\LocaleController;
+use App\Http\Middleware\Locale;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::prefix(env('APP_SUBDOMAIN'))->group(function () {
+	// Localization
+	Route::get('locale/{locale}', [LocaleController::class, 'switchLocale'])->name('locale.switch');
 
-/**
- * Localization
- */
-Route::get('locale/{locale}', [\App\Http\Controllers\LocaleController::class, 'switchLocale'])->name('locale.switch');
+	// Home
+	Route::get('', [HomeController::class, 'index'])->middleware(['auth', Locale::class])->name('home');
+});
 
-/**
- * App routes
- */
-// Home
-Route::get('', [HomeController::class, 'index'])->middleware('auth')->name('home');
-
-/**
- * Parcially legacy routes
- */
-// Home pages
-Route::any('student', [StudentHomeController::class, 'index'])->middleware(Student::class)->name('student');
-
-Route::any('administrator-dashboard', [AdministratorDashboardController::class, 'index'])->middleware(Administrator::class)->name('administrator.dashboard');
-
-// Student Activities
-Route::any('activities/grades', [GradeController::class, 'index'])->middleware([Student::class])->name('activities.grades.index');
-Route::any('activities/grades/{grade}', [GradeController::class, 'show'])->middleware([Student::class])->name('activities.grades.show');
-
-// Student Analisys
-Route::any('analysis/student/areas/{area}', [StudentAnalysisController::class, 'show'])->middleware(['auth'])->name('analysis.student.area');
-Route::any('analysis/student/sections/{section}', [StudentAnalysisController::class, 'show'])->name('analysis.student.section');
-
+include __DIR__ . '/web-auth.php';
+include __DIR__ . '/web-student.php';
+include __DIR__ . '/web-teacher.php';
+include __DIR__ . '/web-administrator.php';
 include __DIR__ . '/web-db.php';
+
+// Route::any('{path}', LegacyController::class)->where('path', '.*');

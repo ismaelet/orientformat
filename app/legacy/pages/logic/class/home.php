@@ -28,7 +28,7 @@ $maxProgressCount = $legacySectionsCount * $schoolClass->activeStudentCount;
 $progressPercent = $maxProgressCount ? round($progressCount / $maxProgressCount * 100) : 0;
 
 // fetch students
-$students = $schoolClass->studentCount ? \App\Legacy\LegacyDB::select('* FROM users WHERE id IN (' . $schoolClass->studentIdsString . ') ORDER BY lastName ASC, firstName ASC, id DESC') : null;
+$students = $schoolClass->studentCount ? \App\Legacy\LegacyDB::select('* FROM users WHERE id IN (' . $schoolClass->studentIdsString . ') ORDER BY last_name ASC, first_name ASC, id DESC') : null;
 
 // feed
 $maxFeedCount = round(13 / 19 * $schoolClass->studentCount);

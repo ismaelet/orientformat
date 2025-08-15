@@ -7,13 +7,6 @@ use app\Http\Controllers\Activities\Test;
 
 /**
  * Specific test class
- * 
- * @property int $resultCount = 0 <inherited>
- * @property bool $buttonIsProgressive = false <inherited>
- * @property bool $skipEnabled = false <inherited>
- * @property bool $retryEnabled = false <inherited>
- * @property array $parameters = [] <inherited>
- * @property array $arguments = []
  */
 class RuotaIVoltiParlano extends Test {
 

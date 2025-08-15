@@ -5,20 +5,19 @@ namespace App\Models\Activities;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Test extends Model {
 
+	use SoftDeletes;
+
 	/**
 	 * The table associated with the model.
-	 * 
-	 * @var string
 	 */
 	protected $table = 'activities_tests';
 
 	/**
 	 * The attributes that are mass assignable.
-	 * 
-	 * @var array<string>
 	 */
 	protected $fillable = [
 		'sectionId',
@@ -33,8 +32,6 @@ class Test extends Model {
 
 	/**
 	 * The short description of the test.
-	 * 
-	 * @return \Illuminate\Database\Eloquent\Casts\Attribute
 	 */
 	protected function summary(): Attribute {
 		return Attribute::make(
@@ -44,8 +41,6 @@ class Test extends Model {
 
 	/**
 	 * Section
-	 * 
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
 	public function section(): BelongsTo {
 		return $this->belongsTo(Section::class, 'sectionId');
@@ -53,9 +48,6 @@ class Test extends Model {
 
 	/**
 	 * URL
-	 * 
-	 * @param int|null $studentId
-	 * @return string
 	 */
 	public function url(?int $studentId): string {
 		return '/activities/tests/' . $this->id . ($studentId ? '?student_id=' . $studentId : '');

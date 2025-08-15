@@ -1,6 +1,7 @@
 <?php
 
 use \Legacy\Activity\Test as LegacyTest;
+use Legacy\LogicManager\TestLogic;
 
 $legacyTest = test();
 $legacySection = $legacyTest->section;
@@ -15,7 +16,7 @@ if (isset($_POST['submit']) || isset($_POST['review']) || isset($_POST['skip']))
 
 	if (test()->template != 'test-next') {
 		// get the score
-		$score = \LogicManager\TestLogic::$legacyTestSubmitFunction ? \LogicManager\TestLogic::runTestSubmitFunction() : 100;
+		$score = TestLogic::$legacyTestSubmitFunction ? TestLogic::runTestSubmitFunction() : 100;
 
 		// save the results
 		$result = [];
@@ -35,8 +36,8 @@ if (isset($_POST['submit']) || isset($_POST['review']) || isset($_POST['skip']))
 		$completed = !isset($_POST['skip']);
 
 		// save result
-		test()->saveResult($result, $score, $completed, $speed);
-		test()->advance(isset($_POST['review']));
+		$legacyTest->saveResult($result, $score, $completed, $speed);
+		$legacyTest->advance(isset($_POST['review']));
 	}
 }
 

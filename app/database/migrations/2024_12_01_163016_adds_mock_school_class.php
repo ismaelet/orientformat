@@ -47,8 +47,8 @@ class AddsMockSchoolClass extends Migration {
 				'username' => 'studente.test' . $random,
 				'email' => 'studente' . $random . '@test.com',
 				'password' => $oldUser->password,
-				'firstName' => 'Studente',
-				'lastName' => 'Test',
+				'first_name' => 'Studente',
+				'last_name' => 'Test',
 			]);
 
 			// Copy the student

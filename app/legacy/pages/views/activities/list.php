@@ -48,7 +48,7 @@
 							<?php foreach ($legacyArea->getSections($legacyGrade->fullId) as $key => $legacySection) { ?>
 
 								<div class="section-wrapper js-load load--fade-in section-color section-color--area-<?= $legacySection->areaId ?>" data-direction="bottom" data-delay="<?= $key % 3 ?>">
-									<a class="section <?= $legacySection->progressPercentage == 100 ? 'completed' : '' ?>" <?= 'href="' . $legacySection->clientUrl . '&slug=' . $legacySection->slug . '"' ?>>
+									<a class="section <?= $legacySection->progressPercentage == 100 ? 'completed' : '' ?>" <?= 'href="' . $legacySection->newSection()->url() . '"' ?>>
 										<div class="section-img gradient-overlay grid stack-content items-center justify-items-center">
 											<div class="section-img-over"></div>
 											<div class="section__icon w-20 flex justify-center">

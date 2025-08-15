@@ -1,24 +1,24 @@
-$(document).ready(function() {
+$(document).ready(function () {
+	var autocomplete = true
 
-	var autocomplete = true;
-
-	if ($('.inp[name="username"]').val().length) { autocomplete = false; }
-
-	$('.inp[name="firstname"]').keyup(function() { generate_username(); });
-	$('.inp[name="lastname"]').keyup(function() { generate_username(); });
-
-	function generate_username() {
-
-		const firstname = $('.inp[name="firstname"]').val().replace(' ', '').substring(0, 8).toLowerCase();
-		const lastname = $('.inp[name="lastname"]').val().replace(' ', '').substring(0, 8).toLowerCase();
-		const num = Math.floor(Math.random() * 8999) + 1000;
-
-		if (firstname.length && lastname.length && autocomplete) {
-
-			$('.inp[name="username"]').val(lastname + '.' + firstname + num);
-
-		}
-
+	if ($('.inp[name="username"]').val().length) {
+		autocomplete = false
 	}
 
-});
+	$('.inp[name="first_name"]').keyup(function () {
+		generate_username()
+	})
+	$('.inp[name="last_name"]').keyup(function () {
+		generate_username()
+	})
+
+	function generate_username() {
+		const first_name = $('.inp[name="first_name"]').val().replace(' ', '').substring(0, 8).toLowerCase()
+		const last_name = $('.inp[name="last_name"]').val().replace(' ', '').substring(0, 8).toLowerCase()
+		const num = Math.floor(Math.random() * 8999) + 1000
+
+		if (first_name.length && last_name.length && autocomplete) {
+			$('.inp[name="username"]').val(last_name + '.' + first_name + num)
+		}
+	}
+})

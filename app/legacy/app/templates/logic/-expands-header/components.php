@@ -233,7 +233,7 @@ $headerComponent['profile'] = '
 			' . embed_icon('profile-circle') . '
 		</div>
 
-		<p>' . ($user->firstname ?: 'Profilo') . '</p>
+		<p>' . ($user->first_name ?: 'Profilo') . '</p>
 	</a>
 ';
 

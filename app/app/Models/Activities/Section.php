@@ -8,23 +8,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Section extends Model {
 
 	/**
-	 * The table associated with the model.
+	 * The table associated with the model
 	 */
 	protected $table = 'activities_sections';
 
 	/**
-	 * * Relationships
-	 */
-
-	/**
-	 * Area
+	 * Relationship: The area that this section belongs to
 	 */
 	public function area(): BelongsTo {
 		return $this->belongsTo(Area::class, 'areaId');
 	}
 
 	/**
-	 * Main section
+	 * Relationship: The main section that this section belongs to
 	 */
 	public function main_section(): BelongsTo {
 		if (!$this->mainSectionId) {
@@ -35,13 +31,9 @@ class Section extends Model {
 	}
 
 	/**
-	 * * Attributes
-	 */
-
-	/**
-	 * URL
+	 * Get the URL for the section
 	 */
 	public function url(): string {
-		return '/activities/sections/' . $this->id;
+		return route('section', ['section' => $this]);
 	}
 }

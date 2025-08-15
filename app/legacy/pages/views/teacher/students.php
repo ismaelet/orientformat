@@ -54,8 +54,8 @@
 					<form method="POST" action="#row<?= $student['id'] ?>" id="row<?= $student['id'] ?>" class="row">
 
 						<p class="field"><?= $student['username'] ?></p>
-						<p class="field"><?= $student['lastname'] ?></p>
-						<p class="field"><?= $student['firstname'] ?></p>
+						<p class="field"><?= $student['last_name'] ?></p>
+						<p class="field"><?= $student['first_name'] ?></p>
 						<p class="field"><?= $student['time'] ?></p>
 						<p class="field"><?= $student['status'] ? '<strong>SI</strong>' : 'NO' ?></p>
 

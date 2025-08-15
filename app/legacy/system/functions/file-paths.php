@@ -67,7 +67,7 @@ function icon_url($file) {
 }
 
 // get an embedded icon
-function icon_embed(string $file, array $customClasses = []) {
+function embed_icon(string $file, array $customClasses = []) {
 	$_old_classes = ['icon-embed'];
 
 	foreach ($customClasses as $_old_class) {

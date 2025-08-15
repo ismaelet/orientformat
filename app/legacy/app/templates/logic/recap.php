@@ -12,7 +12,7 @@ $area = Area::find($legacyArea->id);
 if (is_teacher_or_administrator()) {
 	$backUrl = client_url('/teacher/simulation');
 } else {
-	$gradeNumber = $_SESSION['activities-year'] ?? student()->schoolClass->relativeGrade;
+	$gradeNumber = session()->get('activities-year') ?? student()->schoolClass->relativeGrade;
 	$backUrl = route('activities.grades.show', $gradeNumber);
 }
 
@@ -30,7 +30,7 @@ while ($row = $res->fetch_assoc()) {
 	$legacyTest_arr = [
 		'obj' => $legacyTestM,
 		'desc' => $desc,
-		'img' => '/pages/assets/' . $legacySection->mainSection->filePath . '/recap/' . $legacyTestM->slug,
+		'img' => 'tests/' . $legacySection->mainSection->slug . '/recap/' . $legacyTestM->slug,
 	];
 
 	$legacyTests[] = $legacyTest_arr;

@@ -56,26 +56,6 @@ use \Legacy\Activity\Test as LegacyTest;
 		->show();
 });
 
-\App\Legacy\LegacyRoute::add('/activities/sections/*', function ($path) {
-	$sectionId = ArrayHelper::explodeLast('/', $path)[1];
-	$legacySection = new LegacySection($sectionId);
-
-	$page = $legacySection->filePath . '/recap';
-	$template = 'recap';
-	$title = 'Riepilogo ' . $legacySection->name;
-
-
-	add_grade_style();
-
-	// render
-	\App\Legacy\LegacyView::setPage($page)
-		->setTemplate($template)
-		->setTitle($title)
-		->setMiddlewares(['public', 'logged', 'active', 'beginner-review', 'required-email'])
-		->set('section', $legacySection)
-		->show();
-});
-
 // interests
 \App\Legacy\LegacyRoute::add('/interest', function () {
 

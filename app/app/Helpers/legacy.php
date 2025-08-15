@@ -2,7 +2,9 @@
 
 use App\Models\User\Administrator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Legacy\UserSystem\ActiveStudent;
+use \Legacy\Activity\Test as LegacyTest;
 
 function student() {
 	return is_teacher() ? teacher() : ActiveStudent::getInstance();
@@ -90,8 +92,8 @@ function rows_to_objects(\App\Legacy\Query_Result $rows = null, string $classNam
 	return $objects;
 }
 
-function test() {
-	return \App\Legacy\LegacyView::get('test');
+function test(): ?LegacyTest {
+	return new LegacyTest(request()->route('test')?->id);
 }
 
 function testId() {
@@ -223,9 +225,33 @@ function embed_icon($icon): string {
 		return str_replace('<svg ', '<svg class="icon-embed"', file_get_contents($iconPath));
 	}
 
+	Log::error("Icon file not found: {$iconPath}");
+
 	return '';
 }
 
 function is_teacher_or_administrator(): bool {
 	return is_teacher() || is_administrator();
+}
+
+function watchedStudentId() {
+	return request()->student_id ?? \Illuminate\Support\Facades\Auth::id();
+}
+
+function isSupervisor() {
+	return watchedStudentId() != \Illuminate\Support\Facades\Auth::id();
+}
+
+function get_grade_style() {
+	if (isSupervisor()) {
+		return watchedStudent()->isInMiddleSchool ? 'middleschool' : 'highschool';
+	}
+
+	if (is_teacher_or_administrator()) {
+		return 'highschool';
+	}
+
+	if (is_student()) {
+		return student()->isInMiddleSchool ? 'middleschool' : 'highschool';
+	}
 }

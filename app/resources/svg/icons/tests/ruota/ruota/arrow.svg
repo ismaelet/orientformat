@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 114.05 40.73">
+	<defs>
+		<linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+			<stop offset="0%" style="stop-color:#9caec9;stop-opacity:1" />
+			<stop offset="33%" style="stop-color:#8c85d3;stop-opacity:1" />
+			<stop offset="66%" style="stop-color:#ae6ade;stop-opacity:1" />
+			<stop offset="100%" style="stop-color:#e84ddb;stop-opacity:1" />
+		</linearGradient>
+	</defs>
+	<g id="objects">
+		<path fill="url(#grad1)" class="cls-1"
+			d="m113.03,18.41L87.46.44c-1.59-1.12-3.77.02-3.77,1.95v11.75H26.69c-9.71,0-18.76,1.81-24.74,3.36-2.51.65-2.62,4.17-.16,5.01,7.84,2.67,16.08,4.04,24.39,4.04h25.91l31.6.04v11.76c0,1.93,2.18,3.07,3.77,1.95l25.57-17.97c1.36-.95,1.36-2.96,0-3.91Z" />
+	</g>
+</svg>

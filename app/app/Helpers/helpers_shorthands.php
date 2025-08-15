@@ -33,6 +33,13 @@ function is_administrator(): bool {
 }
 
 /**
+ * Check if the user is an admin
+ */
+function is_admin(): bool {
+	return Auth::user()?->is_admin;
+}
+
+/**
  * Get the path of a file in the public storage directory
  */
 function public_asset(string $path): string {

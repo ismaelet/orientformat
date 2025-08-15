@@ -11,5 +11,5 @@ $legacySection = new Section($sectionId);
 $area = new Area($areaId);
 
 $returnLink = $legacySection->id ?
-	client_url('/profile/section?id=' . $legacySection->id) :
+	$legacySection->newSection()->url() :
 	route('activities.grades.index');

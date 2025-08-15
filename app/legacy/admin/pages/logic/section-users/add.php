@@ -5,7 +5,7 @@ $user = new \App\Legacy\User($_GET['id'] ?? null);
 /**
  * Query configuration
  */
-$queryConfig['select'] = ['id', 'CONCAT(firstName, " ", lastname) as fullName'];
+$queryConfig['select'] = ['id', 'CONCAT(first_name, " ", last_name) as fullName'];
 $queryConfig['table'] = 'users';
 $queryConfig['index-field'] = 'id';
 $queryConfig['title-field'] = 'fullName';
@@ -23,8 +23,8 @@ if (!$user->id) {
 		],
 		[
 			['type' => 'lbl', 'text' => 'Nome e cognome',],
-			['text' => 'Nome', 'name' => 'firstName', 'size' => 2,],
-			['text' => 'Cognome', 'name' => 'lastName', 'size' => 2,]
+			['text' => 'Nome', 'name' => 'first_name', 'size' => 2,],
+			['text' => 'Cognome', 'name' => 'last_name', 'size' => 2,]
 		],
 		[
 			['type' => 'lbl', 'text' => 'Tipologia',],
@@ -46,8 +46,8 @@ if (!$user->id) {
 		],
 		[
 			['type' => 'lbl', 'text' => 'Nome e cognome',],
-			['text' => 'Nome', 'name' => 'firstName', 'value' => $user->firstName, 'size' => 2,],
-			['text' => 'Cognome', 'name' => 'lastName', 'value' => $user->lastName, 'size' => 2,]
+			['text' => 'Nome', 'name' => 'first_name', 'value' => $user->first_name, 'size' => 2,],
+			['text' => 'Cognome', 'name' => 'last_name', 'value' => $user->last_name, 'size' => 2,]
 		],
 		[
 			['type' => 'lbl', 'text' => 'Tipologia',],

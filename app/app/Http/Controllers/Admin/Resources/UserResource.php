@@ -15,8 +15,8 @@ class UserResource extends ResourceController {
 	 */
 	protected $columns = [
 		['label' => 'ID', 'name' => 'id'],
-		['label' => 'Nome', 'name' => 'firstName'],
-		['label' => 'Cognome', 'name' => 'lastName'],
+		['label' => 'Nome', 'name' => 'first_name'],
+		['label' => 'Cognome', 'name' => 'last_name'],
 		['label' => 'E-mail', 'name' => 'email',],
 		['label' => 'Registrazione', 'name' => 'created_at', 'type' => 'date'],
 	];
@@ -37,8 +37,8 @@ class UserResource extends ResourceController {
 		// Add search filter
 		if ($request->search) {
 			$this->query = $this->query->where('users.id', $request->search)
-				->orWhere('firstName', 'like', '%' . $request->search . '%')
-				->orWhere('lastName', 'like', '%' . $request->search . '%')
+				->orWhere('first_name', 'like', '%' . $request->search . '%')
+				->orWhere('last_name', 'like', '%' . $request->search . '%')
 				->orWhere('email', 'like', '%' . $request->search . '%');
 		}
 
@@ -82,12 +82,12 @@ class UserResource extends ResourceController {
 
 		// Validate the request
 		$request->validate([
-			'firstName' => ['string', 'max:255'],
-			'lastName' => ['string', 'max:255'],
+			'first_name' => ['string', 'max:255'],
+			'last_name' => ['string', 'max:255'],
 			'email' => ['required', 'email'],
 		]);
 
-		$user->update($request->only(['email', 'firstName', 'lastName']));
+		$user->update($request->only(['email', 'first_name', 'last_name']));
 
 		return parent::update($userId, $request);
 	}

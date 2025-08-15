@@ -16,8 +16,8 @@ $inputs = [
 	],
 	[
 		['type' => 'lbl', 'text' => 'Nome e cognome',],
-		['text' => 'Nome', 'name' => 'firstname', 'value' => $thisUser->firstname, 'size' => 2, 'readonly' => true],
-		['text' => 'Cognome', 'name' => 'lastname', 'value' => $thisUser->lastname, 'size' => 2, 'readonly' => true]
+		['text' => 'Nome', 'name' => 'first_name', 'value' => $thisUser->first_name, 'size' => 2, 'readonly' => true],
+		['text' => 'Cognome', 'name' => 'last_name', 'value' => $thisUser->last_name, 'size' => 2, 'readonly' => true]
 	],
 	[
 		['type' => 'lbl', 'text' => 'Gruppo di appartenenza',],

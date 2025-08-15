@@ -8,7 +8,7 @@ $this->scripts->add(SERVER_ROOT . '/pages/scripts/teacher/teacher.js');
 $grade = \App\Legacy\LegacyDB::find('class FROM users WHERE id = ?', [$user->id]);
 
 // fetch data
-$students = \App\Legacy\LegacyDB::select('*, CONCAT(lastname," ",firstname) as name FROM users WHERE class = ? AND level=0 AND status=1 ORDER BY lastname ASC, firstname ASC, id ASC', [$grade]);
+$students = \App\Legacy\LegacyDB::select('*, CONCAT(last_name," ",first_name) as name FROM users WHERE class = ? AND level=0 AND status=1 ORDER BY last_name ASC, first_name ASC, id ASC', [$grade]);
 
 $res = \App\Legacy\LegacyDB::select('id, advice FROM advices_list ORDER BY id ASC');
 

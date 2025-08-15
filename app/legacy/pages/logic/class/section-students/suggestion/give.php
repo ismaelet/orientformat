@@ -6,7 +6,7 @@ $students = \App\Legacy\LegacyDB::select('
 		students.id FROM students
 		INNER JOIN users ON students.userId = users.id
 		WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ? AND users.status=1
-		ORDER BY lastName ASC, firstName ASC, id ASC', [schoolClassId()]);
+		ORDER BY last_name ASC, first_name ASC, id ASC', [schoolClassId()]);
 
 // fetch choices
 $choices = [];

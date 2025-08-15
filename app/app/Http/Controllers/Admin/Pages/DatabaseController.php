@@ -56,8 +56,8 @@ class DatabaseController extends Controller {
 
 					$studentData = [
 						'ID' => $student->userId,
-						'Cognome' => $student->user->lastName,
-						'Nome' => $student->user->firstName,
+						'Cognome' => $student->user->last_name,
+						'Nome' => $student->user->first_name,
 						'Classe' => $student->school_class->name ?? '.',
 						'Istituto' => $student->school_class->school->name ?? '.',
 						// 'Registrato/a nel' => $studentObj->startingYear . '/' . ($studentObj->startingYear + 1),
@@ -98,8 +98,8 @@ class DatabaseController extends Controller {
 
 				$studentData = [
 					'ID' => $student->userId,
-					'Cognome' => $student->user->lastName,
-					'Nome' => $student->user->firstName,
+					'Cognome' => $student->user->last_name,
+					'Nome' => $student->user->first_name,
 					'Classe' => $student->school_class->name ?? '.',
 					'Istituto' => $student->school_class->school->name ?? '.',
 					// 'Registrato/a nel' => $student['startingYear'] . '/' . ($student['startingYear'] + 1),
@@ -136,8 +136,8 @@ class DatabaseController extends Controller {
 			foreach ($teachers as $teacher) {
 				$teacherData = [
 					'ID' => $teacher->userId,
-					'Cognome' => $teacher->lastName,
-					'Nome' => $teacher->firstName,
+					'Cognome' => $teacher->last_name,
+					'Nome' => $teacher->first_name,
 					'E-mail' => $teacher->email ?: '.',
 				];
 
@@ -244,8 +244,8 @@ class DatabaseController extends Controller {
 			foreach ($results as $result) {
 				$reviewResults = [
 					'ID' => $result->student->userId,
-					'Cognome' => $result->student->user->lastName,
-					'Nome' => $result->student->user->firstName,
+					'Cognome' => $result->student->user->last_name,
+					'Nome' => $result->student->user->first_name,
 				];
 
 				foreach ($resultKeys as $key) {
@@ -298,8 +298,8 @@ class DatabaseController extends Controller {
 		while ($result = $results->fetch_assoc()) {
 			$resultData = [
 				'ID' => $result['userId'],
-				'Cognome' => $result['lastname'],
-				'Nome' => $result['firstname'],
+				'Cognome' => $result['last_name'],
+				'Nome' => $result['first_name'],
 				'Classe' => $result['gradeName'],
 				'Istituto' => $result['schoolName'],
 				'Anno scolastico' => $result['gradeYear'] . '/' . ($result['gradeYear'] + 1),
@@ -332,7 +332,7 @@ class DatabaseController extends Controller {
 		$fileTitle = $yearFilter ? 'Lista dei consigli orientativi - ' . $yearFilter . '-' . ($yearFilter + 1) : 'Lista di tutti i consigli orientativi';
 
 		$students = LegacyDB::select('
-	advices, users.id as userId, firstname, lastname
+	advices, users.id as userId, first_name, last_name
 		FROM advices
 			INNER JOIN students ON advices.userID = students.userId
 			INNER JOIN users ON students.userId = users.id
@@ -346,8 +346,8 @@ class DatabaseController extends Controller {
 
 			$studentData = [
 				'ID' => $student['userId'],
-				'Cognome' => $student['lastname'],
-				'Nome' => $student['firstname'],
+				'Cognome' => $student['last_name'],
+				'Nome' => $student['first_name'],
 				'Consiglio 1' => isset($advices[0]) ? (new Advice($advices[0]))->name : '.',
 				'Consiglio 2' => isset($advices[1]) ? (new Advice($advices[1]))->name : '.',
 				'Consiglio 3' => isset($advices[2]) ? (new Advice($advices[2]))->name : '.',

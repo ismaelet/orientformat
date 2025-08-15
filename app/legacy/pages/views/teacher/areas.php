@@ -34,7 +34,7 @@
 
 					<form method="POST" class="row">
 
-						<p class="field"><?= $student['lastname'] . ' ' . $student['firstname'] ?></p>
+						<p class="field"><?= $student['last_name'] . ' ' . $student['first_name'] ?></p>
 						<p class="field"><?= \App\Legacy\LegacyDB::exists('progress_areas WHERE progress=100 AND areaID=1 AND userID = ?', $student['id']) ? '<span class="txt-gre font-bold">Completato</span>' : '<span class="txt-red">Non completato</span>' ?></p>
 						<p class="field"><?= \App\Legacy\LegacyDB::exists('progress_areas WHERE progress=100 AND areaID=2 AND userID = ?', $student['id']) ? '<span class="txt-gre font-bold">Completato</span>' : '<span class="txt-red">Non completato</span>' ?></p>
 						<p class="field"><?= \App\Legacy\LegacyDB::exists('progress_areas WHERE progress=100 AND areaID=3 AND userID = ?', $student['id']) ? '<span class="txt-gre font-bold">Completato</span>' : '<span class="txt-red">Non completato</span>' ?></p>

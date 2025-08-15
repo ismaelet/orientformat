@@ -38,8 +38,8 @@ function _expand_results(&$entry, $field, $key, $row) {
 	if ($field['type'] == 'img') $entry['src'] = file_public_url($item->image(400));
 	else if ($field['name'] == 'price') $entry['value'] = formatc($entry['value']) . ' R$';
 	else if ($field['name'] == 'highlighted') {
-		$entry['content'] = $entry['value'] ? '<div class="list-icon active fill-gre icon-box">' . icon_embed('correct') . '</div>' : '<div class="list-icon inactive icon-box fill-7">' . icon_embed('close') . '</div>';
+		$entry['content'] = $entry['value'] ? '<div class="list-icon active fill-gre icon-box">' . embed_icon('correct') . '</div>' : '<div class="list-icon inactive icon-box fill-7">' . embed_icon('close') . '</div>';
 	} else if ($field['name'] == 'status') {
-		$entry['content'] = $entry['value'] ? '<div class="list-icon active icon-box">' . icon_embed('correct') . '</div>' : '<div class="list-icon inactive icon-box fill-red">' . icon_embed('close') . '</div>';
+		$entry['content'] = $entry['value'] ? '<div class="list-icon active icon-box">' . embed_icon('correct') . '</div>' : '<div class="list-icon inactive icon-box fill-red">' . embed_icon('close') . '</div>';
 	}
 }

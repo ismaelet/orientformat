@@ -9,10 +9,8 @@ class StudentHomeController extends Controller {
 	 */
 	public function index() {
 		$page = 'home';
-		$middlewares = ['beginner-review', 'required-email'];
 
 		\App\Legacy\LegacyView::setPage($page)
-			->setMiddlewares($middlewares)
 			->show();
 	}
 }

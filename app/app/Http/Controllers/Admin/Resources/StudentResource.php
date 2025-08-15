@@ -39,17 +39,17 @@ class StudentResource extends ResourceController {
 			->leftJoin('schools', 'schools.id', '=', 'school_classes.schoolId')
 			->leftJoin('users as referents', 'referents.id', '=', 'school_classes.referentId')
 			->select('students.*', 'users.username', 'school_classes.grade as school_class_grade', 'school_classes.letter as school_class_section', 'schools.name as school_name')
-			->selectRaw('CONCAT(referents.firstName, " ", referents.lastName) as referent_name, CONCAT(users.firstName, " ", users.lastName) as full_name, CONCAT(school_classes.grade, school_classes.letter) as school_class');
+			->selectRaw('CONCAT(referents.first_name, " ", referents.last_name) as referent_name, CONCAT(users.first_name, " ", users.last_name) as full_name, CONCAT(school_classes.grade, school_classes.letter) as school_class');
 
 		// Add search filter
 		if ($request->search) {
 			$this->query = $this->query->where('users.id', $request->search)
-				->orWhere('users.firstName', 'like', '%' . $request->search . '%')
-				->orWhere('users.lastName', 'like', '%' . $request->search . '%')
-				->orWhereRaw("CONCAT(users.firstName, ' ', users.lastName) LIKE ?", ['%' . $request->search . '%'])
-				->orWhereRaw("CONCAT(users.lastName, ' ', users.firstName) LIKE ?", ['%' . $request->search . '%'])
-				->orWhere('referents.firstName', 'like', '%' . $request->search . '%')
-				->orWhere('referents.lastName', 'like', '%' . $request->search . '%')
+				->orWhere('users.first_name', 'like', '%' . $request->search . '%')
+				->orWhere('users.last_name', 'like', '%' . $request->search . '%')
+				->orWhereRaw("CONCAT(users.first_name, ' ', users.last_name) LIKE ?", ['%' . $request->search . '%'])
+				->orWhereRaw("CONCAT(users.last_name, ' ', users.first_name) LIKE ?", ['%' . $request->search . '%'])
+				->orWhere('referents.first_name', 'like', '%' . $request->search . '%')
+				->orWhere('referents.last_name', 'like', '%' . $request->search . '%')
 				->orWhere('schools.name', 'like', '%' . $request->search . '%');
 		}
 

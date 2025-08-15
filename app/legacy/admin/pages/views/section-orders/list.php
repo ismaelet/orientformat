@@ -18,7 +18,7 @@ use function Ecommerce\ecommerce_config;
 				<?php if ($selectedCartStatuses != $defaultCartStatuses) { ?>
 
 					<span class="interactive js-remove-status-filter">
-						<?= icon_embed('close') ?>
+						<?= embed_icon('close') ?>
 					</span>
 
 				<?php } ?>

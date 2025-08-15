@@ -41,10 +41,11 @@
 
 				<div class="pos-rel load--fade-in js-load" data-direction="bottom" data-delay="<?= $key % 3 ?>">
 					<form id="test<?= $obj->id ?>" class="test bgr-wht grid" method="POST">
+						<?= csrf_field() ?>
 						<input type="hidden" name="testId" value="<?= $obj->id ?>">
 
 						<div class="test-img">
-							<?= icon_embed($legacyTestM['img']) ?>
+							<?= embed_icon($legacyTestM['img']) ?>
 						</div>
 
 						<div class="test-data">

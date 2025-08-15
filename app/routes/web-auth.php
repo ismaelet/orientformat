@@ -5,23 +5,24 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RecoverController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetController;
-use App\Http\Controllers\LegacyController;
 use Illuminate\Support\Facades\Route;
 
 /**
  * Auth routes
  */
-Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
-Route::post('/login', [LoginController::class, 'auth'])->middleware('guest')->name('login.auth');
+Route::prefix(env('APP_SUBDOMAIN'))->group(function () {
+	Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
+	Route::post('/login', [LoginController::class, 'auth'])->middleware('guest')->name('login.auth');
 
-// Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store'])->middleware('guest')->name('register.store');
+	// Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');
+	Route::post('/register', [RegisterController::class, 'store'])->middleware('guest')->name('register.store');
 
-Route::get('/logout', [LogoutController::class, 'index'])->name('logout')->middleware('auth')->name('logout');
-Route::post('/logout', [LogoutController::class, 'logout'])->middleware('auth')->name('logout.logout');
+	Route::get('/logout', [LogoutController::class, 'index'])->name('logout')->middleware('auth')->name('logout');
+	Route::post('/logout', [LogoutController::class, 'logout'])->middleware('auth')->name('logout.logout');
 
-Route::get('/recover', [RecoverController::class, 'index'])->name('auth.recover')->middleware('guest');
-Route::post('/recover', [RecoverController::class, 'store'])->middleware('guest');
+	Route::get('/recover', [RecoverController::class, 'index'])->name('auth.recover')->middleware('guest');
+	Route::post('/recover', [RecoverController::class, 'store'])->middleware('guest');
 
-Route::get('/reset', [ResetController::class, 'index'])->name('auth.reset')->middleware('guest');
-Route::post('/reset', [ResetController::class, 'update'])->middleware('guest');
+	Route::get('/reset', [ResetController::class, 'index'])->name('auth.reset')->middleware('guest');
+	Route::post('/reset', [ResetController::class, 'update'])->middleware('guest');
+});

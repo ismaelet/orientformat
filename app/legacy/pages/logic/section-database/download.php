@@ -22,7 +22,7 @@ if (isset($_POST['download-active-students'])) {
 	$fileTitle = 'Lista degli studenti attivi - ' . $yearFilter . '-' . ($yearFilter + 1);
 
 	$students = \App\Legacy\LegacyDB::select('
-	' . Student::INDEX . ', firstName, lastName, users.time, CONCAT (grade, letter) as gradeName, startingYear, grade, birthdate, schools.name as schoolName
+	' . Student::INDEX . ', first_name, last_name, users.time, CONCAT (grade, letter) as gradeName, startingYear, grade, birthdate, schools.name as schoolName
 		FROM ' . Student::TABLE . '
 			INNER JOIN ' . User::TABLE . ' ON ' . Student::TABLE . '.' . Student::INDEX . ' = ' . User::TABLE . '.' . User::INDEX . '
 
@@ -43,8 +43,8 @@ if (isset($_POST['download-active-students'])) {
 
 		$studentData = [
 			'ID' => $student['userId'],
-			'Cognome' => $student['lastName'],
-			'Nome' => $student['firstName'],
+			'Cognome' => $student['last_name'],
+			'Nome' => $student['first_name'],
 			'Classe' => $student['gradeName'],
 			'Istituto' => $student['schoolName'],
 			'Registrato/a nel' => $student['startingYear'] . '/' . ($student['startingYear'] + 1),
@@ -72,7 +72,7 @@ if (isset($_POST['download-students'])) {
 	$fileTitle = $yearFilter ? 'Lista degli studenti - ' . $yearFilter . '-' . ($yearFilter + 1) : 'Lista di tutti gli studenti';
 
 	$students = \App\Legacy\LegacyDB::select('
-	' . Student::INDEX . ', firstName, lastName, CONCAT (grade, letter) as gradeName, startingYear, grade, birthdate, schools.name as schoolName
+	' . Student::INDEX . ', first_name, last_name, CONCAT (grade, letter) as gradeName, startingYear, grade, birthdate, schools.name as schoolName
 		FROM ' . Student::TABLE . '
 			INNER JOIN ' . User::TABLE . ' ON ' . Student::TABLE . '.' . Student::INDEX . ' = ' . User::TABLE . '.' . User::INDEX . '
 
@@ -89,8 +89,8 @@ if (isset($_POST['download-students'])) {
 
 		$studentData = [
 			'ID' => $student['userId'],
-			'Cognome' => $student['lastName'],
-			'Nome' => $student['firstName'],
+			'Cognome' => $student['last_name'],
+			'Nome' => $student['first_name'],
 			'Classe' => $student['gradeName'],
 			'Istituto' => $student['schoolName'],
 			'Registrato/a nel' => $student['startingYear'] . '/' . ($student['startingYear'] + 1),
@@ -118,7 +118,7 @@ if (isset($_POST['download-teachers'])) {
 	$fileTitle = $yearFilter ? 'Lista dei docenti - ' . $yearFilter : 'Lista dei docenti';
 
 	$teachers = \App\Legacy\LegacyDB::select('
-	userId, firstName, lastName, email
+	userId, first_name, last_name, email
 		FROM ' . Teacher::TABLE . '
 			INNER JOIN ' . User::TABLE . ' ON ' . Teacher::TABLE . '.' . Teacher::INDEX . ' = ' . User::TABLE . '.' . User::INDEX . '
 	WHERE ' . User::TABLE . '.status = 1 AND admin = 0 ' . $yearSql . '
@@ -127,8 +127,8 @@ if (isset($_POST['download-teachers'])) {
 	while ($teacher = $teachers->fetch_assoc()) {
 		$teacherData = [
 			'ID' => $teacher['userId'],
-			'Cognome' => $teacher['lastName'],
-			'Nome' => $teacher['firstName'],
+			'Cognome' => $teacher['last_name'],
+			'Nome' => $teacher['first_name'],
 			'E-mail' => $teacher['email'] ?: '.',
 		];
 
@@ -149,7 +149,7 @@ if (isset($_POST['download-school-classes'])) {
 	$fileTitle = $yearFilter ? 'Lista delle classi - ' . $yearFilter . '-' . ($yearFilter + 1) : 'Lista di tutte le classi';
 
 	$grades = \App\Legacy\LegacyDB::select('
-	grade, startingYear, CONCAT(grade, letter) as gradeName, CONCAT (lastName, " ", firstName) as referentName, schools.name as schoolName
+	grade, startingYear, CONCAT(grade, letter) as gradeName, CONCAT (last_name, " ", first_name) as referentName, schools.name as schoolName
 		FROM ' . SchoolClass::TABLE . '
 			INNER JOIN ' . School::TABLE . ' ON ' . SchoolClass::TABLE . '.' . SchoolClass::SCHOOL_INDEX . ' = ' . School::TABLE . '.' . School::INDEX . '
 
@@ -211,8 +211,8 @@ if (isset($_POST['download-results'])) {
 	while ($result = $results->fetch_assoc()) {
 		$resultData = [
 			'ID' => $result['userId'],
-			'Cognome' => $result['lastname'],
-			'Nome' => $result['firstname'],
+			'Cognome' => $result['last_name'],
+			'Nome' => $result['first_name'],
 			'Classe' => $result['gradeName'],
 			'Istituto' => $result['schoolName'],
 			'Anno scolastico' => $result['gradeYear'] . '/' . ($result['gradeYear'] + 1),
@@ -270,7 +270,7 @@ if (isset($_POST['download-reviews'])) {
 
 	// fetch students
 	$students = \App\Legacy\LegacyDB::select('
-	userId, firstname, lastname, CONCAT (grade, letter) as gradeName, year as gradeYear, grade as grade, schools.name as schoolName
+	userId, first_name, last_name, CONCAT (grade, letter) as gradeName, year as gradeYear, grade as grade, schools.name as schoolName
 		FROM students
 			INNER JOIN users ON students.userId = users.id
 			INNER JOIN classes ON students.classId = classes.id
@@ -282,8 +282,8 @@ if (isset($_POST['download-reviews'])) {
 	while ($student = $students->fetch_assoc()) {
 		$reviewResults = [
 			'ID' => $student['userId'],
-			'Cognome' => $student['lastname'],
-			'Nome' => $student['firstname'],
+			'Cognome' => $student['last_name'],
+			'Nome' => $student['first_name'],
 			'Classe' => $student['gradeName'],
 			'Istituto' => $student['schoolName'],
 			'Anno scolastico' => $student['gradeYear'] . '/' . ($student['gradeYear'] + 1),
@@ -323,7 +323,7 @@ if (isset($_POST['download-advices'])) {
 	$fileTitle = $yearFilter ? 'Lista dei consigli orientativi - ' . $yearFilter . '-' . ($yearFilter + 1) : 'Lista di tutti i consigli orientativi';
 
 	$students = \App\Legacy\LegacyDB::select('
-	advices, users.id as userId, firstname, lastname
+	advices, users.id as userId, first_name, last_name
 		FROM advices
 			INNER JOIN students ON advices.userID = students.userId
 			INNER JOIN users ON students.userId = users.id
@@ -337,8 +337,8 @@ if (isset($_POST['download-advices'])) {
 
 		$studentData = [
 			'ID' => $student['userId'],
-			'Cognome' => $student['lastname'],
-			'Nome' => $student['firstname'],
+			'Cognome' => $student['last_name'],
+			'Nome' => $student['first_name'],
 			'Consiglio 1' => isset($advices[0]) ? (new Advice($advices[0]))->name : '.',
 			'Consiglio 2' => isset($advices[1]) ? (new Advice($advices[1]))->name : '.',
 			'Consiglio 3' => isset($advices[2]) ? (new Advice($advices[2]))->name : '.',

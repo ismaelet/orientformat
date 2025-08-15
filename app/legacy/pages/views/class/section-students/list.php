@@ -19,7 +19,7 @@
 			<?php foreach (schoolClass()->students as $student) { ?>
 
 				<form class="dashboard-list__row" id="row<?= $student->id ?>" method="POST" action="#row<?= $student->id ?>">
-					<p class="dashboard-list__field"><?= $student->lastName ?> <?= $student->firstName ?></p>
+					<p class="dashboard-list__field"><?= $student->last_name ?> <?= $student->first_name ?></p>
 					<p class="dashboard-list__field"><?= $student->username ?></p>
 					<p class="dashboard-list__field"><?= $student->user->email ?></p>
 					<p class="dashboard-list__field"><?= $student->user->time ?></p>

@@ -5,13 +5,17 @@ namespace App\Models;
 use App\Models\User\Administrator;
 use App\Models\User\Student;
 use App\Models\User\Teacher;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasName;
+use Filament\Panel;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable {
+class User extends Authenticatable implements FilamentUser, HasName {
 
 	use HasFactory, Notifiable, SoftDeletes;
 
@@ -22,8 +26,8 @@ class User extends Authenticatable {
 		'username',
 		'email',
 		'password',
-		'firstName',
-		'lastName',
+		'first_name',
+		'last_name',
 		'created_at',
 		'active',
 	];
@@ -42,6 +46,15 @@ class User extends Authenticatable {
 	protected $casts = [
 		'email_verified_at' => 'datetime',
 	];
+
+	/**
+	 * Attribute: Check if the user is an admin
+	 */
+	public function isAdmin(): Attribute {
+		return new Attribute(
+			get: fn() => (bool) $this->admin_level,
+		);
+	}
 
 	/**
 	 * Get the student record associated with the user
@@ -69,17 +82,10 @@ class User extends Authenticatable {
 	 */
 	public function fullName(): string {
 		$fullName = [];
-		$fullName[] = $this->firstName;
-		$fullName[] = $this->lastName;
+		$fullName[] = $this->first_name;
+		$fullName[] = $this->last_name;
 
 		return implode(' ', $fullName);
-	}
-
-	/**
-	 * Check if the user is an admin
-	 */
-	public function isAdmin(): bool {
-		return (bool) $this->admin_level;
 	}
 
 	/**
@@ -108,5 +114,19 @@ class User extends Authenticatable {
 	 */
 	public function isTeacher(): bool {
 		return (bool) $this->teacher;
+	}
+
+	/**
+	 * Check if the user can access the Filament panel
+	 */
+	public function canAccessPanel(Panel $panel): bool {
+		return $this->is_admin;
+	}
+
+	/**
+	 * Get the user's full name for Filament
+	 */
+	public function getFilamentName(): string {
+		return "{$this->first_name} {$this->last_name}";
 	}
 }

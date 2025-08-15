@@ -12,8 +12,8 @@ $dataInputs = [
 	],
 	[
 		['type' => 'lbl', 'text' => 'Nome completo'],
-		['text' => 'Nome', 'name' => 'firstName', 'size' => 2, 'value' => user()->firstName ?: '', 'minlength' => 2, 'required' => true],
-		['text' => 'Cognome', 'name' => 'lastName', 'size' => 2, 'value' => user()->lastName ?: '', 'minlength' => 2, 'required' => true],
+		['text' => 'Nome', 'name' => 'first_name', 'size' => 2, 'value' => user()->first_name ?: '', 'minlength' => 2, 'required' => true],
+		['text' => 'Cognome', 'name' => 'last_name', 'size' => 2, 'value' => user()->last_name ?: '', 'minlength' => 2, 'required' => true],
 	],
 	[
 		['type' => 'lbl', 'text' => 'Indirizzo email'],

@@ -11,15 +11,15 @@ $pageConfig['row-action'] = 'add?id={{id}}';
  */
 $queryConfig['table'] = 'users';
 $queryConfig['index'] = 'id';
-$queryConfig['where-search'] = "id = ? OR firstName LIKE CONCAT('%',?,'%') OR lastName LIKE CONCAT('%',?,'%') OR email LIKE CONCAT('%',?,'%')";
+$queryConfig['where-search'] = "id = ? OR first_name LIKE CONCAT('%',?,'%') OR last_name LIKE CONCAT('%',?,'%') OR email LIKE CONCAT('%',?,'%')";
 
 // fields
 $fields = [
 	['title' => 'ID', 'name' => 'id', 'size' => 1],
 	//['title' => 'Username', 'name' => 'username', 'size' => 3],
 	['title' => 'Username / E-mail', 'name' => 'email', 'size' => 4],
-	['title' => 'Nome', 'name' => 'firstName', 'size' => 3],
-	['title' => 'Cognome', 'name' => 'lastName', 'size' => 3],
+	['title' => 'Nome', 'name' => 'first_name', 'size' => 3],
+	['title' => 'Cognome', 'name' => 'last_name', 'size' => 3],
 	//['title' => 'Email', 'name' => 'email', 'size' => 3],
 	['title' => 'Tipologia', 'name' => 'groupId', 'type' => 'find', 'find' => 'name FROM user_groups WHERE id = ?', 'size' => 2],
 	['type' => 'btn'],

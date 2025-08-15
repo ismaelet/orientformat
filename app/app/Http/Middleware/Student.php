@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class Student {
@@ -12,9 +13,12 @@ class Student {
 	 * Handle an incoming request.
 	 */
 	public function handle(Request $request, Closure $next): Response {
-		// Check if the user is authenticated and is an admin
-		if (!auth()->check() || !is_student()) {
+		if (!Auth::check()) {
 			return redirect()->route('login');
+		}
+
+		if (!is_student()) {
+			return redirect()->route('home');
 		}
 
 		return $next($request);

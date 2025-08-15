@@ -1,19 +1,18 @@
-# Use the official PHP image with Apache
+# Base image
 FROM php:8.4-fpm
 
+# Install PHP extensions
+RUN apt-get update && apt-get install -y \
+	zlib1g-dev \
+	libzip-dev \
+	libicu-dev \
+	&& docker-php-ext-configure zip \
+	&& docker-php-ext-install zip pdo pdo_mysql mysqli intl \
+	&& docker-php-ext-enable mysqli intl
+
 # Set working directory and copy the application files
-WORKDIR /var/www
-COPY ./app /var/www
-
-# Install the zip extension
-RUN apt-get update && \
-	apt-get install -y zlib1g-dev libzip-dev && \
-	docker-php-ext-configure zip && \
-	docker-php-ext-install zip
-
-# Install the database
-RUN docker-php-ext-install pdo pdo_mysql mysqli && \
-	docker-php-ext-enable mysqli
+WORKDIR /var/www/html
+COPY ./app /var/www/html
 
 # Install Composer dependencies
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

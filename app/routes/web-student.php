@@ -1,0 +1,50 @@
+<?php
+
+use App\Http\Controllers\Activities\GradeController;
+use App\Http\Controllers\Activities\StudentAnalysisController;
+use App\Http\Controllers\Activities\TestController;
+use App\Http\Controllers\SectionController;
+use App\Http\Controllers\StudentHomeController;
+use App\Http\Middleware\CompletedReview;
+use App\Http\Middleware\HasEmail;
+use App\Http\Middleware\Locale;
+use App\Http\Middleware\Student;
+use Illuminate\Support\Facades\Route;
+
+// Home pages
+Route::prefix(env('APP_SUBDOMAIN'))->group(function () {
+
+	/**
+	 * Student only routes
+	 */
+	Route::middleware([Student::class, HasEmail::class, CompletedReview::class, Locale::class])->group(function () {
+		// Home
+		Route::any('student', [StudentHomeController::class, 'index'])->name('student');
+
+		// Student Activities
+		Route::any('activities/grades', [GradeController::class, 'index'])->name('activities.grades.index');
+		Route::any('activities/grades/{grade}', [GradeController::class, 'show'])->name('activities.grades.show');
+	});
+
+	/**
+	 * Student and teacher simulation routes
+	 */
+	Route::middleware(['auth', Locale::class])->group(function () {
+		// Section recap
+		Route::any('/activities/sections/{section}', [SectionController::class, 'show'])->name('section');
+
+		// Test recap
+		Route::any('/activities/tests/{test}', [TestController::class, 'show'])->name('test');
+	});
+
+	/**
+	 * Student analysis routes
+	 */
+	Route::middleware(['auth', Locale::class])->group(function () {
+		// Areas analysis
+		Route::any('analysis/student/areas/{area}', [StudentAnalysisController::class, 'show'])->name('analysis.student.area');
+
+		// Sections analysis
+		Route::any('analysis/student/sections/{section}', [StudentAnalysisController::class, 'show'])->name('analysis.student.section');
+	});
+});

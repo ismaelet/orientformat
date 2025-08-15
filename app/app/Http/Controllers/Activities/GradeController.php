@@ -19,7 +19,6 @@ class GradeController extends Controller {
 		$legacySchoolClass = new LegacySchoolClass($schoolClass->id);
 
 		\App\Legacy\LegacyView::setPage('activities/grades')
-			->setMiddlewares(['beginner-review', 'required-email'])
 			->set('schoolClass', $legacySchoolClass)
 			->show();
 	}
@@ -55,10 +54,9 @@ class GradeController extends Controller {
 		$legacyGrade = new LegacyGrade($legacyGradeNumber);
 		$legacyGradeModel = new LegacyGradeModel(realGradeId($legacyGradeNumber));
 
-		$_SESSION['activities-year'] = $legacyGradeNumber;
+		session()->put('activities-year', $legacyGradeNumber);
 
 		\App\Legacy\LegacyView::setPage('activities/list')
-			->setMiddlewares(['beginner-review', 'required-email'])
 			->set('student', $student)
 			->set('grade', $grade)
 			->set('legacyGrade', $legacyGrade)

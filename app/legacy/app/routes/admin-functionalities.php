@@ -66,7 +66,7 @@ Vi ringraziamo per la collaborazione e rimaniamo a completa disposizione per eve
 		FROM classes
 			INNER JOIN users ON classes.referentId = users.id
 		WHERE year=2022
-		ORDER BY lastname ASC, firstname ASC
+		ORDER BY last_name ASC, first_name ASC
 	');
 
 	while ($teacherRow = $teachers->fetch_assoc()) {

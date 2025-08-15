@@ -1,6 +1,6 @@
 <?php
 
-namespace LogicManager;
+namespace Legacy\LogicManager;
 
 class TestLogic {
 

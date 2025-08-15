@@ -10,7 +10,7 @@ function print_survey_results($testId, $studentId, $teacherView = false) {
 
 	if ($teacherView) {
 		$student = new Student($studentId);
-		$legacyTest->title .= '<br><i>' . $student->lastname . ' ' . $student->firstname . '</i>';
+		$legacyTest->title .= '<br><i>' . $student->last_name . ' ' . $student->first_name . '</i>';
 	}
 
 	// opening html

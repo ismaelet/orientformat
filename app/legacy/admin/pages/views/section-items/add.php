@@ -67,13 +67,13 @@
 										<input type="file" class="img-file hidden" name="img-file-<?= $image['id'] ?>" accept=".jpg, .png, .jpeg">
 										<button type="submit" class="upload-img hidden" name="upload-img[]" value="<?= $image['id'] ?>"></button>
 										<div class="item-img-upload item-img-icon icon-box fill-f js-img-trigger">
-											<?= icon_embed('upload') ?>
+											<?= embed_icon('upload') ?>
 										</div>
 
 										<!-- Delete the image -->
 										<button type="submit" class="delete-img hidden" name="delete-img[]" value="<?= $image['id'] ?>" onclick="return confirm('Confermi di voler eliminare questa immagine?')"></button>
 										<div class="item-img-delete item-img-icon icon-box fill-f">
-											<?= icon_embed('delete') ?>
+											<?= embed_icon('delete') ?>
 										</div>
 
 									</div>
@@ -90,7 +90,7 @@
 						<input type="file" class="img-file hidden" name="new-img-files[]" accept=".jpg, .png, .jpeg">
 						<button type="submit" class="upload-img hidden" name="upload-img"></button>
 						<div class="item-img-add item-img-icon icon-box fill-text-color">
-							<?= icon_embed('add') ?>
+							<?= embed_icon('add') ?>
 						</div>
 					</div>
 
@@ -135,7 +135,7 @@
 			</div>
 
 			<div class="faq-add icon-box box-15rem mar-h-auto mar-t-1 clickable icon-box">
-				<?= icon_embed('add') ?>
+				<?= embed_icon('add') ?>
 			</div>
 		</div>
 	</section> -->
@@ -251,7 +251,7 @@
 				<div class="add-variation mar-t-1">
 					<input type="text" class="add-variation-inp inp" placeholder="Nome do tipo de variação" data-function="add-variation">
 					<button type="button" class="add-variation-btn icon-box">
-						<?= icon_embed('add') ?>
+						<?= embed_icon('add') ?>
 					</button>
 				</div>
 			<?php } ?>
@@ -265,7 +265,7 @@
 						<input type='hidden' name='variation-1' value='<?= $variation['title'] ?>'>
 						<h3 class='variation-title'><?= $variation['title'] ?>
 							<button type="button" class="delete-variation icon-box">
-								<?= icon_embed('delete') ?>
+								<?= embed_icon('delete') ?>
 							</button>
 						</h3>
 
@@ -278,7 +278,7 @@
 									<input type='text' class='inp' name='variation-1-variants[]' value="<?= $variant[0] ?>" placeholder='Nome da variação'>
 									<input type='text' class='inp' name='variation-1-prices[]' value="<?= $variant[1] ? format_price($variant[1]) : '' ?>" placeholder='Preço (opcional)'>
 									<button type="button" class="delete-variant icon-box">
-										<?= icon_embed('close') ?>
+										<?= embed_icon('close') ?>
 									</button>
 								</div>
 
@@ -288,7 +288,7 @@
 
 						<!-- Add a variant -->
 						<button type='button' class='add-variant icon-box mt-2'>
-							<?= icon_embed('add') ?>
+							<?= embed_icon('add') ?>
 						</button>
 					</div>
 

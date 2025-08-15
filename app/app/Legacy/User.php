@@ -24,12 +24,12 @@ class User {
 	private function getFullName() {
 		$fullName = [];
 
-		if ($this->firstName) {
-			$fullName[] = $this->firstName;
+		if ($this->first_name) {
+			$fullName[] = $this->first_name;
 		}
 
-		if ($this->lastName) {
-			$fullName[] = $this->lastName;
+		if ($this->last_name) {
+			$fullName[] = $this->last_name;
 		}
 
 		return implode(' ', $fullName);
@@ -38,12 +38,12 @@ class User {
 	private function getInvertedFullName() {
 		$fullName = [];
 
-		if ($this->lastName) {
-			$fullName[] = $this->lastName;
+		if ($this->last_name) {
+			$fullName[] = $this->last_name;
 		}
 
-		if ($this->firstName) {
-			$fullName[] = $this->firstName;
+		if ($this->first_name) {
+			$fullName[] = $this->first_name;
 		}
 
 		return implode(' ', $fullName);

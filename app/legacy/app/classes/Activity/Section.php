@@ -8,6 +8,7 @@ use \Legacy\Activity\Result\TestResult;
 use LegacyModels\Activities\Results\CondensedSectionResult;
 use LegacyModels\Activities\Section as SectionModel;
 use \App\Legacy\User;
+use App\Models\Activities\Section as ActivitiesSection;
 
 /**
  * Section class
@@ -61,7 +62,7 @@ class Section {
 	}
 
 	private function getUrl() {
-		return '/' . $this->area->slug . '/section?id=' . $this->id;
+		return $this->newSection()->url();
 	}
 
 	private function getClientUrl() {
@@ -214,5 +215,10 @@ class Section {
 
 			[$this->id, \Illuminate\Support\Facades\Auth::id()]
 		)['maxStep'];
+	}
+
+
+	public function newSection(): ?ActivitiesSection {
+		return ActivitiesSection::find($this->id);
 	}
 }

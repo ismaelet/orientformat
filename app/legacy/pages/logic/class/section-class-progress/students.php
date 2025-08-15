@@ -4,7 +4,7 @@
 global $user, $grade;
 
 // fetch students
-$students = \App\Legacy\LegacyDB::select('* FROM users WHERE id IN (SELECT userId FROM students WHERE classId = ? AND status=1) ORDER BY lastname ASC, firstname ASC, id ASC', [$grade->id]);
+$students = \App\Legacy\LegacyDB::select('* FROM users WHERE id IN (SELECT userId FROM students WHERE classId = ? AND status=1) ORDER BY last_name ASC, first_name ASC, id ASC', [$grade->id]);
 
 // activate a student
 if (isset($_POST['activate'])) {

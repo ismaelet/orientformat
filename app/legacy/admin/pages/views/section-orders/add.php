@@ -12,7 +12,7 @@
 				<div class="order-data__item">
 					<div class="title-block flex">
 						<div class="status-icon status-color--<?= $cart->statusCode ?>">
-							<?= icon_embed($cart->statusIcon) ?>
+							<?= embed_icon($cart->statusIcon) ?>
 						</div>
 
 						<p class="status-name"><?= $cart->statusName ?></p>
@@ -84,7 +84,7 @@
 		<?php if ($cart->statusCode != 'canceled') { ?>
 
 			<button type="submit" class="cart-action button button--auto-width button--secondary button--bad" name="statusId" value="-1">
-				<?= icon_embed('close') ?>
+				<?= embed_icon('close') ?>
 				Cancella l'ordine
 			</button>
 
@@ -93,28 +93,28 @@
 		<?php if ($cart->statusCode == 'canceled') { ?>
 
 			<button type="submit" class="cart-action button button--auto-width" name="statusId" value="1">
-				<?= icon_embed('correct') ?>
+				<?= embed_icon('correct') ?>
 				Ripristina l'ordine
 			</button>
 
 		<?php } else if ($cart->statusCode == 'waiting-payment') { ?>
 
 			<button type="submit" class="cart-action button button--auto-width" name="statusId" value="2">
-				<?= icon_embed('correct') ?>
+				<?= embed_icon('correct') ?>
 				Pagamento ricevuto
 			</button>
 
 		<?php } else if ($cart->statusCode == 'confirmed-payment') { ?>
 
 			<button type="submit" class="cart-action button button--auto-width" name="statusId" value="3">
-				<?= icon_embed('correct') ?>
+				<?= embed_icon('correct') ?>
 				Spedito
 			</button>
 
 		<?php } else if ($cart->statusCode == 'shipped') { ?>
 
 			<button type="submit" class="cart-action button button--auto-width" name="statusId" value="4">
-				<?= icon_embed('correct') ?>
+				<?= embed_icon('correct') ?>
 				Consegnato
 			</button>
 

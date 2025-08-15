@@ -11,7 +11,7 @@
 			<section class="panel">
 				<div class="panel__header">
 					<div class="panel__icon">
-						<?= icon_embed(APP_ICONS_DIR . 'navigation/' . $panel['slug']) ?>
+						<?= embed_icon(APP_ICONS_DIR . 'navigation/' . $panel['slug']) ?>
 					</div>
 					<p class="heading-like"><?= $panel['info'] ?></p>
 				</div>

@@ -8,7 +8,7 @@ $this->scripts->add(SERVER_ROOT . '/pages/scripts/teacher/teacher.js');
 $grade = \App\Legacy\LegacyDB::find('class FROM users WHERE id = ?', [$user->id]);
 
 // fetch students
-$students = \App\Legacy\LegacyDB::select('* FROM users WHERE class = ? AND level=0 ORDER BY lastname ASC, firstname ASC, id ASC', [$grade]);
+$students = \App\Legacy\LegacyDB::select('* FROM users WHERE class = ? AND level=0 ORDER BY last_name ASC, first_name ASC, id ASC', [$grade]);
 
 // activate a student
 if (isset($_POST['activate'])) {

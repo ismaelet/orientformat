@@ -8,13 +8,13 @@
 
 <x-layouts.empty>
 	<div class="grid content-center justify-items-center gap-8">
-		<x-typography.main-heading>Errore 404</x-typography.main-heading>
-		<x-typography.main-subheading>Pagina non trovata</x-typography.main-subheading>
-		<x-form.button
-			href="{{ route('home') }}"
+		<x-heading.main>Errore 404</x-heading.main>
+		<p>Pagina non trovata</p>
+		<x-button
+			href="{{ route('login') }}"
 			variant="secondary"
 			size="auto"
 		>Torna alla
-			home</x-form.button>
+			home</x-button>
 	</div>
 </x-layouts.empty>

@@ -38,8 +38,8 @@ Route::get('download-surveys', function () {
 			$year = $year - ($month < 9 ? 1 : 0);
 			$reviewResults = [
 				'ID' => $result->student->userId,
-				'Cognome' => $result->student->user->lastName,
-				'Nome' => $result->student->user->firstName,
+				'Cognome' => $result->student->user->last_name,
+				'Nome' => $result->student->user->first_name,
 				'Anno scolastico' => $result->student->gradeWhen($result->created_at),
 				'Anno di corso' => $year,
 			];
@@ -86,8 +86,8 @@ Route::get('download-students', function () {
 				if ($student->user) {
 					$studentData = [
 						'ID' => $student->userId,
-						'Cognome' => $student->user->lastName,
-						'Nome' => $student->user->firstName,
+						'Cognome' => $student->user->last_name,
+						'Nome' => $student->user->first_name,
 						'Classe' => $student->school_class->name ?? '.',
 						'Istituto' => $student->school_class->school->name ?? '.',
 						// 'Anno di corso' => $student->school_class->grade ?? '.',
@@ -126,8 +126,8 @@ Route::get('download-teachers', function () {
 				if ($teacher->user) {
 					$teacherData = [
 						'ID' => $teacher->user_id,
-						'Cognome' => $teacher->user->lastName,
-						'Nome' => $teacher->user->firstName,
+						'Cognome' => $teacher->user->last_name,
+						'Nome' => $teacher->user->first_name,
 						'Istituto' => $teacher->school_classes->first()->school->name ?? '.',
 						// 'Data di iscrizione' => $teacher->user->time,
 					];

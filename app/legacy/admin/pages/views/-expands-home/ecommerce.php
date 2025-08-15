@@ -8,7 +8,7 @@
 		<div class="body">
 			<div class="panel-header">
 				<div class="panel-icon icon-box">
-					<?= icon_embed(__APP_ICONS__ . 'navigation/items') ?>
+					<?= embed_icon(__APP_ICONS__ . 'navigation/items') ?>
 				</div>
 				<h1 class="title">Prodotti</h1>
 			</div>
@@ -28,7 +28,7 @@
 		<div class="body">
 			<div class="panel-header">
 				<div class="panel-icon icon-box">
-					<?= icon_embed(__APP_ICONS__ . 'navigation/orders') ?>
+					<?= embed_icon(__APP_ICONS__ . 'navigation/orders') ?>
 				</div>
 				<h1 class="title">Ordini recenti</h1>
 			</div>

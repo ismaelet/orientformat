@@ -50,7 +50,7 @@
 			<form
 				class="form form--login"
 				method="POST"
-				action="<?= route('login.auth') ?>"
+				action="{{ route('login.auth') }}"
 				autocomplete="off"
 			>
 				<div class="form__header">
@@ -93,7 +93,7 @@
 
 					<p class=""><a
 							class="text-link"
-							href="<?= route('auth.recover') ?>"
+							href="{{ route('auth.recover') }}"
 						>Hai dimenticato i dati di accesso?</a></p>
 				</div>
 
@@ -133,26 +133,26 @@
 					<div class="form__field">
 						<x-input
 							type="text"
-							name="firstname"
+							name="first_name"
 							class="input"
 							placeholder="Nome"
-							value="{{ old('firstname') }}"
+							value="{{ old('first_name') }}"
 							maxlength="16"
 							required
 							autocomplete="off"
 						/>
 						<x-input
 							type="text"
-							name="lastname"
+							name="last_name"
 							class="input"
 							placeholder="Cognome"
-							value="{{ old('lastname') }}"
+							value="{{ old('last_name') }}"
 							maxlength="16"
 							required
 							autocomplete="off"
 						/>
 
-						@error('lastname')
+						@error('last_name')
 							<p class="error-warning">{{ $message }}</p>
 						@enderror
 

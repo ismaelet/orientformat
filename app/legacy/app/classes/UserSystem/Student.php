@@ -48,12 +48,12 @@ class Student {
 		return $this->user->username;
 	}
 
-	private function getFirstName() {
-		return $this->user->firstName;
+	private function getfirst_name() {
+		return $this->user->first_name;
 	}
 
-	private function getLastName() {
-		return $this->user->lastName;
+	private function getlast_name() {
+		return $this->user->last_name;
 	}
 
 	private function getFullName() {

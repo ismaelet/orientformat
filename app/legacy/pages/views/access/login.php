@@ -64,8 +64,8 @@
 			<div class="form__body">
 				<!-- First and last name -->
 				<div class="form__field">
-					<input type="text" name="firstname" class="input" placeholder="Nome" value="<?= $_POST['firstname'] ?? '' ?>" maxlength="16" required autocomplete="off">
-					<input type="text" name="lastname" class="input" placeholder="Cognome" value="<?= $_POST['lastname'] ?? '' ?>" maxlength="16" required autocomplete="off">
+					<input type="text" name="first_name" class="input" placeholder="Nome" value="<?= $_POST['first_name'] ?? '' ?>" maxlength="16" required autocomplete="off">
+					<input type="text" name="last_name" class="input" placeholder="Cognome" value="<?= $_POST['last_name'] ?? '' ?>" maxlength="16" required autocomplete="off">
 
 					<?php if ($error == 'duplicate-name') { ?>
 

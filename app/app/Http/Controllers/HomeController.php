@@ -10,6 +10,10 @@ class HomeController extends Controller {
 	 * Redirects to the appropriate dashboard based on user role
 	 */
 	public function index(): RedirectResponse {
+		if (is_admin()) {
+			return redirect(env('APP_SUBDOMAIN') . '/admin');
+		}
+
 		if (is_teacher()) {
 			return redirect()->route('teacher.dashboard');
 		}

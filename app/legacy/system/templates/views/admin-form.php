@@ -37,7 +37,7 @@
 
 			<?php if ($pageConfig['upload']) { ?>
 				<div class="file-load">
-					<?= icon_embed('loading') ?>
+					<?= embed_icon('loading') ?>
 				</div>
 			<?php } ?>
 

@@ -12,7 +12,7 @@
 
 			<div class="flex-line">
 				<div class="status-icon icon-box" style="--_status-color: <?= $cart->statusColor ?>">
-					<?= icon_embed($cart->statusIcon) ?>
+					<?= embed_icon($cart->statusIcon) ?>
 				</div>
 
 				<h3 class="txt-med txt-1rem txt-ls05"><?= $cart->statusStr ?></h3>

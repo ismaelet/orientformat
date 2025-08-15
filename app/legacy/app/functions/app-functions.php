@@ -16,20 +16,12 @@ function isStudent() {
 	return (bool) !is_teacher();
 }
 
-function watchedStudentId() {
-	return request()->student_id ?? \Illuminate\Support\Facades\Auth::id();
-}
-
 function watchedStudent() {
 	if (isSupervisor() && (!is_teacher_or_administrator() || (is_teacher() && !in_array(watchedStudentId(), teacher()->studentIds)) || (is_administrator() && !in_array(watchedStudentId(), administrator()->studentIds())))) {
 		return student();
 	} else {
 		return new Student(watchedStudentId());
 	}
-}
-
-function isSupervisor() {
-	return watchedStudentId() != \Illuminate\Support\Facades\Auth::id();
 }
 
 /**
@@ -64,19 +56,6 @@ function profile_config($type) {
 /**
  * Style
  */
-function get_grade_style() {
-	if (isSupervisor()) {
-		return watchedStudent()->isInMiddleSchool ? 'middleschool' : 'highschool';
-	}
-
-	if (is_teacher_or_administrator()) {
-		return 'highschool';
-	}
-
-	if (is_student()) {
-		return student()->isInMiddleSchool ? 'middleschool' : 'highschool';
-	}
-}
 
 function add_grade_style() {
 	$style = get_grade_style();

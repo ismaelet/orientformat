@@ -110,8 +110,8 @@
 
 					<form class="dashboard-row" id="row<?= $student['id'] ?>" method="POST" action="#row<?= $student['id'] ?>">
 
-						<p class="dashboard-field"><?= ucfirst($student['lastname']) ?></p>
-						<p class="dashboard-field"><?= ucfirst($student['firstname']) ?></p>
+						<p class="dashboard-field"><?= ucfirst($student['last_name']) ?></p>
+						<p class="dashboard-field"><?= ucfirst($student['first_name']) ?></p>
 						<p class="dashboard-field"><?= $student['username'] ?></p>
 						<p class="dashboard-field"><?= $student['time'] ?></p>
 						<div class="dashboard-field dashboard-field_min-width"><?= snippet_binary_icon($student['status']) ?></div>

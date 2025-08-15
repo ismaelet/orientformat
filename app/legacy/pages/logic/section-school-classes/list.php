@@ -15,7 +15,7 @@ $pageConfig['add'] = false;
  */
 $queryConfig['table'] = 'school_classes';
 $queryConfig['index'] = 'id';
-$queryConfig['select'] = ['school_classes.id', 'CONCAT(firstName, " ", lastName) as referentName', 'schools.name as schoolName', 'code', 'startingYear', 'grade'];
+$queryConfig['select'] = ['school_classes.id', 'CONCAT(first_name, " ", last_name) as referentName', 'schools.name as schoolName', 'code', 'startingYear', 'grade'];
 
 $queryConfig['from'] = 'school_classes
 INNER JOIN schools
@@ -23,7 +23,7 @@ ON school_classes.schoolId = schools.id
 INNER JOIN users
 ON school_classes.referentId = users.id';
 
-$queryConfig['where-search'] = "school_classes.id = ? OR CONCAT(grade, letter) = ? OR schools.name LIKE CONCAT('%',?,'%') OR firstName LIKE CONCAT('%',?,'%') OR lastName LIKE CONCAT('%',?,'%') OR CONCAT(firstName, ' ', lastName) LIKE CONCAT('%',?,'%') OR CONCAT(lastName, ' ', firstName) LIKE CONCAT('%',?,'%')";
+$queryConfig['where-search'] = "school_classes.id = ? OR CONCAT(grade, letter) = ? OR schools.name LIKE CONCAT('%',?,'%') OR first_name LIKE CONCAT('%',?,'%') OR last_name LIKE CONCAT('%',?,'%') OR CONCAT(first_name, ' ', last_name) LIKE CONCAT('%',?,'%') OR CONCAT(last_name, ' ', first_name) LIKE CONCAT('%',?,'%')";
 
 // select fields
 $fields = [

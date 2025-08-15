@@ -35,7 +35,7 @@ while ($studentRow = $students->fetch_assoc()) {
 	$student = new \Legacy\UserSystem\Student($studentRow['id']);
 
 	$result['studentId'] = \Illuminate\Support\Facades\Auth::id();
-	$result['values'][0] = $student->lastname . ' ' . $student->firstname;
+	$result['values'][0] = $student->last_name . ' ' . $student->first_name;
 
 	foreach ($legacyTests as $legacyTest) {
 
