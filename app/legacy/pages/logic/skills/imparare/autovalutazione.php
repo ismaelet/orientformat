@@ -15,4 +15,4 @@ for ($i = 1; $i <= 8; $i++) {
 
 $count = count($graph_data);
 
-\LogicManager\TestLogic::setParameterCount($count);
+\Legacy\LogicManager\TestLogic::setParameterCount($count);

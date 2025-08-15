@@ -38,7 +38,7 @@ foreach ($text as $key => &$part) {
 
 $text = implode('', $text);
 
-\LogicManager\TestLogic::setParameterCount($count)
+\Legacy\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(
 		function ($count) {
 			$results = \App\Legacy\LegacyView::getInstance()->get('results');

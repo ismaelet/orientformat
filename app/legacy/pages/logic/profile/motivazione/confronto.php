@@ -18,7 +18,7 @@ if ($results) {
 	$results = explode(',', $results);
 }
 
-\LogicManager\TestLogic::setParameterCount($count)
+\Legacy\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function () {
 		$results = implode(',', $_POST['field_other']);
 

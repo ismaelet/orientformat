@@ -32,7 +32,7 @@ $correctResults = [
 
 $legacyTestResults = test()->completed ? _parse_results(test()->rawResults) : null;
 
-\LogicManager\TestLogic::setTestSubmitFunction(function () {
+\Legacy\LogicManager\TestLogic::setTestSubmitFunction(function () {
 	$correctResults = \App\Legacy\LegacyView::getInstance()->get('correctResults');
 	$correctResultCount = 0;
 

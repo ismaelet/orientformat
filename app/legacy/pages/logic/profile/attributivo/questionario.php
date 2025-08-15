@@ -17,7 +17,7 @@ for ($i = 1; $i <= 8; $i++) {
 
 $count = count($questions);
 
-\LogicManager\TestLogic::setParameterCount($count);
+\Legacy\LogicManager\TestLogic::setParameterCount($count);
 
 bump($questions);
 bump($answers);

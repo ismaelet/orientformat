@@ -11,7 +11,7 @@ $patterns = [
 
 $correctSolution = 3;
 
-\LogicManager\TestLogic::setParameterCount(1)
+\Legacy\LogicManager\TestLogic::setParameterCount(1)
 	::setTestSubmitFunction(function () {
 		$correctSolution = \App\Legacy\LegacyView::getInstance()->get('correctSolution');
 

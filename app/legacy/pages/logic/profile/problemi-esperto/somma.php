@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Log;
 
 $count = 13;
 
-\LogicManager\TestLogic::setParameterCount($count)
+\Legacy\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(
 		function () {
 			$correctN = 0;
@@ -18,7 +18,7 @@ $count = 13;
 				Log::error('Post results not set in "Racconto"', ['userId' => Auth::id(), 'request' => request()->all()]);
 			}
 
-			return round($correctN / \LogicManager\TestLogic::$parameterCount * 100, 0);
+			return round($correctN / \Legacy\LogicManager\TestLogic::$parameterCount * 100, 0);
 		}
 	);
 

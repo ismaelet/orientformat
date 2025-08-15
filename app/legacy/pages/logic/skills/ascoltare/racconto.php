@@ -81,7 +81,7 @@ foreach ($questions as $questionKey => $question) {
 
 $count = count($questions);
 
-\LogicManager\TestLogic::setParameterCount($count)
+\Legacy\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function ($count) {
 		$answers = \App\Legacy\LegacyView::getInstance()->get('answers');
 

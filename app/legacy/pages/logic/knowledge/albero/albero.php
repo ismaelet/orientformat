@@ -16,7 +16,7 @@ if ($fruitsResults) {
 	bump($fruitsResults);
 }
 
-\LogicManager\TestLogic::setParameterCount($count)
+\Legacy\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(
 		function () {
 			$branches = implode(',', $_POST['branch']);

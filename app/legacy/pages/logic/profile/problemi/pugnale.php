@@ -23,7 +23,7 @@ $characters = [
 
 $correctResults = [4, 3, 1, 2];
 
-\LogicManager\TestLogic::setParameterCount(count($characters))
+\Legacy\LogicManager\TestLogic::setParameterCount(count($characters))
 	->setTestSubmitFunction(function ($count) {
 		$correctCount = 0;
 		$correctResults = \App\Legacy\LegacyView::get('correctResults');

@@ -48,7 +48,7 @@ $count = count($questions) * 2;
 
 bump($questions);
 
-\LogicManager\TestLogic::setParameterCount($count)
+\Legacy\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function ($count) {
 		$rightN = 0;
 		$answers = \App\Legacy\LegacyView::getInstance()->get('answers');

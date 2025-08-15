@@ -13,7 +13,7 @@ $count = count($questions);
 
 bump($questions);
 
-\LogicManager\TestLogic::setParameterCount($count)
+\Legacy\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function ($count) {
 		$max = 4 * $count;
 		$score = 0;

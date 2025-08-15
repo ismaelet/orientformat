@@ -1,7 +1,7 @@
 <?php
 
-use app\Http\Controllers\Activities\Test;
-use app\Http\TempLegacyRoute;
+use Legacy\Http\Controllers\Activities\Test;
+use Legacy\Http\TempLegacyRoute;
 
 TempLegacyRoute::get(function () {
 	Test::get(testId());

@@ -48,7 +48,7 @@ foreach ($boxes as $key => &$box) {
 
 $count = $i;
 
-\LogicManager\TestLogic::setParameterCount($count)
+\Legacy\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function ($count) {
 		$boxes = \App\Legacy\LegacyView::getInstance()->get('boxes');
 

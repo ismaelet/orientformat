@@ -4,4 +4,4 @@ $legacyTest = test();
 
 $count = 9;
 
-\LogicManager\TestLogic::setParameterCount($count);
+\Legacy\LogicManager\TestLogic::setParameterCount($count);

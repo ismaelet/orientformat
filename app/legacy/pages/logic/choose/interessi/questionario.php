@@ -15,4 +15,4 @@ bump($questions);
 
 $count = count($questions);
 
-\LogicManager\TestLogic::setParameterCount($count);
+\Legacy\LogicManager\TestLogic::setParameterCount($count);

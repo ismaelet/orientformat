@@ -21,7 +21,7 @@ if ($legacyTest->completed) {
 
 $emotionCount = count($emotions);
 
-\LogicManager\TestLogic::setParameterCount(1);
+\Legacy\LogicManager\TestLogic::setParameterCount(1);
 
 for ($i = 1; $i < $step; $i++) {
 	$relatedTestId = \App\Legacy\LegacyDB::find(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND step = ?', [$legacyTest->sectionId, $i]);

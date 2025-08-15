@@ -255,3 +255,13 @@ function get_grade_style() {
 		return student()->isInMiddleSchool ? 'middleschool' : 'highschool';
 	}
 }
+
+function hypens_to_camel_case(string $string, bool $capitalizeFirstCharacter = false) {
+	$string = str_replace('-', '', ucwords($string, '-'));
+
+	if (!$capitalizeFirstCharacter) {
+		$string = lcfirst($string);
+	}
+
+	return $string;
+}

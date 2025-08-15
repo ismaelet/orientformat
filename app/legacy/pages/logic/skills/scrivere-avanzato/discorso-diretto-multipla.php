@@ -39,7 +39,7 @@ $sentences = [
 
 $correctAnswers = [3, 2, 3, 2];
 
-\LogicManager\TestLogic::setParameterCount(count($sentences))
+\Legacy\LogicManager\TestLogic::setParameterCount(count($sentences))
 	::setTestSubmitFunction(function ($count) {
 		$correctAnswers = \App\Legacy\LegacyView::get('correctAnswers');
 		$correctAnswerCount = 0;

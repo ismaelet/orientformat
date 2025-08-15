@@ -43,7 +43,7 @@ if ($minutes) {
 $time_str .= $seconds == 1 ? '1 secondo' : $seconds . ' secondi';
 
 // process result
-\LogicManager\TestLogic::setParameterCount($count)
+\Legacy\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(
 		function ($count) {
 			$rightN = 0;

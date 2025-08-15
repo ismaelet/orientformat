@@ -68,7 +68,7 @@ if (isset($_POST['check'])) {
 	redirect_old();
 }
 
-\LogicManager\TestLogic::setTestSubmitFunction(
+\Legacy\LogicManager\TestLogic::setTestSubmitFunction(
 	function () {
 		$maxLevel = count(\App\Legacy\LegacyView::get('answers'));
 		$level = $_POST['field'][0];

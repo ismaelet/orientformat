@@ -2587,6 +2587,10 @@ textarea,
 	flex-wrap: wrap;
 }
 
+.flex.flex-nowrap {
+	flex-wrap: nowrap;
+}
+
 .inlflex {
 	display: inline-flex;
 }

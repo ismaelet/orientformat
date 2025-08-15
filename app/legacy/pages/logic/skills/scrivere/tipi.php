@@ -23,4 +23,4 @@ $types = [
 
 $count = count($types);
 
-\LogicManager\TestLogic::setParameterCount($count);
+\Legacy\LogicManager\TestLogic::setParameterCount($count);

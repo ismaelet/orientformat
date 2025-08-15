@@ -12,10 +12,10 @@ class FileHelper {
 	 * Get the versioned path of a file in the public storage directory
 	 */
 	public static function publicAsset(string $file): string {
-		$storagePath = public_path($file);
+		$storagePath = public_path('storage/' . $file);
 		$version = file_exists($storagePath) ? filemtime($storagePath) : time();
 
-		return asset($file) . '?v=' . $version;
+		return asset('storage/' . $file) . '?v=' . $version;
 	}
 
 	/**

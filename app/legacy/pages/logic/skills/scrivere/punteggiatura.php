@@ -66,7 +66,7 @@ foreach ($sentences as $sentence) {
 }
 
 // submit
-\LogicManager\TestLogic::setParameterCount($count)
+\Legacy\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function ($count) {
 		$correctAnswers = \App\Legacy\LegacyView::get('correctAnswers');
 		$correctAnswerCount = 0;

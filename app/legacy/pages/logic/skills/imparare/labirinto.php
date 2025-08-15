@@ -21,7 +21,7 @@ $titles = [
 
 $count = count($questions);
 
-\LogicManager\TestLogic::setParameterCount($count)
+\Legacy\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function () {
 		if (isset($_POST['skip-cbx'])) {
 			return 0;

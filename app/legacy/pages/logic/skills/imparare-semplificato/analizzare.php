@@ -61,7 +61,7 @@ foreach ($text as $textPart) {
 	}
 }
 
-\LogicManager\TestLogic::setParameterCount($count)
+\Legacy\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(
 		function ($count) {
 			$resultCount = 0;

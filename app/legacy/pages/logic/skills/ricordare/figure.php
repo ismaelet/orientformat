@@ -6,7 +6,7 @@ use LogicManager\TestLogic;
 
 $legacyTestCount = 1;
 
-\LogicManager\TestLogic::setParameterCount($legacyTestCount)
+\Legacy\LogicManager\TestLogic::setParameterCount($legacyTestCount)
 	->setTestSubmitFunction(function () {
 		$right = _RIGHT_COUNT;
 

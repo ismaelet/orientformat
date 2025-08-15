@@ -26,7 +26,8 @@ $text = [
 	["r", "rr", 1],
 	"a",
 	["z", "zz", 1],
-	"o", " e chiamarono i pompieri. Mio padre era quello che saliva sulle case per non fare gettare la gente dai palazzi. Lui salì, e quando si trovò faccia a faccia con la pazza ",
+	"o",
+	" e chiamarono i pompieri. Mio padre era quello che saliva sulle case per non fare gettare la gente dai palazzi. Lui salì, e quando si trovò faccia a faccia con la pazza ",
 	["gli", "le", 3],
 	" disse: «Ma tu perché ti vuoi buttare per farci passare un guaio a noi?». Allora quella un poco ",
 	["s", "c", 1],
@@ -49,7 +50,7 @@ foreach ($text as $textPart) {
 	}
 }
 
-\LogicManager\TestLogic::setParameterCount($count)
+\Legacy\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(function ($count) {
 		$score = 0;
 

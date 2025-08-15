@@ -11,7 +11,7 @@ $count = count($questions);
 
 bump($questions);
 
-\LogicManager\TestLogic::setParameterCount($count)
+\Legacy\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(
 		function ($count) {
 			$max = $count * 6;
