@@ -9527,8 +9527,8 @@ body {
 	--gradient-primary-tertiary: var(--color-primary-400), var(--color-tertiary-400);
 	--gradient-secondary-tertiary: var(--color-secondary-400), #753875, var(--color-tertiary-400);
 	--color-1-of-4: #f4c152;
-	--color-2-of-4: #f69e52;
-	--color-3-of-4: #dd6564;
+	--color-2-of-4: #;
+	--color-3-of-4: #6945a0;
 	--color-4-of-4: #c14e6e;
 	--color-1-of-5: #f4c152;
 	--color-2-of-5: #f69f52;
@@ -9549,6 +9549,11 @@ body {
 	--color-3-of-5: #944192;
 	--color-4-of-5: #b04480;
 	--color-5-of-5: #c14e6e;
+
+	--color-1-of-4: #0c4aa8;
+	--color-2-of-4: #6945a0;
+	--color-3-of-4: #b04480;
+	--color-4-of-4: #c14e6e;
 }
 
 .tracking-wide {

@@ -261,42 +261,50 @@ $testsConfig = [
 		'groups' => [
 			1 => [
 				'name' => 'Semplicità',
-				'info' => "spaventato dall’incertezza e dal rischio, rimane ancorato a ciò che è solido e sicuro",
+				'translated_name' => __('tests.113-1-name'),
+				'info' => __('tests.113-1-info'),
 				'questionIds' => [2, 17, 22],
 			],
 			2 => [
 				'name' => 'Complessità',
-				'info' => "nonostante i rischi, si sente sfidato dalle difficoltà e dall’incertezza dei risultati",
+				'translated_name' => __('tests.113-2-name'),
+				'info' => __('tests.113-2-info'),
 				'questionIds' => [5, 11, 14],
 			],
 			3 => [
 				'name' => 'Giocoso',
-				'info' => "ciò che conta non è il risultato, ma il piacere di svolgere l’attività",
+				'translated_name' => __('tests.113-3-name'),
+				'info' => __('tests.113-3-info'),
 				'questionIds' => [3, 12, 19],
 			],
 			4 => [
 				'name' => 'Finalistico',
-				'info' => "nelle diverse attività ciò che interessa veramente è il risultato",
+				'translated_name' => __('tests.113-4-name'),
+				'info' => __('tests.113-4-info'),
 				'questionIds' => [0, 15, 21],
 			],
 			5 => [
 				'name' => 'Divergente',
-				'info' => "portato all’innovazione, all’apertura mentale e alla diversità, può risultare   litigioso, arrogante o inconcludente",
+				'translated_name' => __('tests.113-5-name'),
+				'info' => __('tests.113-5-info'),
 				'questionIds' => [6, 8, 16],
 			],
 			6 => [
 				'name' => 'Convergente',
-				'info' => "orientato in un’unica direzione, può risultare efficace e determinato ma con prospettive anguste",
+				'translated_name' => __('tests.113-6-name'),
+				'info' => __('tests.113-6-info'),
 				'questionIds' => [1, 10, 18],
 			],
 			7 => [
 				'name' => 'Esplorativo',
-				'info' => "curioso e indagatore, è portato verso le novità, esponendosi anche a dei rischi",
+				'translated_name' => __('tests.113-7-name'),
+				'info' => __('tests.113-7-info'),
 				'questionIds' => [9, 20, 23],
 			],
 			8 => [
 				'name' => 'Evitante',
-				'info' => "teme ciò che è nuovo e incerto, cercando di restare attaccato a luoghi e persone rassicuranti",
+				'translated_name' => __('tests.113-8-name'),
+				'info' => __('tests.113-8-info'),
 				'questionIds' => [4, 7, 13],
 			],
 		]

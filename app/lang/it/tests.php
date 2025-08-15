@@ -1392,6 +1392,23 @@ return [
 	'111-8-info' => "progetta con cura, temendo gli imprevisti, anche se possono risultare utili e
 				promettenti",
 
+	'113-1-name' => 'Semplicità',
+	'113-2-name' => 'Complessità',
+	'113-3-name' => 'Giocoso',
+	'113-4-name' => 'Finalistico',
+	'113-5-name' => 'Divergente',
+	'113-6-name' => 'Convergente',
+	'113-7-name' => 'Esplorativo',
+	'113-8-name' => 'Evitante',
+	'113-1-info' => "spaventato dall’incertezza e dal rischio, rimane ancorato a ciò che è solido e sicuro",
+	'113-2-info' => "nonostante i rischi, si sente sfidato dalle difficoltà e dall’incertezza dei risultati",
+	'113-3-info' => "ciò che conta non è il risultato, ma il piacere di svolgere l’attività",
+	'113-4-info' => "nelle diverse attività ciò che interessa veramente è il risultato",
+	'113-5-info' => "portato all’innovazione, all’apertura mentale e alla diversità, può risultare   litigioso, arrogante o inconcludente",
+	'113-6-info' => "orientato in un’unica direzione, può risultare efficace e determinato ma con prospettive anguste",
+	'113-7-info' => "curioso e indagatore, è portato verso le novità, esponendosi anche a dei rischi",
+	'113-8-info' => "teme ciò che è nuovo e incerto, cercando di restare attaccato a luoghi e persone rassicuranti",
+
 	'114-option-1' => 'CARTA',
 	'114-option-2' => 'TELEFONO',
 	'114-option-3' => 'STUFA',

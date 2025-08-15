@@ -53,6 +53,8 @@
 				action="{{ route('login.auth') }}"
 				autocomplete="off"
 			>
+				@csrf
+
 				<div class="form__header">
 					<h2 class="form__title">Accesso <?= $loginType == $studentType ? 'studente' : 'insegnante' ?></h2>
 				</div>
@@ -119,6 +121,8 @@
 				action="<?= route('register.store') ?>"
 				autocomplete="off"
 			>
+				@csrf
+
 				<input
 					type="hidden"
 					name="type"
