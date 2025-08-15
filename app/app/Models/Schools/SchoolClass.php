@@ -14,7 +14,7 @@ class SchoolClass extends Model {
 	use SoftDeletes;
 
 	/**
-	 * The attributes that are mass assignable\
+	 * The attributes that are mass assignable
 	 */
 	protected $fillable = [
 		'schoolId',
@@ -26,6 +26,7 @@ class SchoolClass extends Model {
 		'startingYear',
 		'year',
 		'ended',
+		'professional',
 	];
 
 	/**

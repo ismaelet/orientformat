@@ -2,53 +2,48 @@
 
 namespace App\Models\Schools;
 
+use App\Models\Activities\Section;
 use App\Models\Activities\Test;
 use App\Models\Results\User\GradeResult;
 use App\Models\Results\User\TestResult;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
-class Grade {
-
-	public $number;
-	public $is_professional;
-
-	public function __construct(int $number, bool $isProfessional) {
-		$this->number = $number;
-		$this->is_professional = $isProfessional;
-	}
+class Grade extends Model {
 
 	/**
-	 * * Accessors
-	 * 
-	 * ! NOT AN ACCESSOR
+	 * The table associated with the model
 	 */
+	protected $table = 'activities_grades';
+
+	/**
+	 * The attributes that are mass assignable
+	 */
+	protected $fillable = [];
+
+	/**
+	 * Relationship: The sections that belong to this grade
+	 */
+	public function sections(): BelongsToMany {
+		return $this->belongsToMany(Section::class);
+	}
+
 	public function relative_number(): int {
 		return $this->isMiddleSchool() ? $this->number : $this->number - 3;
 	}
 
-	/**
-	 * * Attributes
-	 */
-
-	/**
-	 * Slug
-	 */
 	public function slug(): string {
 		return $this->number > 5 ?
 			($this->is_professional ? $this->number . 'P' : $this->number . 'L') : $this->number;
 	}
 
-	/**
-	 * 
-	 */
 	public function isMiddleschool(): bool {
 		return $this->number < 4;
 	}
 
-	/**
-	 * Test IDs
-	 */
 	public function tests(): Collection {
 		return Test::join('activities_sections', 'activities_tests.sectionId', '=', 'activities_sections.id')
 			->where('isStandard', true)
@@ -77,9 +72,6 @@ class Grade {
 		return round($completedTestCount / $this->test_count() * 100);
 	}
 
-	/**
-	 * * Actions
-	 */
 	public function updateProgress(): self {
 		$progressPercentage = $this->user_progress();
 

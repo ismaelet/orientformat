@@ -2,8 +2,11 @@
 
 namespace App\Models\Activities;
 
+use App\Models\Schools\Grade;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Section extends Model {
 
@@ -28,6 +31,13 @@ class Section extends Model {
 		}
 
 		return $this->belongsTo(Section::class, 'mainSectionId');
+	}
+
+	/**
+	 * Relationship: The grades that this section belongs to
+	 */
+	public function grades(): BelongsToMany {
+		return $this->belongsToMany(Grade::class);
 	}
 
 	/**

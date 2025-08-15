@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\SchoolClass\StudentResultController;
 use App\Http\Controllers\SchoolClassController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Middleware\HasClassAccess;
+use App\Http\Middleware\StudentBelongsToClass;
 use App\Http\Middleware\Teacher;
 use App\Http\Middleware\TeacherBelongsToSchool;
 use Illuminate\Support\Facades\Route;
@@ -42,7 +44,8 @@ Route::prefix(env('APP_SUBDOMAIN'))->group(function () {
 		Route::get('{class}/students/results', [SchoolClassController::class, 'studentResultsIndex'])
 			->name('students.results.index');
 
-		Route::get('{class}/students/results/{student}', [SchoolClassController::class, 'studentResultsShow'])
+		Route::get('{class}/students/results/{student}', [StudentResultController::class, 'show'])
+			->middleware(StudentBelongsToClass::class)
 			->name('students.results.show');
 
 		Route::get('{class}/students/guidance', [SchoolClassController::class, 'showStudentGuidance'])
