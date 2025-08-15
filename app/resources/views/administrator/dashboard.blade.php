@@ -59,7 +59,7 @@
 
 						foreach ($schoolClass->teachers() as $teacher) {
 						    if ($teacher->user) {
-						        $teachers[] = $teacher->user->fullName();
+						        $teachers[] = $teacher->user->full_name;
 						    }
 						}
 

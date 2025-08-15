@@ -14,6 +14,7 @@ use App\Models\Schools\Grade;
 use App\Models\Schools\SchoolClass;
 use App\Models\Student\Advice;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -38,6 +39,15 @@ class Student extends Model {
 		'schoolClassId',
 		'created_at',
 	];
+
+	/**
+	 * Get the student's inverted full name
+	 */
+	public function invertedFullName(): Attribute {
+		return new Attribute(
+			get: fn() => $this->user->inverted_full_name,
+		);
+	}
 
 	/**
 	 * The user linked to the student

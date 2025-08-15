@@ -3,6 +3,7 @@
     'type' => 'button',
     'variant' => 'primary',
     'size' => 'regular',
+    'color' => 'default',
 ])
 
 @php
@@ -50,14 +51,29 @@
 					color: var(--_color);
 
 					&:hover {
-						--_border-color: var(--color-primary-400);
-						--_color: var(--color-primary-400);
+						--_border-color: var(--color-tertiary-300);
+						--_color: var(--color-tertiary-300);
+					}
+
+					&[data-color="primary"] {
+						--_border-color: var(--color-primary-500);
+						--_color: var(--color-primary-500);
+
+						&:hover {
+							--_border-color: var(--color-primary-300);
+							--_color: var(--color-primary-300);
+						}
 					}
 				}
 
 				&[data-size="small"] {
 					min-width: 8rem;
 					font-size: var(--font-size-300);
+				}
+
+				&[data-size="xs"] {
+					min-width: 6rem;
+					font-size: 0.8rem;
 				}
 
 				&[data-size="auto"] {
@@ -67,6 +83,8 @@
 
 				&:has(svg) {
 					display: flex;
+					align-items: center;
+					justify-content: space-between;
 				}
 			}
 		</style>
@@ -79,6 +97,7 @@
 		{{ $attributes->class($classes) }}"
 		data-variant="{{ $variant }}"
 		data-size="{{ $size }}"
+		data-color="{{ $color }}"
 	>{{ $slot }}</a>
 @else
 	<button
@@ -86,5 +105,6 @@
 		{{ $attributes->class($classes) }}"
 		data-variant="{{ $variant }}"
 		data-size="{{ $size }}"
+		data-color="{{ $color }}"
 	>{{ $slot }}</button>
 @endif

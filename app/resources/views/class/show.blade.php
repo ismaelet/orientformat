@@ -1,7 +1,4 @@
-<x-layouts.class-dashboard
-	:$class
-	:$classLocation
->
+<x-layouts.class-dashboard :$class>
 	{{-- <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		const copyCodeButton = document.querySelector('.js-copy-code');

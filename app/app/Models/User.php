@@ -48,6 +48,24 @@ class User extends Authenticatable implements FilamentUser, HasName {
 	];
 
 	/**
+	 * Get the user's full name
+	 */
+	public function fullName(): Attribute {
+		return new Attribute(
+			get: fn() => $this->first_name . ' ' . $this->last_name,
+		);
+	}
+
+	/**
+	 * Get the user's inverted full name
+	 */
+	public function invertedFullName(): Attribute {
+		return new Attribute(
+			get: fn() => $this->last_name . ' ' . $this->first_name,
+		);
+	}
+
+	/**
 	 * Attribute: Check if the user is an admin
 	 */
 	public function isAdmin(): Attribute {
@@ -75,17 +93,6 @@ class User extends Authenticatable implements FilamentUser, HasName {
 	 */
 	public function administrator(): HasOne {
 		return $this->hasOne(Administrator::class);
-	}
-
-	/**
-	 * Get the user's full name
-	 */
-	public function fullName(): string {
-		$fullName = [];
-		$fullName[] = $this->first_name;
-		$fullName[] = $this->last_name;
-
-		return implode(' ', $fullName);
 	}
 
 	/**

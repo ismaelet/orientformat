@@ -13,7 +13,17 @@ class SchoolClassController extends Controller {
 	public function show(SchoolClass $class) {
 		return view('class.show', [
 			'class' => $class,
-			'classLocation' => 'welcome'
+		]);
+	}
+
+	/**
+	 * Show the list of students for the results
+	 */
+	public function studentResultsIndex(SchoolClass $class) {
+		$class->load('students', 'students.user');
+
+		return view('class.students.results.index', [
+			'class' => $class,
 		]);
 	}
 }
