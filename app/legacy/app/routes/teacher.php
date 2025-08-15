@@ -107,6 +107,5 @@ use \Legacy\Activity\Area;
 
 	\App\Legacy\LegacyView::setPage('read/' . $page)
 		->setTemplate('read')
-		->setMiddlewares(['public', 'logged', 'active', 'beginner-review'])
 		->show();
 });

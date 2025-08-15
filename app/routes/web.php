@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LegacyController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Middleware\Locale;
 use Illuminate\Support\Facades\Route;

@@ -66,25 +66,6 @@ function icon_url($file) {
 	return $url;
 }
 
-// get an embedded icon
-function embed_icon(string $file, array $customClasses = []) {
-	$_old_classes = ['icon-embed'];
-
-	foreach ($customClasses as $_old_class) {
-		$_old_classes[] = $_old_class;
-	}
-
-	$classes = implode(' ', $_old_classes);
-
-	$url = base_path() . '/public/legacy/' . icon_url_raw($file);
-
-	if (!file_exists($url)) return null;
-
-	$icon = file_get_contents($url);
-	$icon = str_replace('<svg', '<svg class="' . $classes . '"', $icon);
-
-	return $icon;
-}
 
 // put an icon as background image
 function icon_css($icon) {

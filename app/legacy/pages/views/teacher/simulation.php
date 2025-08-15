@@ -66,7 +66,7 @@ use \Legacy\SchoolSystem\Grade;
 												<?php foreach ($legacySections as $legacySectionKey => $legacySection) { ?>
 
 													<div class="load--fade-in js-load" data-direction="bottom" data-delay="<?= $legacySectionKey % 3 ?>">
-														<a class="activity element element_functionality" href="<?= $legacySection->clientUrl ?>">
+														<a class="activity element element_functionality" href="<?= $legacySection->url ?>">
 															<div class="element-icon icon-box">
 																<?= embed_icon($legacySection->icon) ?>
 															</div>
