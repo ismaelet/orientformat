@@ -147,7 +147,7 @@
 	    !$userGroupId &&
 	    !\App\Legacy\LegacyDB::exists('review_results WHERE studentId = ? AND reviewId = 3', [$userId])
 	) {
-	    $h_grade = (new Student($userId))->schoolClass;
+	    $h_grade = new Student($userId)->schoolClass;
 	    $header['survey-end'] = $h_grade && $h_grade->ended;
 	}
 
@@ -969,14 +969,3 @@
 		</div>
 	</div>
 </header>
-
-<?php if ($header['survey-end']) { ?>
-
-<a
-	class="review-prompt"
-	href="<?= client_url('/review?id=' . (student()->isInMiddleSchool ? 3 : 6)) ?>"
->
-	<p class="">Per favore, completa il questionario finale <span>qui</span>.</p>
-</a>
-
-<?php } ?>

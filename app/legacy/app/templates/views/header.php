@@ -919,11 +919,3 @@ $h_drop = [
 		</div>
 	</div>
 </header>
-
-<?php if ($header['survey-end']) { ?>
-
-	<a class="review-prompt" href="<?= client_url('/review?id=' . (student()->isInMiddleSchool ? 3 : 6)) ?>">
-		<p class="">Per favore, completa il questionario finale <span>qui</span>.</p>
-	</a>
-
-<?php } ?>

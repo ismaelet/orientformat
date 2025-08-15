@@ -15,6 +15,10 @@ class CompletedReview {
 	 */
 	public function handle(Request $request, Closure $next): Response {
 		$student = Auth::user()->student;
+
+		/**
+		 * Starting review
+		 */
 		$relativeGrade = $student->school_class->grade()->relative_number();
 		$startingGrade = $student->school_class->startingGrade;
 		$currentGrade = $student->school_class->grade;
@@ -45,6 +49,22 @@ class CompletedReview {
 			->doesntExist()
 		) {
 			return redirect()->route('review', ['id' => $reviewId]);
+		}
+
+		/**
+		 * Ending review
+		 */
+		if ($student->school_class->ended) {
+			$reviewId = $student->isMiddleSchoolStudent() ? 3 : 6;
+
+			if (
+				$reviewId &&
+				ReviewResult::where('studentId', Auth::id())
+				->where('reviewId', $reviewId)
+				->doesntExist()
+			) {
+				return redirect()->route('review', ['id' => $reviewId]);
+			}
 		}
 
 		return $next($request);
