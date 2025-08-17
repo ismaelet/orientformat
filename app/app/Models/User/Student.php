@@ -43,6 +43,15 @@ class Student extends Model {
 	/**
 	 * Get the student's inverted full name
 	 */
+	public function fullName(): Attribute {
+		return new Attribute(
+			get: fn() => $this->user->full_name,
+		);
+	}
+
+	/**
+	 * Get the student's inverted full name
+	 */
 	public function invertedFullName(): Attribute {
 		return new Attribute(
 			get: fn() => $this->user->inverted_full_name,

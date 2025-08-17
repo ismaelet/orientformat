@@ -6,11 +6,12 @@ use App\Models\Activities\Section;
 use App\Models\Activities\Test;
 use App\Models\Results\User\GradeResult;
 use App\Models\Results\User\TestResult;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Number;
 
 class Grade extends Model {
 
@@ -22,7 +23,21 @@ class Grade extends Model {
 	/**
 	 * The attributes that are mass assignable
 	 */
-	protected $fillable = [];
+	protected $fillable = [
+		'absolute_number',
+		'school_relative_number',
+		'is_highschool',
+		'is_professional',
+	];
+
+	/**
+	 * Attribute: The relative number of the grade
+	 */
+	public function relativeNumber(): Attribute {
+		return Attribute::make(
+			get: fn() => $this->school_relative_number
+		);
+	}
 
 	/**
 	 * Relationship: The sections that belong to this grade
@@ -31,8 +46,11 @@ class Grade extends Model {
 		return $this->belongsToMany(Section::class);
 	}
 
-	public function relative_number(): int {
-		return $this->isMiddleSchool() ? $this->number : $this->number - 3;
+	/**
+	 * Get the sections that are completable for this grade
+	 */
+	public function completable_sections(): Collection {
+		return $this->sections()->where('isStandard', true)->get();
 	}
 
 	public function slug(): string {
@@ -83,5 +101,19 @@ class Grade extends Model {
 		]);
 
 		return $this;
+	}
+
+	/**
+	 * Get a grade by its absolute number and professional status
+	 */
+	public static function getByNumber(int $number, bool $professional = false): ?self {
+		return self::where('absolute_number', $number)->where('is_professional', $professional)->first();
+	}
+
+	/**
+	 * Get the ordinal representation of the grade
+	 */
+	public function ordinal(): string {
+		return __(Number::spellOrdinal($this->school_relative_number));
 	}
 }

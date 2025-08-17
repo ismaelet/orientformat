@@ -46,4 +46,13 @@ class Teacher extends Model {
 	public function hasAccessToClass(SchoolClass $class): bool {
 		return $this->school_classes->pluck('id')->contains($class->id);
 	}
+
+	/**
+	 * Get the IDs of all students in the classes taught by this teacher
+	 */
+	public function studentIds(): array {
+		return $this->school_classes->flatMap(function (SchoolClass $class) {
+			return $class->students->pluck('id');
+		})->unique()->values()->all();
+	}
 }

@@ -5,6 +5,7 @@
 			--fc-400: hsl(calc(var(--_background-h) - 4), 25%, 60%);
 			display: block;
 			color: var(--fc-400);
+			padding-bottom: 5rem;
 			transition: width 0.4s;
 		}
 

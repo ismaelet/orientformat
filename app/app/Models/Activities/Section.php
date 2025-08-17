@@ -46,4 +46,11 @@ class Section extends Model {
 	public function url(): string {
 		return route('section', ['section' => $this]);
 	}
+
+	/**
+	 * Check if the section is completable
+	 */
+	public function isCompletable(): bool {
+		return $this->isStandard;
+	}
 }

@@ -16,14 +16,6 @@ function isStudent() {
 	return (bool) !is_teacher();
 }
 
-function watchedStudent() {
-	if (isSupervisor() && (!is_teacher_or_administrator() || (is_teacher() && !in_array(watchedStudentId(), teacher()->studentIds)) || (is_administrator() && !in_array(watchedStudentId(), administrator()->studentIds())))) {
-		return student();
-	} else {
-		return new Student(watchedStudentId());
-	}
-}
-
 /**
  * School class
  */

@@ -3,6 +3,11 @@
 		rel="stylesheet"
 		href="{{ asset('css/legacy/login.css') }}"
 	>
+	<style>
+		main {
+			overflow: hidden;
+		}
+	</style>
 @endpushOnce
 
 @pushOnce('scripts')

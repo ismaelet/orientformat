@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User\Administrator;
+use App\Models\User\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Legacy\UserSystem\ActiveStudent;
@@ -269,4 +270,37 @@ function hypens_to_camel_case(string $string, bool $capitalizeFirstCharacter = f
 function bump(&$array) {
 	array_unshift($array, '');
 	unset($array[0]);
+}
+
+function watchedStudent(): Student {
+	if (!isSupervisor() || !is_teacher_or_administrator()) {
+		return student();
+	}
+
+	teacher()->load('school_classes.students');
+
+	if (is_teacher() && !in_array(watchedStudentId(), teacher()->studentIds())) {
+		return student();
+	}
+
+	if (is_administrator() && !in_array(watchedStudentId(), administrator()->studentIds())) {
+		return student();
+	}
+
+	return Student::find(watchedStudentId()) ?? student();
+}
+
+
+function snippet_binary_icon($value) {
+	if ($value) {
+		$snippet = '<div class="binary-icon binary-icon_yes">';
+		$snippet .= embed_icon('correct');
+	} else {
+		$snippet = '<div class="binary-icon binary-icon_no">';
+		$snippet .= embed_icon('close');
+	}
+
+	$snippet .= '</div>';
+
+	return $snippet;
 }

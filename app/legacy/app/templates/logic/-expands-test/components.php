@@ -69,7 +69,7 @@ function submit(bool $progressiveButton = false) {
 		case isSupervisor(): ?>
 
 			<div class="fa-center">
-				<a class="button button--secondary button--full-width js-submit-button" href="<?= client_url('/class/students/progress/focus?studentId=' . watchedStudentId()) ?>"><?= $label ?></a>
+				<a class="button button--secondary button--full-width js-submit-button" href="<?= route('class.students.results.show', ['class' => watchedStudent()->school_class, 'student' => watchedStudent()]) ?>"><?= $label ?></a>
 			</div>
 
 		<?php break;

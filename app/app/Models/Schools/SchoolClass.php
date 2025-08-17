@@ -4,6 +4,7 @@ namespace App\Models\Schools;
 
 use App\Models\User\Student;
 use App\Models\User\Teacher;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -36,26 +37,31 @@ class SchoolClass extends Model {
 	/**
 	 * Get the class's name
 	 */
-	public function getNameAttribute(): string {
-		return $this->isMiddleSchool() ? $this->grade()->relative_number() . $this->letter : $this->letter;
+	public function name(): Attribute {
+		return Attribute::make(
+			get: fn() => $this->isMiddleSchool() ? $this->grade()->relative_number . $this->letter : $this->letter
+		);
 	}
 
 	/**
-	 * * Relationships
-	 */
-
-	/**
-	 * School
+	 * Relationship: The school the class belongs to
 	 */
 	public function school(): BelongsTo {
 		return $this->belongsTo(School::class, 'schoolId');
 	}
 
 	/**
-	 * Students
+	 * Relationship: The students in the class
 	 */
 	public function students(): HasMany {
 		return $this->hasMany(Student::class, 'schoolClassId');
+	}
+
+	/**
+	 * Relationship: The students in the class
+	 */
+	public function active_students(): HasMany {
+		return $this->hasMany(Student::class, 'schoolClassId')->where('active', true);
 	}
 
 	/**
@@ -64,11 +70,15 @@ class SchoolClass extends Model {
 	 * ! NOT A RELATIONSHIP
 	 */
 	public function grade(): Grade {
-		return new Grade($this->grade, $this->professional);
+		return Grade::getByNumber($this->grade, $this->professional);
 	}
 
 	public function teachers() {
 		return Teacher::whereRaw("FIND_IN_SET(?, classes)", [$this->id])->get();
+	}
+
+	public function startingGrade(): Grade {
+		return Grade::getByNumber($this->startingGrade, $this->professional);
 	}
 
 	/**
@@ -143,5 +153,12 @@ class SchoolClass extends Model {
 		$diffYear = $year - $this->startingYear;
 
 		return min($this->startingGrade + $diffYear, $lastYear);
+	}
+
+	/**
+	 * Check if the class is part of a professional school
+	 */
+	public function isProfessional(): bool {
+		return $this->professional;
 	}
 }
