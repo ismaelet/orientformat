@@ -1107,7 +1107,7 @@ return [
 	'91-question-114' => 'Fare misurazioni di terre per la costruzione di strade, case, ponti, gallerie',
 
 	"92-subtitle-1" => "Area di interesse principale:",
-	"92-subtitle-1" => "Altre aree che potrebbero interessarti:",
+	"92-subtitle-2" => "Altre aree che potrebbero interessarti:",
 	"92-name-1" => "Agricoltura e ambiente",
 	"92-info-1" => "L’Operatore agricolo può svolgere diverse attività: ara,
 		pianta, zappa, semina, concima, innesta, pota, tratta le

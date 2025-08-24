@@ -2,21 +2,21 @@
 
 namespace App\Models\Results\User;
 
+use App\Helpers\TestResultHelper;
+use App\Models\Activities\Section;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Legacy\Activity\Result\Handler\StudentSectionResult;
 
 class SectionResult extends Model {
 
 	/**
-	 * The table associated with the model.
-	 * 
-	 * @var string
+	 * The table associated with the model
 	 */
 	protected $table = 'results_sections';
 
 	/**
-	 * The attributes that are mass assignable.
-	 * 
-	 * @var array
+	 * The attributes that are mass assignable
 	 */
 	protected $fillable = [
 		'studentId',
@@ -26,4 +26,56 @@ class SectionResult extends Model {
 		'progressPercentage',
 		'completed',
 	];
+
+	/**
+	 * Relationship: The section associated with the result
+	 */
+	public function section(): BelongsTo {
+		return $this->belongsTo(Section::class, 'sectionId');
+	}
+
+	/**
+	 * Get the verbose result of the student in the section
+	 */
+	public function verboseResult(): string {
+		if ($result = TestResultHelper::getResult($this->studentId, $this->section->evaluation_test_id)) {
+			return $result;
+		}
+
+		return (new StudentSectionResult($this->id, $this->studentId))->result;
+	}
+
+	/**
+	 * Get the speed of the student in the section
+	 */
+	public function speed(): ?int {
+		return TestResult::where('studentId', $this->studentId)
+			->whereIn('testId', function ($query) {
+				$query->select('id')
+					->from('activities_tests')
+					->where('sectionId', $this->sectionId);
+			})
+			->sum('speed');
+	}
+
+	/**
+	 * Get the verbose string representation of the speed
+	 */
+	public function verboseSpeed(): ?string {
+		$speed = null;
+
+		if ($this->speed >= 60) {
+			$minutes = round($this->speed / 60);
+
+			$speed = $minutes;
+			$speed .= $minutes == 1 ? ' minuto' : ' minuti';
+		} else if ($this->speed) {
+			$seconds = $this->speed;
+
+			$speed = $seconds;
+			$speed .= $seconds == 1 ? ' secondo' : ' secondi';
+		}
+
+		return $speed;
+	}
 }

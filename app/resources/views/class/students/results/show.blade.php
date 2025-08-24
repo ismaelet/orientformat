@@ -76,7 +76,7 @@
 
 		.areas {
 			display: grid;
-			grid-template-columns: 3rem auto auto auto auto auto;
+			grid-template-columns: 3rem auto auto auto auto 2rem;
 			min-width: 1024px;
 		}
 

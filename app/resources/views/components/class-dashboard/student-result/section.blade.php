@@ -10,27 +10,37 @@
 	<p class="dashboard-panel-title text-neutral-700">{{ $section->name }}</p>
 
 	<div class="">
-
 		@if ($result->result)
-			<p class="text-sm">
-				{{ section_config($section->id ?? null, 'recap-name-student') ?: 'Risultato dell\'autovalutazione' }}:</p>
-			<p class="dashboard-panel_value font-bold">{{ $result->result }}</p>
+			@if ($section->evaluation_test)
+				<p class="text-sm">
+					{{ $section->result_label ?: 'Risultato dell\'autovalutazione' }}:</p>
+				<p class="dashboard-panel_value font-bold">{{ $result->result }}</p>
+
+				<p class="mt-0">
+					<a
+						href="{{ $section->evaluation_test->url($student->id) }}"
+						class="text-primary-500 hover:text-primary-400 font-medium transition-colors"
+					>Vedi autovalutazione</a>
+				</p>
+			@else
+				<span class="dashboard-panel_value font-bold text-neutral-700">Completata
+			@endif
 		@else
-			Non ancora completato
+			Non ancora completata
 		@endif
 
 	</div>
 
 	<div class="">
-		@if ($actions)
-			<p class="text-sm">Altri risultati:</p>
+		@if ($tests)
+			<p class="text-sm">Attività svolte:</p>
 
-			@foreach ($actions as $action)
+			@foreach ($tests as $test)
 				<p class="">
 					<a
-						href="{{ $action['url'] }}"
-						class="text-secondary-400 hover:text-secondary-300 font-medium underline transition-colors"
-					>{{ $action['name'] }}</a>
+						href="{{ $test->url($student->id) }}"
+						class="text-secondary-400 hover:text-secondary-300 font-medium transition-colors"
+					>Risultato di "{{ $test->name }}"</a>
 				</p>
 			@endforeach
 		@endif
@@ -38,7 +48,7 @@
 
 	<p>
 		@if ($result && $speed)
-			Completato in <strong>{{ $speed }}</strong><br>
+			Completata in <strong>{{ $speed }}</strong><br>
 		@endif
 	</p>
 

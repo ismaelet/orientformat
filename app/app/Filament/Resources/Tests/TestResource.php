@@ -26,7 +26,7 @@ class TestResource extends Resource {
 	/**
 	 * Property: The icon to be used for the navigation item
 	 */
-	protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+	protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPencilSquare;
 
 	/**
 	 * Property: The label of a singular resource

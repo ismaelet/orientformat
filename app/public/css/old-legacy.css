@@ -6609,6 +6609,7 @@ main {
 */
 :root {
 	/* colors */
+	--color-secondary-hsl-300: 343deg 48% 63%;
 	--color-primary-100: hsl(var(--color-primary-hsl-100));
 	--color-primary-200: hsl(var(--color-primary-hsl-200));
 	--color-primary-300: hsl(var(--color-primary-hsl-300));
@@ -9517,33 +9518,7 @@ body {
 	z-index: 100;
 }
 
-[data-school-group='middleschool'] {
-	--color-primary-400-hsl: 41deg 88% 64%;
-	--color-secondary-400-hsl: 343deg 48% 53%;
-	--color-secondary-hsl-200: 343, 48%, 75%;
-	--color-secondary-hsl-300: 343, 48%, 63%;
-	--color-secondary-hsl-400: 343, 48%, 53%;
-	--color-transition-400: #ee7e59;
-	--gradient-primary-tertiary: var(--color-primary-400), var(--color-tertiary-400);
-	--gradient-secondary-tertiary: var(--color-secondary-400), #753875, var(--color-tertiary-400);
-	--color-1-of-4: #f4c152;
-	--color-2-of-4: #;
-	--color-3-of-4: #6945a0;
-	--color-4-of-4: #c14e6e;
-	--color-1-of-5: #f4c152;
-	--color-2-of-5: #f69f52;
-	--color-3-of-5: #ee7f5a;
-	--color-4-of-5: #dc6464;
-	--color-5-of-5: #c14e6e;
-	--color-1-of-6: #f4c152;
-	--color-2-of-6: #f6b350;
-	--color-3-of-6: #f49254;
-	--color-4-of-6: #e46e60;
-	--color-5-of-6: #cd566a;
-	--color-6-of-6: #c14e6e;
-}
-
-[data-school-group='highschool'] {
+:root {
 	--color-1-of-5: #0c4aa8;
 	--color-2-of-5: #6945a0;
 	--color-3-of-5: #944192;
@@ -9554,6 +9529,58 @@ body {
 	--color-2-of-4: #6945a0;
 	--color-3-of-4: #b04480;
 	--color-4-of-4: #c14e6e;
+
+	--color-1-of-6: #f4c152;
+	--color-2-of-6: #f6b350;
+	--color-3-of-6: #f49254;
+	--color-4-of-6: #e46e60;
+	--color-5-of-6: #cd566a;
+	--color-6-of-6: #c14e6e;
+
+	--gradient-primary-tertiary: var(--color-primary-400), var(--color-tertiary-400);
+	--gradient-secondary-tertiary: var(--color-secondary-400), #753875, var(--color-tertiary-400);
+}
+
+[data-school-group='middleschool'] {
+	--color-primary-400-hsl: 41deg 88% 64%;
+	--color-secondary-400-hsl: 343deg 48% 53%;
+	--color-secondary-hsl-200: 343, 48%, 75%;
+	--color-secondary-hsl-300: 343, 48%, 63%;
+	--color-secondary-hsl-400: 343, 48%, 53%;
+	--color-transition-400: #ee7e59;
+	--gradient-primary-tertiary: var(--color-primary-400), var(--color-tertiary-400);
+	--gradient-secondary-tertiary: var(--color-secondary-400), #753875, var(--color-tertiary-400);
+
+	--color-1-of-4: #f4c152;
+	--color-2-of-4: #f69f52;
+	--color-3-of-4: #6945a0;
+	--color-4-of-4: #c14e6e;
+
+	--color-1-of-5: #f4c152;
+	--color-2-of-5: #f69f52;
+	--color-3-of-5: #ee7f5a;
+	--color-4-of-5: #dc6464;
+	--color-5-of-5: #c14e6e;
+
+	--color-1-of-6: #f4c152;
+	--color-2-of-6: #f6b350;
+	--color-3-of-6: #f49254;
+	--color-4-of-6: #e46e60;
+	--color-5-of-6: #cd566a;
+	--color-6-of-6: #c14e6e;
+}
+
+[data-school-group='highschool'] {
+	--color-1-of-4: #0c4aa8;
+	--color-2-of-4: #6945a0;
+	--color-3-of-4: #b04480;
+	--color-4-of-4: #c14e6e;
+
+	--color-1-of-5: #0c4aa8;
+	--color-2-of-5: #6945a0;
+	--color-3-of-5: #944192;
+	--color-4-of-5: #b04480;
+	--color-5-of-5: #c14e6e;
 }
 
 .tracking-wide {
@@ -9570,4 +9597,11 @@ body {
 
 .mb-40 {
 	margin-bottom: 10rem;
+}
+.mt-12 {
+	margin-top: 3rem;
+}
+
+.mb-20 {
+	margin-bottom: 5rem;
 }

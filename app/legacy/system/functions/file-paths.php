@@ -46,35 +46,10 @@ function img_svg($img) {
 	return 'style="mask: url(' . client_path($img) . '); -webkit-mask: url(' . client_path($img) . ') center;"';
 }
 
-// get the raw url of an icon
-function icon_url_raw($file) {
-	$file = $file . '.svg';
-
-	if ($file[0] == '/') $urlRaw = $file;
-	else if (file_exists(SERVER_ROOT . $path = assets_directory(\App\Legacy\LegacyView::getInstance()->url) . $file)) $urlRaw = $path;
-	else if (file_exists(SERVER_ROOT . $path = APP_ICONS_DIR . $file)) $urlRaw = $path;
-	else $urlRaw = ICONS_DIR . $file;
-
-	return $urlRaw;
-}
-
-// get the client url of an icon
-function icon_url($file) {
-	$urlRaw = icon_url_raw($file);
-	$url = CLIENT_ROOT . file_time($urlRaw);
-
-	return $url;
-}
-
 
 // put an icon as background image
 function icon_css($icon) {
 	return 'style="background-image: url(' . icon_url($icon) . ');"';
-}
-
-// put a svg icon as background image
-function icon_svg($icon) {
-	return 'style="mask: url(' . icon_url($icon) . '); -webkit-mask: url(' . icon_url($icon) . ') center;"';
 }
 
 // parse a url from server url to client url

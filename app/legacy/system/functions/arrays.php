@@ -5,16 +5,6 @@ function explode_and_pop($separator, $string) {
 	return end($array);
 }
 
-function sort_subvalue_desc(&$array, $key) {
-	usort($array, function ($a, $b) use ($key) {
-		if (is_numeric($a[$key]) && is_numeric($b[$key])) {
-			return $b[$key] > $a[$key] ? 1 : -1;
-		} else {
-			return strcmp($b[$key], $a[$key]);
-		}
-	});
-}
-
 function extract_subvalue(array $array, $subKey) {
 	foreach ($array as $key => $values) {
 		$array[$key] = $values[$subKey];

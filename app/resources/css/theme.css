@@ -231,11 +231,11 @@ p :where(.font-bold) {
 	--color-4-of-5: #b04480;
 	--color-5-of-5: #c14e6e;
 
-	--color-1-of-5--light: hsl(216, 87%, 65%);
-	--color-2-of-5--light: hsl(264, 40%, 65%);
-	--color-3-of-5--light: hsl(301, 39%, 62%);
-	--color-4-of-5--light: hsl(327, 44%, 65%);
-	--color-5-of-5--light: hsl(343, 48%, 60%);
+	--color-1-of-5: hsl(216, 87%, 65%);
+	--color-2-of-5: hsl(264, 40%, 65%);
+	--color-3-of-5: hsl(301, 39%, 62%);
+	--color-4-of-5: hsl(327, 44%, 65%);
+	--color-5-of-5: hsl(343, 48%, 60%);
 
 	--color-1-of-6: #f4c152;
 	--color-2-of-6: #f6b350;

@@ -2,6 +2,7 @@
 
 namespace App\View\Components\ClassDashboard\StudentResult;
 
+use App\Helpers\TestResultHelper;
 use App\Models\Activities\Area;
 use App\Models\Activities\Section as ActivitiesSection;
 use App\Models\Results\User\TestResult;
@@ -31,332 +32,20 @@ class Section extends Component {
 	/**
 	 * Property: The actions related to the section
 	 */
-	public array $actions = [];
+	public array $tests = [];
 
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct(public ActivitiesSection $section, public Area $area, public Student $student) {
-		switch ($section->id) {
-			// Stili
-			case 1:
-				$actions = [
-					['Mappa degli stili', 31],
-				];
-				break;
-			case 37:
-				$actions = [
-					['Mappa degli stili', 113],
-				];
-				break;
 
-			case 3:
-				$actions = [
-					['Vedi risultato', 50],
-				];
-				break;
-
-			// Autostima
-			case 4:
-				$actions = [
-					['Grafico dei risultati', 15],
-				];
-				break;
-			case 41:
-				$actions = [
-					['Grafico dei risultati', 146],
-				];
-				break;
-
-			// Risolvere i problemi
-			case 5:
-				$actions = [
-					['Risultati dell\'autovalutazione', 94],
-					['Risultati di "Anagramma indovinello"', 123],
-					['Risultati di "Scopri il personaggio"', 124],
-				];
-				break;
-			case 38:
-				$actions = [
-					['Risultati dell\'autovalutazione', 162],
-					['Risultati di "Somma numerica"', 4],
-					['Risultati di "Unisci i punti"', 5],
-					['Risultati di "Sagome"', 13],
-					['Risultati di "La ruota di scorta"', 161],
-				];
-				break;
-			case 42:
-				$actions = [
-					['Risultati di "Completamento numerico"', 3],
-					['Risultati di "Cerchi"', 148],
-					['Risultati di "I Criptogrammi"', 169],
-				];
-				break;
-
-
-			case 6:
-				$actions = [
-					['Risultati del questionario', 47],
-					['Risultati elaborati', 48],
-				];
-				break;
-			case 7:
-				$actions = [
-					['Mappa degli interessi', 20],
-					['Risultati del confronto', 24],
-				];
-				break;
-			case 8:
-				$actions = [
-					['Risultati delle autovalutazioni', 46],
-				];
-				break;
-			case 9:
-				$actions = [
-					['Risultati della mappa', 16],
-					['Risultati dell\'autovalutazione', 21],
-				];
-				break;
-
-			// Ricordare
-			case 10:
-				$actions = [
-					['Risultati dell\'autovalutazione', 52],
-					['Risultati di "Figure astratte"', 54],
-				];
-				break;
-			case 49:
-				$actions = [
-					['Risultati dell\'autovalutazione', 160],
-					['Risultati di "Concetti"', 55],
-				];
-				break;
-
-			// Ascoltare
-			case 11:
-				$actions = [
-					['Risultati dell\'autovalutazione', 27],
-					['Risultati del racconto', 96],
-				];
-				break;
-			case 48:
-				$actions = [
-					['Risultati dell\'autovalutazione', 157],
-					['Risultati del racconto', 158],
-				];
-				break;
-
-			// Parlare
-			case 12:
-				$actions = [
-					['Risultati dell\'autovalutazione', 59],
-					['Risultato dell\'esposizione', 65],
-				];
-				break;
-			case 50:
-				$actions = [
-					['Risultati dell\'autovalutazione', 165],
-					['Risultati della relazione', 166],
-				];
-				break;
-
-			// Leggere
-			case 13:
-				$actions = [
-					['Risultati dell\'autovalutazione', 98],
-					['Risultati dall\'attività "L\'Intreccio"', 69],
-					['Risultati dall\'attività "Analisi dei personaggi"', 71],
-				];
-				break;
-			case 53:
-				$actions = [
-					['Risultati dell\'autovalutazione', 199],
-					['Risultati dall\'attività "Analizza la poesia"', 173],
-					['Risultati dall\'attività "Aree di significato"', 174],
-					['Risultati dall\'attività "Schematizzare"', 175],
-					['Risultati dall\'attività "Completa il testo"', 176],
-				];
-				break;
-			case 54:
-				$actions = [
-					['Risultati dell\'autovalutazione', 193],
-					['Risultati dall\'attività "Analizza il testo 1"', 189],
-					['Risultati dall\'attività "Analizza il testo 2"', 190],
-					['Risultati dall\'attività "Cause e conseguenza"', 204],
-					['Risultati dall\'attività "Il punto di vista"', 191],
-				];
-				break;
-
-			// Scrivere
-			case 14:
-				$actions = [
-					['Risultati dell\'autovalutazione', 61],
-					['Risultati di "La punteggiatura nelle frasi"', 139],
-				];
-				break;
-			case 51:
-				$actions = [
-					['Risultati dell\'autovalutazione', 170],
-					['Mappa dei tipi di scrittura', 168],
-				];
-				break;
-			case 55:
-				$actions = [
-					['Risultati dell\'autovalutazione', 180],
-					['Risultati di "Da discorso diretto a indiretto"', 183],
-					['Risultati di "Da discorso indiretto a diretto"', 184],
-					['Risultati di "La punteggiatura nel testo"', 182],
-				];
-				break;
-			case 57:
-				$actions = [
-					['Risultati dell\'autovalutazione', 195],
-					['Risultati di "La punteggiatura - 1"', 196],
-					['Risultati di "La punteggiatura - 2"', 197],
-				];
-				break;
-
-
-			// Imparare
-			case 15:
-				$actions = [
-					['Risultati dell\'autovalutazione', 35],
-					['Risultati dall\'attività "Balene"', 149],
-					['Risultati dall\'attività "Probabile o improbabile"', 185],
-					['Risultati dall\'attività "Mappa contettuale"', 202],
-				];
-				break;
-			case 56:
-				$actions = [
-					['Risultati dell\'autovalutazione', 186],
-					['Risultati di "Il racconto"', 187],
-					['Risultati di "Gradi di certezza"', 188],
-					['Risultati di "Schematizzare"', 203],
-				];
-				break;
-
-
-
-
-			case 17:
-				$actions = [
-					['Risultati delle autovalutazioni', 81],
-				];
-				break;
-			case 18:
-				$actions = [
-					['Esamina l\'albero', 82],
-				];
-				break;
-			case 24:
-				$actions = [
-					['Vedi i risultati', 92],
-				];
-				break;
-			case 25:
-				$actions = [
-					['Vedi i risultati', 100],
-				];
-				break;
-			case 26:
-				$actions = [
-					['Vedi i risultati', 101],
-				];
-				break;
-
-			// La Ruota delle Emozioni
-			case 27:
-				$actions = [
-					['Vedi i risultati della ruota', 116],
-					['Vedi i risultati di "Dipingere Emozioni"', 205],
-				];
-				break;
-			case 28:
-				$actions = [
-					['Mappa degli stili', 109],
-					['Risultato visivo o uditivo', 114],
-				];
-				break;
-			case 29:
-				$actions = [
-					['Grafico dei risultati', 107],
-				];
-				break;
-			case 30:
-				$actions = [
-					['Risultati dell\'autovalutazione', 119],
-					['Risultati di "Le Sagome"', 120],
-					['Risultati di "I Quadrati"', 121],
-					['Risultati di "I Topi"', 122],
-				];
-				break;
-			case 31:
-				$actions = [
-					['Risultati dell\'autovalutazione', 117],
-					['Risultati di "Trova le combinazioni"', 118],
-				];
-				break;
-			case 32:
-				$actions = [
-					['Risultati dell\'autovalutazione', 126],
-				];
-				break;
-			case 33:
-				$actions = [
-					['Risultati dell\'autovalutazione', 137],
-					['Risultati del racconto', 138],
-				];
-				break;
-			case 34:
-				$actions = [
-					['Mappa dei tipi di scrittura', 63],
-					['Risultati di "Scopri gli errori"', 135],
-				];
-				break;
-			case 36:
-				$actions = [
-					['Mappa degli stili', 111],
-				];
-				break;
-			case 39:
-				$actions = [
-					['Risultati dell\'autovalutazione', 130],
-					['Risultati di "Analizzare"', 37],
-					['Risultati di "Schematizzare"', 38],
-					['Risultati di "Riassumere"', 39],
-				];
-				break;
-			case 40:
-				$actions = [
-					['Risultati dell\'autovalutazione', 131],
-					['Risultati di "Analizzare"', 132],
-					['Risultati di "Schematizzare"', 133],
-				];
-				break;
-			case 45:
-				$actions = [
-					['Vedi i risultati', 151],
-				];
-				break;
-			case 47:
-				$actions = [
-					['Risultati dell\'autovalutazione', 154],
-					['Risultati di "Il Racconto - Nemesi"', 155],
-				];
-				break;
-		}
-
-		foreach ($actions as $action) {
-			$testId = $action[1];
+		foreach ($section->reviewable_tests() as $test) {
 			$result = TestResult::where('studentId', $student->id)
-				->where('testId', $testId)
+				->where('testId', $test->id)
 				->first();
 
 			if ($result && $result->completed()) {
-				$this->actions[] = [
-					'name' => $action[0],
-					'url' => route('test', ['test' => $testId, 'student_id' => $student->id]),
-				];
+				$this->tests[] = $test;
 			}
 		}
 
@@ -493,6 +182,7 @@ class Section extends Component {
 		$this->infos[36] = $this->infos[1];
 		$this->infos[37] = $this->infos[1];
 
+		// $this->result = TestResultHelper::getResult($student->id, $section->evaluation_test_id);
 		$this->result = new StudentSectionResult($section->id, $student->id);
 		$this->speed = $this->result->getSpeedString();
 	}

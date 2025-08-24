@@ -22,6 +22,7 @@ class Area extends Component {
 	) {
 		$this->sections = $sections
 			->where('areaId', $this->area->id)
+			->load('evaluation_test')
 			->sortBy('id');
 	}
 

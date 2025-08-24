@@ -1,5 +1,8 @@
 <?php
 
+use App\Helpers\TestResultHelper;
+use Illuminate\Support\Facades\Auth;
+
 $emotions = [
 	__('fear'),
 	__('fright'),
@@ -19,5 +22,7 @@ $emotions = [
 	__('submission')
 ];
 $step = 3;
+
+dd(TestResultHelper::getResult(Auth::id(), test()->id));
 
 include_once('ruota.php');

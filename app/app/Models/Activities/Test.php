@@ -12,12 +12,12 @@ class Test extends Model {
 	use SoftDeletes;
 
 	/**
-	 * The table associated with the model.
+	 * The table associated with the model
 	 */
 	protected $table = 'activities_tests';
 
 	/**
-	 * The attributes that are mass assignable.
+	 * The attributes that are mass assignable
 	 */
 	protected $fillable = [
 		'sectionId',
@@ -28,10 +28,20 @@ class Test extends Model {
 		'slug',
 		'step',
 		'template',
+		'reviewable',
 	];
 
 	/**
-	 * The short description of the test.
+	 * Attribute: The name of the test
+	 */
+	protected function name(): Attribute {
+		return Attribute::make(
+			get: fn(): string => $this->title,
+		);
+	}
+
+	/**
+	 * Attribute: The summary of the test
 	 */
 	protected function summary(): Attribute {
 		return Attribute::make(
@@ -40,7 +50,7 @@ class Test extends Model {
 	}
 
 	/**
-	 * Section
+	 * Relationship: The section that owns the test
 	 */
 	public function section(): BelongsTo {
 		return $this->belongsTo(Section::class, 'sectionId');
@@ -49,8 +59,8 @@ class Test extends Model {
 	/**
 	 * URL
 	 */
-	public function url(?int $studentId): string {
-		return '/activities/tests/' . $this->id . ($studentId ? '?student_id=' . $studentId : '');
+	public function url(?int $studentId = null): string {
+		return route('test', ['test' => $this, 'student_id' => $studentId]);
 	}
 
 	/**

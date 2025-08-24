@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="main-wrap grid" data-spacing="800">
+<div class="main-wrap grid mt-12 mb-20" data-spacing="800">
 	<div class="title__wrapper">
 		<?= title() ?>
 		<?= no_results() ?>
