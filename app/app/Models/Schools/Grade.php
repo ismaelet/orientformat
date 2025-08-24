@@ -2,6 +2,7 @@
 
 namespace App\Models\Schools;
 
+use App\Models\Activities\Area;
 use App\Models\Activities\Section;
 use App\Models\Activities\Test;
 use App\Models\Results\User\GradeResult;
@@ -30,6 +31,12 @@ class Grade extends Model {
 		'is_professional',
 	];
 
+	public function name(): Attribute {
+		return Attribute::make(
+			get: fn() => ucfirst($this->ordinal()) . ' anno'
+		);
+	}
+
 	/**
 	 * Attribute: The relative number of the grade
 	 */
@@ -47,21 +54,37 @@ class Grade extends Model {
 	}
 
 	/**
-	 * Get the sections that are completable for this grade
+	 * Relationship: The completable sections that belong to this grade
 	 */
-	public function completable_sections(): Collection {
-		return $this->sections()->where('isStandard', true)->get();
+	public function completable_sections(): BelongsToMany {
+		return $this->belongsToMany(Section::class)->where('isStandard', true);
 	}
 
+	/**
+	 * Get the areas that belong to this grade
+	 */
+	public function areas(): Collection {
+		return Area::whereIn('id', $this->sections()->pluck('areaId'))->get();
+	}
+
+	/**
+	 * Get the slug for the grade
+	 */
 	public function slug(): string {
 		return $this->number > 5 ?
 			($this->is_professional ? $this->number . 'P' : $this->number . 'L') : $this->number;
 	}
 
+	/**
+	 * Check if the grade is a middle school grade
+	 */
 	public function isMiddleschool(): bool {
 		return $this->number < 4;
 	}
 
+	/**
+	 * Get the tests for the grade
+	 */
 	public function tests(): Collection {
 		return Test::join('activities_sections', 'activities_tests.sectionId', '=', 'activities_sections.id')
 			->where('isStandard', true)
@@ -90,6 +113,9 @@ class Grade extends Model {
 		return round($completedTestCount / $this->test_count() * 100);
 	}
 
+	/**
+	 * Update the progress for the grade
+	 */
 	public function updateProgress(): self {
 		$progressPercentage = $this->user_progress();
 

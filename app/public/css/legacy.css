@@ -187,16 +187,6 @@
 	--font-weight-bold: 600;
 }
 
-*,
-:after,
-:before {
-	border: 0 solid;
-	box-sizing: border-box;
-}
-:after,
-:before {
-	--tw-content: '';
-}
 :host,
 html {
 	-webkit-text-size-adjust: 100%;

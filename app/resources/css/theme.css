@@ -27,8 +27,13 @@
 
 	--color-transition-400: hsl(343, 48%, 53%);
 
+	--color-success-200: hsl(145deg 63% 75%);
 	--color-success-400: hsl(145deg 63% 40%);
+	--color-success-500: hsl(145deg 63% 30%);
+
+	--color-error-200: hsl(0deg 100% 75%);
 	--color-error-400: hsl(0deg 100% 50%);
+	--color-error-500: hsl(0deg 100% 30%);
 
 	--color-neutral-50: #fff;
 	--color-neutral-400: var(--color-slate-600);
@@ -71,6 +76,14 @@
 	--border-width: 1px;
 	--border-color: var(--color-neutral-300);
 	--border: var(--border-width) solid var(--border-color);
+	--radius: 0.5rem;
+	--radius-lg: 1.5rem;
+
+	/* Shadows */
+	--shadow-sm-strong: 0.25rem 0.25rem 0.5rem -0.25rem hsl(252, 20%, 50%, 0.5);
+	--shadow: 1rem 1rem 2rem -0.5rem hsl(252, 50%, 93%);
+	--shadow-strong: 1rem 1rem 2rem -0.5rem hsl(252, 20%, 80%);
+	--shadow-lg: 0 3rem 6rem -2rem hsl(0, 0%, 0%, 0.2);
 }
 
 /* Responsive spacing */
@@ -83,17 +96,7 @@
 /* Basic setup */
 body {
 	background-color: var(--color-background);
-	color: var(--color-neutral-400);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
 	color: var(--color-neutral-700);
-	font-family: var(--font-heading);
 }
 
 /* Utilities */
@@ -269,4 +272,13 @@ p :where(.font-bold) {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-heading);
 }

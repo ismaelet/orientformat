@@ -169,4 +169,11 @@ class Student extends Model {
 
 		return null;
 	}
+
+	/**
+	 * Check if a student has completed a specific section
+	 */
+	public function hasCompletedSection($section): bool {
+		return $this->section_results->where('sectionId', $section->id)->where('completed', true)->count();
+	}
 }

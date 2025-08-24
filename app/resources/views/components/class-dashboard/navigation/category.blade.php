@@ -129,10 +129,12 @@
 		<ul class="dashboard-category__dropdown-wrapper">
 			<div class="dashboard-category__dropdown">
 				@foreach ($links as $key => $link)
-					<x-class-dashboard.navigation.item
-						:$link
-						:$key
-					/>
+					@if ($link)
+						<x-class-dashboard.navigation.item
+							:$link
+							:$key
+						/>
+					@endif
 				@endforeach
 			</div>
 		</ul>

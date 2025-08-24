@@ -61,7 +61,7 @@ class SchoolClass extends Model {
 	 * Relationship: The students in the class
 	 */
 	public function active_students(): HasMany {
-		return $this->hasMany(Student::class, 'schoolClassId')->where('active', true);
+		return $this->hasMany(Student::class, 'schoolClassId')->where('status', true);
 	}
 
 	/**

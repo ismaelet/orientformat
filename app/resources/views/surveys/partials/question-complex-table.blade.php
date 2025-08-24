@@ -70,7 +70,7 @@
 
 					@foreach ($question['headers'] as $headerKey => $header)
 						@if ($headerKey > 1)
-							<x-inputs.checkbox
+							<x-checkbox
 								type="radio"
 								name="{{ $letter }}-{{ $questionKey + 1 }}-{{ $row['title'] }}-{{ $optionLetter }}"
 								value="{{ $header }}"

@@ -1,4 +1,4 @@
-@props(['title' => null])
+@props(['class', 'title' => null])
 
 @pushOnce('styles')
 	<style>
@@ -179,9 +179,9 @@
 	</style>
 @endpushOnce
 
-<x-layouts.legacy-main :$title>
+<x-layouts.legacy-main :title="'Gestione Classe ' . $class->name">
 	<div class="dashboard span-full-width">
-		<x-class-dashboard.navigation />
+		<x-class-dashboard.navigation :$class />
 
 		<section class="dashboard__body js-dashboard-content">
 			{{ $slot }}

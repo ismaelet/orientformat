@@ -70,15 +70,9 @@
 	</style>
 @endPushOnce
 
-<label {{ $attributes->class(['checkbox']) }}>
+<label class="checkbox">
 
-	<input
-		type="{{ $type }}"
-		name="{{ $name }}"
-		@if ($value !== null) value="{{ $value }}" @endif
-		@checked($checked)
-		@required($required)
-	>
+	<input {{ $attributes->merge(['class' => 'hidden', 'type' => $type]) }}>
 
 	<span></span>
 

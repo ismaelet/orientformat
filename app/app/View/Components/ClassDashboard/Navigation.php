@@ -30,11 +30,13 @@ class Navigation extends Component {
 				'title' => 'Risultati di classe',
 				'icon' => 'class-progress',
 				'links' => [
-					// Class graphs
 					[
-						'title' => 'Grafici riassunitivi',
-						'icon' => 'graphs',
-						'url' => ['class.general.results', ['class' => $class->id]],
+						'title' => 'Progresso della classe',
+						'url' => ['class.general.progress', ['class' => $class->id]],
+					],
+					[
+						'title' => 'Grafici riassuntivi',
+						'url' => ['class.general.graphs', ['class' => $class->id]],
 					],
 				],
 			],

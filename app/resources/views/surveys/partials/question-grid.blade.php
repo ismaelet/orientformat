@@ -57,7 +57,7 @@
 			</div>
 
 			@foreach ($question['headers'] as $headerKey => $header)
-				<x-inputs.checkbox
+				<x-checkbox
 					type="radio"
 					name="{{ $letter }}-{{ $questionKey + 1 }}-{{ $optionLetter }}"
 					value="{{ $header }}"
