@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SchoolClass\SchoolClassProgressController;
+use App\Http\Controllers\SchoolClass\SettingsController;
 use App\Http\Controllers\SchoolClass\StudentResultController;
 use App\Http\Controllers\SchoolClassController;
 use App\Http\Controllers\TeacherController;
@@ -8,6 +9,7 @@ use App\Http\Middleware\HasClassAccess;
 use App\Http\Middleware\StudentBelongsToClass;
 use App\Http\Middleware\Teacher;
 use App\Http\Middleware\TeacherBelongsToSchool;
+use App\Http\Middleware\UnderContruction;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix(env('APP_SUBDOMAIN'))->group(function () {
@@ -32,7 +34,7 @@ Route::prefix(env('APP_SUBDOMAIN'))->group(function () {
 	/**
 	 * Class dashboard routes
 	 */
-	Route::prefix('/class')->middleware([Teacher::class, HasClassAccess::class])->name('class.')->group(function () {
+	Route::prefix('/class')->middleware([Teacher::class, HasClassAccess::class, UnderContruction::class])->name('class.')->group(function () {
 		// Show class dashboard
 		Route::get('{class}', [SchoolClassController::class, 'show'])
 			->name('show');
@@ -58,13 +60,13 @@ Route::prefix(env('APP_SUBDOMAIN'))->group(function () {
 			->name('students.guidance.index');
 
 		// Settings routes
-		Route::get('{class}/students/index', [SchoolClassController::class, 'showStudentIndex'])
+		Route::get('{class}/students/index', [SettingsController::class, 'studentIndex'])
 			->name('students.index');
 
-		Route::get('{class}/teachers/index', [SchoolClassController::class, 'showTeacherIndex'])
+		Route::get('{class}/teachers/index', [SettingsController::class, 'showTeacherIndex'])
 			->name('teachers.index');
 
-		Route::get('{class}/settings', [SchoolClassController::class, 'showSettings'])
+		Route::get('{class}/settings', [SettingsController::class, 'showSettings'])
 			->name('settings');
 	});
 });

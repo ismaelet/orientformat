@@ -78,7 +78,7 @@
 			grid-column: 1 / -1;
 			column-gap: 1rem;
 			align-items: center;
-			padding-block: 1rem;
+			padding-block: 0.75rem;
 			border-top: 1px solid var(--border-clr-200);
 		}
 

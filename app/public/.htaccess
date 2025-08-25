@@ -4,7 +4,7 @@
     </IfModule>
 
     RewriteEngine On
-	RewriteBase /orientamento2/
+	RewriteBase /orientamento/
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
@@ -15,7 +15,7 @@
     RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
 
     # Redirect Trailing Slashes If Not A Folder...
-	RewriteCond %{REQUEST_URI} !^/orientamento2/$
+	RewriteCond %{REQUEST_URI} !^/orientamento/$
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]

@@ -47,12 +47,9 @@ class Area extends Component {
 	}
 
 	public function setup() {
-		$this->area->load('completable_sections', 'completable_sections.grades');
+		$this->grade->load('completable_sections', 'completable_sections.grades');
 
-		$sections = $this->area->completable_sections->where('grades', '!=', null)
-			->filter(function ($section) {
-				return $section->grades->contains($this->grade);
-			});
+		$sections = $this->grade->completable_sections->where('areaId', $this->area->id);
 
 		$students = $this->class->active_students->load('section_results');
 

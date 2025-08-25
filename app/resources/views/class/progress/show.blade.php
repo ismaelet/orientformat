@@ -14,7 +14,7 @@
 	<div class="columns-25rem mt-12 grid gap-8">
 		@foreach ($sections as $section)
 			<article>
-				<h2 class="mb-2 text-2xl font-medium">{{ $section->name }}</h2>
+				<h2 class="under mb-2 text-2xl font-medium italic">{{ $section->name }}</h2>
 
 				<ul class="grid grid-cols-1 gap-1 rounded bg-neutral-50 p-2 shadow">
 					@foreach ($students as $student)
@@ -28,7 +28,7 @@
 								'bg-success-200' => $student->hasCompletedSection($section),
 							])>
 								<x-dynamic-component
-									:component="'icon-correct'"
+									:component="$student->hasCompletedSection($section) ? 'icon-correct' : 'icon-wrong'"
 									@class([
 										'w-4',
 										'text-success-500' => $student->hasCompletedSection($section),

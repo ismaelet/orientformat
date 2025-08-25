@@ -24,7 +24,7 @@ class Area extends Model {
 	/**
 	 * Relationship: The completable sections that belong to this area
 	 */
-	public function completable_sections(Grade $grade = null): HasMany {
+	public function completable_sections(): HasMany {
 		return $this->hasMany(Section::class, 'areaId')->where('isStandard', true);
 	}
 }

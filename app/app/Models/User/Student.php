@@ -41,6 +41,33 @@ class Student extends Model {
 	];
 
 	/**
+	 * Get the student's username
+	 */
+	public function username(): Attribute {
+		return new Attribute(
+			get: fn() => $this->user->username,
+		);
+	}
+
+	/**
+	 * Get the student's first name
+	 */
+	public function firstName(): Attribute {
+		return new Attribute(
+			get: fn() => $this->user->first_name,
+		);
+	}
+
+	/**
+	 * Get the student's last name
+	 */
+	public function lastName(): Attribute {
+		return new Attribute(
+			get: fn() => $this->user->last_name,
+		);
+	}
+
+	/**
 	 * Get the student's inverted full name
 	 */
 	public function fullName(): Attribute {
@@ -55,6 +82,15 @@ class Student extends Model {
 	public function invertedFullName(): Attribute {
 		return new Attribute(
 			get: fn() => $this->user->inverted_full_name,
+		);
+	}
+
+	/**
+	 * Get the student's registration date
+	 */
+	public function createdAtDate(): Attribute {
+		return new Attribute(
+			get: fn() => $this->user->created_at->format('d/m/Y'),
 		);
 	}
 

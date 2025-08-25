@@ -85,6 +85,11 @@
 					display: flex;
 					align-items: center;
 					justify-content: space-between;
+
+					&.center-icon {
+						justify-content: center;
+						gap: 0.5em;
+					}
 				}
 			}
 		</style>

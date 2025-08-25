@@ -35,7 +35,7 @@ class SchoolClassProgressController extends Controller {
 	 */
 	public function show(Request $request, SchoolClass $class, Area $area) {
 		$grade = Grade::find($request->input('grade'));
-		$sections = $grade->completable_sections;
+		$sections = $grade->completable_sections->where('areaId', $area->id);
 		$students = $class->active_students->load('user', 'section_results')->sortBy('inverted_full_name');
 
 		return view('class.progress.show', [

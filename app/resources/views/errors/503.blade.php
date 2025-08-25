@@ -1278,18 +1278,18 @@
 		</svg>
 
 		<div class="mt-8 grid justify-items-center gap-4">
-			<x-typography.section-heading class="text-neutral-700">Manutenzione</x-typography.section-heading>
+			<x-heading.main class="">Pagina in aggiornamento</x-heading.main>
 
-			<x-typography.main-subheading class="text-lg text-neutral-700">Stiamo aggiornando il sito web. Torneremo
-				operativi al più presto</x-typography.main-subheading>
+			<p class="text-lg text-neutral-700">Stiamo aggiornando questa pagina per migliorarne l'esperienza.<br>Tornerà
+				operativa al più presto. Ci scusiamo per il disagio.</p>
 
 			@if (!$fullMaintenance)
-				<x-form.button
-					href="{{ auth()->check() ? route('user-dashboard') : route('login') }}"
+				<x-button
+					href="{{ route('home') }}"
 					variant="secondary"
 				>
 					Indietro
-				</x-form.button>
+				</x-button>
 			@endif
 		</div>
 	</div>

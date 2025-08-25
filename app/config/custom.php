@@ -77,4 +77,9 @@ return [
 		// 'whatsapp' => ['url' => 'https://wa.me/000000000', 'label' => '000 000000',],
 		'phone' => ['url' => 'tel:+390461494399', 'label' => '+39 0461 494399',],
 	],
+
+	'under_construction_whitelist' => [
+		'studente.test@iprase.tn.it',
+		'docente.test@iprase.tn.it',
+	],
 ];
