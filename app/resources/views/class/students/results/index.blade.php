@@ -11,18 +11,13 @@
 
 		<!-- List -->
 		<section class="dashboard-panel">
-			<h3 class="dashboard-panel__title">Lista degli studenti</h3>
 
 			<?php if ($class->students) { ?>
 
 			<div
 				class="dashboard-list"
-				style="--columns: 3;"
+				style="--columns: 4;"
 			>
-				<div class="dashboard-list__row dashboard-list__row--header">
-					<p class="dashboard-list__field">Studente</p>
-					<div class="dashboard-list__field"></div>
-				</div>
 
 				@foreach ($class->students as $student)
 					<div class="dashboard-list__row js-show-loading-panel">
@@ -35,6 +30,18 @@
 							<x-button
 								size="xs"
 								variant="secondary"
+								color="secondary"
+							>Vedi il progresso
+								<x-icon-arrow-long-right class="w-4" /></x-button>
+						</a>
+
+						<a
+							href="{{ route('class.students.poi.show', ['class' => $class, 'student' => $student]) }}"
+							class="dashboard-list__field dashboard-list__field--buttons"
+						>
+							<x-button
+								size="xs"
+								variant="secondary"
 								color="primary"
 							>P.O.I.
 								<x-icon-arrow-long-right class="w-4" />
@@ -42,14 +49,16 @@
 						</a>
 
 						<a
-							href="{{ route('class.students.results.show', ['class' => $class, 'student' => $student]) }}"
+							href="{{ route('class.students.self-evaluations.show', ['class' => $class, 'student' => $student]) }}"
 							class="dashboard-list__field dashboard-list__field--buttons"
 						>
 							<x-button
 								size="xs"
 								variant="secondary"
-							>Vedi il progresso
-								<x-icon-arrow-long-right class="w-4" /></x-button>
+								color="purple"
+							>Autovalutazioni
+								<x-icon-arrow-long-right class="w-4" />
+							</x-button>
 						</a>
 					</div>
 				@endforeach

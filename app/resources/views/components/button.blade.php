@@ -64,6 +64,26 @@
 							--_color: var(--color-primary-300);
 						}
 					}
+
+					&[data-color="secondary"] {
+						--_border-color: var(--color-secondary-400);
+						--_color: var(--color-secondary-400);
+
+						&:hover {
+							--_border-color: var(--color-secondary-300);
+							--_color: var(--color-secondary-300);
+						}
+					}
+
+					&[data-color="purple"] {
+						--_border-color: var(--color-transition-400);
+						--_color: var(--color-transition-400);
+
+						&:hover {
+							--_border-color: var(--color-transition-500);
+							--_color: var(--color-transition-500);
+						}
+					}
 				}
 
 				&[data-size="small"] {
