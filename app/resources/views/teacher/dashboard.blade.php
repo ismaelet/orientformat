@@ -12,9 +12,14 @@
 			<x-heading.main>Funzionalità<br>per {{ is_administrator() ? "l'amministratore" : "l'insegnante" }}
 			</x-heading.main>
 
+			<p class="mt-12 border-2 border-amber-500 px-4 py-2 text-amber-600">La dashboard insegnante è in fase di
+				aggiornamento, se dovessi riscontrare qualche problema, ti preghiamo di contattare il supporto <a
+					href="teacher/support/open-ticket"
+					class="text-secondary-300"
+				>qui</a>.</p>
+
 			{{-- Classes --}}
 			@if (is_administrator())
-				include_once __DIR__ . '/../administrator/class-list.php';
 			@else
 				<section class="elements mar-t-3">
 					<x-heading.section>Le mie classi</x-heading.section>

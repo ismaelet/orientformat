@@ -13,7 +13,25 @@
 
 	<div id="grid" class="documents al-top mar-t-2">
 
-		<section class="form">
+		<section class="form grid">
+
+			<!-- Title -->
+			<div class="title-box fa-center">
+				<h1 class="subsection-title txt-2rem txt-sbold">UNICA</h1>
+				<p class="stitle txt-09rem mar-t-1">Qui puoi collegarti all’ E-portfolio di UNICA, per inserire Certificazioni e visionare le autovalutazioni e i Capolavori inseriti dagli studenti.</p>
+			</div>
+
+			<!-- Buttons -->
+			<div class="buttons fa-center mar-t-2 items-center">
+				<a href="https://unica.istruzione.gov.it/portale/it/orientamento/il-tuo-percorso/e-portfolio" class="button button--full-width" target="_blank">
+					<?= embed_icon('link') ?>
+					Collegati a UNICA
+				</a>
+			</div>
+
+		</section>
+
+		<section class="form grid">
 
 			<!-- Title -->
 			<div class="title-box fa-center">
@@ -22,7 +40,7 @@
 			</div>
 
 			<!-- Buttons -->
-			<div class="buttons fa-center mar-t-2">
+			<div class="buttons fa-center mar-t-2 items-center">
 				<a href="<?= client_path('Consiglio-Orientativo.pdf') ?>" class="button button--full-width " download>
 					<?= embed_icon('download') ?>
 					Scarica in PDF
@@ -35,7 +53,7 @@
 
 		</section>
 
-		<section class="form">
+		<section class="form grid">
 
 			<!-- Title -->
 			<div class="title-box fa-center">
@@ -44,7 +62,7 @@
 			</div>
 
 			<!-- Buttons -->
-			<div class="buttons fa-center mar-t-2">
+			<div class="buttons fa-center mar-t-2 items-center">
 				<a href="<?= client_path('Certificazione-delle-Competenze.pdf') ?>" class="button button--full-width " download>
 					<?= embed_icon('download') ?>
 					Scarica in PDF
@@ -57,7 +75,7 @@
 
 		</section>
 
-		<section class="form">
+		<section class="form grid">
 
 			<!-- Title -->
 			<div class="title-box fa-center">
@@ -66,7 +84,7 @@
 			</div>
 
 			<!-- Buttons -->
-			<div class="buttons fa-center mar-t-2">
+			<div class="buttons fa-center mar-t-2 items-center">
 				<a href="<?= client_path('Informativa-Privacy.pdf') ?>" class="button button--full-width " download>
 					<?= embed_icon('download') ?>
 					Scarica
