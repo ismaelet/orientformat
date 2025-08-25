@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SchoolClass\GraphController;
 use App\Http\Controllers\SchoolClass\SchoolClassProgressController;
 use App\Http\Controllers\SchoolClass\SettingsController;
 use App\Http\Controllers\SchoolClass\StudentResultController;
@@ -45,7 +46,7 @@ Route::prefix(env('APP_SUBDOMAIN'))->group(function () {
 		Route::get('{class}/progress/areas/{area}', [SchoolClassProgressController::class, 'show'])
 			->name('general.progress.show');
 
-		Route::get('{class}/graphs', [SchoolClassGraphsController::class, 'index'])
+		Route::get('{class}/graphs', [GraphController::class, 'index'])
 			->name('general.graphs');
 
 		// Students routes

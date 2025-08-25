@@ -10,11 +10,11 @@
 	<p class="dashboard-panel-title text-neutral-700">{{ $section->name }}</p>
 
 	<div class="">
-		@if ($result->result)
+		@if ($result || $completed)
 			@if ($section->evaluation_test)
 				<p class="text-sm">
 					{{ $section->result_label ?: 'Risultato dell\'autovalutazione' }}:</p>
-				<p class="dashboard-panel_value font-bold">{{ $result->result }}</p>
+				<p class="dashboard-panel_value font-bold">{{ $result }}</p>
 
 				<p class="mt-0">
 					<a

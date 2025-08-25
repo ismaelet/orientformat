@@ -1,3 +1,41 @@
+@php
+
+	$userAgent = request()->header('User-Agent');
+	$isBot = preg_match('/bot|crawl|slurp|spider|mediapartners/i', $userAgent) ? true : false;
+	$url = request()->getRequestUri();
+
+	$whiteList = [
+	    '/media',
+	    '/system',
+	    '/wp-',
+	    '/uploads',
+	    '.well-known',
+	    '/store',
+	    '/loading',
+	    '/logo',
+	    'jquery',
+	    'wishlist',
+	    '/it/',
+	    '.php',
+	];
+
+	foreach ($whiteList as $path) {
+	    if (strpos($url, $path) !== false) {
+	        $isBot = true;
+	        break;
+	    }
+	}
+
+	if (!$isBot) {
+	    Log::error('404 Not Found ' . $url, [
+	        'url' => $url,
+	        'user_agent' => $userAgent,
+	        'ip_address' => request()->ip(),
+	    ]);
+	}
+
+@endphp
+
 @pushOnce('styles')
 	<style>
 		.page-background {

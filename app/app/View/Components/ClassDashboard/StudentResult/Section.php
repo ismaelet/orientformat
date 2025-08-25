@@ -2,9 +2,11 @@
 
 namespace App\View\Components\ClassDashboard\StudentResult;
 
+use App\Helpers\SectionResultHelper;
 use App\Helpers\TestResultHelper;
 use App\Models\Activities\Area;
 use App\Models\Activities\Section as ActivitiesSection;
+use App\Models\Results\User\SectionResult;
 use App\Models\Results\User\TestResult;
 use App\Models\User\Student;
 use Closure;
@@ -17,7 +19,12 @@ class Section extends Component {
 	/**
 	 * Property: The result of the section
 	 */
-	public StudentSectionResult $result;
+	public ?string $result = null;
+
+	/**
+	 * Property: Whether the section is completed
+	 */
+	public bool $completed = false;
 
 	/**
 	 * Property: The speed of the section
@@ -39,15 +46,7 @@ class Section extends Component {
 	 */
 	public function __construct(public ActivitiesSection $section, public Area $area, public Student $student) {
 
-		foreach ($section->reviewable_tests() as $test) {
-			$result = TestResult::where('studentId', $student->id)
-				->where('testId', $test->id)
-				->first();
-
-			if ($result && $result->completed()) {
-				$this->tests[] = $test;
-			}
-		}
+		$section->load('evaluation_test');
 
 		$this->infos = [
 			1 => "Un’attenzione particolare dovrebbe essere dedicata agli stili polarizzati, ad esempio
@@ -183,8 +182,12 @@ class Section extends Component {
 		$this->infos[37] = $this->infos[1];
 
 		// $this->result = TestResultHelper::getResult($student->id, $section->evaluation_test_id);
-		$this->result = new StudentSectionResult($section->id, $student->id);
-		$this->speed = $this->result->getSpeedString();
+		$this->result = SectionResultHelper::getResult($student, $section);
+		$this->speed = SectionResult::where('studentId', $student->id)
+			->where('sectionId', $section->id)
+			->first()?->verboseSpeed();
+
+		$this->completed = $student->hasCompletedSection($section);
 	}
 
 	/**

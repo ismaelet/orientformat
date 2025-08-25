@@ -64,13 +64,13 @@ class SectionResult extends Model {
 	public function verboseSpeed(): ?string {
 		$speed = null;
 
-		if ($this->speed >= 60) {
-			$minutes = round($this->speed / 60);
+		if ($this->speed() >= 60) {
+			$minutes = round($this->speed() / 60);
 
 			$speed = $minutes;
 			$speed .= $minutes == 1 ? ' minuto' : ' minuti';
-		} else if ($this->speed) {
-			$seconds = $this->speed;
+		} else if ($this->speed()) {
+			$seconds = $this->speed();
 
 			$speed = $seconds;
 			$speed .= $seconds == 1 ? ' secondo' : ' secondi';

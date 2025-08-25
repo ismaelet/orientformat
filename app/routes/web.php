@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\SectionGraphController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LegacyController;
 use App\Http\Controllers\LocaleController;
@@ -12,6 +13,9 @@ Route::prefix(env('APP_SUBDOMAIN'))->group(function () {
 
 	// Home
 	Route::get('', [HomeController::class, 'index'])->middleware(['auth', Locale::class])->name('home');
+
+	// Legacy API
+	Route::get('api/section-graphs/{section}', [SectionGraphController::class, 'show']);
 });
 
 include __DIR__ . '/web-auth.php';
