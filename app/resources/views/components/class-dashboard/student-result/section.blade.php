@@ -7,7 +7,7 @@
 		{!! embed_icon('sections/section-' . $section->main_section->id) !!}
 	</div>
 
-	<p class="dashboard-panel-title text-neutral-700">{{ $section->name }}</p>
+	<p class="dashboard-panel-title max-w-50 text-neutral-700">{{ $section->name }}</p>
 
 	<div class="">
 		@if ($result || $completed)
@@ -31,24 +31,26 @@
 
 	</div>
 
-	<div class="">
-		@if ($tests)
-			<p class="text-sm">Attività svolte:</p>
+	<div class="group">
+		<p class="group-not-[&:has(.test-result)]:hidden group text-sm">Attività svolte:</p>
 
-			@foreach ($tests as $test)
-				<p class="">
-					<a
-						href="{{ $test->url($student->id) }}"
-						class="text-secondary-400 hover:text-secondary-300 font-medium transition-colors"
-					>Risultato di "{{ $test->name }}"</a>
-				</p>
+		<ul>
+			@foreach ($section->reviewable_tests() as $test)
+				@if ($student->hasCompletedTest($test))
+					<li class="test-result">
+						<a
+							href="{{ $test->url($student->id) }}"
+							class="text-secondary-400 hover:text-secondary-300 font-medium transition-colors"
+						>Risultato di "{{ $test->name }}"</a>
+					</li>
+				@endif
 			@endforeach
-		@endif
+		</ul>
 	</div>
 
 	<p>
-		@if ($result && $speed)
-			Completata in <strong>{{ $speed }}</strong><br>
+		@if ($speed)
+			Tempo impiegato: <strong>{{ $speed }}</strong>
 		@endif
 	</p>
 

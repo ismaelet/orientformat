@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				}
 			})
 
-			loading.classList.add('hidden')
+			loading.dataset.visible = 'false'
 			section.classList.remove('js-section-waiting')
 		}
 	}
@@ -154,7 +154,6 @@ document.addEventListener('DOMContentLoaded', function () {
 						ticks: {
 							color: '#202020',
 							font: {
-								family: 'Open Sans',
 								size: 16,
 							},
 						},
@@ -163,7 +162,6 @@ document.addEventListener('DOMContentLoaded', function () {
 						ticks: {
 							color: '#202020',
 							font: {
-								family: 'Open Sans',
 								size: 16,
 							},
 						},

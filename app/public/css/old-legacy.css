@@ -9605,3 +9605,11 @@ body {
 .mb-20 {
 	margin-bottom: 5rem;
 }
+
+.mt-20 {
+	margin-top: 5rem;
+}
+
+.opacity-30 {
+	opacity: 0.3;
+}

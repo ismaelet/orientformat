@@ -53,12 +53,12 @@ class Navigation extends Component {
 					],
 
 					// Consigli orientativi
-					$class->grade == 3
-						? [
-							'title' => 'Consigli orientativi',
-							'url' => ['class.students.guidance.index', ['class' => $class->id]],
-						]
-						: null,
+					// $class->grade == 3
+					// 	? [
+					// 		'title' => 'Consigli orientativi',
+					// 		'url' => ['class.students.guidance.index', ['class' => $class->id]],
+					// 	]
+					// 	: null,
 				],
 			],
 

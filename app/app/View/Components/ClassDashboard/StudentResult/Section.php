@@ -37,11 +37,6 @@ class Section extends Component {
 	public array $infos = [];
 
 	/**
-	 * Property: The actions related to the section
-	 */
-	public array $tests = [];
-
-	/**
 	 * Create a new component instance.
 	 */
 	public function __construct(public ActivitiesSection $section, public Area $area, public Student $student) {

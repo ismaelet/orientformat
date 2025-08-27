@@ -11,10 +11,17 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Number;
 
 class Grade extends Model {
+
+	public const MIDDLE_SCHOOL_GRADES = [1, 2, 3];
+
+	public const HIGH_SCHOOL_GRADES = [4, 5, 6, 7, 8, 9];
+
+	public const PROFESSIONAL_GRADES = [4, 5, 6, 7, 8];
 
 	/**
 	 * The table associated with the model
@@ -61,9 +68,25 @@ class Grade extends Model {
 	}
 
 	/**
-	 * Get the areas that belong to this grade
+	 * Relationship: The areas that belong to this grade
 	 */
-	public function areas(): Collection {
+	public function areas(): BelongsToMany {
+		return $this->belongsToMany(Area::class);
+	}
+
+	/**
+	 * The sections that belong to this grade in a specific area
+	 */
+	public function sectionsInArea(Area $area): Collection {
+		return $this->sections->where('areaId', $area->id);
+	}
+
+	/**
+	 * Get the areas that belong to this grade
+	 *
+	 * ! To remove after migration in production
+	 */
+	public function legacy_areas(): Collection {
 		return Area::whereIn('id', $this->sections()->pluck('areaId'))->get();
 	}
 
@@ -141,5 +164,12 @@ class Grade extends Model {
 	 */
 	public function ordinal(): string {
 		return __(Number::spellOrdinal($this->school_relative_number));
+	}
+
+	/**
+	 * Get the roman numeral representation of the grade
+	 */
+	public function romanNumeral(): string {
+		return toRoman($this->school_relative_number);
 	}
 }

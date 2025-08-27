@@ -3,11 +3,11 @@
 {% block main %}
 
 <div class="page-header grid center-content stack-content contrasting-background">
-	<div class="page-header__background fill-all background-fill" <?= background_image($coverImage) ?>></div>
+	<img class="object-cover opacity-30" src="<?= $coverImage ?>" alt="" />
 	<div class="page-header__overlay gradient-overlay fill-all background-fill"></div>
 
 	<div class="page-header__content grid center-content main-wrap" data-spacing="700">
-		<h1 class="page-header__title title"><?= __('sections.' . $section->id) ?></h1>
+		<h1 class="page-header__title title"><?= __('sections.' . $section->slug) ?></h1>
 
 		<?php if ($area->id <> 4) { ?>
 

@@ -22,6 +22,7 @@ class SchoolClassProgressController extends Controller {
 			->where('absolute_number', '<=', $currentGrade)
 			->where('is_professional', $class->isProfessional())
 			->orderByDesc('absolute_number')
+			->with('areas')
 			->get();
 
 		return view('class.progress.index', [

@@ -2,6 +2,7 @@
 
 use App\Models\Activities\Area;
 use App\Models\Activities\Section;
+use Illuminate\Support\Facades\Vite;
 use \Legacy\Activity\Test;
 
 $legacySection = \App\Legacy\LegacyView::getInstance()->get('section');
@@ -24,7 +25,7 @@ while ($row = $res->fetch_assoc()) {
 
 	$legacyTestM = new Test($row['id']);
 
-	if ($legacyTestM->completed) $desc = $legacyTestM->percentage == 100 || $legacyTestM->template == 'survey' || $legacySection->id == 8 ? __("Already completed") : __('Result') . ': <strong>' . $legacyTestM->percentage . '%</strong>';
+	if ($legacyTestM->completed) $desc = $legacyTestM->percentage == 100 || $legacyTestM->template == 'survey' || $legacySection->id == 8 ? __("Already cdocument.querySelector(elementSelector)ompleted") : __('Result') . ': <strong>' . $legacyTestM->percentage . '%</strong>';
 	else $desc = __('Not completed');
 
 	$legacyTest_arr = [
@@ -36,7 +37,10 @@ while ($row = $res->fetch_assoc()) {
 	$legacyTests[] = $legacyTest_arr;
 }
 
-$coverImage = file_exists(server_path($file = '/pages/assets/' . $legacySection->mainSection->filePath . '/recap/background.webp')) ? $file : str_replace('background.webp', 'bgr.png', $file);
+$coverImage = file_exists(base_path('resources/images/sections/recap-' . $legacySection->mainSection->slug . '.webp')) ?
+	Vite::image('sections/recap-' . $legacySection->mainSection->slug . '.webp') : (file_exists(server_path($file = '/pages/assets/' . $legacySection->mainSection->filePath . '/recap/background.webp')) ?
+		asset('legacy' . $file) :
+		asset('legacy' . str_replace('background.webp', 'bgr.png', $file)));
 
 // reset a section
 if (isset($_POST['reset'])) {

@@ -1,6 +1,8 @@
 <x-layouts.class-dashboard :$class>
 
-	<div class="mb-8">
+	<x-heading.main>Progresso della classe</x-heading.main>
+
+	<div class="mb-16 mt-4">
 		<livewire:class.progress.toggler />
 	</div>
 
@@ -12,7 +14,7 @@
 
 				<div class="columns-25rem grid gap-4">
 					{{-- Area --}}
-					@foreach ($grade->areas() as $area)
+					@foreach ($grade->areas as $area)
 						<livewire:class.progress.area
 							:area="$area"
 							:grade="$grade"

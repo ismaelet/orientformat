@@ -1,9 +1,6 @@
 /*
 * Layout
 */
-:root {
-	--wrap-width: 1500px;
-}
 
 .title {
 	background: -webkit-linear-gradient(180deg, var(--color-primary-400), var(--color-secondary-400));
@@ -76,13 +73,8 @@
 }
 
 .section-wrapper {
+	flex-basis: 23rem;
 	display: grid;
-	width: calc(100% / 3 - 4rem);
-	min-width: fit-content;
-
-	@media (max-width: 480px) {
-		flex-grow: 1;
-	}
 }
 
 .section {

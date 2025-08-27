@@ -19,7 +19,7 @@ class CompletedReview {
 		/**
 		 * Starting review
 		 */
-		$relativeGrade = $student->school_class->grade()->relative_number();
+		$relativeGrade = $student->school_class->grade()->relative_number;
 		$startingGrade = $student->school_class->startingGrade;
 		$currentGrade = $student->school_class->grade;
 

@@ -2,6 +2,8 @@
 
 namespace App\Models\User;
 
+use App\Models\Activities\Section;
+use App\Models\Activities\Test;
 use App\Models\Results\User\AdditionalResult;
 use App\Models\Results\User\CondensedSectionResult;
 use App\Models\Results\User\GradeResult;
@@ -209,7 +211,62 @@ class Student extends Model {
 	/**
 	 * Check if a student has completed a specific section
 	 */
-	public function hasCompletedSection($section): bool {
+	public function hasCompletedSection(Section $section): bool {
 		return $this->section_results->where('sectionId', $section->id)->where('completed', true)->count();
+	}
+
+	/**
+	 * Check if a student has completed a specific test
+	 */
+	public function hasCompletedTest(Test $test): bool {
+		return $this->test_results->where('testId', $test->id)->where('completed', true)->count();
+	}
+
+	/**
+	 * Get the number of completed tests in a specific section
+	 */
+	public function testsCompletedInSection(Section $section): int {
+		return $this->test_results
+			->whereIn('testId', $section->tests->pluck('id'))
+			->where('completed', true)
+			->count();
+	}
+
+	/**
+	 * Get the percentage of completed tests in a specific section
+	 */
+	public function percentageTestsCompletedInSection(Section $section): int {
+		$totalTests = $section->tests->count();
+		$completedTests = $this->testsCompletedInSection($section);
+
+		if ($totalTests === 0) {
+			return 0;
+		}
+
+		return round($completedTests / $totalTests * 100);
+	}
+
+	/**
+	 * Get the number of completed sections in a specific grade
+	 */
+	public function sectionsCompletedInGrade(Grade $grade): int {
+		return $this->section_results
+			->whereIn('sectionId', $grade->completable_sections->pluck('id'))
+			->where('completed', true)
+			->count();
+	}
+
+	/**
+	 * Get the percentage of completed sections in a specific grade
+	 */
+	public function percentageSectionsCompletedInGrade(Grade $grade): int {
+		$totalSections = $grade->completable_sections->count();
+		$completedSections = $this->sectionsCompletedInGrade($grade);
+
+		if ($totalSections === 0) {
+			return 0;
+		}
+
+		return round($completedSections / $totalSections * 100);
 	}
 }

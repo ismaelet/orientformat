@@ -43,6 +43,18 @@ class SchoolClass extends Model {
 		);
 	}
 
+	public function firstGrade(): Attribute {
+		return Attribute::make(
+			get: fn() => $this->isMiddleSchool() ? Grade::MIDDLE_SCHOOL_GRADES[0] : Grade::HIGH_SCHOOL_GRADES[0]
+		);
+	}
+
+	public function lastGrade(): Attribute {
+		return Attribute::make(
+			get: fn() => $this->isMiddleSchool() ? Grade::MIDDLE_SCHOOL_GRADES[count(Grade::MIDDLE_SCHOOL_GRADES) - 1] : ($this->professional ? Grade::PROFESSIONAL_GRADES[count(Grade::PROFESSIONAL_GRADES) - 1] : Grade::HIGH_SCHOOL_GRADES[count(Grade::HIGH_SCHOOL_GRADES) - 1])
+		);
+	}
+
 	/**
 	 * Relationship: The school the class belongs to
 	 */
@@ -75,10 +87,6 @@ class SchoolClass extends Model {
 
 	public function teachers() {
 		return Teacher::whereRaw("FIND_IN_SET(?, classes)", [$this->id])->get();
-	}
-
-	public function startingGrade(): Grade {
-		return Grade::getByNumber($this->startingGrade, $this->professional);
 	}
 
 	/**

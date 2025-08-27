@@ -1,8 +1,8 @@
 @pushOnce('styles')
 	<style>
 		/*
-																											* Header
-																											*/
+																													* Header
+																													*/
 
 		.slider__header {
 			display: grid;
@@ -17,7 +17,7 @@
 		}
 
 		.recap-panel {
-			grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+			grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
 			min-height: 100%;
 		}
 

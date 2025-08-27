@@ -125,10 +125,11 @@ use Legacy\SchoolSystem\Grade;
 								</div>
 
 								<!-- Loading -->
-								<div class="load-panel bg-surface js-loading grid content-center justify-center">
-									<div class="load-icon">
-										<x-icon-loading') ?>
-									</div>
+								<div
+									class="load-panel bg-surface js-loading grid content-center justify-center data-[visible='false']:hidden"
+									data-visible="true"
+								>
+									<x-icon-loading class="w-20" />
 								</div>
 							</div>
 						</div>

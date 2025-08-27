@@ -50,11 +50,7 @@ class SectionResult extends Model {
 	 */
 	public function speed(): ?int {
 		return TestResult::where('studentId', $this->studentId)
-			->whereIn('testId', function ($query) {
-				$query->select('id')
-					->from('activities_tests')
-					->where('sectionId', $this->sectionId);
-			})
+			->whereIn('testId', $this->section->tests->pluck('id'))
 			->sum('speed');
 	}
 
@@ -62,8 +58,6 @@ class SectionResult extends Model {
 	 * Get the verbose string representation of the speed
 	 */
 	public function verboseSpeed(): ?string {
-		$speed = null;
-
 		if ($this->speed() >= 60) {
 			$minutes = round($this->speed() / 60);
 
@@ -76,6 +70,6 @@ class SectionResult extends Model {
 			$speed .= $seconds == 1 ? ' secondo' : ' secondi';
 		}
 
-		return $speed;
+		return $speed ?? null;
 	}
 }

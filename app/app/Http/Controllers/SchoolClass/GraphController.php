@@ -32,7 +32,7 @@ class GraphController extends Controller {
 		}
 
 		// content
-		foreach ($class->grade()->areas() as $doableArea) {
+		foreach ($class->grade()->areas as $doableArea) {
 			$area['name'] = $doableArea->name;
 			$area['id'] = $doableArea->id;
 			$area['sections'] = [];

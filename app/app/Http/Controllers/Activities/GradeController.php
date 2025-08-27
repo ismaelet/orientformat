@@ -15,52 +15,35 @@ class GradeController extends Controller {
 	 * * Action: Index
 	 */
 	function index() {
-		$schoolClass = Auth::user()->student->school_class;
-		$legacySchoolClass = new LegacySchoolClass($schoolClass->id);
+		$student = Auth::user()->student;
+		$class = $student->school_class;
+
+		$grades = Grade::where('is_professional', $class->isProfessional())
+			->where('absolute_number', '>=', $class->first_grade)
+			->where('absolute_number', '<=', $class->last_grade)
+			->orderBy('absolute_number')
+			->with('completable_sections')
+			->get();
 
 		\App\Legacy\LegacyView::setPage('activities/grades')
-			->set('schoolClass', $legacySchoolClass)
+			->set('class', $class)
+			->set('grades', $grades)
+			->set('student', $student)
 			->show();
 	}
 
 	/**
 	 * * Action: Show
 	 */
-	function show(int $gradeNumber) {
-		function realGradeId($oldGradeId) {
-			switch (true) {
-				case strpos($oldGradeId, 'P'):
-					return $oldGradeId[0] + 3;
-
-				case strpos($oldGradeId, 'L'):
-					return $oldGradeId[0];
-
-				default:
-					return $oldGradeId;
-			}
-		}
-
+	function show(Grade $grade) {
+		$grade->load('areas', 'areas.sections', 'sections.tests');
 		$student = Auth::user()->student;
-		$schoolClass = $student->school_class;
-		$professional = $schoolClass->professional;
 
-		if (!$schoolClass->hasGrade($gradeNumber)) {
-			return redirect()->route('activities.grades.index');
-		}
-
-		$grade = new Grade($gradeNumber, $professional);
-
-		$legacyGradeNumber = $grade->number;
-		$legacyGrade = new LegacyGrade($legacyGradeNumber);
-		$legacyGradeModel = new LegacyGradeModel(realGradeId($legacyGradeNumber));
-
-		session()->put('activities-year', $legacyGradeNumber);
+		session()->put('activities-year', $grade->absolute_number);
 
 		\App\Legacy\LegacyView::setPage('activities/list')
 			->set('student', $student)
 			->set('grade', $grade)
-			->set('legacyGrade', $legacyGrade)
-			->set('legacyGradeModel', $legacyGradeModel)
 			->show();
 	}
 }

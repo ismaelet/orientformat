@@ -23,7 +23,11 @@ class Section extends Model {
 		'name',
 		'description',
 		'evaluation_test_id',
-		'result_label'
+		'result_label',
+		'slug',
+		'estimated_duration',
+		'isStandard',
+		'active'
 	];
 
 	/**
@@ -94,5 +98,12 @@ class Section extends Model {
 	 */
 	public function isCompletable(): bool {
 		return $this->isStandard;
+	}
+
+	/**
+	 * Get the count of tests in this section
+	 */
+	public function testCount(): int {
+		return $this->tests->count();
 	}
 }
