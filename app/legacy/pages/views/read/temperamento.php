@@ -52,23 +52,23 @@
 	Anche in questo caso, come per le aree precedenti, è difficile dire che cosa sia positivo e che cosa negativo. Molto dipende dalle situazioni nelle quali siamo calati, dai <a href="#g-problema" class="link">problemi</a> che ci sfidano, dalle persone con le quali ci troviamo a interagire. In generale però possiamo dire che la pluralità e la diversità sono comunque un valore per il gruppo, perché aumentano le possibilità di adattamento funzionale ad ambienti complessi e mutevoli.</p>
 
 <p class="foot">
-	1 M. Solms e O. Turnbull, <span class="fy-italic">Il cervello e il mondo interno. Introduzione alle neuroscienze dell’esperienza soggettiva</span>, Milano, Raffaello Cortina Editore, p. 246.<br>
-	2 B. K. Keogh (2006), <span class="fy-italic">Impulsivi, introversi, emotivi apatici. Comprendere e valorizzare il temperamento e le differenze individuali</span>, Trento, Erickson, p. 14.<br>
-	3 Richiamato da G. Axia (2002), <span class="fy-italic">QUIT. Questionari Italiani del Temperamento</span>, Trento, Erickson, p. 18-19.<br>
-	4 Thomas L. e Chess S., <span class="fy-italic">The New York longitudinal study: From infancy to early adult life</span>, In R. Plomin e J. Dunn (a cura di), <span class="fy-italic">The study of temperament: Changes, continuities and challenges</span>, Hillsdale, NJ, Erlbaum, 1986.<br>
-	5 Eysenk H. J.,(1959), <span class="fy-italic">EPI. Eysenk Personality Inventory. Forma adulti e junior</span>, O.S., Firenze.<br>
-	6 Robert R. McCrae, Paul T. Costa, <span class="fy-italic">Personality in Adulthood: A Five-factor Theory Perspective</span>, Guilford Press, Jan 1, 2003 - Psychology – 268. Caprara Gian Vittorio (1995), <span class="fy-italic">Big Five, “Psicologia contemporanea” 131</span>, pp. 50-57.<br>
+	1 M. Solms e O. Turnbull, <span class="italic">Il cervello e il mondo interno. Introduzione alle neuroscienze dell’esperienza soggettiva</span>, Milano, Raffaello Cortina Editore, p. 246.<br>
+	2 B. K. Keogh (2006), <span class="italic">Impulsivi, introversi, emotivi apatici. Comprendere e valorizzare il temperamento e le differenze individuali</span>, Trento, Erickson, p. 14.<br>
+	3 Richiamato da G. Axia (2002), <span class="italic">QUIT. Questionari Italiani del Temperamento</span>, Trento, Erickson, p. 18-19.<br>
+	4 Thomas L. e Chess S., <span class="italic">The New York longitudinal study: From infancy to early adult life</span>, In R. Plomin e J. Dunn (a cura di), <span class="italic">The study of temperament: Changes, continuities and challenges</span>, Hillsdale, NJ, Erlbaum, 1986.<br>
+	5 Eysenk H. J.,(1959), <span class="italic">EPI. Eysenk Personality Inventory. Forma adulti e junior</span>, O.S., Firenze.<br>
+	6 Robert R. McCrae, Paul T. Costa, <span class="italic">Personality in Adulthood: A Five-factor Theory Perspective</span>, Guilford Press, Jan 1, 2003 - Psychology – 268. Caprara Gian Vittorio (1995), <span class="italic">Big Five, “Psicologia contemporanea” 131</span>, pp. 50-57.<br>
 	7 che tecnicamente viene definita anche “amicalità”.<br>
 	8 Temo i greci anche quando portano doni<br>
-	9 G. Axia (2002), <span class="fy-italic">QUIT</span>, cit., pp. 10-11<br><br>
+	9 G. Axia (2002), <span class="italic">QUIT</span>, cit., pp. 10-11<br><br>
 
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- Cervone D. e  Pervin L. A. (2017), <span class="fy-italic">La scienza della personalità</span>, Milano, Raffaello Cortina<br>
-	- Eysenck H. J. (1964), <span class="fy-italic">Eysenck Personality Inventory (EPI)</span>, <a class="link" href="https://chsresults.com/blog/test/eysencks-personality-inventory-epi-extroversionintroversion/">link</a><br>
-	- Gardner H. (1987), <span class="fy-italic">Formae mentis. Saggio sulla pluralità dell’intelligenza</span>, Milano, Feltrinelli.<br>
-	- Jung G. (2011), <span class="fy-italic">Tipi psicologici</span>, Torino, Bollati Boringhieri<br>
-	- Kagan J. (2016), <span class="fy-italic">La trama della vita. Come geni, cultura, tempo e destino determinano il nostro temperamento</span>, Torino, Bollati Boringhieri<br>
-	- Naranjo C. (1996), <span class="fy-italic">Carattere e nevrosi. L'enneagramma dei tipi psicologici</span>, Roma, Astrolabio Ubaldini
+	- Cervone D. e  Pervin L. A. (2017), <span class="italic">La scienza della personalità</span>, Milano, Raffaello Cortina<br>
+	- Eysenck H. J. (1964), <span class="italic">Eysenck Personality Inventory (EPI)</span>, <a class="link" href="https://chsresults.com/blog/test/eysencks-personality-inventory-epi-extroversionintroversion/">link</a><br>
+	- Gardner H. (1987), <span class="italic">Formae mentis. Saggio sulla pluralità dell’intelligenza</span>, Milano, Feltrinelli.<br>
+	- Jung G. (2011), <span class="italic">Tipi psicologici</span>, Torino, Bollati Boringhieri<br>
+	- Kagan J. (2016), <span class="italic">La trama della vita. Come geni, cultura, tempo e destino determinano il nostro temperamento</span>, Torino, Bollati Boringhieri<br>
+	- Naranjo C. (1996), <span class="italic">Carattere e nevrosi. L'enneagramma dei tipi psicologici</span>, Roma, Astrolabio Ubaldini
 </p>
 
 {% end content %}

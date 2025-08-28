@@ -308,14 +308,14 @@
 	Armando Editore, pp. 99-100.)<br><br>
 
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- Cornoldi C. (1995), <span class="fy-italic">Metacognizione e apprendimento</span>, Bologna, Il Mulino<br>
-	- Cornoldi C. (1999), <span class="fy-italic">Le difficoltà di apprendimento nella scuola</span>, Bologna, Il Mulino.<br>
-	- Gardner H. (1993), <span class="fy-italic">Educare al comprendere. Stereotipi infantili e apprendimento scolastico</span>, Milano, Feltrinelli.<br>
-	- Novak J. D. e Gowin D. B. (2001), <span class="fy-italic">Imparando a imparare</span>, Torino, SEI<br>
-	- Robinson F.P. (1970), <span class="fy-italic">Effective Study</span>, Harper and Row, New York.<br>
-	- Serafini M. T. (1989), <span class="fy-italic">Come si studia</span>, Milano, Bompiani.<br>
-	- Tuffanelli L. (2007), <span class="fy-italic">Comprendere</span>, Trento, Erickson<br>
-	- Tuffanelli L. e Kurlowicz E. (2007), <span class="fy-italic">Dalla frase al testo. Imparare a comprendere nella scuola secondaria</span>, Trento, Erickson<br>
+	- Cornoldi C. (1995), <span class="italic">Metacognizione e apprendimento</span>, Bologna, Il Mulino<br>
+	- Cornoldi C. (1999), <span class="italic">Le difficoltà di apprendimento nella scuola</span>, Bologna, Il Mulino.<br>
+	- Gardner H. (1993), <span class="italic">Educare al comprendere. Stereotipi infantili e apprendimento scolastico</span>, Milano, Feltrinelli.<br>
+	- Novak J. D. e Gowin D. B. (2001), <span class="italic">Imparando a imparare</span>, Torino, SEI<br>
+	- Robinson F.P. (1970), <span class="italic">Effective Study</span>, Harper and Row, New York.<br>
+	- Serafini M. T. (1989), <span class="italic">Come si studia</span>, Milano, Bompiani.<br>
+	- Tuffanelli L. (2007), <span class="italic">Comprendere</span>, Trento, Erickson<br>
+	- Tuffanelli L. e Kurlowicz E. (2007), <span class="italic">Dalla frase al testo. Imparare a comprendere nella scuola secondaria</span>, Trento, Erickson<br>
 </p>
 
 {% end content %}

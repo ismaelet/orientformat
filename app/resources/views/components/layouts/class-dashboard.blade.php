@@ -20,7 +20,6 @@
 			width: 100%;
 			height: 100%;
 			padding: 3.5rem 3rem;
-			background-color: #f2f2f2;
 			box-shadow: -1rem 0 5rem rgb(0, 0, 0, 0.1);
 			border-radius: 1.5rem 0 0 1.5rem;
 			overflow: hidden;
@@ -103,7 +102,7 @@
 
 		.dashboard-list__label {
 			font-family: var(--ff-titles);
-			font-weight: var(--fw-semibold);
+			font-weight: var(--font-semibold);
 			font-size: var(--fs-450);
 		}
 
@@ -183,7 +182,7 @@
 	<div class="dashboard span-full-width">
 		<x-class-dashboard.navigation :$class />
 
-		<section class="dashboard__body js-dashboard-content">
+		<section class="dashboard__body js-dashboard-content bg-slate-100">
 			{{ $slot }}
 		</section>
 	</div>

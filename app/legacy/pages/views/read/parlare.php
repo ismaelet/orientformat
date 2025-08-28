@@ -29,15 +29,15 @@
 	1 Questo è un assunto fondamentale del costruzionismo sociale, teoria introdotta da K. Gergen (1994), Realities and relationships. Soundings in social construction, Cambridge, MA, Harvard University Press. <br><br>
 
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- Bazzanella C. (1994), <span class="fy-italic">Le facce del parlare. Un approccio pragmatico all’italiano parlato</span>, Firenze, La Nuova Italia<br>
-	- Czerwinsky Domenis L. (2000), <span class="fy-italic">La discussione intelligente. Una strategia didattica per la costruzione sociale della conoscenza</span>, Trento, Erickson.<br>
-	- Galatolo R. e Pallotti G. (a cura di, 1999), <span class="fy-italic">La conversazione</span>, Milano, Raffaello Cortina<br>
-	- Halliday M. A. K. (1992), <span class="fy-italic">Lingua parlata e lingua scritta</span>, Firenze, La Nuova Italia<br>
-	- Ong W. (1986), <span class="fy-italic">Oralità e scrittura</span>, Il Mulino, Bologna.<br>
-	- Orsolini M. (1988), <span class="fy-italic">Guida al linguaggio orale</span>, Roma, Editori Riuniti<br>
-	- Pontecorvo C., Ajello A. M. e Zucchermaglio C. (1991), <span class="fy-italic">Discutendo si impara. Interazione sociale e conoscenza a scuola</span>, Roma, La Nuova Italia Scientifica.<br>
-	- Sbisà M. (1978), <span class="fy-italic">Gli atti linguistici. Aspetti e problemi di filosofia del linguaggio</span>, Milano, Feltrinelli<br>
-	- Watzlawick P, Beavin J. H., Jackson D. D. (1971), <span class="fy-italic">Pragmatica della comunicazione umana</span>, Roma, Astrolabio
+	- Bazzanella C. (1994), <span class="italic">Le facce del parlare. Un approccio pragmatico all’italiano parlato</span>, Firenze, La Nuova Italia<br>
+	- Czerwinsky Domenis L. (2000), <span class="italic">La discussione intelligente. Una strategia didattica per la costruzione sociale della conoscenza</span>, Trento, Erickson.<br>
+	- Galatolo R. e Pallotti G. (a cura di, 1999), <span class="italic">La conversazione</span>, Milano, Raffaello Cortina<br>
+	- Halliday M. A. K. (1992), <span class="italic">Lingua parlata e lingua scritta</span>, Firenze, La Nuova Italia<br>
+	- Ong W. (1986), <span class="italic">Oralità e scrittura</span>, Il Mulino, Bologna.<br>
+	- Orsolini M. (1988), <span class="italic">Guida al linguaggio orale</span>, Roma, Editori Riuniti<br>
+	- Pontecorvo C., Ajello A. M. e Zucchermaglio C. (1991), <span class="italic">Discutendo si impara. Interazione sociale e conoscenza a scuola</span>, Roma, La Nuova Italia Scientifica.<br>
+	- Sbisà M. (1978), <span class="italic">Gli atti linguistici. Aspetti e problemi di filosofia del linguaggio</span>, Milano, Feltrinelli<br>
+	- Watzlawick P, Beavin J. H., Jackson D. D. (1971), <span class="italic">Pragmatica della comunicazione umana</span>, Roma, Astrolabio
 </p>
 
 

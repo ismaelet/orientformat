@@ -33,7 +33,7 @@ class Section extends Model {
 	/**
 	 * The table associated with the model
 	 */
-	protected $table = 'activities_sections';
+	protected $table = 'sections';
 
 	/**
 	 * Relationship: The area that this section belongs to
@@ -90,7 +90,11 @@ class Section extends Model {
 	 * Get the URL for the section
 	 */
 	public function url(): string {
-		return route('section', ['section' => $this]);
+		if ($this->isCompletable()) {
+			return route('section', ['section' => $this]);
+		}
+
+		return $this->tests->first()->url();
 	}
 
 	/**

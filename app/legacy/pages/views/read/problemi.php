@@ -36,16 +36,16 @@
 <p class="text">Per diventare dei bravi solutori di problemi non basta quindi imparare delle strategie, assumere dei comportamenti strategici. Se si si utilizzassero solo le risorse cognitive, molti problemi, soprattutto i più impegnativi, non potrebbero essere affrontati con successo. Insieme con i comportamenti occorre favorire anche degli <a href="#g-atteggiamento" class="link">atteggiamenti</a> strategici. Gli atteggiamenti, al contrario dei comportamenti, che sono più contingenti e mutevoli, si riferiscono a orientamenti più stabili e profondi, che spesso sfuggono ad un controllo consapevole e che quindi sono più difficilmente modificabili. Modificazioni difficili, ma non impossibili.</p>
 
 <p class="foot">
-	1 PISA 2003-Valutazione dei quindicenni<span class="fy-italic">, Roma, Armando Editore 2004.</span><br>
-	2 <span class="fy-italic">Winnicott D. W., 1975,</span> Dalla pediatria alla psicanalisi<span class="fy-italic">, Firenze, mar-t-inelli.</span><br><br>
+	1 PISA 2003-Valutazione dei quindicenni<span class="italic">, Roma, Armando Editore 2004.</span><br>
+	2 <span class="italic">Winnicott D. W., 1975,</span> Dalla pediatria alla psicanalisi<span class="italic">, Firenze, mar-t-inelli.</span><br><br>
 
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- De Bono E. (1994), <span class="fy-italic">Sei cappelli per pensare</span>, Milano, Rizzoli<br>
-	- Morin E. (1999), <span class="fy-italic">La testa ben fatta</span>, Milano, 2000, Raffaello Cortina Editore<br>
-	- Oliverio A. (1997), <span class="fy-italic">L’arte di pensare</span>, Milano, Rizzoli<br>
-	- Newell A. e Simon H. A. (1972), <span class="fy-italic">Human problem solving</span>, Prentice-Hall, Englewood Cliffs<br>
-	- Resnick L. B. (1987), <span class="fy-italic">Education and learning to think</span>, Washington, National Academy Press<br>
-	- Tuffanelli L. e Ianes D. (2003), <span class="fy-italic">Formare una testa ben fatta. Edgar Morin entra in classe: giochi di ruolo e didattica per problemi</span>, Trento, Erickson.
+	- De Bono E. (1994), <span class="italic">Sei cappelli per pensare</span>, Milano, Rizzoli<br>
+	- Morin E. (1999), <span class="italic">La testa ben fatta</span>, Milano, 2000, Raffaello Cortina Editore<br>
+	- Oliverio A. (1997), <span class="italic">L’arte di pensare</span>, Milano, Rizzoli<br>
+	- Newell A. e Simon H. A. (1972), <span class="italic">Human problem solving</span>, Prentice-Hall, Englewood Cliffs<br>
+	- Resnick L. B. (1987), <span class="italic">Education and learning to think</span>, Washington, National Academy Press<br>
+	- Tuffanelli L. e Ianes D. (2003), <span class="italic">Formare una testa ben fatta. Edgar Morin entra in classe: giochi di ruolo e didattica per problemi</span>, Trento, Erickson.
 </p>
 
 {% end content %}

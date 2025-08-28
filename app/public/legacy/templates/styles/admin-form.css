@@ -55,7 +55,7 @@
 }
 
 [data-theme='dark'] #form .label {
-	font-weight: var(--fw-regular);
+	font-weight: var(--font-normal);
 }
 
 #form .button {

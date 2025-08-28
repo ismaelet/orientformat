@@ -24,7 +24,7 @@ class ReviewResult extends Model {
 	/**
 	 * Get the associated student
 	 */
-	public function student() {
+	public function legacy_student() {
 		return $this->studentId ? Student::find($this->studentId) : null;
 	}
 

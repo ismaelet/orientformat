@@ -12,7 +12,7 @@
 
 		<?php for ($i = 1; $i < 6; $i++) { ?>
 
-			<img id="image<?= $i ?>" class="image" src="<?= client_path(watchedStudent()->isInMiddleSchool ? 'middleschool-img' . $i : 'middleschool-img' . $i) ?>">
+			<img id="image<?= $i ?>" class="image" src="<?= client_path(watchedlegacy_student()->isInMiddleSchool ? 'middleschool-img' . $i : 'middleschool-img' . $i) ?>">
 
 		<?php } ?>
 
@@ -22,7 +22,7 @@
 		</h1>
 
 		<div id="figure" class="pos<?= $score ?>">
-			<div id="figure-img" class="bgr bgr-fit cont" <?= background_image(watchedStudent()->isInMiddleSchool ? 'middleschool-figure' : 'middleschool-figure') ?>></div>
+			<div id="figure-img" class="bgr bgr-fit cont" <?= background_image(watchedlegacy_student()->isInMiddleSchool ? 'middleschool-figure' : 'middleschool-figure') ?>></div>
 		</div>
 
 	</div>

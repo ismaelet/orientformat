@@ -40,7 +40,7 @@ class GraphController extends Controller {
 			$doableSections = [];
 
 			foreach ($availableGrades as $gradeId) {
-				$legacySectionRes = \App\Legacy\LegacyDB::select(LegacySection::INDEX . ' FROM activities_sections WHERE ' . LegacySection::AREA_INDEX . ' = ? AND FIND_IN_SET(?, legacy_grades) ORDER BY legacy_grades ASC', [$area['id'], $gradeId]);
+				$legacySectionRes = \App\Legacy\LegacyDB::select(LegacySection::INDEX . ' FROM sections WHERE ' . LegacySection::AREA_INDEX . ' = ? AND FIND_IN_SET(?, legacy_grades) ORDER BY legacy_grades ASC', [$area['id'], $gradeId]);
 
 				if (!empty($legacySectionRes->res)) {
 					$doableSections = array_merge($doableSections, $legacySectionRes->res);

@@ -27,24 +27,24 @@
 </p>
 
 <p class="foot">
-	1 <span class="fy-italic">Cornoldi C., De Beni R. e Gruppo MT,</span> Imparare a studiare 2<span class="fy-italic">, Trento, Erickson, 2001, p. 17.</span><br>
-	2 <span class="fy-italic">Sterberg R. J, 1998,</span> Stili di pensiero<span class="fy-italic">, Trento, Erickson, p. 24.</span><br><br>
+	1 <span class="italic">Cornoldi C., De Beni R. e Gruppo MT,</span> Imparare a studiare 2<span class="italic">, Trento, Erickson, 2001, p. 17.</span><br>
+	2 <span class="italic">Sterberg R. J, 1998,</span> Stili di pensiero<span class="italic">, Trento, Erickson, p. 24.</span><br><br>
 
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- Bruner J. S, e Goodnow J. J. e Austin G. A. (1965), <span class="fy-italic">A study of thinking</span>, New York, Wiley<br>
-	- Cornoldi C. (1999), <span class="fy-italic">La diversità come fattore di apprendimento: stili cognitivi e intelligenze</span>, in L. Tuffanelli (a cura di, 1999), <span class="fy-italic">Intelligenze, emozioni e apprendimenti</span>, Trento, Erickson<br>
-	- Cornoldi C. (2007), <span class="fy-italic">L’intelligenza</span>, Il Mulino, Bologna.<br>
-	- Gardner H. (1987), <span class="fy-italic">Formae mentis. Saggio sulla pluralità dell’intelligenza</span>, Milano, Feltrinelli.<br>
-	- Gregoric A. (1985), <span class="fy-italic">Inside styles: Beyond the basics</span>, Maynard, MA, Gabriel Systems<br>
-	- Guilford J. P (1967), <span class="fy-italic">The nature of human intelligence</span>, MsGraw-Hill, New York.<br>
-	- Kagan J. (1966), <span class="fy-italic">Developmental studies in reflection and analysis</span>, in Kind A. e Rivore J. (a cura di), Perceptual development in children, London, Unuversity of London Press<br>
-	- Kelly G. K. (1955), <span class="fy-italic">The psychology of personal construct</span>, New York, Norton<br>
-	- Myers I. B. (1980), <span class="fy-italic">Gifts differing</span>, Palo Alto, Brooks/Cole<br>
-	- Sternberg R. J. e L. Spear-Swerling (1997), <span class="fy-italic">Le tre intelligenze. Come potenziare le capacità analitiche, creative e pratiche</span>, Trento, Erickson.<br>
-	- Thomas L. e Harri-Augustein S. (1985), <span class="fy-italic">Self-organised learning</span>, London, Routledge & Kegan Paul<br>
-	- Thurstone L. L. e Thurstone T. G. (1963), <span class="fy-italic">SRA primary abilities</span>, Chicago, Sciences Research Associates<br>
-	- Tuffanelli L. (a cura di, 1999), <span class="fy-italic">Intelligenze, emozioni e apprendimenti</span>, Trento, Erickson.<br>
-	- Tuffanelli L. (2006), <span class="fy-italic">Le diversità degli alunni. Utilizzare le differenze cognitive e affettive per l’apprendimento</span>, Trento, Erickson
+	- Bruner J. S, e Goodnow J. J. e Austin G. A. (1965), <span class="italic">A study of thinking</span>, New York, Wiley<br>
+	- Cornoldi C. (1999), <span class="italic">La diversità come fattore di apprendimento: stili cognitivi e intelligenze</span>, in L. Tuffanelli (a cura di, 1999), <span class="italic">Intelligenze, emozioni e apprendimenti</span>, Trento, Erickson<br>
+	- Cornoldi C. (2007), <span class="italic">L’intelligenza</span>, Il Mulino, Bologna.<br>
+	- Gardner H. (1987), <span class="italic">Formae mentis. Saggio sulla pluralità dell’intelligenza</span>, Milano, Feltrinelli.<br>
+	- Gregoric A. (1985), <span class="italic">Inside styles: Beyond the basics</span>, Maynard, MA, Gabriel Systems<br>
+	- Guilford J. P (1967), <span class="italic">The nature of human intelligence</span>, MsGraw-Hill, New York.<br>
+	- Kagan J. (1966), <span class="italic">Developmental studies in reflection and analysis</span>, in Kind A. e Rivore J. (a cura di), Perceptual development in children, London, Unuversity of London Press<br>
+	- Kelly G. K. (1955), <span class="italic">The psychology of personal construct</span>, New York, Norton<br>
+	- Myers I. B. (1980), <span class="italic">Gifts differing</span>, Palo Alto, Brooks/Cole<br>
+	- Sternberg R. J. e L. Spear-Swerling (1997), <span class="italic">Le tre intelligenze. Come potenziare le capacità analitiche, creative e pratiche</span>, Trento, Erickson.<br>
+	- Thomas L. e Harri-Augustein S. (1985), <span class="italic">Self-organised learning</span>, London, Routledge & Kegan Paul<br>
+	- Thurstone L. L. e Thurstone T. G. (1963), <span class="italic">SRA primary abilities</span>, Chicago, Sciences Research Associates<br>
+	- Tuffanelli L. (a cura di, 1999), <span class="italic">Intelligenze, emozioni e apprendimenti</span>, Trento, Erickson.<br>
+	- Tuffanelli L. (2006), <span class="italic">Le diversità degli alunni. Utilizzare le differenze cognitive e affettive per l’apprendimento</span>, Trento, Erickson
 </p>
 
 

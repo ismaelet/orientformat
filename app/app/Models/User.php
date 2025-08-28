@@ -105,15 +105,15 @@ class User extends Authenticatable implements FilamentUser, HasName {
 	/**
 	 * Check if the user is a student
 	 */
-	public function isStudent(): bool {
+	public function islegacy_student(): bool {
 		return (bool) $this->student;
 	}
 
 	/**
 	 * Check if the user is a highschool student
 	 */
-	public function isHighschoolStudent(): bool {
-		return $this->student && $this->student->isHighschoolStudent();
+	public function isHighschoollegacy_student(): bool {
+		return $this->student && $this->student->isHighschoollegacy_student();
 	}
 
 	/**

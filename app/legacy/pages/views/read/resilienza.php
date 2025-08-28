@@ -17,15 +17,15 @@
 <p class="text">I danni derivanti da stress, che possono essere anche molto rilevanti, si possono prevenire in tre modi: 1°) rimuovere, quando è possibile, lo stimolo stressante; 2°) lavorare sulla valutazione dello stressore ed infine, se le due soluzioni precedenti risultano impraticabili, 3°) ricorrere alla terapia. Chiaramente il primo tipo di prevenzione è il più semplice, ma spesso non è praticabile: se il rapporto con un altro (un fratello, un insegnante, la fidanzata ecc.) è per noi fonte di stress, non è sempre - per non dire raramente - praticabile facilmente il suo allontanamento. La soluzione più efficace, stabile nel tempo ed economica, è sicuramente la seconda: cambiare atteggiamento, imparare a vedere le cose in modo meno allarmante.</p>
 
 <p class="foot">
-	1 <span class="fy-italic">Werner E. E. e Smith R. S. (2001),</span> Journeys from childhood to midlife. Risk, resilience and recovery<span class="fy-italic">, Ithaca, NY, Cornell University Press.</span><br>
-	2 <span class="fy-italic">B. Cyrulnik,</span> Il reale e la sua rappresentazione. I requisiti della resilienza<span class="fy-italic">, in B. Cyrulnik e E. Malaguti (a cura di) (2005),</span> Costruire la resilienza<span class="fy-italic">, Trento, Erickson, pp. 48-49.</span><br>
-	3 <span class="fy-italic">Questa nuova prospettiva è stata introdotta da R. S. Lazarus (</span>Emotion and adaptation<span class="fy-italic">, Oxford University Press, 1991) nel 1976, integrando significativamente le ricerche pionieristiche di Cannon e Selye risalenti agli anni cinquanta.</span><br>
-	4 <span class="fy-italic">H. Selye (1956),</span> The stress of life<span class="fy-italic">, New York, McGraw-Hill.</span><br><br>
+	1 <span class="italic">Werner E. E. e Smith R. S. (2001),</span> Journeys from childhood to midlife. Risk, resilience and recovery<span class="italic">, Ithaca, NY, Cornell University Press.</span><br>
+	2 <span class="italic">B. Cyrulnik,</span> Il reale e la sua rappresentazione. I requisiti della resilienza<span class="italic">, in B. Cyrulnik e E. Malaguti (a cura di) (2005),</span> Costruire la resilienza<span class="italic">, Trento, Erickson, pp. 48-49.</span><br>
+	3 <span class="italic">Questa nuova prospettiva è stata introdotta da R. S. Lazarus (</span>Emotion and adaptation<span class="italic">, Oxford University Press, 1991) nel 1976, integrando significativamente le ricerche pionieristiche di Cannon e Selye risalenti agli anni cinquanta.</span><br>
+	4 <span class="italic">H. Selye (1956),</span> The stress of life<span class="italic">, New York, McGraw-Hill.</span><br><br>
 
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- Castelli C. (2011), <span class="fy-italic">Resilienza e creatività. Teorie e tecniche nei contesti di vulnerabilità</span>, Milano, FrancoAngeli<br>
-	- Cyrulnik B. (2009), <span class="fy-italic">Resilience: How your inner strength can set you free from the past</span>, London, Penguin Books Ltd<br>
-	- Oliverio Ferraris A. (2004), <span class="fy-italic">La forza d’animo</span>, Milano, Rizzoli.
+	- Castelli C. (2011), <span class="italic">Resilienza e creatività. Teorie e tecniche nei contesti di vulnerabilità</span>, Milano, FrancoAngeli<br>
+	- Cyrulnik B. (2009), <span class="italic">Resilience: How your inner strength can set you free from the past</span>, London, Penguin Books Ltd<br>
+	- Oliverio Ferraris A. (2004), <span class="italic">La forza d’animo</span>, Milano, Rizzoli.
 </p>
 
 

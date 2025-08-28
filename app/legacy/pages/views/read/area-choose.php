@@ -53,18 +53,18 @@
 	1 Forum economico mondiale: è una fondazione che organizza ogni inverno, presso la cittadina sciistica di Davos in
 	Svizzera, un incontro tra esponenti di primo piano della politica e dell'economia internazionale con intellettuali e
 	giornalisti selezionati<br>
-	2 T. Kuhn (1969), <span class="fy-italic">La struttura delle rivoluzioni scientifiche</span>, Torino, Einaudi.<br><br>
+	2 T. Kuhn (1969), <span class="italic">La struttura delle rivoluzioni scientifiche</span>, Torino, Einaudi.<br><br>
 
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- AjelloA.M., Saul Meghnagi S., Catia Mastracci (1999), <span class="fy-italic">Orientare dentro e fuori la scuola</span>, Firenze, La Nuova Italia<br>
-	- Ajello A. M. e Belardi C. (2007), <span class="fy-italic">Valutare le competenze informali. Il portfolio digitale</span>, Roma, Carocci<br>
-	- Censis (2022-2023), <span class="fy-italic">La classifica delle Università italiane 2022/2023</span>, <a class="link" href="https://www.censis.it/formazione/la-classifica-censis-delle-universit%C3%A0-italiane-edizione-20222023-0">link</a><br>
-	- Guichard J. e  Huteau M. (2002), <span class="fy-italic">Psicologia dell'orientamento professionale. Teorie e pratiche per orientare la scelta negli studi e nelle professioni</span>, Milano, Raffaello Cortina<br>
-	- Iuorio K. (2021), <span class="fy-italic">Studenti a tutto mondo. Cosa sapere, come scegliere, come prepararsi per l’università all’estero</span>, Bologna, Guerini e Associati<br>
-	- Malavasi P. (2022), <span class="fy-italic">PNRR e formazione. La via della transizione ecologica</span>, Milano, Vita e Pensiero<br>
-	- Parente P. (2022), <span class="fy-italic">Orientamento. Educare alla complessità per costruire il futuro</span>, Milano, Hoepli<br>
-	- Pietropolli Charmet G. (2007), <span class="fy-italic">Adolescenti in crisi, genitori in difficoltà</span>, Milano, Franco Angeli<br>
-	- Pombeni M.L. (2009), <span class="fy-italic">Il gruppo nel processo di orientamento. Teorie e pratiche</span>, Roma, Carocci
+	- AjelloA.M., Saul Meghnagi S., Catia Mastracci (1999), <span class="italic">Orientare dentro e fuori la scuola</span>, Firenze, La Nuova Italia<br>
+	- Ajello A. M. e Belardi C. (2007), <span class="italic">Valutare le competenze informali. Il portfolio digitale</span>, Roma, Carocci<br>
+	- Censis (2022-2023), <span class="italic">La classifica delle Università italiane 2022/2023</span>, <a class="link" href="https://www.censis.it/formazione/la-classifica-censis-delle-universit%C3%A0-italiane-edizione-20222023-0">link</a><br>
+	- Guichard J. e  Huteau M. (2002), <span class="italic">Psicologia dell'orientamento professionale. Teorie e pratiche per orientare la scelta negli studi e nelle professioni</span>, Milano, Raffaello Cortina<br>
+	- Iuorio K. (2021), <span class="italic">Studenti a tutto mondo. Cosa sapere, come scegliere, come prepararsi per l’università all’estero</span>, Bologna, Guerini e Associati<br>
+	- Malavasi P. (2022), <span class="italic">PNRR e formazione. La via della transizione ecologica</span>, Milano, Vita e Pensiero<br>
+	- Parente P. (2022), <span class="italic">Orientamento. Educare alla complessità per costruire il futuro</span>, Milano, Hoepli<br>
+	- Pietropolli Charmet G. (2007), <span class="italic">Adolescenti in crisi, genitori in difficoltà</span>, Milano, Franco Angeli<br>
+	- Pombeni M.L. (2009), <span class="italic">Il gruppo nel processo di orientamento. Teorie e pratiche</span>, Roma, Carocci
 </p>
 
 

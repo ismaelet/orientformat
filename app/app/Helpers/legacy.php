@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 use Legacy\UserSystem\ActiveStudent;
 use \Legacy\Activity\Test as LegacyTest;
 
-function student() {
+function legacy_student() {
 	return is_teacher() ? teacher() : ActiveStudent::getInstance();
 }
 
@@ -247,7 +247,7 @@ function isSupervisor() {
 
 function get_grade_style() {
 	if (isSupervisor()) {
-		return watchedStudent()->isInMiddleSchool ? 'middleschool' : 'highschool';
+		return watchedlegacy_student()->isInMiddleSchool ? 'middleschool' : 'highschool';
 	}
 
 	if (is_teacher_or_administrator()) {
@@ -255,7 +255,7 @@ function get_grade_style() {
 	}
 
 	if (is_student()) {
-		return student()->isInMiddleSchool ? 'middleschool' : 'highschool';
+		return legacy_student()->isInMiddleSchool ? 'middleschool' : 'highschool';
 	}
 }
 
@@ -274,22 +274,22 @@ function bump(&$array) {
 	unset($array[0]);
 }
 
-function watchedStudent(): Student|Teacher {
+function watchedlegacy_student(): Student|Teacher {
 	if (!isSupervisor() || !is_teacher_or_administrator()) {
-		return student();
+		return legacy_student();
 	}
 
 	teacher()->load('school_classes.students');
 
 	if (is_teacher() && !in_array(watchedStudentId(), teacher()->studentIds())) {
-		return student();
+		return legacy_student();
 	}
 
 	if (is_administrator() && !in_array(watchedStudentId(), administrator()->studentIds())) {
-		return student();
+		return legacy_student();
 	}
 
-	return Student::find(watchedStudentId()) ?? student();
+	return Student::find(watchedStudentId()) ?? legacy_student();
 }
 
 
@@ -385,7 +385,7 @@ function submit(bool $progressiveButton = false) {
 		case isSupervisor(): ?>
 
 			<div class="fa-center">
-				<a class="button button--secondary button--full-width js-submit-button" href="<?= route('class.students.results.show', ['class' => watchedStudent()->school_class, 'student' => watchedStudent()]) ?>"><?= $label ?></a>
+				<a class="button button--secondary button--full-width js-submit-button" href="<?= route('class.students.results.show', ['class' => watchedlegacy_student()->school_class, 'student' => watchedlegacy_student()]) ?>"><?= $label ?></a>
 			</div>
 
 		<?php break;
@@ -483,4 +483,12 @@ function renderSaveButton(bool $fullWith = false) {
 <?php }
 
 	return ob_get_clean();
+}
+
+function extract_subvalue(array $array, $subKey) {
+	foreach ($array as $key => $values) {
+		$array[$key] = $values[$subKey];
+	}
+
+	return $array;
 }

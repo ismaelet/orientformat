@@ -52,6 +52,7 @@ return [
 	"scrivere-intermedio" => "Scrivere",
 	"ruota-avanzato" => "La ruota delle emozioni",
 	"poi" => "POI",
+	"autovalutazioni" => "Autovalutazioni",
 
 	"description-stili" => "Il mio modo di pensare",
 	"description-resilienza" => "Come resistere nelle difficoltà",
@@ -103,5 +104,6 @@ return [
 	"description-imparare-avanzato" => "Capire come si impara",
 	"description-scrivere-intermedio" => "Governare una tecnica potente",
 	"description-ruota-avanzato" => "Dare un nome a ciò che sento",
-	"description-poi" => "Qui trovi il tuo profilo orientativo che si aggiorna con il progredire delle tue autovalutazioni"
+	"description-poi" => "Qui trovi il tuo profilo orientativo che si aggiorna con il progredire delle tue autovalutazioni",
+	"description-autovalutazioni" => "Qui puoi trovare tutte le autovalutazioni relative alle diverse aree che costituiscono il Profilo Orientativo Individualizzato (POI)",
 ];

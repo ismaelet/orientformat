@@ -65,21 +65,21 @@
 	In un racconto generalmente intervengono diversi tipi di personaggio. Alcuni svolgono ruoli importanti, altri hanno una funzione marginale. Alcuni possono essere caratterizzati in modo più approfondito e complesso (hanno “spessore”, sono “personaggi “spessi”), altri invece si presentano più in superficie (“personaggi piatti”). Alcuni si trasformano nel corso del racconto (“personaggi dinamici”), altri restano identici dall’inizio alla fine (“personaggi statici”).</p>
 
 <p class="foot">
-	1 Bruner J. ,1999, <span class="fy-italic">La cultura dell’educazione</span>, Milano,Feltrinelli, p. 53.<br>
-	2 Kintsch W. ,1988, <span class="fy-italic">The use of knowledge in discourse processing: A construction-integration model</span>, ”Psychological Review”, 95, pp. 163-82; Kintsch W. ,1994, <span class="fy-italic">The Psychology of discorse processing</span>, in M. A. Gernsbacher (a cura di), <span class="fy-italic">Handbook of psycholinguistics</span>, Academic Press.<br>
-	3 Wiener N.,1953, <span class="fy-italic">Introduzione alla cibernetica</span>, Torino, Boringhieri.<br><br>
+	1 Bruner J. ,1999, <span class="italic">La cultura dell’educazione</span>, Milano,Feltrinelli, p. 53.<br>
+	2 Kintsch W. ,1988, <span class="italic">The use of knowledge in discourse processing: A construction-integration model</span>, ”Psychological Review”, 95, pp. 163-82; Kintsch W. ,1994, <span class="italic">The Psychology of discorse processing</span>, in M. A. Gernsbacher (a cura di), <span class="italic">Handbook of psycholinguistics</span>, Academic Press.<br>
+	3 Wiener N.,1953, <span class="italic">Introduzione alla cibernetica</span>, Torino, Boringhieri.<br><br>
 
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- Biancardi A. e Milano G. (2001), <span class="fy-italic">Le difficoltà di apprendimento a scuola. Vincere la dislessia e i disturbi dell’apprendimento</span>, Milano, Rizzoli<br>
-	- Boschi F. ,1977, <span class="fy-italic">Psicologia della lettura</span>, Firenze, Giunti Barbera<br>
-	- Crowder R.G. e Wagner R. (1998), <span class="fy-italic">Psicologia della lettura</span>, Bologna, Il Mulino<br>
-	- De Beni R., Cisotto L. e Carretti B. (2001), <span class="fy-italic">Psicologia della lettura e della scrittura</span>, Erickson, Trento<br>
-	- Crepaldi D. (2021), <span class="fy-italic">Neuropsicologia della lettura</span>, Roma, Carocci<br>
-	- Dehaene S. (2009), <span class="fy-italic">I neuroni della lettura</span>, Milano, Raffaello Cortina<br>
-	- Schank R. C. (1992), <span class="fy-italic">Il lettore che capisce</span>, La Nuova Italia, Firenze<br>
-	- Spinazzola V. (2018), <span class="fy-italic">Critica della lettura. Leggere, interpretare, commentare e valutare un libro</span>, Firenze, GoWare<br>
-	- Stella G. (2017), <span class="fy-italic">La dislessia</span>, Bologna, Il Mulino<br>
-	- Tuffanelli L. (2007), <span class="fy-italic">Comprendere</span>, Trento, Erickson
+	- Biancardi A. e Milano G. (2001), <span class="italic">Le difficoltà di apprendimento a scuola. Vincere la dislessia e i disturbi dell’apprendimento</span>, Milano, Rizzoli<br>
+	- Boschi F. ,1977, <span class="italic">Psicologia della lettura</span>, Firenze, Giunti Barbera<br>
+	- Crowder R.G. e Wagner R. (1998), <span class="italic">Psicologia della lettura</span>, Bologna, Il Mulino<br>
+	- De Beni R., Cisotto L. e Carretti B. (2001), <span class="italic">Psicologia della lettura e della scrittura</span>, Erickson, Trento<br>
+	- Crepaldi D. (2021), <span class="italic">Neuropsicologia della lettura</span>, Roma, Carocci<br>
+	- Dehaene S. (2009), <span class="italic">I neuroni della lettura</span>, Milano, Raffaello Cortina<br>
+	- Schank R. C. (1992), <span class="italic">Il lettore che capisce</span>, La Nuova Italia, Firenze<br>
+	- Spinazzola V. (2018), <span class="italic">Critica della lettura. Leggere, interpretare, commentare e valutare un libro</span>, Firenze, GoWare<br>
+	- Stella G. (2017), <span class="italic">La dislessia</span>, Bologna, Il Mulino<br>
+	- Tuffanelli L. (2007), <span class="italic">Comprendere</span>, Trento, Erickson
 </p>
 
 

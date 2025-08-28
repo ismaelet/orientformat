@@ -65,18 +65,18 @@
 	&middot; Questo punto è necessario o superfluo? banale o originale?</p>
 
 <p class="foot">
-	1 Hayes J. R. e Flower L. S. ,1980, <span class="fy-italic">Identifying the organization of the writing process</span>, in L. W. Gregg e
-	E. R. Stenberg (a cura di), <span class="fy-italic">Cognitive processes in Writing</span>, Hillsdale, Erlbaum Associates, New Jersey.<br>
-	2 H. Hemingway ,1996, <span class="fy-italic">Il principio dell’iceberg. Intervista sull’arte di scrivere e narrare</span>, Genova, Il
+	1 Hayes J. R. e Flower L. S. ,1980, <span class="italic">Identifying the organization of the writing process</span>, in L. W. Gregg e
+	E. R. Stenberg (a cura di), <span class="italic">Cognitive processes in Writing</span>, Hillsdale, Erlbaum Associates, New Jersey.<br>
+	2 H. Hemingway ,1996, <span class="italic">Il principio dell’iceberg. Intervista sull’arte di scrivere e narrare</span>, Genova, Il
 	nuovo Melangolo, p.61.<br><br>
 
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- Bereiter C. e Scardamalia M. (1999), <span class="fy-italic">Psicologia della composizione scritta</span>, Firenze, La nuova Italia<br>
-	- Cisotto L. (2001), <span class="fy-italic">La scrittura</span>, in R. De Beni, L. Cisotto e B. Carretti, Psicologia della lettura e della scrittura, Erickson, Trento<br>
-	- Corno D. (2002), <span class="fy-italic">Scrivere e comunicare</span>, Milano, Bruno Mondadori<br>
-	- Danesi M. (1988), <span class="fy-italic">Neurolinguistica e glottodidattica</span>, Padova, Liviana.<br>
-	- Fornara S. (2010), <span class="fy-italic">La punteggiatura</span>, Roma, Carocci<br>
-	- Serafini M. T. (1994), <span class="fy-italic">Come si scrive</span>, Milano, Bompiani
+	- Bereiter C. e Scardamalia M. (1999), <span class="italic">Psicologia della composizione scritta</span>, Firenze, La nuova Italia<br>
+	- Cisotto L. (2001), <span class="italic">La scrittura</span>, in R. De Beni, L. Cisotto e B. Carretti, Psicologia della lettura e della scrittura, Erickson, Trento<br>
+	- Corno D. (2002), <span class="italic">Scrivere e comunicare</span>, Milano, Bruno Mondadori<br>
+	- Danesi M. (1988), <span class="italic">Neurolinguistica e glottodidattica</span>, Padova, Liviana.<br>
+	- Fornara S. (2010), <span class="italic">La punteggiatura</span>, Roma, Carocci<br>
+	- Serafini M. T. (1994), <span class="italic">Come si scrive</span>, Milano, Bompiani
 </p>
 
 

@@ -7192,7 +7192,7 @@ input[type='number']:not(.number-input-with-arrows)::-webkit-inner-spin-button {
 	top: 50%;
 	right: 1rem;
 	translate: 0 -50%;
-	font-weight: var(--fw-semibold);
+	font-weight: var(--font-semibold);
 }
 
 .special-input {
@@ -7229,7 +7229,7 @@ input[type='number']:not(.number-input-with-arrows)::-webkit-inner-spin-button {
 .label {
 	margin-bottom: 0.25em;
 	color: var(--fc-700);
-	font-weight: var(--fw-semibold);
+	font-weight: var(--font-semibold);
 }
 
 .label--required::after {
@@ -7670,7 +7670,7 @@ p .icon-embed,
 
 .text-link {
 	color: var(--fc-700);
-	font-weight: var(--fw-semibold);
+	font-weight: var(--font-semibold);
 	cursor: pointer;
 	transition: color 0.2s;
 }
@@ -8321,14 +8321,14 @@ h3,
 .fw-light {
 	font-weight: var(--fw-light);
 }
-.fw-regular {
-	font-weight: var(--fw-regular);
+.font-normal {
+	font-weight: var(--font-normal);
 }
 .fw-medium {
 	font-weight: var(--font-weight-medium);
 }
-.fw-semibold {
-	font-weight: var(--fw-semibold);
+.font-semibold {
+	font-weight: var(--font-semibold);
 }
 .fw-bold {
 	font-weight: var(--fw-bold);
@@ -8391,7 +8391,7 @@ h3,
 	text-transform: uppercase;
 }
 
-.fy-italic {
+.italic {
 	font-style: italic;
 }
 
@@ -8918,9 +8918,9 @@ body {
 
 	--fw-thin: 100;
 	--fw-light: 300;
-	--fw-regular: 400;
+	--font-normal: 400;
 	--fw-medium: 500;
-	--fw-semibold: 600;
+	--font-semibold: 600;
 	--fw-bold: 600;
 	--fw-black: 900;
 
@@ -9005,7 +9005,7 @@ body {
 	--border: var(--border-width) solid var(--border-clr-400);
 
 	/* Elements */
-	--button-fw: var(--fw-regular);
+	--button-fw: var(--font-normal);
 	--button-border-radius: var(--border-radius-1000);
 	--button--primary-fc: #fff;
 	--button--secondary-border-width: var(--border-width);
@@ -9042,7 +9042,7 @@ h3 {
 }
 
 :where(strong),
-:where(.fw-semibold),
+:where(.font-semibold),
 :where(.fw-bold),
 :where(.fw-black) {
 	color: var(--fc-700);
@@ -9064,7 +9064,7 @@ h3 {
 
 .subsection-title {
 	font-size: var(--fs-600);
-	font-weight: var(--fw-semibold);
+	font-weight: var(--font-semibold);
 }
 
 .section-subtitle {

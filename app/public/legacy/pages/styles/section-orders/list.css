@@ -23,6 +23,6 @@
 	padding: 0.2em 1em;
 	border-radius: var(--border-radius-1000);
 	color: #fff;
-	font-weight: var(--fw-semibold);
+	font-weight: var(--font-semibold);
 	text-align: center;
 }

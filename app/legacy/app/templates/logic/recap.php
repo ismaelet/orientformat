@@ -13,7 +13,7 @@ $area = Area::find($legacyArea->id);
 if (is_teacher_or_administrator()) {
 	$backUrl = client_url('/teacher/simulation');
 } else {
-	$gradeNumber = session()->get('activities-year') ?? student()->schoolClass->relativeGrade;
+	$gradeNumber = session()->get('activities-year') ?? legacy_student()->schoolClass->relativeGrade;
 	$backUrl = route('activities.grades.show', $gradeNumber);
 }
 
@@ -25,7 +25,7 @@ while ($row = $res->fetch_assoc()) {
 
 	$legacyTestM = new Test($row['id']);
 
-	if ($legacyTestM->completed) $desc = $legacyTestM->percentage == 100 || $legacyTestM->template == 'survey' || $legacySection->id == 8 ? __("Already cdocument.querySelector(elementSelector)ompleted") : __('Result') . ': <strong>' . $legacyTestM->percentage . '%</strong>';
+	if ($legacyTestM->completed) $desc = $legacyTestM->percentage == 100 || $legacyTestM->template == 'survey' || $legacySection->id == 8 ? __("Already completed") : __('Result') . ': <strong>' . $legacyTestM->percentage . '%</strong>';
 	else $desc = __('Not completed');
 
 	$legacyTest_arr = [

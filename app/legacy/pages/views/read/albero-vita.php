@@ -13,11 +13,11 @@
 
 <p class="foot">
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- Kelly G. K. (1955), <span class="fy-italic">The psychology of personal construct</span>, New York, Norton.<br>
-	- Koppitz E. (1968), P<span class="fy-italic">sychological Evaluation of Childrens Human Figure Drawings</span>, Grune & Stratton, New York.<br>
-	- Mariani U. e Schiralli R. (2002), <span class="fy-italic">Costruire il benessere personale in classe</span>, Trento, Erickson.<br>
-	- Oliverio Ferraris A: (1997), <span class="fy-italic">Il terzo genitore. Vivere con i figli dell’altro</span>, Milano, Cortina.<br>
-	- Sunderland M. (1997), <span class="fy-italic">Disegnare le emozioni</span>, Trento, Erickson
+	- Kelly G. K. (1955), <span class="italic">The psychology of personal construct</span>, New York, Norton.<br>
+	- Koppitz E. (1968), P<span class="italic">sychological Evaluation of Childrens Human Figure Drawings</span>, Grune & Stratton, New York.<br>
+	- Mariani U. e Schiralli R. (2002), <span class="italic">Costruire il benessere personale in classe</span>, Trento, Erickson.<br>
+	- Oliverio Ferraris A: (1997), <span class="italic">Il terzo genitore. Vivere con i figli dell’altro</span>, Milano, Cortina.<br>
+	- Sunderland M. (1997), <span class="italic">Disegnare le emozioni</span>, Trento, Erickson
 </p>
 
 {% end content %}

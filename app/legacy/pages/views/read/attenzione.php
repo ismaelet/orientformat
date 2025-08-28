@@ -39,17 +39,17 @@
 <p class="text">L’acquisizione di strategie di autoregolazione attenzionale richiede necessariamente che ci si renda conto delle proprie prestazioni e difficoltà, non solo attraverso valutazioni esplicite da parte di qualcun altro, ma anche attraverso forme di automonitoraggio. L’acquisizione di strategie di autoregolazione attenzionale richiede necessariamente che ci si renda conto delle proprie prestazioni e difficoltà, non solo attraverso valutazioni esplicite da parte di qualcun altro, ma anche attraverso forme di automonitoraggio. L’acquisizione di una maggiore consapevolezza sull’eventuale problema è la premessa indispensabile per scoprire strategie efficaci ad inibire le interferenze, a vigilare, a selezionare gli stimoli e a spostarsi in modo flessibile su quelli più adeguati ai compiti del momento e alla costruzione stessa della nostra <a href="#g-personalita" class="link">personalità</a>.</p>
 
 <p class="foot">
-	1 Shallice T.,1988, <span class="fy-italic">From Neuropsychology to Mental Structure</span>, Cambridge, Cambridge University Press, (tr. it. , <span class="fy-italic">Neuropsicologia e struttura della mente</span>, Bologna, Il Mulino, 1990)<br>
-	2 Si veda in particolare Thomas L. e Chess S., <span class="fy-italic">The New York longitudinal study: From infancy to early adult life</span>, In R.<br>Plomin e J. Dunn (a cura di), <span class="fy-italic">The study of temperament: Changes, continuities and challenges</span>, Hillsdale, NJ, Erlbaum, 1986.<br>
-	3 Da Fabio R. A., 2001, <span class="fy-italic">L’attenzione</span>, Milano, Franco Angeli, pp. 20-1.<br>
-	4 Si veda ad esempio Cornoldi C., 1999, <span class="fy-italic">Le difficoltà di apprendimento nella scuola</span>, Bologna, Il Mulino.<br><br>
+	1 Shallice T.,1988, <span class="italic">From Neuropsychology to Mental Structure</span>, Cambridge, Cambridge University Press, (tr. it. , <span class="italic">Neuropsicologia e struttura della mente</span>, Bologna, Il Mulino, 1990)<br>
+	2 Si veda in particolare Thomas L. e Chess S., <span class="italic">The New York longitudinal study: From infancy to early adult life</span>, In R.<br>Plomin e J. Dunn (a cura di), <span class="italic">The study of temperament: Changes, continuities and challenges</span>, Hillsdale, NJ, Erlbaum, 1986.<br>
+	3 Da Fabio R. A., 2001, <span class="italic">L’attenzione</span>, Milano, Franco Angeli, pp. 20-1.<br>
+	4 Si veda ad esempio Cornoldi C., 1999, <span class="italic">Le difficoltà di apprendimento nella scuola</span>, Bologna, Il Mulino.<br><br>
 
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- Cornoldi C. et alii (1996), <span class="fy-italic">Impulsività e autocontrollo</span>, Trento, Erickson.<br>
-	- Dell’Acqua R. e Turatto M. (2006), <span class="fy-italic">Attenzione e percezione. I processi cognitivi tra psicologia e neuroscienze</span>, Roma, Carocci<br>
-	- Kahneman D. (1981), <span class="fy-italic">Psicologia dell’attenzione</span>, Firenze, Giunti<br>
-	- Kirby E. e Grimley L. (1989), <span class="fy-italic">Disturbi dell’attenzione e iperattività</span>, Trento, Erickson.<br>
-	- Stablum F. (2002), <span class="fy-italic">L’attenzione</span>, Roma, Carocci
+	- Cornoldi C. et alii (1996), <span class="italic">Impulsività e autocontrollo</span>, Trento, Erickson.<br>
+	- Dell’Acqua R. e Turatto M. (2006), <span class="italic">Attenzione e percezione. I processi cognitivi tra psicologia e neuroscienze</span>, Roma, Carocci<br>
+	- Kahneman D. (1981), <span class="italic">Psicologia dell’attenzione</span>, Firenze, Giunti<br>
+	- Kirby E. e Grimley L. (1989), <span class="italic">Disturbi dell’attenzione e iperattività</span>, Trento, Erickson.<br>
+	- Stablum F. (2002), <span class="italic">L’attenzione</span>, Roma, Carocci
 </p>
 
 

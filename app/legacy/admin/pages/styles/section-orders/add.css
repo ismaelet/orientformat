@@ -41,7 +41,7 @@
 
 .status-name {
 	color: var(--fc-700);
-	font-weight: var(--fw-semibold);
+	font-weight: var(--font-semibold);
 }
 
 .orders {

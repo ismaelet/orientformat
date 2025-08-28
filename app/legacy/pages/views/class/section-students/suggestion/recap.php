@@ -27,10 +27,10 @@
 						<h3 class="result__title">Scelta indicata nel questionario iniziale:</h3>
 
 						<?php if ($beginnerChoice) { ?>
-							<p class="answer"></p><span class="fw-semibold"><?= $beginnerChoice['primary_choice_area'] ?></span> (<?= trim($beginnerChoice['primary_choice_intensity']) ?>)</p>
+							<p class="answer"></p><span class="font-semibold"><?= $beginnerChoice['primary_choice_area'] ?></span> (<?= trim($beginnerChoice['primary_choice_intensity']) ?>)</p>
 						<?php } else { ?>
 
-							<p class="answer"><span class="fw-semibold">Non ancora compilato</span></p>
+							<p class="answer"><span class="font-semibold">Non ancora compilato</span></p>
 
 						<?php } ?>
 
@@ -46,10 +46,10 @@
 						<h3 class="result__title">Scelta indicata nel questionario finale:</h3>
 
 						<?php if ($endChoice) { ?>
-							<p class="answer"></p><span class="fw-semibold"><?= $endChoice['primary_choice_area'] ?></span> (<?= trim($endChoice['primary_choice_intensity']) ?>)</p>
+							<p class="answer"></p><span class="font-semibold"><?= $endChoice['primary_choice_area'] ?></span> (<?= trim($endChoice['primary_choice_intensity']) ?>)</p>
 						<?php } else { ?>
 
-							<p class="answer"><span class="fw-semibold">Non ancora compilato</span></p>
+							<p class="answer"><span class="font-semibold">Non ancora compilato</span></p>
 
 						<?php } ?>
 
@@ -73,8 +73,8 @@
 					</div>
 
 					<div class="result__content">
-						<h3 class="result__title">Media dei risultati della sezione <span class="fy-italic fw-regular">"Ascoltare"</span>:</h3>
-						<p class="answer"><span class="fw-semibold"><?= $results['ascoltare'] === null ? '<span class="fw-regular">non ancora completata</span>' : $results['ascoltare'] ?></span></p>
+						<h3 class="result__title">Media dei risultati della sezione <span class="italic font-normal">"Ascoltare"</span>:</h3>
+						<p class="answer"><span class="font-semibold"><?= $results['ascoltare'] === null ? '<span class="font-normal">non ancora completata</span>' : $results['ascoltare'] ?></span></p>
 					</div>
 				</div>
 				<div class="result">
@@ -83,8 +83,8 @@
 					</div>
 
 					<div class="result__content">
-						<h3 class="result__title">Media dei risultati della sezione <span class="fy-italic fw-regular">"Parlare"</span>:</h3>
-						<p class="answer"><span class="fw-semibold"><?= $results['parlare'] === null ? '<span class="fw-regular">non ancora completata</span>' : $results['parlare'] ?></span></p>
+						<h3 class="result__title">Media dei risultati della sezione <span class="italic font-normal">"Parlare"</span>:</h3>
+						<p class="answer"><span class="font-semibold"><?= $results['parlare'] === null ? '<span class="font-normal">non ancora completata</span>' : $results['parlare'] ?></span></p>
 					</div>
 				</div>
 				<div class="result">
@@ -93,8 +93,8 @@
 					</div>
 
 					<div class="result__content">
-						<h3 class="result__title">Media dei risultati della sezione <span class="fy-italic fw-regular">"Leggere"</span>:</h3>
-						<p class="answer"><span class="fw-semibold"><?= $results['leggere'] === null ? '<span class="fw-regular">non ancora completata</span>' : $results['leggere'] ?></span></p>
+						<h3 class="result__title">Media dei risultati della sezione <span class="italic font-normal">"Leggere"</span>:</h3>
+						<p class="answer"><span class="font-semibold"><?= $results['leggere'] === null ? '<span class="font-normal">non ancora completata</span>' : $results['leggere'] ?></span></p>
 					</div>
 				</div>
 				<div class="result">
@@ -103,8 +103,8 @@
 					</div>
 
 					<div class="result__content">
-						<h3 class="result__title">Media dei risultati della sezione <span class="fy-italic fw-regular">"Scrivere"</span>:</h3>
-						<p class="answer"><span class="fw-semibold"><?= $results['scrivere'] === null ? '<span class="fw-regular">non ancora completata</span>' : $results['scrivere'] ?></span></p>
+						<h3 class="result__title">Media dei risultati della sezione <span class="italic font-normal">"Scrivere"</span>:</h3>
+						<p class="answer"><span class="font-semibold"><?= $results['scrivere'] === null ? '<span class="font-normal">non ancora completata</span>' : $results['scrivere'] ?></span></p>
 					</div>
 				</div>
 			</div>
@@ -122,8 +122,8 @@
 					</div>
 
 					<div class="result__content">
-						<h3 class="result__title">Media dei risultati della sezione <span class="fy-italic fw-regular">"Stare attenti"</span>:</h3>
-						<p class="answer"><span class="fw-semibold"><?= $results['attenzione'] === null ? '<span class="fw-regular">non ancora completata</span>' : $results['attenzione'] ?></span></p>
+						<h3 class="result__title">Media dei risultati della sezione <span class="italic font-normal">"Stare attenti"</span>:</h3>
+						<p class="answer"><span class="font-semibold"><?= $results['attenzione'] === null ? '<span class="font-normal">non ancora completata</span>' : $results['attenzione'] ?></span></p>
 					</div>
 				</div>
 				<div class="result">
@@ -132,8 +132,8 @@
 					</div>
 
 					<div class="result__content">
-						<h3 class="result__title">Media dei risultati della sezione <span class="fy-italic fw-regular">"Ricordare"</span>:</h3>
-						<p class="answer"><span class="fw-semibold"><?= $results['ricordare'] === null ? '<span class="fw-regular">non ancora completata</span>' : $results['ricordare'] ?></span></p>
+						<h3 class="result__title">Media dei risultati della sezione <span class="italic font-normal">"Ricordare"</span>:</h3>
+						<p class="answer"><span class="font-semibold"><?= $results['ricordare'] === null ? '<span class="font-normal">non ancora completata</span>' : $results['ricordare'] ?></span></p>
 					</div>
 				</div>
 				<div class="result">
@@ -142,8 +142,8 @@
 					</div>
 
 					<div class="result__content">
-						<h3 class="result__title">Media dei risultati della sezione <span class="fy-italic fw-regular">"Risolvere problemi"</span>:</h3>
-						<p class="answer"><span class="fw-semibold"><?= $results['problemi'] === null ? '<span class="fw-regular">non ancora completata</span>' : $results['problemi'] ?></span></p>
+						<h3 class="result__title">Media dei risultati della sezione <span class="italic font-normal">"Risolvere problemi"</span>:</h3>
+						<p class="answer"><span class="font-semibold"><?= $results['problemi'] === null ? '<span class="font-normal">non ancora completata</span>' : $results['problemi'] ?></span></p>
 					</div>
 				</div>
 				<div class="result">
@@ -152,8 +152,8 @@
 					</div>
 
 					<div class="result__content">
-						<h3 class="result__title">Media dei risultati della sezione <span class="fy-italic fw-regular">"Imparare"</span>:</h3>
-						<p class="answer"><span class="fw-semibold"><?= $results['scrivere'] === null ? '<span class="fw-regular">non ancora completata</span>' : $results['scrivere'] ?></span></p>
+						<h3 class="result__title">Media dei risultati della sezione <span class="italic font-normal">"Imparare"</span>:</h3>
+						<p class="answer"><span class="font-semibold"><?= $results['scrivere'] === null ? '<span class="font-normal">non ancora completata</span>' : $results['scrivere'] ?></span></p>
 					</div>
 				</div>
 			</div>
@@ -177,15 +177,15 @@
 					</div>
 
 					<div class="result__content">
-						<h3 class="result__title">Risultati della sezione <span class="fy-italic fw-regular">"Creatività e autoimprenditorialità"</span>:</h3>
+						<h3 class="result__title">Risultati della sezione <span class="italic font-normal">"Creatività e autoimprenditorialità"</span>:</h3>
 
 						<?php if ($results['creatività'] === null) { ?>
-							<span class="fw-regular">non ancora completata</span>
+							<span class="font-normal">non ancora completata</span>
 						<?php } else { ?>
 							<div class="mt-2">
 								<?php foreach ($results['creatività'] as $key => $result) { ?>
 
-									<p class="answer"><?= $result['name'] ?>: <span class="fw-semibold"><?= $result['percentage'] ?>%</span></p>
+									<p class="answer"><?= $result['name'] ?>: <span class="font-semibold"><?= $result['percentage'] ?>%</span></p>
 								<?php } ?>
 							</div>
 						<?php } ?>
@@ -209,8 +209,8 @@
 					</div>
 
 					<div class="result__content">
-						<h3 class="result__title">Area d'interesse principale, indicata nella sezione <span class="fy-italic fw-regular">"Motivazione e aree di interesse"</span>:</h3>
-						<p class="answer mt-1"><span class="fw-semibold"><?= $results['motivazione'] === null ? '<span class="fw-regular">non ancora completata</span>' : '<span class="fw-regular">Area principale:</span> ' . $results['motivazione'] ?></span></p>
+						<h3 class="result__title">Area d'interesse principale, indicata nella sezione <span class="italic font-normal">"Motivazione e aree di interesse"</span>:</h3>
+						<p class="answer mt-1"><span class="font-semibold"><?= $results['motivazione'] === null ? '<span class="font-normal">non ancora completata</span>' : '<span class="font-normal">Area principale:</span> ' . $results['motivazione'] ?></span></p>
 					</div>
 				</div>
 				<div class="result">
@@ -219,8 +219,8 @@
 					</div>
 
 					<div class="result__content">
-						<h3 class="result__title">Area d'interesse principale, indicata nella sezione <span class="fy-italic fw-regular">"I miei interessi"</span>:</h3>
-						<p class="answer mt-1"><span class="fw-semibold"><?= $results['interessi'] === null ? '<span class="fw-regular">non ancora completata</span>' : '<span class="fw-regular">Area principale:</span> ' . $results['interessi'] ?></span></p>
+						<h3 class="result__title">Area d'interesse principale, indicata nella sezione <span class="italic font-normal">"I miei interessi"</span>:</h3>
+						<p class="answer mt-1"><span class="font-semibold"><?= $results['interessi'] === null ? '<span class="font-normal">non ancora completata</span>' : '<span class="font-normal">Area principale:</span> ' . $results['interessi'] ?></span></p>
 					</div>
 				</div>
 			</div>

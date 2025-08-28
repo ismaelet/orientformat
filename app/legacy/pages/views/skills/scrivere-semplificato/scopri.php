@@ -33,7 +33,7 @@
 
 		</p>
 
-		<p class="fa-right">Da D’Orta M. (1994),<span class="fy-italic">Io speriamo che me la cavo. Sessanta temi di bambini napoletani</span>, Mondadori, Milano</p>
+		<p class="fa-right">Da D’Orta M. (1994),<span class="italic">Io speriamo che me la cavo. Sessanta temi di bambini napoletani</span>, Mondadori, Milano</p>
 
 		<section class="markers grid <?= test()->completed ? 'markers--completed' : '' ?>" data-spacing="400">
 			<div class="marker grid center-content" data-marker-type="1"><?= __('tests.135-error-type-1') ?></div>

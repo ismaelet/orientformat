@@ -38,7 +38,7 @@ class Section {
 
 	use \System\Traits\DatabaseObject;
 
-	public const TABLE = 'activities_sections';
+	public const TABLE = 'sections';
 	public const INDEX = 'id';
 	public const AREA_INDEX = 'areaId';
 

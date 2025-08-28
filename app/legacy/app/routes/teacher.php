@@ -96,7 +96,7 @@ use \Legacy\Activity\Area;
 	$id = $_GET['id'] ?? null;
 	$areaId = $_GET['area-id'] ?? null;
 
-	if ($id) $legacySection = \App\Legacy\LegacyDB::find('slug FROM activities_sections WHERE id=?', $id);
+	if ($id) $legacySection = \App\Legacy\LegacyDB::find('slug FROM sections WHERE id=?', $id);
 	if ($areaId) $area = \App\Legacy\LegacyDB::find('slug FROM ' . Area::TABLE . ' WHERE id=?', $areaId);
 
 	$page = $id ? $legacySection : 'area-' . $area;

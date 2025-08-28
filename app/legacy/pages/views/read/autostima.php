@@ -31,19 +31,19 @@
 
 
 <p class="foot">
-	1 <span class="fy-italic">Gergen, K. J. 1994,</span> Realities and relationships. Soudings in social construction<span class="fy-italic">, Cambridge, MA, Harvard University Press. Si può vedere anche, in traduzione italiana, Berger P. e Luckmann T. ,1969,</span> La realtà come costruzione sociale<span class="fy-italic">, Bologna, Il Mulino.</span><br>
-	2 <span class="fy-italic">Nel filosofo tedesco J. G. Herder (1744 – 1803) in particolare.</span><br>
-	3 <span class="fy-italic">K. J. Gergen,</span> Ivi.<br>
-	4 <span class="fy-italic">Tajfel H. , 1982,</span> Social identity and intergroup relations<span class="fy-italic">, Cambridge, Cambridge University Press.</span><br>
-	5 <span class="fy-italic">Raimy V. C. , 1948,</span> Self-reference in counselling ineterviews, “Journal of Consulting Psychology”<span class="fy-italic">, vol. 12, pp.153-163.</span><br><br>
+	1 <span class="italic">Gergen, K. J. 1994,</span> Realities and relationships. Soudings in social construction<span class="italic">, Cambridge, MA, Harvard University Press. Si può vedere anche, in traduzione italiana, Berger P. e Luckmann T. ,1969,</span> La realtà come costruzione sociale<span class="italic">, Bologna, Il Mulino.</span><br>
+	2 <span class="italic">Nel filosofo tedesco J. G. Herder (1744 – 1803) in particolare.</span><br>
+	3 <span class="italic">K. J. Gergen,</span> Ivi.<br>
+	4 <span class="italic">Tajfel H. , 1982,</span> Social identity and intergroup relations<span class="italic">, Cambridge, Cambridge University Press.</span><br>
+	5 <span class="italic">Raimy V. C. , 1948,</span> Self-reference in counselling ineterviews, “Journal of Consulting Psychology”<span class="italic">, vol. 12, pp.153-163.</span><br><br>
 
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- Bandura A. (2000), <span class="fy-italic">Autoefficacia. Teoria e applicazioni</span>, Trento, Erickson.<br>
-	- Branden N. (2006), <span class="fy-italic">I sei pilastri dell'autostima</span>, Milano, TEA<br>
-	- Bracken B. A. (2003), <span class="fy-italic">TMA. Test di valutazione multidimensionale dell’autostima</span>, Trento, Erickson.<br>
-	- Coopersmith S. (1967), <span class="fy-italic">The antecedents of self-esteem</span>, San Francisco, Freeman.<br>
-	- Miceli M. (1998), <span class="fy-italic">L'autostima</span>, Bologna, Il Mulino<br>
-	- Plummer D. (2002), <span class="fy-italic">La mia autostima. Attività di sviluppo per una buona immagine di sé</span>, Trento, Erickson.
+	- Bandura A. (2000), <span class="italic">Autoefficacia. Teoria e applicazioni</span>, Trento, Erickson.<br>
+	- Branden N. (2006), <span class="italic">I sei pilastri dell'autostima</span>, Milano, TEA<br>
+	- Bracken B. A. (2003), <span class="italic">TMA. Test di valutazione multidimensionale dell’autostima</span>, Trento, Erickson.<br>
+	- Coopersmith S. (1967), <span class="italic">The antecedents of self-esteem</span>, San Francisco, Freeman.<br>
+	- Miceli M. (1998), <span class="italic">L'autostima</span>, Bologna, Il Mulino<br>
+	- Plummer D. (2002), <span class="italic">La mia autostima. Attività di sviluppo per una buona immagine di sé</span>, Trento, Erickson.
 </p>
 
 

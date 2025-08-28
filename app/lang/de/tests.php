@@ -861,7 +861,7 @@ return [
 		Er entfernte sich schwankend, der verängstigte Junge rannte davon und die Wirtin blieb allein zurück; plötzlich liefen ihr Tränen über das Gesicht, dann rannte sie zurück ins Haus und ihre Schreie waren noch zu hören, als die Tür sich schon hinter ihr geschlossen hatte[...].<br>
 		Zehn Schilling für sechs Tropfen Essig! Wer die Poesie lebt, statt sie zu schreiben, zahlt zehntausend Prozent Zinsen.<br>
 		Wo war dieser finstere, blutverschmierte Trunkenbold, dem der Bindfaden für die Jacke reichte, aber nicht für die Schuhe? Hatte er sich vielleicht in den Shannon gestürzt, in die enge, graue und wirbelnde Stelle zwischen den beiden Brücken, wo die Möwen wie auf einer kostenlosen Bahn gleiten? Sie kreisten noch in der Dunkelheit, stürzten sich hinab zu den grauen Fluten, von Brücke zu Brücke, stiegen wieder auf, um das Spiel zu wiederholen: unersättlich, bis ins Unendliche.",
-	"70-author" => "Von H. Böll, <span class='fy-italic'>Diario d'Irlanda</span>, Mondadori, Milano, 1989, tr. di M. Marianelli",
+	"70-author" => "Von H. Böll, <span class='italic'>Diario d'Irlanda</span>, Mondadori, Milano, 1989, tr. di M. Marianelli",
 
 	"71-result" => "Du hast <span class='fc-primary font-bold'>:percentage%</span> der Fragen richtig beantwortet.",
 	"71-description" => "Hier unten kannst du deine Ergebnisse überprüfen. Die grünen Antworten sind korrekt, die roten sind falsch und die gelben sind richtige Antworten, die du nicht ausgewählt hast.",

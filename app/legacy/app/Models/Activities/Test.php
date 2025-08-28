@@ -8,7 +8,7 @@ class Test extends OldModel {
 	/**
 	 * Table name
 	 */
-	protected const TABLE = 'activities_tests';
+	protected const TABLE = 'tests';
 	protected const TABLE_LINKS = [
 		Area::class => 'areaId',
 		Section::class => 'sectionId',

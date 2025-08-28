@@ -37,23 +37,23 @@
 	In sintesi, la propensione per un’attività piuttosto che per un’altra può dipendere da molti fattori, quali ad esempio le esperienze di successo, il particolare contesto, le persone che vi partecipano o le attitudini particolari di cui si è dotati. Gli interessi comunque possono cambiare: molto dipende dal nostro modo di vedere le cose. Più interessi – profondi, non superficiali - si hanno, più ricca è la vita che possiamo fare. Si comincia sempre dal poco. </p>
 
 <p class="foot">
-	1 Solms M. e Turnbull O., 2004, <span class="fy-italic">Il cervello e il mondo interno</span>, Milano, Raffaello Cortina, p. 129.<br>
+	1 Solms M. e Turnbull O., 2004, <span class="italic">Il cervello e il mondo interno</span>, Milano, Raffaello Cortina, p. 129.<br>
 	2 Solms M. e Turnbull O., cit., p. 140.<br>
-	3 Freud definiva la capacità del bambino di avere desiderio di imparare <span class="fy-italic">libido epistemofilica</span>, che significa parziale rinuncia alla <span class="fy-italic">libido narcisistica</span> a vantaggio di un orientamento verso la realtà e i suoi oggetti, che deve apprendere, comprendere e abitare. In questo senso i “problemi di apprendimento” «… sono rivelatori di una difficoltà di desiderare nella vita, di desiderare la vita» (Benasayag M. e Schmit G., 2004, <span class="fy-italic">L’epoca delle passioni tristi</span>, Milano, Feltrinelli, p. 42).<br>
-	4 R. J. Sternberg e L. Spear-Swerling, 1997, <span class="fy-italic">Le tre intelligenze</span>, Trento, Erickson, p. 11.<br>
-	5 Gardner H., 1987, <span class="fy-italic">Formae mentis. Saggio sulla pluralità dell’intelligenza</span>, Milano, Feltrinelli.<br>
+	3 Freud definiva la capacità del bambino di avere desiderio di imparare <span class="italic">libido epistemofilica</span>, che significa parziale rinuncia alla <span class="italic">libido narcisistica</span> a vantaggio di un orientamento verso la realtà e i suoi oggetti, che deve apprendere, comprendere e abitare. In questo senso i “problemi di apprendimento” «… sono rivelatori di una difficoltà di desiderare nella vita, di desiderare la vita» (Benasayag M. e Schmit G., 2004, <span class="italic">L’epoca delle passioni tristi</span>, Milano, Feltrinelli, p. 42).<br>
+	4 R. J. Sternberg e L. Spear-Swerling, 1997, <span class="italic">Le tre intelligenze</span>, Trento, Erickson, p. 11.<br>
+	5 Gardner H., 1987, <span class="italic">Formae mentis. Saggio sulla pluralità dell’intelligenza</span>, Milano, Feltrinelli.<br>
 	6 Ivi, pp. 80-81.<br>
 	7 Ivi, pp. 79-90.<br><br>
 
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- Apter M. J. (1989), <span class="fy-italic">Reversal theory: Motivation, emotion and personality</span>, London, Routledge<br>
-	- De Beni R. e Moè A. (2000), <span class="fy-italic">Motivazione e apprendimento</span>, Bologna, Il Mulino<br>
-	- Deci E. L. e Ryan R. M. (1985), <span class="fy-italic">Intrinsic motivation and self-determination in human behavior</span>, New York, Plenum<br>
-	- Ford M. E. (1992), <span class="fy-italic">Motivating humans</span>, Newbury Park, CA, Sage<br>
-	- Maslow A. (1955), <span class="fy-italic">Motivazione e personalità</span>, Roma, Armando.<br>
-	- McCombs B. e Pope J. E. (1997), <span class="fy-italic">Come motivare gli alunni difficili</span>, Trento, Erickson.<br>
-	- Weiner B. (1992), <span class="fy-italic">Human mitivation: Metaphor theoriesand research</span>, Newbury Park, CA, Sage<br>
-	- Wentzel K. (2021), <span class="fy-italic">Motivare gli studenti ad apprendere</span>, Torino, UTET Università
+	- Apter M. J. (1989), <span class="italic">Reversal theory: Motivation, emotion and personality</span>, London, Routledge<br>
+	- De Beni R. e Moè A. (2000), <span class="italic">Motivazione e apprendimento</span>, Bologna, Il Mulino<br>
+	- Deci E. L. e Ryan R. M. (1985), <span class="italic">Intrinsic motivation and self-determination in human behavior</span>, New York, Plenum<br>
+	- Ford M. E. (1992), <span class="italic">Motivating humans</span>, Newbury Park, CA, Sage<br>
+	- Maslow A. (1955), <span class="italic">Motivazione e personalità</span>, Roma, Armando.<br>
+	- McCombs B. e Pope J. E. (1997), <span class="italic">Come motivare gli alunni difficili</span>, Trento, Erickson.<br>
+	- Weiner B. (1992), <span class="italic">Human mitivation: Metaphor theoriesand research</span>, Newbury Park, CA, Sage<br>
+	- Wentzel K. (2021), <span class="italic">Motivare gli studenti ad apprendere</span>, Torino, UTET Università
 </p>
 
 

@@ -181,6 +181,13 @@ return [
 	207 => "The Wheel of Emotions - 2",
 	208 => "The Wheel of Emotions - 3",
 	209 => "The Faces Speak",
+
+	"poi-poi" => "Individualized Orientation Profile",
+	"autovalutazioni-autovalutazioni" => "Self-Assessments",
+
+
+	// * Short descriptions
+
 	"summary-2" => "Deepen your self-assessment regarding your problem-solving ability",
 	"summary-3" => "Try to understand how sequences of numbers are structured and complete them",
 	"summary-4" => "Complete a circular figure by inserting the numbers you believe are correct in the empty spaces",
@@ -361,6 +368,13 @@ return [
 	"summary-207" => "Give a name to what I feel",
 	"summary-208" => "Give a name to what I feel",
 	"summary-209" => "Create emotions by matching the eyes and mouth.",
+
+	"summary-poi-poi" => "Qui trovi il tuo profilo orientativo che si aggiorna con il progredire delle tue autovalutazioni.",
+	"summary-autovalutazioni-autovalutazioni" => "Qui trovi un riepilogo delle tue autovalutazioni.",
+
+
+	// * Long descriptions
+
 	"description-2" => "How do I assess my ability to solve problems? Discover it step by step. For each question, select the level you feel is most appropriate for you. Remember that 1 is the minimum and 5 is the maximum. After reflecting, testing yourself, and discussing with others, it is advisable to redo this self-assessment.",
 	"description-3" => "Try to understand how the number sequences below are structured in order to <strong>complete them</strong> with the number you think is correct.",
 	"description-4" => "Complete the figure by placing a number in each box, following these rules:<br><span class=\"txt-bold txt-wht\">1.</span> Exclude <span class=\"txt-bold txt-wht\">zero</span>.<br><span class=\"txt-bold txt-wht\">2.</span> The sum of the three boxes in each line must be <span class=\"txt-bold txt-wht\">22</span>.<br><span class=\"txt-bold txt-wht\">3.</span> You cannot leave boxes <span class=\"txt-bold txt-wht\">empty</span>.<br><span class=\"txt-bold txt-wht\">4.</span> You cannot use the <span class=\"txt-bold txt-wht\">same number</span> twice.",
@@ -872,7 +886,7 @@ return [
 		He staggered away, the frightened boy ran off, and the woman was left alone; suddenly, tears fell down her face, then she ran back inside and her cries could still be heard after the door had closed behind her[...].<br>
 		Ten shillings for six drops of vinegar! Those who live poetry instead of composing it pay ten thousand percent interest.<br>
 		Where was that grim, bloodied drunkard for whom string was enough for his jacket but not for his shoes? Had he perhaps thrown himself into the Shannon, into the gray, swirling strait between the two bridges, where seagulls glide as if on a free track? They still circled in the dark, swooping down toward the gray waves, from bridge to bridge, rising again, only to repeat the game: insatiable, endlessly.",
-	"70-author" => "From H. Böll, <span class='fy-italic'>Diario d'Irlanda</span>, Mondadori, Milano, 1989, tr. di M. Marianelli",
+	"70-author" => "From H. Böll, <span class='italic'>Diario d'Irlanda</span>, Mondadori, Milano, 1989, tr. di M. Marianelli",
 
 	"71-result" => "You answered correctly <span class='fc-primary font-bold'>:percentage%</span>.",
 	"71-description" => "Below you can check your results. Answers in green are correct, those in red are incorrect, and those in yellow are correct answers you did not choose.",

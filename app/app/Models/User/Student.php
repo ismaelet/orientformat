@@ -184,14 +184,14 @@ class Student extends Model {
 	/**
 	 * Check if the student is in middle school
 	 */
-	public function isMiddleSchoolStudent(): bool {
+	public function isMiddleSchoollegacy_student(): bool {
 		return $this->school_class->isMiddleSchool();
 	}
 
 	/**
 	 * Check if the student is in high school
 	 */
-	public function isHighSchoolStudent(): bool {
+	public function isHighSchoollegacy_student(): bool {
 		return $this->school_class->isHighschool();
 	}
 

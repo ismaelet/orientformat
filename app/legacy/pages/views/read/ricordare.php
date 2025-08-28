@@ -83,18 +83,18 @@
 	Nella tabella si fa cenno all’ “unità di studio”. Quanto deve durare? Si tenga presente che in un adulto mediamente la soglia massima per capire e ricordare le conoscenze apprese si aggira intorno ai 40 minuti, dopo i quali le nuove conoscenze immesse in memoria tendono ad interferire con le conoscenze precedentemente immagazzinate. Tra un’unità di studio e l’altra si devono fare delle pause rilassanti. </p>
 
 <p class="foot">
-	1 Il magico numero 7 (più o meno due) scoperto da George Miller nel 1956: “Il mio problema è che sono stato perseguitato da un numero intero. Per sette anni questo numero mi ha seguito dappertutto, ha invaso indebitamente la mia sfera più privata e mi ha assalito dalle pagine dei nostri periodici più diffusi” (“<span class="fy-italic">Psycological Review</span>”, 63, p. 81).<br>
-	2 Solms M. e Turnbull O., 2004, <span class="fy-italic">Il cervello e il mondo interno</span>, Milano, Raffaello Cortina. p.169.<br>
-	3 Laroche S., 2002, <span class="fy-italic">I meccanismi della memoria</span>, “Le Scienze – dossier” n° 14, p.29.<br>
-	4 T. Rey, <span class="fy-italic">Copia e riproduzione a memoria di figure geometriche complesse</span>, Centre de Psychologie Appliquée, Square Jouvenet, Paris, (1959), Edizione italiana Organizzazioni Speciali, Firenze, 1959.<br><br>
+	1 Il magico numero 7 (più o meno due) scoperto da George Miller nel 1956: “Il mio problema è che sono stato perseguitato da un numero intero. Per sette anni questo numero mi ha seguito dappertutto, ha invaso indebitamente la mia sfera più privata e mi ha assalito dalle pagine dei nostri periodici più diffusi” (“<span class="italic">Psycological Review</span>”, 63, p. 81).<br>
+	2 Solms M. e Turnbull O., 2004, <span class="italic">Il cervello e il mondo interno</span>, Milano, Raffaello Cortina. p.169.<br>
+	3 Laroche S., 2002, <span class="italic">I meccanismi della memoria</span>, “Le Scienze – dossier” n° 14, p.29.<br>
+	4 T. Rey, <span class="italic">Copia e riproduzione a memoria di figure geometriche complesse</span>, Centre de Psychologie Appliquée, Square Jouvenet, Paris, (1959), Edizione italiana Organizzazioni Speciali, Firenze, 1959.<br><br>
 
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- Baddeley A.D.,1990, <span class="fy-italic">La memoria di lavoro</span>, Milano, Raffaello Cortina.<br>
-	- Baddeley, A.D. & Della Sala S. (1996), <span class="fy-italic">Working memory and executive control, Philosophical Transactions of the Royal Society of London</span><br>
-	- Bartlett C.,1974, <span class="fy-italic">La memoria</span>, Franco Angeli, Milano.<br>
-	- Cornoldi C. (1993), <span class="fy-italic">Memoria e metacognizione. Attività didattiche per imparare a ricordare</span>, Trento, Erickson<br>
-	- Kandel E. R. (2011), <span class="fy-italic">Alla ricerca della memoria. La storia di una nuova scienza della mente</span>, Torino, Codice<br>
-	- Papagno C. (2010), <span class="fy-italic">Neuropsicologia della memoria</span>, Bologna, Il Mulino
+	- Baddeley A.D.,1990, <span class="italic">La memoria di lavoro</span>, Milano, Raffaello Cortina.<br>
+	- Baddeley, A.D. & Della Sala S. (1996), <span class="italic">Working memory and executive control, Philosophical Transactions of the Royal Society of London</span><br>
+	- Bartlett C.,1974, <span class="italic">La memoria</span>, Franco Angeli, Milano.<br>
+	- Cornoldi C. (1993), <span class="italic">Memoria e metacognizione. Attività didattiche per imparare a ricordare</span>, Trento, Erickson<br>
+	- Kandel E. R. (2011), <span class="italic">Alla ricerca della memoria. La storia di una nuova scienza della mente</span>, Torino, Codice<br>
+	- Papagno C. (2010), <span class="italic">Neuropsicologia della memoria</span>, Bologna, Il Mulino
 </p>
 
 

@@ -52,7 +52,7 @@ return [
 	"scrivere-intermedio" => "Schreiben",
 	"ruota-avanzato" => "Das Rad der Emotionen",
 	"poi" => "POI",
-
+	"autovalutazioni" => "Autovalutierungen",
 
 	"description-stili" => "Meine Denkweise",
 	"description-resilienza" => "Wie man in schwierigen Situationen widersteht",
@@ -104,5 +104,6 @@ return [
 	"description-imparare-avanzato" => "Verstehen, wie Lernen funktioniert",
 	"description-scrivere-intermedio" => "Eine mächtige Technik beherrschen",
 	"description-ruota-avanzato" => "Namen für das finden, was ich fühle",
-	"description-poi" => "Hier findest du dein Orientierungsprofil, das sich mit dem Fortschritt deiner Selbsteinschätzungen aktualisiert"
+	"description-poi" => "Hier findest du dein Orientierungsprofil, das sich mit dem Fortschritt deiner Selbsteinschätzungen aktualisiert",
+	"description-autovalutazioni" => "Hier kannst du alle Selbsteinschätzungen finden, die sich auf die verschiedenen Bereiche beziehen, die das Individuelle Orientierungsprofil (POI) ausmachen"
 ];

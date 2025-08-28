@@ -27,12 +27,12 @@ class Poi extends Component {
 	public $userType = 'student';
 
 	public $description = [
-		'student' => 'Il <strong>POI</strong> ti fornisce un quadro complessivo e sintetico delle tue autovalutazioni relative alle competenze personali e alle
-competenze di base trasversali. Il quadro viene integrato e aggiornato in base sezioni che hai completato. Il profilo che viene
-così definendosi sulla base delle tue autovalutazioni è condiviso anche dai tuoi insegnanti. Se vuoi, puoi inserire il tuo POI
+		'student' => 'Il <strong>POI</strong> ti fornisce un quadro complessivo e sintetico delle tue autovalutazioni relative alle competenze personali e alle competenze di base trasversali. Il quadro viene integrato e aggiornato in base sezioni che hai completato. Il profilo che viene così definendosi sulla base delle tue autovalutazioni è condiviso anche dai tuoi insegnanti. Se vuoi, puoi inserire il tuo POI
 nell’e-portfolio.',
 		'teacher' => 'Il <strong>POI</strong> fornisce la sintesi delle autovalutazioni dello studente sia per le competenze non (stretamente) cognitive sia per le competenze di base trasversali. Si rende in tal modo evidente il confronto tra le valutazioni dei docenti e la visione che ha di sé lo studente.'
 	];
+
+	public array $structure;
 
 	/**
 	 * Create a new component instance.
@@ -51,19 +51,43 @@ nell’e-portfolio.',
 		$stiliId = $gradeNumber < 3 ? 28 : ($gradeNumber == 3 ? 1 : 36);
 		$autostimaId = $gradeNumber < 3 ? 29 : 4;
 
-		// $structure = [
-		// 	[
-		// 		'name' => "Scelta indicata nei questionari",
-		// 		'description' => 'Qui puoi trovare la scelta che è stata effettuata nei questionari iniziale e finale, e il grado di sicurezza.',
-		// 		'custom' => true,
-		// 	],
-		// 	[
-		// 		'name' => "Area Motivazionale",
-		// 		'subtitle' => '(Consapevolezza ed espressione culturali)',
-		// 		'description' => 'Qui puoi trovare i risultati relativi alle fonti di motivazione principali.',
-		// 		'sections' => [],
-		// 	],
-		// ];
+		$this->structure = [
+			// [
+			// 	'name' => "Scelta indicata nei questionari",
+			// 	'description' => 'Qui puoi trovare la scelta che è stata effettuata nei questionari iniziale e finale, e il grado di sicurezza.',
+			// 	'custom' => true,
+			// ],
+			[
+				'name' => "Area Motivazionale",
+				'subtitle' => '(Consapevolezza ed espressione culturali)',
+				'description' => 'Qui puoi trovare i risultati relativi alle fonti di motivazione principali.',
+				'sections' => [7, 24],
+			],
+			[
+				'name' => "Area Personale",
+				'subtitle' => '(****)',
+				'description' => 'Qui puoi trovare le autovalutazioni relative alle competenze non (direttamente) cognitive.',
+				'sections' => [27, $stiliId, 3, $autostimaId, 6, 8],
+			],
+			[
+				'name' => "Area Competenza Alfabetica Funzionale",
+				'subtitle' => '(Comunicazione nella lingua italiana)',
+				'description' => 'Qui puoi trovare i risultati conseguiti nelle sezioni relative alle competenze alfabetiche funzionali.',
+				'sections' => [11, 12, 39, 14],
+			],
+			[
+				'name' => "Area Imparare a imparare",
+				'subtitle' => '(****)',
+				'description' => 'Qui puoi trovare i risultati conseguiti nelle sezioni relative alle abilità e strumenti inerenti alle competenze di apprendimento.',
+				'sections' => [9, 10, 5, 40],
+			],
+			// [
+			// 	'name' => "Area Competenza Imprenditoriale",
+			// 	'subtitle' => '(Spirito di iniziativa e imprenditorialità)',
+			// 	'description' => 'Qui puoi trovare i risultati relativi ai tipi di pensiero e alle capacità autoimprenditoriali.',
+			// 	'custom' => true,
+			// ],
+		];
 
 		$this->results = [
 			'ascoltare' => SectionResultHelper::getResult($student, Section::find(11)),

@@ -17,7 +17,7 @@ class Test extends Model {
 	/**
 	 * The table associated with the model
 	 */
-	protected $table = 'activities_tests';
+	protected $table = 'tests';
 
 	/**
 	 * The attributes that are mass assignable
@@ -93,16 +93,23 @@ class Test extends Model {
 	}
 
 	/**
-	 * URL
+	 * Get the URL for the test
 	 */
 	public function url(?int $studentId = null): string {
 		return route('test', ['test' => $this, 'student_id' => $studentId]);
 	}
 
 	/**
-	 * File Path
+	 * Get the view name for the test
+	 */
+	public function view(): string {
+		return $this->section->isCompletable() ? 'tests.' . $this->section->slug . '.' . $this->slug : 'tests.' . $this->section->slug;
+	}
+
+	/**
+	 * Get the file path for the test
 	 * 
-	 * @return string
+	 * ! Legacy
 	 */
 	public function filePath(): string {
 		return $this->section->area->slug . '/' . $this->section->slug . '/' . $this->slug;

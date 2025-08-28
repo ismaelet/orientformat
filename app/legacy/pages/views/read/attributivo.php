@@ -36,19 +36,19 @@
 </p>
 
 <p class="foot">
-	1 Heider F., 1958, <span class="fy-italic">The psychology of interpersonal relations</span>, New York, Wiley & Sons.<br>
-	2 Weiner B. et al., 1971, <span class="fy-italic">Perceiving the causes of succes and failure</span>, Morristown, NJ, General Learning Press.<br>
-	3 De Beni R., <span class="fy-italic">Di chi è la colpa? Stile di attribuzione, motivazione e autostima nell’apprendimento</span>, in L. Tuffanelli (a cura di), 1999, <span class="fy-italic">Intelligenze, emozioni e apprendimenti.Le diversità nell’interazione formativa</span>, Trento, Erickson, p. 133.<br>
-	4 Dweck Carol S., 2000, <span class="fy-italic">Teorie del Sé. Intelligenza, motivazione, personalità e sviluppo</span>, Trento, Erickson, pp.66-7.<br>
+	1 Heider F., 1958, <span class="italic">The psychology of interpersonal relations</span>, New York, Wiley & Sons.<br>
+	2 Weiner B. et al., 1971, <span class="italic">Perceiving the causes of succes and failure</span>, Morristown, NJ, General Learning Press.<br>
+	3 De Beni R., <span class="italic">Di chi è la colpa? Stile di attribuzione, motivazione e autostima nell’apprendimento</span>, in L. Tuffanelli (a cura di), 1999, <span class="italic">Intelligenze, emozioni e apprendimenti.Le diversità nell’interazione formativa</span>, Trento, Erickson, p. 133.<br>
+	4 Dweck Carol S., 2000, <span class="italic">Teorie del Sé. Intelligenza, motivazione, personalità e sviluppo</span>, Trento, Erickson, pp.66-7.<br>
 	5 Carol S. Dweck (2000), cit., p. 94.<br><br>
 
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- De Beni R., Moè A. (2006), <span class="fy-italic">Motivazione e apprendimento</span>, Bologna, Il Mulino<br>
-	- Kahneman D. (2012), <span class="fy-italic">Pensieri lenti e veloci</span>, Milano, Mondadori<br>
-	- Kelley H.H., Michela J.L. (1980), <span class="fy-italic">Attribution Theory and Research, Annual Review of Psychology</span><br>
-	- Ravazzolo C., De Beni R. & Moè A. (2005), <span class="fy-italic">Stili attributivi motivazionali: percorsi per migliorare le capacità di apprendimento in bambini dai 4 agli 11 anni</span>, Trento, Erickson<br>
-	- Seligman, M. E. (1972), <span class="fy-italic">Learned helplessness, Annual review of medicine</span>, 23(1)<br>
-	- Weiner B. (1985), <span class="fy-italic">An attribution theory of achievement motivation and emotion, “Psychological Review”</span>, n. 92.<br>
+	- De Beni R., Moè A. (2006), <span class="italic">Motivazione e apprendimento</span>, Bologna, Il Mulino<br>
+	- Kahneman D. (2012), <span class="italic">Pensieri lenti e veloci</span>, Milano, Mondadori<br>
+	- Kelley H.H., Michela J.L. (1980), <span class="italic">Attribution Theory and Research, Annual Review of Psychology</span><br>
+	- Ravazzolo C., De Beni R. & Moè A. (2005), <span class="italic">Stili attributivi motivazionali: percorsi per migliorare le capacità di apprendimento in bambini dai 4 agli 11 anni</span>, Trento, Erickson<br>
+	- Seligman, M. E. (1972), <span class="italic">Learned helplessness, Annual review of medicine</span>, 23(1)<br>
+	- Weiner B. (1985), <span class="italic">An attribution theory of achievement motivation and emotion, “Psychological Review”</span>, n. 92.<br>
 
 </p>
 

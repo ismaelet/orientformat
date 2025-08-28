@@ -24,17 +24,17 @@ class CompletedReview {
 		$currentGrade = $student->school_class->grade;
 
 		switch (true) {
-			case $student->isMiddleSchoolStudent() && $relativeGrade == 3:
+			case $student->isMiddleSchoollegacy_student() && $relativeGrade == 3:
 				// third middleschool year
 				$reviewId = 2;
 				break;
 
-			case $student->isHighSchoolStudent() && ($relativeGrade == 1 || $startingGrade == $currentGrade):
+			case $student->isHighSchoollegacy_student() && ($relativeGrade == 1 || $startingGrade == $currentGrade):
 				// first higschool year
 				$reviewId = 4;
 				break;
 
-			case $student->isHighSchoolStudent():
+			case $student->isHighSchoollegacy_student():
 				// other higschool years
 				$reviewId = 5;
 				break;
@@ -55,7 +55,7 @@ class CompletedReview {
 		 * Ending review
 		 */
 		if ($student->school_class->ended) {
-			$reviewId = $student->isMiddleSchoolStudent() ? 3 : 6;
+			$reviewId = $student->isMiddleSchoollegacy_student() ? 3 : 6;
 
 			if (
 				$reviewId &&

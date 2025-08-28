@@ -10,14 +10,14 @@
 
 <p class="foot">
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- Ajello A. M. e Belardi C. (2007), <span class="fy-italic">Valutare le competenze informali. Il portfolio digitale</span>, Roma, Carocci<br>
-	- Authier M. e Lévy P. (2000), <span class="fy-italic">Gli alberi di conoscenze</span>, Milano, Feltrinelli.<br>
-	- Castells M. (1996), <span class="fy-italic">La nascita della società in rete</span>, Milano, Egea-Università Bocconi<br>
-	- Donati P. e Colozzi I. (2006), <span class="fy-italic">Capitale sociale delle famiglie e processi di socializzazione</span>, Milano, FrancoAngeli<br>
+	- Ajello A. M. e Belardi C. (2007), <span class="italic">Valutare le competenze informali. Il portfolio digitale</span>, Roma, Carocci<br>
+	- Authier M. e Lévy P. (2000), <span class="italic">Gli alberi di conoscenze</span>, Milano, Feltrinelli.<br>
+	- Castells M. (1996), <span class="italic">La nascita della società in rete</span>, Milano, Egea-Università Bocconi<br>
+	- Donati P. e Colozzi I. (2006), <span class="italic">Capitale sociale delle famiglie e processi di socializzazione</span>, Milano, FrancoAngeli<br>
 	- Epale: <a class="link" href="https://epale.ec.europa.eu/en/blog/epale-podcast-life-skills-21st-century-how-foster-democratic-engagement">link</a><br>
-	- Pavan, A. (2003), <span class="fy-italic">Formazione continua. Dibattiti e politiche internazionali</span>, Roma, Armando<br>
-	- Tramma S. (2009), <span class="fy-italic">Che cos'è l'educazione informale</span>, Roma, Carocci<br>
-	- Ugolini F. C. (2013), <span class="fy-italic">Apprendimento informale. Aspetti multidisciplinari e prospettive di ricerca</span>, Lecce, Pensa Multimedia
+	- Pavan, A. (2003), <span class="italic">Formazione continua. Dibattiti e politiche internazionali</span>, Roma, Armando<br>
+	- Tramma S. (2009), <span class="italic">Che cos'è l'educazione informale</span>, Roma, Carocci<br>
+	- Ugolini F. C. (2013), <span class="italic">Apprendimento informale. Aspetti multidisciplinari e prospettive di ricerca</span>, Lecce, Pensa Multimedia
 </p>
 
 {% end content %}

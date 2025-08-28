@@ -9,7 +9,7 @@
 }
 
 .answer::placeholder {
-	font-weight: var(--fw-regular);
+	font-weight: var(--font-normal);
 }
 
 .result {

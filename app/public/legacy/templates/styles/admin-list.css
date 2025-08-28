@@ -93,7 +93,7 @@
 .admin-list__head p {
 	color: var(--fc-700);
 	font-family: var(--ff-titles);
-	font-weight: var(--fw-semibold);
+	font-weight: var(--font-semibold);
 }
 
 /* Rows */

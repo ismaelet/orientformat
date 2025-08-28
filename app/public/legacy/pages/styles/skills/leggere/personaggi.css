@@ -11,7 +11,7 @@
 
 .quote {
 	font-style: italic;
-	font-weight: var(--fw-regular);
+	font-weight: var(--font-normal);
 	letter-spacing: 0.05em;
 	text-decoration: underline;
 	text-decoration-thickness: 1px;
@@ -28,7 +28,7 @@
 
 .bgr-c1 .question {
 	color: #fff;
-	font-weight: var(--fw-regular);
+	font-weight: var(--font-normal);
 }
 
 .answers {

@@ -57,7 +57,7 @@
 
 												<?php if ($section->isCompletable()) { ?>
 
-													<p class="section__progress flex center-content fw-semibold">
+													<p class="section__progress flex center-content font-semibold">
 
 														<?php if ($student->percentageTestsCompletedInSection($section) == 100) { ?>
 

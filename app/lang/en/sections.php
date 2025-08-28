@@ -52,6 +52,7 @@ return [
 	"scrivere-intermedio" => "Writing",
 	"ruota-avanzato" => "The Wheel of Emotions",
 	"poi" => "POI",
+	"autovalutazioni" => "Self-Assessments",
 
 	"description-stili" => "My way of thinking",
 	"description-resilienza" => "How to resist in difficult situations",
@@ -103,5 +104,6 @@ return [
 	"description-imparare-avanzato" => "Understanding how learning works",
 	"description-scrivere-intermedio" => "Managing a powerful technique",
 	"description-ruota-avanzato" => "Naming what I feel",
-	"description-poi" => "Here you will find your orientation profile, which updates as you progress through your self-assessments"
+	"description-poi" => "Here you will find your orientation profile, which updates as you progress through your self-assessments",
+	"description-autovalutazioni" => "Here you can find all self-assessments related to the different areas that make up the Individualized Orientation Profile (POI)",
 ];

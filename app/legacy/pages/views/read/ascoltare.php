@@ -69,13 +69,13 @@
 
 <p class="foot">
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- Bazzanella C. (1994), <span class="fy-italic">Le facce del parlare. Un approccio pragmatico all’italiano parlato</span>, Firenze, La Nuova Italia<br>
-	- Lugli L. e Mizzau M. (a cura di, 2010), <span class="fy-italic">L’ascolto</span>, Bologna, Il Mulino<br>
-	- Orsolini M. (1988), <span class="fy-italic">Guida al linguaggio orale</span>, Roma, Editori Riuniti<br>
-	- Sbisà M. (1978), <span class="fy-italic">Gli atti linguistici. Aspetti e problemi di filosofia del linguaggio</span>, Milano, Feltrinelli<br>
-	- Sclavi M. (2000), <span class="fy-italic">L’arte di ascoltare e mondi possibili</span>, Milano-Pescara, Le Vespe.<br>
-	- Simone R. (2000), <span class="fy-italic">La Terza Fase. Forme di sapere che stiamo perdendo</span>, Roma-Bari, Editori Laterza.<br>
-	- Watzlawick P, Beavin J. H., Jackson D. D. (1971), <span class="fy-italic">Pragmatica della comunicazione umana</span>, Roma, Astrolabio
+	- Bazzanella C. (1994), <span class="italic">Le facce del parlare. Un approccio pragmatico all’italiano parlato</span>, Firenze, La Nuova Italia<br>
+	- Lugli L. e Mizzau M. (a cura di, 2010), <span class="italic">L’ascolto</span>, Bologna, Il Mulino<br>
+	- Orsolini M. (1988), <span class="italic">Guida al linguaggio orale</span>, Roma, Editori Riuniti<br>
+	- Sbisà M. (1978), <span class="italic">Gli atti linguistici. Aspetti e problemi di filosofia del linguaggio</span>, Milano, Feltrinelli<br>
+	- Sclavi M. (2000), <span class="italic">L’arte di ascoltare e mondi possibili</span>, Milano-Pescara, Le Vespe.<br>
+	- Simone R. (2000), <span class="italic">La Terza Fase. Forme di sapere che stiamo perdendo</span>, Roma-Bari, Editori Laterza.<br>
+	- Watzlawick P, Beavin J. H., Jackson D. D. (1971), <span class="italic">Pragmatica della comunicazione umana</span>, Roma, Astrolabio
 </p>
 
 {% end content %}

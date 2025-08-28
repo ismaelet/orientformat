@@ -43,22 +43,22 @@
 	In moltissimi casi si può notare come, di fronte ad una grande quantità di stimoli percettivi, l' “interpretazione” tenda quasi sempre a soffocare la stessa osservazione. In altri termini, sembra che si abbia un bisogno pressante di trovare conferma, a qualunque costo, di ciò che si sa in ciò che si vede, al punto che viene da pensare che si veda solo ciò che si sa. L'arroccamento autodifensivo, protettivo, ossessivamente ripetitivo che rileviamo negli stereotipi osservativi caratterizza una grande schiera di ragazzi non adeguatamente stimolati: lo stereotipo, più che un prodotto occasionale, è una disposizione mentale, un sistema difensivo, una trincea. </p>
 
 <p class="foot">
-	1 Vygotskij L., 1980, <span class="fy-italic">Immaginazione e creatività nell’età infantile</span>, Roma, Editori Riuniti, p. 21.<br>
-	2 Goleman D., Ray M. e Kaufman P., 1999, <span class="fy-italic">Lo spirito creativo</span>, Milano, Rizzoli, p. 19.<br>
-	3 Williams F., 1994, <span class="fy-italic">TCD. Test della creatività e pensiero divergente</span>, Trento, Erickson.<br>
+	1 Vygotskij L., 1980, <span class="italic">Immaginazione e creatività nell’età infantile</span>, Roma, Editori Riuniti, p. 21.<br>
+	2 Goleman D., Ray M. e Kaufman P., 1999, <span class="italic">Lo spirito creativo</span>, Milano, Rizzoli, p. 19.<br>
+	3 Williams F., 1994, <span class="italic">TCD. Test della creatività e pensiero divergente</span>, Trento, Erickson.<br>
 	4 D. Goleman et alii, M. Ray e P. Kaufman, 1999, cit., pp. 77-78.<br>
 	5 Si riportano le opinioni di Kenneth Kraft, esperto di buddismo: in Goleman, Ray e Kaufman, cit., p. 53.<br>
 	6 D. Goleman, M. Ray e P. Kaufman, cit., p. 60.<br><br>
 
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- Beaudot A. (a cura di, 1977), <span class="fy-italic">La creatività</span>, Torino, Loescher<br>
-	- Cropley A. J. (1969), <span class="fy-italic">La creatività</span>, Firenze, La nuova Italia<br>
-	- De Bono E. (1998), <span class="fy-italic">Creatività e pensiero laterale</span>, Milano, Rizzoli<br>
-	- Galli P. F. (a cura di, 1999), <span class="fy-italic">Preconscio e creatività</span>, Torino, Einaudi<br>
-	- Garnder H. (1991), <span class="fy-italic">Aprire le menti. La creatività e i dilemmi dell’educazione</span>, Milano, Feltrinelli<br>
-	- Lytton H. (1977), <span class="fy-italic">Creatività e educazione</span>, Roma, Bulzoni<br>
-	- Osborn A. F. (1967), <span class="fy-italic">L’immaginazione creativa</span>, Milano, Franco Angeli.<br>
-	- Rubini V., <span class="fy-italic">Insegnare la creatività: un’impresa impossibile?</span> in L. Tuffanelli (a cura di, 1999), <span class="fy-italic">Intelligenze, emozioni e apprendimenti. La diversità nell’interazione formativa</span>, Trento, Erickson.
+	- Beaudot A. (a cura di, 1977), <span class="italic">La creatività</span>, Torino, Loescher<br>
+	- Cropley A. J. (1969), <span class="italic">La creatività</span>, Firenze, La nuova Italia<br>
+	- De Bono E. (1998), <span class="italic">Creatività e pensiero laterale</span>, Milano, Rizzoli<br>
+	- Galli P. F. (a cura di, 1999), <span class="italic">Preconscio e creatività</span>, Torino, Einaudi<br>
+	- Garnder H. (1991), <span class="italic">Aprire le menti. La creatività e i dilemmi dell’educazione</span>, Milano, Feltrinelli<br>
+	- Lytton H. (1977), <span class="italic">Creatività e educazione</span>, Roma, Bulzoni<br>
+	- Osborn A. F. (1967), <span class="italic">L’immaginazione creativa</span>, Milano, Franco Angeli.<br>
+	- Rubini V., <span class="italic">Insegnare la creatività: un’impresa impossibile?</span> in L. Tuffanelli (a cura di, 1999), <span class="italic">Intelligenze, emozioni e apprendimenti. La diversità nell’interazione formativa</span>, Trento, Erickson.
 
 </p>
 

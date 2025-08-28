@@ -84,7 +84,7 @@
 	padding-inline: 4rem;
 	border-top: var(--border);
 	font-size: var(--fs-500);
-	font-weight: var(--fw-semibold);
+	font-weight: var(--font-semibold);
 	line-height: 1;
 }
 

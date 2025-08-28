@@ -185,6 +185,9 @@ return [
 	208 => "La ruota delle emozioni - 3",
 	209 => "I Volti Parlano",
 
+	"poi-poi" => "Profilo Orientativo Individualizzato",
+	"autovalutazioni-autovalutazioni" => "Autovalutazioni",
+
 
 	// * Short descriptions
 
@@ -369,7 +372,12 @@ return [
 	"summary-208" => "Dare un nome a ciò che sento",
 	"summary-209" => "Crea emozioni, associando sguardo e bocca.",
 
+	"summary-poi-poi" => "Qui trovi il tuo profilo orientativo che si aggiorna con il progredire delle tue autovalutazioni.",
+	"summary-autovalutazioni-autovalutazioni" => "Qui trovi un riepilogo delle tue autovalutazioni.",
+
+
 	// * Long descriptions
+
 	"description-2" => "Come valuto la mia capacità nel risolvere problemi? Scoprilo passo passo. Per ciascuna domanda seleziona il livello che ritieni più adeguato per te. Ricorda che 1 è il minimo e 5 il massimo. Dopo aver approfondito, esserti messo/a alla prova ed esserti confrontato/a, è consigliabile rifare questa autovalutazione.",
 	"description-3" => "Cerca di capire come sono strutturate le sequenze di numeri qui sotto in modo da <strong>completarle</strong> con il numero che ritieni corretto.",
 	"description-4" => "Completa la figura inserendo un numero in ogni casella, seguendo queste regole:<br><span class=\"txt-bold txt-wht\">1.</span> Escludi lo <span class=\"txt-bold txt-wht\">zero</span>.<br><span class=\"txt-bold txt-wht\">2.</span> La somma delle tre caselle di ogni linea deve essere <span class=\"txt-bold txt-wht\">22</span>.<br><span class=\"txt-bold txt-wht\">3.</span> Non puoi lasciare caselle <span class=\"txt-bold txt-wht\">vuote</span>.<br><span class=\"txt-bold txt-wht\">4.</span> Non puoi usare due volte lo <span class=\"txt-bold txt-wht\">stesso numero</span>.",
@@ -550,6 +558,11 @@ return [
 	"description-207" => "Scegli tra queste l’emozione che provi più spesso, cliccando sul livello di intensità: da 1 = poco intensa a 4 = molto intensa. Puoi ripetere più volte la tua scelta prima di passare alla ruota successiva.",
 	"description-208" => "Scegli tra queste l’emozione che provi più spesso, cliccando sul livello di intensità: da 1 = poco intensa a 4 = molto intensa. Puoi ripetere più volte la tua scelta.",
 	"description-209" => "Associa, trascinando col mouse, bocca e sguardo: ottieni così una particolare emozione. Qual è la tua in questo momento? Se riesci, puoi anche associare un nome all’emozione che hai realizzato col disegno.",
+
+	"description-poi" => "Il <strong>POI</strong> ti fornisce un quadro complessivo e sintetico delle tue autovalutazioni relative alle competenze personali e alle
+competenze di base trasversali. Il quadro viene integrato e aggiornato in base sezioni che hai completato. Il profilo che viene
+così definendosi sulla base delle tue autovalutazioni è condiviso anche dai tuoi insegnanti. Se vuoi, puoi inserire il tuo POI
+nell’e-portfolio.",
 
 
 	// * Test specific
@@ -881,7 +894,7 @@ return [
 		Si allontanò vacillando, il ragazzo impaurito scappò via e la padrona rimase sola; improvvise scesero le lacrime sul suo viso, poi tornò correndo in casa e le sue grida si sentivano ancora dopo che già la porta si era chiusa dietro di lei[...].<br>
 		Dieci scellini per sei gocce d'aceto! Chi vive la poesia invece di comporla paga il diecimila per cento d'interessi.<br>
 		Dov'era quell'ubriaco torvo e insanguinato cui lo spago era bastato per la giacca ma non per le scarpe? Si era forse buttato nello Shannon, nella stretta grigia e vorticosa fra i due ponti, dove i gabbiani scivolano come su una pista gratuita? Roteavano ancora nel buio, si buttavano giù verso i flutti grigi, da ponte a ponte, risalivano, per poi ripetere il gioco: insaziabili, all'infinito.",
-	"70-author" => "Da H. Böll, <span class='fy-italic'>Diario d'Irlanda</span>, Mondadori, Milano, 1989, tr. di M. Marianelli",
+	"70-author" => "Da H. Böll, <span class='italic'>Diario d'Irlanda</span>, Mondadori, Milano, 1989, tr. di M. Marianelli",
 
 	"71-result" => "Hai risposto correttamente al <span class='fc-primary font-bold'>:percentage%</span>.",
 	"71-description" => "Qui sotto puoi controllare i tuoi risultati. Le risposte in verde sono corrette, quelle in rosso errate e quelle in giallo sono risposte corrette che non hai scelto.",

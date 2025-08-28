@@ -18,16 +18,16 @@
 	- Utilizzare le scoperte degli alunni come base e stimolo per elaborare e aggiornare il contratto formativo con gli alunni e con le famiglie.</p>
 
 <p class="foot">
-	1 Demetrio D. (1996), <span class="fy-italic">Raccontarsi. L'autobiografia come cura di sé,</span>, Milano, Raffaello Cortina Editore, p. 59.<br><br>
+	1 Demetrio D. (1996), <span class="italic">Raccontarsi. L'autobiografia come cura di sé,</span>, Milano, Raffaello Cortina Editore, p. 59.<br><br>
 
 	<span class="font-bold">Bibliografia essenziale</span><br>
-	- Axia G. (1999), <span class="fy-italic">La timidezza</span>, Bologna, Il Mulino.<br>
-	- Bowlby J. (1969), <span class="fy-italic">Attaccamento e perdita</span>, Torino, Bollati Boringhieri<br>
-	- Bowlby J. (1982), <span class="fy-italic">Costruzione e rottura dei legami affettivi</span>, Milano, Raffaello Cortina.<br>
-	- Bruner J. (1999), <span class="fy-italic">La cultura dell’educazione</span>, Milano, Feltrinelli<br>
-	- Gianini Belotti E. (2016), <span class="fy-italic">Dalla parte delle bambine</span>, Milano, Feltrinelli<br>
-	- Marcoli A. (1999), <span class="fy-italic">Il bambino perduto e ritrovato</span>, Milano, Mondatori<br>
-	- Snyder M. (1979), <span class="fy-italic">Selfmonitoring process</span>, in L. Berkowitz (a cura di), <span class="fy-italic">Adavnces in experimental social psychology</span>, Academic Press, New York, vol. XII.
+	- Axia G. (1999), <span class="italic">La timidezza</span>, Bologna, Il Mulino.<br>
+	- Bowlby J. (1969), <span class="italic">Attaccamento e perdita</span>, Torino, Bollati Boringhieri<br>
+	- Bowlby J. (1982), <span class="italic">Costruzione e rottura dei legami affettivi</span>, Milano, Raffaello Cortina.<br>
+	- Bruner J. (1999), <span class="italic">La cultura dell’educazione</span>, Milano, Feltrinelli<br>
+	- Gianini Belotti E. (2016), <span class="italic">Dalla parte delle bambine</span>, Milano, Feltrinelli<br>
+	- Marcoli A. (1999), <span class="italic">Il bambino perduto e ritrovato</span>, Milano, Mondatori<br>
+	- Snyder M. (1979), <span class="italic">Selfmonitoring process</span>, in L. Berkowitz (a cura di), <span class="italic">Adavnces in experimental social psychology</span>, Academic Press, New York, vol. XII.
 </p>
 
 {% end content %}

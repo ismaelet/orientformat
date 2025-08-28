@@ -109,10 +109,10 @@ class Grade extends Model {
 	 * Get the tests for the grade
 	 */
 	public function tests(): Collection {
-		return Test::join('activities_sections', 'activities_tests.sectionId', '=', 'activities_sections.id')
+		return Test::join('sections', 'tests.sectionId', '=', 'sections.id')
 			->where('isStandard', true)
-			->where('activities_tests.active', true)
-			->where('activities_sections.active', true)
+			->where('tests.active', true)
+			->where('sections.active', true)
 			->whereRaw('FIND_IN_SET(?, years)', [$this->slug()])
 			->get();
 	}

@@ -74,7 +74,7 @@
 .emotion__dot p {
 	color: #fff;
 	font-size: var(--fs-450);
-	font-weight: var(--fw-semibold);
+	font-weight: var(--font-semibold);
 }
 
 .emotion__scores {
@@ -137,7 +137,7 @@
 
 .emotion__name {
 	font-size: var(--fs-450);
-	font-weight: var(--fw-semibold);
+	font-weight: var(--font-semibold);
 	pointer-events: none;
 	z-index: 1;
 }

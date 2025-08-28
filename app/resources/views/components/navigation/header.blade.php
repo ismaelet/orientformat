@@ -685,6 +685,18 @@
 		.dark .h-icoM-rot {
 			background-color: #eee;
 		}
+
+		.language-dropdown {
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity 0.4s, visibility 0s 0.4s;
+		}
+
+		input:checked+.language-dropdown {
+			opacity: 1;
+			visibility: visible;
+			transition: opacity 0.4s;
+		}
 	</style>
 @endPushOnce
 
@@ -803,6 +815,43 @@
 
 				<?php } ?>
 
+				<!-- Language bar -->
+				<?php if (is_student() || is_teacher()) { ?>
+				<div
+					class="h-languages relative hidden lg:block"
+					x-data="{ open: false }"
+					@click.away="open = false"
+					@click="open = !open"
+				>
+					<div class="w-8 cursor-pointer"><?= embed_icon(App::currentLocale()) ?></div>
+
+					<input
+						type="checkbox"
+						class="hidden"
+						:checked="open"
+					>
+
+					<div
+						class="z-100 shadow-rg language-dropdown bg-background absolute left-1/2 flex -translate-x-1/2 flex-col gap-4 rounded-sm p-3"
+					>
+
+						<?php foreach (config('app.locales') as $locale => $language) {
+								if ($locale != App::currentLocale()) { ?>
+
+						<a
+							href="<?= route('locale.switch', $locale) ?>"
+							class="h-language <?= App::currentLocale() == $locale ? 'active' : '' ?>"
+						>
+
+							<div class="w-8"><?= embed_icon($locale) ?></div>
+						</a>
+
+						<?php }
+							} ?>
+					</div>
+				</div>
+				<?php } ?>
+
 				<!-- Login bar -->
 				<?php if ($h_comp['login']) { ?>
 				<div
@@ -826,6 +875,8 @@
 
 				</div>
 				<?php } ?>
+
+
 
 				<!-- Mobile menu -->
 				<div
@@ -958,10 +1009,21 @@
 							} ?>
 
 							<!-- Language -->
-							<p
-								id="h-lang"
-								class="txt-wht"
-							><a href="?lang=it">IT</a> <span style="padding: 0 1rem">|</span> <a href="?lang=en">EN</a></p>
+							<?php if (is_student()) { ?>
+							<div class="mt-12 flex w-full items-center justify-center gap-8">
+								<?php foreach (config('app.locales') as $locale => $language) { ?>
+
+								<a
+									href="<?= route('locale.switch', $locale) ?>"
+									class="h-language <?= App::currentLocale() == $locale ? 'active' : '' ?>"
+								>
+
+									<div class="w-8"><?= embed_icon($locale) ?></div>
+								</a>
+
+								<?php } ?>
+							</div>
+							<?php } ?>
 						</div>
 					</div>
 				</div>

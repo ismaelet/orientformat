@@ -55,7 +55,7 @@ class Test {
 
 	use \System\Traits\DatabaseObject;
 
-	public const TABLE = 'activities_tests';
+	public const TABLE = 'tests';
 	public const INDEX = 'id';
 	public const SECTION_INDEX = 'sectionId';
 	public const AREA_INDEX = 'areaId';

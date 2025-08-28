@@ -1,8 +1,16 @@
 <?php
 
 use App\Helpers\FileHelper;
+use App\Models\User\Student;
 use App\Models\User\Teacher;
 use Illuminate\Support\Facades\Auth;
+
+/**
+ * Get the student or simulated student associated with the authenticated user
+ */
+function student(): Student|Teacher|null {
+	return Auth::user()?->student ?? Auth::user()?->teacher;
+}
 
 /**
  * Check if the user is a student

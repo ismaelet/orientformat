@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-theme="light" data-client-root="/<?= env('APP_SUBDOMAIN') ?>" data-school-group="<?= is_student() ? (auth()->user()->isHighschoolStudent() ? 'highschool' : 'middleschool') : 'none' ?>">
+<html data-theme="light" data-client-root="/<?= env('APP_SUBDOMAIN') ?>" data-school-group="<?= is_student() ? (auth()->user()->isHighschoollegacy_student() ? 'highschool' : 'middleschool') : 'none' ?>">
 
 <head>
 	<meta charset="utf-8">

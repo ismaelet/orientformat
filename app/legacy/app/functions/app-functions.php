@@ -12,7 +12,7 @@ function teacherId() {
 	return teacher()->id;
 }
 
-function isStudent() {
+function islegacy_student() {
 	return (bool) !is_teacher();
 }
 

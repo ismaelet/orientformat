@@ -33,7 +33,7 @@
 .test-input--wrong,
 .test-input--correct {
 	text-align: center;
-	font-weight: var(--fw-semibold);
+	font-weight: var(--font-semibold);
 }
 
 .test-input--wrong {

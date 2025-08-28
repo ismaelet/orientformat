@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Activities;
 
 use App\Http\Controllers\Controller;
 use App\Models\Activities\Test;
-use Illuminate\Http\Request;
 
 class TestController extends Controller {
 
@@ -14,12 +13,20 @@ class TestController extends Controller {
 	function show(Test $test) {
 		$page = $test->filePath();
 		$template = $test->template;
-		$title = $test->title;
+		$title = $test->name;
 
-		\App\Legacy\LegacyView::setPage($page)
-			->setTemplate($template)
-			->setTitle($title)
-			->set('test', $test)
-			->show();
+		if ($test->template != 'blade') {
+			return \App\Legacy\LegacyView::setPage($page)
+				->setTemplate($template)
+				->setTitle($title)
+				->set('test', $test)
+				->show();
+		}
+
+		return view($test->view(), [
+			'test' => $test,
+			'title' => $title,
+			'student' => student()
+		]);
 	}
 }

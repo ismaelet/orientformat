@@ -49,7 +49,7 @@ class AppSetup {
 		});
 
 		$middlewares->add('student', function () {
-			if (!isStudent()) {
+			if (!islegacy_student()) {
 				redirect_old('/');
 			}
 		});

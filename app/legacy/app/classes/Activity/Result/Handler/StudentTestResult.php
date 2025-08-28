@@ -461,7 +461,7 @@ class StudentTestResult {
 
 			if ($result) {
 				$emotions[] = [
-					'name' => $result[0],
+					'name' => __($result[0]),
 					'value' => $result[1],
 					'percentage' => round($result[1] / 4 * 100),
 				];

@@ -48,7 +48,7 @@ main {
 
 .grade__title {
 	font-size: var(--fs-650);
-	font-weight: var(--fw-semibold);
+	font-weight: var(--font-semibold);
 }
 
 /*
@@ -132,7 +132,7 @@ main {
 .element-title {
 	color: unset;
 	font-size: var(--fs-450);
-	font-weight: var(--fw-semibold);
+	font-weight: var(--font-semibold);
 }
 
 .element-subtitle {
