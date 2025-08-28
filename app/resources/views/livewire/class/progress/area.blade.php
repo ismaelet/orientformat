@@ -34,7 +34,12 @@
 				class="bg-(--_color) absolute h-full rounded-[inherit] transition-all"
 				style="width: {{ $completionPercentage }}%;"
 			></span>
-			<p class="text-shadow-[1px_1px_2px_rgba(0,0,0,0.5)] relative pl-2 font-semibold text-white">
+			<p @class([
+				'relative pl-2 font-semibold transition-all',
+				'text-white text-shadow-[1px_1px_2px_rgba(0,0,0,0.5)]' =>
+					$completedSections > 0,
+				'text-neutral-400' => $completedSections == 0,
+			])>
 				{{ $completedSections }}/{{ $totalSections }}
 			</p>
 		</div>

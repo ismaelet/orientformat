@@ -97,7 +97,7 @@ use Legacy\SchoolSystem\Grade;
 								</span>
 
 								<div
-									class="gradient-overlady graph-item__icon text-background invisible flex aspect-square w-20 justify-center rounded-full text-4xl md:visible"
+									class="gradient-overlady graph-item__icon text-background invisible flex aspect-square w-20 items-center justify-center rounded-full text-4xl md:visible"
 								>
 									<x-dynamic-component
 										:component="'icon-sections.section-' . $legacySection->mainSectionId"

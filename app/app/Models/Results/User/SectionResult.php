@@ -2,8 +2,10 @@
 
 namespace App\Models\Results\User;
 
+use App\Helpers\SectionResultHelper;
 use App\Helpers\TestResultHelper;
 use App\Models\Activities\Section;
+use App\Models\User\Student;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Legacy\Activity\Result\Handler\StudentSectionResult;
@@ -28,6 +30,13 @@ class SectionResult extends Model {
 	];
 
 	/**
+	 * Relationship: The student associated with the result
+	 */
+	public function student(): BelongsTo {
+		return $this->belongsTo(Student::class, 'studentId');
+	}
+
+	/**
 	 * Relationship: The section associated with the result
 	 */
 	public function section(): BelongsTo {
@@ -43,6 +52,13 @@ class SectionResult extends Model {
 		}
 
 		return (new StudentSectionResult($this->id, $this->studentId))->result;
+	}
+
+	/**
+	 * Get the label for the section result
+	 */
+	public function label(): ?string {
+		return SectionResultHelper::label($this->student, $this->section);
 	}
 
 	/**

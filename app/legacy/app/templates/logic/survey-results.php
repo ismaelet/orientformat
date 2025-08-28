@@ -1,5 +1,7 @@
 <?php
 
+include_once __DIR__ . '/test.php';
+
 $fixedQuestions = \App\Legacy\LegacyView::getInstance()->get('fixedQuestions');
 $answers = null;
 $total = 0;

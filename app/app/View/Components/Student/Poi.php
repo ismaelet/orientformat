@@ -29,10 +29,12 @@ class Poi extends Component {
 	public $description = [
 		'student' => 'Il <strong>POI</strong> ti fornisce un quadro complessivo e sintetico delle tue autovalutazioni relative alle competenze personali e alle competenze di base trasversali. Il quadro viene integrato e aggiornato in base sezioni che hai completato. Il profilo che viene così definendosi sulla base delle tue autovalutazioni è condiviso anche dai tuoi insegnanti. Se vuoi, puoi inserire il tuo POI
 nell’e-portfolio.',
-		'teacher' => 'Il <strong>POI</strong> fornisce la sintesi delle autovalutazioni dello studente sia per le competenze non (stretamente) cognitive sia per le competenze di base trasversali. Si rende in tal modo evidente il confronto tra le valutazioni dei docenti e la visione che ha di sé lo studente.'
+		'teacher' => 'Il <strong>POI</strong> fornisce la sintesi delle autovalutazioni dello studente sia per le competenze non (strettamente) cognitive sia per le competenze di base trasversali. Si rende in tal modo evidente il confronto tra le valutazioni dei docenti e la visione che ha di sé lo studente.'
 	];
 
 	public array $structure;
+
+	public string $returnUrl;
 
 	/**
 	 * Create a new component instance.
@@ -51,6 +53,8 @@ nell’e-portfolio.',
 		$stiliId = $gradeNumber < 3 ? 28 : ($gradeNumber == 3 ? 1 : 36);
 		$autostimaId = $gradeNumber < 3 ? 29 : 4;
 
+		$this->returnUrl = $this->userType == 'student' ? route('activities.grades.show', ['grade' => $this->class->grade()]) : route('class.students.results.index', ['class' => $this->class]);
+
 		$this->structure = [
 			// [
 			// 	'name' => "Scelta indicata nei questionari",
@@ -65,7 +69,7 @@ nell’e-portfolio.',
 			],
 			[
 				'name' => "Area Personale",
-				'subtitle' => '(****)',
+				'subtitle' => '(Competenze sociali, civiche e di cittadinanza)',
 				'description' => 'Qui puoi trovare le autovalutazioni relative alle competenze non (direttamente) cognitive.',
 				'sections' => [27, $stiliId, 3, $autostimaId, 6, 8],
 			],
@@ -77,7 +81,7 @@ nell’e-portfolio.',
 			],
 			[
 				'name' => "Area Imparare a imparare",
-				'subtitle' => '(****)',
+				'subtitle' => '(Competenze di auto-osservazione e auto-regolazione)',
 				'description' => 'Qui puoi trovare i risultati conseguiti nelle sezioni relative alle abilità e strumenti inerenti alle competenze di apprendimento.',
 				'sections' => [9, 10, 5, 40],
 			],
@@ -90,38 +94,8 @@ nell’e-portfolio.',
 		];
 
 		$this->results = [
-			'ascoltare' => SectionResultHelper::getResult($student, Section::find(11)),
-			'parlare' => SectionResultHelper::getResult($student, Section::find(12)),
-			'leggere' => SectionResultHelper::getResult($student, Section::find(39)),
-			'scrivere' => SectionResultHelper::getResult($student, Section::find(14)),
-			'attenzione' => SectionResultHelper::getResult($student, Section::find(9)),
-			'ricordare' => SectionResultHelper::getResult($student, Section::find(10)),
-			'problemi' => SectionResultHelper::getResult($student, Section::find(5)),
-			'imparare' => SectionResultHelper::getResult($student, Section::find(40)),
 			'creatività' => (new StudentSectionResult(17, $student->id))->detailedResult,
-			'motivazione' => (new StudentSectionResult(7, $student->id))->result,
-			'interessi' => (new StudentSectionResult(24, $student->id))->result,
-			'ruota' => SectionResultHelper::getResult($student, Section::find(27)),
-			'stili' => SectionResultHelper::getResult($student, Section::find($stiliId)),
-			'resilienza' => SectionResultHelper::getResult($student, Section::find(3)),
-			'autostima' => SectionResultHelper::getResult($student, Section::find($autostimaId)),
-			'attributivo' => SectionResultHelper::getResult($student, Section::find(6)),
-			'temperamento' => SectionResultHelper::getResult($student, Section::find(8)),
 		];
-
-		// $results = [
-		// 	'ascoltare' => SectionResultHelper::getResult($student, Section::find(11)),
-		// 	'parlare' => SectionResultHelper::getResult($student, Section::find(12)),
-		// 	'leggere' => SectionResultHelper::getResult($student, Section::find(39)),
-		// 	'scrivere' => SectionResultHelper::getResult($student, Section::find(14)),
-		// 	'attenzione' => SectionResultHelper::getResult($student, Section::find(9)),
-		// 	'ricordare' => SectionResultHelper::getResult($student, Section::find(10)),
-		// 	'problemi' => SectionResultHelper::getResult($student, Section::find(5)),
-		// 	'imparare' => SectionResultHelper::getResult($student, Section::find(40)),
-		// 	'creatività' => SectionResultHelper::getResult($student, Section::find(17)),
-		// 	'motivazione' => SectionResultHelper::getResult($student, Section::find(7)),
-		// 	'interessi' => SectionResultHelper::getResult($student, Section::find(24)),
-		// ];
 
 
 		// fetch advices

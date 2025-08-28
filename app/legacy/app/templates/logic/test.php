@@ -11,7 +11,6 @@ $supervisorView = request()->student_id;
  * Form handling
  */
 if (isset($_POST['submit']) || isset($_POST['review']) || isset($_POST['skip'])) {
-
 	if (test()->template != 'test-next') {
 		// get the score
 		$score = TestLogic::$legacyTestSubmitFunction ? TestLogic::runTestSubmitFunction() : 100;

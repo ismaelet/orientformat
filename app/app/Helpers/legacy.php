@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Activities\Section;
+use App\Models\Activities\Test;
 use App\Models\User\Administrator;
 use App\Models\User\Student;
 use App\Models\User\Teacher;
@@ -344,8 +345,19 @@ function test_description(): string {
 function submit(bool $progressiveButton = false) {
 	$legacyTest = test();
 	$section = Section::find($legacyTest->sectionId);
+	$from = request()->query('from');
+
+	if ($from) {
+		$fromTest = Test::where('slug', $from)->first();
+	}
 
 	switch (true) {
+		// supervisor view
+		case $from:
+			$label = __('Ritorna alle autovalutazioni');
+			$name = null;
+			break;
+
 		// supervisor view
 		case isSupervisor():
 			$label = __('Return to the list of results');
@@ -380,6 +392,24 @@ function submit(bool $progressiveButton = false) {
 ?>
 
 	<?php switch (true) {
+
+		// supervisor go back button
+		case $from && isSupervisor(): ?>
+
+			<div class="fa-center">
+				<a class="button button--secondary button--full-width js-submit-button" href="<?= route('class.students.autovalutazioni.show', ['class' => watchedlegacy_student()->school_class, 'student' => watchedlegacy_student()]) ?>"><?= $label ?></a>
+			</div>
+
+		<?php break;
+
+		// supervisor go back button
+		case $from: ?>
+
+			<div class="fa-center">
+				<a class="button button--secondary button--full-width js-submit-button" href="<?= $fromTest->url() ?>"><?= $label ?></a>
+			</div>
+
+		<?php break;
 
 		// supervisor go back button
 		case isSupervisor(): ?>

@@ -23,7 +23,7 @@ class Result extends Component {
 	public function __construct(Student $student, public Section $section) {
 		$this->name = $section->name;
 		$this->description = $section->result_label;
-		$this->result = SectionResultHelper::getResult($student, $section);
+		$this->result = SectionResultHelper::label($student, $section);
 	}
 
 	/**

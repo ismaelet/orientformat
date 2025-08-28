@@ -7,6 +7,7 @@
 </div>
 
 <form class="pos-rel" id="body" method="POST">
+	<?= csrf_field() ?>
 
 	<div class="page-wrapper main-wrap">
 

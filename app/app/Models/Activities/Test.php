@@ -95,8 +95,8 @@ class Test extends Model {
 	/**
 	 * Get the URL for the test
 	 */
-	public function url(?int $studentId = null): string {
-		return route('test', ['test' => $this, 'student_id' => $studentId]);
+	public function url(?int $studentId = null, ?string $from = null): string {
+		return route('test', ['test' => $this, 'student_id' => $studentId, 'from' => $from]);
 	}
 
 	/**

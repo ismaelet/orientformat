@@ -1,8 +1,6 @@
 <?php
 
-use \Legacy\Activity\Area;
-
-use \Legacy\SchoolSystem\Grade;
+use App\Models\Schools\Grade;
 
 ?>
 
@@ -43,19 +41,24 @@ use \Legacy\SchoolSystem\Grade;
 				<div class="grades">
 
 					<?php for ($gradeId = $schoolType['grades'][0]; $gradeId <= $schoolType['grades'][1]; $gradeId++) {
-						$grade = (new Grade($gradeId))->setIsProfessional($schoolType['is-professional']);
+						$grade = Grade::where('absolute_number', $gradeId)
+							->where('is_professional', $schoolType['is-professional'])
+							->first();
+
+						if (!$grade) {
+							continue;
+						}
 					?>
 
 						<div class="grade">
-							<h3 class="grade__title"><?= __('misc.grade-description', ['numeral' => __($grade->adjective)]) ?></h3>
+							<h3 class="grade__title"><?= __('misc.grade-description', ['numeral' => __($grade->ordinal())]) ?></h3>
 
 							<div class="areas">
 
-								<?php for ($areaId = 1; $areaId <= 4; $areaId++) {
-									$area = new Area($areaId);
-									$legacySections = $area->getSections($grade->fullId);
+								<?php foreach ($grade->areas as $area) {
+									$sections = $grade->sectionsInArea($area)->load('tests');
 
-									if ($legacySections) {
+									if ($sections?->count()) {
 								?>
 
 										<div class="area">
@@ -63,20 +66,20 @@ use \Legacy\SchoolSystem\Grade;
 
 											<div class="activities grid" data-columns='20rem' data-spacing="400">
 
-												<?php foreach ($legacySections as $legacySectionKey => $legacySection) { ?>
+												<?php foreach ($sections as $sectionKey => $section) { ?>
 
-													<div class="load--fade-in js-load" data-direction="bottom" data-delay="<?= $legacySectionKey % 3 ?>">
-														<a class="activity element element_functionality" href="<?= $legacySection->url ?>">
+													<div class="load--fade-in js-load" data-direction="bottom" data-delay="<?= $sectionKey % 3 ?>">
+														<a class="activity element element_functionality" href="<?= $section->url() ?>">
 															<div class="element-icon icon-box">
-																<?= embed_icon($legacySection->icon) ?>
+																<?= embed_icon('sections/section-' . $section->id) ?>
 															</div>
 
 															<div>
-																<h3 class="element-title"><?= $legacySection->name ?></h3>
-																<p class="element-subtitle mt-2"><?= $legacySection->description ?></p>
+																<h3 class="element-title"><?= $section->name ?></h3>
+																<p class="element-subtitle mt-2"><?= $section->description ?></p>
 
-																<?php if ($legacySection->estimated_duration) { ?>
-																	<p class="element-subtitle mt-1"><?= trans_choice('misc.estimated-time', $legacySection->estimated_duration, ['hours' => $legacySection->estimated_duration]) ?></p>
+																<?php if ($section->estimated_duration) { ?>
+																	<p class="element-subtitle mt-1"><?= trans_choice('misc.estimated-time', $section->estimated_duration, ['hours' => $section->estimated_duration]) ?></p>
 																<?php } ?>
 															</div>
 														</a>

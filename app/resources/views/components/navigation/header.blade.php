@@ -66,7 +66,7 @@
 	        'administrator' => true,
 	    ],
 	    [
-	        'title' => 'Supporto',
+	        'title' => 'Support',
 	        'loc' => 'help',
 	        'url' => client_url('/help'),
 	    ],
@@ -785,7 +785,7 @@
 					<div class="h-link relative">
 						<p class="h-link-txt">
 							<a href="<?= $h_link['url'] ?>">
-								{{ $h_link['title'] }}
+								{{ __($h_link['title']) }}
 								@if (isset($h_link['drop']))
 									<span class="h-drop-ico">&#x25BC;</span>
 								@endif

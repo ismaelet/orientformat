@@ -95,7 +95,7 @@ class Grade extends Model {
 	 */
 	public function slug(): string {
 		return $this->number > 5 ?
-			($this->is_professional ? $this->number . 'P' : $this->number . 'L') : $this->number;
+			($this->is_professional ? $this->absolute_number . 'P' : $this->absolute_number . 'L') : $this->absolute_number;
 	}
 
 	/**

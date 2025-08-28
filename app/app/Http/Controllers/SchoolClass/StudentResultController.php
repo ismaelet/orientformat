@@ -41,7 +41,17 @@ class StudentResultController extends Controller {
 	 * Show the P.O.I. for a specific student
 	 */
 	public function showPoi(Request $request, SchoolClass $class, Student $student) {
-		return view('class.students.poi.show', [
+		return view('class.students.poi', [
+			'class' => $class,
+			'student' => $student,
+		]);
+	}
+
+	/**
+	 * Show the self-evaluations for a specific student
+	 */
+	public function showSelfEvaluations(Request $request, SchoolClass $class, Student $student) {
+		return view('class.students.autovalutazioni', [
 			'class' => $class,
 			'student' => $student,
 		]);

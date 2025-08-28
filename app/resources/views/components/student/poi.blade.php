@@ -104,7 +104,7 @@
 		</div>
 
 		<x-button
-			href="{{ route('class.students.results.index', ['class' => $class]) }}"
+			href="{{ $returnUrl }}"
 			variant="secondary"
 		>Indietro</x-button>
 

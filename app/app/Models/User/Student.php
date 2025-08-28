@@ -269,4 +269,18 @@ class Student extends Model {
 
 		return round($completedSections / $totalSections * 100);
 	}
+
+	/**
+	 * Get the section result for a specific section
+	 */
+	public function sectionResult(Section $section): ?SectionResult {
+		return $this->section_results->where('sectionId', $section->id)->first();
+	}
+
+	/**
+	 * Get the test result for a specific test
+	 */
+	public function testResult(Test $test): ?TestResult {
+		return $this->test_results->where('testId', $test->id)->first();
+	}
 }

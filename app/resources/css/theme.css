@@ -101,6 +101,42 @@ body {
 	color: var(--color-neutral-700);
 }
 
+.progressive-color-1 {
+	--_l: 76.9%;
+	--_c: 0.188;
+	--_h: 70.08;
+}
+
+.progressive-color-2 {
+	--_l: 68.5%;
+	--_c: 0.169;
+	--_h: 237.323;
+}
+
+.progressive-color-3 {
+	--_l: 69.6%;
+	--_c: 0.17;
+	--_h: 162.48;
+}
+
+.progressive-color-4 {
+	--_l: 62.7%;
+	--_c: 0.265;
+	--_h: 303.9;
+}
+
+.progressive-color-1,
+.progressive-color-1 *,
+.progressive-color-2,
+.progressive-color-2 *,
+.progressive-color-3,
+.progressive-color-3 *,
+.progressive-color-4,
+.progressive-color-4 * {
+	/* Requires: --i, used with -(--_color) */
+	--_color: oklch(var(--_l) var(--_c) calc(var(--_h) + var(--i) * 15));
+}
+
 /* Utilities */
 
 /* ! Old */

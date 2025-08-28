@@ -5483,12 +5483,6 @@ body.fixed {
 	width: min(40rem, 100%);
 }
 
-.flex {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-}
-
 /* 3.3 Content placement */
 .center-content {
 	text-align: center;
@@ -7623,13 +7617,6 @@ body {
 	/* Animations */
 	--animation-movement-intensity: 1rem;
 	--animation-duration: 0.4s;
-}
-
-:where(strong),
-:where(.font-semibold),
-:where(.fw-bold),
-:where(.fw-black) {
-	color: var(--fc-700);
 }
 
 .title {

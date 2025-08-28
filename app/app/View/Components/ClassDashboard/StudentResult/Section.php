@@ -177,7 +177,7 @@ class Section extends Component {
 		$this->infos[37] = $this->infos[1];
 
 		// $this->result = TestResultHelper::getResult($student->id, $section->evaluation_test_id);
-		$this->result = SectionResultHelper::getResult($student, $section);
+		$this->result = SectionResultHelper::label($student, $section);
 		$this->speed = SectionResult::where('studentId', $student->id)
 			->where('sectionId', $section->id)
 			->first()?->verboseSpeed();

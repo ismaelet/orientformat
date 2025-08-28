@@ -61,6 +61,10 @@ Route::prefix(env('APP_SUBDOMAIN'))->group(function () {
 			->middleware(StudentBelongsToClass::class)
 			->name('students.poi.show');
 
+		Route::get('{class}/students/autovalutazioni/{student}', [StudentResultController::class, 'showSelfEvaluations'])
+			->middleware(StudentBelongsToClass::class)
+			->name('students.autovalutazioni.show');
+
 		Route::get('{class}/students/self-evaluations/{student}', [StudentResultController::class, 'showSelfEvaluations'])
 			->middleware(StudentBelongsToClass::class)
 			->name('students.self-evaluations.show');
