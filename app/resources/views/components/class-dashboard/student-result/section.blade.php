@@ -4,7 +4,7 @@
 		data-delay="2"
 		data-direction="bottom"
 	>
-		{!! embed_icon('sections/section-' . $section->main_section->id) !!}
+		<x-dynamic-component :component="'icon-sections.section-' . $section->originalSection()->id" />
 	</div>
 
 	<p class="dashboard-panel-title max-w-50 text-neutral-700">{{ $section->name }}</p>
@@ -55,18 +55,18 @@
 	</p>
 
 
-	@if (!empty($infos[$section->main_section->id]))
+	@if (!empty($infos[$section->originalSection()->id]))
 		<label class="info-icon icon-box">
 			<input
 				type="checkbox"
-				name="section-info-{{ $section->main_section->id }}"
+				name="section-info-{{ $section->originalSection()->id }}"
 				class="hidden"
 			>
 			<?= embed_icon('info') ?>
 		</label>
 
 		<p class="section-info">
-			{{ $infos[$section->main_section->id] }}
+			{{ $infos[$section->originalSection()->id] }}
 		</p>
 	@endif
 </div>

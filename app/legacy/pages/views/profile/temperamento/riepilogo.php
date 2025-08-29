@@ -16,7 +16,7 @@
 
 	for ($i = 1; $i < 6; $i++) { ?>
 
-		<div id="section<?= $i ?>" class="section bgr" <?= background_image('section' . $i . '.png') ?>></div>
+		<div id="section<?= $i ?>" class="section bgr-fit" <?= background_image('section' . $i . '.png') ?>></div>
 
 	<?php } ?>
 

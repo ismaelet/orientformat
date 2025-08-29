@@ -27,9 +27,9 @@
 							</div>
 
 							<img
-								src="{{ Vite::image('read/result-' . $areaKey + 1 . '-' . $sectionKey + 1) }}"
+								src="{{ Vite::image('read/result-' . $areaKey + 1 . '-' . $sectionKey + 1) . '.webp' }}"
 								alt=""
-								class=""
+								class="border border-slate-200 shadow-lg"
 							>
 						</div>
 					@endforeach
