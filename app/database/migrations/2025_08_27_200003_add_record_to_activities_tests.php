@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Activities\Test;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
@@ -10,7 +10,7 @@ return new class extends Migration {
 	 * Run the migrations.
 	 */
 	public function up(): void {
-		Test::create([
+		DB::table('activities_tests')->insert([
 			'sectionId' => 59,
 			'areaId' => 4,
 			'title' => 'Profilo Orientativo Individualizzato',
@@ -29,6 +29,6 @@ nell’e-portfolio.',
 	 * Reverse the migrations.
 	 */
 	public function down(): void {
-		Test::where('slug', 'poi')->delete();
+		DB::table('activities_tests')->where('slug', 'poi')->delete();
 	}
 };

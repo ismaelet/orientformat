@@ -17,8 +17,9 @@ class StudentResultController extends Controller {
 	public function show(Request $request, SchoolClass $class, Student $student) {
 		// Review results
 		$reviewResults = ReviewResult::where('studentId', $student->id)
-			->with('review')
 			->orderByDesc('id')
+			->where('reviewId', '>', 1)
+			->with('review')
 			->get();
 
 		// Grades

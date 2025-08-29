@@ -19,13 +19,13 @@ class SectionResultHelper {
 			9, 31 => self::sectionSelfEvaluationResult($student, $section),
 
 			// Result of agglomerates of tests
-			3, 4, 10, 11, 12, 14, 17, 29,  32, 33, 39, 40  => self::sectionAgglomeratedResult($student, $section),
+			3, 4, 10, 11, 12, 13, 14, 17, 29, 32, 33, 39, 40, 41, 47, 48, 49, 50, 51, 53, 55, 57  => self::sectionAgglomeratedResult($student, $section),
+
+			// Result of histogram sections
+			5, 15, 30, 38, 40, 42, 56  => self::histogramResult($student, $section),
 
 			// Result of the "Ruota" section
-			27  => self::ruotaResult($student, $section),
-
-			// Result of the "Risolvere Problemi" section
-			5, 30  => self::risolvereProblemiResult($student, $section),
+			27, 58  => self::ruotaResult($student, $section),
 
 			// Legacy fallback
 			default => (new StudentSectionResult($section->id, $student->id))->result,
@@ -65,9 +65,38 @@ class SectionResultHelper {
 			->orderBy('created_at', 'desc')
 			->get();
 
+		if (!$relatedResults->count()) {
+			return null;
+		}
+
 		$avgPercentage = round($relatedResults->avg('percentage'));
 
-		return $avgPercentage === null ? null : $avgPercentage . '%';
+		return $avgPercentage . '%';
+	}
+
+	/**
+	 * Get the result of the histogram sections for a specific student
+	 */
+	public static function histogramResult(Student $student, Section $section): ?string {
+		$max = 5;
+		$resultLabel = null;
+		$selfEvaluationTest = $section->evaluation_test;
+
+		$selfEvaluationResult = TestResult::where('studentId', $student->id)
+			->where('testId', $selfEvaluationTest->id)
+			->where('completed', true)
+			->orderBy('created_at', 'desc')
+			->first();
+
+		if ($selfEvaluationResult) {
+			$result = explode(',', $selfEvaluationResult->result);
+			$resultCount = count($result);
+			$maxResult = $resultCount * $max;
+			$resultValue = array_sum($result);
+			$resultLabel = round($resultValue / $maxResult * 100) . '%';
+		}
+
+		return $resultLabel;
 	}
 
 	/**
@@ -91,30 +120,5 @@ class SectionResultHelper {
 		});
 
 		return implode(', ', $results);
-	}
-
-	/**
-	 * Get the result of the "Risolvere Problemi" section for a specific student
-	 */
-	public static function risolvereProblemiResult(Student $student, Section $section): ?string {
-		$max = 5;
-		$resultLabel = null;
-		$selfEvaluationTest = $section->evaluation_test;
-
-		$selfEvaluationResult = TestResult::where('studentId', $student->id)
-			->where('testId', $selfEvaluationTest->id)
-			->where('completed', true)
-			->orderBy('created_at', 'desc')
-			->first();
-
-		if ($selfEvaluationResult) {
-			$result = explode(',', $selfEvaluationResult->result);
-			$resultCount = count($result);
-			$maxResult = $resultCount * $max;
-			$resultValue = array_sum($result);
-			$resultLabel = round($resultValue / $maxResult * 100) . '%';
-		}
-
-		return $resultLabel;
 	}
 }

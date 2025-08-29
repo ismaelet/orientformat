@@ -17,6 +17,8 @@ class Autovalutazioni extends Component {
 
 	public string $userType;
 
+	public string $returnUrl;
+
 	/**
 	 * Create a new component instance.
 	 */
@@ -32,11 +34,13 @@ class Autovalutazioni extends Component {
 			->with('areas', 'sections', 'sections.evaluation_test')
 			->get();
 
-		$this->description = $this->userType == 'student' ? 'In tutte le sezioni ti viene richiesta un’autovalutazione sulla base dei descrittori di competenza. In diverse
+		$this->description = $this->userType == 'student' ? 'In tutte le sezioni ti si richiede un’autovalutazione sulla base dei descrittori di competenza. In diverse
 		sezioni ti viene
 		richiesto di metterti alla prova per verificare la fondatezza dei dati da te forniti. Ad ogni prova viene attribuito un punteggio, che funziona da stimolo a rivedere eventualmente la tua autovalutazione, ma non influisce sul punteggio della sezione
 		che trovi nel Profilo Orientativo Individualizzato (POI). Puoi decidere tu quali autovalutazioni vuoi inserire
-		nell’e-portfolio.' : '?????????';
+		nell’e-portfolio.' : 'Qui puoi trovare, suddivise per anno, tutte le autovalutazioni che hai concluso, con il relativo punteggio. Cliccando sul link, puoi vedere il grafico corrispondente e valutare se i risultati concordano con la valutazione dei tuoi insegnanti e che cosa nel frattempo è eventualmente cambiato. Puoi anche trasferire le autovalutazioni che ritieni più importanti nell’e-portfolio <a class="text-link" href="https://unica.istruzione.gov.it/portale/it/orientamento/il-tuo-percorso/e-portfolio">https://unica.istruzione.gov.it/portale/it/orientamento/il-tuo-percorso/e-portfolio</a>.';
+
+		$this->returnUrl = $this->userType == 'student' ? route('activities.grades.show', ['grade' => $class->grade()]) : route('class.students.results.index', ['class' => $class]);
 	}
 
 	/**

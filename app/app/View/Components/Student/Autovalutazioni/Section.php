@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Student\Autovalutazioni;
 
+use App\Helpers\SectionResultHelper;
 use App\Models\Activities\Section as ActivitiesSection;
 use App\Models\Activities\Test;
 use App\Models\User\Student;
@@ -30,7 +31,7 @@ class Section extends Component {
 		// Result data
 		$this->resultLabel = $section->result_label ?: 'Risultato dell\'autovalutazione';
 		$student->load('section_results', 'section_results.student', 'section_results.section', 'section_results.section.evaluation_test');
-		$this->result = $student->sectionResult($section)?->label();
+		$this->result = SectionResultHelper::label($student, $section);
 		$this->selfEvaluationTest = $section->evaluation_test;
 
 		// Reset data

@@ -27,7 +27,7 @@ class Poi extends Component {
 	public $userType = 'student';
 
 	public $description = [
-		'student' => 'Il <strong>POI</strong> ti fornisce un quadro complessivo e sintetico delle tue autovalutazioni relative alle competenze personali e alle competenze di base trasversali. Il quadro viene integrato e aggiornato in base sezioni che hai completato. Il profilo che viene così definendosi sulla base delle tue autovalutazioni è condiviso anche dai tuoi insegnanti. Se vuoi, puoi inserire il tuo POI
+		'student' => 'Il <strong>POI</strong> ti fornisce un quadro complessivo e sintetico delle tue autovalutazioni relative alle competenze personali e alle competenze di base trasversali. Il quadro viene integrato e aggiornato in base alle sezioni che hai completato. Il profilo che viene così definendosi sulla base delle tue autovalutazioni è condiviso anche dai tuoi insegnanti. Se vuoi, puoi inserire il tuo POI
 nell’e-portfolio.',
 		'teacher' => 'Il <strong>POI</strong> fornisce la sintesi delle autovalutazioni dello studente sia per le competenze non (strettamente) cognitive sia per le competenze di base trasversali. Si rende in tal modo evidente il confronto tra le valutazioni dei docenti e la visione che ha di sé lo studente.'
 	];

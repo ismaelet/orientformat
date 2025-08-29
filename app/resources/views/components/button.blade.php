@@ -56,12 +56,12 @@
 					}
 
 					&[data-color="primary"] {
-						--_border-color: var(--color-primary-500);
-						--_color: var(--color-primary-500);
+						--_border-color: var(--color-primary-600);
+						--_color: var(--color-primary-600);
 
 						&:hover {
-							--_border-color: var(--color-primary-300);
-							--_color: var(--color-primary-300);
+							--_border-color: var(--color-primary-400);
+							--_color: var(--color-primary-400);
 						}
 					}
 

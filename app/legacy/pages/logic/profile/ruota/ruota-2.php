@@ -1,6 +1,8 @@
 <?php
 
-$emotions = [__('fear'), __('surprise'), __('sadness'), __('disgust'), __('anger'), __('anticipation'), __('joy'), __('acceptance')];
+use App\Helpers\Tests\RuotaHelper;
+
+$emotions = RuotaHelper::emotions(request()->test);
 $step = 2;
 
 include_once('ruota.php');

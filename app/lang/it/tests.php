@@ -560,7 +560,7 @@ return [
 	"description-209" => "Associa, trascinando col mouse, bocca e sguardo: ottieni così una particolare emozione. Qual è la tua in questo momento? Se riesci, puoi anche associare un nome all’emozione che hai realizzato col disegno.",
 
 	"description-poi" => "Il <strong>POI</strong> ti fornisce un quadro complessivo e sintetico delle tue autovalutazioni relative alle competenze personali e alle
-competenze di base trasversali. Il quadro viene integrato e aggiornato in base sezioni che hai completato. Il profilo che viene
+competenze di base trasversali. Il quadro viene integrato e aggiornato in base alle sezioni che hai completato. Il profilo che viene
 così definendosi sulla base delle tue autovalutazioni è condiviso anche dai tuoi insegnanti. Se vuoi, puoi inserire il tuo POI
 nell’e-portfolio.",
 

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	let free = fieldEmotion.value ? false : true
 
 	if (fieldEmotion.value) {
-		emotion = document.querySelector('.js-emotion[data-emotion="' + fieldEmotion.value + '"]')
+		emotion = document.querySelector('.js-emotion[data-emotion="' + fieldEmotion.value + '"], .chosen[data-emotion="' + fieldEmotion.value + '"]')
 		fixedArrow(emotion)
 	}
 

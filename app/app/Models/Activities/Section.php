@@ -27,7 +27,8 @@ class Section extends Model {
 		'slug',
 		'estimated_duration',
 		'isStandard',
-		'active'
+		'active',
+		'mainSectionId'
 	];
 
 	/**
@@ -46,11 +47,15 @@ class Section extends Model {
 	 * Relationship: The main section that this section belongs to
 	 */
 	public function main_section(): BelongsTo {
-		if (!$this->mainSectionId) {
-			return $this->belongsTo(Section::class, 'id');
+		return $this->belongsTo(Section::class, 'mainSectionId');
+	}
+
+	public function originalSection(): ?self {
+		if ($this->main_section) {
+			return $this->main_section;
 		}
 
-		return $this->belongsTo(Section::class, 'mainSectionId');
+		return $this;
 	}
 
 	/**

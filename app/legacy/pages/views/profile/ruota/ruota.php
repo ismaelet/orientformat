@@ -1,6 +1,6 @@
 {% block content %}
 
-<input type="hidden" class="js-field js-field-emotion" name="field[]" value="<?= $resultEmotion ?>">
+<input type="hidden" class="js-field js-field-emotion" name="field[]" value="<?= __en($resultEmotion) ?>">
 <input type="hidden" class="js-field-intensity" name="field[]" value="<?= $resultIntensity ?>">
 
 <div class="title__wrapper main-wrap">
@@ -20,20 +20,19 @@
 			</div>
 
 			<?php foreach ($emotions as $key => $emotion) {
-				$chosen = in_array($emotion, $resultEmotions);
-				$emotionKey = $chosen ? array_search($emotion, $resultEmotions) : null;
-				$intensity = $chosen ? $resultIntensities[$emotionKey] : null;
+				$chosen = $results ? $results->pluck('emotion')->contains(__en($emotion)) : false;
+				$intensity = $chosen ? $results->firstWhere('emotion', __en($emotion))['intensity'] : null;
 			?>
 
-				<div class="emotion <?= $chosen ? 'chosen' : 'js-emotion' ?>" style="--i: <?= $key + 1 ?>;" data-emotion="<?= $emotion ?>" data-intensity="<?= $chosen ? $intensity : '' ?>">
+				<div class="emotion <?= $chosen ? 'chosen' : 'js-emotion' ?>" style="--i: <?= $key + 1 ?>;" data-emotion="<?= __en($emotion) ?>" data-intensity="<?= $chosen ? $intensity : '' ?>">
 					<div class="emotion__content">
 						<div class="emotion__dot gradient-overlay <?= !$legacyTest->completed && !$chosen ? 'js-emotion-dot' : null ?>">
 							<p class="<?= !$legacyTest->completed && !$chosen ? 'js-emotion-value' : null ?>"><?= $chosen ? $intensity : null ?></p>
 						</div>
 
-						<p class="emotion__name" data-emotion="<?= $emotion ?>" style="--i: <?= $key ?>;"><?= $emotion ?></p>
+						<p class="emotion__name" data-emotion="<?= __en($emotion) ?>" style="--i: <?= $key ?>;"><?= ucfirst($emotion) ?></p>
 
-						<div class="emotion__scores">
+						<div class="emotion__scores z-10">
 
 							<?php for ($j = 1; $j <= 4; $j++) { ?>
 

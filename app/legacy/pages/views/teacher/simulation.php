@@ -56,7 +56,7 @@ use App\Models\Schools\Grade;
 							<div class="areas">
 
 								<?php foreach ($grade->areas as $area) {
-									$sections = $grade->sectionsInArea($area)->load('tests');
+									$sections = $grade->sectionsInArea($area)->load('tests', 'main_section');
 
 									if ($sections?->count()) {
 								?>
@@ -67,11 +67,10 @@ use App\Models\Schools\Grade;
 											<div class="activities grid" data-columns='20rem' data-spacing="400">
 
 												<?php foreach ($sections as $sectionKey => $section) { ?>
-
 													<div class="load--fade-in js-load" data-direction="bottom" data-delay="<?= $sectionKey % 3 ?>">
 														<a class="activity element element_functionality" href="<?= $section->url() ?>">
 															<div class="element-icon icon-box">
-																<?= embed_icon('sections/section-' . $section->id) ?>
+																<?= embed_icon('sections/section-' . $section->originalSection()->id) ?>
 															</div>
 
 															<div>

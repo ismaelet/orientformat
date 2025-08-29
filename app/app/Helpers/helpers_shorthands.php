@@ -3,7 +3,9 @@
 use App\Helpers\FileHelper;
 use App\Models\User\Student;
 use App\Models\User\Teacher;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
 
 /**
  * Get the student or simulated student associated with the authenticated user
@@ -84,4 +86,25 @@ function toRoman(int $number): string {
 	}
 
 	return $result;
+}
+
+/**
+ * Reverse translate a word from a given locale to English
+ */
+function __en(?string $word, string $file = 'shared'): ?string {
+	if (!$word) {
+		return null;
+	}
+
+	$locales = ['it', 'de'];
+
+	foreach ($locales as $locale) {
+		$translations = Lang::get($file, [], $locale);
+
+		if ($key = array_search($word, $translations, true)) {
+			return $key;
+		}
+	}
+
+	return $word;
 }
