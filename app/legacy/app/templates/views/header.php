@@ -197,7 +197,6 @@ $h_drop = [
 
 	/* Logo */
 	#h-logo {
-		display: inline-block;
 		width: 10rem;
 		height: 5rem;
 	}
@@ -695,8 +694,13 @@ $h_drop = [
 				if ($h_comp['logo']) { ?>
 
 					<!-- Logo -->
-					<a href="<?= config('custom.contacts.web.url') ?>" id="h-logo">
-						<img src="<?= asset('legacy/images/logo/logo.png') ?>" alt="">
+					<a
+						href="<?= config('custom.contacts.web.url') ?>"
+						id="h-logo"
+						class="flex items-center">
+						<img
+							src="<?= Vite::image('logo/logo_blue.png') ?>"
+							alt="">
 					</a>
 
 				<?php } ?>

@@ -1,6 +1,9 @@
 <?php
 
 // elements
+
+use Illuminate\Support\Facades\Vite;
+
 $f_comp['logo'] = false;
 $f_comp['contacts'] = true;
 
@@ -180,8 +183,9 @@ $f_contacts = ['inst', 'fb', 'mail'];
 						</p>
 
 						<a href="<?= config('custom.contacts.web.url') ?>">
-							<img id="f-logo" class="footer__logo--light" src="<?= asset('legacy/images//logo/logo-white.webp') ?>">
-							<img id="f-logo" class="footer__logo--dark" src="<?= asset('legacy/images//logo/logo.webp') ?>">
+							<img
+								src="<?= Vite::image('logo/logo-white.png') ?>"
+								class="mb-4 max-w-80">
 						</a>
 
 						<p class="mb-4">

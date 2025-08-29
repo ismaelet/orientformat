@@ -24,6 +24,10 @@ Route::prefix(env('APP_SUBDOMAIN'))->group(function () {
 			->middleware(TeacherBelongsToSchool::class)
 			->name('dashboard');
 
+		// Further readings
+		Route::get('read/results', [TeacherController::class, 'showReadResults'])
+			->name('read.results');
+
 		// Attach school to teacher
 		Route::get('school/show', [TeacherController::class, 'showSchool'])
 			->name('school.show');

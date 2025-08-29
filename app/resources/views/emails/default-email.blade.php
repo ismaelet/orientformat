@@ -67,7 +67,7 @@
 								<center>
 									<img
 										style="max-width: 40%; max-height: 80px;"
-										src="{{ asset('legacy/images/logo/logo.png') }}"
+										src="{{ Vite::image('logo/logo_blue.png') }}"
 										alt=""
 									/>
 								</center>

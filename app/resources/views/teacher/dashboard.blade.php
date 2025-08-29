@@ -94,7 +94,7 @@
 
 					@foreach ($functionalities as $key => $functionality)
 						<div
-							class="load--fade-in js-load"
+							class="load--fade-in js-load grid"
 							data-direction="bottom"
 							data-delay="{{ ($key - 1) % 2 }}"
 						>
@@ -103,8 +103,15 @@
 								href="{{ $functionality['url'] }}"
 							>
 								<div class="element-icon icon-box">
-									<x-dynamic-component :component="'icon-functionality-' . $functionality['slug']" />
+									@isset($functionality['icon'])
+										<x-dynamic-component :component="'icon-' . $functionality['icon']" />
+									@endisset
+
+									@isset($functionality['slug'])
+										<x-dynamic-component :component="'icon-functionality-' . $functionality['slug']" />
+									@endisset
 								</div>
+
 								<div>
 									<h3 class="element-title txt-upp font-bold">{{ $functionality['title'] }}</h3>
 									<p class="element-subtitle mt-2">{!! $functionality['desc'] !!}</p>

@@ -217,7 +217,6 @@
 
 		/* Logo */
 		#h-logo {
-			display: inline-block;
 			background-size: contain;
 			background-position: left;
 			width: 10rem;
@@ -753,9 +752,10 @@
 				<a
 					href="<?= config('custom.contacts.web.url') ?>"
 					id="h-logo"
+					class="flex items-center"
 				>
 					<img
-						src="<?= asset('legacy/images/logo/logo.png') ?>"
+						src="<?= Vite::image('logo/logo_blue.png') ?>"
 						alt=""
 					>
 				</a>

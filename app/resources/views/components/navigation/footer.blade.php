@@ -169,14 +169,8 @@
 
 					<a href="<?= config('custom.contacts.web.url') ?>">
 						<img
-							id="f-logo"
-							class="footer__logo--light"
-							src="<?= asset('legacy/images//logo/logo-white.webp') ?>"
-						>
-						<img
-							id="f-logo"
-							class="footer__logo--dark"
-							src="<?= asset('legacy/images//logo/logo.webp') ?>"
+							src="{{ Vite::image('logo/logo-white.png') }}"
+							class="mb-4 max-w-80"
 						>
 					</a>
 

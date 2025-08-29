@@ -9613,3 +9613,7 @@ body {
 .opacity-30 {
 	opacity: 0.3;
 }
+
+.max-w-80 {
+	max-width: 20rem;
+}
