@@ -11,44 +11,40 @@ use App\Http\Middleware\Locale;
 use App\Http\Middleware\Student;
 use Illuminate\Support\Facades\Route;
 
-// Home pages
-Route::prefix(env('APP_SUBDOMAIN'))->group(function () {
+/**
+ * Student only routes
+ */
+Route::middleware([Student::class, HasEmail::class, CompletedReview::class, Locale::class])->group(function () {
+	// Home
+	Route::any('student', [StudentHomeController::class, 'index'])->name('student');
 
-	/**
-	 * Student only routes
-	 */
-	Route::middleware([Student::class, HasEmail::class, CompletedReview::class, Locale::class])->group(function () {
-		// Home
-		Route::any('student', [StudentHomeController::class, 'index'])->name('student');
+	// Test reset
+	Route::post('activities/tests/{test}/reset', [TestController::class, 'reset'])->name('test.reset');
+	Route::post('activities/tests/{test}/reset-dependent', [TestController::class, 'resetDependent'])->name('test.reset.dependent');
 
-		// Test reset
-		Route::post('activities/tests/{test}/reset', [TestController::class, 'reset'])->name('test.reset');
-		Route::post('activities/tests/{test}/reset-dependent', [TestController::class, 'resetDependent'])->name('test.reset.dependent');
+	// Student Activities
+	Route::any('activities/grades', [GradeController::class, 'index'])->name('activities.grades.index');
+	Route::any('activities/grades/{grade}', [GradeController::class, 'show'])->name('activities.grades.show');
+});
 
-		// Student Activities
-		Route::any('activities/grades', [GradeController::class, 'index'])->name('activities.grades.index');
-		Route::any('activities/grades/{grade}', [GradeController::class, 'show'])->name('activities.grades.show');
-	});
+/**
+ * Student and teacher simulation routes
+ */
+Route::middleware(['auth', Locale::class])->group(function () {
+	// Section recap
+	Route::any('activities/sections/{section}', [SectionController::class, 'show'])->name('section');
 
-	/**
-	 * Student and teacher simulation routes
-	 */
-	Route::middleware(['auth', Locale::class])->group(function () {
-		// Section recap
-		Route::any('activities/sections/{section}', [SectionController::class, 'show'])->name('section');
+	// Test recap
+	Route::any('activities/tests/{test}', [TestController::class, 'show'])->name('test');
+});
 
-		// Test recap
-		Route::any('activities/tests/{test}', [TestController::class, 'show'])->name('test');
-	});
+/**
+ * Student analysis routes
+ */
+Route::middleware(['auth', Locale::class])->group(function () {
+	// Areas analysis
+	Route::any('analysis/student/areas/{area}', [StudentAnalysisController::class, 'show'])->name('analysis.student.area');
 
-	/**
-	 * Student analysis routes
-	 */
-	Route::middleware(['auth', Locale::class])->group(function () {
-		// Areas analysis
-		Route::any('analysis/student/areas/{area}', [StudentAnalysisController::class, 'show'])->name('analysis.student.area');
-
-		// Sections analysis
-		Route::any('analysis/student/sections/{section}', [StudentAnalysisController::class, 'show'])->name('analysis.student.section');
-	});
+	// Sections analysis
+	Route::any('analysis/student/sections/{section}', [StudentAnalysisController::class, 'show'])->name('analysis.student.section');
 });

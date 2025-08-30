@@ -5,6 +5,7 @@ namespace App\Models\User;
 use App\Models\Schools\School;
 use App\Models\Schools\SchoolClass;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -18,6 +19,15 @@ class Teacher extends Model {
 		'user_id',
 		'school_id',
 	];
+
+	/**
+	 * Attribute: Get the teacher's full name
+	 */
+	public function fullName(): Attribute {
+		return new Attribute(
+			get: fn() => $this->user->full_name,
+		);
+	}
 
 	/**
 	 * Relationship: The user associated with this teacher

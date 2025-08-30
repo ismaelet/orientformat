@@ -15,6 +15,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class TestResource extends Resource {
 
@@ -42,6 +43,11 @@ class TestResource extends Resource {
 	 * Property: The title attribute of a record
 	 */
 	protected static ?string $recordTitleAttribute = 'title';
+
+	/**
+	 * Property: The group the resource should be displayed in the navigation
+	 */
+	protected static string|UnitEnum|null $navigationGroup = 'Attività';
 
 	public static function form(Schema $schema): Schema {
 		return TestForm::configure($schema);

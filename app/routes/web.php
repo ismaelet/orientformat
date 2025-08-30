@@ -1,22 +1,25 @@
 <?php
 
 use App\Http\Controllers\Api\SectionGraphController;
+use App\Http\Controllers\HelpController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LegacyController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Middleware\Locale;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 
-Route::prefix(env('APP_SUBDOMAIN'))->group(function () {
-	// Localization
-	Route::get('locale/{locale}', [LocaleController::class, 'switchLocale'])->name('locale.switch');
+// Localization
+Route::get('locale/{locale}', [LocaleController::class, 'switchLocale'])->name('locale.switch');
 
-	// Home
-	Route::get('', [HomeController::class, 'index'])->middleware(['auth', Locale::class])->name('home');
+// Home
+Route::get('', [HomeController::class, 'index'])->middleware(['auth', Locale::class])->name('home');
 
-	// Legacy API
-	Route::get('api/section-graphs/{section}', [SectionGraphController::class, 'show']);
-});
+// Help
+Route::get('help', [HelpController::class, 'index'])->name('help');
+
+// Legacy API
+Route::get('api/section-graphs/{section}', [SectionGraphController::class, 'show']);
 
 include __DIR__ . '/web-auth.php';
 include __DIR__ . '/web-student.php';

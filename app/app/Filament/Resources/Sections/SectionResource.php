@@ -15,6 +15,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class SectionResource extends Resource {
 
@@ -37,6 +38,11 @@ class SectionResource extends Resource {
 	 * Property: The label of a plural resource
 	 */
 	protected static ?string $pluralLabel = 'Sezioni';
+
+	/**
+	 * Property: The group the resource should be displayed in the navigation
+	 */
+	protected static string|UnitEnum|null $navigationGroup = 'Attività';
 
 	public static function form(Schema $schema): Schema {
 		return SectionForm::configure($schema);

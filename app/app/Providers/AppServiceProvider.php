@@ -41,14 +41,27 @@ class AppServiceProvider extends ServiceProvider {
 			URL::forceScheme('https');
 		}
 
-		// Fix livewire endpoints
-		Livewire::setScriptRoute(function ($handle) {
-			return Route::get('/' . env('APP_SUBDOMAIN') . '/livewire/livewire.js', $handle);
-		});
+		// Extract subdir from APP_URL (e.g. "/orientamento")
+		$prefix = parse_url(config('app.url'), PHP_URL_PATH);
 
-		Livewire::setUpdateRoute(function ($handle) {
-			return Route::post('/' . env('APP_SUBDOMAIN') . '/livewire/update', $handle);
-		});
+		if ($prefix) {
+			if (config('app.debug')) {
+				Livewire::setScriptRoute(function ($handle) use ($prefix) {
+					return Route::get($prefix . '/livewire/livewire.js', $handle)
+						->name('livewire.js');
+				});
+			} else {
+				Livewire::setScriptRoute(function ($handle) use ($prefix) {
+					return Route::get($prefix . '/livewire/livewire.min.js', $handle)
+						->name('livewire.js');
+				});
+			}
+
+			Livewire::setUpdateRoute(function ($handle) use ($prefix) {
+				return Route::post($prefix . '/livewire/update', $handle)
+					->name('livewire.update');
+			});
+		}
 
 		// Fix filament favicon
 		Filament::serving(function () {

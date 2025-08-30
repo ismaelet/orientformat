@@ -71,7 +71,7 @@
 							>
 								<a
 									class="element element_functionality"
-									href="<?= client_url('/teacher/add-class') ?>"
+									href="<?= route('teacher.classes.create') ?>"
 								>
 									<div class="element-icon icon-box">
 										<x-icon-add class="w-12" />

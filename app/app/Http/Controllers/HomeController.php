@@ -11,7 +11,7 @@ class HomeController extends Controller {
 	 */
 	public function index(): RedirectResponse {
 		if (is_admin()) {
-			return redirect(env('APP_SUBDOMAIN') . '/admin');
+			return redirect('/admin');
 		}
 
 		if (is_teacher()) {

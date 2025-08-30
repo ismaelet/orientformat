@@ -14,7 +14,7 @@ class LoginController extends Controller {
 	/**
 	 * Show the login form
 	 */
-	public function index(Request $request): View {
+	public function index(Request $request) {
 		$studentType = 'student';
 		$teacherType = 'teacher';
 		$loginType = $request->query('login-type', $studentType);

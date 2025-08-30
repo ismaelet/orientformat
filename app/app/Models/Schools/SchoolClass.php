@@ -31,11 +31,7 @@ class SchoolClass extends Model {
 	];
 
 	/**
-	 * * Accessors
-	 */
-
-	/**
-	 * Get the class's name
+	 * Attribute: The class's name
 	 */
 	public function name(): Attribute {
 		return Attribute::make(
@@ -43,12 +39,18 @@ class SchoolClass extends Model {
 		);
 	}
 
+	/**
+	 * Attribute: The class's first grade
+	 */
 	public function firstGrade(): Attribute {
 		return Attribute::make(
 			get: fn() => $this->isMiddleSchool() ? Grade::MIDDLE_SCHOOL_GRADES[0] : Grade::HIGH_SCHOOL_GRADES[0]
 		);
 	}
 
+	/**
+	 * Attribute: The class's last grade
+	 */
 	public function lastGrade(): Attribute {
 		return Attribute::make(
 			get: fn() => $this->isMiddleSchool() ? Grade::MIDDLE_SCHOOL_GRADES[count(Grade::MIDDLE_SCHOOL_GRADES) - 1] : ($this->professional ? Grade::PROFESSIONAL_GRADES[count(Grade::PROFESSIONAL_GRADES) - 1] : Grade::HIGH_SCHOOL_GRADES[count(Grade::HIGH_SCHOOL_GRADES) - 1])
@@ -60,6 +62,13 @@ class SchoolClass extends Model {
 	 */
 	public function school(): BelongsTo {
 		return $this->belongsTo(School::class, 'schoolId');
+	}
+
+	/**
+	 * Relationship: The school the class belongs to
+	 */
+	public function referent(): BelongsTo {
+		return $this->belongsTo(Teacher::class, 'referentId');
 	}
 
 	/**

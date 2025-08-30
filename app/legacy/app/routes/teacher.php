@@ -11,14 +11,6 @@ use \Legacy\Activity\Area;
 		->show();
 });
 
-\App\Legacy\LegacyRoute::add('/teacher/add-class', function () {
-	\App\Legacy\LegacyView::setPage('teacher/settings/add-class')
-		->addMiddlewares(['teacher'])
-		->setTitle('Aggiungi una classe')
-		->setTemplate('form')
-		->show();
-});
-
 \App\Legacy\LegacyRoute::add('/teacher/simulation', function () {
 	\App\Legacy\LegacyView::setPage('teacher/simulation')
 		->addMiddlewares(['teacherOrAdministrator'])

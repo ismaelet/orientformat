@@ -28,6 +28,7 @@
 			<section id="form" class="grid-cell">
 
 				<form method="POST" autocomplete="off" action="#form">
+					<?= csrf_field() ?>
 
 					<div id="form-anch" class="anchor"></div>
 
