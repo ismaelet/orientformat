@@ -1,9 +1,5 @@
 @pushOnce('styles')
 	<style>
-		/*
-																													* Header
-																													*/
-
 		.slider__header {
 			display: grid;
 			grid-template-columns: minmax(0, 1fr);
@@ -233,9 +229,9 @@
 
 						@foreach ($students as $student)
 							<div class="dashboard-list__row">
-								<p class="dashboard-list__field">{{ $student->user->invertedFullName }}</p>
-								<p class="dashboard-list__field">{{ $student->user->username }}</p>
-								<p class="dashboard-list__field">{{ $student->user->time }}</p>
+								<p class="dashboard-list__field">{{ $student->inverted_full_name }}</p>
+								<p class="dashboard-list__field">{{ $student->username }}</p>
+								<p class="dashboard-list__field">{{ $student->created_at_date }}</p>
 							</div>
 						@endforeach
 

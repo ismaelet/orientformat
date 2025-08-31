@@ -170,7 +170,7 @@
 					<a href="<?= config('custom.contacts.web.url') ?>">
 						<img
 							src="{{ Vite::image('logo/logo-white.png') }}"
-							class="mb-4 max-w-80"
+							class="mb-4 max-w-72"
 						>
 					</a>
 

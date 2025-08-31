@@ -21,13 +21,13 @@
 
 					@foreach ($area['sections'] as $sectionKey => $section)
 						<div class="grid gap-8 lg:grid-cols-2">
-							<div class="grid grid-cols-1 gap-4">
+							<div class="grid grid-cols-1 content-center gap-4">
 								<x-heading.component>{{ $areaKey + 1 }}.{{ $sectionKey + 1 }}. {{ $section['title'] }}</x-heading.component>
 								<p class="text-lg">{!! $section['text'] !!}</p>
 							</div>
 
 							<img
-								src="{{ Vite::image('read/result-' . $areaKey + 1 . '-' . $sectionKey + 1) . '.webp' }}"
+								src="{{ Vite::image('read/result-' . $areaKey + 1 . '-' . ($sectionKey + 1) . '.webp') }}"
 								alt=""
 								class="border border-slate-200 shadow-lg"
 							>

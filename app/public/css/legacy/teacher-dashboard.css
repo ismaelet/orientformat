@@ -153,11 +153,6 @@ main {
 	border-bottom: 1px solid var(--border-color-fade);
 }
 
-.feed-entry span {
-	font-weight: var(--fw-bold);
-	color: var(--color-transition-400);
-}
-
 .feed-entry:last-child {
 	border-bottom: none;
 }

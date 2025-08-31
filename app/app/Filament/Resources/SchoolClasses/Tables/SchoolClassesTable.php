@@ -26,8 +26,7 @@ class SchoolClassesTable {
 					->numeric()
 					->label('ID'),
 				TextColumn::make('name')
-					->searchable()
-					->sortable()
+					->sortable(['grade', 'letter'])
 					->label('Nome'),
 				TextColumn::make('school.name')
 					->searchable()
@@ -35,10 +34,10 @@ class SchoolClassesTable {
 					->sortable()
 					->label('Scuola'),
 				TextColumn::make('referent.full_name')
-					->searchable()
-					->sortable()
+					->sortable(['referent.first_name', 'referent.last_name'])
 					->label('Referente'),
 			])
+			->searchable(['referent.user.first_name', 'referent.user.last_name'])
 			->filters([
 				TrashedFilter::make(),
 			])

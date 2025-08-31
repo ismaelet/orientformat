@@ -23,7 +23,7 @@
 					position: relative;
 					isolation: isolate;
 					padding-block: 1em;
-					background-color: var(--color-transition-400);
+					background-color: var(--color-primary-400);
 					color: #fff;
 
 					&::before {
@@ -109,6 +109,12 @@
 					&.center-icon {
 						justify-content: center;
 						gap: 0.5em;
+					}
+
+					:where(svg) {
+						width: 1em;
+						height: 1em;
+						flex-shrink: 0;
 					}
 				}
 			}

@@ -14,9 +14,17 @@ class Notification extends Model {
 		'text',
 	];
 
+	/**
+	 * Attribute: Get a short snippet of the 'text' attribute
+	 */
+	protected function snippet(): Attribute {
+		return Attribute::make(
+			get: fn() => '"' . substr($this->text, 0, 50) . '..."',
+		);
+	}
 
 	/**
-	 * Accessor: Convert the 'text' attribute to HTML format
+	 * Attribute: Convert the 'text' attribute to HTML format
 	 */
 	protected function text(): Attribute {
 		return Attribute::make(
@@ -25,11 +33,18 @@ class Notification extends Model {
 	}
 
 	/**
-	 * Accessor: Format the 'date' attribute to 'Y-m-d'
+	 * Attribute: Format the 'date' attribute to 'Y-m-d'
 	 */
 	protected function date(): Attribute {
 		return Attribute::make(
 			get: fn() => date('Y-m-d', strtotime($this->time)),
 		);
+	}
+
+	/**
+	 * Whether the notification was posted since the beginning of the year
+	 */
+	public function recent(): bool {
+		return $this->created_at >= now()->startOfYear();
 	}
 }

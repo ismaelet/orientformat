@@ -5,6 +5,10 @@
 	max-width: 3rem;
 }
 
+main img {
+	pointer-events: none;
+}
+
 .graph-box-average {
 	transition-delay: 0.5s;
 }

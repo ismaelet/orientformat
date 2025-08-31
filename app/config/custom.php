@@ -80,6 +80,6 @@ return [
 
 	'under_construction_whitelist' => [
 		'studente.test@iprase.tn.it',
-		'docente.test@iprase.tn.it',
+		// 'docente.test@iprase.tn.it',
 	],
 ];

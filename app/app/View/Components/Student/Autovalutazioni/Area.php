@@ -20,6 +20,7 @@ class Area extends Component {
 	public function __construct(public ActivitiesArea $area, public Student $student, public Grade $grade) {
 		$this->sections = $grade->sectionsInArea($area)
 			->whereNotNull('evaluation_test_id')
+			->load('main_section')
 			->values();
 	}
 

@@ -8,6 +8,12 @@
 	text-shadow: 0 1rem 2rem hsl(var(--color-primary-hsl-400), 0.15);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+
+	[data-school-group='highschool'] & {
+		background: -webkit-linear-gradient(180deg, var(--color-transition-400), var(--color-secondary-400));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
 }
 
 .page__header span {

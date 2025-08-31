@@ -12,10 +12,11 @@
 			<x-heading.main>Funzionalità<br>per {{ is_administrator() ? "l'amministratore" : "l'insegnante" }}
 			</x-heading.main>
 
-			<p class="mt-12 rounded border-2 border-amber-500 px-4 py-2 text-amber-600">La dashboard insegnante è in fase di
+			<p class="border-transition-400 text-transition-500 mt-12 rounded border-2 px-4 py-2">La dashboard insegnante è in
+				fase di
 				aggiornamento, se dovessi riscontrare qualche problema, ti preghiamo di contattare il supporto <a
 					href="teacher/support/open-ticket"
-					class="text-secondary-300"
+					class="text-secondary-300 font-semibold"
 				>qui</a>.</p>
 
 			{{-- Classes --}}
@@ -130,9 +131,13 @@
 				<div class="grid gap-4">
 
 					@foreach ($notifications as $notification)
-						<div class="feed-entry">
+						<div
+							class="feed-entry group data-[recent=false]:opacity-60 data-[recent=false]:saturate-50"
+							data-recent="{{ $notification->recent() ? 'true' : 'false' }}"
+						>
 							<p class="feed-text">
-								<span>{{ $notification->date }}:</span>
+								<span
+									class="text-transition-400 group-data-[recent=false]:text-secondary-300 font-bold">{{ $notification->date }}:</span>
 								{!! $notification->text !!}
 							</p>
 						</div>

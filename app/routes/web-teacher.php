@@ -26,6 +26,7 @@ Route::prefix('/teacher')->middleware(Teacher::class)->name('teacher.')->group(f
 
 	// Class management
 	Route::get('classes/create', [ClassController::class, 'create'])
+		->middleware(UnderContruction::class)
 		->name('classes.create');
 	Route::post('classes', [ClassController::class, 'store'])
 		->name('classes.store');
@@ -33,6 +34,10 @@ Route::prefix('/teacher')->middleware(Teacher::class)->name('teacher.')->group(f
 	// Further readings
 	Route::get('read/results', [TeacherController::class, 'showReadResults'])
 		->name('read.results');
+
+	// Documents
+	Route::get('documents', [TeacherController::class, 'documentsIndex'])
+		->name('documents');
 
 	// Attach school to teacher
 	Route::get('school/show', [TeacherController::class, 'showSchool'])
@@ -45,7 +50,7 @@ Route::prefix('/teacher')->middleware(Teacher::class)->name('teacher.')->group(f
 /**
  * Class dashboard routes
  */
-Route::prefix('/class')->middleware([Teacher::class, HasClassAccess::class, UnderContruction::class])->name('class.')->group(function () {
+Route::prefix('/class')->middleware([Teacher::class, HasClassAccess::class])->name('class.')->group(function () {
 	// Show class dashboard
 	Route::get('{class}', [SchoolClassController::class, 'show'])
 		->name('show');
@@ -87,8 +92,10 @@ Route::prefix('/class')->middleware([Teacher::class, HasClassAccess::class, Unde
 		->name('students.index');
 
 	Route::get('{class}/teachers/index', [TeacherManagementController::class, 'index'])
+		->middleware(UnderContruction::class)
 		->name('teachers.index');
 
 	Route::get('{class}/settings', [SettingsController::class, 'showSettings'])
+		->middleware(UnderContruction::class)
 		->name('settings');
 });

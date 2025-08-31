@@ -5698,88 +5698,6 @@ body.fixed {
 	box-shadow: var(--surface-shadow);
 }
 
-/**
-* 4. Elements
-*/
-/* 4.1 Buttons */
-.button {
-	--_padding-block: 1.1em;
-	display: inline-block;
-	width: 12.5rem;
-	max-width: 100%;
-	padding: calc(var(--_padding-block) - var(--_border-width, 0px)) 2.2em;
-	border-width: var(--_border-width, 0);
-	border-style: solid;
-	border-radius: var(--button-border-radius);
-	color: var(--button--primary-fc);
-	font-family: var(--ff-titles);
-	font-size: var(--fs-400);
-	font-weight: var(--button-fw);
-	line-height: 1;
-	text-align: center;
-	cursor: pointer;
-	transition: background-color 0.3s, border 0.3s, color 0.3s;
-}
-
-.button:where(:not(.button--secondary):not([data-variant='secondary']):not(.button--empty)):hover {
-	background-color: var(--color-primary-500);
-}
-
-.button:disabled {
-	filter: saturate(0);
-	pointer-events: none;
-}
-
-.button--secondary {
-	--_border-width: var(--border-width);
-	background-color: transparent;
-	border-color: var(--button--secondary-border-color);
-	color: var(--fc-700);
-}
-
-.button--secondary:hover {
-	color: var(--color-primary-400);
-	border-color: var(--color-primary-400);
-}
-
-.button--secondary.button--bad {
-	color: var(--color-bad-400);
-	border-color: var(--color-bad-400);
-}
-
-.button--secondary.button--bad:hover {
-	color: var(--color-bad-500);
-	border-color: var(--color-bad-500);
-}
-
-.button--empty {
-	background-color: transparent;
-	color: var(--fc-700);
-}
-
-.button--empty:hover {
-	color: var(--color-primary-400);
-}
-
-.button--auto-width {
-	width: max-content;
-	max-width: 100%;
-}
-
-.button--full-width {
-	width: 100%;
-	padding-inline: 0;
-}
-
-.button--small {
-	--_padding-block: 1em;
-	font-size: var(--fs-300);
-}
-
-.button-without-style {
-	display: contents !important;
-}
-
 /* 4.2 Inputs */
 .form-field {
 	display: grid;
@@ -5997,7 +5915,7 @@ input[type='number']:not(.number-input-with-arrows)::-webkit-inner-spin-button {
 	aspect-ratio: 1;
 	margin-block: 2px;
 	margin-left: 2px;
-	border: var(--border-width) solid var(--border-clr-400);
+	border: var(--border-width) solid var(--color-neutral-500);
 	border-radius: 50%;
 	cursor: pointer;
 	transition: border-color 0.2s;
@@ -6013,7 +5931,7 @@ input[type='number']:not(.number-input-with-arrows)::-webkit-inner-spin-button {
 	aspect-ratio: 1;
 	margin: auto;
 	opacity: 0;
-	background-color: var(--color-primary-400);
+	background-color: var(--color-primary-500);
 	border-radius: inherit;
 	transition: opacity 0.2s;
 }
@@ -7675,69 +7593,11 @@ body {
 	color: var(--color-tertiary-400);
 }
 
-/**
+/*
 * Inputs
 */
 .special-input {
 	--inp-clr-accent: var(--color-tertiary-400);
-}
-
-/*
-* Buttons
-*/
-.button {
-	position: relative;
-	isolation: isolate;
-}
-
-.button:not(.button--secondary):not([data-variant='secondary']):not(.button--empty):not(.button--mono)::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	z-index: -1;
-	background: var(--gradient);
-	border-radius: inherit;
-	transition: opacity 0.2s;
-}
-
-.button:not(.button--secondary):not([data-variant='secondary']):not(.button--empty):not(.button--mono),
-.button:not(.button--secondary):not([data-variant='secondary']):not(.button--empty):not(.button--mono):hover {
-	background-color: var(--color-primary-400);
-}
-
-.button:not(.button--secondary):not([data-variant='secondary']):not(.button--empty):not(.button--mono):hover::before {
-	opacity: 0;
-}
-
-.button--filling {
-	border: var(--button--secondary-border-width) solid transparent;
-	overflow: hidden;
-	transition: filter 0.2s, color 0.2s, border 0.2s;
-}
-
-.button--filling:disabled {
-	border-color: var(--button--secondary-border-color);
-	color: var(--fc-700);
-}
-
-.button--filling::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	z-index: -1;
-	background: var(--gradient);
-	transition: opacity 0.2s;
-}
-
-.button--filling::after {
-	content: '';
-	position: absolute;
-	inset: 0;
-	z-index: -1;
-	width: calc(100% - var(--progress, 0));
-	margin-left: auto;
-	background-color: var(--color-neutral-50);
-	transition: width 0.3s, opacity 0.2s;
 }
 
 /*

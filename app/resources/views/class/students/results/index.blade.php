@@ -28,6 +28,7 @@
 							class="dashboard-list__field dashboard-list__field--buttons"
 						>
 							<x-button
+								class="center-icon"
 								size="xs"
 								variant="secondary"
 								color="secondary"
@@ -40,6 +41,7 @@
 							class="dashboard-list__field dashboard-list__field--buttons"
 						>
 							<x-button
+								class="center-icon"
 								size="xs"
 								variant="secondary"
 								color="primary"
@@ -53,6 +55,7 @@
 							class="dashboard-list__field dashboard-list__field--buttons"
 						>
 							<x-button
+								class="center-icon"
 								size="xs"
 								variant="secondary"
 								color="purple"

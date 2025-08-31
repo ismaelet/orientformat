@@ -46,7 +46,7 @@
 										<div class="section-img gradient-overlay grid stack-content items-center justify-items-center">
 											<div class="section-img-over"></div>
 											<div class="section__icon w-20 flex justify-center">
-												<?= embed_icon('sections/section-' . $section->id) ?>
+												<?= embed_icon('sections/section-' . $section->originalSection()->id) ?>
 											</div>
 										</div>
 

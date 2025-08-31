@@ -164,11 +164,6 @@ body {
 	}
 }
 
-:where(p.font-bold),
-p :where(.font-bold) {
-	color: var(--color-neutral-700);
-}
-
 [data-school-group='middleschool'] {
 	--color-primary-400: hsl(41deg 88% 64%);
 	--color-secondary-400: hsl(343deg 48% 53%);

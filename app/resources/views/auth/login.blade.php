@@ -105,17 +105,17 @@
 				</div>
 
 				<div class="form__footer">
-					<button
-						type="submit"
-						class="button button--full-width"
-					>Login</button>
+					<x-button type="submit">Login</x-button>
 					<p class="form__divider ff-titles">oppure</p>
-					<div class="button button--secondary button--full-width js-switch-form">Registrati
-					</div>
-					<a
-						class="button button--secondary button--full-width"
-						href="?login-type=<?= $loginType == $studentType ? $teacherType : $studentType ?>"
-					>Accedi come <?= $loginType == $studentType ? 'insegnante' : 'studente' ?></a>
+					<x-button
+						class="js-switch-form"
+						variant="secondary"
+					>Registrati
+					</x-button>
+					<x-button
+						variant="secondary"
+						href="?login-type={{ $loginType == $studentType ? $teacherType : $studentType }}"
+					>Accedi come {{ $loginType == $studentType ? 'insegnante' : 'studente' }}</x-button>
 				</div>
 			</form>
 
@@ -253,15 +253,14 @@
 				</div>
 
 				<div class="form__footer">
-					<button
+					<x-button
 						type="submit"
-						class="button button--full-width"
 						name="register"
-					>Registrati</button>
-					<a
-						class="button button--secondary button--full-width"
-						href="?register=true&login-type=<?= $loginType == $studentType ? $teacherType : $studentType ?>"
-					>Registrati come <?= $loginType == $studentType ? 'insegnante' : 'studente' ?></strong></a>
+					>Registrati</x-button>
+					<x-button
+						variant="secondary"
+						href="?register=true&login-type={{ $loginType == $studentType ? $teacherType : $studentType }}"
+					>Registrati come {{ $loginType == $studentType ? 'insegnante' : 'studente' }}</x-button>
 				</div>
 			</form>
 		</div>

@@ -43,7 +43,7 @@
 			aspect-ratio: 1;
 			margin: auto;
 			opacity: 0;
-			background-color: var(--color-primary-400);
+			background-color: var(--color-primary-500);
 			border-radius: inherit;
 			transition: opacity 0.2s;
 		}

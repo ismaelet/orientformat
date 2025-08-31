@@ -5,7 +5,7 @@
 	{{-- Icon --}}
 	<div class="bg-(--_color) grid w-10 shrink-0 place-items-center rounded-sm">
 		<x-dynamic-component
-			:component="'icon-sections.section-' . $section->id"
+			:component="'icon-sections.section-' . $section->originalSection()->id"
 			class="aspect-square w-2/3"
 		/>
 	</div>

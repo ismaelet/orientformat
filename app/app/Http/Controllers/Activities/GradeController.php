@@ -12,7 +12,7 @@ use LegacyModels\Activities\Grade as LegacyGradeModel;
 class GradeController extends Controller {
 
 	/**
-	 * * Action: Index
+	 * Display a listing of the available grades
 	 */
 	function index() {
 		$student = Auth::user()->student;
@@ -33,10 +33,10 @@ class GradeController extends Controller {
 	}
 
 	/**
-	 * * Action: Show
+	 * Display the sections of a specific grade
 	 */
 	function show(Grade $grade) {
-		$grade->load('areas', 'areas.sections', 'sections.tests');
+		$grade->load('areas', 'areas.sections', 'sections.tests', 'sections.main_section');
 		$student = Auth::user()->student;
 
 		session()->put('activities-year', $grade->absolute_number);

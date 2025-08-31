@@ -42,7 +42,7 @@ class TeacherController extends Controller {
 				'title' => 'Modulistica',
 				'subtitle' => 'Documenti e informative',
 				'desc' => 'Qui puoi scaricare i moduli della <span class="txt-sbold">Certificazione delle competenze</span>, del <span class="txt-sbold">Consiglio orientativo</span> e altri documenti di supporto.',
-				'url' => client_url('/teacher/documents'),
+				'url' => route('teacher.documents'),
 				'slug' => 'documents'
 			],
 			[
@@ -62,7 +62,7 @@ class TeacherController extends Controller {
 		];
 
 		$notifications = Notification::latest()
-			->limit(5)
+			->limit(10)
 			->get();
 
 		return view('teacher.dashboard', [
@@ -114,7 +114,7 @@ di sintesi dello studente.'
 					],
 					[
 						'title' => 'Fattori equivalenti',
-						'text' => 'Nel caso in cui il punteggio sia lo stesso per fattori diversi (ad esempio punteggio 6 su 7 per quattro dei cinque fattori del Temperamento), nel grafico ciò risulterà evidente, mentre nel profilo di sintesi verrà riportato un solo fattore prevalente (nell’esempio: “Risposta alle novità”).'
+						'text' => 'Nel caso in cui il punteggio sia lo stesso per fattori diversi (ad esempio punteggio 6 su 7 per quattro dei cinque fattori del Temperamento), nel grafico ciò risulterà evidente, mentre nel profilo di sintesi verrà riportato un solo fattore prevalente (nell’esempio: “Estroversione”).'
 					]
 				]
 			],
@@ -147,7 +147,7 @@ questionario di autovalutazione e delle singole
 prove, oltre al tempo impiegato per sviluppare la
 sezione. Se, come nell’esempio relativo a “Stare
 attenti”, il tempo complessivo impiegato dallo
-studente (5 minuti) si discosta troppo da quello
+studente (7 minuti) si discosta troppo da quello
 previsto dal docente, significa che lo studente si è
 valutato e messo alla prova troppo superficialmente.'
 					],
@@ -176,6 +176,12 @@ completate sia di quelle non ancora completate.'
 		return view('teacher.read.results', [
 			'title' => 'Attribuzione Punteggi e Interpretazione dei Risultati',
 			'structure' => $structure,
+		]);
+	}
+
+	public function documentsIndex() {
+		return view('teacher.documents', [
+			'title' => 'Modulistica',
 		]);
 	}
 

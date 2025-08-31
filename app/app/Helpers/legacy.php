@@ -277,20 +277,20 @@ function bump(&$array) {
 
 function legacy_watched_student(): Student|Teacher {
 	if (!isSupervisor() || !is_teacher_or_administrator()) {
-		return legacy_student();
+		return student();
 	}
 
 	teacher()->load('school_classes.students');
 
 	if (is_teacher() && !in_array(watchedStudentId(), teacher()->studentIds())) {
-		return legacy_student();
+		return student();
 	}
 
 	if (is_administrator() && !in_array(watchedStudentId(), administrator()->studentIds())) {
-		return legacy_student();
+		return student();
 	}
 
-	return Student::find(watchedStudentId()) ?? legacy_student();
+	return Student::find(watchedStudentId()) ?? student();
 }
 
 

@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Tests\Tables;
 
 use App\Models\Activities\Test;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
