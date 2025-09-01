@@ -56,14 +56,25 @@ Route::prefix('/classes')->middleware(Teacher::class)->name('classes.')->group(f
 	Route::get('create/highschool', [ClassController::class, 'createHighSchool'])
 		->name('create.highschool');
 
-	// Display the form to join an existing class
-	Route::get('join', [ClassController::class, 'join.show'])
-		->middleware(UnderContruction::class)
-		->name('join.show');
-
 	// Store the new class
 	Route::post('store', [ClassController::class, 'store'])
 		->name('store');
+
+	// Display the form to join an existing class
+	Route::get('join', [ClassController::class, 'joinShow'])
+		->name('join.show');
+
+	// Accept a join request
+	Route::post('join/accept/{join_request}', [ClassController::class, 'joinAccept'])
+		->name('join.accept');
+
+	// Reject a join request
+	Route::post('join/reject/{join_request}', [ClassController::class, 'joinReject'])
+		->name('join.reject');
+
+	// Attach the teacher to the class
+	Route::post('join', [ClassController::class, 'joinStore'])
+		->name('join.store');
 });
 
 /**

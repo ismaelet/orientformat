@@ -19,6 +19,47 @@
 					class="text-secondary-300 font-semibold"
 				>qui</a>.</p>
 
+			@if ($joinRequests->count())
+				{{-- Notices --}}
+				<section class="elements mar-t-3">
+					<x-heading.section>Avvisi</x-heading.section>
+
+					<div class="mt-4 grid grid-cols-1 gap-4">
+
+						@foreach ($joinRequests as $joinRequest)
+							<form
+								method="POST"
+								class="border-1 grid grid-cols-1 gap-4 rounded border-dashed border-neutral-400 p-2"
+							>
+								@csrf
+
+								<p class="text-center">Hai ricevuto una richiesta da parte di
+									<strong>{{ $joinRequest->requesting_teacher->full_name }}</strong> di collaborare alla gestione della classe
+									<strong>{{ $joinRequest->class->name }}</strong>
+								</p>
+
+								<div class="wrap flex justify-center gap-4">
+									<x-button
+										type="submit"
+										size="xs"
+										variant="secondary"
+										color="success"
+										formaction="{{ route('classes.join.accept', $joinRequest) }}"
+									>Accetta</x-button>
+									<x-button
+										type="button"
+										size="xs"
+										variant="secondary"
+										color="danger"
+										formaction="{{ route('classes.join.reject', $joinRequest) }}"
+									>Rifiuta</x-button>
+								</div>
+							</form>
+						@endforeach
+					</div>
+				</section>
+			@endif
+
 			{{-- Classes --}}
 			@if (is_administrator())
 			@else

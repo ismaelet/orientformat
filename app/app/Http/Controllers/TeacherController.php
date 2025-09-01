@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Class\JoinRequest;
 use App\Models\Notification;
 use App\Models\Schools\School;
 use Illuminate\Http\RedirectResponse;
@@ -15,6 +16,9 @@ class TeacherController extends Controller {
 	 */
 	public function index(): View {
 		$teacher = teacher()->load('school', 'school_classes', 'school_classes.school');
+
+		$joinRequests = JoinRequest::where('referent_id', $teacher->id)
+			->get();
 
 		$functionalities = [
 			[
@@ -70,6 +74,7 @@ class TeacherController extends Controller {
 			'teacher' => $teacher,
 			'functionalities' => $functionalities,
 			'notifications' => $notifications,
+			'joinRequests' => $joinRequests
 		]);
 	}
 

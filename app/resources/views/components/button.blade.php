@@ -92,6 +92,26 @@
 							--_color: var(--color-transition-500);
 						}
 					}
+
+					&[data-color="danger"] {
+						--_border-color: var(--color-error-400);
+						--_color: var(--color-error-400);
+
+						&:hover {
+							--_border-color: var(--color-error-500);
+							--_color: var(--color-error-500);
+						}
+					}
+
+					&[data-color="success"] {
+						--_border-color: var(--color-success-400);
+						--_color: var(--color-success-400);
+
+						&:hover {
+							--_border-color: var(--color-success-500);
+							--_color: var(--color-success-500);
+						}
+					}
 				}
 
 				&[data-size="small"] {
