@@ -27,7 +27,7 @@
 			display: flex;
 			width: calc(1.25rem + 2px);
 			aspect-ratio: 1;
-			border: var(--border-width) solid var(--color-neutral-350);
+			border: var(--border-width) solid var(--color-neutral-300);
 			border-radius: 50%;
 			cursor: pointer;
 			transition: border-color 0.2s;
@@ -72,7 +72,10 @@
 
 <label class="checkbox">
 
-	<input {{ $attributes->merge(['class' => 'hidden', 'type' => $type]) }}>
+	<input
+		{{ $attributes->merge(['class' => 'hidden', 'type' => $type, 'name' => $name, 'value' => $value]) }}
+		@checked($checked)
+	>
 
 	<span></span>
 

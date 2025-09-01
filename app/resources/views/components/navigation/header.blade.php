@@ -159,6 +159,8 @@
 	    ],
 	];
 
+	$localeEnabled = in_array('App\Http\Middleware\Locale', Route::current()->gatherMiddleware());
+
 @endphp
 
 @pushOnce('styles')
@@ -816,7 +818,7 @@
 				<?php } ?>
 
 				<!-- Language bar -->
-				<?php if (is_student() || is_teacher()) { ?>
+				<?php if (is_student() || $localeEnabled) { ?>
 				<div
 					class="h-languages relative hidden lg:block"
 					x-data="{ open: false }"
@@ -1009,7 +1011,7 @@
 							} ?>
 
 							<!-- Language -->
-							<?php if (is_student()) { ?>
+							<?php if (is_student() || $localeEnabled) { ?>
 							<div class="mt-12 flex w-full items-center justify-center gap-8">
 								<?php foreach (config('app.locales') as $locale => $language) { ?>
 

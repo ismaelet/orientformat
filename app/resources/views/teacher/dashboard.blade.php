@@ -72,7 +72,7 @@
 							>
 								<a
 									class="element element_functionality"
-									href="<?= route('teacher.classes.create') ?>"
+									href="<?= route('classes.create') ?>"
 								>
 									<div class="element-icon icon-box">
 										<x-icon-add class="w-12" />

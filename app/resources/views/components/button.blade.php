@@ -40,6 +40,14 @@
 					&:hover::before {
 						opacity: 0;
 					}
+
+					&[data-color="alternative"] {
+						background-color: var(--color-secondary-300);
+
+						&::before {
+							background: linear-gradient(120deg, var(--color-secondary-300), var(--color-transition-400), var(--color-tertiary-400));
+						}
+					}
 				}
 
 				&[data-variant="secondary"] {

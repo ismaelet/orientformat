@@ -61,27 +61,6 @@ use \Legacy\Activity\Area;
 		->show();
 });
 
-// class panel
-\App\Legacy\LegacyRoute::add('/class', function () {
-	\App\Legacy\LegacyView::setPage('class/home')
-		->addMiddlewares(['class'])
-		->setTemplate('school-class')
-		->setTitle('Gestione della classe')
-		->set('dashboard-name', 'class')
-		->show();
-});
-
-// specific class pages
-\App\Legacy\LegacyRoute::add('/class/*', function ($url) {
-	$pageUrl = explode('class/', $url)[1];
-
-	\App\Legacy\LegacyView::setPage('class/section-' . $pageUrl)
-		->addMiddlewares(['class'])
-		->setTemplate('school-class')
-		->setTitle('Gestione della classe')
-		->set('dashboard-name', 'class')
-		->show();
-});
 
 // read more
 \App\Legacy\LegacyRoute::add('/read', function () {

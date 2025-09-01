@@ -1,9 +1,13 @@
-@props(['title', 'body', 'footer', 'method' => 'GET', 'action' => ''])
+@props(['title', 'body', 'footer', 'method' => 'GET', 'action' => '', 'size' => 'default'])
 
-@pushOnce('styles')
+@push('styles')
 	<style>
 		main {
 			--content-width: 60ch;
+
+			&:has([data-size="lg"]) {
+				--content-width: 80ch;
+			}
 		}
 
 		.form-title {
@@ -14,13 +18,14 @@
 			border-block: var(--border);
 		}
 	</style>
-@endPushOnce
+@endpush
 
 <form
 	class="form grid content-center gap-8 py-16"
 	action="{{ $action }}"
 	method="{{ $method == 'GET' ? 'GET' : 'POST' }}"
 	enctype="multipart/form-data"
+	data-size="{{ $size }}"
 >
 	@method($method)
 

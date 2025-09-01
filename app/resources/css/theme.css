@@ -38,6 +38,7 @@
 	--color-error-500: hsl(0deg 100% 30%);
 
 	--color-neutral-50: #fff;
+	--color-neutral-300: var(--color-slate-400);
 	--color-neutral-400: var(--color-slate-600);
 	--color-neutral-700: var(--color-slate-800);
 

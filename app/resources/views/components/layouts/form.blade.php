@@ -1,16 +1,4 @@
-@props(['title', 'body', 'footer', 'method' => null, 'action' => null])
-
-@pushOnce('styles')
-	<style>
-		main {
-			--content-width: 60ch;
-		}
-
-		.form-body {
-			border-block: var(--border);
-		}
-	</style>
-@endPushOnce
+@props(['title', 'body', 'footer', 'method' => null, 'action' => null, 'size' => 'default'])
 
 <x-layouts.main :$title>
 	<x-form
@@ -19,5 +7,6 @@
 		:$footer
 		:$action
 		:$method
+		:$size
 	/>
 </x-layouts.main>

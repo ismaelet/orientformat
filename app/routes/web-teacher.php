@@ -24,13 +24,6 @@ Route::prefix('/teacher')->middleware(Teacher::class)->name('teacher.')->group(f
 		->middleware(TeacherBelongsToSchool::class)
 		->name('dashboard');
 
-	// Class management
-	Route::get('classes/create', [ClassController::class, 'create'])
-		->middleware(UnderContruction::class)
-		->name('classes.create');
-	Route::post('classes', [ClassController::class, 'store'])
-		->name('classes.store');
-
 	// Further readings
 	Route::get('read/results', [TeacherController::class, 'showReadResults'])
 		->name('read.results');
@@ -45,6 +38,32 @@ Route::prefix('/teacher')->middleware(Teacher::class)->name('teacher.')->group(f
 
 	Route::post('school/store', [TeacherController::class, 'storeSchool'])
 		->name('school.store');
+});
+
+/**
+ * Class management
+ */
+Route::prefix('/classes')->middleware(Teacher::class)->name('classes.')->group(function () {
+	// Display the class creation form
+	Route::get('create', [ClassController::class, 'create'])
+		->name('create');
+
+	// Display the class creation form for middle school
+	Route::get('create/middleschool', [ClassController::class, 'createMiddleSchool'])
+		->name('create.middleschool');
+
+	// Display the class creation form for high school
+	Route::get('create/highschool', [ClassController::class, 'createHighSchool'])
+		->name('create.highschool');
+
+	// Display the form to join an existing class
+	Route::get('join', [ClassController::class, 'join.show'])
+		->middleware(UnderContruction::class)
+		->name('join.show');
+
+	// Store the new class
+	Route::post('store', [ClassController::class, 'store'])
+		->name('store');
 });
 
 /**

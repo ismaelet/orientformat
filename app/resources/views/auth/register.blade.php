@@ -16,35 +16,35 @@
 	<!-- Form -->
 	<x-slot name="formBody">
 		<x-form.field>
-			<x-form.label>Username</x-form.label>
-			<x-form.input
-				type="text"
-				name="username"
-				:value="old('username')"
-				placeholder="Username"
-				maxlength="20"
-				required
-			/>
+			<x-label>Username</x-form.label>
+				<x-form.input
+					type="text"
+					name="username"
+					:value="old('username')"
+					placeholder="Username"
+					maxlength="20"
+					required
+				/>
 
-			@error('username')
-				<x-form.input-warning>{{ $message }}</x-form.input-warning>
-			@enderror
+				@error('username')
+					<x-form.input-warning>{{ $message }}</x-form.input-warning>
+				@enderror
 		</x-form.field>
 
 
 		<x-form.field>
-			<x-form.label>Password</x-form.label>
-			<x-form.input
-				type="password"
-				name="password"
-				placeholder="Password"
-				maxlength="20"
-				required
-			/>
+			<x-label>Password</x-form.label>
+				<x-form.input
+					type="password"
+					name="password"
+					placeholder="Password"
+					maxlength="20"
+					required
+				/>
 
-			@error('password')
-				<x-form.input-warning>{{ $message }}</x-form.input-warning>
-			@enderror
+				@error('password')
+					<x-form.input-warning>{{ $message }}</x-form.input-warning>
+				@enderror
 		</x-form.field>
 
 		<x-form.field>
@@ -58,19 +58,19 @@
 		</x-form.field>
 
 		<x-form.field>
-			<x-form.label>E-mail</x-form.label>
-			<x-form.input
-				type="email"
-				name="email"
-				:value="old('email')"
-				placeholder="E-mail"
-				maxlength="100"
-				required
-			/>
+			<x-label>E-mail</x-form.label>
+				<x-form.input
+					type="email"
+					name="email"
+					:value="old('email')"
+					placeholder="E-mail"
+					maxlength="100"
+					required
+				/>
 
-			@error('email')
-				<x-form.input-warning>{{ $message }}</x-form.input-warning>
-			@enderror
+				@error('email')
+					<x-form.input-warning>{{ $message }}</x-form.input-warning>
+				@enderror
 		</x-form.field>
 
 		<x-form.checkbox

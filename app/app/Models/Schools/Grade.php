@@ -153,13 +153,6 @@ class Grade extends Model {
 	}
 
 	/**
-	 * Get a grade by its absolute number and professional status
-	 */
-	public static function getByNumber(int $number, bool $professional = false): ?self {
-		return self::where('absolute_number', $number)->where('is_professional', $professional)->first();
-	}
-
-	/**
 	 * Get the ordinal representation of the grade
 	 */
 	public function ordinal(): string {
@@ -171,5 +164,26 @@ class Grade extends Model {
 	 */
 	public function romanNumeral(): string {
 		return toRoman($this->school_relative_number);
+	}
+
+	/**
+	 * Convert a grade number to its displayed equivalent
+	 */
+	public static function convertToDisplayed(int $number) {
+		return $number > Grade::MIDDLE_SCHOOL_GRADES[count(Grade::MIDDLE_SCHOOL_GRADES) - 1] ? $number - 3 : $number;
+	}
+
+	/**
+	 * Get a grade by its absolute number and professional status
+	 */
+	public static function getByNumber(int $number, bool $professional = false): ?self {
+		return self::where('absolute_number', $number)->where('is_professional', $professional)->first();
+	}
+
+	/**
+	 * Get the last middle school grade
+	 */
+	public static function lastMiddleschool(): int {
+		return Grade::MIDDLE_SCHOOL_GRADES[count(Grade::MIDDLE_SCHOOL_GRADES) - 1];
 	}
 }
