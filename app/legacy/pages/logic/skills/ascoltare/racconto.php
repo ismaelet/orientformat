@@ -8,12 +8,10 @@ $legacyTest = test();
 
 $results = [];
 
-if (!isset($questions)) {
-	$questions = [];
+$questions = [];
 
-	for ($i = 1; $i <= 10; $i++) {
-		$questions[] = __('tests.96-question-' . $i);
-	}
+for ($i = 1; $i <= 10; $i++) {
+	$questions[] = __('tests.' . $legacyTest->id . '-question-' . $i);
 }
 
 $answers = $answers ?? [
@@ -51,10 +49,10 @@ $answers = $answers ?? [
 
 foreach ($answers as $key => $answer) {
 	$answers[$key]['res'] = [
-		__('tests.96-answer-' . ($key + 1) . '-1'),
-		__('tests.96-answer-' . ($key + 1) . '-2'),
-		__('tests.96-answer-' . ($key + 1) . '-3'),
-		__('tests.96-answer-' . ($key + 1) . '-4'),
+		__('tests.' . $legacyTest->id . '-answer-' . ($key + 1) . '-1'),
+		__('tests.' . $legacyTest->id . '-answer-' . ($key + 1) . '-2'),
+		__('tests.' . $legacyTest->id . '-answer-' . ($key + 1) . '-3'),
+		__('tests.' . $legacyTest->id . '-answer-' . ($key + 1) . '-4'),
 	];
 }
 

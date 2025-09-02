@@ -57,7 +57,7 @@ use \Legacy\Activity\Test;
 
 								<input type="hidden" class="filler-inp" name="field[]" value="0">
 
-								<div class="reset clickable bgr bgr-red" <?= icon_svg('close') ?>></div>
+								<div class="reset clickable bgr text-red-500"><?= embed_icon('close') ?></div>
 
 							<?php } ?>
 

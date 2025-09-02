@@ -101,7 +101,7 @@ class Test176 extends Test {
 					<p id="text" class="mar-b-2 txt-1rem"><?= $this->parameters['text'] ?></p>
 
 					<p class="clickable mar-b-2 txt-c3 fc-primary-h inlb" onclick="$('.section').toggleClass('hidden');">
-						<span class="text-icon bgr-c3" <?= icon_svg('read') ?>></span>
+						<span class="text-icon text-ter40"><?= embed_icon('read') ?></span>
 						<span class="btn-txt">Clicca qui per rileggere il testo</span>
 					</p>
 				</div>
@@ -133,7 +133,7 @@ class Test176 extends Test {
 					</p>
 
 					<p class="clickable mar-b-2 txt-c3 fc-primary-h inlb" onclick="$('.section').toggleClass('hidden');">
-						<span class="text-icon bgr-c3" <?= icon_svg('navigation/back') ?>></span>
+						<span class="text-icon text-tertiary-400"><?= embed_icon('navigation/back') ?></span>
 						<span class="btn-txt">Clicca qui per tornare al riassunto</span>
 					</p>
 				</div>

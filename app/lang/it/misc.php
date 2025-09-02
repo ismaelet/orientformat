@@ -10,4 +10,5 @@ return [
 	"estimated-time" => "Tempo stimato: <span class='font-bold'>:hours</span> ora|Tempo stimato: <span class='font-bold'>:hours</span> ore",
 
 	"mp3-error" => "Il tuo browser non supporta gli audio MP3.",
+
 ];

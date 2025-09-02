@@ -42,11 +42,6 @@ $coverImage = file_exists(base_path('resources/images/sections/recap-' . $legacy
 		asset('legacy' . $file) :
 		asset('legacy' . str_replace('background.webp', 'bgr.png', $file)));
 
-// reset a section
-if (isset($_POST['reset'])) {
-	(new Test($_POST['testId']))->redo();
-}
-
 // download survey results
 if (isset($_POST['download'])) {
 	$legacyTest = new Test($_POST['testId']);

@@ -64,7 +64,9 @@ class Grade extends Model {
 	 * Relationship: The completable sections that belong to this grade
 	 */
 	public function completable_sections(): BelongsToMany {
-		return $this->belongsToMany(Section::class)->where('isStandard', true);
+		return $this->belongsToMany(Section::class)
+			->where('active', true)
+			->where('isStandard', true);
 	}
 
 	/**
@@ -109,11 +111,10 @@ class Grade extends Model {
 	 * Get the tests for the grade
 	 */
 	public function tests(): Collection {
-		return Test::join('sections', 'tests.sectionId', '=', 'sections.id')
-			->where('isStandard', true)
-			->where('tests.active', true)
-			->where('sections.active', true)
-			->whereRaw('FIND_IN_SET(?, years)', [$this->slug()])
+		$sections = $this->completable_sections;
+
+		return Test::whereIn('sectionId', $sections->pluck('id'))
+			->where('active', true)
 			->get();
 	}
 

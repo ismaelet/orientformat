@@ -24,34 +24,34 @@ class ImparareMappa extends Test {
 	protected $buttonIsProgressive = true;
 	protected $arguments = [];
 
-	/**
+	/**m ,nb
 	 * Initialize
 	 */
 	private function __construct() {
 		$this->arguments['boxes'] = [
-			1 => ['content' => "Un articolo di \"Science\"", 'autofilled' => 1, 'type' => 1, 'connections' => [2 => 'right,left']],
-			2 => ['content' => "su", 'autofilled' => 0, 'type' => 2, 'connections' => [3 => 'right,left']],
-			3 => ['content' => "animali e musica", 'autofilled' => 0, 'type' => 1, 'connections' => [4 => 'bottom,top']],
-			4 => ['content' => "si confrontano", 'autofilled' => 0, 'type' => 2, 'connections' => [5 => 'bottom,right', 6 => 'bottom,left']],
-			5 => ['content' => "biomusicologia", 'autofilled' => 0, 'type' => 1, 'connections' => [7 => 'bottom,left', 8 => 'bottom,top', 9 => 'bottom,right']],
-			6 => ['content' => "mondo scientifico", 'autofilled' => 0, 'type' => 1, 'connections' => [10 => 'bottom,top']],
-			7 => ['content' => "propone", 'autofilled' => 1, 'type' => 2, 'connections' => [11 => 'bottom,top']],
-			8 => ['content' => "persegue", 'autofilled' => 0, 'type' => 2, 'connections' => [12 => 'bottom,top']],
-			9 => ['content' => "fornisce", 'autofilled' => 0, 'type' => 2, 'connections' => [13 => 'bottom,top']],
-			10 => ['content' => "risponde", 'autofilled' => 1, 'type' => 2, 'connections' => [14 => 'bottom,top']],
-			11 => ['content' => "ipotesi di fondo", 'autofilled' => 0, 'type' => 1, 'connections' => [15 => 'bottom,top']],
-			12 => ['content' => "lo scopo", 'autofilled' => 0, 'type' => 1, 'connections' => [16 => 'bottom,top']],
-			13 => ['content' => "indizi", 'autofilled' => 0, 'type' => 1, 'connections' => [17 => 'bottom,top']],
-			14 => ['content' => "freddamente", 'autofilled' => 0, 'type' => 1],
-			15 => ['content' => "esistenza di", 'autofilled' => 0, 'type' => 2, 'connections' => [18 => 'bottom,top']],
-			16 => ['content' => "di", 'autofilled' => 0, 'type' => 2, 'connections' => [19 => 'bottom,top']],
-			17 => ['content' => "ad esempio", 'autofilled' => 1, 'type' => 2, 'connections' => [20 => 'bottom,top']],
-			18 => ['content' => "antenato comune", 'autofilled' => 0, 'type' => 1, 'connections' => [21 => 'bottom,top']],
-			19 => ['content' => "scoprire le basi biologiche della musica", 'autofilled' => 1, 'type' => 1],
-			20 => ['content' => "canti delle megattere", 'autofilled' => 0, 'type' => 1],
-			21 => ['content' => "lo dimostrerebbero", 'autofilled' => 0, 'type' => 2, 'connections' => [22 => 'bottom,left', 23 => 'bottom,right']],
-			22 => ['content' => "emozioni musicali", 'autofilled' => 0, 'type' => 1],
-			23 => ['content' => "istinto musicale degli animali", 'autofilled' => 1, 'type' => 1],
+			1 => ['content' => __('tests.202-label-1'), 'autofilled' => 1, 'type' => 1, 'connections' => [2 => 'right,left']],
+			2 => ['content' => __('tests.202-label-2'), 'autofilled' => 0, 'type' => 2, 'connections' => [3 => 'right,left']],
+			3 => ['content' => __('tests.202-label-3'), 'autofilled' => 0, 'type' => 1, 'connections' => [4 => 'bottom,top']],
+			4 => ['content' => __('tests.202-label-4'), 'autofilled' => 0, 'type' => 2, 'connections' => [5 => 'bottom,right', 6 => 'bottom,left']],
+			5 => ['content' => __('tests.202-label-5'), 'autofilled' => 0, 'type' => 1, 'connections' => [7 => 'bottom,left', 8 => 'bottom,top', 9 => 'bottom,right']],
+			6 => ['content' => __('tests.202-label-6'), 'autofilled' => 0, 'type' => 1, 'connections' => [10 => 'bottom,top']],
+			7 => ['content' => __('tests.202-label-7'), 'autofilled' => 1, 'type' => 2, 'connections' => [11 => 'bottom,top']],
+			8 => ['content' => __('tests.202-label-8'), 'autofilled' => 0, 'type' => 2, 'connections' => [12 => 'bottom,top']],
+			9 => ['content' => __('tests.202-label-9'), 'autofilled' => 0, 'type' => 2, 'connections' => [13 => 'bottom,top']],
+			10 => ['content' => __('tests.202-label-10'), 'autofilled' => 1, 'type' => 2, 'connections' => [14 => 'bottom,top']],
+			11 => ['content' => __('tests.202-label-11'), 'autofilled' => 0, 'type' => 1, 'connections' => [15 => 'bottom,top']],
+			12 => ['content' => __('tests.202-label-12'), 'autofilled' => 0, 'type' => 1, 'connections' => [16 => 'bottom,top']],
+			13 => ['content' => __('tests.202-label-13'), 'autofilled' => 0, 'type' => 1, 'connections' => [17 => 'bottom,top']],
+			14 => ['content' => __('tests.202-label-14'), 'autofilled' => 0, 'type' => 1],
+			15 => ['content' => __('tests.202-label-15'), 'autofilled' => 0, 'type' => 2, 'connections' => [18 => 'bottom,top']],
+			16 => ['content' => __('tests.202-label-16'), 'autofilled' => 0, 'type' => 2, 'connections' => [19 => 'bottom,top']],
+			17 => ['content' => __('tests.202-label-17'), 'autofilled' => 1, 'type' => 2, 'connections' => [20 => 'bottom,top']],
+			18 => ['content' => __('tests.202-label-18'), 'autofilled' => 0, 'type' => 1, 'connections' => [21 => 'bottom,top']],
+			19 => ['content' => __('tests.202-label-19'), 'autofilled' => 1, 'type' => 1],
+			20 => ['content' => __('tests.202-label-20'), 'autofilled' => 0, 'type' => 1],
+			21 => ['content' => __('tests.202-label-21'), 'autofilled' => 0, 'type' => 2, 'connections' => [22 => 'bottom,left', 23 => 'bottom,right']],
+			22 => ['content' => __('tests.202-label-22'), 'autofilled' => 0, 'type' => 1],
+			23 => ['content' => __('tests.202-label-23'), 'autofilled' => 1, 'type' => 1],
 		];
 	}
 

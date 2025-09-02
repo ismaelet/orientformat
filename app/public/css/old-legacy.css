@@ -9617,3 +9617,7 @@ body {
 .max-w-80 {
 	max-width: 20rem;
 }
+
+.text-red-500 {
+	color: #fb2c36;
+}

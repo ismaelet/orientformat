@@ -12,7 +12,8 @@
 }
 
 #img,
-#shape {
+#shape,
+main .section {
 	background-size: auto 100%;
 }
 
@@ -24,12 +25,12 @@
 	top: 0;
 }
 
-.section {
+main .section {
 	opacity: 0;
 	transition: opacity 0.3s;
 }
 
-.section.active {
+main .section.active {
 	opacity: 1;
 }
 

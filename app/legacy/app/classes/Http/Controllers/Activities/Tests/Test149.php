@@ -36,14 +36,14 @@ class Test149 extends Test {
 	protected function logic() {
 		// basic text
 		$text = $this->arguments['text'] ??
-			"Balene concertiste, elefanti stornellatori, scimmie polifoniche, e perfino pappagalli che suonano le percussioni. Sono alcuni dei molti esempi di animali \"musicisti\" riportati in un articolo pubblicato {! sulla rivista scientifica 'Science' :: marker1 !}, secondo cui {! amare la musica e saperla creare ed eseguire non è un'esclusiva di noi superiori esseri umani, ma un'espressione naturale, innata in molte altre specie animali. :: marker2 !} I cui gorgheggi, trilli e vocalizzi non sarebbero affatto casuali e incoerenti, ma {! insiemi sonori da giudicare musicali in senso proprio, poiché rispondono alle medesime scelte estetiche e addirittura alle stesse leggi compositive utilizzate dai musicisti umani. :: marker2 !}<br> Firmato da un agguerrito gruppetto di studiosi guidati da Patricia M. Gray, pianista e direttrice dell'ensemble musicale dell'Accademia Nazionale delle Scienze Usa, l'articolo è tra le prime uscite ufficiali degli esponenti della biomusicologia, nascente settore d'indagine un po' in odore di New Age, che {! intende rivoluzionare completamente lo studio dei suoni della natura cercando le basi biologiche della creazione musicale e del gusto della musica. :: marker3 !}<br>Accolta con qualche freddezza da parte del mondo scientifico, la nuova disciplina ritiene di aver già trovato parecchi indizi di musicalità animale. {! I canti delle megattere, ad esempio, le più 'virtuose' tra tutte le balene, presenterebbero forti somiglianze strutturali con quelli degli uccelli e degli umani, con 'frasi' di lunghezza simile alle nostre frasi musicali, ed intervalli come quelli delle nostre scale. :: marker0 !} Le balene inoltre {! mescolano elementi percussivi e toni puri in un rapporto analogo a quello utilizzato nella musica sinfonica. :: marker0 !} E come se non bastasse, {! le composizioni vocali delle megattere contengono ritornelli e rime :: marker0 !}: usate forse, scrive la Gray, come trucco per memorizzare più facilmente i canti [...].<br>{! La musica, insomma, è un linguaggio ancor più universale di quanto si pensi :: marker2 !}, tanto da far pensare che in qualche momento della storia evolutiva, balene, uccelli e uomini abbiano avuto addirittura un {! 'antenato musicale' in comune :: marker2 !}, di cui porteremmo le tracce nelle aree più arcaiche del nostro cervello. E se le radici della musica sono così remote, forse si spiega anche la forza delle emozioni che ci può regalare. A noi, e naturalmente alle balene e agli scriccioli.";
+			__('tests.149-text');
 
 		// markers
 		$this->parameters['markers'] = $this->arguments['markers'] ?? [
-			['label' => 'Quali prove vengono addotte?'],
-			['label' => 'Dove sono state pubblicate le tesi della?'],
-			['label' => 'Quali sono le tesi della biomusicologia?'],
-			['label' => 'Qual è lo scopo della biomusicologia?'],
+			['label' => __('tests.149-label-1')],
+			['label' => __('tests.149-label-2')],
+			['label' => __('tests.149-label-3')],
+			['label' => __('tests.149-label-4')],
 		];
 
 		// process the text
@@ -98,11 +98,11 @@ class Test149 extends Test {
 
 				<?php if (test()->completed) { ?>
 
-					<p class="txt-15rem fa-center">Hai associato il <strong><?= test()->percentage ?>%</strong> dei marcatori.</p>
+					<p class="txt-15rem fa-center"><?= __('tests.149-result', ['percentage' => test()->percentage]) ?></p>
 
 				<?php } ?>
 
-				<h2 class="section-title fa-center">Testo</h2>
+				<h2 class="section-title fa-center"><?= __('Text') ?></h2>
 				<p id="text" class="txt-11rem" data-selecting="">
 					<?= $this->parameters['processedText'] ?>
 				</p>
@@ -127,7 +127,7 @@ class Test149 extends Test {
 
 			<?php if (!test()->completed) { ?>
 				<label>
-					<p class="txt-c3 clickable inlb">Non riesco a trovare altre sezioni del testo e voglio salvare il risultato.</p>
+					<p class="txt-c3 clickable inlb"><?= __('tests.149-skip') ?></p>
 					<button type="submit" name="review" class="hidden"></button>
 				</label>
 			<?php } ?>

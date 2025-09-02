@@ -1,19 +1,19 @@
 <?php
 
 define('_CONCEPTS', [
-	'popolazione',
-	'flora',
-	'insediamenti abitativi',
-	'mondo inorganico',
-	'idrologia',
-	'insediamenti produttivi',
-	'ambiente naturale',
-	'mondo organico',
-	'minerali',
-	'fattori atmosferici',
-	'fauna',
-	'ambiente antropico',
-	'trasporti',
+	__('tests.55-concept-1'),
+	__('tests.55-concept-2'),
+	__('tests.55-concept-3'),
+	__('tests.55-concept-4'),
+	__('tests.55-concept-5'),
+	__('tests.55-concept-6'),
+	__('tests.55-concept-7'),
+	__('tests.55-concept-8'),
+	__('tests.55-concept-9'),
+	__('tests.55-concept-10'),
+	__('tests.55-concept-11'),
+	__('tests.55-concept-12'),
+	__('tests.55-concept-13'),
 ]);
 
 use LogicManager\TestLogic;

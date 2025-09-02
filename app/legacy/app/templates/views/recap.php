@@ -64,8 +64,7 @@
 							</div>
 
 							<div class="test-btn-box">
-
-								<?php if (($obj->template != 'survey' || !$obj->completed) && $obj->type != 3) { ?>
+								<?php if (($obj->template != 'survey' && $obj->type != 3) || !$obj->completed) { ?>
 
 									<p class="test-btn fc-tertiary">
 										<a href="<?= $obj->clientUrl ?>"><?= __('View') ?></a>
@@ -84,7 +83,8 @@
 
 									<p class="test-btn fc-warning" onclick="$(this).next().click()"><?= __('Restart') ?></p>
 
-									<button type="submit" name="reset" class="hidden" onclick="return confirm('<?= __('Are you sure you want to restart the activity?') ?>')"></button>
+									<button type="submit" name="reset" class="hidden" onclick="return confirm('<?= __('Are you sure you want to restart the activity?') ?>')"
+										formaction="<?= route('test.reset', $obj->id) ?>"></button>
 
 								<?php } ?>
 
