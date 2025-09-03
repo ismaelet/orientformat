@@ -11,6 +11,15 @@ for ($i = 1; $i <= 7; $i++) {
 	$results[] = __('tests.39-missing-word-' . $i);
 }
 
+$options = [];
+
+for ($i = 1; $i <= 7; $i++) {
+	$options[] = ['id' => $i, 'text' => __('tests.39-missing-word-' . $i), 'correct' => true];
+	$options[] = ['id' => $i, 'text' => __('tests.39-wrong-word-' . $i), 'correct' => false];
+}
+
+shuffle($options);
+
 // text
 $text = __('tests.39-summary');
 
@@ -21,18 +30,19 @@ $count = count($text) - 1;
 foreach ($text as $key => &$part) {
 	if ($key) {
 		if ($legacyTest->completed) {
-			$inp = '<span class="text-inp fa-center ';
-			$inp .= $legacyTest->rawResults[$key - 1] == $results[$key - 1] ? 'right' : 'wrong';
+			$inp = '<span class="font-bold underline ';
+			$inp .= __en($legacyTest->rawResults[$key - 1]) == __en($results[$key - 1]) ? 'text-success-400' : 'text-error-400';
 			$inp .= '">';
-			$inp .=  $legacyTest->rawResults[$key - 1];
+			$inp .= __('shared.' . __en($legacyTest->rawResults[$key - 1]));
 			$inp .= '</span>';
 		} else {
-			$inp = '<input type="text" class="inp text-inp filler-inp" name="field[]" value="';
+			$inp = '
+			<input type="text" class="option js-field" name="field[]" value="';
 			if ($legacyTest->result && isset($legacyTest->rawResults[$key - 1])) $inp .= $legacyTest->rawResults[$key - 1];
-			$inp .= '" ' . (test()->completed || isSupervisor() ? 'readonly' : null) . '>';
+			$inp .= '" readonly>';
 		}
 
-		$part = $inp . $part;
+		$part = $inp . '<span>' . $part . '</span>';
 	}
 }
 

@@ -6,6 +6,14 @@ use LogicManager\TestLogic;
 \App\Legacy\ScriptLoader::add('profile/temperamento/temperamento', 'page');
 
 $legacyTest = test();
+$mainTestId = $mainTestId ?? $legacyTest->id;
+
+$questions = [
+	[__('tests.' . $mainTestId . '-answer-1-negative'), __('tests.' . $mainTestId . '-answer-1-positive')],
+	[__('tests.' . $mainTestId . '-answer-2-negative'), __('tests.' . $mainTestId . '-answer-2-positive')],
+	[__('tests.' . $mainTestId . '-answer-3-negative'), __('tests.' . $mainTestId . '-answer-3-positive')],
+	[__('tests.' . $mainTestId . '-answer-4-negative'), __('tests.' . $mainTestId . '-answer-4-positive')],
+];
 
 $count = count($questions);
 

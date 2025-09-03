@@ -19,7 +19,7 @@
 				<p class="mt-0">
 					<a
 						href="{{ $section->evaluation_test->url($student->id) }}"
-						class="text-primary-500 hover:text-primary-400 font-medium transition-colors"
+						class="text-primary-500 hover:text-primary-400 cta-selfevaluation font-medium transition-colors"
 					>Vedi autovalutazione</a>
 				</p>
 			@else

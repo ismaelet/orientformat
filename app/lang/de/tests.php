@@ -675,6 +675,13 @@ return [
 	'39-missing-word-5' => 'Bindung',
 	'39-missing-word-6' => 'neun Monate',
 	'39-missing-word-7' => 'zwei Jahre',
+	'39-wrong-word-1' => 'tropisch',
+	'39-wrong-word-2' => 'Mut',
+	'39-wrong-word-3' => 'Fischerei',
+	'39-wrong-word-4' => 'Picken',
+	'39-wrong-word-5' => 'Entfernung',
+	'39-wrong-word-6' => 'drei Monate',
+	'39-wrong-word-7' => 'vier Jahre',
 	"39-back" => "Klicke hier, um zur Zusammenfassung zurückzukehren",
 
 	"46-section-1" => 'Emotionale Stabilität',

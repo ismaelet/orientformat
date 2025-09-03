@@ -189,18 +189,101 @@
 				font-weight: 600;
 			}
 		}
+
+		/* Print */
+		@media print {
+			main {
+				.dashboard-panel {
+					padding: 1rem;
+				}
+
+				.grades {
+					gap: 2rem;
+				}
+
+				.grade {
+					padding: 0;
+					overflow: unset;
+				}
+
+				.areas {
+					grid-template-columns: auto auto auto;
+					min-width: unset;
+					row-gap: 1rem;
+
+				}
+
+				.sections {
+					border: unset;
+					border-block: 1px solid var(--border-color);
+					border-radius: 0;
+					padding: unset;
+
+					&:last-child {
+						border-block-end: unset;
+					}
+				}
+
+				.section {
+					padding-block: .25rem;
+				}
+
+				.dashboard-header {
+					gap: 1rem;
+				}
+
+				.dashboard-panel__title--outer {
+					font-size: 1.5rem;
+				}
+
+				.subsection-title {
+					font-size: 1.25rem;
+				}
+
+				.dashboard-panel-title {
+					font-size: 1rem;
+				}
+
+				.group,
+				.icon-box,
+				.dashboard-panel-icon,
+				.cta-selfevaluation {
+					display: none !important;
+				}
+
+				.btn-print {
+					display: none !important;
+				}
+			}
+		}
 	</style>
 @endpushOnce
 
 <x-layouts.class-dashboard :$class>
 	<section class="page__content">
 		<!-- Title -->
-		<div class="page__header">
-			<h1 class="section-title"><span class="txt-2rem txt-light">progresso di</span><br><?= $student->inverted_full_name ?>
-			</h1>
-			<p class="section-subtitle">Qui puoi monitorare il progresso dello studente/studentessa diviso per attività.<br>Clicca
-				sul punto informativo che puoi trovare alla fine di ogni riga per mostrare l'interpretazione del risultato relativo.
+		<div
+			class="dashboard-header grid grid-cols-1 justify-items-center gap-8 text-center"
+			x-data
+		>
+			<div class="">
+				<x-subheading.main>progresso di</x-subheading.main>
+				<x-heading.main><?= $student->inverted_full_name ?>
+				</x-heading.main>
+			</div>
+
+			<p class="section-subtitle">Qui puoi monitorare il progresso dello studente/studentessa diviso per
+				attività.<br>Clicca
+				sul punto informativo che puoi trovare alla fine di ogni riga per mostrare l'interpretazione del risultato
+				relativo.
 			</p>
+
+			<x-button
+				@click="printPage"
+				class="center-icon btn-print"
+			>
+				<x-icon-print />
+				Stampa</x-button>
 		</div>
 
 		<div class="grades">

@@ -9621,3 +9621,24 @@ body {
 .text-red-500 {
 	color: #fb2c36;
 }
+
+.px-2 {
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+}
+
+.text-success-400 {
+	color: var(--color-success-400);
+}
+
+.text-error-400 {
+	color: var(--color-error-400);
+}
+
+.pointer-events-none {
+	pointer-events: none;
+}
+
+.underline {
+	text-decoration: underline;
+}

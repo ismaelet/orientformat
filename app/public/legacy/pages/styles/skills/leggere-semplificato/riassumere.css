@@ -35,3 +35,31 @@
 	border-color: red;
 	color: red;
 }
+
+.summary-text {
+	line-height: 2;
+	text-align: justify;
+}
+
+.summary-text span {
+	display: inline;
+}
+
+.summary-text .option {
+	display: inline-block;
+	width: fit-content;
+	min-width: 10em;
+	border-radius: 0;
+	line-height: 1;
+	outline: none;
+	border: none;
+	border-bottom: 1px solid currentColor;
+	background: none;
+	box-shadow: none;
+	font-size: 1rem;
+	text-align: center;
+}
+
+.draggable-option {
+	cursor: grab;
+}

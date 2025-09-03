@@ -63,7 +63,6 @@ use \Legacy\Activity\Test as LegacyTest;
 	add_grade_style();
 
 	\App\Legacy\LegacyView::setPage('interest')
-		->setMiddlewares(['public', 'logged', 'active', 'beginner-review',  'required-email'])
 		->show();
 });
 
