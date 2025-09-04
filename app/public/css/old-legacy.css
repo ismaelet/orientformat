@@ -9642,3 +9642,15 @@ body {
 .underline {
 	text-decoration: underline;
 }
+
+.leading-loose {
+	line-height: 1.625;
+}
+
+.leading-\[2\] {
+	line-height: 2;
+}
+
+.text-transition-400 {
+	color: var(--color-transition-400);
+}

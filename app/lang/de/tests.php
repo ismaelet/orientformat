@@ -380,7 +380,7 @@ return [
 	"description-36" => "Wähle an jeder Station den richtigen Weg.",
 	"description-37" => "Lies und wähle dann die Art des Denkens aus, die du im Text finden musst: Klicke zuerst auf die Art des Denkens und dann (ohne zu ziehen) auf den entsprechenden Textteil. Ein Typ von Denken kann mehrere Textteile haben. Wenn du alle Teile gefunden hast, wird der Selektor grau und inaktiv.<br><br>Wenn du nicht alle Teile finden kannst, kannst du auf \"Diese Aktivität überspringen\" klicken und sie später abschließen.",
 	"description-38" => "Ziehe die Ursachen oder Effekte in die richtigen Felder, indem du aus den angebotenen Alternativen wählst. Einige Elemente wurden bereits platziert.",
-	"description-39" => "Schreibe in die leeren Felder die fehlenden Informationen. Wenn du Zahlen schreiben möchtest, schreibe sie in Worten (zum Beispiel \"vier\" statt \"4\").",
+	"description-39" => "Vervollständige die Zusammenfassung des Textes, indem du aus den vorgeschlagenen Alternativen wählst. Einige Optionen werden nicht verwendet. Wähle die besten aus.",
 	"description-41" => "Bewerte die am häufigsten verwendeten Aspekte, um den Temperament einer Person zu definieren. Inwieweit beschreiben sie dich? Wähle für jedes Paar von Aussagen diejenige aus, die dich besser beschreibt, und klicke dann auf den Kreis, der anzeigt, wie sehr er dich beschreibt: 3 Punkte für sehr, 2 für ziemlich, 1 für ein wenig.",
 	"description-42" => "Bewerte die am häufigsten verwendeten Aspekte, um den Temperament einer Person zu definieren. Inwieweit beschreiben sie dich? Wähle für jedes Paar von Aussagen diejenige aus, die dich besser beschreibt, und klicke dann auf den Kreis, der anzeigt, wie sehr er dich beschreibt: 3 Punkte für sehr, 2 für ziemlich, 1 für ein wenig.",
 	"description-43" => "Bewerte die am häufigsten verwendeten Aspekte, um den Temperament einer Person zu definieren. Inwieweit beschreiben sie dich? Wähle für jedes Paar von Aussagen diejenige aus, die dich besser beschreibt, und klicke dann auf den Kreis, der anzeigt, wie sehr er dich beschreibt: 3 Punkte für sehr, 2 für ziemlich, 1 für ein wenig.",
@@ -501,7 +501,7 @@ return [
 	"description-173" => "Lies und wähle dann den Typ von Argumentation aus, den du im Text finden musst: Klicke zuerst auf den Typ von Argumentation und dann (ohne zu ziehen) auf den entsprechenden Textteil. Ein Argumentationstyp kann mehrere Textteile haben. Sobald du alle Teile gefunden hast, wird der Selector grau und inaktiv. Wenn du nicht alle Teile finden kannst, kannst du auf „Diese Aktivität überspringen“ klicken und später darauf zurückkommen.",
 	"description-174" => "Im Text werden zwei verschiedene Bedeutungsbereiche (semantische Felder) gegenübergestellt. Klicke zuerst auf das semantische Feld und dann (ohne zu ziehen) auf den entsprechenden Textteil. Jedes Feld hat mehrere Textteile. Sobald du alle Teile gefunden hast, wird der Selector grau und inaktiv. Wenn du nicht alle Teile finden kannst, kannst du auf „Diese Aktivität überspringen“ klicken und später darauf zurückkommen.",
 	"description-175" => "Vervollständige die Konzeptkarte, indem du jede Box an den richtigen Platz setzt. Wähle eine Box aus den verfügbaren Optionen aus und ziehe sie auf den entsprechenden Bereich.",
-	"description-176" => "Schreibe in die leeren Felder die fehlenden Informationen.",
+	"description-176" => "Vervollständige die Zusammenfassung des Textes, indem du aus den vorgeschlagenen Alternativen wählst. Einige Optionen werden nicht verwendet. Wähle die besten aus.",
 	"description-180" => "Hier kannst du die Ergebnisse deiner Selbstbewertung einsehen.<br><br>Du kannst dich mit jemandem, der dich gut kennt, austauschen und den Fragebogen wiederholen.",
 	"description-181" => "",
 	"description-182" => "Setze die fehlenden Satzzeichen in den Text.",
@@ -1734,6 +1734,32 @@ return [
 	"175-label-27" => "fürchtet nicht",
 	"175-label-28" => "die Kritik (die „Bogenschützen“)",
 	"175-label-29" => "plump",
+
+	'176-text' => "Der Inhalt dieses Gedichts basiert auf zwei Vergleichen: Im ersten Fall wird der Albatros
+		verglichen, wenn er {{ place-input }} ist, mit dem, wenn er sich {{ place-input }} befindet, weil er von den Matrosen gefangen wurde; im zweiten Fall wird der Albatros mit dem {{ place-input }} verglichen.<br>
+		Wenn der Albatros dem Schiff als „träge Reisebegleitung“ folgt, erscheint er {{ place-input }}, Herr des Himmels und {{ place-input }}. Wenn er jedoch von der Besatzung gezwungen wird, auf dem Deck zu bleiben, erscheint er {{ place-input }}, komisch, {{ place-input }} und fast krank.<br>
+		Er ähnelt in diesem dem Dichter, der im gewöhnlichen Leben oft verspottet wird, wie ein {{ place-input }} lebt, unbeholfen erscheint, während er mit der Poesie Herr der Fantasie wird, die {{ place-input }} herausfordert und die {{ place-input }} nicht fürchtet.",
+	'176-missing-1' => 'im Flug',
+	'176-missing-2' => 'auf dem Deck',
+	'176-missing-3' => 'Dichter',
+	'176-missing-4' => 'schön',
+	'176-missing-5' => 'mutig',
+	'176-missing-6' => 'hässlich',
+	'176-missing-7' => 'ungeschickt',
+	'176-missing-8' => 'Exilant',
+	'176-missing-9' => 'Widrigkeiten',
+	'176-missing-10' => 'Kritik',
+	'176-missing-11' => 'ruhig',
+	'176-missing-12' => 'im Hafen',
+	'176-missing-13' => 'Seemann',
+	'176-missing-14' => 'furchtlos',
+	'176-missing-15' => 'feige',
+	'176-missing-16' => 'Seil',
+	'176-missing-17' => 'Flügel',
+	'176-missing-18' => 'Schiff',
+	'176-missing-19' => 'Meer',
+	'176-missing-20' => 'Vogel',
+	'176-result' => "Du hast <strong>:percentage%</strong> der Konzepte korrekt eingegeben.",
 
 	"185-text" => "Konzertierende Wale, stornierende Elefanten, polyphone Affen und sogar Papageien, die Schlagzeug spielen. Das sind einige der vielen Beispiele für „musizierende“ Tiere, die in einem Artikel in der Wissenschaftszeitschrift 'Science' veröffentlicht wurden, laut dem die Liebe zur Musik und die Fähigkeit, sie zu erschaffen und auszuführen, kein exklusives Privileg von uns überlegenen Menschen ist, sondern ein natürliches, angeborenes Ausdrucksvermögen vieler anderer Tierarten. Deren Gesänge, Triller und Lautäußerungen {! wären :: marker0 !} keineswegs zufällig und zusammenhanglos, sondern Klanggebilde, die im eigentlichen Sinne als musikalisch zu bewerten sind, da sie denselben ästhetischen Entscheidungen und sogar denselben Kompositionsgesetzen folgen, wie sie von menschlichen Musikern verwendet werden.<br>
 		 Der von einer engagierten Gruppe von Forschern unter der Leitung von Patricia M. Gray, Pianistin und Leiterin des Musikensembles der US National Academy of Sciences, unterzeichnete Artikel ist eine der ersten offiziellen Veröffentlichungen der Vertreter der Biomusikologie, eines neuen Forschungsgebiets mit einem Hauch von New Age, das das Studium der Klänge der Natur völlig revolutionieren will, indem es nach den biologischen Grundlagen der musikalischen Schöpfung und des Musikgeschmacks sucht.<br>
