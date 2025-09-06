@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Notifications\Schemas;
 
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
 class NotificationForm {
@@ -15,6 +16,10 @@ class NotificationForm {
 					->rows(5)
 					->required()
 					->columnSpanFull(),
+				// TextInput::make('created_at')
+				// 	->label('Data')
+				// 	->placeholder('YYYY-MM-DD')
+				// 	->columnSpanFull(),
 			]);
 	}
 }

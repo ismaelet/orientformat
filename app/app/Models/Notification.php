@@ -12,6 +12,7 @@ class Notification extends Model {
 	 */
 	protected $fillable = [
 		'text',
+		'created_at',
 	];
 
 	/**
@@ -37,7 +38,7 @@ class Notification extends Model {
 	 */
 	protected function date(): Attribute {
 		return Attribute::make(
-			get: fn() => date('Y-m-d', strtotime($this->time)),
+			get: fn() => date('Y-m-d', strtotime($this->created_at)),
 		);
 	}
 

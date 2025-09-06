@@ -24,8 +24,8 @@ class NotificationsTable {
 					->wrap()
 					->html()
 					->label('Testo'),
-				TextColumn::make('date')
-					->sortable(['created_at'])
+				TextColumn::make('created_at')
+					->sortable()
 					->label('Data'),
 			])
 			->filters([

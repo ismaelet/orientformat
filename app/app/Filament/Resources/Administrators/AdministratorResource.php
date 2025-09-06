@@ -47,6 +47,11 @@ class AdministratorResource extends Resource {
 	 */
 	protected static string|UnitEnum|null $navigationGroup = 'Utenti';
 
+	/**
+	 * Property: The order the resource should be displayed in the navigation
+	 */
+	protected static ?int $navigationSort = 4;
+
 	public static function form(Schema $schema): Schema {
 		return AdministratorForm::configure($schema);
 	}

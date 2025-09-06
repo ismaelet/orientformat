@@ -43,10 +43,14 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
 				TextColumn::make('user.first_name')
 					->label('Nome')
 					->sortable(),
+				TextColumn::make('user.email')
+					->label('Email')
+					->sortable(),
 				TextColumn::make('school_classes.name')
 					->label('Classi assegnate')
 					->state(fn($record) => $record->school_classes->map(fn($class) => $class->fullName()))
-					->listWithLineBreaks(),
+					->listWithLineBreaks()
+					->default('Nessuna'),
 				TextColumn::make('user.created_at')
 					->label('Registrato/a il')
 					->date()
