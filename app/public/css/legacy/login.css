@@ -52,14 +52,14 @@ main {
 * Access forms
 */
 .forms {
-	padding-block: 5rem;
+	padding-block: 2rem;
 	padding-inline: var(--wrap-padding);
 	align-items: center;
 }
 
 .form {
 	display: grid;
-	gap: 4rem;
+	gap: 2rem;
 	width: 100%;
 	max-width: 480px;
 	margin-inline: auto;

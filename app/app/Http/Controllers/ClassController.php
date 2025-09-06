@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Class\InviteRequest;
 use App\Models\Class\JoinRequest;
 use App\Models\Schools\Grade;
 use App\Models\Schools\SchoolClass;
@@ -79,39 +80,11 @@ class ClassController extends Controller {
 			'professional' => 'nullable|boolean',
 		]);
 
-		$letter = strtoupper($request->input('letter'));
-		$referentId = teacher()->id;
-		$code = bin2hex(random_bytes(5));
-		$startingYear = (date('n') < 9) ? date('Y', strtotime('-1 year')) : date('Y');
+		$response = SchoolClass::createFromData($request->all());
 
-		while (SchoolClass::where('code', $code)->exists()) {
-			$code = bin2hex(random_bytes(5));
+		if ($response instanceof RedirectResponse) {
+			return $response;
 		}
-
-		if (SchoolClass::where('schoolId', $request->input('schoolId'))
-			->where('grade', $request->input('grade'))
-			->where('letter', $letter)
-			->where('ended', false)
-			->exists()
-		) {
-			$name = $request->input('grade') > Grade::lastMiddleschool() ?  $letter : $request->input('grade') . $letter;
-
-			return back()->withErrors(['duplicate' => "Esiste già una classe {$name} in questo istituto."])->withInput();
-		}
-
-		$class = SchoolClass::create([
-			'schoolId' => $request->input('schoolId'),
-			'referentId' => $referentId,
-			'grade' => $request->input('grade'),
-			'startingGrade' => $request->input('grade'),
-			'letter' => $letter,
-			'code' => $code,
-			'startingYear' => $startingYear,
-			'year' => $startingYear,
-			'professional' => $request->input('professional', false),
-		]);
-
-		teacher()->school_classes()->attach($class->id);
 
 		return redirect()->route('teacher.dashboard')->with('success', 'Classe aggiunta con successo.');
 	}
@@ -170,5 +143,33 @@ class ClassController extends Controller {
 		$joinRequest->delete();
 
 		return redirect()->route('teacher.dashboard')->with('success', 'Richiesta rifiutata con successo.');
+	}
+
+	/**
+	 * Accept an invite request
+	 */
+	public function inviteAccept(Request $request, InviteRequest $inviteRequest): RedirectResponse {
+		if ($inviteRequest->invited_teacher_id != teacher()->id) {
+			return back()->withErrors(['invite_request_id' => 'Non sei autorizzato ad accettare questa richiesta.'])->withInput();
+		}
+
+		teacher()->school_classes()->attach($inviteRequest->class_id);
+
+		$inviteRequest->delete();
+
+		return redirect()->route('teacher.dashboard')->with('success', 'Richiesta di invito accettata con successo.');
+	}
+
+	/**
+	 * Reject an invite request
+	 */
+	public function inviteReject(Request $request, InviteRequest $inviteRequest): RedirectResponse {
+		if ($inviteRequest->invited_teacher_id != teacher()->id) {
+			return back()->withErrors(['invite_request_id' => 'Non sei autorizzato a rifiutare questa richiesta.'])->withInput();
+		}
+
+		$inviteRequest->delete();
+
+		return redirect()->route('teacher.dashboard')->with('success', 'Richiesta di invito rifiutata con successo.');
 	}
 }

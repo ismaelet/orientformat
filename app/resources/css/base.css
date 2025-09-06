@@ -1,5 +1,5 @@
 /* Assets */
-svg {
+svg:where(:not(.fi-icon)) {
 	fill: currentColor;
 }
 

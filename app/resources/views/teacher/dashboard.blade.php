@@ -3,6 +3,31 @@
 		rel="stylesheet"
 		href="{{ asset('css/legacy/teacher-dashboard.css') }}"
 	>
+
+	<style>
+		.dashboard-element {
+			position: relative;
+
+			&::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				opacity: 0;
+				background: linear-gradient(135deg, #fff, #000);
+				border-radius: inherit;
+				mix-blend-mode: overlay;
+				transition: inherit;
+			}
+
+			&:hover::before {
+				opacity: 1;
+			}
+
+			>* {
+				position: relative;
+			}
+		}
+	</style>
 @endpushOnce
 
 <x-layouts.legacy-main :$title>
@@ -19,7 +44,8 @@
 					class="text-secondary-300 font-semibold"
 				>qui</a>.</p>
 
-			@if ($joinRequests->count())
+			{{-- Join Requests --}}
+			@if ($joinRequests->count() || $inviteRequests->count())
 				{{-- Notices --}}
 				<section class="elements mar-t-3">
 					<x-heading.section>Avvisi</x-heading.section>
@@ -33,8 +59,8 @@
 							>
 								@csrf
 
-								<p class="text-center">Hai ricevuto una richiesta da parte di
-									<strong>{{ $joinRequest->requesting_teacher->full_name }}</strong> di collaborare alla gestione della classe
+								<p class="text-center"><strong>{{ $joinRequest->requesting_teacher->full_name }}</strong>
+									ha richiesto di collaborare alla gestione della classe
 									<strong>{{ $joinRequest->class->name }}</strong>
 								</p>
 
@@ -56,12 +82,56 @@
 								</div>
 							</form>
 						@endforeach
+
+						@foreach ($inviteRequests as $inviteRequest)
+							<form
+								method="POST"
+								class="border-1 grid grid-cols-1 gap-4 rounded border-dashed border-neutral-400 p-2"
+							>
+								@csrf
+
+								<p class="text-center">Sei stato invitato/a da
+									<strong>{{ $inviteRequest->inviting_teacher->full_name }}</strong>
+									a collaborare alla gestione della classe
+									<strong>{{ $inviteRequest->class->name }}</strong>
+								</p>
+
+								<div class="wrap flex justify-center gap-4">
+									<x-button
+										type="submit"
+										size="xs"
+										variant="secondary"
+										color="success"
+										formaction="{{ route('classes.invite.accept', $inviteRequest) }}"
+									>Accetta</x-button>
+									<x-button
+										type="button"
+										size="xs"
+										variant="secondary"
+										color="danger"
+										formaction="{{ route('classes.invite.reject', $inviteRequest) }}"
+									>Rifiuta</x-button>
+								</div>
+							</form>
+						@endforeach
 					</div>
 				</section>
 			@endif
 
 			{{-- Classes --}}
 			@if (is_administrator())
+				<a
+					href="{{ route('administrator.dashboard') }}"
+					class="dashboard-element hover:bg-transition-400 group mt-8 flex items-center gap-8 rounded-lg bg-neutral-50 p-8 shadow transition-all hover:text-white"
+				>
+					<x-icon-dashboard class="w-12 shrink-0" />
+
+					<div class="shrink-0">
+						<x-heading.component-big><span class="transition-colors group-hover:text-white">Gestione
+								d'Istituto</span></x-heading.component-big>
+						<p class="mt-2">Qui è possibile visualizzare le classi, i docenti e gli studenti associati all'istituto.</p>
+					</div>
+				</a>
 			@else
 				<section class="elements mar-t-3">
 					<x-heading.section>Le mie classi</x-heading.section>
@@ -91,7 +161,7 @@
 									data-ended="<?= $schoolClass->ended ? 'true' : 'false' ?>"
 								>
 									<a
-										class="element element_class gap-2"
+										class="element element_class gap-2 rounded-lg shadow"
 										href="<?= $schoolClass->url() ?>"
 									>
 										<div class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2">
@@ -112,7 +182,7 @@
 								data-delay="{{ $teacher->school_classes->count() % 4 }}"
 							>
 								<a
-									class="element element_functionality"
+									class="element element_functionality rounded-lg shadow"
 									href="<?= route('classes.create') ?>"
 								>
 									<div class="element-icon icon-box">
@@ -141,7 +211,7 @@
 							data-delay="{{ ($key - 1) % 2 }}"
 						>
 							<a
-								class="element element_functionality gap-8"
+								class="element element_functionality gap-8 rounded-lg shadow"
 								href="{{ $functionality['url'] }}"
 							>
 								<div class="element-icon icon-box">
@@ -155,8 +225,8 @@
 								</div>
 
 								<div>
-									<h3 class="element-title txt-upp font-bold">{{ $functionality['title'] }}</h3>
-									<p class="element-subtitle mt-2">{!! $functionality['desc'] !!}</p>
+									<x-heading.component class="">{{ $functionality['title'] }}</x-heading.component>
+									<p class="mt-2 text-sm leading-relaxed">{!! $functionality['desc'] !!}</p>
 								</div>
 							</a>
 						</div>

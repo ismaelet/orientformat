@@ -48,6 +48,24 @@ class User extends Authenticatable implements FilamentUser, HasName {
 	];
 
 	/**
+	 * Get the user's first name
+	 */
+	public function firstName(): Attribute {
+		return new Attribute(
+			get: fn($value): string => ucfirst($value),
+		);
+	}
+
+	/**
+	 * Get the user's last name
+	 */
+	public function lastName(): Attribute {
+		return new Attribute(
+			get: fn($value): string => ucfirst($value),
+		);
+	}
+
+	/**
 	 * Get the user's full name
 	 */
 	public function fullName(): Attribute {

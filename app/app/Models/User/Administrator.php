@@ -3,6 +3,8 @@
 namespace App\Models\User;
 
 use App\Models\Schools\School;
+use App\Models\Schools\SchoolClass;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,9 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Administrator extends Model {
 
 	/**
-	 * The attributes that are mass assignable.
-	 * 
-	 * @var array
+	 * Property: The attributes that are mass assignable
 	 */
 	protected $fillable = [
 		'user_id',
@@ -20,29 +20,37 @@ class Administrator extends Model {
 	];
 
 	/**
-	 * The school that the administrator belongs to.
-	 * 
-	 * @return BelongsTo
+	 * Relationship: The user the administrator belongs to
+	 */
+	public function user(): BelongsTo {
+		return $this->belongsTo(User::class);
+	}
+
+	/**
+	 * Relationship: The school the administrator belongs to
 	 */
 	public function school(): BelongsTo {
 		return $this->belongsTo(School::class);
 	}
 
 	/**
-	 * The students that the administrator is responsible for.
-	 * 
-	 * @return Collection
+	 * Relationship: The students that the administrator is responsible for
 	 */
 	public function students(): Collection {
 		return $this->school->students;
 	}
 
 	/**
-	 * The IDs of the students that the administrator is responsible for.
-	 * 
-	 * @return array
+	 * The IDs of the students that the administrator is responsible for
 	 */
 	public function studentIds(): array {
 		return $this->students()->pluck('id')->toArray();
+	}
+
+	/**
+	 * Check if the administrator has access to a specific class
+	 */
+	public function hasAccessToClass(SchoolClass $class): bool {
+		return $this->school->classes?->where('id', $class->id)->count();
 	}
 }

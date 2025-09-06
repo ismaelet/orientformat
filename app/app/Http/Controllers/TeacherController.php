@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Class\InviteRequest;
 use App\Models\Class\JoinRequest;
 use App\Models\Notification;
 use App\Models\Schools\School;
@@ -18,6 +19,9 @@ class TeacherController extends Controller {
 		$teacher = teacher()->load('school', 'school_classes', 'school_classes.school');
 
 		$joinRequests = JoinRequest::where('referent_id', $teacher->id)
+			->get();
+
+		$inviteRequests = InviteRequest::where('invited_teacher_id', $teacher->id)
 			->get();
 
 		$functionalities = [
@@ -52,7 +56,7 @@ class TeacherController extends Controller {
 			[
 				'title' => 'Attribuzione Punteggi e Interpretazione dei Risultati',
 				'subtitle' => 'Documenti e informative',
-				'desc' => 'Qui puoi vedere, attraverso esempi, come vengono attribuiti i punteggi alle autovalutazioni degli studenti che confluiscono nel Profilo Orientativo Individualizzato (POI)',
+				'desc' => 'Qui puoi vedere, attraverso esempi, come vengono attribuiti i punteggi alle autovalutazioni degli studenti.',
 				'url' => route('teacher.read.results'),
 				'icon' => 'graph'
 			],
@@ -74,7 +78,8 @@ class TeacherController extends Controller {
 			'teacher' => $teacher,
 			'functionalities' => $functionalities,
 			'notifications' => $notifications,
-			'joinRequests' => $joinRequests
+			'joinRequests' => $joinRequests,
+			'inviteRequests' => $inviteRequests,
 		]);
 	}
 

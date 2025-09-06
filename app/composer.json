@@ -9,6 +9,7 @@
         "blade-ui-kit/blade-icons": "^1.8",
         "dompdf/dompdf": "^3.0",
         "filament/filament": "^4.0",
+        "filament/tables": "^4.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.0",

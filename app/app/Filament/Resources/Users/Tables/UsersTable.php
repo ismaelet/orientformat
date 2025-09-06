@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Users\Tables;
 
 use App\Models\User;
+use Dom\Text;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -33,6 +34,10 @@ class UsersTable {
 					->searchable()
 					->sortable()
 					->label('Cognome'),
+				TextColumn::make('email')
+					->searchable()
+					->sortable()
+					->label('Email'),
 				TextColumn::make('created_at')
 					->searchable()
 					->sortable()

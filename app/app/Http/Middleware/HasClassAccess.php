@@ -16,11 +16,16 @@ class HasClassAccess {
 		$class = $request->route('class');
 		$class = is_string($class) ? SchoolClass::find($class) : $class;
 		$teacher = teacher();
+		$administrator = administrator();
 
-		if (!$class || !$teacher->hasAccessToClass($class)) {
-			return redirect()->route('teacher.dashboard');
+		if ($administrator && $administrator->hasAccessToClass($class)) {
+			return $next($request);
 		}
 
-		return $next($request);
+		if ($teacher && $teacher->hasAccessToClass($class)) {
+			return $next($request);
+		}
+
+		return redirect()->route('teacher.dashboard');
 	}
 }

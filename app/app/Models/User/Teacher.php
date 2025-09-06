@@ -21,11 +21,38 @@ class Teacher extends Model {
 	];
 
 	/**
+	 * Attribute: Get the teacher's first name
+	 */
+	public function firstName(): Attribute {
+		return new Attribute(
+			get: fn() => $this->user?->first_name,
+		);
+	}
+
+	/**
+	 * Attribute: Get the teacher's last name
+	 */
+	public function lastName(): Attribute {
+		return new Attribute(
+			get: fn() => $this->user?->last_name,
+		);
+	}
+
+	/**
 	 * Attribute: Get the teacher's full name
 	 */
 	public function fullName(): Attribute {
 		return new Attribute(
-			get: fn() => $this->user->full_name,
+			get: fn() => $this->user?->full_name,
+		);
+	}
+
+	/**
+	 * Attribute: Get the teacher's full name (inverted)
+	 */
+	public function invertedFullName(): Attribute {
+		return new Attribute(
+			get: fn() => $this->user?->inverted_full_name,
 		);
 	}
 

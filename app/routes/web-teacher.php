@@ -72,6 +72,14 @@ Route::prefix('/classes')->middleware(Teacher::class)->name('classes.')->group(f
 	Route::post('join/reject/{join_request}', [ClassController::class, 'joinReject'])
 		->name('join.reject');
 
+	// Accept an invite request
+	Route::post('invite/accept/{invite_request}', [ClassController::class, 'inviteAccept'])
+		->name('invite.accept');
+
+	// Reject an invite request
+	Route::post('invite/reject/{invite_request}', [ClassController::class, 'inviteReject'])
+		->name('invite.reject');
+
 	// Attach the teacher to the class
 	Route::post('join', [ClassController::class, 'joinStore'])
 		->name('join.store');
@@ -122,7 +130,6 @@ Route::prefix('/class')->middleware([Teacher::class, HasClassAccess::class])->na
 		->name('students.index');
 
 	Route::get('{class}/teachers/index', [TeacherManagementController::class, 'index'])
-		->middleware(UnderContruction::class)
 		->name('teachers.index');
 
 	Route::get('{class}/settings', [SettingsController::class, 'showSettings'])

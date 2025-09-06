@@ -34,6 +34,7 @@
 
 	<livewire:styles />
 
+	@filamentStyles
 	@vite(['resources/css/app.css', 'resources/js/app.ts'])
 	@stack('styles')
 	@stack('scripts')
@@ -43,6 +44,8 @@
 <body>
 	{{ $slot }}
 
+	@livewire('notifications')
+	@filamentScripts
 	<livewire:scripts />
 </body>
 

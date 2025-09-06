@@ -7,8 +7,10 @@ use App\Models\User\Teacher;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\RedirectResponse;
 
 class SchoolClass extends Model {
 
@@ -20,6 +22,7 @@ class SchoolClass extends Model {
 	protected $fillable = [
 		'schoolId',
 		'referentId',
+		'name',
 		'grade',
 		'startingGrade',
 		'letter',
@@ -29,15 +32,6 @@ class SchoolClass extends Model {
 		'ended',
 		'professional',
 	];
-
-	/**
-	 * Attribute: The class's name
-	 */
-	public function name(): Attribute {
-		return Attribute::make(
-			get: fn() => $this->isMiddleSchool() ? $this->grade()->relative_number . $this->letter : $this->letter
-		);
-	}
 
 	/**
 	 * Attribute: The class's first grade
@@ -72,6 +66,13 @@ class SchoolClass extends Model {
 	}
 
 	/**
+	 * Relationship: The teachers in the class
+	 */
+	public function teachers(): BelongsToMany {
+		return $this->belongsToMany(Teacher::class);
+	}
+
+	/**
 	 * Relationship: The students in the class
 	 */
 	public function students(): HasMany {
@@ -92,10 +93,6 @@ class SchoolClass extends Model {
 	 */
 	public function grade(): Grade {
 		return Grade::getByNumber($this->grade, $this->professional);
-	}
-
-	public function teachers() {
-		return Teacher::whereRaw("FIND_IN_SET(?, classes)", [$this->id])->get();
 	}
 
 	/**
@@ -177,5 +174,62 @@ class SchoolClass extends Model {
 	 */
 	public function isProfessional(): bool {
 		return $this->professional;
+	}
+
+	/**
+	 * Get the class's full name
+	 */
+	public function fullName(): string {
+		return $this->name . ' (' . ($this->year) . '-' . ($this->year + 1)
+			. ')';
+	}
+
+	/**
+	 * Get the class's name
+	 */
+	public static function genName(int $grade, string $letter): string {
+		return $grade < 4 ? $grade . $letter : $letter;
+	}
+
+	/**
+	 * Create a new class from data
+	 */
+	public static function createFromData(array $data = []): SchoolClass|RedirectResponse {
+		$letter = strtoupper($data['letter']);
+		$referentId = teacher()->id ?: administrator()->id;
+		$code = bin2hex(random_bytes(5));
+		$startingYear = (date('n') < 9) ? date('Y', strtotime('-1 year')) : date('Y');
+
+		while (SchoolClass::where('code', $code)->exists()) {
+			$code = bin2hex(random_bytes(5));
+		}
+
+		if (SchoolClass::where('schoolId', $data['schoolId'])
+			->where('grade', $data['grade'])
+			->where('letter', $letter)
+			->where('ended', false)
+			->exists()
+		) {
+			$name = $data['grade'] > Grade::lastMiddleschool() ?  $letter : $data['grade'] . $letter;
+
+			return back()->withErrors(['duplicate' => "Esiste già una classe {$name} in questo istituto."])->withInput();
+		}
+
+		$class = SchoolClass::create([
+			'name' => self::genName($data['grade'], $letter),
+			'schoolId' => $data['schoolId'],
+			'referentId' => $referentId,
+			'grade' => $data['grade'],
+			'startingGrade' => $data['grade'],
+			'letter' => $letter,
+			'code' => $code,
+			'startingYear' => $startingYear,
+			'year' => $startingYear,
+			'professional' => $data['professional'] ?? false,
+		]);
+
+		teacher()->school_classes()->attach($class->id);
+
+		return $class;
 	}
 }

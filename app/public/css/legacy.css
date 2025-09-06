@@ -748,8 +748,6 @@ abbr:where([title]) {
 }
 
 /* Inputs */
-input,
-select,
 textarea,
 .input {
 	--inp-height: 2.5rem;
@@ -2006,69 +2004,6 @@ body.fixed {
 
 .lbox .close-icon:hover {
 	opacity: 0.5;
-}
-
-/*
-* Modals
-*/
-.modal {
-	position: fixed;
-	inset: 0;
-	z-index: 100;
-	display: flex;
-	visibility: hidden;
-	opacity: 0;
-	background-color: transparent;
-	border: none;
-	overflow: visible;
-	transition: opacity 0.3s;
-}
-
-.modal::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	z-index: -1;
-	background-color: rgba(0, 0, 0, 0.3);
-}
-
-.modal.open {
-	visibility: visible;
-	opacity: 1;
-}
-
-.modal-img {
-	max-width: calc(100% - 4rem);
-	max-height: calc(100% - 4rem);
-	margin: auto;
-}
-
-.modal-form {
-	display: grid;
-	gap: 1rem;
-	padding: 2rem;
-	background-color: #fff;
-	border-radius: var(--border-radius);
-	box-shadow: 0 2rem 3rem -1rem rgba(0, 0, 0, 0.2);
-}
-
-.modal-form-header > * {
-	text-align: center;
-	font-size: 1.5rem;
-	font-weight: 600;
-}
-
-.modal-form-footer {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	gap: 1rem;
-}
-
-.modal-form-footer .pbtn,
-.modal-form-footer .sbtn {
-	flex-grow: 1;
-	flex-basis: 0;
 }
 
 /* Ajax search */
@@ -3617,86 +3552,6 @@ body.fixed {
 
 .lbox .close-icon:hover {
 	opacity: 0.5;
-}
-
-/*
-* Modals
-*/
-.modal {
-	display: flex;
-	overflow: visible;
-	padding: 2rem;
-	position: fixed;
-	inset: 0;
-	z-index: 100;
-	visibility: hidden;
-	opacity: 0;
-	background-color: transparent;
-	border: none;
-	transition: opacity 0.3s;
-}
-
-.modal::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	z-index: -1;
-	background-color: rgba(0, 0, 0, 0.3);
-}
-
-.modal.open {
-	visibility: visible;
-	opacity: 1;
-}
-
-.modal_close {
-	opacity: 1;
-	background-position: center;
-	background-size: contain;
-	width: 1.5rem;
-	aspect-ratio: 1;
-	position: absolute;
-	top: 1rem;
-	right: 1rem;
-	filter: invert(1);
-	cursor: pointer;
-	transition: background 0.3s;
-}
-
-.modal-img {
-	max-width: calc(100% - 4rem);
-	max-height: calc(100% - 4rem);
-	margin: auto;
-}
-
-.modal-form {
-	display: grid;
-	gap: 1rem;
-	max-width: 768px;
-	padding: 2rem;
-	margin: auto;
-	background-color: #fff;
-	border-radius: var(--border-radius);
-	box-shadow: 0 2rem 3rem -1rem rgba(0, 0, 0, 0.2);
-}
-
-.modal-form-header > * {
-	text-align: center;
-	font-size: 1.5rem;
-	font-weight: 600;
-}
-
-.modal-form-footer {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	gap: 1rem;
-}
-
-.modal-form-footer .pbtn,
-.modal-form-footer .sbtn {
-	flex-grow: 1;
-	flex-basis: 0;
 }
 
 /* Ajax search */
@@ -5705,8 +5560,6 @@ body.fixed {
 	gap: 0.25rem 0.5rem;
 }
 
-input,
-select,
 textarea,
 .input {
 	width: 100%;
@@ -5737,7 +5590,6 @@ textarea:-webkit-autofill {
 	color: var(--inp-fc);
 }
 
-input,
 .input {
 	line-height: var(--inp-height);
 }
@@ -5745,10 +5597,6 @@ input,
 input:focus {
 	border-color: var(--inp-clr-accent);
 	box-shadow: var(--inp-shadow);
-}
-
-select {
-	height: var(--inp-height);
 }
 
 select optgroup {
@@ -6150,64 +5998,6 @@ input[type='number']:not(.number-input-with-arrows)::-webkit-inner-spin-button {
 
 .playable-video__play-button .icon-embed {
 	translate: 0.2rem 0;
-}
-
-/* 4.9 Modals */
-.modal {
-	display: flex;
-	position: fixed;
-	inset: 0;
-	z-index: 100;
-	visibility: hidden;
-	opacity: 0;
-	transition: opacity 0.3s;
-}
-
-.modal::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	z-index: -1;
-	background-color: hsl(0, 0%, 6%, 0.6);
-	backdrop-filter: saturate(0.5);
-}
-
-.modal:has(.modal__content) {
-	justify-content: center;
-}
-
-.modal.open {
-	visibility: visible;
-	opacity: 1;
-}
-
-.modal__close {
-	opacity: 1;
-	background-position: center;
-	background-size: contain;
-	width: 1.5rem;
-	aspect-ratio: 1;
-	position: absolute;
-	top: 1rem;
-	right: 1rem;
-	filter: invert(1);
-	cursor: pointer;
-	transition: background 0.3s;
-}
-
-.modal__content {
-	width: fit-content;
-	max-width: 100%;
-	min-width: min(400px, 100%);
-	padding: 2rem;
-	margin-block: auto;
-	background-color: var(--color-neutral-50);
-	border-radius: var(--border-radius-400);
-	box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.8);
-
-	&.contrasting-background {
-		background-color: #101010;
-	}
 }
 
 /**
@@ -6830,7 +6620,6 @@ input[type='number']:not(.number-input-with-arrows)::-webkit-inner-spin-button {
 	text-wrap: balance;
 }
 
-:where(strong),
 :where(.fw-bold),
 :where(.fw-black) {
 	color: var(--fc-700);

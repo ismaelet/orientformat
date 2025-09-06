@@ -26,9 +26,11 @@ main {
 	z-index: -1;
 	background-color: var(--color-primary-400);
 }
+
 [data-show-all='false'] .school-class[data-ended='true'] {
 	display: none;
 }
+
 .section-title {
 	display: grid;
 	align-items: center;
@@ -64,7 +66,6 @@ main {
 	overflow: hidden;
 	color: var(--_color);
 	background-color: #fff;
-	border-radius: 2rem;
 	transition: background 0.25s, box-shadow 0.25s, color 0.25s;
 }
 
@@ -100,10 +101,6 @@ main {
 	grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
 }
 
-.element_class {
-	box-shadow: var(--shadow);
-}
-
 .element-list_classes .element::before {
 	background: linear-gradient(135deg, var(--color-primary-400), var(--color-4));
 }
@@ -122,11 +119,6 @@ main {
 
 .element_functionality {
 	grid-template-columns: 4rem minmax(0, 1fr);
-	box-shadow: var(--shadow);
-}
-
-.element-list_functionalities .element:hover {
-	box-shadow: var(--shadow);
 }
 
 .element-list_functionalities .element::before {

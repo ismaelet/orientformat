@@ -28,11 +28,6 @@ class Student extends Model {
 	use SoftDeletes;
 
 	/**
-	 * The primary key associated with the table
-	 */
-	protected $primaryKey = 'userId';
-
-	/**
 	 * The attributes that are mass assignable.
 	 */
 	protected $fillable = [

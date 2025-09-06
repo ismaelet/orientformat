@@ -79,6 +79,7 @@
 							placeholder="Username o email"
 							required
 							autocomplete="off"
+							class="w-full"
 						>
 						<x-icon-user class="h-4 w-4" />
 					</div>
@@ -90,12 +91,17 @@
 							placeholder="Password"
 							required
 							autocomplete="off"
+							class="w-full"
 						>
 						<x-icon-password class="h-4 w-4" />
 					</div>
 
 					@error('password')
 						<p class="error-warning">{{ $message }}</p>
+					@enderror
+
+					@error('login')
+						<p class="error-warning">Username o password errati</p>
 					@enderror
 
 					<p class=""><a
