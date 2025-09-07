@@ -82,14 +82,16 @@
 	        'loc' => 'login',
 	        'url' => client_url('/logout'),
 	        'logged' => true,
-	        'mobile' => true,
+	        'mobile' => false,
+	        'teacher' => true,
 	    ],
 	    [
 	        'title' => 'Logout',
 	        'loc' => 'login',
 	        'url' => client_url('/logout'),
 	        'logged' => true,
-	        'mobile' => false,
+	        'mobile' => true,
+	        'teacher' => true,
 	    ],
 	];
 

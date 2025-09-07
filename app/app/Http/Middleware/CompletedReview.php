@@ -48,7 +48,7 @@ class CompletedReview {
 			->where('reviewId', $reviewId)
 			->doesntExist()
 		) {
-			return redirect()->route('review', ['id' => $reviewId]);
+			return redirect()->route('review', ['review' => $reviewId]);
 		}
 
 		/**
@@ -63,7 +63,7 @@ class CompletedReview {
 				->where('reviewId', $reviewId)
 				->doesntExist()
 			) {
-				return redirect()->route('review', ['id' => $reviewId]);
+				return redirect()->route('review', ['review' => $reviewId]);
 			}
 		}
 

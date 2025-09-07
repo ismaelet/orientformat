@@ -5,10 +5,6 @@ namespace LegacyModels\Reviews;
 use LegacyModels\Model;
 use LegacyModels\User\Student;
 
-/**
- * @property int studentId
- * @property int reviewId
- */
 class ReviewResult extends Model {
 
 	/**

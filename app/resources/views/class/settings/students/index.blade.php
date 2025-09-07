@@ -12,7 +12,7 @@
 
 	<!-- List -->
 	<section class="dashboard-panel">
-		<h1 class="dashboard-panel__title">Lista degli studenti</h1>
+		<h1 class="dashboard-panel__title">Gestione studenti</h1>
 
 		<livewire:administrator.student.table :class="$class" />
 

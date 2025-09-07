@@ -3,6 +3,7 @@
 use App\Http\Controllers\Activities\GradeController;
 use App\Http\Controllers\Activities\StudentAnalysisController;
 use App\Http\Controllers\Activities\TestController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentHomeController;
 use App\Http\Middleware\CompletedReview;
@@ -48,3 +49,8 @@ Route::middleware(['auth', Locale::class])->group(function () {
 	// Sections analysis
 	Route::any('analysis/student/sections/{section}', [StudentAnalysisController::class, 'show'])->name('analysis.student.section');
 });
+
+/**
+ * Student review routes
+ */
+Route::resource('review', ReviewController::class)->middleware(['auth', Student::class])->only(['show', 'store']);

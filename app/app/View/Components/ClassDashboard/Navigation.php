@@ -68,7 +68,7 @@ class Navigation extends Component {
 				'icon' => 'settings',
 				'links' => [
 					// Student list
-					['title' => 'Lista degli studenti', 'url' => ['class.students.index', ['class' => $class->id]]],
+					['title' => 'Gestione studenti', 'url' => ['class.students.index', ['class' => $class->id]]],
 
 					// Teacher management
 					['title' => 'Gestione docenti', 'url' => ['class.teachers.index', ['class' => $class->id]]],

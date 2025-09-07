@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Responses\LogoutResponse;
+use Filament\Auth\Http\Responses\Contracts\LogoutResponse as ContractsLogoutResponse;
 use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +23,8 @@ class AppServiceProvider extends ServiceProvider {
 		foreach ($files as $key => $file) {
 			require_once $file;
 		}
+
+		$this->app->bind(ContractsLogoutResponse::class, LogoutResponse::class);
 	}
 
 	/**
