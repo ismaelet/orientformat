@@ -25,7 +25,7 @@ class Autovalutazioni extends Component {
 	public function __construct(public Student $student) {
 		$class = $student->school_class;
 		$startGrade = $class->first_grade;
-		$currentGrade = $class->grade;
+		$currentGrade = $class->grade()->absolute_number;
 		$this->userType = is_teacher() ? 'teacher' : 'student';
 
 		$this->grades = Grade::whereBetween('absolute_number', [$startGrade, $currentGrade])

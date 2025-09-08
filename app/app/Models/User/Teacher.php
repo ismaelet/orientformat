@@ -19,6 +19,7 @@ class Teacher extends Model {
 	 * Property: The attributes that are mass assignable
 	 */
 	protected $fillable = [
+		'id',
 		'user_id',
 		'school_id',
 	];

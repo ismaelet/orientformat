@@ -15,6 +15,7 @@ class AdministratorForm {
 					->columnSpanFull()
 					->label('Dati Utente')
 					->relationship('user')
+					->visibleOn('edit')
 					->schema([
 						TextInput::make('first_name')
 							->label('Nome')
@@ -37,6 +38,15 @@ class AdministratorForm {
 					->columnSpanFull()
 					->label('Dati Amministratore')
 					->schema([
+						Select::make('user_id')
+							->label('Utente')
+							->required()
+							->relationship('user', 'email', fn($query) => $query->whereDoesntHave('administrator'))
+							->searchable()
+							->placeholder('Seleziona un utente')
+							->suffixIcon('heroicon-o-user-circle')
+							->visibleOn('create')
+							->columnSpanFull(),
 						Select::make('school_id')
 							->label('Scuola')
 							->required()

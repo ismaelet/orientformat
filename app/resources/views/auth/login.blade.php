@@ -207,6 +207,7 @@
 							name="email"
 							class="inp-nospace input"
 							placeholder="Indirizzo email"
+							value="{{ old('email') }}"
 							required
 							autocomplete="off"
 						/>
@@ -244,6 +245,7 @@
 							type="date"
 							name="birthdate"
 							class="inp-nospace input"
+							value="{{ old('birthdate') }}"
 							required
 							autocomplete="off"
 							min="{{ date('Y-m-d', strtotime('-100 year')) }}"

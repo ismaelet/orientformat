@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\User\Student as UserStudent;
+use App\Models\User\Teacher;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Legacy\SchoolSystem\SchoolClass;
 use Legacy\UserSystem\Student;
 
@@ -81,19 +85,19 @@ class RegisterController extends Controller {
 
 			case $password != $passwordConfirmation:
 				// password and password confirmation don't match
-				return redirect()->back()->withErrors(['password' => 'Le password non coincidono']);
+				return redirect()->back()->withErrors(['password' => 'Le password non coincidono'])->withInput();
 
 			case \App\Legacy\LegacyDB::exists('users WHERE email = ?', [$email]):
 				// email already used
-				return redirect()->back()->withErrors(['email' => 'Esiste già un account associato a questo indirizzo email']);
+				return redirect()->back()->withErrors(['email' => 'Esiste già un account associato a questo indirizzo email'])->withInput();
 
 			case $loginType == $studentType && !$schoolClassId:
 				// no school class found matching the student class code
-				return redirect()->back()->withErrors(['class' => 'Codice della classe non riconosciuto']);
+				return redirect()->back()->withErrors(['class' => 'Codice della classe non riconosciuto'])->withInput();
 
 			case $loginType == $studentType && \App\Legacy\LegacyDB::exists('users WHERE first_name = ? AND last_name = ? AND id IN (SELECT ' . Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ?)', [$first_name, $last_name, $schoolClassId]):
 				// already exists a student in the selected school class with the same first_name and last_name
-				return redirect()->back()->withErrors(['name' => 'Esiste già un account con questo nome e cognome registrato a questa classe.']);
+				return redirect()->back()->withErrors(['name' => 'Esiste già un account con questo nome e cognome registrato a questa classe.'])->withInput();
 
 			case $loginType == $teacherType && !in_array($emailDomain, AVAILABLE_EMAIL_DOMAINS):
 				// the teacher's email is not in the allowed list
@@ -101,7 +105,7 @@ class RegisterController extends Controller {
 							piattaforma clicca <a
 								class="font-bold"
 								href="' . client_url('/help?category=1&topic=11#topic11') . '"
-							>qui</a>']);
+							>qui</a>'])->withInput();
 
 			default:
 				// generate the user
@@ -109,18 +113,38 @@ class RegisterController extends Controller {
 
 				if ($loginType == $studentType) {
 					// generate the student
-					$userId = \App\Legacy\LegacyDB::add('users (username, password, first_name, last_name, email, birthdate)', [$username, $hashedPassword, $first_name, $last_name, $email, $birthdate]);
+					$user = User::create([
+						'username' => $username,
+						'password' => $hashedPassword,
+						'first_name' => $first_name,
+						'last_name' => $last_name,
+						'email' => $email,
+						'birthdate' => $birthdate,
+					]);
 
-					\App\Legacy\LegacyDB::add('students (userId, id, ' . Student::SCHOOL_CLASS_INDEX . ')', [$userId, $userId, $schoolClassId]);
+					UserStudent::create([
+						'id' => $user->id,
+						'userId' => $user->id,
+						'schoolClassId' => $schoolClassId,
+					]);
 				} else {
 					// generate the teacher
-					$userId = \App\Legacy\LegacyDB::add('users (username, password, first_name, last_name, email, groupId)', [$username, $hashedPassword, $first_name, $last_name, $email, 1]);
+					$user = User::create([
+						'username' => $username,
+						'password' => $hashedPassword,
+						'first_name' => $first_name,
+						'last_name' => $last_name,
+						'email' => $email,
+					]);
 
-					\App\Legacy\LegacyDB::add('teachers (userId)', [$userId]);
+					Teacher::create([
+						'id' => $user->id,
+						'user_id' => $user->id,
+					]);
 				}
 
 				// Sign in the user
-				auth()->attempt($request->only('email', 'password'));
+				Auth::attempt($request->only('email', 'password'));
 
 				// Redirect
 				return redirect()->route('home');

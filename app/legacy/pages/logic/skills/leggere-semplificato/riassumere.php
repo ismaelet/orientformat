@@ -5,17 +5,16 @@ use LogicManager\TestLogic;
 $legacyTest = test();
 
 // results
-$results = [];
+$correctAnswers = [];
 
 for ($i = 1; $i <= 7; $i++) {
-	$results[] = __('tests.39-missing-word-' . $i);
+	$correctAnswers[] = $i;
 }
 
 $options = [];
 
-for ($i = 1; $i <= 7; $i++) {
+for ($i = 1; $i <= 14; $i++) {
 	$options[] = ['id' => $i, 'text' => __('tests.39-missing-word-' . $i), 'correct' => true];
-	$options[] = ['id' => $i, 'text' => __('tests.39-wrong-word-' . $i), 'correct' => false];
 }
 
 shuffle($options);
@@ -29,17 +28,19 @@ $count = count($text) - 1;
 
 foreach ($text as $key => &$part) {
 	if ($key) {
+		$inputId = $key - 1;
+
 		if ($legacyTest->completed) {
+			$result = $legacyTest->rawResults[$inputId];
 			$inp = '<span class="font-bold underline ';
-			$inp .= __en($legacyTest->rawResults[$key - 1]) == __en($results[$key - 1]) ? 'text-success-400' : 'text-error-400';
+			$inp .= $result == $correctAnswers[$inputId] ? 'text-success-400' : 'text-error-400';
 			$inp .= '">';
-			$inp .= __('shared.' . __en($legacyTest->rawResults[$key - 1]));
+			$inp .= __('tests.' . $legacyTest->id . '-missing-word-' . $result);
 			$inp .= '</span>';
 		} else {
+			$value = test()->rawResults[$key - 1] ?? '';
 			$inp = '
-			<input type="text" class="option js-field" name="field[]" value="';
-			if ($legacyTest->result && isset($legacyTest->rawResults[$key - 1])) $inp .= $legacyTest->rawResults[$key - 1];
-			$inp .= '" readonly>';
+			<label class="droppable"><span class="option"></span><input type="hidden" class="js-field" name="field[]" value="' . $value . '" readonly></label>';
 		}
 
 		$part = $inp . '<span>' . $part . '</span>';
@@ -51,11 +52,11 @@ $text = implode('', $text);
 \Legacy\LogicManager\TestLogic::setParameterCount($count)
 	->setTestSubmitFunction(
 		function ($count) {
-			$results = \App\Legacy\LegacyView::getInstance()->get('results');
+			$correctAnswers = \App\Legacy\LegacyView::getInstance()->get('correctAnswers');
 			$rightN = 0;
 
 			foreach ($_POST['field'] as $key => $result) {
-				if ($result == $results[$key]) {
+				if ($result == $correctAnswers[$key]) {
 					$rightN++;
 				}
 			}

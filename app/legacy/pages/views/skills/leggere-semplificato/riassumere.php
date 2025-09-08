@@ -6,23 +6,28 @@
 		document.querySelectorAll('.draggable').forEach(div => {
 			div.addEventListener('dragstart', e => {
 				e.dataTransfer.setData('text/plain', div.textContent.trim());
-				e.dataTransfer.setData('id', div.id); // Save id so we can hide it
+				e.dataTransfer.setData('elementId', div.id);
+				e.dataTransfer.setData('id', div.dataset.id);
 			});
 		});
 
 		// Enable inputs to accept drops
-		document.querySelectorAll('input').forEach(input => {
-			input.addEventListener('dragover', e => e.preventDefault());
+		document.querySelectorAll('.droppable').forEach(element => {
+			element.addEventListener('dragover', e => e.preventDefault());
 
-			input.addEventListener('drop', e => {
+			element.addEventListener('drop', e => {
+				const input = element.querySelector('input');
+				const label = element.querySelector('.option');
+
 				e.preventDefault();
 				const text = e.dataTransfer.getData('text/plain');
 				const id = e.dataTransfer.getData('id');
-				const div = document.getElementById(id);
+				const elementId = e.dataTransfer.getData('elementId');
+				const div = document.getElementById(elementId);
 
 				// If input already has a linked div, show it again
-				if (input.dataset.divId) {
-					const oldDiv = document.getElementById(input.dataset.divId);
+				if (element.dataset.divId) {
+					const oldDiv = document.getElementById(element.dataset.divId);
 					oldDiv.style.display = 'inline-block';
 				}
 
@@ -30,9 +35,10 @@
 				div.style.display = 'none';
 
 				// Update input value and remember which div it holds
-				input.value = text;
+				input.value = id;
+				label.textContent = text;
 				input.dispatchEvent(new Event('change'));
-				input.dataset.divId = id;
+				element.dataset.divId = elementId;
 			});
 		});
 	});
@@ -55,7 +61,7 @@
 			<?php if (!test()->completed) { ?>
 				<div class="flex gap-4 wrap justify-center <?= isSupervisor() ? 'pointer-events-none' : '' ?>">
 					<?php foreach ($options as $key => $option) { ?>
-						<p id="draggable-<?= $key ?>" class="border px-2 rounded-sm draggable-option draggable" draggable="true"><?= $option['text'] ?></p>
+						<p id="draggable-<?= $key ?>" class="border px-2 rounded-sm draggable-option draggable" draggable="true" data-id="<?= $option['id'] ?>"><?= $option['text'] ?></p>
 					<?php } ?>
 				</div>
 			<?php } ?>

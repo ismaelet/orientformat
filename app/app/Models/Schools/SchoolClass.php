@@ -92,7 +92,7 @@ class SchoolClass extends Model {
 	 * ! NOT A RELATIONSHIP
 	 */
 	public function grade(): Grade {
-		return Grade::getByNumber($this->grade, $this->professional);
+		return Grade::getByNumber($this->isHighSchool() ? $this->grade + 3 : $this->grade, $this->professional);
 	}
 
 	/**

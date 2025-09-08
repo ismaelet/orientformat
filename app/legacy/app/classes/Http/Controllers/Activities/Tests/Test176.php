@@ -60,7 +60,7 @@ class Test176 extends Test {
 				if ($key) {
 					if (test()->completed) {
 						$elementClasses = ['test-answer'];
-						$status = in_array(__en(test()->rawResults[$key - 1]), $correctAnswers[$key - 1]) ? 'font-bold text-success-400' : 'font-bold text-error-400';
+						$status = in_array((test()->rawResults[$key - 1]), $correctAnswers[$key - 1]) ? 'font-bold text-success-400' : 'font-bold text-error-400';
 						array_push($elementClasses, $status);
 
 						$element = '<span class="' . (implode(' ', $elementClasses)) . '">' . __('tests.176-missing-' . test()->rawResults[$key - 1]) . '</span>';
