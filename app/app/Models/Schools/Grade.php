@@ -38,9 +38,21 @@ class Grade extends Model {
 		'is_professional',
 	];
 
+	/**
+	 * Attribute: The name of the grade
+	 */
 	public function name(): Attribute {
 		return Attribute::make(
 			get: fn() => ucfirst($this->ordinal()) . ' anno'
+		);
+	}
+
+	/**
+	 * Attribute: The full name of the grade
+	 */
+	public function fullName(): Attribute {
+		return Attribute::make(
+			get: fn() => ucfirst($this->ordinal()) . ' anno' . ($this->isMiddleschool() ? '' : ($this->is_professional ? ' (professionale)' : ' (liceo)'))
 		);
 	}
 
@@ -104,7 +116,7 @@ class Grade extends Model {
 	 * Check if the grade is a middle school grade
 	 */
 	public function isMiddleschool(): bool {
-		return $this->number < 4;
+		return $this->absolute_number < 4;
 	}
 
 	/**

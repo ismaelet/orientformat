@@ -53,6 +53,8 @@ return [
 	"ruota-avanzato" => "Das Rad der Emotionen",
 	"poi" => "POI",
 	"autovalutazioni" => "Autovalutierungen",
+	"capolavori" => "Meine Meisterwerke",
+	'eportfolio' => 'E-Portfolio und Abschlussprüfung',
 
 	"description-stili" => "Meine Denkweise",
 	"description-resilienza" => "Wie man in schwierigen Situationen widersteht",
@@ -105,5 +107,7 @@ return [
 	"description-scrivere-intermedio" => "Eine mächtige Technik beherrschen",
 	"description-ruota-avanzato" => "Namen für das finden, was ich fühle",
 	"description-poi" => "Hier findest du dein Orientierungsprofil, das sich mit dem Fortschritt deiner Selbsteinschätzungen aktualisiert",
-	"description-autovalutazioni" => "Hier kannst du alle Selbsteinschätzungen finden, die sich auf die verschiedenen Bereiche beziehen, die das Individuelle Orientierungsprofil (POI) ausmachen"
+	"description-autovalutazioni" => "Hier kannst du alle Selbsteinschätzungen finden, die sich auf die verschiedenen Bereiche beziehen, die das Individuelle Orientierungsprofil (POI) ausmachen",
+	"description-capolavori" => "Du kannst ein oder mehrere Meisterwerke hochladen, die du im Laufe des Jahres auch ersetzen oder ändern kannst.",
+	"description-eportfolio" => "Hier kannst du die Meisterwerke, deine POIs und die Selbsteinschätzungen sammeln, die den Erwerb deiner Kompetenzen am besten beschreiben",
 ];

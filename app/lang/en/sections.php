@@ -53,6 +53,8 @@ return [
 	"ruota-avanzato" => "The Wheel of Emotions",
 	"poi" => "POI",
 	"autovalutazioni" => "Self-Assessments",
+	"capolavori" => "My Masterpieces",
+	'eportfolio' => 'E-Portfolio and Final Exam',
 
 	"description-stili" => "My way of thinking",
 	"description-resilienza" => "How to resist in difficult situations",
@@ -106,4 +108,6 @@ return [
 	"description-ruota-avanzato" => "Naming what I feel",
 	"description-poi" => "Here you will find your orientation profile, which updates as you progress through your self-assessments",
 	"description-autovalutazioni" => "Here you can find all self-assessments related to the different areas that make up the Individualized Orientation Profile (POI)",
+	"description-capolavori" => "You can upload one or more masterpieces, which you can also replace or modify during the year.",
+	"description-eportfolio" => "Here you can collect the Masterpieces, your POIs and the self-assessments that best describe the acquisition of your skills",
 ];

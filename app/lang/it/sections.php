@@ -53,6 +53,8 @@ return [
 	"ruota-avanzato" => "La ruota delle emozioni",
 	"poi" => "POI",
 	"autovalutazioni" => "Autovalutazioni",
+	"capolavori" => "I miei capolavori",
+	'eportfolio' => 'E-Portfolio e Esame di Stato',
 
 	"description-stili" => "Il mio modo di pensare",
 	"description-resilienza" => "Come resistere nelle difficoltà",
@@ -106,4 +108,6 @@ return [
 	"description-ruota-avanzato" => "Dare un nome a ciò che sento",
 	"description-poi" => "Qui trovi il tuo profilo orientativo che si aggiorna con il progredire delle tue autovalutazioni",
 	"description-autovalutazioni" => "Qui puoi trovare tutte le autovalutazioni relative alle diverse aree che costituiscono il Profilo Orientativo Individualizzato (POI)",
+	"description-capolavori" => "Puoi inserire uno o più capolavori, che nel corso dell’anno potrai anche sostituire o modificare.",
+	"description-eportfolio" => "Qui potrai raccogliere i Capolavori, i tuoi POI e le autovalutazioni che meglio descrivono l’acquisizione delle tue competenze",
 ];

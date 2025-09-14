@@ -112,11 +112,6 @@
 	        $valid = false;
 	    }
 
-	    // check teacher filter
-	    if (isset($link['teacher']) && ($userGroupId != 1 || (is_administrator() && !isset($link['administrator'])))) {
-	        $valid = false;
-	    }
-
 	    // check manager filter
 	    if (isset($link['manager']) && !manager()) {
 	        $valid = false;

@@ -46,7 +46,11 @@
 										<div class="section-img gradient-overlay grid stack-content items-center justify-items-center">
 											<div class="section-img-over"></div>
 											<div class="section__icon w-20 flex justify-center">
-												<?= embed_icon('sections/section-' . $section->originalSection()->id) ?>
+												<?php if (in_array($section->slug, ['capolavori', 'eportfolio'])) { ?>
+													<?= embed_icon('sections/' . $section->slug) ?>
+												<?php } else { ?>
+													<?= embed_icon('sections/section-' . $section->originalSection()->id) ?>
+												<?php } ?>
 											</div>
 										</div>
 

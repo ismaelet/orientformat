@@ -4,6 +4,8 @@
 
 <form class="form" id="form" method="POST" enctype="multipart/form-data">
 
+	<?= csrf_field() ?>
+
 	<div class="form-head">
 		<h1 class="form-title"><?= $title ?? \App\Legacy\LegacyView::getInstance()->title ?></h1>
 	</div>

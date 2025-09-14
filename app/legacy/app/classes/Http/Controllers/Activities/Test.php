@@ -34,7 +34,7 @@ class Test extends LegacyTestController {
 		$speed = $_POST['speed'] ?? 0;
 
 		// get if the test is completed
-		$completed = !isset($_POST['skip']);
+		$completed = !isset($_POST['skip']) ? 1 : 0;
 
 		// save result
 		test()->saveResult($result, $score, $completed, $speed);

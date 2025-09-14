@@ -2,6 +2,9 @@
 
 namespace App\Filament\Resources\Sections\Schemas;
 
+use App\Models\Activities\Area;
+use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -24,12 +27,24 @@ class SectionForm {
 					->placeholder('Inserisci la descrizione')
 					->rows(5)
 					->required(),
+				Select::make('areaId')
+					->label('Area')
+					->placeholder('Seleziona l\'area')
+					->options(function () {
+						return Area::pluck('name', 'id')->toArray();
+					})
+					->required(),
 				Select::make('evaluation_test_id')
 					->label('Test di valutazione')
 					->placeholder('Seleziona il test di valutazione')
+					->visibleOn('edit')
 					->options(function ($record) {
 						return $record->tests()->pluck('title', 'id')->toArray();
 					}),
+				Checkbox::make('isStandard')
+					->label('Sezione standard')
+					->helperText('Indica se questa sezione è una sezione standard che gli studenti devono completare per superare l\'anno')
+					->default(true),
 			]);
 	}
 }

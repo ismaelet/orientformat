@@ -25,6 +25,16 @@
 				modal.setAttribute('data-open', 'false');
 			}
 		}
+
+		document.addEventListener('keydown', function(event) {
+			if (event.key === 'Escape') {
+				const openModals = document.querySelectorAll('.modal[data-open="true"]');
+
+				openModals.forEach(modal => {
+					modal.setAttribute('data-open', 'false');
+				});
+			}
+		});
 	</script>
 @endpushOnce
 
