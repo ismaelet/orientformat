@@ -9,7 +9,7 @@
 			<p class="txt-12rem mt-2">Seleziona un argomento dalla lista qui sotto</p>
 			<div class="categories">
 
-				<?php while ($category = $categories->fetch_assoc()) { ?>
+				<?php foreach ($categories as $category) { ?>
 
 					<a class="category" href="?category=<?= $category['id'] ?>">
 						<div class="category_icon icon-box">
@@ -38,7 +38,7 @@
 
 			<div class="topics">
 
-				<?php while ($topic = $topics->fetch_assoc()) { ?>
+				<?php foreach ($topics as $topic) { ?>
 
 					<div class="topic <?= $topicId == $topic['id'] ? 'active' : '' ?> js-topic" id="topic<?= $topic['id'] ?>" data-id="<?= $topic['id'] ?>">
 						<h3 class="topic_title js-open-topic"><?= $topic['name'] ?></h3>

@@ -3,6 +3,7 @@
 namespace App\Models\Activities;
 
 use App\Models\Schools\Grade;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -35,6 +36,12 @@ class Section extends Model {
 	 * The table associated with the model
 	 */
 	protected $table = 'sections';
+
+	public function description(): Attribute {
+		return Attribute::make(
+			get: fn() => __(key: 'sections.description-' . $this->slug)
+		);
+	}
 
 	/**
 	 * Relationship: The area that this section belongs to
@@ -114,5 +121,20 @@ class Section extends Model {
 	 */
 	public function testCount(): int {
 		return $this->tests->count();
+	}
+
+	/**
+	 * Get the icon for the section
+	 * 
+	 * ! Legacy
+	 */
+	public function legacyIcon(): string {
+		$filePath = resource_path('svg/icons/sections/' . $this->slug . '.svg');
+
+		if (file_exists($filePath)) {
+			return embed_icon('sections/' . $this->originalSection()->slug);
+		} else {
+			return embed_icon('sections/section-' . $this->originalSection()->id);
+		}
 	}
 }

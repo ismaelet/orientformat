@@ -19,6 +19,7 @@ class LoginController extends Controller {
 		$teacherType = 'teacher';
 		$loginType = $request->query('login-type', $studentType);
 		$loginType = in_array($loginType, [$studentType, $teacherType]) ? $loginType : $studentType;
+		$register = $request->query('register', false);
 
 		return view('auth.login')
 			->with([
@@ -26,7 +27,8 @@ class LoginController extends Controller {
 				'title' => 'Login',
 				'loginType' => $loginType,
 				'studentType' => $studentType,
-				'teacherType' => $teacherType
+				'teacherType' => $teacherType,
+				'register' => $register,
 			]);
 	}
 

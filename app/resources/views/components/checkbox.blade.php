@@ -77,7 +77,7 @@
 		@checked($checked)
 	>
 
-	<span></span>
+	<span class="shrink-0"></span>
 
 	<p>{!! $text !!}</p>
 

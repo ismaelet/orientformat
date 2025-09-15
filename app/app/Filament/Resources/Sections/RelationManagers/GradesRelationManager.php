@@ -27,6 +27,8 @@ class GradesRelationManager extends RelationManager {
 	public function table(Table $table): Table {
 		return $table
 			->recordTitleAttribute('absolute_number')
+			->recordTitle(fn($record) => $record->full_name)
+			->defaultSort('absolute_number', 'asc')
 			->columns([
 				TextColumn::make('full_name')
 					->label('Anno'),
@@ -35,7 +37,6 @@ class GradesRelationManager extends RelationManager {
 				//
 			])
 			->headerActions([
-				CreateAction::make(),
 				AttachAction::make(),
 			])
 			->recordActions([

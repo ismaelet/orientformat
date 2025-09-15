@@ -34,10 +34,10 @@
 
 	<livewire:styles />
 
-	@filamentStyles
 	@vite(['resources/css/app.css', 'resources/js/app.ts'])
 	@stack('styles')
 	@stack('scripts')
+	@filamentStyles
 
 </head>
 

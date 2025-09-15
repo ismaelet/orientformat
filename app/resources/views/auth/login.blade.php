@@ -22,9 +22,7 @@
 	:$location
 >
 
-	<div
-		class="page-body js-page-content <?= isset($_GET['register']) ? 'register-page' : 'login-page' ?> span-full-width grid"
-	>
+	<div class="page-body js-page-content <?= $register ? 'register-page' : 'login-page' ?> span-full-width grid">
 
 		<!-- Images -->
 		<div class="images stack-content grid">

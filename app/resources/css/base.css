@@ -95,3 +95,9 @@ svg:where(:not(.fi-icon)) {
 .span-full-width {
 	grid-column: full-width;
 }
+
+.text-link {
+	color: var(--color-secondary-300);
+	font-weight: var(--font-weight-semibold);
+	text-decoration: underline;
+}

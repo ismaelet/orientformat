@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Activities\Area;
+use App\Models\Schools\Grade;
+
 $selectedSchoolType = $_GET['type'] ?? null;
 
 $schoolTypes = [

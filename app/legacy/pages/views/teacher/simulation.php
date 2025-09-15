@@ -38,7 +38,7 @@ use App\Models\Schools\Grade;
 		<?php foreach ($schoolTypes as $schoolTypeSlug => $schoolType) { ?>
 
 			<div class="school-type js-school-type <?= $selectedSchoolType && $selectedSchoolType == $schoolTypeSlug ? 'active' : '' ?>" data-school-type="<?= $schoolTypeSlug ?>">
-				<div class="grades">
+				<div class="grades grid gap-8">
 
 					<?php for ($gradeId = $schoolType['grades'][0]; $gradeId <= $schoolType['grades'][1]; $gradeId++) {
 						$grade = Grade::where('absolute_number', $gradeId)
@@ -50,7 +50,7 @@ use App\Models\Schools\Grade;
 						}
 					?>
 
-						<div class="grade">
+						<div class="grade border p-4 sm:px-8 py-12 rounded border-neutral-400 border-dashed">
 							<h3 class="grade__title"><?= __('misc.grade-description', ['numeral' => __($grade->ordinal())]) ?></h3>
 
 							<div class="areas">
@@ -70,7 +70,7 @@ use App\Models\Schools\Grade;
 													<div class="load--fade-in js-load" data-direction="bottom" data-delay="<?= $sectionKey % 3 ?>">
 														<a class="activity element element_functionality" href="<?= $section->url() ?>">
 															<div class="element-icon icon-box">
-																<?= embed_icon('sections/section-' . $section->originalSection()->id) ?>
+																<?= $section->legacyIcon() ?>
 															</div>
 
 															<div>

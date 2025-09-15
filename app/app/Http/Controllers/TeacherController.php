@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Class\InviteRequest;
 use App\Models\Class\JoinRequest;
 use App\Models\Notification;
+use App\Models\Schools\Grade;
 use App\Models\Schools\School;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -222,5 +223,13 @@ completate sia di quelle non ancora completate.'
 		return redirect()
 			->route('home')
 			->with('success', "La scelta dell'istituto è stata aggiornata con successo.");
+	}
+
+	/**
+	 * Display the simulation index
+	 */
+	public function simulationIndex() {
+		\App\Legacy\LegacyView::setPage('teacher/simulation')
+			->show();
 	}
 }

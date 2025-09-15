@@ -1,16 +1,19 @@
 <?php
 
+use App\Models\Support\SupportCategory;
+use Illuminate\Support\Facades\Vite;
+
 $categoryId = $_GET['category'] ?? null;
 $topicId = $_GET['topic'] ?? null;
 $topicText = '';
 
 // fetch categories
-$categories = \App\Legacy\LegacyDB::select('* FROM support_categories ORDER BY id ASC');
+$categories = SupportCategory::orderBy('sort')->get();
 
 // fetch topics
 if ($categoryId) {
-	$categoryData = \App\Legacy\LegacyDB::row('* FROM support_categories WHERE id = ?', [$categoryId]);
-	$topics = \App\Legacy\LegacyDB::select('* FROM support_topics WHERE categoryId = ? ORDER BY id ASC', [$categoryId]);
+	$categoryData = SupportCategory::find($categoryId);
+	$topics = $categoryData ? $categoryData->topics()->orderBy('id', 'asc')->get() : collect();
 }
 
 function _fill_text($text, $topicId) {
@@ -38,7 +41,13 @@ function _fill_text($text, $topicId) {
 	while (strpos($text, $needle = '{{ img }}') !== false) {
 		$imgId++;
 
-		$text = preg_replace('/' . $needle . '/', '<br><br><img class="topic_img js-open-modal" src="' . client_path($topicId . '-' . $imgId . '.jpg') . '" loading="lazy" data-target="img-modal"><br>', $text, 1);
+		if (file_exists(resource_path('images/support/' . $topicId . '-' . $imgId . '.webp'))) {
+			$imagePath = Vite::image('support/' . $topicId . '-' . $imgId . '.webp');
+		} else {
+			$imagePath = asset('legacy/pages/assets/support/' . $topicId . '-' . $imgId . '.jpg');
+		}
+
+		$text = preg_replace('/' . $needle . '/', '<br><br><img class="topic_img js-open-modal" src="' . $imagePath . '" loading="lazy" data-target="img-modal"><br>', $text, 1);
 	}
 
 	return $text;

@@ -112,6 +112,11 @@
 	        $valid = false;
 	    }
 
+	    // check teacher filter
+	    if (isset($link['teacher']) && !teacher()) {
+	        $valid = false;
+	    }
+
 	    // check manager filter
 	    if (isset($link['manager']) && !manager()) {
 	        $valid = false;

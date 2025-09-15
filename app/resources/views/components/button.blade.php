@@ -4,6 +4,7 @@
     'variant' => 'primary',
     'size' => 'regular',
     'color' => 'default',
+    'disabled' => false,
 ])
 
 @php
@@ -18,6 +19,12 @@
 				position: relative;
 				min-width: 12rem;
 				cursor: pointer;
+
+				&:disabled {
+					pointer-events: none;
+					filter: grayscale(100%);
+					opacity: 0.6;
+				}
 
 				&[data-variant="primary"] {
 					position: relative;
@@ -165,5 +172,6 @@
 		data-variant="{{ $variant }}"
 		data-size="{{ $size }}"
 		data-color="{{ $color }}"
+		@disabled($disabled)
 	>{{ $slot }}</button>
 @endif

@@ -38,6 +38,10 @@ Route::prefix('/teacher')->middleware(Teacher::class)->name('teacher.')->group(f
 
 	Route::post('school/store', [TeacherController::class, 'storeSchool'])
 		->name('school.store');
+
+	// Simulation
+	Route::get('simulation', [TeacherController::class, 'simulationIndex'])
+		->name('simulation');
 });
 
 /**

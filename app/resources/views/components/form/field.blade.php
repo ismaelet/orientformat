@@ -1,3 +1,3 @@
-<div class="grid gap-1 grid-cols-1">
-    {{ $slot }}
+<div {{ $attributes->merge(['class' => 'grid grid-cols-1 gap-2']) }}>
+	{{ $slot }}
 </div>

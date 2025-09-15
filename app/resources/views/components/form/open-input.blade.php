@@ -12,7 +12,6 @@
 			border: none;
 			border-bottom: var(--border-width) solid var(--color-neutral-300, #DDD);
 			outline: none;
-			color: var(--color-neutral-400);
 
 			&:-webkit-autofill {
 				color: var(--color-neutral-400);
@@ -28,5 +27,5 @@
 	value="{{ $value }}"
 	placeholder="{{ $placeholder }}"
 	{{ $required ? 'required' : '' }}
-	class="open-input font-heading w-full py-3"
+	{{ $attributes->merge(['class' => 'open-input font-heading w-full py-3']) }}
 />

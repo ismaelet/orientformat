@@ -102,6 +102,15 @@ class Student extends Model {
 	/**
 	 * The class the student is in
 	 */
+	public function class(): BelongsTo {
+		return $this->belongsTo(SchoolClass::class, 'schoolClassId');
+	}
+
+	/**
+	 * The class the student is in
+	 * 
+	 * ! Legacy
+	 */
 	public function school_class(): BelongsTo {
 		return $this->belongsTo(SchoolClass::class, 'schoolClassId');
 	}

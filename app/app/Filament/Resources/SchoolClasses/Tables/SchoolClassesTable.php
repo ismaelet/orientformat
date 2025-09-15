@@ -17,7 +17,7 @@ class SchoolClassesTable {
 		return $table
 			->modifyQueryUsing(
 				fn($query) =>
-				$query->with(['school', 'referent.user'])
+				$query->with(['school', 'referent.user', 'teachers.user'])
 			)
 			->defaultSort('id', 'desc')
 			->columns([
@@ -37,8 +37,12 @@ class SchoolClassesTable {
 				TextColumn::make('referent.full_name')
 					->sortable(['referent.first_name', 'referent.last_name'])
 					->label('Referente'),
+				TextColumn::make('teachers.full_name')
+					->label('Docenti')
+					->listWithLineBreaks()
+					->state(fn($record) => $record->teachers->map(fn($teacher) => $teacher->full_name)),
 			])
-			->searchable(['referent.user.first_name', 'referent.user.last_name'])
+			->searchable(['referent.user.first_name', 'referent.user.last_name', 'teachers.user.first_name', 'teachers.user.last_name', 'school.name', 'name', 'code'])
 			->filters([
 				TrashedFilter::make(),
 			])
