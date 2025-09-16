@@ -27,7 +27,7 @@
 					<div class="character__weapon js-weapon-image-wrapper <?= test()->completed ? 'active' : null ?>">
 						<?= embed_icon('weapon') ?>
 
-						<img class="js-weapon-image" src="<?= client_path('weapon-' . test()->rawResults[$characterKey]) ?>" alt="">
+						<img class="js-weapon-image" src="<?= client_path('weapon-' . (test()->rawResults[$characterKey] ?? 'default')) ?>" alt="">
 					</div>
 
 					<div class="character__body">

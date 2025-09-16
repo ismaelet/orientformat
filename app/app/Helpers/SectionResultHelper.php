@@ -19,7 +19,7 @@ class SectionResultHelper {
 			9, 31 => self::sectionSelfEvaluationResult($student, $section),
 
 			// Result of agglomerates of tests
-			3, 4, 10, 11, 12, 13, 14, 17, 29, 32, 33, 39, 40, 41, 47, 48, 49, 50, 51, 53, 55, 57  => self::sectionAgglomeratedResult($student, $section),
+			3, 4, 10, 11, 12, 13, 14, 17, 29, 32, 33, 39, 41, 47, 48, 49, 50, 51, 53, 55, 57  => self::sectionAgglomeratedResult($student, $section),
 
 			// Result of histogram sections
 			5, 15, 30, 38, 40, 42, 56  => self::histogramResult($student, $section),

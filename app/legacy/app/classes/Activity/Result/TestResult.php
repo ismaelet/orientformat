@@ -33,7 +33,7 @@ class TestResult {
 		// save results
 		$id = \App\Legacy\LegacyDB::add(
 			self::TABLE . ' (' . self::USER_INDEX . ', ' . self::TEST_INDEX . ', result, percentage, completed, speed)',
-			[$data['studentId'], $data['testId'], $data['results'], $data['percentage'], $data['completed'], $data['speed']]
+			[$data['studentId'], $data['testId'], $data['results'], $data['percentage'], (bool) $data['completed'], $data['speed']]
 		);
 
 		// permanent record

@@ -185,7 +185,7 @@ $f_contacts = ['inst', 'fb', 'mail'];
 						<a href="<?= config('custom.contacts.web.url') ?>">
 							<img
 								src="<?= Vite::image('logo/logo-white.png') ?>"
-								class="mb-4 max-w-80">
+								class="mb-4 w-80 max-w-full">
 						</a>
 
 						<p class="mb-4">

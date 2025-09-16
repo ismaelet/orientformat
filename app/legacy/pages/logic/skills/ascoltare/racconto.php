@@ -48,12 +48,12 @@ $answers = $answers ?? [
 ];
 
 foreach ($answers as $key => $answer) {
-	$answers[$key]['res'] = [
+	$answers[$key]['res'] = array_filter([
 		__('tests.' . $legacyTest->id . '-answer-' . ($key + 1) . '-1'),
 		__('tests.' . $legacyTest->id . '-answer-' . ($key + 1) . '-2'),
 		__('tests.' . $legacyTest->id . '-answer-' . ($key + 1) . '-3'),
-		__('tests.' . $legacyTest->id . '-answer-' . ($key + 1) . '-4'),
-	];
+		$legacyTest->id == 138 ? null : __('tests.' . $legacyTest->id . '-answer-' . ($key + 1) . '-4'),
+	]);
 }
 
 foreach ($questions as $questionKey => $question) {

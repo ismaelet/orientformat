@@ -455,6 +455,7 @@
 		.h-icoM-rot {
 			width: 100%;
 			height: 100%;
+			border-radius: 1rem;
 			transform: rotate(0deg);
 			transition: transform 0.4s;
 		}
@@ -860,7 +861,7 @@
 				<?php if ($h_comp['login']) { ?>
 				<div
 					id="h-log-box"
-					class="inlb va-cen hidden lg:block"
+					class="va-cen hidden lg:block"
 				>
 
 					<?php if ($userId) { ?>
@@ -985,7 +986,7 @@
 
 										{{ $h_link['title'] }}
 										@if (isset($h_link['drop']))
-											echo ' <span class="h-dropM-ico">&#x25BC;</span>';
+											<span class="h-dropM-ico">&#x25BC;</span>
 										@endif
 									</p>
 

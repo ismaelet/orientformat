@@ -81,31 +81,55 @@ class RegisterController extends Controller {
 		switch (true) {
 			case strlen($password) < 8:
 				// password too short
-				return redirect()->back()->withErrors(['password' => 'La password deve avere almeno 8 caratteri'])->withInput()->with(['register' => true, 'login-type' => $loginType,]);
+				return redirect()
+					->back()
+					->with(['register' => true, 'login-type' => $loginType])
+					->withErrors(['password' => 'La password deve avere almeno 8 caratteri'])
+					->withInput();
 
 			case $password != $passwordConfirmation:
 				// password and password confirmation don't match
-				return redirect()->back()->withErrors(['password' => 'Le password non coincidono'])->withInput()->with(['register' => true, 'login-type' => $loginType,]);
+				return redirect()
+					->back()
+					->with(['register' => true, 'login-type' => $loginType])
+					->withErrors(['password' => 'Le password non coincidono'])
+					->withInput();
 
 			case \App\Legacy\LegacyDB::exists('users WHERE email = ?', [$email]):
 				// email already used
-				return redirect()->back()->withErrors(['email' => 'Esiste già un account associato a questo indirizzo email'])->withInput()->with(['register' => true, 'login-type' => $loginType,]);
+				return redirect()
+					->back()
+					->with(['register' => true, 'login-type' => $loginType])
+					->withErrors(['email' => 'Esiste già un account con questa email'])
+					->withInput();
 
 			case $loginType == $studentType && !$schoolClassId:
 				// no school class found matching the student class code
-				return redirect()->back()->withErrors(['class' => 'Codice della classe non riconosciuto'])->withInput()->with(['register' => true, 'login-type' => $loginType,]);
+				return redirect()
+					->back()
+					->with(['register' => true, 'login-type' => $loginType])
+					->withErrors(['class' => 'Codice della classe non riconosciuto'])
+					->withInput();
 
 			case $loginType == $studentType && \App\Legacy\LegacyDB::exists('users WHERE first_name = ? AND last_name = ? AND id IN (SELECT ' . Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE ' . Student::SCHOOL_CLASS_INDEX . ' = ?)', [$first_name, $last_name, $schoolClassId]):
 				// already exists a student in the selected school class with the same first_name and last_name
-				return redirect()->back()->withErrors(['name' => 'Esiste già un account con questo nome e cognome registrato a questa classe.'])->withInput()->with(['register' => true, 'login-type' => $loginType,]);
+				return redirect()
+					->back()
+					->with(['register' => true, 'login-type' => $loginType])
+					->withErrors(['name' => 'Esiste già un account con questo nome e cognome registrato a questa classe.'])
+					->withInput();
 
 			case $loginType == $teacherType && !in_array($emailDomain, AVAILABLE_EMAIL_DOMAINS):
 				// the teacher's email is not in the allowed list
-				return redirect()->back()->withErrors(['email' => 'Indirizzo email non supportato. Per vedere la lista dei domini email supportati dalla
+				return redirect()
+					->back()
+					->with(['register' => true, 'login-type' => $loginType])
+					->withErrors(['email' => 'Indirizzo email non supportato. Per vedere la lista dei domini email supportati dalla
 							piattaforma clicca <a
 								class="font-bold"
 								href="' . client_url('/help?category=1&topic=11#topic11') . '"
-							>qui</a>'])->withInput()->with(['register' => true, 'login-type' => $loginType,]);
+							>qui</a>'])
+					->withInput();
 
 			default:
 				// generate the user

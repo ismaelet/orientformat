@@ -85,6 +85,14 @@ $raw_links = [
 		'url' => client_url('/logout'),
 		'logged' => true,
 		'teacher' => true,
+		'mobile' => false,
+	],
+	[
+		'title' => 'Logout',
+		'loc' => 'login',
+		'url' => client_url('/logout'),
+		'logged' => true,
+		'mobile' => true,
 	],
 ];
 
@@ -103,7 +111,7 @@ foreach ($raw_links as $link) {
 	if (isset($link['student']) && $userGroupId != 0) $valid = false;
 
 	// check teacher filter
-	if (isset($link['teacher']) && ($userGroupId != 1 || !is_administrator())) $valid = false;
+	if (isset($link['teacher']) && !is_teacher()) $valid = false;
 
 	// check manager filter
 	if (isset($link['manager']) && !manager()) $valid = false;
@@ -141,6 +149,8 @@ $h_drop = [
 		['Istruzione e Formazione Professionale', '/teacher/simulation?type=professional-school'],
 	],
 ];
+
+$localeEnabled = in_array('App\Http\Middleware\Locale', Route::current()->gatherMiddleware());
 ?>
 
 <style>
@@ -175,6 +185,7 @@ $h_drop = [
 	#h-pan.h-open {
 		background-color: #fff;
 		position: fixed !important;
+		width: 100vw;
 	}
 
 	#h-pan.h-open #h-bgr,
@@ -431,6 +442,7 @@ $h_drop = [
 	.h-icoM-rot {
 		width: 100%;
 		height: 100%;
+		border-radius: 1rem;
 		transform: rotate(0deg);
 		transition: transform 0.4s;
 	}
@@ -474,6 +486,8 @@ $h_drop = [
 
 	/* Mobile menu */
 	#h-navM {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
 		width: 100%;
 		height: 100%;
 		overflow: hidden;
@@ -490,18 +504,32 @@ $h_drop = [
 	}
 
 	#h-contM {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		max-height: 100%;
 		position: relative;
-		padding: 2rem 2rem 0 2rem;
+		padding: 2rem;
+	}
+
+	.h-linkM {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		grid-template-rows: minmax(0, 1fr);
+		align-items: center;
+		border-bottom: 1px dashed #ddd;
+
+		&:last-child {
+			border-bottom: 0;
+		}
+
 	}
 
 	.h-linkM-txt {
 		opacity: 0;
-		border-bottom: 1px dashed #ddd;
 		padding-left: 20px;
 		transform: translateX(-4rem);
 		font-size: 1.1rem;
 		letter-spacing: 0.1em;
-		line-height: 6;
 		cursor: pointer;
 		transition: opacity 0.4s 0.5s, transform 0.4s 0.4s, color 0.5s;
 	}
@@ -589,8 +617,7 @@ $h_drop = [
 	/* Responsive */
 	@media (max-width: 1024px) {
 		#h-pan {
-			padding-left: 3rem;
-			padding-right: 3rem;
+			padding-inline: 3rem;
 		}
 
 		#h-logo {
@@ -600,8 +627,7 @@ $h_drop = [
 
 	@media (max-width: 480px) {
 		#h-pan {
-			padding-left: 2rem;
-			padding-right: 2rem;
+			padding-inline: 1rem;
 		}
 
 		.h-name {
@@ -610,8 +636,7 @@ $h_drop = [
 		}
 
 		#h-contM {
-			padding-left: 1rem;
-			padding-right: 1rem;
+			padding-inline: 1rem;
 		}
 
 		#h-srch-cbx:checked~#h-srch-inp-box {
@@ -905,7 +930,7 @@ $h_drop = [
 							} ?>
 
 							<!-- Language -->
-							<?php if (is_student()) { ?>
+							<?php if (is_student() || $localeEnabled) { ?>
 								<div class="flex justify-center items-center gap-8 w-full mt-12">
 									<?php foreach (config('app.locales') as $locale => $language) { ?>
 

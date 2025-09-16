@@ -31,6 +31,7 @@ class Section extends Component {
 		// Result data
 		$this->resultLabel = $section->result_label ?: 'Risultato dell\'autovalutazione';
 		$student->load('section_results', 'section_results.student', 'section_results.section', 'section_results.section.evaluation_test');
+
 		$this->result = SectionResultHelper::label($student, $section);
 		$this->selfEvaluationTest = $section->evaluation_test;
 
