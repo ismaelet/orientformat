@@ -91,7 +91,6 @@
 	        'url' => client_url('/logout'),
 	        'logged' => true,
 	        'mobile' => true,
-	        'teacher' => true,
 	    ],
 	];
 

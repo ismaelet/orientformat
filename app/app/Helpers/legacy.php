@@ -397,7 +397,7 @@ function submit(bool $progressiveButton = false) {
 		case $from && isSupervisor(): ?>
 
 			<div class="fa-center">
-				<a class="button button--secondary button--full-width js-submit-button" href="<?= route('class.students.autovalutazioni.show', ['class' => legacy_watched_student()->school_class, 'student' => legacy_watched_student()]) ?>"><?= $label ?></a>
+				<a class="button button--secondary button--full-width js-submit-button" href="<?= route('class.students.self-evaluations.show', ['class' => legacy_watched_student()->school_class, 'student' => legacy_watched_student()]) ?>"><?= $label ?></a>
 			</div>
 
 		<?php break;

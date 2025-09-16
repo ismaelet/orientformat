@@ -14,6 +14,7 @@ use App\Http\Middleware\Teacher;
 use App\Http\Middleware\TeacherBelongsToSchool;
 use App\Http\Middleware\UnderContruction;
 use Illuminate\Support\Facades\Route;
+use Spatie\Browsershot\Browsershot;
 
 /**
  * Teacher routes
@@ -97,7 +98,9 @@ Route::prefix('/class')->middleware([Teacher::class, HasClassAccess::class])->na
 	Route::get('{class}', [SchoolClassController::class, 'show'])
 		->name('show');
 
-	// General class routes
+	/**
+	 * Class general routes
+	 */
 	Route::get('{class}/progress/areas', [SchoolClassProgressController::class, 'index'])
 		->name('general.progress');
 	Route::get('{class}/progress/areas/{area}', [SchoolClassProgressController::class, 'show'])
@@ -106,7 +109,10 @@ Route::prefix('/class')->middleware([Teacher::class, HasClassAccess::class])->na
 	Route::get('{class}/graphs', [GraphController::class, 'index'])
 		->name('general.graphs');
 
-	// Students routes
+	/**
+	 * Student routes
+	 */
+	// Student results
 	Route::get('{class}/students/results', [SchoolClassController::class, 'studentResultsIndex'])
 		->name('students.results.index');
 
@@ -114,22 +120,27 @@ Route::prefix('/class')->middleware([Teacher::class, HasClassAccess::class])->na
 		->middleware(StudentBelongsToClass::class)
 		->name('students.results.show');
 
+	Route::get('{class}/students/results/{student}/pdf', [StudentResultController::class, 'downloadPdf'])
+		->middleware(StudentBelongsToClass::class)
+		->name('students.results.pdf');
+
+	Route::get('{class}/students/results/{student}/pdf', [StudentResultController::class, 'downloadPdf'])
+		->middleware(StudentBelongsToClass::class)
+		->name('students.results.pdf');
+
+	// POI
 	Route::get('{class}/students/poi/{student}', [StudentResultController::class, 'showPoi'])
 		->middleware(StudentBelongsToClass::class)
 		->name('students.poi.show');
 
-	Route::get('{class}/students/autovalutazioni/{student}', [StudentResultController::class, 'showSelfEvaluations'])
-		->middleware(StudentBelongsToClass::class)
-		->name('students.autovalutazioni.show');
-
+	// Self-evaluations
 	Route::get('{class}/students/self-evaluations/{student}', [StudentResultController::class, 'showSelfEvaluations'])
 		->middleware(StudentBelongsToClass::class)
 		->name('students.self-evaluations.show');
 
-	Route::get('{class}/students/guidance', [SchoolClassController::class, 'showStudentGuidance'])
-		->name('students.guidance.index');
-
-	// Settings routes
+	/**
+	 * Settings routes
+	 */
 	Route::get('{class}/students/index', [SettingsController::class, 'studentIndex'])
 		->name('students.index');
 

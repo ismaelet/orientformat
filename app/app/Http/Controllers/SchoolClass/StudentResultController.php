@@ -7,7 +7,9 @@ use App\Models\ReviewResult;
 use App\Models\Schools\Grade;
 use App\Models\Schools\SchoolClass;
 use App\Models\User\Student;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Spatie\Browsershot\Browsershot;
 
 class StudentResultController extends Controller {
 
@@ -55,6 +57,36 @@ class StudentResultController extends Controller {
 		return view('class.students.autovalutazioni', [
 			'class' => $class,
 			'student' => $student,
+		]);
+	}
+
+	/**
+	 * Show the results for a specific student as PDF
+	 */
+	public function downloadPdf(Request $request, SchoolClass $class, Student $student) {
+		$title = 'Risultati di ' . $student->full_name . ' - ' . $class->name;
+		$grades = Grade::where('is_professional', $class->isProfessional())
+			->where('absolute_number', '>=', $class->isMiddleSchool() ? 1 : 4)
+			->where('absolute_number', '<=', $class->grade()->absolute_number)
+			->orderByDesc('absolute_number')
+			->with('completable_sections', 'completable_sections.area')
+			->get();
+
+		$pdf = Pdf::loadView('pdf.student-result', compact('student', 'title', 'grades'))
+			->setPaper('a4', 'portrait')
+			->setOptions([
+				'isRemoteEnabled' => true,
+				'isHtml5ParserEnabled' => true,
+				'isFontSubsettingEnabled' => true,
+			]);
+
+		// Download
+		return $pdf->download("$title.pdf");
+
+		return view('pdf.student-result', [
+			'student' => $student,
+			'title' => $title,
+			'grades' => $grades,
 		]);
 	}
 }

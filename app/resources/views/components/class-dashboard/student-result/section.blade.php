@@ -1,6 +1,6 @@
 <div class="section section-color section-color--area-{{ $area->id }}">
 	<div
-		class="dashboard-panel-icon js-load load--fade-in"
+		class="dashboard-panel-icon"
 		data-delay="2"
 		data-direction="bottom"
 	>

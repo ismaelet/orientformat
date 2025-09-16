@@ -3,16 +3,13 @@
 namespace App\View\Components\ClassDashboard\StudentResult;
 
 use App\Helpers\SectionResultHelper;
-use App\Helpers\TestResultHelper;
 use App\Models\Activities\Area;
 use App\Models\Activities\Section as ActivitiesSection;
 use App\Models\Results\User\SectionResult;
-use App\Models\Results\User\TestResult;
 use App\Models\User\Student;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use Legacy\Activity\Result\Handler\StudentSectionResult;
 
 class Section extends Component {
 

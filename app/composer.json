@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2.0",
+        "barryvdh/laravel-dompdf": "^3.1",
         "blade-ui-kit/blade-icons": "^1.8",
         "dompdf/dompdf": "^3.0",
         "filament/filament": "^4.0",
@@ -15,6 +16,7 @@
         "laravel/tinker": "^2.0",
         "phpmailer/phpmailer": "^6.9",
         "sentry/sentry-laravel": "^4.14",
+        "spatie/browsershot": "^5.0",
         "symfony/filesystem": "^5.4"
     },
     "require-dev": {

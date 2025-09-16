@@ -1,8 +1,5 @@
 @pushOnce('styles')
 	<style>
-		/*
-																																	* Layout
-																																	*/
 		.page-content {
 			display: grid;
 			grid-template-columns: minmax(0, 1fr);
@@ -13,13 +10,6 @@
 			--border-clr-400: #aaa;
 		}
 
-		/*
-																																	* Header
-																																	*/
-
-		/*
-																																	* Completed
-																																	*/
 		.completed {
 			display: grid;
 			align-content: center;
@@ -138,9 +128,6 @@
 			gap: 1rem;
 		}
 
-		/*
-																																	* Specific questions
-																																	*/
 		#question-s2d3a,
 		#question-s2d3b,
 		#question-s2d3c,
