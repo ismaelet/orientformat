@@ -120,14 +120,6 @@ Route::prefix('/class')->middleware([Teacher::class, HasClassAccess::class])->na
 		->middleware(StudentBelongsToClass::class)
 		->name('students.results.show');
 
-	Route::get('{class}/students/results/{student}/pdf', [StudentResultController::class, 'downloadPdf'])
-		->middleware(StudentBelongsToClass::class)
-		->name('students.results.pdf');
-
-	Route::get('{class}/students/results/{student}/pdf', [StudentResultController::class, 'downloadPdf'])
-		->middleware(StudentBelongsToClass::class)
-		->name('students.results.pdf');
-
 	// POI
 	Route::get('{class}/students/poi/{student}', [StudentResultController::class, 'showPoi'])
 		->middleware(StudentBelongsToClass::class)

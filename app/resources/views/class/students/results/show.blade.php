@@ -16,12 +16,22 @@
 			relativo.
 		</p>
 
-		<x-button
-			href="{{ route('class.students.results.pdf', ['class' => $class, 'student' => $student]) }}"
-			class="center-icon btn-print"
-		>
-			<x-icon-download />
-			Scarica come PDF</x-button>
+		<div class="grid grid-cols-1 gap-4">
+			<x-button
+				href="{{ route('students.results.pdf', ['student' => $student]) }}"
+				class="center-icon btn-print"
+			>
+				<x-icon-download />
+				Scarica come PDF
+			</x-button>
+
+			<x-button
+				href="{{ route('class.students.results.index', ['class' => $class, 'student' => $student]) }}"
+				variant="secondary"
+			>
+				Indietro
+			</x-button>
+		</div>
 	</div>
 
 	<x-class-dashboard.student-result.page

@@ -3,6 +3,7 @@
 namespace App\View\Components\Student;
 
 use App\Models\Schools\Grade;
+use App\Models\Schools\SchoolClass;
 use App\Models\User\Student;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -19,17 +20,19 @@ class Autovalutazioni extends Component {
 
 	public string $returnUrl;
 
+	public SchoolClass $class;
+
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct(public Student $student) {
-		$class = $student->school_class;
-		$startGrade = $class->first_grade;
-		$currentGrade = $class->grade()->absolute_number;
+		$this->class = $student->school_class;
+		$startGrade = $this->class->first_grade;
+		$currentGrade = $this->class->grade()->absolute_number;
 		$this->userType = is_teacher() ? 'teacher' : 'student';
 
 		$this->grades = Grade::whereBetween('absolute_number', [$startGrade, $currentGrade])
-			->where('is_professional', $class->isProfessional())
+			->where('is_professional', $this->class->isProfessional())
 			->orderByDesc('absolute_number')
 			->with('areas', 'sections', 'sections.evaluation_test')
 			->get();
@@ -40,7 +43,7 @@ class Autovalutazioni extends Component {
 		che trovi nel Profilo Orientativo Individualizzato (POI). Puoi decidere tu quali autovalutazioni vuoi inserire
 		nell’e-portfolio.' : 'Qui puoi trovare, suddivise per anno, tutte le autovalutazioni che hai concluso, con il relativo punteggio. Cliccando sul link, puoi vedere il grafico corrispondente e valutare se i risultati concordano con la valutazione dei tuoi insegnanti e che cosa nel frattempo è eventualmente cambiato. Puoi anche trasferire le autovalutazioni che ritieni più importanti nell’e-portfolio <a class="text-link" href="https://unica.istruzione.gov.it/portale/it/orientamento/il-tuo-percorso/e-portfolio">https://unica.istruzione.gov.it/portale/it/orientamento/il-tuo-percorso/e-portfolio</a>.';
 
-		$this->returnUrl = $this->userType == 'student' ? route('activities.grades.show', ['grade' => $class->grade()]) : route('class.students.results.index', ['class' => $class]);
+		$this->returnUrl = $this->userType == 'student' ? route('activities.grades.show', ['grade' => $this->class->grade()]) : route('class.students.results.index', ['class' => $this->class]);
 	}
 
 	/**

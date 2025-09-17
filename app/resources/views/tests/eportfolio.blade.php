@@ -31,15 +31,16 @@
 
 		<div class="full-width bg-transition-400 mt-12 px-8 py-12">
 			<div class="flex flex-wrap justify-between">
-				<div class="grid grid-cols-1 content-center gap-4 text-center">
+				<div class="grid grid-cols-1 gap-4 text-center">
 					<x-heading.section class=""><span
 							class="text-shadow-md text-white">Autovalutazioni</span></x-heading.section>
-					<p class="max-w-96 text-red-950">*La possibilità di scaricare le autovalutazioni sarà disponibile al più presto</p>
-					<button
-						class="font-heading pointer-events-none flex items-center justify-center gap-2 rounded border-2 py-4 text-lg font-semibold text-white transition-all hover:border-white hover:bg-white hover:text-neutral-700 sm:min-w-96"
+					<a
+						class="font-heading flex items-center justify-center gap-2 self-end rounded border-2 py-4 text-lg font-semibold text-white transition-all hover:border-white hover:bg-white hover:text-neutral-700 sm:min-w-96"
+						href="{{ route('students.self-assessments.pdf', $student) }}"
 					>
 						<x-icon-download class="h-6 w-6" />
-						Scarica</button>
+						Scarica
+					</a>
 				</div>
 
 				<div class="grid grid-cols-1 gap-4 text-center">
@@ -49,7 +50,8 @@
 						class="font-heading pointer-events-none flex items-center justify-center gap-2 rounded border-2 py-4 text-lg font-semibold text-white transition-all hover:border-white hover:bg-white hover:text-neutral-700 sm:min-w-96"
 					>
 						<x-icon-download class="h-6 w-6" />
-						Scarica</button>
+						Scarica
+					</button>
 				</div>
 			</div>
 		</div>

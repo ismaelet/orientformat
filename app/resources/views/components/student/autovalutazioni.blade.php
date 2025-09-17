@@ -14,10 +14,20 @@
 			</div>
 		@endif
 
-		<x-button
-			href="{{ $returnUrl }}"
-			variant="secondary"
-		>Indietro</x-button>
+		<div class="grid grid-cols-1 gap-4">
+			<x-button
+				href="{{ route('students.self-assessments.pdf', $student) }}"
+				class="center-icon btn-print"
+			>
+				<x-icon-download />
+				Scarica come PDF
+			</x-button>
+
+			<x-button
+				href="{{ $returnUrl }}"
+				variant="secondary"
+			>Indietro</x-button>
+		</div>
 
 		<p class="text-center text-lg">{!! $description !!}</p>
 	</div>

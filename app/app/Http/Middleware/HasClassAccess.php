@@ -15,14 +15,16 @@ class HasClassAccess {
 	public function handle(Request $request, Closure $next): Response {
 		$class = $request->route('class');
 		$class = is_string($class) ? SchoolClass::find($class) : $class;
-		$teacher = teacher();
-		$administrator = administrator();
 
-		if ($administrator && $administrator->hasAccessToClass($class)) {
+		if (is_administrator() && administrator()->hasAccessToClass($class)) {
 			return $next($request);
 		}
 
-		if ($teacher && $teacher->hasAccessToClass($class)) {
+		if (is_teacher() && teacher()->hasAccessToClass($class)) {
+			return $next($request);
+		}
+
+		if (is_student() && student()->school_class_id == $class->id) {
 			return $next($request);
 		}
 
