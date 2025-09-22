@@ -5,7 +5,7 @@
 			border: var(--border-width) solid var(--color-success-400);
 			border-radius: calc(var(--border-radius-400) / 2);
 			background-color: hsl(var(--color-success-400-hsl) / .1);
-			box-shadow: 0px 2rem 4rem -1rem hsl(var(--color-success-400-hsl) / .4);
+			box-shadow: 0px 1rem 2rem -1rem hsl(var(--color-success-400-hsl) / .2);
 			text-align: center;
 
 			:where(&:has(svg)) {
@@ -19,4 +19,4 @@
 	</style>
 @endPushOnce
 
-<p {{ $attributes->merge(['class' => 'success-message text-success']) }}">{{ $slot }}</p>
+<p {{ $attributes->merge(['class' => 'success-message text-success-600']) }}>{{ $slot }}</p>

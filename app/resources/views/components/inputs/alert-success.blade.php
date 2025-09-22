@@ -19,4 +19,4 @@
 	</style>
 @endPushOnce
 
-<p {{ $attributes->merge(['class' => 'success-message text-success']) }}">{{ $slot }}</p>
+<p {{ $attributes->merge(['class' => 'success-message text-success-400']) }}>{{ $slot }}</p>

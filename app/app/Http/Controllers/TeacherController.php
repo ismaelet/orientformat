@@ -46,7 +46,7 @@ class TeacherController extends Controller {
 				'title' => 'Contattaci',
 				'subtitle' => 'Per dubbi o chiarimenti',
 				'desc' => 'Se hai qualche dubbio sul funzionamento della piattaforma o hai riscontrato qualche difficoltà, puoi contattarci qui.',
-				'url' => client_url('/teacher/support/open-ticket'),
+				'url' => route('help.ticket.open'),
 				'slug' => 'support'
 			],
 			[

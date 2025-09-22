@@ -62,9 +62,8 @@ $raw_links = [
 	],
 	[
 		'title' => 'Contattaci',
-		'loc' => '',
-		'url' => client_url('/teacher/support/open-ticket'),
-		'teacher' => true,
+		'loc' => 'help',
+		'url' => route('help.ticket.open'),
 	],
 	[
 		'title' => 'Support',

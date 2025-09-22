@@ -61,12 +61,10 @@
 	    [
 	        'title' => 'Contattaci',
 	        'loc' => '',
-	        'url' => client_url('/teacher/support/open-ticket'),
-	        'teacher' => true,
-	        'administrator' => true,
+	        'url' => route('help.ticket.open'),
 	    ],
 	    [
-	        'title' => 'Support',
+	        'title' => 'Supporto',
 	        'loc' => 'help',
 	        'url' => client_url('/help'),
 	    ],

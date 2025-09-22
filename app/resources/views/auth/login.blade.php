@@ -15,6 +15,15 @@
 		defer
 		src="{{ asset('js/legacy/login.js') }}"
 	></script>
+
+	<script defer>
+		function switchToRegister() {
+			const urlParams = new URLSearchParams(window.location.search);
+
+			urlParams.set('register', 'true');
+			history.replaceState(null, '', `${window.location.pathname}?${urlParams.toString()}`);
+		}
+	</script>
 @endpushOnce
 
 <x-layouts.legacy-main
@@ -22,7 +31,10 @@
 	:$location
 >
 
-	<div class="page-body js-page-content <?= $register ? 'register-page' : 'login-page' ?> span-full-width grid">
+	<div
+		class="page-body js-page-content <?= $register ? 'register-page' : 'login-page' ?> span-full-width grid"
+		x-data
+	>
 
 		<!-- Images -->
 		<div class="images stack-content grid">
@@ -110,12 +122,16 @@
 
 				<div class="form__footer">
 					<x-button type="submit">Login</x-button>
+
 					<p class="form__divider ff-titles">oppure</p>
+
 					<x-button
 						class="js-switch-form"
 						variant="secondary"
+						@click="switchToRegister()"
 					>Registrati
 					</x-button>
+
 					<x-button
 						variant="secondary"
 						href="?login-type={{ $loginType == $studentType ? $teacherType : $studentType }}"
@@ -262,7 +278,9 @@
 					<x-button
 						type="submit"
 						name="register"
+						@click="switchToRegister()"
 					>Registrati</x-button>
+
 					<x-button
 						variant="secondary"
 						href="?register=true&login-type={{ $loginType == $studentType ? $teacherType : $studentType }}"

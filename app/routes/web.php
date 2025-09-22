@@ -18,6 +18,9 @@ Route::get('', [HomeController::class, 'index'])->middleware(['auth', Locale::cl
 // Help
 Route::get('help', [HelpController::class, 'index'])->name('help');
 
+Route::get('help/ticket/open', [HelpController::class, 'openTicket'])->name('help.ticket.open');
+Route::post('help/ticket/store', [HelpController::class, 'storeTicket'])->name('help.ticket.store');
+
 // Legacy API
 Route::get('api/section-graphs/{section}', [SectionGraphController::class, 'show']);
 

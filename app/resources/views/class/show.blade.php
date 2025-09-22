@@ -13,7 +13,6 @@
 		}
 
 		.recap-panel {
-			grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
 			min-height: 100%;
 		}
 
@@ -72,10 +71,6 @@
 				padding-block: 3rem;
 			}
 
-			.recap-panel {
-				grid-template-columns: repeat(auto-fill, minmax(min(13rem, 100%), 1fr));
-			}
-
 			.lists {
 				grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
 			}
@@ -117,26 +112,20 @@
 @endpushOnce
 
 <x-layouts.class-dashboard :$class>
-	<div
-		class="grid"
-		data-spacing="800"
-	>
+	<div class="grid grid-cols-1 gap-8">
 		<section class="slider__header">
 			<div class="slider__title-block grid">
 				<x-heading.main>Pannello della<br>classe {{ $class->name }}</x-heading.main>
 				<p class="section-subtitle">Qui puoi controllare il progresso della classe e modificarne le impostazioni</p>
 			</div>
 
-			<ul
-				class="recap-panel grid"
-				data-spacing="800"
-			>
+			<ul class="recap-panel columns-15rem grid grid-cols-1 gap-4 sm:gap-8">
 
 				<a
 					class="recap-item js-load load--fade-in"
 					data-direction="bottom"
 					data-delay="1"
-					href="{{ client_url('/class/students/list') }}"
+					href="{{ route('class.students.index', $class) }}"
 					data-tilt
 					data-tilt-max="5"
 					data-tilt-glare="true"
@@ -154,7 +143,7 @@
 					class="recap-item js-load load--fade-in"
 					data-direction="bottom"
 					data-delay="2"
-					href="{{ client_url('/class/students/progress/list') }}"
+					href="{{ route('class.general.graphs', $class) }}"
 					data-tilt
 					data-tilt-max="5"
 					data-tilt-glare="true"
@@ -208,17 +197,14 @@
 		>
 
 			<!-- Recent activities -->
-			<div
-				class="dashboard-panel js-load load--fade-in"
-				data-direction="bottom"
-				data-delay="0"
-				data-load-type="always"
-			>
-				<h3 class="dashboard-panel__title">Lista degli studenti</h3>
+			<div class="dashboard-panel grid grid-cols-1 content-start gap-8 overflow-auto">
+				<x-heading.component-big>Lista degli studenti</x-heading.component-big>
+
+				<p class="md:hidden">Trascina verso sinistra per vedere di più</p>
 
 				@if ($studentCount)
 					<div
-						class="dashboard-list"
+						class="dashboard-list min-w-[640px]"
 						style="--columns: 3;"
 					>
 						<div class="dashboard-list__row dashboard-list__row--header">
@@ -243,13 +229,8 @@
 			</div>
 
 			<!-- Recent activities -->
-			<div
-				class="dashboard-panel js-load load--fade-in"
-				data-direction="bottom"
-				data-delay="0"
-				data-load-type="always"
-			>
-				<h3 class="dashboard-panel__title">Attività recenti</h3>
+			<div class="dashboard-panel grid grid-cols-1 content-start gap-8 overflow-auto">
+				<x-heading.component-big>Attività recenti</x-heading.component-big>
 
 				@if ($feedEntriesData)
 
@@ -258,7 +239,7 @@
 						@foreach ($feed as $feedEntry)
 							<div class="dashboard-list__row">
 								<div>
-									<p class="dashboard-list__label">{{ $feedEntry['studentName'] }}</p>
+									<p class="font-bold">{{ $feedEntry['studentName'] }}</p>
 									<p class="dashboard-list__field">{!! $feedEntry['text'] !!}</p>
 								</div>
 							</div>

@@ -50,7 +50,7 @@ class SchoolClassController extends Controller {
 		$progressPercent = $maxProgressCount ? round($progressCount / $maxProgressCount * 100) : 0;
 
 		// feed
-		$maxFeedCount = round(13 / 19 * $studentCount);
+		$maxFeedCount = round(0.6 * $studentCount);
 		$feed = [];
 		$feedEntriesData = $studentCount ? TestResult::query()
 			->select('studentId', 'testId')
@@ -65,7 +65,7 @@ class SchoolClassController extends Controller {
 				$feedEntry = [];
 
 				$feedEntry['studentName'] = $feedEntryData->student->full_name;
-				$feedEntry['text'] = 'ha completato l\'attività <strong>' . $feedEntryData->test->title . '</strong>';
+				$feedEntry['text'] = 'ha completato l\'attività "<i>' . $feedEntryData->test->title . '</i>"';
 
 				$feed[] = $feedEntry;
 			}

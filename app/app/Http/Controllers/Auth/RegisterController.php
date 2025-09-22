@@ -77,13 +77,14 @@ class RegisterController extends Controller {
 			$username = $usernamefirst_name . '.' . $usernamelast_name . $userNameRandomNumber;
 		}
 
+		// asdaasd.sd@scuole.provincia.tn.it
+
 		// try to register the user
 		switch (true) {
 			case strlen($password) < 8:
 				// password too short
 				return redirect()
 					->back()
-					->with(['register' => true, 'login-type' => $loginType])
 					->withErrors(['password' => 'La password deve avere almeno 8 caratteri'])
 					->withInput();
 
@@ -91,7 +92,6 @@ class RegisterController extends Controller {
 				// password and password confirmation don't match
 				return redirect()
 					->back()
-					->with(['register' => true, 'login-type' => $loginType])
 					->withErrors(['password' => 'Le password non coincidono'])
 					->withInput();
 
@@ -99,7 +99,6 @@ class RegisterController extends Controller {
 				// email already used
 				return redirect()
 					->back()
-					->with(['register' => true, 'login-type' => $loginType])
 					->withErrors(['email' => 'Esiste già un account con questa email'])
 					->withInput();
 
@@ -107,7 +106,6 @@ class RegisterController extends Controller {
 				// no school class found matching the student class code
 				return redirect()
 					->back()
-					->with(['register' => true, 'login-type' => $loginType])
 					->withErrors(['class' => 'Codice della classe non riconosciuto'])
 					->withInput();
 
@@ -115,7 +113,6 @@ class RegisterController extends Controller {
 				// already exists a student in the selected school class with the same first_name and last_name
 				return redirect()
 					->back()
-					->with(['register' => true, 'login-type' => $loginType])
 					->withErrors(['name' => 'Esiste già un account con questo nome e cognome registrato a questa classe.'])
 					->withInput();
 
@@ -123,7 +120,6 @@ class RegisterController extends Controller {
 				// the teacher's email is not in the allowed list
 				return redirect()
 					->back()
-					->with(['register' => true, 'login-type' => $loginType])
 					->withErrors(['email' => 'Indirizzo email non supportato. Per vedere la lista dei domini email supportati dalla
 							piattaforma clicca <a
 								class="font-bold"
