@@ -45,12 +45,18 @@
 				>qui</a>.</p>
 
 			{{-- Join Requests --}}
-			@if ($joinRequests->count() || $inviteRequests->count())
+			@if ($joinRequests->count() || $inviteRequests->count() || session('success'))
 				{{-- Notices --}}
 				<section class="elements mar-t-3">
 					<x-heading.section>Avvisi</x-heading.section>
 
 					<div class="mt-4 grid grid-cols-1 gap-4">
+
+						@session('success')
+							<x-alerts.success>
+								{{ session('success') }}
+							</x-alerts.success>
+						@endsession
 
 						@foreach ($joinRequests as $joinRequest)
 							<form

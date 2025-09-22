@@ -122,10 +122,10 @@ class ClassController extends Controller {
 	 */
 	public function joinAccept(Request $request, JoinRequest $joinRequest): RedirectResponse {
 		if ($joinRequest->referent_id != teacher()->id) {
-			return back()->withErrors(['join_request_id' => 'Non sei autorizzato ad accettare questa richiesta.'])->withInput();
+			return back()->withErrors(['join_request_id' => 'Non sei autorizzato ad accettare questa richiesta.']);
 		}
 
-		teacher()->school_classes()->attach($joinRequest->class_id);
+		$joinRequest->requesting_teacher->school_classes()->attach($joinRequest->class_id);
 
 		$joinRequest->delete();
 
@@ -137,7 +137,7 @@ class ClassController extends Controller {
 	 */
 	public function joinReject(Request $request, JoinRequest $joinRequest): RedirectResponse {
 		if ($joinRequest->referent_id != teacher()->id) {
-			return back()->withErrors(['join_request_id' => 'Non sei autorizzato a rifiutare questa richiesta.'])->withInput();
+			return back()->withErrors(['join_request_id' => 'Non sei autorizzato a rifiutare questa richiesta.']);
 		}
 
 		$joinRequest->delete();

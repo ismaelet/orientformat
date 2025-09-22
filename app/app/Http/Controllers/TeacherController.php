@@ -20,9 +20,11 @@ class TeacherController extends Controller {
 		$teacher = teacher()->load('school', 'school_classes', 'school_classes.school');
 
 		$joinRequests = JoinRequest::where('referent_id', $teacher->id)
+			->with('requesting_teacher', 'class', 'requesting_teacher.user')
 			->get();
 
 		$inviteRequests = InviteRequest::where('invited_teacher_id', $teacher->id)
+			->with('class', 'inviting_teacher', 'inviting_teacher.user')
 			->get();
 
 		$functionalities = [
