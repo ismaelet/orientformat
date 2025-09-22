@@ -3,33 +3,34 @@
 namespace App\Http\Controllers\SchoolClass;
 
 use App\Http\Controllers\Controller;
+use App\Models\Schools\Grade;
 use App\Models\Schools\SchoolClass;
 use Illuminate\Http\Request;
 use Legacy\Activity\Section as LegacySection;
 
 class GraphController extends Controller {
 
-	public function index(Request $request, SchoolClass $class) {
+	/**
+	 * Display the grade selection for graphs
+	 */
+	public function grades(Request $request, SchoolClass $class): \Illuminate\View\View {
+		$grades = Grade::whereBetween('id', [$class->first_grade, $class->last_grade])
+			->where('is_professional', $class->isProfessional())
+			->get();
+
+		return view('class.graphs.grades', [
+			'class' => $class,
+			'grades' => $grades,
+		]);
+	}
+
+
+	/**
+	 * Display the class graphs landing page
+	 */
+	public function index(Request $request, SchoolClass $class, Grade $grade): \Illuminate\View\View {
 
 		$areas = [];
-
-		$availableGrades = [];
-
-		if ($class->isMiddleSchool()) {
-			for ($i = 1; $i <= $class->grade; $i++) {
-				$availableGrades[] = $i;
-			}
-		} else if (!$class->isProfessional()) {
-			for ($i = 4; $i <= $class->grade; $i++) {
-				$availableGrades[] = $i;
-			}
-		} else {
-			for ($i = 4; $i <= $class->grade; $i++) {
-				if ($i < 6 || $i > 8) {
-					$availableGrades[] = $i;
-				}
-			}
-		}
 
 		// content
 		foreach ($class->grade()->areas as $doableArea) {
@@ -39,12 +40,10 @@ class GraphController extends Controller {
 
 			$doableSections = [];
 
-			foreach ($availableGrades as $gradeId) {
-				$legacySectionRes = \App\Legacy\LegacyDB::select(LegacySection::INDEX . ' FROM sections WHERE ' . LegacySection::AREA_INDEX . ' = ? AND FIND_IN_SET(?, legacy_grades) ORDER BY legacy_grades ASC', [$area['id'], $gradeId]);
+			$legacySectionRes = \App\Legacy\LegacyDB::select(LegacySection::INDEX . ' FROM sections WHERE ' . LegacySection::AREA_INDEX . ' = ? AND FIND_IN_SET(?, legacy_grades) ORDER BY legacy_grades ASC', [$area['id'], $grade->absolute_number]);
 
-				if (!empty($legacySectionRes->res)) {
-					$doableSections = array_merge($doableSections, $legacySectionRes->res);
-				}
+			if (!empty($legacySectionRes->res)) {
+				$doableSections = array_merge($doableSections, $legacySectionRes->res);
 			}
 
 			$doableSections = array_keys(array_column($doableSections, null, 'id'));

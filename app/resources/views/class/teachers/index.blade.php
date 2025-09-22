@@ -2,9 +2,9 @@
 	{{-- Page Header --}}
 	<div class="mb-8 grid grid-cols-1 gap-4">
 		<x-heading.main>Gestione docenti</x-heading.main>
-		<x-subheading.main>Qui puoi visualizzare quali docenti sono associati a questa classe. I referenti di classe possono
+		<x-subheading.main>Qui puoi visualizzare quali docenti sono associati a questa classe. I tutor di classe possono
 			anche invitare o rimuovere docenti dalla gestione di classe, oppure trasferire la carica di
-			referente.
+			tutor.
 		</x-subheading.main>
 	</div>
 

@@ -106,8 +106,10 @@ Route::prefix('/class')->middleware([Teacher::class, HasClassAccess::class])->na
 	Route::get('{class}/progress/areas/{area}', [SchoolClassProgressController::class, 'show'])
 		->name('general.progress.show');
 
-	Route::get('{class}/graphs', [GraphController::class, 'index'])
+	Route::get('{class}/graphs', [GraphController::class, 'grades'])
 		->name('general.graphs');
+	Route::get('{class}/graphs/{grade}', [GraphController::class, 'index'])
+		->name('general.graphs.index');
 
 	/**
 	 * Student routes

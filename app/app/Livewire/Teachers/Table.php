@@ -65,7 +65,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
 					->label('Cognome')
 					->sortable(),
 				IconColumn::make('is_referent')
-					->label('Referente')
+					->label('Tutor')
 					->state(fn(Teacher $record): bool => $record->id === $this->class->referentId)
 					->boolean(),
 				TextColumn::make('user.created_at')
@@ -97,7 +97,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
 					->label('Esci dalla classe')
 					->requiresConfirmation()
 					->modalHeading('Esci dalla classe')
-					->modalDescription('Sei sicuro di voler rimuoverti dalla gestione di questa classe? Per riaccedervi dovrai chiedere al referente di aggiungerti nuovamente.')
+					->modalDescription('Sei sicuro di voler rimuoverti dalla gestione di questa classe? Per riaccedervi dovrai chiedere al tutor di aggiungerti nuovamente.')
 					->visible(fn(Teacher $record): bool => $this->teacher->id === $record->id)
 					->disabled(fn(): bool => $this->isReferent)
 					->successRedirectUrl(route('class.teachers.index', ['class' => $this->class->id])),
@@ -108,10 +108,10 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
 					})
 					->color(Color::Blue)
 					->size(Size::ExtraSmall)
-					->label('Rendi referente')
+					->label('Rendi tutor')
 					->requiresConfirmation()
-					->modalHeading('Imposta docente come referente')
-					->modalDescription('Sei sicuro di voler impostare questo/a docente come referente della classe? Sarai rimosso/a da questa posizione.')
+					->modalHeading('Imposta docente come tutor')
+					->modalDescription('Sei sicuro di voler impostare questo/a docente come tutor della classe? Sarai rimosso/a da questa posizione.')
 					->visible(fn(Teacher $record): bool => $this->isReferent && $this->teacher->id !== $record->id)
 					->successRedirectUrl(route('class.teachers.index', ['class' => $this->class->id])),
 			])

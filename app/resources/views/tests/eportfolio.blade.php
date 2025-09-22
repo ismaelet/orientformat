@@ -20,8 +20,8 @@
 		<p class="text-lg leading-loose">Una parte importante dell’e-portfolio, con il quale ti presenterai all’esame di
 			Stato, è
 			costituita dai capolavori che hai
-			prodotto e dalle autovalutazioni relative alle competenze acquisite. In questa sezione confluiscno i capolavori, le
-			autovalutazioni e il POI, che nel tempo possono variare ed essere sostituiti. Una volta conclusi, li puoi trasferire
+			prodotto e dalle autovalutazioni relative alle competenze acquisite. In questa sezione confluiscno i capolavori e le
+			autovalutazioni, che nel tempo possono variare ed essere sostituiti. Una volta conclusi, li puoi trasferire
 			nel sito del <a
 				class="text-link"
 				target="_blank"

@@ -36,7 +36,7 @@ class SchoolClassesTable {
 					->label('Scuola'),
 				TextColumn::make('referent.full_name')
 					->sortable(['referent.first_name', 'referent.last_name'])
-					->label('Referente'),
+					->label('Tutor'),
 				TextColumn::make('teachers.full_name')
 					->label('Docenti')
 					->listWithLineBreaks()

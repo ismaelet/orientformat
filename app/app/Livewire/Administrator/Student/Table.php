@@ -81,7 +81,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
 					->searchable()
 					->sortable(),
 				TextColumn::make('school_class.referent.inverted_full_name')
-					->label('Referente di classe')
+					->label('Tutor di classe')
 					->visible(fn(): bool => !$this->class),
 				TextColumn::make('user.email')
 					->label('Email')
@@ -120,6 +120,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
 						Select::make('classId')
 							->label('Classe')
 							->preload()
+							->helperText('Puoi assegnare lo/a studente/ssa ad una classe diversa, per esempio in caso di studenti ripetenti o che hanno cambiato classe rispetto all\'anno scorso. ATTENZIONE: Cambiare la classe di uno/a studente/ssa lo/a rimuoverà dalla classe attuale.')
 							->relationship(
 								name: 'school_class',
 								modifyQueryUsing: fn($query) => $query->where('schoolId', $this->school->id)
@@ -127,6 +128,13 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
 									->with('referent.user'),
 							)
 							->getOptionLabelFromRecordUsing(fn(SchoolClass $record) => "{$record->name} - {$record->referent->inverted_full_name}")
+							->getOptionLabelUsing(
+								fn($value): ?string => optional(
+									SchoolClass::with('referent.user')->find($value)
+								)?->name . ' - ' . optional(
+									SchoolClass::with('referent.user')->find($value)?->referent
+								)?->inverted_full_name
+							)
 							->searchable()
 							->required(),
 					]),

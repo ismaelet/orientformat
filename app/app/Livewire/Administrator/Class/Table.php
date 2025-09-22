@@ -48,7 +48,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
 					->label('Nome')
 					->sortable(['letter', 'grade']),
 				TextColumn::make('referent.inverted_full_name')
-					->label('Referente'),
+					->label('Tutor'),
 				TextColumn::make('students_count')
 					->label('Studenti iscritti')
 					->counts('students')
