@@ -19,8 +19,8 @@ Route::post('/register', [RegisterController::class, 'store'])->middleware('gues
 Route::get('/logout', [LogoutController::class, 'index'])->name('logout')->middleware('auth')->name('logout');
 Route::post('/logout', [LogoutController::class, 'logout'])->middleware('auth')->name('logout.logout');
 
-Route::get('/recover', [RecoverController::class, 'index'])->name('auth.recover')->middleware('guest');
-Route::post('/recover', [RecoverController::class, 'store'])->middleware('guest');
+Route::get('/recover', [RecoverController::class, 'index'])->name('auth.recover')->middleware('guest')->name('auth.recover');
+Route::post('/recover', [RecoverController::class, 'store'])->middleware('guest')->name('auth.recover');
 
 Route::get('/reset', [ResetController::class, 'index'])->name('auth.reset')->middleware('guest');
 Route::post('/reset', [ResetController::class, 'update'])->middleware('guest');

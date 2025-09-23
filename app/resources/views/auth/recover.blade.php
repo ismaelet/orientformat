@@ -1,4 +1,8 @@
-<x-layouts.form :title="$title">
+<x-layouts.form
+	:title="$title"
+	action="{{ route('auth.recover') }}"
+	method="POST"
+>
 
 	<x-slot name="body">
 
@@ -11,7 +15,7 @@
 			</p>
 
 			{{-- Email input --}}
-			<x-form.input
+			<x-input
 				type="email"
 				name="email"
 				placeholder="Indirizzo email"
@@ -22,9 +26,9 @@
 			{{-- If the form hasn't been submitted or the email is not found --}}
 			@if (session('not_found'))
 				{{-- Show error message if email is not found --}}
-				<x-form.input-warning>
+				<x-alerts.error class="mt-4">
 					Non abbiamo trovato nessun account associato all'indirizzo email indicato
-				</x-form.input-warning>
+				</x-alerts.error>
 			@endif
 		@else
 			{{-- If the email is found --}}
@@ -42,13 +46,13 @@
 
 		@if (!session('submitted') || session('not_found'))
 			{{-- If the form hasn't been submitted or the email is not found --}}
-			<x-form.button type="submit">Recupera i dati</x-form.button>
+			<x-button type="submit">Recupera i dati</x-button>
 		@endif
 
-		<x-form.button
+		<x-button
 			variant="secondary"
 			:href="route('login')"
-		>Indietro</x-form.button>
+		>Indietro</x-button>
 
 	</x-slot>
 
