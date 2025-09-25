@@ -2,6 +2,7 @@
 
 namespace App\Models\Schools;
 
+use App\Helpers\ClassHelper;
 use App\Models\User\Student;
 use App\Models\User\Teacher;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -181,13 +182,6 @@ class SchoolClass extends Model {
 	}
 
 	/**
-	 * Get the class's name
-	 */
-	public static function genName(int $grade, string $letter): string {
-		return $grade < 4 ? $grade . $letter : $letter;
-	}
-
-	/**
 	 * Create a new class from data
 	 */
 	public static function createFromData(array $data = []): SchoolClass|RedirectResponse {
@@ -212,7 +206,7 @@ class SchoolClass extends Model {
 		}
 
 		$class = SchoolClass::create([
-			'name' => self::genName($data['grade'], $letter),
+			'name' => ClassHelper::generateName($data['grade'], $letter),
 			'schoolId' => $data['schoolId'],
 			'referentId' => $referentId,
 			'grade' => $data['grade'],

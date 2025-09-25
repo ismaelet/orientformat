@@ -61,7 +61,7 @@ main {
 	display: grid;
 	gap: 2rem;
 	width: 100%;
-	max-width: 480px;
+	max-width: 540px;
 	margin-inline: auto;
 	transition: translate 0.5s, opacity 0.3s;
 }
@@ -108,36 +108,16 @@ main {
 /*
 * Register switch
 */
-.login-page .page-background--register,
-.login-page [data-page='register'] {
+[data-page='login'] .register-only[data-direction='left'],
+[data-page='register'] .login-only[data-direction='left'] {
 	translate: -100% 0;
 	opacity: 0;
 }
 
-.register-page .page-background--login,
-.register-page [data-page='login'] {
-	translate: -100% 0;
-	opacity: 0;
-}
-
-.register-page .page-background--register,
-.register-page [data-page='register'] {
-	translate: 0 0;
-}
-
-.form--register {
+[data-page='login'] .register-only[data-direction='right'],
+[data-page='register'] .login-only[data-direction='right'] {
 	translate: 100% 0;
 	opacity: 0;
-}
-
-.register-page .form--login {
-	translate: 100% 0;
-	opacity: 0;
-}
-
-.register-page .form--register {
-	translate: 0 0;
-	opacity: 1;
 }
 
 /*
@@ -156,17 +136,5 @@ main {
 
 	.images {
 		display: none;
-	}
-
-	.form--register {
-		display: none;
-	}
-
-	.register-page .form--login {
-		display: none;
-	}
-
-	.register-page .form--register {
-		display: grid;
 	}
 }

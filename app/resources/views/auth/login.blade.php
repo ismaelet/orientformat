@@ -11,17 +11,47 @@
 @endpushOnce
 
 @pushOnce('scripts')
-	<script
-		defer
-		src="{{ asset('js/legacy/login.js') }}"
-	></script>
-
 	<script defer>
-		function switchToRegister() {
+		function changePage(isRegister) {
+			// Change url
 			const urlParams = new URLSearchParams(window.location.search);
 
-			urlParams.set('register', 'true');
+			if (!isRegister) {
+				urlParams.delete('register');
+			} else {
+				urlParams.set('register', 'true');
+			}
+
 			history.replaceState(null, '', `${window.location.pathname}?${urlParams.toString()}`);
+
+			// Change Alpine state
+			const root = document.querySelector('#page-root');
+
+			if (root && root._x_dataStack) {
+				root._x_dataStack[0].register = isRegister;
+			}
+		}
+
+		function changeType(type) {
+			// Change url
+			const urlParams = new URLSearchParams(window.location.search);
+
+			urlParams.set('login-type', type);
+
+			history.replaceState(null, '', `${window.location.pathname}?${urlParams.toString()}`);
+
+			// Change Alpine state
+			const root = document.querySelector('#page-root');
+
+			if (root && root._x_dataStack) {
+				root._x_dataStack[0].type = type;
+			}
+
+			const typeInput = document.querySelector('input[name="type"]');
+
+			if (typeInput) {
+				typeInput.value = type;
+			}
 		}
 	</script>
 @endpushOnce
@@ -32,29 +62,41 @@
 >
 
 	<div
-		class="page-body js-page-content <?= $register ? 'register-page' : 'login-page' ?> span-full-width grid"
-		x-data
+		class="page-body js-page-content span-full-width group grid"
+		x-data="{ type: '{{ $loginType }}', register: {{ $register ? 'true' : 'false' }} }"
+		id="page-root"
+		:data-page="register ? 'register' : 'login'"
+		:data-type="type"
+		x-cloak
 	>
 
-		<!-- Images -->
+		{{-- Images --}}
 		<div class="images stack-content grid">
+			{{-- Login image --}}
 			<img
-				class="page-background page-background--login background-image"
-				src="{{ Vite::image('login/' . $loginType . '-login-image.webp') }}"
+				class="page-background page-background--login background-image login-only"
+				src="{{ Vite::image('login/student-login-image.webp') }}"
+				data-direction="left"
 			>
 			<p
-				class="page-background__title"
-				data-page="login"
+				class="page-background__title login-only"
+				data-direction="left"
 			>Login</p>
 
-			<!-- Register image -->
+			{{-- Register images --}}
 			<img
-				class="page-background page-background--register background-image"
-				src="{{ Vite::image('login/' . $loginType . '-register-image.webp') }}"
+				class="page-background page-background--register background-image register-only student-only"
+				src="{{ Vite::image('login/student-register-image.webp') }}"
+				data-direction="left"
+			>
+			<img
+				class="page-background page-background--register background-image register-only teacher-only"
+				src="{{ Vite::image('login/teacher-register-image.webp') }}"
+				data-direction="left"
 			>
 			<p
-				class="page-background__title"
-				data-page="register"
+				class="page-background__title register-only"
+				data-direction="left"
 			>Registrati</p>
 		</div>
 
@@ -63,48 +105,37 @@
 
 			<!-- Login form -->
 			<form
-				class="form form--login"
+				class="form form--login login-only"
 				method="POST"
 				action="{{ route('login.auth') }}"
 				autocomplete="off"
+				data-direction="right"
 			>
 				@csrf
 
 				<div class="form__header">
-					<h2 class="form__title">Accesso <?= $loginType == $studentType ? 'studente' : 'insegnante' ?></h2>
+					<x-heading.section class="text-center">Accedi a<br>OrientFormat</x-heading.section>
 				</div>
 
 				<div class="form__body">
-					<input
-						type="hidden"
-						name="url"
-						value="<?= $_GET['url'] ?? null ?>"
-					>
+					<x-input.open
+						type="text"
+						name="login"
+						id="username"
+						placeholder="email"
+						required
+						autocomplete="off"
+						class="w-full"
+					/>
 
-					<div class="special-input">
-						<input
-							type="text"
-							name="login"
-							id="username"
-							placeholder="email"
-							required
-							autocomplete="off"
-							class="w-full"
-						>
-						<x-icon-user class="h-4 w-4" />
-					</div>
-
-					<div class="special-input">
-						<input
-							type="password"
-							name="password"
-							placeholder="Password"
-							required
-							autocomplete="off"
-							class="w-full"
-						>
-						<x-icon-password class="h-4 w-4" />
-					</div>
+					<x-input.open-password
+						type="password"
+						name="password"
+						placeholder="Password"
+						required
+						autocomplete="off"
+						class="w-full"
+					/>
 
 					@error('password')
 						<p class="error-warning">{{ $message }}</p>
@@ -126,35 +157,35 @@
 					<p class="form__divider ff-titles">oppure</p>
 
 					<x-button
-						class="js-switch-form"
 						variant="secondary"
-						@click="switchToRegister()"
-					>Registrati
+						@click="changePage(true); changeType('student')"
+					>Registrati come studente
 					</x-button>
 
 					<x-button
 						variant="secondary"
-						href="?login-type={{ $loginType == $studentType ? $teacherType : $studentType }}"
-					>Accedi come {{ $loginType == $studentType ? 'insegnante' : 'studente' }}</x-button>
+						@click="changePage(true); changeType('teacher')"
+					>Registrati come docente</x-button>
 				</div>
 			</form>
 
 			<!-- Register form -->
 			<form
-				class="form form--register"
+				class="form form--register register-only"
 				method="POST"
 				action="<?= route('register.store') ?>"
 				autocomplete="off"
+				data-direction="right"
 			>
 				@csrf
 
 				<input
 					type="hidden"
 					name="type"
-					value="<?= $loginType ?>"
+					:value="type"
 				>
-				<div class="form__header">
-					<h2 class="form__title">Registrazione <?= $loginType == $studentType ? 'studente' : 'insegnante' ?></h2>
+				<div class="form__header text-center">
+					<x-heading.section x-text="'Registrazione ' + (type == 'student' ? 'studente' : 'docente')"></x-heading.section>
 				</div>
 
 				<div class="form__body">
@@ -189,7 +220,7 @@
 
 					<!-- Password -->
 					<div class="form__field">
-						<x-input
+						<x-input.password
 							type="password"
 							name="password"
 							class="inp-nospace input"
@@ -198,7 +229,7 @@
 							required
 							autocomplete="off"
 						/>
-						<x-input
+						<x-input.password
 							type="password"
 							name="cpassword"
 							class="inp-nospace input"
@@ -232,8 +263,6 @@
 
 					</div>
 
-					<?php if ($loginType == $studentType) { ?>
-
 					<!-- Class code -->
 					<div class="form__field">
 						<x-input
@@ -242,8 +271,9 @@
 							class="inp-nospace input"
 							placeholder="Codice della classe"
 							value="{{ old('class') }}"
-							required
 							autocomplete="off"
+							x-bind:required="type == 'student' ? true : false"
+							x-show="type == 'student'"
 						/>
 
 						@error('class')
@@ -253,7 +283,10 @@
 					</div>
 
 					<!-- Birthdate -->
-					<div class="form__field">
+					<div
+						class="form__field"
+						x-show="type == 'student'"
+					>
 						<p class="label">Data di nascita:</p>
 						<x-input
 							type="date"
@@ -264,13 +297,15 @@
 							autocomplete="off"
 							min="{{ date('Y-m-d', strtotime('-100 year')) }}"
 							max="{{ date('Y-m-d', strtotime('-9 year')) }}"
+							x-bind:required="type == 'student' ? true : false"
 						/>
 					</div>
 
-					<?php } ?>
-
 					<div class="form__field">
-						<p>Hai già un account? <span class="text-link js-switch-form">Entra qui</span></p>
+						<p>Hai già un account? <span
+								class="text-link"
+								@click="changePage(false)"
+							>Entra qui</span></p>
 					</div>
 				</div>
 
@@ -278,13 +313,13 @@
 					<x-button
 						type="submit"
 						name="register"
-						@click="switchToRegister()"
 					>Registrati</x-button>
 
 					<x-button
 						variant="secondary"
-						href="?register=true&login-type={{ $loginType == $studentType ? $teacherType : $studentType }}"
-					>Registrati come {{ $loginType == $studentType ? 'insegnante' : 'studente' }}</x-button>
+						x-text="type == 'student' ? 'Registrati come docente' : 'Registrati come studente'"
+						@click="changeType(type == 'student' ? 'teacher' : 'student')"
+					></x-button>
 				</div>
 			</form>
 		</div>

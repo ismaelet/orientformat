@@ -1896,32 +1896,12 @@ html.theme-transition svg {
 }
 
 /* Basic settings*/
-html {
-	font-size: 100%;
-}
-
 html.smooth-scrolling {
 	scroll-behavior: smooth;
 }
 
 body.fixed {
 	overflow: hidden;
-}
-
-@media (max-width: 1280px) {
-	html {
-		font-size: 95%;
-	}
-}
-@media (max-width: 768px) {
-	html {
-		font-size: 90%;
-	}
-}
-@media (max-width: 480px) {
-	html {
-		font-size: 85%;
-	}
 }
 
 /* Lightboxes */
@@ -3433,10 +3413,6 @@ html.theme-transition svg {
 }
 
 /* Basic settings*/
-html {
-	font-size: 100%;
-}
-
 html.smooth-scrolling {
 	scroll-behavior: smooth;
 }
@@ -3448,27 +3424,10 @@ body.fixed {
 	overflow: hidden;
 }
 
-@media (max-width: 1280px) {
-	html {
-		font-size: 95%;
-	}
-}
-
 @media (max-width: 1024px) {
 	body:has(.modal.open),
 	body.fixed {
 		padding-right: 0;
-	}
-}
-
-@media (max-width: 768px) {
-	html {
-		font-size: 90%;
-	}
-}
-@media (max-width: 480px) {
-	html {
-		font-size: 85%;
 	}
 }
 

@@ -2,6 +2,8 @@
 
 namespace Legacy\Activity\Result;
 
+use App\Models\Results\User\TestResult as UserTestResult;
+
 /**
  * TestResult class
  * 
@@ -31,10 +33,14 @@ class TestResult {
 		\App\Legacy\LegacyDB::delete(self::TABLE . ' WHERE ' . self::USER_INDEX . ' = ? AND ' . self::TEST_INDEX . ' = ?', [$data['studentId'], $data['testId']]);
 
 		// save results
-		$id = \App\Legacy\LegacyDB::add(
-			self::TABLE . ' (' . self::USER_INDEX . ', ' . self::TEST_INDEX . ', result, percentage, completed, speed)',
-			[$data['studentId'], $data['testId'], $data['results'], $data['percentage'], (bool) $data['completed'], $data['speed']]
-		);
+		UserTestResult::create([
+			'studentId' => $data['studentId'],
+			'testId' => $data['testId'],
+			'result' => $data['results'],
+			'percentage' => $data['percentage'],
+			'completed' => (bool) $data['completed'],
+			'speed' => $data['speed'],
+		]);
 
 		// permanent record
 		if (!\App\Legacy\LegacyDB::exists('results_permanent WHERE studentId = ? AND testId = ?', [$data['studentId'], $data['testId']])) {

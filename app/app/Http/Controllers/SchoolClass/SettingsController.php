@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\SchoolClass;
 
+use App\Helpers\ClassHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Schools\SchoolClass;
 use Illuminate\Http\Request;
@@ -41,7 +42,7 @@ class SettingsController extends Controller {
 
 		$letter = strtoupper($request->input('letter'));
 
-		$name = $class->isMiddleSchool() ? SchoolClass::genName($request->input('grade'), $letter) : $letter;
+		$name = $class->isMiddleSchool() ? ClassHelper::generateName($request->input('grade'), $letter) : $letter;
 
 		if (SchoolClass::where('schoolId', $class->schoolId)
 			->where('id', '!=', $class->id)

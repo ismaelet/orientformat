@@ -64,7 +64,7 @@
 		<div class="dashboard__navigation-header">
 			<!-- logo -->
 			<div
-				class="dashboard__logo"
+				class="dashboard__logo uppercase"
 				data-content="{{ $class->name }}"
 				style="--character-count: {{ mb_strlen($class->name) }}"
 			></div>

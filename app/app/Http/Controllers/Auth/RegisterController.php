@@ -48,6 +48,8 @@ class RegisterController extends Controller {
 			'icfondorevo.it',
 		]);
 
+		dd($request->all());
+
 		// parameters
 		$loginType = $request->type;
 		$first_name = trim($request->first_name);

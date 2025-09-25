@@ -19,9 +19,9 @@ class Grade extends Model {
 
 	public const MIDDLE_SCHOOL_GRADES = [1, 2, 3];
 
-	public const HIGH_SCHOOL_GRADES = [4, 5, 6, 7, 8, 9];
+	public const HIGH_SCHOOL_GRADES = [4, 5, 6, 7, 8];
 
-	public const PROFESSIONAL_GRADES = [4, 5, 6, 7, 8];
+	public const PROFESSIONAL_GRADES = [4, 5, 6, 7];
 
 	/**
 	 * The table associated with the model
