@@ -11,7 +11,7 @@
 		<section id="graphic" class="">
 			<div id="graphic-pan">
 
-				<?php for ($key = 0; $key < $count; $key++) {
+				<?php foreach ($graphData as $key => $data) {
 					$fieldId = $key + 1;
 					$val = $legacyTest->completed ? $legacyTest->rawResults[$key] : 0;
 				?>
@@ -29,7 +29,7 @@
 							<?php } ?>
 
 						</div>
-						<p class="name txt-09rem"><?= __('tests.119-name-' . $fieldId) ?></p>
+						<p class="name txt-09rem"><?= $data['name'] ?></p>
 					</div>
 
 				<?php } ?>
@@ -47,13 +47,13 @@
 	<div id="desc-pan" class="">
 		<div id="desc-box" class="grid stack-content">
 
-			<?php for ($key = 0; $key < $count; $key++) {
+			<?php foreach ($graphData as $key => $data) {
 				$fieldId = $key + 1;
 			?>
 
 				<div class="field-info grid js-field-info" data-id="<?= $fieldId ?>" data-spacing="400">
-					<h3 class="desc-title txt-blk font-bold txt-15rem"><?= __('tests.119-name-' . $fieldId) ?></h3>
-					<p class="desc-txt txt-1rem txt-blk"><?= __('tests.119-description-' . $fieldId) ?></p>
+					<h3 class="desc-title txt-blk font-bold txt-15rem"><?= $data['name'] ?></h3>
+					<p class="desc-txt txt-1rem txt-blk"><?= $data['description'] ?></p>
 				</div>
 
 			<?php } ?>

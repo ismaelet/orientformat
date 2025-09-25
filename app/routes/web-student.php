@@ -21,10 +21,6 @@ Route::middleware([Student::class, HasEmail::class, CompletedReview::class, Loca
 	// Home
 	Route::any('student', [StudentHomeController::class, 'index'])->name('student');
 
-	// Test reset
-	Route::post('activities/tests/{test}/reset', [TestController::class, 'reset'])->name('test.reset');
-	Route::post('activities/tests/{test}/reset-dependent', [TestController::class, 'resetDependent'])->name('test.reset.dependent');
-
 	// Student Activities
 	Route::any('activities/grades', [GradeController::class, 'index'])->name('activities.grades.index');
 	Route::any('activities/grades/{grade}', [GradeController::class, 'show'])->name('activities.grades.show');
@@ -37,8 +33,12 @@ Route::middleware(['auth', Locale::class])->group(function () {
 	// Section recap
 	Route::any('activities/sections/{section}', [SectionController::class, 'show'])->name('section');
 
-	// Test recap
+	// Test routes
 	Route::any('activities/tests/{test}', [TestController::class, 'show'])->name('test');
+
+	Route::post('activities/tests/{test}/reset', [TestController::class, 'reset'])->name('test.reset');
+
+	Route::post('activities/tests/{test}/reset-dependent', [TestController::class, 'resetDependent'])->name('test.reset.dependent');
 });
 
 /**

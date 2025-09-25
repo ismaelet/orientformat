@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Activities;
 
 use App\Http\Controllers\Controller;
 use App\Models\Activities\Test;
+use App\Models\Results\User\TestResult;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class TestController extends Controller {
 
@@ -35,9 +37,11 @@ class TestController extends Controller {
 	 * Reset the specified resource
 	 */
 	function reset(Test $test): RedirectResponse {
-		$student = student();
+		$user = Auth::user();
 
-		$testResult = $student->testResult($test);
+		$testResult = TestResult::where('studentId', $user->id)
+			->where('testId', $test->id)
+			->first();
 
 		if ($testResult) {
 			$testResult->delete();
@@ -50,12 +54,14 @@ class TestController extends Controller {
 	 * Reset all the dependent tests
 	 */
 	function resetDependent(Test $test): RedirectResponse {
-		$student = student();
+		$user = Auth::user();
 		$dependentTests = $test->dependent_tests()?->sortBy('step');
 
 		// Delete dependent test results
-		$dependentTests->each(function (Test $dependentTest) use ($student) {
-			$testResult = $student->testResult($dependentTest);
+		$dependentTests->each(function (Test $dependentTest) use ($user) {
+			$testResult = TestResult::where('studentId', $user->id)
+				->where('testId', $dependentTest->id)
+				->first();
 
 			if ($testResult) {
 				$testResult->delete();
@@ -63,7 +69,9 @@ class TestController extends Controller {
 		});
 
 		// Delete main test result
-		$testResult = $student->testResult($test);
+		$testResult = TestResult::where('studentId', $user->id)
+			->where('testId', $test->id)
+			->first();
 
 		if ($testResult) {
 			$testResult->delete();
