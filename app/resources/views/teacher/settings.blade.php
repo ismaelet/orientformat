@@ -8,10 +8,10 @@
 		>
 			@csrf
 			<div class="flex items-baseline justify-center gap-2">
-				<x-icon-user class="h-6" />
-				<x-heading.section>
+				<x-icon-user class="h-4" />
+				<x-heading.component-big>
 					I miei dati
-				</x-heading.section>
+				</x-heading.component-big>
 			</div>
 
 			<div class="grid grid-cols-1 gap-4">
@@ -87,10 +87,10 @@
 		>
 			@csrf
 			<div class="flex items-baseline justify-center gap-2">
-				<x-icon-key class="h-6" />
-				<x-heading.section>
+				<x-icon-key class="h-5" />
+				<x-heading.component-big>
 					Modifica la password
-				</x-heading.section>
+				</x-heading.component-big>
 			</div>
 
 			@session('passwordSuccess')

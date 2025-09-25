@@ -122,7 +122,7 @@
 						type="text"
 						name="login"
 						id="username"
-						placeholder="email"
+						placeholder="Indirizzo e-mail"
 						required
 						autocomplete="off"
 						class="w-full"

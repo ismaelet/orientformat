@@ -65,7 +65,7 @@
 	--text-200: 0.75rem;
 	--text-300: 0.875rem;
 	--text-400: 1rem;
-	--text-700: clamp(2.5rem, 8vw, 3rem);
+	--text-700: clamp(2.5rem, 8vw, 2.75rem);
 	--text-800: min(3rem, 10vw);
 	--text-800--line-height: 1;
 	--text-900: min(5rem, 15vw);

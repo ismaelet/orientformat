@@ -21,6 +21,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table as FilamentTable;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
 class Table extends Component implements HasTable, HasActions, HasSchemas {
@@ -143,8 +144,8 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
 					->color(Color::Red)
 					->icon('icon-key_vertical')
 					->action(function (Student $record) {
-						$newPassword = str()->random(8);
-						$record->user->password = bcrypt($newPassword);
+						$newPassword = strtolower(str()->random(8));
+						$record->user->password = Hash::make($newPassword);
 						$record->user->save();
 
 						Notification::make()
