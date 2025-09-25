@@ -86,7 +86,7 @@
 							type="text"
 							name="login"
 							id="username"
-							placeholder="Username o email"
+							placeholder="email"
 							required
 							autocomplete="off"
 							class="w-full"

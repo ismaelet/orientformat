@@ -5,12 +5,6 @@ $done = $_GET['done'] ?? false;
 
 $dataInputs = [
 	[
-		['type' => 'done', 'text' => 'Dati aggiornati'],
-		['type' => 'lbl', 'text' => 'Username'],
-		['text' => 'Username', 'name' => 'username', 'value' => user()->username ?: '', 'minlength' => 6, 'required' => true, 'custom-class' => 'inp-nospace'],
-		['type' => 'error', 'error' => 'existing-username', 'text' => 'L\'username scelto è già in uso'],
-	],
-	[
 		['type' => 'lbl', 'text' => 'Nome completo'],
 		['text' => 'Nome', 'name' => 'first_name', 'size' => 2, 'value' => user()->first_name ?: '', 'minlength' => 2, 'required' => true],
 		['text' => 'Cognome', 'name' => 'last_name', 'size' => 2, 'value' => user()->last_name ?: '', 'minlength' => 2, 'required' => true],

@@ -7,8 +7,11 @@ use App\Models\Class\JoinRequest;
 use App\Models\Notification;
 use App\Models\Schools\Grade;
 use App\Models\Schools\School;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class TeacherController extends Controller {
@@ -67,7 +70,7 @@ class TeacherController extends Controller {
 				'title' => 'Impostazioni account',
 				'subtitle' => '',
 				'desc' => 'Qui puoi cambiare i dati associati al tuo account e modificare le impostazioni di base.',
-				'url' => client_url('/teacher/settings'),
+				'url' => route('teacher.settings'),
 				'slug' => 'settings'
 			]
 		];
@@ -202,7 +205,7 @@ completate sia di quelle non ancora completate.'
 	 * Display the form to attach a school to a teacher
 	 */
 	public function showSchool(): View {
-		$schools = School::orderBy('name')->get();
+		$schools = School::where('status', true)->orderBy('name')->get();
 
 		return view('teacher.school', [
 			'title' => 'Seleziona la tua scuola',
@@ -233,5 +236,75 @@ completate sia di quelle non ancora completate.'
 	public function simulationIndex() {
 		\App\Legacy\LegacyView::setPage('teacher/simulation')
 			->show();
+	}
+
+	/**
+	 * Display the settings form
+	 */
+	public function settingsIndex(): View {
+		$teacher = teacher();
+		$schools = School::where('status', true)->orderBy('name')->get();
+
+		return view('teacher.settings', [
+			'title' => 'Impostazioni account',
+			'teacher' => $teacher,
+			'schools' => $schools,
+		]);
+	}
+
+	/**
+	 * Update the teacher's data
+	 */
+	public function settingsUpdate(Request $request): RedirectResponse {
+		$teacher = teacher();
+		$user = teacher()->user;
+
+		$request->validate([
+			'first_name' => 'required|string|max:255',
+			'last_name' => 'required|string|max:255',
+			'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+			'school_id' => 'nullable|exists:schools,id',
+		]);
+
+		$user->update([
+			'first_name' => $request->input('first_name'),
+			'last_name' => $request->input('last_name'),
+			'email' => $request->input('email'),
+		]);
+
+		$teacher->update([
+			'school_id' => $request->input('school_id'),
+		]);
+
+		return redirect()
+			->route('teacher.settings')
+			->with('success', 'Dati aggiornati con successo.');
+	}
+
+	/**
+	 * Update the teacher's password
+	 */
+	public function passwordUpdate(Request $request): RedirectResponse {
+		$user = User::find(Auth::id());
+
+		$request->validate([
+			'current_password' => 'required',
+			'new_password' => 'required|string|min:8|confirmed',
+		]);
+
+		if (!password_verify($request->input('current_password'), $user->password)) {
+			return redirect()
+				->route('teacher.settings')
+				->withErrors(['current_password' => 'La password attuale non è corretta.'])
+				->withInput();
+		}
+
+		$user->update([
+			'password' => Hash::make($request->input('new_password')),
+		]);
+
+		return redirect()
+			->route('teacher.settings')
+			->with('passwordSuccess', 'Password aggiornata con successo.');
 	}
 }

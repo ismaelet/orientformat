@@ -7,6 +7,7 @@ use App\Models\User\Teacher;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
+use Filament\Notifications\Notification;
 use Filament\Schemas\Components\Icon;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
@@ -78,7 +79,11 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
 				Action::make('removeFromClass')
 					->action(function (Teacher $record) {
 						$record->school_classes()->detach($this->class->id);
-						$this->notify('success', 'Docente rimosso/a dalla classe con successo.');
+
+						Notification::make()
+							->title('Docente rimosso/a dalla classe con successo')
+							->success()
+							->send();
 					})
 					->color('danger')
 					->size(Size::ExtraSmall)

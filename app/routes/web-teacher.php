@@ -43,6 +43,16 @@ Route::prefix('/teacher')->middleware(Teacher::class)->name('teacher.')->group(f
 	// Simulation
 	Route::get('simulation', [TeacherController::class, 'simulationIndex'])
 		->name('simulation');
+
+	// Settings
+	Route::get('settings', [TeacherController::class, 'settingsIndex'])
+		->name('settings');
+
+	Route::post('settings', [TeacherController::class, 'settingsUpdate'])
+		->name('settings.update');
+
+	Route::post('password', [TeacherController::class, 'passwordUpdate'])
+		->name('password.update');
 });
 
 /**
@@ -142,6 +152,11 @@ Route::prefix('/class')->middleware([Teacher::class, HasClassAccess::class])->na
 		->name('teachers.index');
 
 	Route::get('{class}/settings', [SettingsController::class, 'showSettings'])
-		->middleware(UnderContruction::class)
 		->name('settings');
+
+	Route::post('{class}/settings', [SettingsController::class, 'update'])
+		->name('settings.update');
+
+	Route::post('{class}/delete', [SettingsController::class, 'destroy'])
+		->name('delete');
 });
