@@ -36,7 +36,7 @@ class TestResult extends Model {
 	/**
 	 * Relationship: The test associated with the result
 	 */
-	public function legacy_test(): BelongsTo {
+	public function test(): BelongsTo {
 		return $this->belongsTo(Test::class, 'testId');
 	}
 

@@ -217,6 +217,10 @@
 							autocomplete="off"
 						/>
 
+						@error('name')
+							<x-alerts.error :$message />
+						@enderror
+
 						@error('first_name')
 							<x-alerts.error :$message />
 						@enderror
