@@ -27,7 +27,7 @@
 				?>
 						<input type="hidden" class="inp-<?= $type ?> inactive js-field" name="field[]" value="<?= $value ?>">
 
-					<?php } ?><span class="part <?= $interactive ? 'selectable js-selectable ' . $type : null ?> <?= test()->completed && $interactive ? ($value ? 'correct' : 'wrong') : null ?>" data-type="<?= $type ?>"><?= $part[0] ?></span><?php } ?>
+					<?php } ?><span class="part <?= $interactive ? 'selectable js-selectable ' . $type : null ?> <?= legacy_test()->completed && $interactive ? ($value ? 'correct' : 'wrong') : null ?>" data-type="<?= $type ?>"><?= $part[0] ?></span><?php } ?>
 			</p>
 
 

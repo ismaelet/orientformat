@@ -30,7 +30,7 @@ $correctResults = [
 	3 => [1, 8, 13, 19, 27],
 ];
 
-$legacyTestResults = test()->completed ? _parse_results(test()->rawResults) : null;
+$legacyTestResults = legacy_test()->completed ? _parse_results(legacy_test()->rawResults) : null;
 
 \Legacy\LogicManager\TestLogic::setTestSubmitFunction(function () {
 	$correctResults = \App\Legacy\LegacyView::getInstance()->get('correctResults');

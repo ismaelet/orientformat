@@ -38,21 +38,15 @@ class LoginController extends Controller {
 	public function auth(Request $request): RedirectResponse {
 		// Validation
 		$request->validate([
-			'login' => 'required',
+			'email' => 'required',
 			'password' => 'required',
 		]);
 
-		if (strpos($request->login, '@') !== false) {
-			$username = User::where('email', $request->login)->value('username');
-		} else {
-			$username = $request->login;
-		}
-
 		// Sign in
-		if (!Auth::attempt(['username' => $username, 'password' => $request->password, 'active' => true])) {
+		if (!Auth::attempt($request->only('email', 'password'))) {
 			return redirect()->back()
-				->withInput($request->only('login'))
-				->withErrors(['login' => 'Invalid credentials or account not active.']);
+				->withInput($request->only('email'))
+				->withErrors(['email' => 'Le credenziali inserite non sono corrette']);
 		}
 
 		// Redirect

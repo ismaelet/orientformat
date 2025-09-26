@@ -5,10 +5,10 @@
 		<?= title() ?>
 	</div>
 
-	<?php if (test()->completed) { ?>
+	<?php if (legacy_test()->completed) { ?>
 
 		<p class="result__text">
-			Hai trovato il <span><?= test()->percentage ?>%</span> dei messaggi nascosti.
+			Hai trovato il <span><?= legacy_test()->percentage ?>%</span> dei messaggi nascosti.
 		</p>
 
 	<?php } ?>
@@ -20,7 +20,7 @@
 			$cryptogramId = $cryptogramKey + 1;
 		?>
 
-			<div class="cryptogram cryptogram--<?= test()->completed ? ($legacyTestResults[$cryptogramId] == $correctResults[$cryptogramId] ? 'correct' : 'wrong') : null ?>" data-id="<?= $cryptogramId ?>">
+			<div class="cryptogram cryptogram--<?= legacy_test()->completed ? ($legacyTestResults[$cryptogramId] == $correctResults[$cryptogramId] ? 'correct' : 'wrong') : null ?>" data-id="<?= $cryptogramId ?>">
 				<p class="cryptogram__text">
 
 					<?php foreach ($cryptogram as $fragmentKey => $fragment) {

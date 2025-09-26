@@ -12,7 +12,7 @@
 
 				<div id="numbers-old">
 
-					<?php if (!test()->completed || $right) { ?>
+					<?php if (!legacy_test()->completed || $right) { ?>
 
 						<div class="numbers fa-center mar-t-10 push-center" style="--size: <?= $levelOld + 2 ?>">
 
@@ -127,7 +127,7 @@
 			<!-- Listen section -->
 			<div id="listen-pan" class="pad-v-5 fa-center">
 				<audio id="audio">
-					<source src="<?= client_path('/pages/assets/' . test()->area->slug . '/' . test()->section->mainSection->slug . '/' . test()->slug . '/' . 'audio' . $level . '.mp3') ?>" type="audio/mpeg">
+					<source src="<?= client_path('/pages/assets/' . legacy_test()->area->slug . '/' . legacy_test()->section->mainSection->slug . '/' . legacy_test()->slug . '/' . 'audio' . $level . '.mp3') ?>" type="audio/mpeg">
 					<?= __('mp3-error') ?>
 				</audio>
 

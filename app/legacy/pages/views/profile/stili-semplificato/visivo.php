@@ -2,12 +2,12 @@
 
 <div class="main-wrap">
 
-	<?php if (!test()->completed) { ?>
+	<?php if (!legacy_test()->completed) { ?>
 
 		<div class="title__wrapper center-content">
 			<?= title() ?>
 
-			<?php if (!test()->completed && !isSupervisor()) { ?>
+			<?php if (!legacy_test()->completed && !isSupervisor()) { ?>
 
 				<div class="">
 					<div class="start-button button js-start"><?= __('Start') ?></div>
@@ -17,7 +17,7 @@
 
 		</div>
 
-	<?php } else if (test()->completed) { ?>
+	<?php } else if (legacy_test()->completed) { ?>
 
 		<div class="title__wrapper center-content">
 			<?= title(null, __('Below is indicated how many objects you have identified among those you have seen or heard and how many mistakes you have made.')) ?>

@@ -7,10 +7,10 @@
 		<?= title() ?>
 	</div>
 
-	<?php if (test()->completed) { ?>
+	<?php if (legacy_test()->completed) { ?>
 
 		<div class="center-content grid" data-spacing="700">
-			<p class="result-text <?= test()->percentage == 100 ? 'result-text--good' : 'result-text--bad' ?>"><?= test()->percentage == 100 ? __('tests.' . test()->id . '-right') : __('tests.' . test()->id . '-wrong') ?></p>
+			<p class="result-text <?= legacy_test()->percentage == 100 ? 'result-text--good' : 'result-text--bad' ?>"><?= legacy_test()->percentage == 100 ? __('tests.' . legacy_test()->id . '-right') : __('tests.' . legacy_test()->id . '-wrong') ?></p>
 
 			<?= renderRedoButton() ?>
 		</div>
@@ -27,16 +27,16 @@
 
 		<?php } ?>
 
-		<div class="image-box image-box--empty load--fade-in js-load js-empty-image <?= test()->completed && test()->percentage == 100 ? 'image-box--correct' : '' ?>" data-direction="bottom" data-delay="1">
-			<img src="<?= test()->completed ? client_path('answer-' . test()->rawResults[0]) : '' ?>" alt="">
+		<div class="image-box image-box--empty load--fade-in js-load js-empty-image <?= legacy_test()->completed && legacy_test()->percentage == 100 ? 'image-box--correct' : '' ?>" data-direction="bottom" data-delay="1">
+			<img src="<?= legacy_test()->completed ? client_path('answer-' . legacy_test()->rawResults[0]) : '' ?>" alt="">
 		</div>
 
 	</div>
 
-	<?php if (!test()->completed) { ?>
+	<?php if (!legacy_test()->completed) { ?>
 
 		<div class="center-content grid" data-spacing="700">
-			<h3 class="subsection-title"><?= __('tests.' . test()->id . '-title') ?></h3>
+			<h3 class="subsection-title"><?= __('tests.' . legacy_test()->id . '-title') ?></h3>
 			<div class="answers">
 
 				<?php for ($i = 1; $i <= 8; $i++) { ?>

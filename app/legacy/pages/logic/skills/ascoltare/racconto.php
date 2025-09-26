@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use LogicManager\TestLogic;
 
-$legacyTest = test();
+$legacyTest = legacy_test();
 
 $results = [];
 

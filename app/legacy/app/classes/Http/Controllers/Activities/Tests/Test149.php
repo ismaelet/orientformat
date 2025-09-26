@@ -60,7 +60,7 @@ class Test149 extends Test {
 				$followingText = explode(' !}', $processedText, 2)[1];
 
 				// generate the active text
-				$selected = test()->completed && (in_array($partId, test()->rawResults));
+				$selected = legacy_test()->completed && (in_array($partId, legacy_test()->rawResults));
 				$activePart = explode(' :: ', $activePart);
 				$activeText = $activePart[0];
 				$activeText = '
@@ -96,9 +96,9 @@ class Test149 extends Test {
 		<div class="grid" data-spacing="800">
 			<div class="grid" data-spacing="700">
 
-				<?php if (test()->completed) { ?>
+				<?php if (legacy_test()->completed) { ?>
 
-					<p class="txt-15rem fa-center"><?= __('tests.149-result', ['percentage' => test()->percentage]) ?></p>
+					<p class="txt-15rem fa-center"><?= __('tests.149-result', ['percentage' => legacy_test()->percentage]) ?></p>
 
 				<?php } ?>
 
@@ -107,7 +107,7 @@ class Test149 extends Test {
 					<?= $this->parameters['processedText'] ?>
 				</p>
 
-				<?php if (!test()->completed && !isSupervisor()) { ?>
+				<?php if (!legacy_test()->completed && !isSupervisor()) { ?>
 
 					<div class="test__text-selectors flex center-content" data-columns="15rem" data-spacing="400">
 
@@ -125,7 +125,7 @@ class Test149 extends Test {
 
 			</div>
 
-			<?php if (!test()->completed) { ?>
+			<?php if (!legacy_test()->completed) { ?>
 				<label>
 					<p class="txt-c3 clickable inlb"><?= __('tests.149-skip') ?></p>
 					<button type="submit" name="review" class="hidden"></button>

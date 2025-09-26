@@ -4,7 +4,7 @@ use \Legacy\Activity\Result\AdditionalTestResult;
 use LogicManager\TestLogic;
 
 $count = 1;
-$legacyTest = test();
+$legacyTest = legacy_test();
 $branchResults = $legacyTest->additionalPrimaryResult ?: null;
 $fruitsResults = $legacyTest->additionalSecondaryResult ?: null;
 

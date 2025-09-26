@@ -23,7 +23,7 @@ for ($i = 0; $i < count($text); $i++) {
 	$text[$i][0] = __('tests.37-sentence-' . ($i + 1));
 }
 
-$results = test()->completed ? test()->rawResults : null;
+$results = legacy_test()->completed ? legacy_test()->rawResults : null;
 
 $count = 7;
 

@@ -5,17 +5,17 @@
 		<?= title() ?>
 	</div>
 
-	<?php if (test()->completed) { ?>
+	<?php if (legacy_test()->completed) { ?>
 
-		<p class="result__text <?= test()->percentage == 100 ? 'correct' : 'wrong' ?>">
-			<?= test()->percentage == 100 ? __('tests.148-right') : __('tests.148-wrong') ?>
+		<p class="result__text <?= legacy_test()->percentage == 100 ? 'correct' : 'wrong' ?>">
+			<?= legacy_test()->percentage == 100 ? __('tests.148-right') : __('tests.148-wrong') ?>
 		</p>
 
 	<?php } ?>
 
 	<div class="test-content grid center-content" data-spacing="800">
 
-		<?php if (!test()->completed) { ?>
+		<?php if (!legacy_test()->completed) { ?>
 
 			<div class="flex center-content" data-spacing="800">
 				<div class="test-group test-group--linear js-load">
@@ -45,11 +45,11 @@
 
 		<?php } ?>
 
-		<div class="flex center-content <?= test()->completed ? 'completed' : null ?>" data-spacing="700">
+		<div class="flex center-content <?= legacy_test()->completed ? 'completed' : null ?>" data-spacing="700">
 
 			<?php for ($i = 1; $i <= 4; $i++) { ?>
 
-				<label class="test-group test-group--radial solution js-load <?= test()->completed && test()->rawResults[0] == $i ? (test()->percentage == 100 ? 'correct' : 'wrong') : null ?>">
+				<label class="test-group test-group--radial solution js-load <?= legacy_test()->completed && legacy_test()->rawResults[0] == $i ? (legacy_test()->percentage == 100 ? 'correct' : 'wrong') : null ?>">
 					<span class="pattern-<?= $patterns[$i - 1][0] ?>-match"></span>
 					<span class="pattern-<?= $patterns[$i - 1][1] ?>-match"></span>
 					<span class="pattern-<?= $patterns[$i - 1][2] ?>-match"></span>

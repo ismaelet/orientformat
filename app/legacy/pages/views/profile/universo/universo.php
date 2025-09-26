@@ -25,9 +25,9 @@
 					?>
 
 						<div class="planet grid center-content <?= !isSupervisor() ? 'js-planet js-open-modal' : '' ?>" data-planet-id="<?= $planetId ?>" data-target="interest-modal">
-							<input type="hidden" class="js-planet-field" name="field[]" value="<?= test()->rawResults ? test()->rawResults[$planetId - 1] : null ?>">
+							<input type="hidden" class="js-planet-field" name="field[]" value="<?= legacy_test()->rawResults ? legacy_test()->rawResults[$planetId - 1] : null ?>">
 							<img src="<?= client_path('planet-' . $planetId . '.svg') ?>" alt="" class="planet__image">
-							<p class="planet__text js-planet-text"><?= test()->rawResults ? test()->rawResults[$planetId - 1] : null ?></p>
+							<p class="planet__text js-planet-text"><?= legacy_test()->rawResults ? legacy_test()->rawResults[$planetId - 1] : null ?></p>
 						</div>
 
 					<?php } ?>

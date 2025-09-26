@@ -4,7 +4,7 @@ use LogicManager\TestLogic;
 
 $count = 0;
 $parameterCount = [];
-$results = test()->completed ? test()->rawResults : null;
+$results = legacy_test()->completed ? legacy_test()->rawResults : null;
 
 $text = [
 	'sentence-1' => [__('tests.132-sentence-1'), 'chi'],

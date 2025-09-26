@@ -8,7 +8,7 @@ use Legacy\LogicManager\TestLogic;
 
 {% block main %}
 
-<form class="test__body" method="POST" data-style="<?= get_grade_style() ?>" data-test-id="<?= testId() ?>" data-completed="<?= test()->completed ? 'true' : 'false' ?>">
+<form class="test__body" method="POST" data-style="<?= get_grade_style() ?>" data-test-id="<?= testId() ?>" data-completed="<?= legacy_test()->completed ? 'true' : 'false' ?>">
 	<?= csrf_field() ?>
 
 	<input type="hidden" class="js-count" name="result_count" value="<?= ($resultCount ?? (TestLogic::$parameterCount ?? 0)) ?>" data-count="<?= ($resultCount ?? (TestLogic::$parameterCount ?? 0)) ?>">

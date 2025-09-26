@@ -96,12 +96,12 @@ function rows_to_objects(\App\Legacy\Query_Result $rows = null, string $classNam
 	return $objects;
 }
 
-function test(): ?LegacyTest {
+function legacy_test(): ?LegacyTest {
 	return new LegacyTest(request()->route('test')?->id);
 }
 
 function testId() {
-	return test()->id;
+	return legacy_test()->id;
 }
 
 function legacy_explode_last($separator, $string) {
@@ -320,7 +320,7 @@ function sort_subvalue_desc(&$array, $key) {
 
 
 function title(?string $title = null, ?string $description = null) {
-	$legacyTest = test();
+	$legacyTest = legacy_test();
 	$title = $title ?: $legacyTest->title;
 	$description = $description ?: $legacyTest->description;
 
@@ -339,11 +339,11 @@ function title(?string $title = null, ?string $description = null) {
 }
 
 function test_description(): string {
-	return test()->description;
+	return legacy_test()->description;
 }
 
 function submit(bool $progressiveButton = false) {
-	$legacyTest = test();
+	$legacyTest = legacy_test();
 	$section = Section::find($legacyTest->sectionId);
 	$from = request()->query('from');
 
@@ -430,7 +430,7 @@ function submit(bool $progressiveButton = false) {
 		<?php break;
 
 		// progressive button
-		case $progressiveButton && !test()->completed: ?>
+		case $progressiveButton && !legacy_test()->completed: ?>
 
 			<button type="submit" class="button button--filling button--full-width js-submit-button js-progressive-submit-button" name="<?= $name ?>" disabled><?= $label ?></button>
 
@@ -448,7 +448,7 @@ function submit(bool $progressiveButton = false) {
 }
 
 function skip() {
-	$legacyTest = test();
+	$legacyTest = legacy_test();
 
 	if (!$legacyTest->completed && !isSupervisor()) { ?>
 
@@ -460,7 +460,7 @@ function skip() {
 }
 
 function no_results() {
-	$legacyTest = test();
+	$legacyTest = legacy_test();
 
 	ob_start();
 
@@ -494,7 +494,7 @@ function no_results() {
 function renderRedoButton(bool $fullWith = true) {
 	ob_start();
 
-	if (test()->completed && test()->percentage != 100 && !isSupervisor()) { ?>
+	if (legacy_test()->completed && legacy_test()->percentage != 100 && !isSupervisor()) { ?>
 
 		<button type="submit" class="button button--secondary <?= $fullWith ? 'button--full-width' : '' ?>" name="redo" value="<?= testId() ?>"><?= __('Try again') ?></button>
 
@@ -506,7 +506,7 @@ function renderRedoButton(bool $fullWith = true) {
 function renderSaveButton(bool $fullWith = false) {
 	ob_start();
 
-	if (test()->completed && !isSupervisor()) { ?>
+	if (legacy_test()->completed && !isSupervisor()) { ?>
 
 		<button type="submit" class="button <?= $fullWith ? 'button--full-width' : '' ?>" name="submit"><?= __('Save changes') ?></button>
 

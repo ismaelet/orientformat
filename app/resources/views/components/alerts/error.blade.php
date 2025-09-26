@@ -1,3 +1,7 @@
+@props([
+    'message' => null,
+])
+
 @pushOnce('styles')
 	<style>
 		.error-message {
@@ -19,4 +23,10 @@
 	</style>
 @endPushOnce
 
-<p {{ $attributes->merge(['class' => 'error-message text-red-600']) }}>{{ $slot }}</p>
+<p {{ $attributes->merge(['class' => 'error-message text-red-600']) }}>
+	@if ($message)
+		{{ $message }}
+	@else
+		{{ $slot }}
+	@endif
+</p>

@@ -2,7 +2,7 @@
 
 use LogicManager\TestLogic;
 
-$legacyTest = test();
+$legacyTest = legacy_test();
 
 // setup variables
 $boxes = [

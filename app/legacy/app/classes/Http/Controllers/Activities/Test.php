@@ -37,8 +37,8 @@ class Test extends LegacyTestController {
 		$completed = !isset($_POST['skip']) ? 1 : 0;
 
 		// save result
-		test()->saveResult($result, $score, $completed, $speed);
-		test()->advance(isset($_POST['review']));
+		legacy_test()->saveResult($result, $score, $completed, $speed);
+		legacy_test()->advance(isset($_POST['review']));
 	}
 
 	/**

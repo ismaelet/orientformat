@@ -47,14 +47,14 @@ class RuotaIVoltiParlano extends Test {
 
 		<section>
 
-			<?php if (isSupervisor() && !test()->completed) { ?>
+			<?php if (isSupervisor() && !legacy_test()->completed) { ?>
 				<?= no_results() ?>
 			<?php  } else { ?>
 
-				<?php if (test()->completed) {
-					$faceId = test()->rawResults[0];
-					$mouthId = test()->rawResults[1];
-					$emotion = test()->rawResults[2] ?? '';
+				<?php if (legacy_test()->completed) {
+					$faceId = legacy_test()->rawResults[0];
+					$mouthId = legacy_test()->rawResults[1];
+					$emotion = legacy_test()->rawResults[2] ?? '';
 				?>
 
 					<div class="grid justify-items-center gap-8">
@@ -68,7 +68,7 @@ class RuotaIVoltiParlano extends Test {
 						<p class="text-center font-semibold text-lg text-success"><?= $emotion ?></p>
 
 						<?php if (!isSupervisor()) { ?>
-							<button class="button button--secondary button--auto-width" name="redo" value="<?= test()->id ?>"><?= __('Choose another emotion') ?></button>
+							<button class="button button--secondary button--auto-width" name="redo" value="<?= legacy_test()->id ?>"><?= __('Choose another emotion') ?></button>
 						<?php } ?>
 					</div>
 

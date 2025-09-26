@@ -2,7 +2,7 @@
 
 use \Legacy\Activity\Result\Handler\StudentTestResult;
 
-$legacyTest = test();
+$legacyTest = legacy_test();
 $isMiddleSchool = testId() == 92 ? true : false;
 $results = (new StudentTestResult(testId(), watchedStudentId()))->detailedResult;
 

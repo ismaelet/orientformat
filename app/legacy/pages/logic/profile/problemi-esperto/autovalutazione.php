@@ -12,7 +12,7 @@ $graph_data = $graph_data ?? [
 	['Salute ', "Quando stai male, fisicamente o psicologicamente, quanto riesci a reagire, mobilitando le tue energie per riprenderti?"],
 ];
 
-include_once(__DIR__ . '/../' . test()->section->mainSection->slug . '/' . test()->slug . '.php');
+include_once(__DIR__ . '/../' . legacy_test()->section->mainSection->slug . '/' . legacy_test()->slug . '.php');
 
-\App\Legacy\StyleLoader::add(test()->area->slug . '/' . test()->section->mainSection->slug . '/' . test()->slug, 'page');
-\App\Legacy\ScriptLoader::add(test()->area->slug . '/' . test()->section->mainSection->slug . '/' . test()->slug, 'page');
+\App\Legacy\StyleLoader::add(legacy_test()->area->slug . '/' . legacy_test()->section->mainSection->slug . '/' . legacy_test()->slug, 'page');
+\App\Legacy\ScriptLoader::add(legacy_test()->area->slug . '/' . legacy_test()->section->mainSection->slug . '/' . legacy_test()->slug, 'page');

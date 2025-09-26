@@ -19,7 +19,7 @@
 
 						<div class="answer">
 							<h1 class="number font-bold"><?= $i + 1 ?></h1>
-							<input type="text" name="field_other[]" class="inp filler-inp" value="<?= $results[$key] ?? '' ?>" placeholder="<?= __('Activity') ?> n&#176;<?= $i + 1 ?>" maxlength="50" <?= test()->completed || isSupervisor() ? 'readonly' : '' ?>>
+							<input type="text" name="field_other[]" class="inp filler-inp" value="<?= $results[$key] ?? '' ?>" placeholder="<?= __('Activity') ?> n&#176;<?= $i + 1 ?>" maxlength="50" <?= legacy_test()->completed || isSupervisor() ? 'readonly' : '' ?>>
 						</div>
 
 					<?php } ?>

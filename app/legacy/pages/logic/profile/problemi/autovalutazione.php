@@ -4,7 +4,7 @@ $count = 9;
 
 if (!isset($graphData)) {
 	for ($i = 1; $i <= $count; $i++) {
-		$translationId = test()->id == 162 ? 162 : 119;
+		$translationId = legacy_test()->id == 162 ? 162 : 119;
 
 		$graphData[] = [
 			'name' => __('tests.' . $translationId . '-name-' . $i),
@@ -13,6 +13,6 @@ if (!isset($graphData)) {
 	}
 }
 
-$legacyTest = test();
+$legacyTest = legacy_test();
 
 \Legacy\LogicManager\TestLogic::setParameterCount($count);

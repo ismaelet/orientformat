@@ -63,7 +63,7 @@ use \Legacy\Activity\Test;
 								<?php foreach ($question['answers'] as $i => $answer) {
 									$val = $legacyTest->rawResults[$key - 1] ?? false;
 									$resultClass = null;
-									$cheched = !test()->completed && $val && $val == $i + 1;
+									$cheched = !legacy_test()->completed && $val && $val == $i + 1;
 
 									if ($val && ($val == $i + 1 || $answers[$key - 1] == $i + 1)) {
 										if ($val == $answers[$key - 1]) {
@@ -76,7 +76,7 @@ use \Legacy\Activity\Test;
 									<div>
 										<input type="checkbox" name="field[]" class="js-field hidden" <?= $cheched ? 'checked' : '' ?> value="<?= $i + 1 ?>">
 
-										<p class="answer selection txt-12rem txt-sbold txt-2 br-2 clickable <?= test()->completed ? $resultClass : '' ?>">
+										<p class="answer selection txt-12rem txt-sbold txt-2 br-2 clickable <?= legacy_test()->completed ? $resultClass : '' ?>">
 											<?= $answer ?>
 										</p>
 									</div>

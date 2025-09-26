@@ -18,7 +18,7 @@ define('_CONCEPTS', [
 
 use LogicManager\TestLogic;
 
-$legacyTest = test();
+$legacyTest = legacy_test();
 
 $time_str = '';
 
@@ -47,7 +47,7 @@ $time_str .= $seconds == 1 ? '1 secondo' : $seconds . ' secondi';
 	->setTestSubmitFunction(
 		function ($count) {
 			$rightN = 0;
-			$legacyTest = test();
+			$legacyTest = legacy_test();
 			$concepts = _CONCEPTS;
 			$results = $_POST['field_other'];
 

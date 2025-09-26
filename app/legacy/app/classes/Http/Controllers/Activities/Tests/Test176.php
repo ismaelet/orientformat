@@ -58,14 +58,14 @@ class Test176 extends Test {
 				$element = '';
 
 				if ($key) {
-					if (test()->completed) {
+					if (legacy_test()->completed) {
 						$elementClasses = ['test-answer'];
-						$status = in_array((test()->rawResults[$key - 1]), $correctAnswers[$key - 1]) ? 'font-bold text-success-400' : 'font-bold text-error-400';
+						$status = in_array((legacy_test()->rawResults[$key - 1]), $correctAnswers[$key - 1]) ? 'font-bold text-success-400' : 'font-bold text-error-400';
 						array_push($elementClasses, $status);
 
-						$element = '<span class="' . (implode(' ', $elementClasses)) . '">' . __('tests.176-missing-' . test()->rawResults[$key - 1]) . '</span>';
+						$element = '<span class="' . (implode(' ', $elementClasses)) . '">' . __('tests.176-missing-' . legacy_test()->rawResults[$key - 1]) . '</span>';
 					} else {
-						$value = test()->rawResults[$key - 1] ?? '';
+						$value = legacy_test()->rawResults[$key - 1] ?? '';
 						$element = '<label class="droppable"><span class="option"></span><input type="hidden" class=" js-field" name="field[]" value="' . $value . '" readonly></label>';
 					}
 				}
@@ -91,13 +91,13 @@ class Test176 extends Test {
 
 		<section class="grid" data-spacing="700">
 
-			<?php if (test()->completed) { ?>
+			<?php if (legacy_test()->completed) { ?>
 
-				<p class=" txt-15rem fa-center"><?= __('tests.176-result', ['percentage' => test()->percentage]) ?></p>
+				<p class=" txt-15rem fa-center"><?= __('tests.176-result', ['percentage' => legacy_test()->percentage]) ?></p>
 
 			<?php } ?>
 
-			<?php if (test()->completed || !isSupervisor()) { ?>
+			<?php if (legacy_test()->completed || !isSupervisor()) { ?>
 
 				<div id="text-box" class="section grid grid-cols-1 gap-8">
 
@@ -107,7 +107,7 @@ class Test176 extends Test {
 					<div class="leading-[2] text-lg summary-text"><?= $this->parameters['text'] ?></div>
 
 					<!-- Draggable options -->
-					<?php if (!test()->completed) { ?>
+					<?php if (!legacy_test()->completed) { ?>
 						<div class="flex gap-4 wrap justify-center <?= isSupervisor() ? 'pointer-events-none' : '' ?>">
 							<?php foreach ($this->options as $key => $option) { ?>
 								<p id="draggable-<?= $key ?>" class="border px-2 rounded-sm draggable-option draggable" draggable="true" data-id="<?= $option['id'] ?>"><?= $option['text'] ?></p>

@@ -73,9 +73,9 @@ class ImparareMappa extends Test {
 				$i++;
 			}
 
-			if (test()->completed) {
-				$box['classes'] = $box['autofilled'] || test()->rawResults[$i - 1] == $key || (isset($box['alternatives']) && in_array(test()->rawResults[$i - 1], $box['alternatives'])) ? 'right' : 'wrong';
-				$box['text'] = $box['autofilled'] ? $box['content'] : ($boxes[test()->rawResults[$i - 1]]['content'] ?? false);
+			if (legacy_test()->completed) {
+				$box['classes'] = $box['autofilled'] || legacy_test()->rawResults[$i - 1] == $key || (isset($box['alternatives']) && in_array(legacy_test()->rawResults[$i - 1], $box['alternatives'])) ? 'right' : 'wrong';
+				$box['text'] = $box['autofilled'] ? $box['content'] : ($boxes[legacy_test()->rawResults[$i - 1]]['content'] ?? false);
 			} else {
 				$box['classes'] = $box['autofilled'] ? 'active' : 'droppable';
 				$box['text'] = $box['autofilled'] ? $box['content'] : '';
@@ -95,7 +95,7 @@ class ImparareMappa extends Test {
 
 		<section>
 
-			<?php if (test()->completed || !isSupervisor()) { ?>
+			<?php if (legacy_test()->completed || !isSupervisor()) { ?>
 
 				<h3 class="section-title center-content">Schema</h3>
 
@@ -126,7 +126,7 @@ class ImparareMappa extends Test {
 						</div>
 					</div>
 
-					<?php if (!test()->completed) { ?>
+					<?php if (!legacy_test()->completed) { ?>
 
 						<div class="elements">
 							<div class="elements__wrapper panel">

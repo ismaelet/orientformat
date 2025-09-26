@@ -156,19 +156,19 @@ class Test {
 		return \App\Legacy\LegacyDB::find(self::INDEX . ' FROM ' . self::TABLE . ' WHERE ' . self::SECTION_INDEX . ' = ? AND step > ? AND active = 1 ORDER BY step ASC', [$this->sectionId, $this->step]);
 	}
 
-	private function getNextTest() {
+	private function getNextlegacy_test() {
 		return $this->hasNextTest ? new Test($this->nextTestId) : null;
 	}
 
-	private function getHasNextTest() {
+	private function getHasNextlegacy_test() {
 		return (bool) $this->nextTestId;
 	}
 
-	private function getRequiredTest() {
+	private function getRequiredlegacy_test() {
 		return new Test($this->requiredTestId);
 	}
 
-	private function getHasRequiredTest() {
+	private function getHasRequiredlegacy_test() {
 		return (bool) $this->requiredTestId;
 	}
 
@@ -176,19 +176,19 @@ class Test {
 		return $this->databaseEntry['followUpTestId'] ?: \App\Legacy\LegacyDB::find(self::INDEX . ' FROM ' . self::TABLE . ' WHERE requiredTestId = ?', [$this->id]);
 	}
 
-	private function getFollowUpTest() {
+	private function getFollowUplegacy_test() {
 		return new Test($this->followUpTestId);
 	}
 
-	private function getHasFollowUpTest() {
+	private function getHasFollowUplegacy_test() {
 		return (bool) $this->followUpTestId;
 	}
 
-	private function getRecapTest() {
+	private function getRecaplegacy_test() {
 		return new Test($this->recapTestId);
 	}
 
-	private function getHasRecapTest() {
+	private function getHasRecaplegacy_test() {
 		return (bool) $this->recapTestId;
 	}
 

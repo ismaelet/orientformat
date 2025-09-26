@@ -6,12 +6,12 @@
 
 		@if (session('status'))
 			{{-- Status alert --}}
-			<x-inputs.alert-success>{{ session('status') }}</x-inputs.alert-success>
+			<x-alerts.success>{{ session('status') }}</x-alerts.success>
 		@endif
 
 		@if (session('error'))
 			{{-- Error alert --}}
-			<x-inputs.alert-error>{{ session('error') }}</x-inputs.alert-error>
+			<x-alerts.error>{{ session('error') }}</x-alerts.error>
 		@endif
 
 		{{-- Table --}}

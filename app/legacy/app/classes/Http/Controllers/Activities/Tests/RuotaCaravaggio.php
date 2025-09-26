@@ -74,32 +74,32 @@ class RuotaCaravaggio extends Test {
 ?>
 
 		<section>
-			<?php if (isSupervisor() && !test()->completed) { ?>
+			<?php if (isSupervisor() && !legacy_test()->completed) { ?>
 				<?= no_results() ?>
 			<?php  } else { ?>
 
-				<?php if (test()->completed) { ?>
+				<?php if (legacy_test()->completed) { ?>
 
-					<p class="txt-15rem fa-center mb-12">Hai associato il <strong><?= test()->percentage ?>%</strong> delle emozioni correttamente.</p>
+					<p class="txt-15rem fa-center mb-12">Hai associato il <strong><?= legacy_test()->percentage ?>%</strong> delle emozioni correttamente.</p>
 
 				<?php } ?>
 
 				<div class="paintings grid grid-column gap-8 columns-15rem">
 
 					<?php foreach ($this->arguments['correctResults'] as $paintingKey => $paintingResult) {
-						$correctAnswer = test()->completed && test()->rawResults[$paintingKey] == $this->arguments['correctResults'][$paintingKey];
+						$correctAnswer = legacy_test()->completed && legacy_test()->rawResults[$paintingKey] == $this->arguments['correctResults'][$paintingKey];
 					?>
 
-						<div class="painting grid gap-4 js-painting <?= test()->completed ? ($correctAnswer ? 'painting__correct' : 'painting__wrong') : '' ?>" data-id="<?= $paintingKey + 1 ?>">
+						<div class="painting grid gap-4 js-painting <?= legacy_test()->completed ? ($correctAnswer ? 'painting__correct' : 'painting__wrong') : '' ?>" data-id="<?= $paintingKey + 1 ?>">
 							<img class="painting__image rounded shadow-focused img-fill" src="<?= client_path('painting-' . ($paintingKey + 1)) ?>" alt="">
-							<select class="painting__select js-field" name="field[]" required data-value="0" <?= test()->completed ? 'disabled' : '' ?>>
+							<select class="painting__select js-field" name="field[]" required data-value="0" <?= legacy_test()->completed ? 'disabled' : '' ?>>
 
 								<!-- Option -->
-								<option value="0" disabled <?= !test()->completed ? 'selected' : '' ?>>Seleziona un'opzione</option>
+								<option value="0" disabled <?= !legacy_test()->completed ? 'selected' : '' ?>>Seleziona un'opzione</option>
 
 								<?php foreach ($this->arguments['emotions'] as $emotionKey => $emotion) {
 									$emotionValue = $emotionKey + 1;
-									$selectedOption = test()->completed && test()->rawResults[$paintingKey] == $emotionValue;
+									$selectedOption = legacy_test()->completed && legacy_test()->rawResults[$paintingKey] == $emotionValue;
 								?>
 
 									<option value="<?= $emotionValue ?>" <?= $selectedOption ? 'selected' : '' ?>><?= $emotion ?></option>

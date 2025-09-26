@@ -1,6 +1,6 @@
 <?php
 
-$legacyTest = test();
+$legacyTest = legacy_test();
 $sibling = $legacyTest->requiredTest;
 
 $titles = [__('Very little'), __('A little'), __('Fairly'), __('Very'), __('Extremely')];

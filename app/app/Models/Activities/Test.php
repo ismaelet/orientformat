@@ -76,7 +76,7 @@ class Test extends Model {
 	/**
 	 * Relationship: The tests that are required by this test
 	 */
-	public function required_test(): BelongsTo {
+	public function required_legacy_test(): BelongsTo {
 		return $this->belongsTo(Test::class, 'requiredTestId');
 	}
 
@@ -86,7 +86,7 @@ class Test extends Model {
 	public function dependent_tests(): Collection {
 		$requiredTests = $this->required_tests()->get() ?? collect();
 		$previousTests = $this->previous_tests()->get() ?? collect();
-		$requiredTest = $this->required_test()->first();
+		$requiredTest = $this->required_legacy_test()->first();
 		$requiredTestCollection = $requiredTest ? collect([$requiredTest]) : collect();
 
 		return $requiredTests->merge($previousTests)->merge($requiredTestCollection);

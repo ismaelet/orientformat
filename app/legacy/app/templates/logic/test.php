@@ -3,7 +3,7 @@
 use \Legacy\Activity\Test as LegacyTest;
 use Legacy\LogicManager\TestLogic;
 
-$legacyTest = test();
+$legacyTest = legacy_test();
 $legacySection = $legacyTest->section;
 $supervisorView = request()->student_id;
 
@@ -11,7 +11,7 @@ $supervisorView = request()->student_id;
  * Form handling
  */
 if (isset($_POST['submit']) || isset($_POST['review']) || isset($_POST['skip'])) {
-	if (test()->template != 'test-next') {
+	if (legacy_test()->template != 'test-next') {
 		// get the score
 		$score = TestLogic::$legacyTestSubmitFunction ? TestLogic::runTestSubmitFunction() : 100;
 

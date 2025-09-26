@@ -2,7 +2,7 @@
 
 use LogicManager\TestLogic;
 
-$legacyTest = test();
+$legacyTest = legacy_test();
 
 $boxes = [
 	1 => ['content' => __('tests.133-box-1'), 'autofilled' => 0, 'type' => 1],

@@ -5,9 +5,9 @@
 		<?= title() ?>
 	</div>
 
-	<?php if (test()->completed) { ?>
+	<?php if (legacy_test()->completed) { ?>
 
-		<p class="result">Hai inserito il <span><?= test()->percentage ?>%</span> dei segni di punteggiatura corretti.</p>
+		<p class="result">Hai inserito il <span><?= legacy_test()->percentage ?>%</span> dei segni di punteggiatura corretti.</p>
 
 	<?php } ?>
 

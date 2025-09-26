@@ -1,7 +1,7 @@
 <?php
 
-\App\Legacy\StyleLoader::add(test()->area->slug . '/' . test()->section->mainSection->slug . '/' . test()->slug, 'page');
+\App\Legacy\StyleLoader::add(legacy_test()->area->slug . '/' . legacy_test()->section->mainSection->slug . '/' . legacy_test()->slug, 'page');
 
 $resultOrder = [1, 3, 2, 4];
 
-include_once(__DIR__ . '/../' . test()->section->mainSection->slug . '/' . test()->slug . '.php');
+include_once(__DIR__ . '/../' . legacy_test()->section->mainSection->slug . '/' . legacy_test()->slug . '.php');

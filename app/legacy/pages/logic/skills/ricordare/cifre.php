@@ -3,7 +3,7 @@
 use \Legacy\Activity\Result\TestResult;
 use LogicManager\TestLogic;
 
-$legacyTest = test();
+$legacyTest = legacy_test();
 $right = true;
 $count = 8;
 

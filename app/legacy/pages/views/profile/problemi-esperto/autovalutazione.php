@@ -1,3 +1,3 @@
 <?php
 
-include_once(__DIR__ . '/../' . test()->section->mainSection->slug . '/' . test()->slug . '.php');
+include_once(__DIR__ . '/../' . legacy_test()->section->mainSection->slug . '/' . legacy_test()->slug . '.php');

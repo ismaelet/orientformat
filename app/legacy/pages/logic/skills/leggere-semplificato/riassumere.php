@@ -2,7 +2,7 @@
 
 use LogicManager\TestLogic;
 
-$legacyTest = test();
+$legacyTest = legacy_test();
 
 // results
 $correctAnswers = [];
@@ -38,7 +38,7 @@ foreach ($text as $key => &$part) {
 			$inp .= __('tests.' . $legacyTest->id . '-missing-word-' . $result);
 			$inp .= '</span>';
 		} else {
-			$value = test()->rawResults[$key - 1] ?? '';
+			$value = legacy_test()->rawResults[$key - 1] ?? '';
 			$inp = '
 			<label class="droppable"><span class="option"></span><input type="hidden" class="js-field" name="field[]" value="' . $value . '" readonly></label>';
 		}

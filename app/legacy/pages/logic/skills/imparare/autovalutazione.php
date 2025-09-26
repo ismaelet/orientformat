@@ -2,7 +2,7 @@
 
 use LogicManager\TestLogic;
 
-$legacyTest = test();
+$legacyTest = legacy_test();
 
 $graph_data = [];
 

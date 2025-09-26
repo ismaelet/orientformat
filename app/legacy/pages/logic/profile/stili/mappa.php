@@ -1,6 +1,6 @@
 <?php
 
-$legacyTest = test();
+$legacyTest = legacy_test();
 $title = $title ?? __('Cognitive styles');
 
 $sortedResults = [];

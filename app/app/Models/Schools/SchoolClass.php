@@ -6,6 +6,7 @@ use App\Helpers\ClassHelper;
 use App\Models\User\Student;
 use App\Models\User\Teacher;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -15,7 +16,7 @@ use Illuminate\Http\RedirectResponse;
 
 class SchoolClass extends Model {
 
-	use SoftDeletes;
+	use HasFactory, SoftDeletes;
 
 	/**
 	 * The attributes that are mass assignable

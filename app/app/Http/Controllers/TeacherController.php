@@ -75,7 +75,7 @@ class TeacherController extends Controller {
 			]
 		];
 
-		$notifications = Notification::latest()
+		$notifications = Notification::lalegacy_test()
 			->limit(10)
 			->get();
 

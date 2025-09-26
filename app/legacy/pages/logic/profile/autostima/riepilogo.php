@@ -3,7 +3,7 @@
 use \Legacy\Activity\Result\TestResult;
 use \Legacy\Activity\Test;
 
-$legacyTest = test();
+$legacyTest = legacy_test();
 
 // calculate the total
 $tot = \App\Legacy\LegacyDB::sum('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' IN (SELECT id FROM ' . Test::TABLE . ' WHERE sectionId = ? AND id<?)', [watchedStudentId(), $legacyTest->section->id, $legacyTest->id]);

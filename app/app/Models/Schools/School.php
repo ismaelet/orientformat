@@ -4,11 +4,14 @@ namespace App\Models\Schools;
 
 use App\Models\User\Student;
 use App\Models\User\Teacher;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class School extends Model {
+
+	use HasFactory;
 
 	/**
 	 * Property: The attributes that are mass assignable

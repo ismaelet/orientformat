@@ -6,7 +6,7 @@ use LogicManager\TestLogic;
 \App\Legacy\StyleLoader::add('profile/ruota/ruota', 'page');
 \App\Legacy\ScriptLoader::add('profile/ruota/ruota', 'page');
 
-$legacyTest = test();
+$legacyTest = legacy_test();
 $result = $legacyTest->completed ? $legacyTest->rawResults : null;
 $resultEmotion = $result ? $result[0] : null;
 $resultIntensity = $result ? $result[1] : null;

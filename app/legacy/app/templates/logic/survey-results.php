@@ -6,7 +6,7 @@ $fixedQuestions = \App\Legacy\LegacyView::getInstance()->get('fixedQuestions');
 $answers = null;
 $total = 0;
 
-$legacyTest = test();
+$legacyTest = legacy_test();
 $requiredTest = $legacyTest->requiredTest;
 $survey = $requiredTest->survey;
 

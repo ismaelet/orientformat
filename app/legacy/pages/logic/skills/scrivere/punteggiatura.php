@@ -34,10 +34,10 @@ $selectors = [];
 
 for ($i = 1; $i <= $count; $i++) {
 	$correctAnswer = $correctAnswers[$i - 1];
-	$options = !test()->completed ? ['<option value="0" disabled selected></option>'] : [];
+	$options = !legacy_test()->completed ? ['<option value="0" disabled selected></option>'] : [];
 
 	foreach ($punctuations as $punctcuationKey => $punctcuation) {
-		$result = test()->rawResults[$i - 1] ?? null;
+		$result = legacy_test()->rawResults[$i - 1] ?? null;
 		$selected = $result && $result == $punctcuationKey;
 		$options[] = '<option value="' . $punctcuationKey . '" ' . ($selected ? 'selected' : null) . '>' . $punctcuation . '</option>';
 	}
@@ -52,10 +52,10 @@ $placeholder = '{{selector}}';
 
 foreach ($sentences as $sentence) {
 	while (strpos($sentence, $placeholder) !== false) {
-		$correctResult = test()->completed && test()->rawResults[$selectorKey] == $correctAnswers[$selectorKey];
+		$correctResult = legacy_test()->completed && legacy_test()->rawResults[$selectorKey] == $correctAnswers[$selectorKey];
 
 		$selector = $selectors[$selectorKey];
-		$selectorHtml = '<select class="js-field ' . (test()->completed ? ($correctResult ? 'right' : 'wrong') : null) . '" name="field[]" ' . (test()->completed || isSupervisor() ? 'disabled' : '') . '>' . $selector . '</select>';
+		$selectorHtml = '<select class="js-field ' . (legacy_test()->completed ? ($correctResult ? 'right' : 'wrong') : null) . '" name="field[]" ' . (legacy_test()->completed || isSupervisor() ? 'disabled' : '') . '>' . $selector . '</select>';
 		$position = strpos($sentence, $placeholder);
 		$sentence = substr_replace($sentence, $selectorHtml, $position, strlen($placeholder));
 

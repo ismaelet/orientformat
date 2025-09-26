@@ -2,7 +2,7 @@
 
 use \Legacy\Activity\Test;
 
-$legacyTest = test();
+$legacyTest = legacy_test();
 
 // setup variables
 $results = [];

@@ -29,7 +29,7 @@
 
 					<?php } ?>
 
-					<span class="part <?= $interactive ? 'selectable ' . $type : null ?> <?= test()->completed && $interactive ? ($value ? 'correct' : 'wrong') : null ?>" data-type="<?= $type ?>">
+					<span class="part <?= $interactive ? 'selectable ' . $type : null ?> <?= legacy_test()->completed && $interactive ? ($value ? 'correct' : 'wrong') : null ?>" data-type="<?= $type ?>">
 						<?= $part[0] ?>
 					</span>
 

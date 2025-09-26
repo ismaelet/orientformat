@@ -70,10 +70,10 @@ class Test196 extends Test {
 
 			for ($i = 1; $i <= $count; $i++) {
 				// $correctAnswer = $correctAnswers[$i - 1];
-				$options = !test()->completed ? ['<option value="0" disabled selected></option>'] : [];
+				$options = !legacy_test()->completed ? ['<option value="0" disabled selected></option>'] : [];
 
 				foreach ($punctuations as $punctcuationKey => $punctcuation) {
-					$result = test()->rawResults[$i - 1] ?? null;
+					$result = legacy_test()->rawResults[$i - 1] ?? null;
 					$selected = $result && $result == $punctcuationKey;
 					$options[] = '<option value="' . $punctcuationKey . '" ' . ($selected ? 'selected' : null) . '>' . $punctcuation . '</option>';
 				}
@@ -87,10 +87,10 @@ class Test196 extends Test {
 			$placeholder = '{{ selector }}';
 
 			while (strpos($textHtml, $placeholder) !== false) {
-				$correctResult = test()->completed && (test()->rawResults[$selectorKey] ?? null) == $correctAnswers[$selectorKey];
+				$correctResult = legacy_test()->completed && (legacy_test()->rawResults[$selectorKey] ?? null) == $correctAnswers[$selectorKey];
 
 				$selector = $selectors[$selectorKey];
-				$selectorHtml = '<select class="js-field ' . (test()->completed ? ($correctResult ? 'right' : 'wrong') : null) . '" name="field[]" ' . (test()->completed || isSupervisor() ? 'disabled' : '') . '>' . $selector . '</select>';
+				$selectorHtml = '<select class="js-field ' . (legacy_test()->completed ? ($correctResult ? 'right' : 'wrong') : null) . '" name="field[]" ' . (legacy_test()->completed || isSupervisor() ? 'disabled' : '') . '>' . $selector . '</select>';
 				$position = strpos($textHtml, $placeholder);
 				$textHtml = substr_replace($textHtml, $selectorHtml, $position, strlen($placeholder));
 
@@ -112,9 +112,9 @@ class Test196 extends Test {
 ?>
 
 		<section class="grid" data-spacing="700">
-			<?php if (test()->completed) { ?>
+			<?php if (legacy_test()->completed) { ?>
 
-				<p class="txt-15rem fa-center">Hai inserito il <strong><?= test()->percentage ?>%</strong> dei segni di punteggiatura corretti.</p>
+				<p class="txt-15rem fa-center">Hai inserito il <strong><?= legacy_test()->percentage ?>%</strong> dei segni di punteggiatura corretti.</p>
 
 			<?php } ?>
 

@@ -128,7 +128,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
 									->where('ended', false)
 									->with('referent.user'),
 							)
-							->getOptionLabelFromRecordUsing(fn(SchoolClass $record) => "{$record->name} - {$record->referent->inverted_full_name}")
+							->getOptionLabelFromRecordUsing(fn(SchoolClass $record) => "{$record->name} - {$record->referent?->inverted_full_name}")
 							->getOptionLabelUsing(
 								fn($value): ?string => optional(
 									SchoolClass::with('referent.user')->find($value)

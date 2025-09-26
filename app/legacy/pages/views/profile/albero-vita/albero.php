@@ -8,10 +8,10 @@
 	<?= submit(true) ?>
 	<?= renderSaveButton(true) ?>
 
-	<div class="selected-info js-selected-info <?= test()->completed ? 'active' : '' ?>">
+	<div class="selected-info js-selected-info <?= legacy_test()->completed ? 'active' : '' ?>">
 		<div class="grid" data-spacing="200">
 			<h3 class="subsection-title colored-title"><?= __('You have selected') ?>:</h3>
-			<p class="selected-info__text js-selected-info-text"><?= test()->completed ? $characters[$selectedCharacterId] : '-' ?></p>
+			<p class="selected-info__text js-selected-info-text"><?= legacy_test()->completed ? $characters[$selectedCharacterId] : '-' ?></p>
 		</div>
 	</div>
 </div>

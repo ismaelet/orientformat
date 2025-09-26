@@ -7,9 +7,9 @@
 
 	<div class="grid" data-spacing="700">
 
-		<?php if (test()->completed) { ?>
+		<?php if (legacy_test()->completed) { ?>
 
-			<p class="result <?= test()->percentage == 100 ? 'result--correct' : 'result--wrong' ?>"><?= test()->percentage == 100 ? 'La soluzione è corretta!' : 'La soluzione è sbagliata, ma puoi riprovare quando vuoi' ?></p>
+			<p class="result <?= legacy_test()->percentage == 100 ? 'result--correct' : 'result--wrong' ?>"><?= legacy_test()->percentage == 100 ? 'La soluzione è corretta!' : 'La soluzione è sbagliata, ma puoi riprovare quando vuoi' ?></p>
 
 		<?php } else { ?>
 

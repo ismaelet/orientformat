@@ -63,14 +63,14 @@ class Test186 extends Test {
 
 		<div class="grid" data-spacing="700">
 			<!-- Graphic -->
-			<?php if (!isSupervisor() || test()->completed) { ?>
+			<?php if (!isSupervisor() || legacy_test()->completed) { ?>
 
 				<section id="graphic" class="">
 					<div id="graphic-pan">
 
 						<?php foreach ($this->arguments['columns'] as $key => $column) {
 							$fieldID = $key + 1;
-							$val = test()->rawResults[$key] ?? 0;
+							$val = legacy_test()->rawResults[$key] ?? 0;
 						?>
 
 							<div id="graph-col<?= $fieldID; ?>" class="graph-col js-load load--fade-in" data-direction="top" data-id="<?= $fieldID ?>">
@@ -79,7 +79,7 @@ class Test186 extends Test {
 
 									<?php for ($i = 5; $i > 0; $i--) { ?>
 
-										<div class="graph-ele bgr-e <?= test()->completed ? 'disabled' : '' ?>" data-val="<?= $i ?>">
+										<div class="graph-ele bgr-e <?= legacy_test()->completed ? 'disabled' : '' ?>" data-val="<?= $i ?>">
 											<p class="score-txt font-bold txt-09rem txt-wht cen"><?= $i ?></p>
 										</div>
 

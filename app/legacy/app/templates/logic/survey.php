@@ -1,6 +1,6 @@
 <?php
 
-$legacyTest = test();
+$legacyTest = legacy_test();
 $legacySection = $legacyTest->section;
 $survey = $legacyTest->survey;
 
@@ -28,6 +28,6 @@ if (!empty($_POST)) {
 	$speed = $_POST['speed'];
 
 	// save result
-	test()->saveResult($result, $score, 1, $speed);
-	test()->advance();
+	legacy_test()->saveResult($result, $score, 1, $speed);
+	legacy_test()->advance();
 }

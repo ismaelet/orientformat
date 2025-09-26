@@ -120,11 +120,9 @@
 				<div class="form__body">
 					<x-input.open
 						type="text"
-						name="login"
-						id="username"
+						name="email"
 						placeholder="Indirizzo e-mail"
 						required
-						autocomplete="off"
 						class="w-full"
 					/>
 
@@ -138,11 +136,11 @@
 					/>
 
 					@error('password')
-						<p class="error-warning">{{ $message }}</p>
+						<x-alerts.error :$message />
 					@enderror
 
-					@error('login')
-						<p class="error-warning">Username o password errati</p>
+					@error('email')
+						<x-alerts.error :$message />
 					@enderror
 
 					<p class=""><a
@@ -173,7 +171,7 @@
 			<form
 				class="form form--register register-only"
 				method="POST"
-				action="<?= route('register.store') ?>"
+				action="{{ route('register.store') }}"
 				autocomplete="off"
 				data-direction="right"
 			>
@@ -189,6 +187,13 @@
 				</div>
 
 				<div class="form__body">
+					@error('type')
+						<x-alerts.error
+							:$message
+							class="mb-4"
+						/>
+					@enderror
+
 					<!-- First and last name -->
 					<div class="form__field">
 						<x-input
@@ -212,8 +217,12 @@
 							autocomplete="off"
 						/>
 
+						@error('first_name')
+							<x-alerts.error :$message />
+						@enderror
+
 						@error('last_name')
-							<p class="error-warning">{{ $message }}</p>
+							<x-alerts.error :$message />
 						@enderror
 
 					</div>
@@ -231,7 +240,7 @@
 						/>
 						<x-input.password
 							type="password"
-							name="cpassword"
+							name="password_confirmation"
 							class="inp-nospace input"
 							placeholder="Conferma password"
 							maxlength="30"
@@ -240,7 +249,11 @@
 						/>
 
 						@error('password')
-							<p class="error-warning">{{ $message }}</p>
+							<x-alerts.error :$message />
+						@enderror
+
+						@error('password_confirmation')
+							<x-alerts.error :$message />
 						@enderror
 
 					</div>
@@ -258,7 +271,7 @@
 						/>
 
 						@error('email')
-							<p class="error-warning">{!! $message !!}</p>
+							<x-alerts.error :$message />
 						@enderror
 
 					</div>
@@ -277,7 +290,7 @@
 						/>
 
 						@error('class')
-							<p class="error-warning">{{ $message }}</p>
+							<x-alerts.error :$message />
 						@enderror
 
 					</div>
@@ -299,6 +312,10 @@
 							max="{{ date('Y-m-d', strtotime('-9 year')) }}"
 							x-bind:required="type == 'student' ? true : false"
 						/>
+
+						@error('birthdate')
+							<x-alerts.error :$message />
+						@enderror
 					</div>
 
 					<div class="form__field">
