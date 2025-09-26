@@ -75,7 +75,7 @@ class Section extends Model {
 	/**
 	 * Relationship: The evaluation test for this section
 	 */
-	public function evaluation_legacy_test(): BelongsTo {
+	public function evaluation_test(): BelongsTo {
 		return $this->belongsTo(Test::class, 'evaluation_test_id');
 	}
 
