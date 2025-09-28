@@ -11,13 +11,7 @@ class StiliAgireMappaHelper {
 	/**
 	 * Get the results of the "Mappa" test for a specific student
 	 */
-	public static function results(Student $student): ?Collection {
-		$test = Test::where('slug', 'mappa')
-			->whereHas('section', function ($query) {
-				$query->where('slug', 'stili-agire');
-			})
-			->firstOrFail();
-
+	public static function results(Student $student, Test $test): ?Collection {
 		return StiliMappaHelper::results($test, $student, self::getCategories());
 	}
 

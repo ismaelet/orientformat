@@ -25,7 +25,7 @@ class SectionResultHelper {
 			5, 15, 30, 38, 40, 42, 56  => self::histogramResult($student, $section),
 
 			// Results of traits sections
-			1, 6, 7, 8, 36 => self::traitResult($student, $section),
+			1, 6, 7, 8, 28, 36 => self::traitResult($student, $section),
 
 			// Result of the "Ruota" section
 			27, 58  => self::ruotaResult($student, $section),

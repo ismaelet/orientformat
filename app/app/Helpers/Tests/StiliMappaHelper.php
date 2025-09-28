@@ -31,7 +31,7 @@ class StiliMappaHelper {
 			$result['name'] = $category['name'];
 			$result['translated_name'] = $category['translated_name'];
 			$result['value'] = 0;
-			$result['max'] = 9;
+			$result['max'] = count($category['questionIds']) * 3;
 
 			// Sum the values of the questions in this category
 			foreach ($category['questionIds'] as $questionId) {

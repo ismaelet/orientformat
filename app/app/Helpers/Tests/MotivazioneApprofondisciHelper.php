@@ -18,8 +18,6 @@ class MotivazioneApprofondisciHelper {
 
 		$rawResults = explode(',', $resultRecord->result);
 
-		dd($resultRecord);
-
 		foreach (self::getAreas() as $areaId => $area) {
 			$value = 0;
 			$questions = array_filter(self::getQuestions(), fn($item) => $item[1] == $areaId);
@@ -27,9 +25,15 @@ class MotivazioneApprofondisciHelper {
 			foreach ($questions as $questionKey => $_looping) {
 				$value += $rawResults[$questionKey] ?? 0;
 			}
+
+			$results[] = collect([
+				'name' => $area[0],
+				'value' => $value,
+				'percentage' => percent($value, count($questions) * 4),
+			]);
 		}
 
-		return $results;
+		return collect($results);
 	}
 
 	public static function getQuestions(): ?array {
