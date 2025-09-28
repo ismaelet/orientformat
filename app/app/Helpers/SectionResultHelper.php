@@ -25,7 +25,7 @@ class SectionResultHelper {
 			5, 15, 30, 38, 40, 42, 56  => self::histogramResult($student, $section),
 
 			// Results of traits sections
-			36 => self::traitResult($student, $section),
+			1, 6, 7, 8, 36 => self::traitResult($student, $section),
 
 			// Result of the "Ruota" section
 			27, 58  => self::ruotaResult($student, $section),
@@ -106,9 +106,9 @@ class SectionResultHelper {
 	 * Get the result of the traits sections for a specific student
 	 */
 	public static function traitResult(Student $student, Section $section): ?string {
-		$selfEvaluationTest = $section->evaluation_test->load('section');
+		$selfEvaluationTest = $section->evaluation_test->load('section', 'required_test');
 
-		$results = $selfEvaluationTest->helperClass()::results($student);
+		$results = $selfEvaluationTest->helperClass()::results(student: $student, test: $selfEvaluationTest);
 
 		if (!$results) {
 			return null;

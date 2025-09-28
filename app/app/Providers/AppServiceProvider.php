@@ -49,7 +49,7 @@ class AppServiceProvider extends ServiceProvider {
 		$prefix = 'orientamento';
 
 		Livewire::setUpdateRoute(function ($handle) use ($prefix) {
-			return Route::post($prefix . '/livewire/updatelaskdjlaksjdj', $handle)
+			return Route::post($prefix . '/livewire/update', $handle)
 				->name('livewire.update');
 		});
 

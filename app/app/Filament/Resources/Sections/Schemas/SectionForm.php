@@ -41,10 +41,14 @@ class SectionForm {
 					->options(function ($record) {
 						return $record->tests()->pluck('title', 'id')->toArray();
 					}),
+				TextInput::make('result_label')
+					->label('Descrizione del risultato')
+					->placeholder('Inserisci la descrizione del risultato'),
 				Checkbox::make('isStandard')
 					->label('Sezione standard')
 					->helperText('Indica se questa sezione è una sezione standard che gli studenti devono completare per superare l\'anno')
-					->default(true),
+					->default(true)
+					->columnSpanFull(),
 			]);
 	}
 }

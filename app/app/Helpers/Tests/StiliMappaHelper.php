@@ -9,7 +9,12 @@ use Illuminate\Support\Collection;
 
 class StiliMappaHelper {
 
-	public static function results(Test $test, Student $student, array $categories): ?Collection {
+	public static function results(Test $test, Student $student, ?array $categories = null): ?Collection {
+		if (!$categories) {
+			$categories = self::getCategories();
+		}
+
+		// Get the database record of the test result
 		$resultRecord = TestResult::where('testId', $test->required_test->id)
 			->where('studentId', $student->id)
 			->first();
@@ -18,26 +23,83 @@ class StiliMappaHelper {
 			return null;
 		}
 
+		// Parse the raw results
 		$rawResults = explode(',', $resultRecord->result);
 
 		foreach ($categories as $categoryId => $category) {
-			$results[$categoryId] = [];
-			$results[$categoryId]['name'] = $category['name'];
-			$results[$categoryId]['translated_name'] = $category['translated_name'];
-			$results[$categoryId]['value'] = 0;
-			$results[$categoryId]['max'] = 9;
+			$result = [];
+			$result['name'] = $category['name'];
+			$result['translated_name'] = $category['translated_name'];
+			$result['value'] = 0;
+			$result['max'] = 9;
 
+			// Sum the values of the questions in this category
 			foreach ($category['questionIds'] as $questionId) {
-				$results[$categoryId]['value'] += $rawResults[$questionId];
+				$result['value'] += $rawResults[$questionId];
 			}
-		}
 
-		foreach ($results as &$result) {
+			// Calculate the percentage
 			$result['percentage'] = round($result['value'] / $result['max'] * 100);
 
-			$result = collect($result);
+			$results[$categoryId] = collect($result);
 		}
 
 		return collect(array_values($results));
+	}
+
+	/**
+	 * Get the categories configuration
+	 */
+	private static function getCategories() {
+		return [
+			1 => [
+				'name' => 'Visivo',
+				'translated_name' => __('tests.31-1-name'),
+				'info' => __('tests.31-1-info'),
+				'questionIds' => [3, 9, 13],
+			],
+			2 => [
+				'name' => 'Uditivo',
+				'translated_name' => __('tests.31-2-name'),
+				'info' => __('tests.31-2-info'),
+				'questionIds' => [1, 18, 23],
+			],
+			3 => [
+				'name' => 'Globale',
+				'translated_name' => __('tests.31-3-name'),
+				'info' => __('tests.31-3-info'),
+				'questionIds' => [5, 11, 16],
+			],
+			4 => [
+				'name' => 'Analitico',
+				'translated_name' => __('tests.31-4-name'),
+				'info' => __('tests.31-4-info'),
+				'questionIds' => [2, 4, 17],
+			],
+			5 => [
+				'name' => 'Collaborativo',
+				'translated_name' => __('tests.31-5-name'),
+				'info' => __('tests.31-5-info'),
+				'questionIds' => [6, 10, 19],
+			],
+			6 => [
+				'name' => 'Autonomo',
+				'translated_name' => __('tests.31-6-name'),
+				'info' => __('tests.31-6-info'),
+				'questionIds' => [0, 12, 21],
+			],
+			7 => [
+				'name' => 'Sistematico',
+				'translated_name' => __('tests.31-7-name'),
+				'info' => __('tests.31-7-info'),
+				'questionIds' => [8, 14, 20],
+			],
+			8 => [
+				'name' => 'Intuitivo',
+				'translated_name' => __('tests.31-8-name'),
+				'info' => __('tests.31-8-info'),
+				'questionIds' => [7, 15, 22],
+			],
+		];
 	}
 }
