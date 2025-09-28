@@ -9677,18 +9677,26 @@ body {
 
 .sm\:p-8 {
 	@media (min-width: 640px) {
-	padding: 2rem;
+		padding: 2rem;
 	}
 }
 
 .sm\:px-8 {
 	@media (min-width: 640px) {
-	padding-left: 2rem;
-	padding-right: 2rem;
+		padding-left: 2rem;
+		padding-right: 2rem;
 	}
 }
 
 .py-12 {
 	padding-top: 3rem;
 	padding-bottom: 3rem;
+}
+
+.h-full {
+	height: 100%;
+}
+
+.object-cover {
+	object-fit: cover;
 }

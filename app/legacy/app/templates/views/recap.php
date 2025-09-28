@@ -3,7 +3,7 @@
 {% block main %}
 
 <div class="page-header grid center-content stack-content contrasting-background">
-	<img class="object-cover opacity-30" src="<?= $coverImage ?>" alt="" />
+	<img class="object-cover opacity-30 w-full h-full" src="<?= $coverImage ?>" alt="" />
 	<div class="page-header__overlay gradient-overlay fill-all background-fill"></div>
 
 	<div class="page-header__content grid center-content main-wrap" data-spacing="700">

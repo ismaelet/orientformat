@@ -46,26 +46,25 @@ class AppServiceProvider extends ServiceProvider {
 		}
 
 		// Extract subdir from APP_URL (e.g. "/orientamento")
-		$prefix = parse_url(config('app.url'), PHP_URL_PATH);
+		$prefix = 'orientamento';
 
-		if ($prefix) {
-			if (config('app.debug')) {
-				Livewire::setScriptRoute(function ($handle) use ($prefix) {
-					return Route::get($prefix . '/livewire/livewire.js', $handle)
-						->name('livewire.js');
-				});
-			} else {
-				Livewire::setScriptRoute(function ($handle) use ($prefix) {
-					return Route::get($prefix . '/livewire/livewire.min.js', $handle)
-						->name('livewire.js');
-				});
-			}
+		Livewire::setUpdateRoute(function ($handle) use ($prefix) {
+			return Route::post($prefix . '/livewire/updatelaskdjlaksjdj', $handle)
+				->name('livewire.update');
+		});
 
-			Livewire::setUpdateRoute(function ($handle) use ($prefix) {
-				return Route::post($prefix . '/livewire/update', $handle)
-					->name('livewire.update');
+		if (config('app.debug')) {
+			Livewire::setScriptRoute(function ($handle) use ($prefix) {
+				return Route::get($prefix . '/livewire/livewire.js', $handle)
+					->name('livewire.js');
+			});
+		} else {
+			Livewire::setScriptRoute(function ($handle) use ($prefix) {
+				return Route::get($prefix . '/livewire/livewire.min.js', $handle)
+					->name('livewire.js');
 			});
 		}
+
 
 		// Fix filament favicon
 		Filament::serving(function () {

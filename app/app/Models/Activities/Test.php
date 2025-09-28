@@ -107,6 +107,16 @@ class Test extends Model {
 	}
 
 	/**
+	 * Get the helper class for the test
+	 */
+	public function helperClass(): ?string {
+		$className = $this->section->isCompletable() ? $this->section->slug . '-' . $this->slug : $this->section->slug;
+		$className = ucfirst(str()->camel($className)) . 'Helper';
+
+		return 'App\\Helpers\\Tests\\' . $className;
+	}
+
+	/**
 	 * Get the file path for the test
 	 * 
 	 * ! Legacy

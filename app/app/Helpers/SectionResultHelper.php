@@ -24,6 +24,9 @@ class SectionResultHelper {
 			// Result of histogram sections
 			5, 15, 30, 38, 40, 42, 56  => self::histogramResult($student, $section),
 
+			// Results of traits sections
+			36 => self::traitResult($student, $section),
+
 			// Result of the "Ruota" section
 			27, 58  => self::ruotaResult($student, $section),
 
@@ -97,6 +100,26 @@ class SectionResultHelper {
 		}
 
 		return $resultLabel;
+	}
+
+	/**
+	 * Get the result of the traits sections for a specific student
+	 */
+	public static function traitResult(Student $student, Section $section): ?string {
+		$selfEvaluationTest = $section->evaluation_test->load('section');
+
+		$results = $selfEvaluationTest->helperClass()::results($student);
+
+		if (!$results) {
+			return null;
+		}
+
+		$results = $results->sortBy('name')->sortByDesc('percentage');
+
+		$topTrait = $results->first();
+		$topTraits = $results->where('percentage', $topTrait['percentage']);
+
+		return implode(', ', $topTraits->pluck('name')->toArray());
 	}
 
 	/**
