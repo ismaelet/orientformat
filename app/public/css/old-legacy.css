@@ -9700,3 +9700,7 @@ body {
 .object-cover {
 	object-fit: cover;
 }
+
+.max-w-72 {
+	max-width: 18rem;
+}

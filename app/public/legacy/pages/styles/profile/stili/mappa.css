@@ -105,7 +105,7 @@
 }
 
 [data-style='highschool'] .circle.checked .bgr {
-	background-color: var(--color-secondary-300);
+	background-color: var(--color-transition-400);
 }
 
 [data-test-id='113'] .circle.checked .bgr {

@@ -1,18 +1,34 @@
 <?php
 
-$legacyTest = legacy_test();
+$student = student();
+$test = legacy_test()->newTest();
 $title = $title ?? __('Cognitive styles');
+$helperClass = $test->helperClass();
+$categories = $helperClass::getCategories();
+$resultOrder = $resultOrder ?? ['Visivo', 'Globale', 'Collaborativo', 'Sistematico', 'Uditivo', 'Analitico', 'Autonomo', 'Intuitivo'];
 
-$sortedResults = [];
-$unsoredResults = $legacyTest->detailedResult;
-$resultOrder = $resultOrder ?? [1, 3, 5, 7, 2, 4, 6, 8];
-$categories = test_config($legacyTest->id, 'groups');
+$results = $helperClass::results(test: $test, student: $student);
 
-if ($unsoredResults) {
-	foreach ($resultOrder as $resultId) {
-		$result = $unsoredResults[$resultId];
-		$result['value'] = max(round($result['value']  / $result['max'] * 4), 1);
-		$result['info'] = $categories[$resultId]['info'];
-		$sortedResults[] = $result;
+if ($results) {
+	$sortedResults = [];
+
+	foreach ($resultOrder as $resultTag) {
+		$result = $results->firstWhere('name', $resultTag);
+		$category = $categories->where('name', $resultTag)->first();
+
+		$sortedResults[] = [
+			'name' => $result['name'],
+			'translated_name' => $result['translated_name'],
+			'info' => $category['info'],
+			'value' => $result['value'],
+			'percentage' => $result['percentage'],
+
+			'tier' => match (true) {
+				$result['percentage'] >= 75 => 4,
+				$result['percentage'] >= 50 => 3,
+				$result['percentage'] >= 25 => 2,
+				default => 1,
+			},
+		];
 	}
 }

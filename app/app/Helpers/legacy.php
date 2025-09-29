@@ -282,11 +282,11 @@ function legacy_watched_student(): Student|Teacher {
 
 	teacher()->load('school_classes.students');
 
-	if (is_teacher() && !in_array(watchedStudentId(), teacher()->studentIds())) {
+	if (is_administrator() && !in_array(watchedStudentId(), administrator()->studentIds())) {
 		return student();
 	}
 
-	if (is_administrator() && !in_array(watchedStudentId(), administrator()->studentIds())) {
+	if (is_teacher() && !is_administrator() && !in_array(watchedStudentId(), teacher()->studentIds())) {
 		return student();
 	}
 
@@ -346,6 +346,7 @@ function submit(bool $progressiveButton = false) {
 	$legacyTest = legacy_test();
 	$section = Section::find($legacyTest->sectionId);
 	$from = request()->query('from');
+	$class = legacy_watched_student()->class;
 
 	if ($from) {
 		$fromTest = Test::where('slug', $from)->first();
@@ -397,7 +398,7 @@ function submit(bool $progressiveButton = false) {
 		case $from && isSupervisor(): ?>
 
 			<div class="fa-center">
-				<a class="button button--secondary button--full-width js-submit-button" href="<?= route('class.students.self-evaluations.show', ['class' => legacy_watched_student()->school_class, 'student' => legacy_watched_student()]) ?>"><?= $label ?></a>
+				<a class="button button--secondary button--full-width js-submit-button" href="<?= route('class.students.self-evaluations.show', ['class' => $class, 'student' => legacy_watched_student()]) ?>"><?= $label ?></a>
 			</div>
 
 		<?php break;
@@ -413,9 +414,8 @@ function submit(bool $progressiveButton = false) {
 
 		// supervisor go back button
 		case isSupervisor(): ?>
-
 			<div class="fa-center">
-				<a class="button button--secondary button--full-width js-submit-button" href="<?= route('class.students.results.show', ['class' => legacy_watched_student()->school_class, 'student' => legacy_watched_student()]) ?>"><?= $label ?></a>
+				<a class="button button--secondary button--full-width js-submit-button" href="<?= route('class.students.results.show', ['class' => $class, 'student' => legacy_watched_student()]) ?>"><?= $label ?></a>
 			</div>
 
 		<?php break;

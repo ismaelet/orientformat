@@ -9,15 +9,16 @@ use Illuminate\Support\Collection;
 
 class StiliMappaHelper {
 
-	public static function results(Test $test, Student $student, ?array $categories = null): ?Collection {
+	/**
+	 * Calculate and return the test results for a given student and test
+	 */
+	public static function results(Test $test, Student $student, ?Collection $categories = null): ?Collection {
 		if (!$categories) {
 			$categories = self::getCategories();
 		}
 
 		// Get the database record of the test result
-		$resultRecord = TestResult::where('testId', $test->required_test->id)
-			->where('studentId', $student->id)
-			->first();
+		$resultRecord = self::resultRecord($test, $student);
 
 		if (!$resultRecord) {
 			return null;
@@ -48,58 +49,68 @@ class StiliMappaHelper {
 	}
 
 	/**
+	 * Get the result record for a given student and test
+	 */
+	public static function resultRecord(Test $test, Student $student): ?TestResult {
+		return TestResult::where('testId', $test->required_test->id)
+			->where('studentId', $student->id)
+			->where('completed', true)
+			->first();
+	}
+
+	/**
 	 * Get the categories configuration
 	 */
-	private static function getCategories() {
-		return [
-			1 => [
+	public static function getCategories(): Collection {
+		return collect([
+			1 => collect([
 				'name' => 'Visivo',
 				'translated_name' => __('tests.31-1-name'),
 				'info' => __('tests.31-1-info'),
 				'questionIds' => [3, 9, 13],
-			],
-			2 => [
+			]),
+			2 => collect([
 				'name' => 'Uditivo',
 				'translated_name' => __('tests.31-2-name'),
 				'info' => __('tests.31-2-info'),
 				'questionIds' => [1, 18, 23],
-			],
-			3 => [
+			]),
+			3 => collect([
 				'name' => 'Globale',
 				'translated_name' => __('tests.31-3-name'),
 				'info' => __('tests.31-3-info'),
 				'questionIds' => [5, 11, 16],
-			],
-			4 => [
+			]),
+			4 => collect([
 				'name' => 'Analitico',
 				'translated_name' => __('tests.31-4-name'),
 				'info' => __('tests.31-4-info'),
 				'questionIds' => [2, 4, 17],
-			],
-			5 => [
+			]),
+			5 => collect([
 				'name' => 'Collaborativo',
 				'translated_name' => __('tests.31-5-name'),
 				'info' => __('tests.31-5-info'),
 				'questionIds' => [6, 10, 19],
-			],
-			6 => [
+			]),
+			6 => collect([
 				'name' => 'Autonomo',
 				'translated_name' => __('tests.31-6-name'),
 				'info' => __('tests.31-6-info'),
 				'questionIds' => [0, 12, 21],
-			],
-			7 => [
+			]),
+			7 => collect([
 				'name' => 'Sistematico',
 				'translated_name' => __('tests.31-7-name'),
 				'info' => __('tests.31-7-info'),
 				'questionIds' => [8, 14, 20],
-			],
-			8 => [
+			]),
+			8 => collect([
 				'name' => 'Intuitivo',
 				'translated_name' => __('tests.31-8-name'),
 				'info' => __('tests.31-8-info'),
 				'questionIds' => [7, 15, 22],
-			],
-		];
+			]),
+		]);
 	}
 }

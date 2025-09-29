@@ -24,9 +24,9 @@
 					<div class="group" style="--group-i: <?= $key ?>">
 						<div class="group__circles">
 
-							<?php for ($j = 1; $j < 5; $j++) { ?>
+							<?php for ($j = 1; $j <= 4; $j++) { ?>
 
-								<div class="circle js-load <?= $result['value'] == $j ? 'checked' : '' ?>">
+								<div class="circle js-load <?= $result['tier'] == $j ? 'checked' : '' ?>">
 									<div class="bgr"></div>
 								</div>
 
@@ -35,7 +35,7 @@
 						</div>
 
 						<div class="result__title-box txt-c3" data-group="<?= $result['name'] ?>">
-							<p class="result__title txt-15rem js-load"><?= $result['translated_name'] ?></p>
+							<p class="result__title txt-15rem js-load"><?= $result['translated_name'] ?> (<?= $result['percentage'] ?>%)</p>
 							<p class="stitle txt-c3 js-load"><?= $result['info'] ?></p>
 						</div>
 

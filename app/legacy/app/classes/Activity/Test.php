@@ -2,6 +2,7 @@
 
 namespace Legacy\Activity;
 
+use App\Models\Activities\Test as ActivitiesTest;
 use Illuminate\Support\Facades\Auth;
 use \Legacy\Activity\Result\AdditionalTestResult;
 use \Legacy\Activity\Result\Handler\StudentTestResult;
@@ -246,5 +247,9 @@ class Test {
 		$this->section->updateProgress();
 
 		redirect_old($this->url);
+	}
+
+	public function newTest(): ActivitiesTest {
+		return ActivitiesTest::find($this->id);
 	}
 }
