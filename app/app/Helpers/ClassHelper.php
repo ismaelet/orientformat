@@ -45,12 +45,20 @@ class ClassHelper {
 	 * Generate a class name based on the grade and letter
 	 */
 	public static function generateName(int $grade, string $letter): string {
+		// Generate middle school class names
 		if ($grade < 4) {
-			return $grade . $letter;
-		} else {
-			// Replace the first number in the letter string with the grade
-			$updatedLetter = preg_replace('/\d/', (string)$grade - 3, $letter, 1);
-			return $updatedLetter;
+			if (!preg_match('/\d/', $letter)) {
+				return $grade . $letter;
+			}
+
+			return preg_replace('/\d/', (string)$grade, $letter, 1);
 		}
+
+		// Generate high school class names
+		if (!preg_match('/\d/', $letter)) {
+			return ($grade - 3) . $letter;
+		}
+
+		return preg_replace('/\d/', (string)$grade - 3, $letter, 1);
 	}
 }

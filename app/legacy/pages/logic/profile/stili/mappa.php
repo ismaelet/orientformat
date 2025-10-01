@@ -1,6 +1,6 @@
 <?php
 
-$student = student();
+$student = legacy_watched_student();
 $test = legacy_test()->newTest();
 $title = $title ?? __('Cognitive styles');
 $helperClass = $test->helperClass();

@@ -5,6 +5,7 @@ namespace App\Helpers\Tests;
 use App\Models\Activities\Test;
 use App\Models\Results\User\TestResult;
 use App\Models\User\Student;
+use App\Models\User\Teacher;
 use Illuminate\Support\Collection;
 
 class StiliMappaHelper {
@@ -12,7 +13,7 @@ class StiliMappaHelper {
 	/**
 	 * Calculate and return the test results for a given student and test
 	 */
-	public static function results(Test $test, Student $student, ?Collection $categories = null): ?Collection {
+	public static function results(Test $test, Student|Teacher $student, ?Collection $categories = null): ?Collection {
 		if (!$categories) {
 			$categories = self::getCategories();
 		}
@@ -51,7 +52,7 @@ class StiliMappaHelper {
 	/**
 	 * Get the result record for a given student and test
 	 */
-	public static function resultRecord(Test $test, Student $student): ?TestResult {
+	public static function resultRecord(Test $test, Student|Teacher $student): ?TestResult {
 		return TestResult::where('testId', $test->required_test->id)
 			->where('studentId', $student->id)
 			->where('completed', true)

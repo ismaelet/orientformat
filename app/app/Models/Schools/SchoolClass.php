@@ -190,6 +190,8 @@ class SchoolClass extends Model {
 		$referentId = teacher()->id ?: administrator()->id;
 		$code = bin2hex(random_bytes(5));
 		$startingYear = (date('n') < 9) ? date('Y', strtotime('-1 year')) : date('Y');
+		$name = ClassHelper::generateName($data['grade'], $letter);
+		$letter = $data['grade'] < 4 ? preg_replace('/\d/', '', $letter) : $letter;
 
 		while (SchoolClass::where('code', $code)->exists()) {
 			$code = bin2hex(random_bytes(5));
@@ -201,13 +203,11 @@ class SchoolClass extends Model {
 			->where('ended', false)
 			->exists()
 		) {
-			$name = $data['grade'] > Grade::lastMiddleschool() ?  $letter : $data['grade'] . $letter;
-
 			return back()->withErrors(['duplicate' => "Esiste già una classe {$name} in questo istituto."])->withInput();
 		}
 
 		$class = SchoolClass::create([
-			'name' => ClassHelper::generateName($data['grade'], $letter),
+			'name' => $name,
 			'schoolId' => $data['schoolId'],
 			'referentId' => $referentId,
 			'grade' => $data['grade'],

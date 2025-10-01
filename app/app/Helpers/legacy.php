@@ -293,7 +293,6 @@ function legacy_watched_student(): Student|Teacher {
 	return Student::find(watchedStudentId()) ?? student();
 }
 
-
 function snippet_binary_icon($value) {
 	if ($value) {
 		$snippet = '<div class="binary-icon binary-icon_yes">';

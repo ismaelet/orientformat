@@ -3,22 +3,27 @@
 use \Legacy\Activity\Test;
 
 $legacyTest = legacy_test();
-
-// sections
+$test = legacy_test()->newTest();
+$student = legacy_watched_student();
+$helperClass = $test->helperClass();
+$resultData = $helperClass::results(test: $test, student: $student);
+$sections = $helperClass::getSections();
 $results = [];
-$legacySections = test_config($legacyTest->id, 'sections');
 
-for ($i = 1; $i < 6; $i++) {
-	$requiredTestId = \App\Legacy\LegacyDB::find('id FROM ' . Test::TABLE . ' WHERE sectionId = ? AND step = ?', [$legacyTest->sectionId, $i]);
-	$requiredTest = new Test($requiredTestId);
+foreach ($sections as $step => $section) {
+	$result = $resultData?->firstWhere('name', $section['name']);
 
-	$results[] = round($requiredTest->percentage / 100 * 6);
+	$results[$step] = collect([
+		'name' => $section['name'],
+		'percentage' => $result['percentage'] ?? 0,
+		'test' => $test->dependent_tests()->where('step', $step)->first(),
+		'tier' => $result ? max(1, (int) ceil($result['percentage'] / (100 / 6))) : 0
+	]);
 }
 
-bump($legacySections);
-bump($results);
+$results = collect($results);
 
-// reset
+// Reset test
 if (isset($_POST['reset-test'])) {
 	(new Test($_POST['reset-test']))->redo();
 }

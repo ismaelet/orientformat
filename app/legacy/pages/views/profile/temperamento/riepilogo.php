@@ -10,11 +10,7 @@
 	<div id="gradient" class="bgr-fit"></div>
 	<div id="shape" class="bgr-fit" <?= background_image('shape.png') ?>></div>
 
-	<?php
-
-	use \Legacy\Activity\Test;
-
-	for ($i = 1; $i < 6; $i++) { ?>
+	<?php for ($i = 1; $i < 6; $i++) { ?>
 
 		<div id="section<?= $i ?>" class="section bgr-fit" <?= background_image('section' . $i . '.png') ?>></div>
 
@@ -32,18 +28,16 @@
 
 	<div class="results">
 
-		<?php for ($i = 1; $i < 6; $i++) {
-			$relatedTestId = \App\Legacy\LegacyDB::find(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND step = ?', [$legacyTest->sectionId, $i]);
-		?>
+		<?php foreach ($results as $i => $result) { ?>
 
 			<div id="result<?= $i ?>" class="result">
 				<div class="title-box fa-center">
-					<p class="title inlb"><?= $legacySections[$i] ?></p><br>
+					<p class="title inlb"><?= $result['name'] ?> <?= $result['percentage'] ? '<span class="percentage">(' . $result['percentage'] . '%)</span>' : '' ?></p><br>
 
 					<?php if (!isSupervisor()) { ?>
 
 						<p class="reset hide responsive clickable" data-id="<?= $i ?>" onclick="$(this).next().click()"><?= __('Restart') ?></p>
-						<button type="submit" name="reset-test" class="hidden" value="<?= $relatedTestId ?>"></button>
+						<button type="submit" name="reset-test" class="hidden" value="<?= $result['test']->id ?>"></button>
 
 					<?php } ?>
 
@@ -51,9 +45,9 @@
 
 				<div class="scores">
 
-					<?php for ($j = 1; $j < 7; $j++) { ?>
+					<?php for ($j = 1; $j <= 6; $j++) { ?>
 
-						<div id="score<?= $i ?><?= $j ?>" class="score score<?= $j ?> <?= $results[$i] == $j ? 'active' : '' ?>"></div>
+						<div id="score<?= $i ?><?= $j ?>" class="score score<?= $j ?> <?= $result['tier'] == $j ? 'active' : '' ?>"></div>
 
 					<?php } ?>
 

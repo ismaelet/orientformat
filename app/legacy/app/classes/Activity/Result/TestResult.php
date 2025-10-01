@@ -30,12 +30,11 @@ class TestResult {
 	 * Istance methods
 	 */
 	public static function new(array $data) {
-		\App\Legacy\LegacyDB::delete(self::TABLE . ' WHERE ' . self::USER_INDEX . ' = ? AND ' . self::TEST_INDEX . ' = ?', [$data['studentId'], $data['testId']]);
-
-		// save results
-		UserTestResult::create([
+		// Save or update user test result
+		UserTestResult::updateOrCreate([
 			'studentId' => $data['studentId'],
 			'testId' => $data['testId'],
+		], [
 			'result' => $data['results'],
 			'percentage' => $data['percentage'],
 			'completed' => (bool) $data['completed'],

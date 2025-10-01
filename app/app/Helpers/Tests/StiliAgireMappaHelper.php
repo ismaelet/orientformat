@@ -4,6 +4,7 @@ namespace App\Helpers\Tests;
 
 use App\Models\Activities\Test;
 use App\Models\User\Student;
+use App\Models\User\Teacher;
 use Illuminate\Support\Collection;
 
 class StiliAgireMappaHelper {
@@ -11,7 +12,7 @@ class StiliAgireMappaHelper {
 	/**
 	 * Get the results of the "Mappa" test for a specific student
 	 */
-	public static function results(Student $student, Test $test): ?Collection {
+	public static function results(Test $test, Student|Teacher $student): ?Collection {
 		return StiliMappaHelper::results($test, $student, self::getCategories());
 	}
 

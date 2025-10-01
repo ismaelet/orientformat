@@ -52,7 +52,7 @@ $placeholder = '{{selector}}';
 
 foreach ($sentences as $sentence) {
 	while (strpos($sentence, $placeholder) !== false) {
-		$correctResult = legacy_test()->completed && legacy_test()->rawResults[$selectorKey] == $correctAnswers[$selectorKey];
+		$correctResult = legacy_test()->completed && (legacy_test()->rawResults[$selectorKey] ?? null) == $correctAnswers[$selectorKey];
 
 		$selector = $selectors[$selectorKey];
 		$selectorHtml = '<select class="js-field ' . (legacy_test()->completed ? ($correctResult ? 'right' : 'wrong') : null) . '" name="field[]" ' . (legacy_test()->completed || isSupervisor() ? 'disabled' : '') . '>' . $selector . '</select>';

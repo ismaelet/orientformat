@@ -99,7 +99,7 @@ class TeacherController extends Controller {
 				'sections' => [
 					[
 						'title' => "Sviluppare una sezione",
-						"text" => 'nel prospetto delle attività previste per
+						"text" => 'Nel prospetto delle attività previste per
 ciascun anno vengono indicati dei tempi (ad
 esempio 3 ore per Risolvere problemi), che
 comprendono: a) la presentazione della
@@ -130,7 +130,7 @@ di sintesi dello studente.'
 					],
 					[
 						'title' => 'Fattori equivalenti',
-						'text' => 'Nel caso in cui il punteggio sia lo stesso per fattori diversi (ad esempio punteggio 6 su 7 per quattro dei cinque fattori del Temperamento), nel grafico ciò risulterà evidente, mentre nel profilo di sintesi verrà riportato un solo fattore prevalente (nell’esempio: “Estroversione”).'
+						'text' => 'Nel caso in cui il punteggio sia lo stesso per fattori diversi (ad esempio punteggio 6 su 6 per due dei cinque fattori del Temperamento), nel quadro delle Autovalutazioni e nel POI verranno riportati entrambi i fattori prevalenti (nell’esempio: “Risposta alle novità” e “Stabilità emotiva”).'
 					]
 				]
 			],

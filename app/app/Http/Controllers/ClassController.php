@@ -153,7 +153,9 @@ class ClassController extends Controller {
 			return back()->withErrors(['invite_request_id' => 'Non sei autorizzato ad accettare questa richiesta.'])->withInput();
 		}
 
-		teacher()->school_classes()->attach($inviteRequest->class_id);
+		if (!teacher()->school_classes->where('id', $inviteRequest->class_id)->count()) {
+			teacher()->school_classes()->attach($inviteRequest->class_id);
+		}
 
 		$inviteRequest->delete();
 
