@@ -11,7 +11,7 @@ class ClassController extends Controller {
 	 * Display a listing of the resource
 	 */
 	public function index(Request $request) {
-		$school = administrator()->school;
+		$school = administrator()->school->load('teachers.user');
 
 		return view('administrator.classes', [
 			'school' => $school,

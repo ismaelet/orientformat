@@ -4,9 +4,11 @@ namespace App\Livewire\Administrator\Class;
 
 use App\Models\Schools\School;
 use App\Models\Schools\SchoolClass;
+use App\Models\User\Teacher;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
+use Filament\Actions\EditAction;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -74,6 +76,20 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
 			->searchable(['referent.user.first_name', 'referent.user.last_name'])
 			->filters([])
 			->recordActions([
+				EditAction::make()
+					->recordTitle(fn(SchoolClass $record): string => "Classe {$record->name}")
+					->schema([
+						Select::make('referentId')
+							->label('Tutor della classe')
+							->options($this->school->teachers->load('user')
+								->pluck('inverted_full_name', 'id')->toArray())
+							->getOptionLabelUsing(fn($value): ?string => Teacher::find($value)?->inverted_full_name)
+							->searchable()
+							->placeholder('Seleziona il tutor della classe')
+							->preload()
+							->belowContent('Qui puoi selezionare il tutor della classe, tra gli insegnanti registrati nella scuola. Questa funzionalità è usata in particolare quando c\'è un cambio di tutor tra un anno e l\'altro.')
+							->required(),
+					]),
 				Action::make('openDashboard')
 					->label('Apri dashboard')
 					->url(fn(SchoolClass $record): string => route('class.show', ['class' => $record]))
