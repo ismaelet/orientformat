@@ -11,7 +11,7 @@ use Filament\Tables\Table;
 class SupportTopicsTable {
 	public static function configure(Table $table): Table {
 		return $table
-			->defaultSort('categoryId', 'asc')
+			->defaultSort('id', 'desc')
 			->columns([
 				TextColumn::make('id')
 					->searchable()

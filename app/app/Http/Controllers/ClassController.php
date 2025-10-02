@@ -103,7 +103,7 @@ class ClassController extends Controller {
 			return back()->withErrors(['class_id' => 'La classe selezionata non appartiene al tuo istituto.'])->withInput();
 		}
 
-		if (!JoinRequest::where('class_id', $class->id)
+		if ($class->referent && !JoinRequest::where('class_id', $class->id)
 			->where('requesting_teacher_id', teacher()->id)
 			->exists()) {
 

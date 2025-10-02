@@ -104,7 +104,15 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
 							->placeholder('Seleziona il tutor della classe')
 							->preload()
 							->belowContent('Qui puoi selezionare il tutor della classe, tra gli insegnanti registrati nella scuola. Questa funzionalità è usata in particolare quando c\'è un cambio di tutor tra un anno e l\'altro.')
-							->required(),
+							->required()
+							->afterStateUpdated(function ($state, callable $set, $get) {
+								$teachers = $get('teachers') ?? [];
+
+								if ($state && ! in_array($state, $teachers)) {
+									$set('teachers', array_merge($teachers, [$state]));
+								}
+							})
+							->live(),
 
 						Select::make('teachers')
 							->label('Docenti assegnati alla classe')
