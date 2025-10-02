@@ -34,15 +34,15 @@
 	<div class="page-content breakout">
 		<div class="pos-rel">
 			{{-- Title --}}
-			<x-heading.main>Funzionalità<br>per {{ is_administrator() ? "l'amministratore" : "l'insegnante" }}
-			</x-heading.main>
+			{{-- <x-heading.main>Funzionalità<br> {{ is_administrator() ? 'di referente' : "per l'insegnante" }}
+			</x-heading.main> --}}
 
-			<p class="border-transition-400 text-transition-500 mt-12 rounded border-2 px-4 py-2">La dashboard insegnante è in
+			{{-- <p class="border-transition-400 text-transition-500 mt-12 rounded border-2 px-4 py-2">La dashboard insegnante è in
 				fase di
 				aggiornamento, se dovessi riscontrare qualche problema, ti preghiamo di contattare il supporto <a
 					href="teacher/support/open-ticket"
 					class="text-secondary-300 font-semibold"
-				>qui</a>.</p>
+				>qui</a>.</p> --}}
 
 			{{-- Join Requests --}}
 			@if ($joinRequests->count() || $inviteRequests->count() || session('success'))
@@ -59,6 +59,12 @@
 						@endsession
 
 						@foreach ($joinRequests as $joinRequest)
+							@if (!$joinRequest->class)
+								@php
+									$joinRequest->delete();
+								@endphp
+								@continue
+							@endif
 							<form
 								method="POST"
 								class="border-1 grid grid-cols-1 gap-4 rounded border-dashed border-neutral-400 p-2"
@@ -90,6 +96,13 @@
 						@endforeach
 
 						@foreach ($inviteRequests as $inviteRequest)
+							@if (!$inviteRequest->class)
+								@php
+									$inviteRequest->delete();
+								@endphp
+								@continue
+							@endif
+
 							<form
 								method="POST"
 								class="border-1 grid grid-cols-1 gap-4 rounded border-dashed border-neutral-400 p-2"
@@ -126,6 +139,7 @@
 
 			{{-- Classes --}}
 			@if (is_administrator())
+				<x-heading.section class="mb-12">Funzionalità di referente</x-heading.section>
 				<a
 					href="{{ route('administrator.dashboard') }}"
 					class="dashboard-element hover:bg-transition-400 group mt-8 flex items-center gap-8 rounded-lg bg-neutral-50 p-8 shadow transition-all hover:text-white"

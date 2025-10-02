@@ -19,11 +19,12 @@
 		<p class="test-text js-text <?= legacy_test()->completed ? 'test-text--right-version' : '' ?>">
 
 			<?php
+
 			$errorId = 0;
 			foreach ($text as $textPart) {
 				if (is_array($textPart)) {
 					$errorId++;
-					$found = legacy_test()->completed && legacy_test()->rawResults[$errorId];
+					$found = legacy_test()->completed && (legacy_test()->rawResults[$errorId] ?? false);
 
 					echo '<label class="test-text__part error-type--' . (!legacy_test()->completed || $found ? $textPart[2] : 'skipped') . ' js-text-error"><input type="hidden" class="js-field" name="field[]" value="0"><span class="test-error">' . ($found ? $textPart[1] : $textPart[0]) . '</span></label>';
 				} else {

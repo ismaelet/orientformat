@@ -8,6 +8,7 @@ use App\Models\User\Teacher;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Select;
@@ -23,6 +24,8 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table as FilamentTable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Livewire\Component;
 
 class Table extends Component implements HasTable, HasActions, HasSchemas {
@@ -51,6 +54,17 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
 					->sortable(['letter', 'grade']),
 				TextColumn::make('referent.inverted_full_name')
 					->label('Tutor'),
+				TextColumn::make('teachers.id')
+					->formatStateUsing(
+						fn($state, Model $record) => $record->teachers
+							->load('user')
+							->where('id', $state)
+							->where('id', '!=', $record->referentId)
+							->first()
+							?->inverted_full_name
+					)
+					->label('Altri docenti')
+					->listWithLineBreaks(),
 				TextColumn::make('students_count')
 					->label('Studenti iscritti')
 					->counts('students')
@@ -76,6 +90,8 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
 			->searchable(['referent.user.first_name', 'referent.user.last_name'])
 			->filters([])
 			->recordActions([
+				DeleteAction::make()
+					->visible(fn(SchoolClass $record): bool => $record->students()->count() === 0),
 				EditAction::make()
 					->recordTitle(fn(SchoolClass $record): string => "Classe {$record->name}")
 					->schema([
@@ -89,6 +105,34 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
 							->preload()
 							->belowContent('Qui puoi selezionare il tutor della classe, tra gli insegnanti registrati nella scuola. Questa funzionalità è usata in particolare quando c\'è un cambio di tutor tra un anno e l\'altro.')
 							->required(),
+
+						Select::make('teachers')
+							->label('Docenti assegnati alla classe')
+							->multiple()
+							->relationship(
+								name: 'teachers',
+								titleAttribute: 'id',
+								modifyQueryUsing: fn(Builder $query) => $query
+									->where('teachers.school_id', $this->school->id)
+									->with('user')
+							)
+							->getOptionLabelFromRecordUsing(fn(Teacher $record) => $record->inverted_full_name)
+							->searchable()
+							->preload()
+							->required(false)
+							->helperText('Seleziona tutti i docenti che collaborano a questa classe.')
+							->afterStateUpdated(function ($state, callable $set, $get) {
+								$referentId = $get('referentId');
+
+								if ($referentId && ! in_array($referentId, $state)) {
+									$set('referentId', null);
+								}
+
+								if (!$referentId && count($state)) {
+									$set('referentId', $state[0]);
+								}
+							})
+							->live(),
 					]),
 				Action::make('openDashboard')
 					->label('Apri dashboard')
