@@ -3,100 +3,99 @@
 {% block main %}
 
 <div class="page-header grid center-content stack-content contrasting-background">
-	<img class="object-cover opacity-30 w-full h-full" src="<?= $coverImage ?>" alt="" />
-	<div class="page-header__overlay gradient-overlay fill-all background-fill"></div>
+    <img class="object-cover opacity-30 w-full h-full" src="<?= $coverImage ?>" alt="" />
+    <div class="page-header__overlay gradient-overlay fill-all background-fill"></div>
 
-	<div class="page-header__content grid center-content main-wrap" data-spacing="700">
-		<h1 class="page-header__title title"><?= __('sections.' . $section->slug) ?></h1>
+    <div class="page-header__content grid center-content main-wrap" data-spacing="700">
+        <h1 class="page-header__title title"><?= __('sections.' . $section->slug) ?></h1>
 
-		<?php if ($area->id <> 4) { ?>
+        <?php if ($area->id <> 4) { ?>
 
-			<a class="button" href="<?= route('analysis.student.section', $section) ?>">
-				<?= embed_icon('read') ?>
-				<?= __('Know More') ?>
-			</a>
+            <a class="button" href="<?= route('analysis.student.section', $section) ?>">
+                <?= embed_icon('read') ?>
+                <?= __('Know More') ?>
+            </a>
 
-		<?php } ?>
+        <?php } ?>
 
-	</div>
+    </div>
 </div>
 
 <div id="content" class="pad-t-5 pad-b-5">
 
-	<div class="main-wrap">
+    <div class="main-wrap">
 
-		<!-- Subtitle and description -->
-		<div class="grid center-content" data-spacing="400">
-			<h2 class="subsection-title"><?= __('Section summary') ?></h2>
-			<p class="subsection-subtitle"><?= __("Here you can check your progress in this section, restart an activity, or revisit it.") ?></p>
-			<a class="button button--secondary button--auto-width mar-t-1" href="<?= $backUrl ?>"><?= __('Choose another section') ?></a>
-		</div>
+        <!-- Subtitle and description -->
+        <div class="grid center-content" data-spacing="400">
+            <h2 class="subsection-title"><?= __('Section summary') ?></h2>
+            <p class="subsection-subtitle"><?= __("Here you can check your progress in this section, restart an activity, or revisit it.") ?></p>
+            <a class="button button--secondary button--auto-width mar-t-1" href="<?= $backUrl ?>"><?= __('Choose another section') ?></a>
+        </div>
 
-		<!-- Tests -->
-		<div class="tests mar-t-5 grid" data-columns="25rem" data-spacing="700">
+        <!-- Tests -->
+        <div class="tests mar-t-5 grid" data-columns="25rem" data-spacing="700">
 
-			<?php foreach ($legacyTests as $key => $legacyTestM) {
-				$obj = $legacyTestM['obj'];
-			?>
+            <?php foreach ($tests as $key => $test) {
+            ?>
 
-				<div class="pos-rel load--fade-in js-load" data-direction="bottom" data-delay="<?= $key % 3 ?>">
-					<form id="test<?= $obj->id ?>" class="test bgr-wht grid" method="POST">
-						<?= csrf_field() ?>
-						<input type="hidden" name="testId" value="<?= $obj->id ?>">
+                <div class="pos-rel load--fade-in js-load" data-direction="bottom" data-delay="<?= $key % 3 ?>">
+                    <form id="test<?= $test->id ?>" class="test bgr-wht grid" method="POST">
+                        <?= csrf_field() ?>
+                        <input type="hidden" name="testId" value="<?= $test->id ?>">
 
-						<div class="test-img">
-							<?= embed_icon($legacyTestM['img']) ?>
-						</div>
+                        <div class="test-img">
+                            <?= embed_icon($test->recap_image) ?>
+                        </div>
 
-						<div class="test-data">
+                        <div class="test-data">
 
-							<div class="test-texts">
+                            <div class="test-texts">
 
-								<h1 class="test-title txt-upp txt-12rem txt-bold"><?= $obj->title ?></h1>
+                                <h3 class="test-title txt-upp txt-12rem txt-bold"><?= $test->name ?></h3>
 
-								<?php if (!$obj->static) { ?>
+                                <?php if (!$test->static) { ?>
 
-									<p class="test-stitle txt-upp mt-2 <?= !$obj->completed ? 'active' : ''; ?>"><?= $legacyTestM['desc'] ?></p>
+                                    <p class="test-stitle txt-upp mt-2 <?= !$test->completed ? 'active' : ''; ?>"><?= $test->result_description ?></p>
 
-								<?php } ?>
+                                <?php } ?>
 
-								<p class="mar-t-1"><?= $obj->summary ?></p>
-							</div>
+                                <p class="mar-t-1"><?= $test->summary ?></p>
+                            </div>
 
-							<div class="test-btn-box">
-								<?php if (($obj->template != 'survey' && $obj->type != 3) || !$obj->completed) { ?>
+                            <div class="test-btn-box">
+                                <?php if (($test->template != 'survey' && $test->type != 3) || !$test->completed) { ?>
 
-									<p class="test-btn fc-tertiary">
-										<a href="<?= $obj->clientUrl ?>"><?= __('View') ?></a>
-									</p>
+                                    <p class="test-btn fc-tertiary">
+                                        <a href="<?= $test->url() ?>"><?= __('View') ?></a>
+                                    </p>
 
-								<?php } ?>
+                                <?php } ?>
 
-								<?php if ($obj->template == 'survey' && $obj->completed) { ?>
+                                <?php if ($test->template == 'survey' && $test->completed) { ?>
 
-									<p class="test-btn fc-confirmation" onclick="$(this).next().click()"><?= __('Download answers') ?></p>
-									<button type="submit" class="hidden" name="download"></button>
+                                    <p class="test-btn fc-confirmation" onclick="$(this).next().click()"><?= __('Download answers') ?></p>
+                                    <button type="submit" class="hidden" name="download"></button>
 
-								<?php } ?>
+                                <?php } ?>
 
-								<?php if ($obj->completed && !$obj->static) { ?>
+                                <?php if ($test->completed && !$test->static) { ?>
 
-									<p class="test-btn fc-warning" onclick="$(this).next().click()"><?= __('Restart') ?></p>
+                                    <p class="test-btn fc-warning" onclick="$(this).next().click()"><?= __('Restart') ?></p>
 
-									<button type="submit" name="reset" class="hidden" onclick="return confirm('<?= __('Are you sure you want to restart the activity?') ?>')"
-										formaction="<?= route('test.reset', $obj->id) ?>"></button>
+                                    <button type="submit" name="reset" class="hidden" onclick="return confirm('<?= __('Are you sure you want to restart the activity?') ?>')"
+                                        formaction="<?= route('test.reset', $test->id) ?>"></button>
 
-								<?php } ?>
+                                <?php } ?>
 
-							</div>
-						</div>
-					</form>
-				</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
-			<?php } ?>
+            <?php } ?>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 
 {% end main %}

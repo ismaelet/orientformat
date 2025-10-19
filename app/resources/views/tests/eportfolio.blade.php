@@ -4,7 +4,7 @@
 	    : route('teacher.simulation');
 @endphp
 
-<x-layouts.test :$title>
+<x-layouts.main :$title>
 	<div class="full-width mt-12 content-center">
 		<div class="text-center">
 			<x-heading.main>E-Portfolio e Esame di Stato</x-heading.main>
@@ -57,4 +57,4 @@
 		</div>
 	</div>
 
-</x-layouts.test>
+</x-layouts.main>

@@ -21,5 +21,3 @@
 @variant dark (&:where(.dark, .dark *));
 
 @source "../views";
-
-@layer reset, base, layout, components, utilities;

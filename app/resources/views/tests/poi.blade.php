@@ -1,4 +1,4 @@
-<x-layouts.test :$title>
+<x-layouts.main :$title>
 	<div class="full-width bg-slate-100">
 		<div class="breakout content-center py-20">
 			@if (is_student())
@@ -11,4 +11,4 @@
 			@endif
 		</div>
 	</div>
-</x-layouts.test>
+</x-layouts.main>

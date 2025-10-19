@@ -4,7 +4,7 @@
 	    : route('teacher.simulation');
 @endphp
 
-<x-layouts.test :$title>
+<x-layouts.main :$title>
 	<div class="mt-12 text-center">
 		<x-heading.main>Capolavori</x-heading.main>
 	</div>
@@ -195,4 +195,4 @@
 
 		<p class="text-error-400">* La funzionalità di caricare il capolavoro sarà attiva a partire dal 1° novembre 2025</p>
 	</div>
-</x-layouts.test>
+</x-layouts.main>

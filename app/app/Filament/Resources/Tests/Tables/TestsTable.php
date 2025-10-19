@@ -14,40 +14,46 @@ use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
 class TestsTable {
-	public static function configure(Table $table): Table {
-		return $table
-			->defaultSort('id', 'desc')
-			->columns([
-				TextColumn::make('id')
-					->searchable()
-					->sortable()
-					->numeric()
-					->label('ID'),
-				TextColumn::make('title')
-					->searchable()
-					->sortable()
-					->label('Nome'),
-				TextColumn::make('section.name')
-					->searchable()
-					->sortable()
-					->label('Sezione'),
-				TextColumn::make('slug')
-					->searchable()
-					->sortable()
-					->label('Slug'),
-			])
-			->filters([
-				TrashedFilter::make(),
-			])
-			->recordActions([
-				EditAction::make(),
-			])
-			->toolbarActions([
-				BulkActionGroup::make([
-					DeleteBulkAction::make(),
-					ForceDeleteBulkAction::make(),
-					RestoreBulkAction::make(),
-				]),
-			]);
-	}
+    public static function configure(Table $table): Table {
+        return $table
+            ->defaultSort('id', 'desc')
+            ->reorderable('step')
+            ->columns([
+                TextColumn::make('id')
+                    ->searchable()
+                    ->sortable()
+                    ->numeric()
+                    ->label('ID'),
+                TextColumn::make('title')
+                    ->searchable()
+                    ->sortable()
+                    ->label('Nome'),
+                TextColumn::make('section.name')
+                    ->searchable()
+                    ->sortable()
+                    ->label('Sezione'),
+                TextColumn::make('slug')
+                    ->searchable()
+                    ->sortable()
+                    ->label('Slug'),
+                TextColumn::make('step')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->label('Ordine'),
+            ])
+            ->searchable(['title', 'section.name', 'section.slug', 'slug', 'step'])
+            ->filters([
+                TrashedFilter::make(),
+            ])
+            ->recordActions([
+                EditAction::make(),
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                    ForceDeleteBulkAction::make(),
+                    RestoreBulkAction::make(),
+                ]),
+            ]);
+    }
 }

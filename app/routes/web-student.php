@@ -18,38 +18,40 @@ use Illuminate\Support\Facades\Route;
  * Student only routes
  */
 Route::middleware([Student::class, HasEmail::class, CompletedReview::class, Locale::class])->group(function () {
-	// Home
-	Route::any('student', [StudentHomeController::class, 'index'])->name('student');
+    // Home
+    Route::any('student', [StudentHomeController::class, 'index'])->name('student');
 
-	// Student Activities
-	Route::any('activities/grades', [GradeController::class, 'index'])->name('activities.grades.index');
-	Route::any('activities/grades/{grade}', [GradeController::class, 'show'])->name('activities.grades.show');
+    // Student Activities
+    Route::any('activities/grades', [GradeController::class, 'index'])->name('activities.grades.index');
+    Route::any('activities/grades/{grade}', [GradeController::class, 'show'])->name('activities.grades.show');
 });
 
 /**
  * Student and teacher simulation routes
  */
 Route::middleware(['auth', Locale::class])->group(function () {
-	// Section recap
-	Route::any('activities/sections/{section}', [SectionController::class, 'show'])->name('section');
+    // Section recap
+    Route::any('activities/sections/{section}', [SectionController::class, 'show'])->name('section');
 
-	// Test routes
-	Route::any('activities/tests/{test}', [TestController::class, 'show'])->name('test');
+    // Test routes
+    Route::any('activities/tests/{test}', [TestController::class, 'show'])->name('test');
 
-	Route::post('activities/tests/{test}/reset', [TestController::class, 'reset'])->name('test.reset');
+    Route::post('activities/tests/{test}', [TestController::class, 'store'])->name('test.store');
 
-	Route::post('activities/tests/{test}/reset-dependent', [TestController::class, 'resetDependent'])->name('test.reset.dependent');
+    Route::post('activities/tests/{test}/reset', [TestController::class, 'reset'])->name('test.reset');
+
+    Route::post('activities/tests/{test}/reset-dependent', [TestController::class, 'resetDependent'])->name('test.reset.dependent');
 });
 
 /**
  * Student analysis routes
  */
 Route::middleware(['auth', Locale::class])->group(function () {
-	// Areas analysis
-	Route::any('analysis/student/areas/{area}', [StudentAnalysisController::class, 'show'])->name('analysis.student.area');
+    // Areas analysis
+    Route::any('analysis/student/areas/{area}', [StudentAnalysisController::class, 'show'])->name('analysis.student.area');
 
-	// Sections analysis
-	Route::any('analysis/student/sections/{section}', [StudentAnalysisController::class, 'show'])->name('analysis.student.section');
+    // Sections analysis
+    Route::any('analysis/student/sections/{section}', [StudentAnalysisController::class, 'show'])->name('analysis.student.section');
 });
 
 /**
@@ -61,11 +63,11 @@ Route::resource('review', ReviewController::class)->middleware(['auth', Student:
  * Mixed student and teacher routes
  */
 Route::middleware(HasStudentAccess::class)->group(function () {
-	// Profile
-	Route::get('students/{student}/results/pdf', [StudentResultController::class, 'downloadPdf'])
-		->name('students.results.pdf');
+    // Profile
+    Route::get('students/{student}/results/pdf', [StudentResultController::class, 'downloadPdf'])
+        ->name('students.results.pdf');
 
-	// Self-assessments
-	Route::get('students/{student}/self-assessments/pdf', [StudentResultController::class, 'downloadSelfAssessmentPdf'])
-		->name('students.self-assessments.pdf');
+    // Self-assessments
+    Route::get('students/{student}/self-assessments/pdf', [StudentResultController::class, 'downloadSelfAssessmentPdf'])
+        ->name('students.self-assessments.pdf');
 });
