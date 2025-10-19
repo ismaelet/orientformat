@@ -28,11 +28,14 @@ class TestController extends Controller {
         }
 
         $helper = $test->helperClass();
+        $student = legacy_watched_student();
+        $completed = $student->hasCompletedTest($test);
 
         return view($test->view(), [
             'test' => $test,
             'title' => $title,
-            'student' => student(),
+            'student' => $student,
+            'completed' => $completed,
             'helper' => $helper,
         ]);
     }

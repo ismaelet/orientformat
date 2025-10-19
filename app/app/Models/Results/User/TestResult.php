@@ -46,4 +46,11 @@ class TestResult extends Model {
     public function completed(): bool {
         return $this->completed;
     }
+
+    /**
+     * Get the results as an array
+     */
+    public function results(): array {
+        return explode(',', $this->result);
+    }
 }

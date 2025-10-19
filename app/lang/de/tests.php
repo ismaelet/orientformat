@@ -183,6 +183,7 @@ return [
     209 => "Die Gesichter sprechen",
 
     'problemi-superiori-problem-gruppo' => 'Gruppenproblemlösung',
+    "problemi-superiori-esempio-problem" => "Beispiel für Problemlösung",
 
 
     // * Short descriptions
@@ -369,6 +370,7 @@ return [
     "summary-209" => "Erzeuge Emotionen, indem du Augen und Mund kombinierst.",
 
     'summary-problemi-superiori-problem-gruppo' => 'Welche Rolle kannst du bei der Lösung von Gruppenproblemen spielen?',
+    "summary-problemi-superiori-esempio-problem" => "Untersuche das vorgeschlagene Beispiel zur Gruppenproblemlösung.",
 
 
     // * Long descriptions
@@ -543,6 +545,11 @@ return [
     "description-208" => "Wähle aus diesen Emotionen diejenige aus, die du am häufigsten fühlst, indem du auf die Intensitätsstufe klickst: von 1 = wenig intensiv bis 4 = sehr intensiv. Du kannst deine Wahl mehrmals wiederholen.",
     "description-209" => "Ordne, indem du mit der Maus ziehst, Mund und Blick zu: So erhältst du eine besondere Emotion. Welche hast du gerade? Wenn du kannst, ordne dem Emotion, die du mit der Zeichnung erstellt hast, auch einen Namen zu.",
     "description-problemi-superiori-problem-gruppo" => "Welche Rolle kannst du (vorerst) bei der Lösung von Gruppenproblemen spielen? Später wirst du entdecken, was du brauchst, um die anderen Rollen zu übernehmen.",
+    "description-problemi-superiori-esempio-problem" => "Im Klassenleben oder in der Erfahrung des Schulpraktikums können Probleme auftreten, die effektiv durch ein „Rollenspiel“ angegangen werden können: Jede Rolle, wenn sie angemessen gespielt wird, ist notwendig für die ausgewogene Führung der Gruppe und die Lösung des Problems.
+
+    Wir geben ein Beispiel für mögliche Probleme. Weitere Probleme kannst du zusammen mit deinen Mitschülern identifizieren. Es ist auch möglich, zuerst die Gruppen zu bilden, um dann festzulegen, welche Probleme angegangen werden sollen.
+
+    Im Folgenden findest du eine Liste möglicher Probleme, die in der Gruppe angegangen werden können, und ein spezifisches Beispiel für eine Lösung eines dieser Probleme.",
 
 
     // * Test specific

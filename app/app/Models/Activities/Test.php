@@ -36,6 +36,7 @@ class Test extends Model {
         'step',
         'template',
         'reviewable',
+        'reviewResult',
     ];
 
     /**

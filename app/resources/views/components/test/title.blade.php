@@ -1,4 +1,4 @@
-@props(['test'])
+@props(['test', 'description' => null])
 
 <div>
 	{{-- Progress tracker --}}
@@ -8,5 +8,5 @@
 	<h1 class="text-800 text-tertiary-400 font-semibold">{{ $test->name }}</h1>
 
 	<p class="border-neutral-border mt-4 border-t pt-4 text-lg">
-		{{ nl2br($test->description) }}</p>
+		{!! $description ? $description : nl2br($test->description) !!}</p>
 </div>

@@ -2,7 +2,66 @@
 
 namespace App\Helpers\Tests;
 
+use App\Models\Activities\Test;
+use App\Models\User\Student;
+use App\Models\User\Teacher;
+use Illuminate\Support\Collection;
+
 class ProblemiSuperioriProblemGruppoHelper {
+
+    /**
+     * Constant: Maximum score per question
+     */
+    public const int MAX_SCORE = 4;
+
+    /**
+     * Get the results for the Problemi Superiori - Problem Solving di Gruppo test
+     */
+    public static function results(Test $test, Student|Teacher $user): Collection {
+        $answers = $user->testResult($test)?->results() ?? [];
+        $questions = self::questions();
+        $roles = self::roles();
+
+        $results = collect();
+
+        foreach ($roles as $roleId => $roleName) {
+            $roleQuestions = array_filter($questions, fn($q) => $q['role'] === $roleId);
+            $roleAnswers = array_intersect_key($answers, $roleQuestions);
+            $score = array_sum($roleAnswers);
+            $maxScore = count($roleQuestions) * self::MAX_SCORE;
+            $percentage = $maxScore > 0 ? round(($score / $maxScore) * 100) : 0;
+
+            $results->push(collect([
+                'id' => $roleId,
+                'name' => $roleName,
+                'answers' => $roleAnswers,
+                'score' => $score,
+                'percentage' => $percentage,
+            ]));
+        }
+
+        return $results;
+    }
+
+    /**
+     * Get the main roles for the Problemi Superiori - Problem Solving di Gruppo test
+     */
+    public static function mainRoles(Test $test, Student|Teacher $user): Collection {
+        $results = self::results($test, $user);
+        $topScore = $results->max('score');
+
+        return $results->where('score', $topScore);
+    }
+
+    /**
+     * Get the other roles for the Problemi Superiori - Problem Solving di Gruppo test
+     */
+    public static function otherRoles(Test $test, Student|Teacher $user): Collection {
+        $results = self::results($test, $user);
+        $mainRoles = self::mainRoles($test, $user);
+
+        return $results->diff($mainRoles)->sortByDesc('score');
+    }
 
     /**
      * Get the questions for the Problemi Superiori - Problem Solving di Gruppo test

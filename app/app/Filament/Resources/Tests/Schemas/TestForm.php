@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Tests\Schemas;
 
 use App\Models\Activities\Section;
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -49,7 +50,10 @@ class TestForm {
                         'survey-results' => '[Vecchio] Risultati Questionario',
                     ])
                     ->default('blade')
-                    ->required()
+                    ->required(),
+                Checkbox::make('reviewResult')
+                    ->label('Richiede revisione')
+                    ->helperText('Se selezionato, una volta completata l\'attività, la pagina verrà ricaricata per mostrare i risultati.'),
             ]);
     }
 }

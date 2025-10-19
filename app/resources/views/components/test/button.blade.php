@@ -1,20 +1,34 @@
 @pushOnce('styles')
 	<style>
-		.test-button[data-progressive="true"] {
+		button.test-button[data-progressive="true"] {
 			position: relative;
 			isolation: isolate;
 			overflow: hidden;
+			color: white;
+			border: 1px solid var(--color-primary-400);
 
 			&::before {
 				content: '';
 				position: absolute;
 				top: 0;
 				left: 0;
+				z-index: -1;
 				width: var(--_width, 0%);
 				height: 100%;
-				background: var(--color-neutral-300);
-				z-index: -1;
-				transition: width 0.3s ease-in-out;
+				background-color: var(--color-primary-400);
+				transition: width 0.3s ease-in-out, background 0.3s ease-in-out;
+			}
+
+			&:disabled {
+				color: var(--color-neutral-500);
+
+				&::before {
+					background-color: var(--color-neutral-300);
+				}
+			}
+
+			&:hover::before {
+				background-color: var(--color-primary-500);
 			}
 		}
 	</style>
@@ -33,6 +47,7 @@
 					const filledFields = Array.from(fields).filter(f => f.value.trim() !== '').length;
 					const progress = (filledFields / fields.length) * 100;
 					button.style.setProperty('--_width', `${progress}%`);
+
 
 					if (progress === 100) {
 						button.disabled = false;
