@@ -1,3 +1,57 @@
+@pushOnce('styles')
+	<style>
+		main article {
+			font-size: 1.125rem;
+			line-height: 2;
+			padding-bottom: 3rem;
+			border-bottom: 1px solid var(--color-slate-300);
+
+			&:last-child {
+				border-bottom: none;
+				padding-bottom: 0;
+			}
+
+			ul {
+				margin-left: 2rem;
+				list-style: outside;
+			}
+
+			ul>li>ul {
+				list-style: circle;
+			}
+
+			ol {
+				display: grid;
+				grid-template-columns: minmax(0, 1fr);
+				gap: 1rem;
+				list-style-type: decimal;
+				margin-left: 1.5rem;
+			}
+
+			ol>li::marker {
+				font-weight: bold;
+				font-size: 1.25rem
+			}
+
+			h4 {
+				font-size: 1.25rem;
+				font-weight: 600;
+			}
+
+			table {
+				border-collapse: separate;
+				border-spacing: 4rem 1rem;
+				margin: -1rem -4rem;
+				margin-top: 2rem;
+
+				td {
+					font-size: 1rem;
+				}
+			}
+		}
+	</style>
+@endpushOnce
+
 <x-layouts.test
 	:$title
 	:$test
@@ -12,8 +66,8 @@
 				<ul class="grid grid-cols-1 gap-2">
 					<li>1. Difficoltà da parte di un compagno a inserirsi nel gruppo.</li>
 					<li>2. Nella scuola è stato vietato
-						l’uso di qualsiasi strumento digitale, anche per attività didattiche. È urgente individuare un &quot;ambasciatore
-						digitale&quot; da proporre all’istituzione.</li>
+						l’uso di qualsiasi strumento digitale, anche per attività didattiche. È urgente individuare un "ambasciatore
+						digitale" da proporre all’istituzione.</li>
 					<li>3. Un conflitto tra compagni che turba la vita di classe.</li>
 					<li>4. L’intelligenza artificiale aiuta o danneggia?</li>
 					<li>5. Il rapporto con un insegnante non funziona.</li>
@@ -23,7 +77,7 @@
 				</ul>
 			</div>
 
-			@if ($student->class->grade()->absolute_number >= 7 || $student->class->isProfessional())
+			@if (is_teacher() || $student->class->grade()->absolute_number >= 7 || $student->class->isProfessional())
 				<div class="grid grid-cols-1 gap-4">
 					<x-heading.component>
 						Problemi nell’alternanza scuola-lavoro:</x-heading.component>
@@ -51,66 +105,27 @@
 				aiutarla?<br><br>Esempio di soluzione</x-heading.section>
 			<p class="mt-4 text-center text-xl">(In evidenza le caratteristiche di ogni ruolo)</p>
 
-			<div class="mt-20">
-				<article>
-					<div class="flex flex-wrap items-center gap-8">
-						<img
-							src="{{ Vite::image('tests/problemi-superiori/role-2-sm.webp') }}"
-							alt="Esploratore"
-							class="rounded-4xl w-50"
-						>
-						<x-heading.component-big>L'Esploratore</x-heading.component-big>
+			<div class="mt-20 grid grid-cols-1 gap-20">
 
-						<p class="text-lg leading-loose"><strong>Accorgendosi prima degli altri quando c’è un problema</strong>,
-							affronterebbe la
-							condizione in cui si è
-							venuta a
-							trovare la compagna concentrandosi inizialmente sulla raccolta di informazioni complete e
-							sull&#39;identificazione di opzioni di intervento non convenzionali.<br><br>
-							Ecco come agirebbe, in linea con le sue caratteristiche.<br><br>
-							1. Ricerca approfondita e multidimensionale
-							L&#39;Esploratore non si limiterebbe a ciò che è immediatamente ovvio, ma cercherebbe attivamente la
-							&quot;novità&quot; (ovvero, l&#39;informazione completa e le cause profonde) del problema.
-							 Identificazione precoce del problema: agendo sulla sua capacità di accorgersi del problema prima
-							degli altri, si assicurerebbe che il fenomeno non venga ignorato o minimizzato.
-							 Visione da diversi punti di vista:
-							o Vittima: raccoglierebbe dati sulle emozioni della vittima, sul come il bullismo la influenza e
-							sui luoghi virtuali specifici in cui avviene.
-							o Bulli: cercherebbe di comprendere le motivazioni e le dinamiche di gruppo che spingono gli
-							aggressori (non per giustificare, ma per capire come interrompere il ciclo).
-							o Contesto tecnologico: indagherebbe a fondo sulle piattaforme utilizzate (social media,
-							gruppi di chat, forum) per comprendere le loro specifiche meccaniche di diffusione e
-							segnalazione.
+				{{-- Esploratore --}}
+				@include('tests.problemi-superiori.esempio-problem_esploratore')
 
-							 Prende in considerazione diverse ipotesi: non fermandosi alla prima idea (&quot;Diciamolo agli
-							insegnanti&quot;), ma raccogliendo diverse ipotesi di causa (es. problemi a casa, dinamiche di classe non
-							risolte, uso improprio di specifici strumenti digitali) e di soluzione.
-							2. Generazione di soluzioni innovative e personalizzate
-							Poiché le soluzioni note e già sperimentate lo annoiano, l&#39;Esploratore si concentrerebbe sulla creazione di
-							un ventaglio di interventi originali, andando oltre le classiche punizioni scolastiche.
-							 Intervento tecnologico: esplorerebbe l&#39;uso di strumenti digitali per contrastare il fenomeno, ad
-							esempio:
-							o Creare una campagna di sensibilizzazione mirata sulle piattaforme dove avviene il
-							cyberbullismo.
-							o Cercare modi per utilizzare i meccanismi di segnalazione efficaci e rapidi offerti dalle
-							piattaforme stesse.
-							o Proporre l&#39;introduzione di un &quot;ambasciatore digitale&quot; a scuola, non solo un mediatore, ma
-							un esperto delle dinamiche online.
+				{{-- Stratega --}}
+				@include('tests.problemi-superiori.esempio-problem_stratega')
 
-							 Approccio empatico (diversi punti di vista): suggerirebbe un intervento che tenga conto del benessere
-							emotivo della vittima, magari creando un sistema di supporto tra pari anonimo per chi ha paura di
-							parlare.
-							 Soluzione preventiva a lungo termine: invece di limitarsi a risolvere il singolo caso, l&#39;Esploratore
-							proporrebbe una soluzione più ampia che affronti il problema della cultura digitale della classe o della
-							scuola. Ad esempio, introdurre laboratori di digital citizenship interattivi anziché noiose lezioni frontali.
-							In sintesi, l&#39;Esploratore si concentrerebbe sulla fase di diagnosi e ideazione del problema: raccoglierebbe
-							il
-							maggior numero di informazioni, formulerebbe diverse ipotesi e proporrebbe soluzioni fresche e mirate
-							che tengano conto di tutti gli aspetti del problema. Lascerebbe poi al Critico e allo Stratega il compito di
-							valutare e attuare l&#39;opzione migliore.</p>
-					</div>
-				</article>
+				{{-- Critico --}}
+				@include('tests.problemi-superiori.esempio-problem_critico')
+
+				{{-- Saggio --}}
+				@include('tests.problemi-superiori.esempio-problem_saggio')
 			</div>
 		</section>
+
+		<div class="mt-8 flex w-full">
+			<x-test.button
+				:$test
+				class="w-full"
+			/>
+		</div>
 	</div>
 </x-layouts.test>

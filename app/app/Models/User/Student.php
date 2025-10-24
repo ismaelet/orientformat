@@ -124,14 +124,14 @@ class Student extends Model {
     }
 
     /**
-     * The test results of the student
+     * Relationship: The test results of the student
      */
     public function test_results(): HasMany {
         return $this->hasMany(TestResult::class, 'studentId');
     }
 
     /**
-     * The section results of the student
+     * Relationship: The section results of the student
      */
     public function section_results(): HasMany {
         return $this->hasMany(SectionResult::class, 'studentId');

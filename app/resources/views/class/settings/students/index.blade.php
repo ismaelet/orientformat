@@ -20,7 +20,7 @@
 
 	<!-- Info -->
 	<p class="stitle txt-1rem mar-t-3 fa-center px-8">
-		Qui puoi controllare la lista degli studenti e dei corrispettivi username.<br>
+		Qui puoi controllare la lista degli studenti.<br>
 		Se uno studente si registrasse per errore più di una volta, o se vedessi nella lista uno studente che non fa parte
 		della tua classe, puoi disabilitarlo cliccando su <strong>disattiva</strong>.<br>
 		Se invece uno studente si dimenticasse l'username, puoi verificare nella lista qual è e comunicarglielo.
