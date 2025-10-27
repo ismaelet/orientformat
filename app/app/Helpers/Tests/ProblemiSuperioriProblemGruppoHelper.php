@@ -34,6 +34,7 @@ class ProblemiSuperioriProblemGruppoHelper {
             $results->push(collect([
                 'id' => $roleId,
                 'name' => $roleName,
+                'description' => self::roleDescription($roleId),
                 'answers' => $roleAnswers,
                 'score' => $score,
                 'percentage' => $percentage,
@@ -172,10 +173,35 @@ class ProblemiSuperioriProblemGruppoHelper {
      */
     public static function roles(): array {
         return [
-            1 => 'Stratega',
-            2 => 'Esploratore',
-            3 => 'Critico',
-            4 => 'Saggio',
+            1 => __("problem-gruppo.role-1-title"),
+            2 => __("problem-gruppo.role-2-title"),
+            3 => __("problem-gruppo.role-3-title"),
+            4 => __("problem-gruppo.role-4-title"),
         ];
+    }
+
+    public static function roleDescription(int $roleId): string {
+        $descriptions = [
+            1 => __("problem-gruppo.role-1-description"),
+            2 => __("problem-gruppo.role-2-description"),
+            3 => __("problem-gruppo.role-3-description"),
+            4 => __("problem-gruppo.role-4-description"),
+        ];
+
+        return $descriptions[$roleId] ?? '';
+    }
+
+    /**
+     * Get a specific question by its ID
+     */
+    public static function getQuestion(int $id): array {
+        return self::questions()[$id];
+    }
+
+    /**
+     * Get the answer percentage based on the score value
+     */
+    public static function getAnswerPercentage(int $value): int {
+        return round(($value / self::MAX_SCORE) * 100);
     }
 }

@@ -9,26 +9,29 @@ use Illuminate\Http\Request;
 
 class StudentAnalysisController extends Controller {
 
-	/**
-	 * * Action: Show
-	 */
-	function show(?Area $area, ?Section $section) {
-		if ($section->id) {
-			$area = $section->area;
-		}
+    /**
+     * Display the specified resource.
+     */
+    function show(?Area $area, ?Section $section) {
+        $type = $area ? 'area' : 'section';
 
-		$page = $section->id ? $section->originalSection()->slug : ($area->id ? 'area-' . $area->slug : null);
+        if ($section->id) {
+            $area = $section->area;
+        }
 
-		if (!$page) {
-			return redirect()->back();
-		}
+        $page = $section->id ? $section->originalSection()->slug : ($area->id ? 'area-' . $area->slug : null);
 
-		\App\Legacy\LegacyView::setPage('student-read/' . $page)
-			->setTitle('Saperne di più')
-			->setTemplate('student-read')
-			->set('sectionId', $section->id)
-			->set('areaId', $area->id)
-			->set('page', $page)
-			->show();
-	}
+        if (!$page) {
+            return redirect()->back();
+        }
+
+        \App\Legacy\LegacyView::setPage('student-read/' . $page)
+            ->setTitle('Saperne di più')
+            ->setTemplate('student-read')
+            ->set('sectionId', $section->id)
+            ->set('areaId', $area->id)
+            ->set('page', $page)
+            ->set('type', $type)
+            ->show();
+    }
 }

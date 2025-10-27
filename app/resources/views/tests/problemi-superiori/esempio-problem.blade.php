@@ -62,48 +62,26 @@
 		<div class="mt-12 grid grid-cols-1 gap-12">
 			<div class="grid grid-cols-1 gap-4">
 				<x-heading.component>
-					Problemi di classe:</x-heading.component>
+					{{ __('problem-gruppo.example-subtitle-1') }}</x-heading.component>
 				<ul class="grid grid-cols-1 gap-2">
-					<li>1. Difficoltà da parte di un compagno a inserirsi nel gruppo.</li>
-					<li>2. Nella scuola è stato vietato
-						l’uso di qualsiasi strumento digitale, anche per attività didattiche. È urgente individuare un "ambasciatore
-						digitale" da proporre all’istituzione.</li>
-					<li>3. Un conflitto tra compagni che turba la vita di classe.</li>
-					<li>4. L’intelligenza artificiale aiuta o danneggia?</li>
-					<li>5. Il rapporto con un insegnante non funziona.</li>
-					<li>6. Programmi di studio o modi di
-						condurre la lezione che non convincono.</li>
-					<li>7. Come utilizzare al meglio la piattaforma OrientFormat.</li>
+					{!! __('problem-gruppo.example-list') !!}
 				</ul>
 			</div>
 
 			@if (is_teacher() || $student->class->grade()->absolute_number >= 7 || $student->class->isProfessional())
 				<div class="grid grid-cols-1 gap-4">
 					<x-heading.component>
-						Problemi nell’alternanza scuola-lavoro:</x-heading.component>
+						{{ __('problem-gruppo.example-subtitle-2-highschool') }}</x-heading.component>
 					<ul class="grid grid-cols-1 gap-2">
-						<li>1. Il luogo di lavoro
-							non offre garanzie sufficienti di sicurezza (materiale o psicologica).</li>
-						<li>2. Le attività proposte non sono coerenti col
-							percorso di studi.</li>
-						<li>3. Il tutoraggio da parte della scuola o dell’azienda non sembra adeguato.</li>
-						<li>4. L’impegno
-							richiesto è incompatibile con le esigenze di studio.</li>
-						<li>5. I compiti svolti gratuitamente sembrano più uno
-							sfruttamento che un’occasione formativa.</li>
-						<li>6. Le attività teoriche/pratiche simulate nell’istituto non sembrano
-							sufficientemente strutturate ed efficaci.</li>
-						<li>7. Non c’è o non risulta efficace l’interazione fra orientamento e
-							alternanza.</li>
+						{!! __('problem-gruppo.example-list-highschool') !!}
 					</ul>
 				</div>
 			@endif
 		</div>
 
 		<section class="mt-16">
-			<x-heading.section class="text-center">Problema: Una compagna di classe è fatta oggetto di cyberbullismo. Come
-				aiutarla?<br><br>Esempio di soluzione</x-heading.section>
-			<p class="mt-4 text-center text-xl">(In evidenza le caratteristiche di ogni ruolo)</p>
+			<x-heading.section class="text-center">{!! __('problem-gruppo.example-title-highschool') !!}</x-heading.section>
+			<p class="mt-4 text-center text-xl">{!! __('problem-gruppo.example-intro') !!}</p>
 
 			<div class="mt-20 grid grid-cols-1 gap-20">
 

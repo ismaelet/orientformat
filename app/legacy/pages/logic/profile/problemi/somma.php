@@ -1,36 +1,42 @@
 <?php
 
-use LogicManager\TestLogic;
-
 $count = 13;
 
 \Legacy\LogicManager\TestLogic::setParameterCount($count)
-	->setTestSubmitFunction(
-		function () {
-			$correctN = 0;
+    ->setTestSubmitFunction(
+        function () {
+            $correctN = 0;
 
-			foreach ($_POST['field'] as $key => $_looping) {
-				if (eval_num($_POST['field'], $key)) $correctN++;
-			}
+            if (empty($_POST['field'])) {
+                return 0;
+            }
 
-			return round($correctN / \Legacy\LogicManager\TestLogic::$parameterCount * 100, 0);
-		}
-	);
+            foreach ($_POST['field'] as $key => $_looping) {
+                if (eval_num($_POST['field'], $key)) $correctN++;
+            }
+
+            return round($correctN / \Legacy\LogicManager\TestLogic::$parameterCount * 100, 0);
+        }
+    );
 
 function eval_num($numbers, $key) {
-	if ($key) {
-		$valid = true;
-		$num = (int) $numbers[$key];
-		$sibling = $key < 7 ? (int) $numbers[$key + 6] : (int) $numbers[$key - 6];
-		$center = (int) $numbers[0];
+    if (!isset($numbers[$key])) {
+        return false;
+    }
 
-		if ($num + $center + $sibling != 22) $valid = false;
+    if ($key) {
+        $valid = true;
+        $num = (int) $numbers[$key];
+        $sibling = $key < 7 ? (int) $numbers[$key + 6] : (int) $numbers[$key - 6];
+        $center = (int) $numbers[0];
 
-		foreach ($numbers as $i => $val) if ($i != $key && $val == $num) $valid = false;
+        if ($num + $center + $sibling != 22) $valid = false;
 
-		return $valid;
-	} else {
-		if ($numbers[0] < 10) return true;
-		else return false;
-	}
+        foreach ($numbers as $i => $val) if ($i != $key && $val == $num) $valid = false;
+
+        return $valid;
+    } else {
+        if ($numbers[0] < 10) return true;
+        else return false;
+    }
 }

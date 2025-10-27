@@ -111,10 +111,28 @@ class Section extends Model {
     }
 
     /**
+     * Get the first uncompleted test for the given student
+     */
+    public function firstUncompletedTest(Student|Teacher|null $student = null): ?Test {
+        $student = $student ?? student();
+
+        $completedTestIds = $student->test_results->pluck('testId')->toArray();
+
+        return $this->active_tests()
+            ->whereNotIn('id', $completedTestIds)
+            ->orderBy('step', 'asc')
+            ->first();
+    }
+
+    /**
      * Get the URL for the section
      */
     public function url(): string {
         if ($this->isCompletable()) {
+            if (!student()->hasCompletedSection($this) && $this->firstUncompletedTest()) {
+                return $this->firstUncompletedTest()->url();
+            }
+
             return route('section', ['section' => $this]);
         }
 

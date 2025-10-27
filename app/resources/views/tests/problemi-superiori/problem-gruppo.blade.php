@@ -74,15 +74,17 @@
 	:$title
 	:$test
 >
-	<div class="mb-20 mt-10">
+	<div class="full-width mb-20 mt-10">
 
 		@includeWhen(!$completed, 'tests.problemi-superiori.problem-gruppo_incomplete')
 		@includeWhen($completed, 'tests.problemi-superiori.problem-gruppo_completed')
 
-		<x-test.button
-			:$test
-			:progressive="true"
-			class="mt-8 w-full"
-		/>
+		<div class="">
+			<x-test.button
+				:$test
+				:progressive="true"
+				class="mt-8 w-full"
+			/>
+		</div>
 	</div>
 </x-layouts.test>

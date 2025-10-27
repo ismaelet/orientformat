@@ -51,6 +51,10 @@ class TestForm {
                     ])
                     ->default('blade')
                     ->required(),
+                TextInput::make('step')
+                    ->label('Ordine')
+                    ->placeholder('Inserisci l\'ordine di visualizzazione')
+                    ->numeric(),
                 Checkbox::make('reviewResult')
                     ->label('Richiede revisione')
                     ->helperText('Se selezionato, una volta completata l\'attività, la pagina verrà ricaricata per mostrare i risultati.'),

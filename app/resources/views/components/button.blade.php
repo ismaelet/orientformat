@@ -131,6 +131,11 @@
 					font-size: 0.8rem;
 				}
 
+				&[data-size="2xs"] {
+					min-width: 5rem;
+					font-size: 0.75rem;
+				}
+
 				&[data-size="auto"] {
 					width: auto;
 					min-width: unset;

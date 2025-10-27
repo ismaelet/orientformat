@@ -39,6 +39,11 @@ class Test extends Model {
         'reviewResult',
     ];
 
+    protected $casts = [
+        'reviewable' => 'boolean',
+        'reviewResult' => 'boolean',
+    ];
+
     /**
      * Attribute: The name of the test
      */

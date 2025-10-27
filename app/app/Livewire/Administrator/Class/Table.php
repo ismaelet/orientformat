@@ -117,15 +117,12 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                         Select::make('teachers')
                             ->label('Docenti assegnati alla classe')
                             ->multiple()
-                            ->relationship(
-                                name: 'teachers',
-                                titleAttribute: 'id',
-                                modifyQueryUsing: fn(Builder $query) => $query
-                                    ->where('teachers.school_id', $this->school->id)
-                                    ->with('user')
-                            )
+                            ->relationship(name: 'teachers', titleAttribute: 'user.inverted_full_name', modifyQueryUsing: fn(Builder $query) => $query
+                                ->join('users', 'teachers.user_id', '=', 'users.id')
+                                ->where('school_id', $this->school->id)
+                                ->with('user'))
                             ->getOptionLabelFromRecordUsing(fn(Teacher $record) => $record->inverted_full_name)
-                            ->searchable()
+                            ->searchable(['full_name', 'inverted_full_name'])
                             ->preload()
                             ->required(false)
                             ->helperText('Seleziona tutti i docenti che collaborano a questa classe.')

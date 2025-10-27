@@ -19,6 +19,7 @@
 	<form
 		method="POST"
 		action="{{ route('test.store', $test) }}"
+		class="full-width"
 	>
 		@csrf
 

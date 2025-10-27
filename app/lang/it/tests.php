@@ -187,8 +187,12 @@ return [
 
     "poi-poi" => "Profilo Orientativo Individualizzato",
     "autovalutazioni-autovalutazioni" => "Autovalutazioni",
+    'problemi-problem-gruppo' => 'Problem solving di gruppo',
+    "problemi-esempio-problem" => "Esempio di problem solving",
     'problemi-superiori-problem-gruppo' => 'Problem solving di gruppo',
     "problemi-superiori-esempio-problem" => "Esempio di problem solving",
+    'problemi-esperto-problem-gruppo' => 'Problem solving di gruppo',
+    "problemi-esperto-esempio-problem" => "Esempio di problem solving",
 
 
     // * Short descriptions
@@ -376,8 +380,12 @@ return [
 
     "summary-poi-poi" => "Qui trovi il tuo profilo orientativo che si aggiorna con il progredire delle tue autovalutazioni.",
     "summary-autovalutazioni-autovalutazioni" => "Qui trovi un riepilogo delle tue autovalutazioni.",
+    'summary-problemi-problem-gruppo' => 'Quale può essere il tuo ruolo in un problem solving di gruppo?',
+    "summary-problemi-esempio-problem" => "Esamina l'esempio proposto di problem solving di gruppo.",
     'summary-problemi-superiori-problem-gruppo' => 'Quale può essere il tuo ruolo in un problem solving di gruppo?',
     "summary-problemi-superiori-esempio-problem" => "Esamina l'esempio proposto di problem solving di gruppo.",
+    'summary-problemi-esperto-problem-gruppo' => 'Quale può essere il tuo ruolo in un problem solving di gruppo?',
+    "summary-problemi-esperto-esempio-problem" => "Esamina l'esempio proposto di problem solving di gruppo.",
 
 
     // * Long descriptions
@@ -567,8 +575,20 @@ return [
 competenze di base trasversali. Il quadro viene integrato e aggiornato in base alle sezioni che hai completato. Il profilo che viene
 così definendosi sulla base delle tue autovalutazioni è condiviso anche dai tuoi insegnanti. Se vuoi, puoi inserire il tuo POI
 nell’e-portfolio.",
+    "description-problemi-problem-gruppo" => "Quale può essere (per ora) il tuo ruolo in un problem solving di gruppo? In seguito scoprirai che cosa ti serve per svolgere gli altri ruoli.",
+    "description-problemi-esempio-problem" => "In classe o al di fuori della classe si presentano spesso dei problemi che si possono affrontare in modo efficace con un “gioco” di ruoli: ogni ruolo, se adeguatamente impersonato, risulta necessario alla conduzione equilibrata del gruppo e alla soluzione del problema.
+
+    Forniamo un esempio di possibili problemi. Altri problemi li potrai individuare insieme con i tuoi compagni. È possibile anche formare prima i gruppi per individuare poi su quali problemi si intende intervenire.
+    
+    A seguire troverai un elenco di possibili problemi che possono essere affrontati in gruppo e poi un esempio specifico di soluzione per uno di questi.",
     "description-problemi-superiori-problem-gruppo" => "Quale può essere (per ora) il tuo ruolo in un problem solving di gruppo? In seguito scoprirai che cosa ti serve per svolgere gli altri ruoli.",
     "description-problemi-superiori-esempio-problem" => "Nella vita di classe o nell’esperienza di alternanza scuola-lavoro possono sorgere dei problemi che si possono affrontare in modo efficace con un “gioco” di ruoli: ogni ruolo, se adeguatamente impersonato, risulta necessario alla conduzione equilibrata del gruppo e alla soluzione del problema.
+    
+    Forniamo un esempio di possibili problemi. Altri problemi li potrai individuare insieme con i tuoi compagni. È possibile anche formare prima i gruppi per individuare poi su quali problemi si intende intervenire.
+    
+    A seguire troverai un elenco di possibili problemi che possono essere affrontati in gruppo e poi un esempio specifico di soluzione per uno di questi.",
+    "description-problemi-esperto-problem-gruppo" => "Quale può essere (per ora) il tuo ruolo in un problem solving di gruppo? In seguito scoprirai che cosa ti serve per svolgere gli altri ruoli.",
+    "description-problemi-esperto-esempio-problem" => "Nella vita di classe o nell’esperienza di alternanza scuola-lavoro possono sorgere dei problemi che si possono affrontare in modo efficace con un “gioco” di ruoli: ogni ruolo, se adeguatamente impersonato, risulta necessario alla conduzione equilibrata del gruppo e alla soluzione del problema.
     
     Forniamo un esempio di possibili problemi. Altri problemi li potrai individuare insieme con i tuoi compagni. È possibile anche formare prima i gruppi per individuare poi su quali problemi si intende intervenire.
     
@@ -576,6 +596,8 @@ nell’e-portfolio.",
 
 
     // * Test specific
+    "13-right" => "Hai scelto la combinazione giusta, ottimo lavoro!",
+    "13-wrong" => "La soluzione è errata, ma puoi riprovare quando vuoi.",
 
     "16-field-1" => "Mi accorgo quando mi distraggo",
     "16-field-2" => "So che cosa mi distrae",

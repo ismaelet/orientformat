@@ -36,7 +36,7 @@ Route::middleware(['auth', Locale::class])->group(function () {
     // Test routes
     Route::any('activities/tests/{test}', [TestController::class, 'show'])->name('test');
 
-    Route::post('activities/tests/{test}', [TestController::class, 'store'])->name('test.store');
+    Route::post('activities/tests/{test}/store', [TestController::class, 'store'])->name('test.store');
 
     Route::post('activities/tests/{test}/reset', [TestController::class, 'reset'])->name('test.reset');
 

@@ -184,8 +184,12 @@ return [
 
     "poi-poi" => "Individualized Orientation Profile",
     "autovalutazioni-autovalutazioni" => "Self-Assessments",
-    'group-problem-solving' => 'Group problem solving',
-    "higher-problems-example-problem" => "Example of problem solving",
+    'problemi-problem-gruppo' => 'Group problem solving',
+    "problemi-esempio-problem" => "Example of problem solving",
+    'problemi-superiori-problem-gruppo' => 'Group problem solving',
+    "problemi-superiori-esempio-problem" => "Example of problem solving",
+    'problemi-esperto-problem-gruppo' => 'Group problem solving',
+    "problemi-esperto-esempio-problem" => "Example of problem solving",
 
 
     // * Short descriptions
@@ -373,8 +377,12 @@ return [
 
     "summary-poi-poi" => "Qui trovi il tuo profilo orientativo che si aggiorna con il progredire delle tue autovalutazioni.",
     "summary-autovalutazioni-autovalutazioni" => "Qui trovi un riepilogo delle tue autovalutazioni.",
+    'summary-problemi-problem-gruppo' => 'What could be your role in group problem solving?',
+    "summary-problemi-esempio-problem" => "Examine the proposed example of group problem solving.",
     'summary-problemi-superiori-problem-gruppo' => 'What could be your role in group problem solving?',
     "summary-problemi-superiori-esempio-problem" => "Examine the proposed example of group problem solving.",
+    'summary-problemi-esperto-problem-gruppo' => 'What could be your role in group problem solving?',
+    "summary-problemi-esperto-esempio-problem" => "Examine the proposed example of group problem solving.",
 
 
     // * Long descriptions
@@ -559,9 +567,26 @@ return [
     "description-207" => "Choose the emotion you feel most often by clicking on the intensity level: from 1 = little intense to 4 = very intense. You can repeat your choice multiple times before moving to the next wheel.",
     "description-208" => "Choose the emotion you feel most often by clicking on the intensity level: from 1 = little intense to 4 = very intense. You can repeat your choice multiple times.",
     "description-209" => "Associate, by dragging with the mouse, mouth and gaze: this will create a particular emotion. What is yours at the moment? If you can, you can also assign a name to the emotion you've created with the drawing.",
+    "description-problemi-problem-gruppo" => "What could be your role in group problem solving (for now)? Later, you will discover what you need to take on other roles.",
+    "description-problemi-esempio-problem" => "In class or outside of class, problems often arise that can be effectively addressed with a role-playing 'game': each role, if adequately played, proves necessary for the balanced management of the group and the resolution of the problem.
 
+    We provide an example of possible problems. Other problems can be identified together with your classmates. It is also possible to form groups first and then decide on which problems to intervene.
+    
+    Below you will find a list of possible problems that can be addressed in a group and then a specific example of a solution for one of these.",
+    "description-problemi-esperto-problem-gruppo" => "What could be your role in group problem solving (for now)? Later, you will discover what you need to take on other roles.",
+    "description-problemi-esperto-esempio-problem" => "In classroom life or in the school-work alternation experience, problems may arise that can be effectively addressed with a role-playing “game”: each role, if adequately played, proves necessary for the balanced management of the group and the resolution of the problem.
+    
+    We provide an example of possible problems. Other problems can be identified together with your classmates. It is also possible to form groups first and then decide on which problems to intervene.
+    
+    Below you will find a list of possible problems that can be addressed in a group and then a specific example of a solution for one of these.",
     "description-problemi-superiori-problem-gruppo" => "What could be your role in group problem solving (for now)? Later, you will discover what you need to take on other roles.",
     "description-problemi-superiori-esempio-problem" => "In classroom life or in the school-work alternation experience, problems may arise that can be effectively addressed with a role-playing “game”: each role, if adequately played, proves necessary for the balanced management of the group and the resolution of the problem.
+    
+    We provide an example of possible problems. Other problems can be identified together with your classmates. It is also possible to form groups first and then decide on which problems to intervene.
+    
+    Below you will find a list of possible problems that can be addressed in a group and then a specific example of a solution for one of these.",
+    "description-problemi-esperto-problem-gruppo" => "What could be your role in group problem solving (for now)? Later, you will discover what you need to take on other roles.",
+    "description-problemi-esperto-esempio-problem" => "In classroom life or in the school-work alternation experience, problems may arise that can be effectively addressed with a role-playing “game”: each role, if adequately played, proves necessary for the balanced management of the group and the resolution of the problem.
     
     We provide an example of possible problems. Other problems can be identified together with your classmates. It is also possible to form groups first and then decide on which problems to intervene.
     

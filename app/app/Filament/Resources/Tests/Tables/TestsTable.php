@@ -38,7 +38,7 @@ class TestsTable {
                     ->label('Slug'),
                 TextColumn::make('step')
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->toggleable(isToggledHiddenByDefault: false)
                     ->label('Ordine'),
             ])
             ->searchable(['title', 'section.name', 'section.slug', 'slug', 'step'])
