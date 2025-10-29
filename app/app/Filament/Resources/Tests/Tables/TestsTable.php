@@ -9,6 +9,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
@@ -40,6 +41,10 @@ class TestsTable {
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: false)
                     ->label('Ordine'),
+                IconColumn::make('active')
+                    ->boolean()
+                    ->label('Attiva')
+                    ->toggleable(isToggledHiddenByDefault: false),
             ])
             ->searchable(['title', 'section.name', 'section.slug', 'slug', 'step'])
             ->filters([

@@ -95,15 +95,15 @@
 }
 
 .test-group span.pattern-1-original {
-	--_color-hsl: var(--color-tertiary-hsl-400);
+	--_color-hsl: 10, 100%, 40%;
 }
 
 .test-group span.pattern-2-original {
-	--_color-hsl: 35, 100%, 50%;
+	--_color-hsl: 130, 100%, 40%;
 }
 
 .test-group span.pattern-3-original {
-	--_color-hsl: var(--color-secondary-hsl-400);
+	--_color-hsl: 220, 100%, 40%;
 }
 
 .test-group span.pattern-1-match {
