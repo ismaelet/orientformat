@@ -57,7 +57,13 @@ class Test extends Model {
                 }
 
                 // Legacy fallback
-                return __('tests.' . $this->id);
+                $name = __('tests.' . $this->id);
+
+                if ($name !== 'tests.' . $this->id) {
+                    return $name;
+                }
+
+                return $this->title;
             }
         );
     }

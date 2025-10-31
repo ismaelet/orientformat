@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
 # Set working directory and copy the application files
 WORKDIR /var/www/html
 COPY ./app /var/www/html
+COPY ./docker/php/conf.d/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 
 # Install Composer dependencies
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

@@ -4,6 +4,7 @@ namespace App\Models\User;
 
 use App\Models\Activities\Section;
 use App\Models\Activities\Test;
+use App\Models\Masterpiece;
 use App\Models\Results\User\AdditionalResult;
 use App\Models\Results\User\CondensedSectionResult;
 use App\Models\Results\User\GradeResult;
@@ -177,6 +178,13 @@ class Student extends Model {
      */
     public function review_results(): HasMany {
         return $this->hasMany(ReviewResult::class, 'studentId');
+    }
+
+    /**
+     * The masterpieces of the student
+     */
+    public function masterpieces(): HasMany {
+        return $this->hasMany(Masterpiece::class);
     }
 
     /**

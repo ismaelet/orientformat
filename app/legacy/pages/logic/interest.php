@@ -1,19 +1,21 @@
 <?php
 
+use App\Models\Results\User\TestResult;
+use Illuminate\Support\Facades\Auth;
 use \Legacy\Activity\Result\Handler\StudentTestResult;
 use \Legacy\Activity\Test;
-use \Legacy\Activity\Result\TestResult;
 use \Legacy\UserSystem\Student;
 
 $watch = $_GET['watch'] ?? false;
 
 // interest data
-$studentId = $_GET['student-id'] ?? \Illuminate\Support\Facades\Auth::id();
+$studentId = $_GET['student-id'] ?? Auth::id();
 $student = new Student($studentId);
 $highschool = $_GET['highschool'] ?? $student->isInHighschool;
 $surveyTestId = $highschool ? 150 : 91;
 $resultTestId = $highschool ? 151 : 92;
-$interestId = $_GET['id'] ?? false;
+$interestId = $_GET['id'] ?? 1;
+
 $interests = test_config($resultTestId, 'groups');
 $interest = $interests[$interestId];
 
@@ -24,7 +26,7 @@ $survey = (new Test($surveyTestId))->setStudentId($studentId);
 $questions = [];
 
 for ($i = 1; $i <= count(test_config($surveyTestId, 'questions')); $i++) {
-	$questions[] = __('tests.' . $surveyTestId . '-question-' . $i);
+    $questions[] = __('tests.' . $surveyTestId . '-question-' . $i);
 }
 
 $questionIds = $interest['questionIds'];
@@ -38,15 +40,23 @@ $schoolList = (include_once('-expands-interest/' . ($highschool ? 'universities'
 * Form handling
 */
 if (isset($_POST['edit'])) {
-	$results = $survey->rawResults;
+    $results = $survey->rawResults;
 
-	foreach ($_POST['field'] as $resultId => $resultValue) {
-		$results[$resultId] = $resultValue;
-	}
+    foreach ($_POST['field'] as $resultId => $resultValue) {
+        $results[$resultId] = $resultValue;
+    }
 
-	$results = implode(',', $results);
+    $results = implode(',', $results);
 
-	\App\Legacy\LegacyDB::update('results SET result = ? WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ?', [$results, \Illuminate\Support\Facades\Auth::id(), $surveyTestId]);
+    TestResult::updateOrCreate(
+        [
+            'testId' => $surveyTestId,
+            'studentId' => Auth::id(),
+        ],
+        [
+            'result' => $results,
+        ]
+    );
 
-	redirect_old();
+    redirect_old();
 }

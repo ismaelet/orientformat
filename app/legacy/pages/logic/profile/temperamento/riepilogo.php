@@ -11,19 +11,19 @@ $sections = $helperClass::getSections();
 $results = [];
 
 foreach ($sections as $step => $section) {
-	$result = $resultData?->firstWhere('name', $section['name']);
+    $result = $resultData?->firstWhere('name', $section['name']);
 
-	$results[$step] = collect([
-		'name' => $section['name'],
-		'percentage' => $result['percentage'] ?? 0,
-		'test' => $test->dependent_tests()->where('step', $step)->first(),
-		'tier' => $result ? max(1, (int) ceil($result['percentage'] / (100 / 6))) : 0
-	]);
+    $results[$step] = collect([
+        'name' => $section['name'],
+        'percentage' => $result['percentage'] ?? 0,
+        'test' => $test->dependent_tests()->where('step', $step)->first(),
+        'tier' => $result['value'] ?? 0
+    ]);
 }
 
 $results = collect($results);
 
 // Reset test
 if (isset($_POST['reset-test'])) {
-	(new Test($_POST['reset-test']))->redo();
+    (new Test($_POST['reset-test']))->redo();
 }

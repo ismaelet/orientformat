@@ -3,6 +3,7 @@
 use App\Http\Controllers\Activities\GradeController;
 use App\Http\Controllers\Activities\StudentAnalysisController;
 use App\Http\Controllers\Activities\TestController;
+use App\Http\Controllers\MasterpieceController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SchoolClass\StudentResultController;
 use App\Http\Controllers\SectionController;
@@ -24,6 +25,9 @@ Route::middleware([Student::class, HasEmail::class, CompletedReview::class, Loca
     // Student Activities
     Route::any('activities/grades', [GradeController::class, 'index'])->name('activities.grades.index');
     Route::any('activities/grades/{grade}', [GradeController::class, 'show'])->name('activities.grades.show');
+
+    // Masterpieces upload
+    Route::post('activities/tests/masterpieces/upload', [MasterpieceController::class, 'uploadMasterpiece'])->name('masterpieces.upload');
 });
 
 /**
