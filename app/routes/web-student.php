@@ -26,8 +26,9 @@ Route::middleware([Student::class, HasEmail::class, CompletedReview::class, Loca
     Route::any('activities/grades', [GradeController::class, 'index'])->name('activities.grades.index');
     Route::any('activities/grades/{grade}', [GradeController::class, 'show'])->name('activities.grades.show');
 
-    // Masterpieces upload
-    Route::post('activities/tests/masterpieces/upload', [MasterpieceController::class, 'uploadMasterpiece'])->name('masterpieces.upload');
+    // Masterpieces
+    Route::post('masterpieces/upload', [MasterpieceController::class, 'upload'])->name('masterpieces.upload');
+    Route::get('masterpieces/{masterpiece}/download', [MasterpieceController::class, 'download'])->name('masterpieces.download');
 });
 
 /**

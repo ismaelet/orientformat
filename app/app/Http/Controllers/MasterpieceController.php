@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\FileHelper;
 use App\Models\Masterpiece;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -11,7 +12,7 @@ class MasterpieceController extends Controller {
     /**
      * Handle the masterpiece upload
      */
-    public function uploadMasterpiece(Request $request) {
+    public function upload(Request $request) {
         // Validate the uploaded file
         $request->validate([
             'title' => 'required|string|max:255',
@@ -40,5 +41,15 @@ class MasterpieceController extends Controller {
         Storage::disk('public')->putFileAs('', $file, $filePath);
 
         return redirect()->back()->with('success', 'Capolavoro caricato con successo!');
+    }
+
+    /**
+     * Handle the masterpiece download
+     */
+    public function download(Masterpiece $masterpiece) {
+        return FileHelper::download(
+            $masterpiece->storageFilePath(),
+            "{$masterpiece->title}.pdf"
+        );
     }
 }

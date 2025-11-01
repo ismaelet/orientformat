@@ -4,6 +4,7 @@ namespace App\Livewire\Tests\Capolavori;
 
 use App\Models\Masterpiece;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -129,5 +130,13 @@ class UploadForm extends Component {
 
         // // Update the masterpiece count
         // $this->masterpieceCount = student()->load('masterpieces')->masterpieces->count();
+    }
+
+    /**
+     * Event handler: Update masterpiece count after deletion
+     */
+    #[On('masterpieceDeleted')]
+    public function masterpieceDeleted() {
+        $this->masterpieceCount = student()->load('masterpieces')->masterpieces->count();
     }
 }

@@ -2,6 +2,8 @@
 	$returnUrl = is_student()
 	    ? route('activities.grades.show', ['grade' => student()->class->grade()])
 	    : route('teacher.simulation');
+
+	$lastMasterpiece = student()->masterpieces()->latest()->first();
 @endphp
 
 <x-layouts.main :$title>
@@ -44,14 +46,21 @@
 				</div>
 
 				<div class="grid grid-cols-1 gap-4 text-center">
-					<x-heading.section class=""><span class="text-shadow-md text-white">Capolavori</span></x-heading.section>
-					<p class="text-red-950">*Non hai ancora caricato un capolavoro</p>
-					<button
-						class="font-heading pointer-events-none flex items-center justify-center gap-2 rounded border-2 py-4 text-lg font-semibold text-white transition-all hover:border-white hover:bg-white hover:text-neutral-700 sm:min-w-96"
+					<x-heading.section class=""><span class="text-shadow-md text-white">Capolavoro</span></x-heading.section>
+
+					@if (!$lastMasterpiece)
+						<p class="text-red-950">*Non hai ancora caricato un capolavoro</p>
+					@endif
+
+					<a
+						class="font-heading @if ($lastMasterpiece) hover:border-white hover:bg-white hover:text-neutral-700 sm:min-w-96 @endif flex items-center justify-center gap-2 rounded border-2 py-4 text-lg font-semibold text-white transition-all"
+						@if ($lastMasterpiece) href="{{ $lastMasterpiece->url() }}"
+                        target="_blank"
+                        rel="noopener" @endif
 					>
 						<x-icon-download class="h-6 w-6" />
 						Scarica
-					</button>
+					</a>
 				</div>
 			</div>
 		</div>

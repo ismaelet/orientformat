@@ -39,6 +39,13 @@ class Masterpiece extends Model {
     public const array SKILLS = ['Competenza alfabetica funzionale (Comunicazione nella lingua italiana)', 'Competenza multilinguistica (Comunicazione nelle lingue straniere)', 'Competenza digitale', 'Competenza personale, sociale e capacità di imparare a imparare', 'Competenza in materia di cittadinanza', 'Competenza imprenditoriale (Spirito di iniziativa e imprenditorialità)', 'Consapevolezza ed espressione culturale', 'Non sono in grado di indicare quale competenza ho sviluppato'];
 
     /**
+     * Get the public URL for the masterpiece PDF
+     */
+    public function url(): string {
+        return route('masterpieces.download', $this);
+    }
+
+    /**
      * Get the storage file path for the masterpiece PDF
      */
     public function storageFilePath(): string {

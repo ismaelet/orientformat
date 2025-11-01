@@ -5,7 +5,7 @@
 @endphp
 
 <x-layouts.main :$title>
-	<div class="mt-12 grid grid-cols-1 gap-8">
+	<div class="mb-20 mt-12 grid grid-cols-1 gap-8">
 		<div class="text-center">
 			<x-heading.main>Capolavori</x-heading.main>
 		</div>
@@ -44,6 +44,8 @@
 
 			<span class="text-error-400">A conclusione dell’anno scolastico i capolavori saranno rimossi da questo sito.</span>
 		</p>
+
+		<livewire:tests.capolavori.table />
 
 		<livewire:tests.capolavori.upload-form />
 	</div>
