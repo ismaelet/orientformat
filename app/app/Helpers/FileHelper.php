@@ -22,7 +22,7 @@ class FileHelper {
      * Check if a file exists in the storage
      */
     public static function exists(string $path): bool {
-        return file_exists(public_path($path));
+        return Storage::disk('public')->exists($path);
     }
 
     /**
@@ -36,11 +36,11 @@ class FileHelper {
      * Download a file from the public storage directory
      */
     public static function download(string $path, ?string $name = null): BinaryFileResponse {
-        $fullPath = public_path('storage/' . $path);
-
-        if (!file_exists($fullPath)) {
+        if (!self::exists($path)) {
             abort(404, 'File not found');
         }
+
+        $fullPath = Storage::disk('public')->path($path);
 
         return response()->download($fullPath, $name);
     }

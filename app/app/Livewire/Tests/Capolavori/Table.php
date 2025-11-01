@@ -88,6 +88,8 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                     ->after(function (Masterpiece $record) {
                         FileHelper::delete($record->storageFilePath());
 
+                        $this->masterpieceCount = student()->masterpieces()->count();
+
                         $this->dispatch('masterpieceDeleted');
                     }),
                 Action::make('download')
