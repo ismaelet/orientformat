@@ -7,7 +7,6 @@
 
     <?php if (legacy_test()->completed) { ?>
 
-        <input type="hidden" name="field[]" value="<?= legacy_test()->result->result ?>">
         <p class="result__text <?= legacy_test()->percentage == 100 ? 'correct' : 'wrong' ?>">
             <?= legacy_test()->percentage == 100 ? __('tests.148-right') : __('tests.148-wrong') ?>
         </p>
