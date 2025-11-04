@@ -47,9 +47,11 @@ class MasterpieceController extends Controller {
      * Handle the masterpiece download
      */
     public function download(Masterpiece $masterpiece) {
+        $title = str_replace(['/', '\\'], '-', $masterpiece->title);
+
         return FileHelper::download(
             $masterpiece->storageFilePath(),
-            "{$masterpiece->title}.pdf"
+            "{$title}.pdf"
         );
     }
 }

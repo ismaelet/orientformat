@@ -209,14 +209,14 @@
 					>
 						<div class="dashboard-list__row dashboard-list__row--header">
 							<p class="dashboard-field dashboard-field_head">Nome</p>
-							<p class="dashboard-field dashboard-field_head">Username</p>
+							<p class="dashboard-field dashboard-field_head">E-mail</p>
 							<p class="dashboard-field dashboard-field_head">Registrato/a il</p>
 						</div>
 
 						@foreach ($students as $student)
 							<div class="dashboard-list__row">
 								<p class="dashboard-list__field">{{ $student->inverted_full_name }}</p>
-								<p class="dashboard-list__field">{{ $student->username }}</p>
+								<p class="dashboard-list__field">{{ $student->user?->email ?: '-' }}</p>
 								<p class="dashboard-list__field">{{ $student->created_at_date }}</p>
 							</div>
 						@endforeach

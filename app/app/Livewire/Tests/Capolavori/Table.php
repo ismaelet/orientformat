@@ -94,7 +94,11 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                     }),
                 Action::make('download')
                     ->label('Scarica PDF')
-                    ->action(fn(Masterpiece $record): BinaryFileResponse => FileHelper::download($record->storageFilePath(), $record->title . '.pdf'))
+                    ->action(function (Masterpiece $record): BinaryFileResponse {
+                        $title = str_replace(['/', '\\'], '-', $record->title);
+
+                        return FileHelper::download($record->storageFilePath(), "{$title}.pdf");
+                    })
                     ->color('success')
                     ->icon('heroicon-o-arrow-down-tray'),
             ]);
