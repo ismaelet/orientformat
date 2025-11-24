@@ -20,7 +20,7 @@ class GradeController extends Controller {
 
         $grades = Grade::where('is_professional', $class->isProfessional())
             ->where('absolute_number', '>=', $class->first_grade)
-            ->where('absolute_number', '<=', $class->last_grade)
+            ->where('absolute_number', '<=', $class->grade)
             ->orderBy('absolute_number')
             ->with('completable_sections')
             ->get();

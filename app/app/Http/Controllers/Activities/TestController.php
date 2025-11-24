@@ -15,6 +15,17 @@ class TestController extends Controller {
      * Display the specified resource
      */
     function show(Test $test) {
+        // Access check
+        if (!is_teacher()) {
+            $availableGrades = student()->availableGrades();
+            $sectionGrades = $test->section->grades;
+
+            if (!$availableGrades->pluck('id')->intersect($sectionGrades->pluck('id'))->count()) {
+                return redirect()->route('activities.grades.index');
+            }
+        }
+
+        // Legacy view handling
         $page = $test->filePath();
         $template = $test->template;
         $title = $test->name;
@@ -27,6 +38,7 @@ class TestController extends Controller {
                 ->show();
         }
 
+        // Blade view handling
         $helper = $test->helperClass();
         $student = legacy_watched_student();
         $completed = $student->hasCompletedTest($test);

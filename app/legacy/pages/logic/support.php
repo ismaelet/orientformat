@@ -14,7 +14,7 @@ $categories = SupportCategory::orderBy('sort')->get();
 // fetch topics
 if ($categoryId) {
     $categoryData = SupportCategory::find($categoryId);
-    $topics = $categoryData ? $categoryData->topics()->orderBy('id', 'asc')->get() : collect();
+    $topics = $categoryData ? $categoryData->topics()->orderBy('sort', 'asc')->get() : collect();
 }
 
 function _fill_text($text, $topicId) {
@@ -50,6 +50,9 @@ function _fill_text($text, $topicId) {
 
         $text = preg_replace('/' . $needle . '/', '<br><br><img class="topic_img js-open-modal" src="' . $imagePath . '" loading="lazy" data-target="img-modal"><br>', $text, 1);
     }
+
+    $text = trim(nl2br($text));
+    $text = preg_replace('/(<br\s*\/?>\s*){3,}/i', '<br><br>', $text);
 
     return $text;
 }

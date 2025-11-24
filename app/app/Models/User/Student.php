@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 
 class Student extends Model {
 
@@ -193,6 +194,13 @@ class Student extends Model {
      */
     public function grade(): Grade {
         return $this->school_class->grade();
+    }
+
+    /**
+     * Get the available grades for the student
+     */
+    public function availableGrades(): Collection {
+        return $this->school_class->availableGrades();
     }
 
     /**

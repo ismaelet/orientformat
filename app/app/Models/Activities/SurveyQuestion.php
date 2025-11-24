@@ -6,10 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class SurveyQuestion extends Model {
 
-	/**
-	 * The table associated with the model.
-	 * 
-	 * @var string
-	 */
-	protected $table = 'surveys_questions';
+    /**
+     * The table associated with the model
+     */
+    protected $table = 'surveys_questions';
 }
