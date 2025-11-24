@@ -2,10 +2,12 @@
 
 namespace App\Filament\Resources\SchoolClasses\Tables;
 
+use App\Filament\Exports\SchoolClassExporter;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ExportAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Tables\Columns\IconColumn;
@@ -53,6 +55,11 @@ class SchoolClassesTable {
             ->recordActions([
                 EditAction::make(),
                 DeleteAction::make(),
+            ])
+            ->headerActions([
+                ExportAction::make()
+                    ->exporter(SchoolClassExporter::class)
+                    ->columnMappingColumns(2)
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

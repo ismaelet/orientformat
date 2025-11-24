@@ -13,11 +13,11 @@ return new class extends Migration {
     public function up(): void {
         DB::table('users as u')
             ->join(DB::raw('(
-        SELECT email, MAX(id) AS max_id
-        FROM users
-        GROUP BY email
-        HAVING COUNT(*) > 1
-    ) as dups'), 'u.email', '=', 'dups.email')
+            SELECT email, MAX(id) AS max_id
+            FROM users
+            GROUP BY email
+            HAVING COUNT(*) > 1
+        ) as dups'), 'u.email', '=', 'dups.email')
             ->whereColumn('u.id', '<>', 'dups.max_id')
             ->update([
                 'u.email' => DB::raw("CONCAT('_', u.email)")
