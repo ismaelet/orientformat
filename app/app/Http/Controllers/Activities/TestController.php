@@ -16,7 +16,7 @@ class TestController extends Controller {
      */
     function show(Test $test) {
         // Access check
-        if (!is_teacher()) {
+        if (!is_student()) {
             $availableGrades = student()->availableGrades();
             $sectionGrades = $test->section->grades;
 
@@ -42,12 +42,14 @@ class TestController extends Controller {
         $helper = $test->helperClass();
         $student = legacy_watched_student();
         $completed = $student->hasCompletedTest($test);
+        $resultObj = $student->testResult($test);
 
         return view($test->view(), [
             'test' => $test,
             'title' => $title,
             'student' => $student,
             'completed' => $completed,
+            'result' => $resultObj?->results(),
             'helper' => $helper,
         ]);
     }

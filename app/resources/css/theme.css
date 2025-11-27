@@ -24,6 +24,7 @@
 	--color-tertiary-200: hsl(216deg 30% 63%);
 	--color-tertiary-300: hsl(216deg 60% 50%);
 	--color-tertiary-400: hsl(216deg 86% 20%); /* #1e293b */
+	--color-tertiary-500: hsl(216deg 80% 16%);
 	--color-tertiary-700: hsl(216deg 70% 12%);
 	--color-tertiary-800: hsl(216deg 60% 8%);
 
@@ -43,6 +44,8 @@
 	--color-neutral-400: var(--color-slate-600);
 	--color-neutral-700: var(--color-slate-800);
 
+	--color-neutral-heading: var(--color-tertiary-500);
+	--color-neutral-text: var(--color-neutral-700);
 	--color-neutral-border: var(--color-slate-300);
 
 	--gradient-primary-secondary: var(--color-primary-400), var(--color-transition-400), var(--color-secondary-400);
@@ -81,7 +84,7 @@
 	/* Borders */
 	--border-width: 1px;
 	--border-color: var(--color-neutral-300);
-	--border: var(--border-width) solid var(--border-color);
+	--border: var(--border-width) solid var(--color-neutral-border);
 	--radius: 0.5rem;
 	--radius-lg: 1.5rem;
 
@@ -98,6 +101,14 @@
 	:root {
 		--content-padding: 2rem;
 	}
+}
+
+/* Dark mode */
+.dark {
+	--color-neutral-heading: white;
+	--color-neutral-text: var(--color-slate-300);
+	--color-neutral-border: var(--color-slate-700);
+	--border: var(--border-width) solid var(--color-neutral-border);
 }
 
 /* Basic setup */

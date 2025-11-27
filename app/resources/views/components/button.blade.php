@@ -30,7 +30,7 @@
 					position: relative;
 					isolation: isolate;
 					padding-block: 1em;
-					background-color: var(--color-primary-400);
+					background-color: var(--color-primary-300);
 					color: #fff;
 
 					&::before {
@@ -38,7 +38,7 @@
 						position: absolute;
 						inset: 0;
 						z-index: -1;
-						background: var(--gradient);
+						background: linear-gradient(120deg, var(--color-primary-300), var(--color-transition-400), var(--color-tertiary-400));
 						border-radius: inherit;
 						transition: inherit;
 					}
@@ -68,6 +68,16 @@
 					&:hover {
 						--_border-color: var(--color-tertiary-300);
 						--_color: var(--color-tertiary-300);
+					}
+
+					.dark & {
+						color: #fff;
+						border-color: var(--color-slate-600);
+
+						&:hover {
+							color: var(--color-primary-400);
+							border-color: var(--color-primary-400);
+						}
 					}
 
 					&[data-color="primary"] {

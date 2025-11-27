@@ -13,7 +13,7 @@
 			--input-background: transparent;
 			padding-inline: .5em;
 			background-color: var(--input-background);
-			border-radius: var(--input-border-radius);
+			border-radius: .5rem;
 			outline: var(--border);
 			color: var(--color-neutral-700);
 			line-height: 2.8;
