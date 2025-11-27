@@ -16,16 +16,18 @@ $maxHeight = 0;
 $res = \App\Legacy\LegacyDB::select(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND step < ? ORDER BY step ASC', [$legacyTest->section->id, $legacyTest->step]);
 
 while ($row = $res->fetch_assoc()) {
-	$dependentTest = new Test($row[Test::INDEX]);
+    $dependentTest = new Test($row[Test::INDEX]);
 
-	if ($dependentTest->result && $dependentTest->result->percentage > $maxHeight) {
-		$maxHeight = $dependentTest->result->percentage;
-	}
+    if ($dependentTest->result && $dependentTest->result->percentage > $maxHeight) {
+        $maxHeight = $dependentTest->result->percentage;
+    }
 
-	$legacyTests[] = $dependentTest;
+    $legacyTests[] = $dependentTest;
 }
+
+$maxHeight = $maxHeight ?: 100;
 
 // reset a section
 if (isset($_POST['reset-test'])) {
-	(new Test($_POST['reset-test']))->redo();
+    (new Test($_POST['reset-test']))->redo();
 }
