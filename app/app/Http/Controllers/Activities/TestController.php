@@ -16,7 +16,7 @@ class TestController extends Controller {
      */
     function show(Test $test) {
         // Access check
-        if (!is_student()) {
+        if (is_student()) {
             $availableGrades = student()->availableGrades();
             $sectionGrades = $test->section->grades;
 

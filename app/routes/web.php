@@ -28,6 +28,5 @@ include __DIR__ . '/web-auth.php';
 include __DIR__ . '/web-student.php';
 include __DIR__ . '/web-teacher.php';
 include __DIR__ . '/web-administrator.php';
-include __DIR__ . '/web-db.php';
 
 Route::any('{path}', LegacyController::class)->where('path', '.*');

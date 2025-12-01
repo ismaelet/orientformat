@@ -25,6 +25,7 @@ class SchoolClass extends Model {
     protected $fillable = [
         'schoolId',
         'referentId',
+        'grade_level_id',
         'name',
         'grade',
         'startingGrade',
@@ -87,6 +88,13 @@ class SchoolClass extends Model {
      */
     public function active_students(): HasMany {
         return $this->hasMany(Student::class, 'schoolClassId')->where('status', true);
+    }
+
+    /**
+     * Relationship: The grade level of the class
+     */
+    public function grade_level(): BelongsTo {
+        return $this->belongsTo(Grade::class, 'grade_level_id');
     }
 
     /**
@@ -175,14 +183,16 @@ class SchoolClass extends Model {
     /**
      * Get the grade number at a specific date
      */
-    public function gradeWhen(string $date): int {
-        $lastYear = $this->isHighSchool() ? ($this->isprofessional ? 7 : 8) : 3;
-        $year = date('Y', strtotime($date));
-        $month = date('m', strtotime($date));
-        $year = $month >= 9 ? $year : $year - 1;
+    public function gradeWhen(int $year): int {
         $diffYear = $year - $this->startingYear;
 
-        return min($this->startingGrade + $diffYear, $lastYear);
+        return max($this->first_grade, min($this->startingGrade + $diffYear, $this->last_grade));
+    }
+
+    public function gradeLevelAt(int $year): ?Grade {
+        $gradeNumber = $this->gradeWhen($year);
+
+        return Grade::getByNumber($gradeNumber, $this->professional);
     }
 
     /**
