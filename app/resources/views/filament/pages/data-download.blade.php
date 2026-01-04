@@ -131,7 +131,7 @@
 				tutti gli anni. La stessa cosa vale per
 				l'anno di corso.</p>
 
-			<p class="text-center text-2xl text-amber-500">Work in progress</p>
+			<livewire:admin.data-download.details />
 		</div>
 
 		<div class="grid grid-cols-1 gap-4">
@@ -145,20 +145,25 @@
 
 		<div class="grid grid-cols-1 gap-4">
 			<h3 class="component-title">Lista docenti</h3>
+			<p>Scarica la lista dei docenti registrati. Se l'anno scolastico non è specificato, verrà scaricata la lista di tutti
+				i docenti.</p>
 
-			<p class="text-center text-2xl text-amber-500">Work in progress</p>
+			<livewire:admin.data-download.teachers />
 		</div>
 
 		<div class="grid grid-cols-1 gap-4">
 			<h3 class="component-title">Lista classi</h3>
 
-			<p class="text-center text-2xl text-amber-500">Work in progress</p>
+			<p>Scarica la lista delle classi registrate. Se l'anno scolastico non è specificato, verranno scaricati i dati per
+				tutti gli anni.</p>
+
+			<livewire:admin.data-download.classes />
 		</div>
 
 		<div class="grid grid-cols-1 gap-4">
 			<h3 class="component-title">Lista scuole</h3>
 
-			<p class="text-center text-2xl text-amber-500">Work in progress</p>
+			<livewire:admin.data-download.schools />
 		</div>
 	</div>
 </x-filament-panels::page>

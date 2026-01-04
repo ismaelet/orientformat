@@ -25,7 +25,7 @@
 
     <img src="<?= client_path('image-1') ?>" alt="" class="mar-v-2 max-width--768 push-center">
 
-    Nella ruota di Plutchik, si possono notare i diversi livelli di intensità emotiva dal più intenso al centro al meno intenso nell’area esterna e come due aree contigue, ad esempio noia e fastidio, diano luogo ad una nuova emozione, il disprezzo.
+    Nella ruota di Plutchik, si possono notare i diversi livelli di intensità emotiva (dal più intenso, al centro, al meno intenso, nell’area esterna) e come due aree contigue, ad esempio noia e fastidio, diano luogo ad una nuova emozione, il disprezzo.
 </p>
 
 <p class="foot">

@@ -58,7 +58,7 @@
     <span class="font-bold">Bibliografia essenziale</span><br>
     - AjelloA.M., Saul Meghnagi S., Catia Mastracci (1999), <span class="italic">Orientare dentro e fuori la scuola</span>, Firenze, La Nuova Italia<br>
     - Ajello A. M. e Belardi C. (2007), <span class="italic">Valutare le competenze informali. Il portfolio digitale</span>, Roma, Carocci<br>
-    - Censis (2022-2023), <span class="italic">La classifica delle Università italiane 2022/2023</span>, <a class="link" href="https://www.censis.it/formazione/la-classifica-censis-delle-universit%C3%A0-italiane-edizione-20222023-0">link</a><br>
+    - Censis (2022-2023), <span class="italic">La classifica delle Università italiane 2022/2023</span><br>
     - Guichard J. e  Huteau M. (2002), <span class="italic">Psicologia dell'orientamento professionale. Teorie e pratiche per orientare la scelta negli studi e nelle professioni</span>, Milano, Raffaello Cortina<br>
     - Iuorio K. (2021), <span class="italic">Studenti a tutto mondo. Cosa sapere, come scegliere, come prepararsi per l’università all’estero</span>, Bologna, Guerini e Associati<br>
     - Malavasi P. (2022), <span class="italic">PNRR e formazione. La via della transizione ecologica</span>, Milano, Vita e Pensiero<br>

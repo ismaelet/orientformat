@@ -83,6 +83,15 @@ class Teacher extends Model {
     /**
      * Relationship: The classes this teacher is assigned to
      */
+    public function classes(): BelongsToMany {
+        return $this->belongsToMany(SchoolClass::class);
+    }
+
+    /**
+     * Relationship: The classes this teacher is assigned to
+     * 
+     * ! Legacy
+     */
     public function school_classes(): BelongsToMany {
         return $this->belongsToMany(SchoolClass::class);
     }

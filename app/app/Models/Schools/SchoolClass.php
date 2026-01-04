@@ -189,10 +189,20 @@ class SchoolClass extends Model {
         return max($this->first_grade, min($this->startingGrade + $diffYear, $this->last_grade));
     }
 
+    /**
+     * Get the grade level at a specific date
+     */
     public function gradeLevelAt(int $year): ?Grade {
         $gradeNumber = $this->gradeWhen($year);
 
         return Grade::getByNumber($gradeNumber, $this->professional);
+    }
+
+    /**
+     * Check if the class was active in a specific year
+     */
+    public function wasActiveInYear(int $year): bool {
+        return $year >= $this->startingYear && $year <= $this->lastActiveYear();
     }
 
     /**
