@@ -107,6 +107,7 @@ class Section extends Model {
             ->where('template', '<>', 'survey')
             ->where('followUpTestId', false)
             ->where('recapTestId', false)
+            ->with('section')
             ->get();
     }
 

@@ -64,8 +64,17 @@ class SchoolClass extends Model {
 
     /**
      * Relationship: The school the class belongs to
+     * 
+     * ! Legacy
      */
     public function referent(): BelongsTo {
+        return $this->belongsTo(Teacher::class, 'referentId');
+    }
+
+    /**
+     * Relationship: The school the class belongs to
+     */
+    public function tutor(): BelongsTo {
         return $this->belongsTo(Teacher::class, 'referentId');
     }
 

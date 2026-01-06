@@ -15,6 +15,11 @@
 	        'icon' => 'users',
 	        'url' => 'administrator.students.index',
 	    ],
+	    [
+	        'label' => 'Scaricamento dati',
+	        'icon' => 'download',
+	        'url' => 'administrator.download.index',
+	    ],
 	];
 
 	$currentRoute = request()->route()->getName();
