@@ -8,17 +8,18 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SchoolClass\StudentResultController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentHomeController;
-use App\Http\Middleware\CompletedReview;
+use App\Http\Middleware\EndReview;
 use App\Http\Middleware\HasEmail;
 use App\Http\Middleware\HasStudentAccess;
 use App\Http\Middleware\Locale;
+use App\Http\Middleware\StartReview;
 use App\Http\Middleware\Student;
 use Illuminate\Support\Facades\Route;
 
 /**
  * Student only routes
  */
-Route::middleware([Student::class, HasEmail::class, CompletedReview::class, Locale::class])->group(function () {
+Route::middleware([Student::class, HasEmail::class, StartReview::class, EndReview::class, Locale::class])->group(function () {
     // Home
     Route::any('student', [StudentHomeController::class, 'index'])->name('student');
 

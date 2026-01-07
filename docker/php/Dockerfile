@@ -3,12 +3,19 @@ FROM php:8.4-fpm
 
 # Install PHP extensions
 RUN apt-get update && apt-get install -y \
-	zlib1g-dev \
-	libzip-dev \
-	libicu-dev \
-	&& docker-php-ext-configure zip \
-	&& docker-php-ext-install zip pdo pdo_mysql mysqli intl \
-	&& docker-php-ext-enable mysqli intl
+    zlib1g-dev \
+    libzip-dev \
+    libicu-dev \
+    \
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    libwebp-dev \
+ && docker-php-ext-configure zip \
+ && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
+ && docker-php-ext-install zip pdo pdo_mysql mysqli intl gd \
+ && docker-php-ext-enable mysqli intl \
+ && rm -rf /var/lib/apt/lists/*
 
 # Set working directory and copy the application files
 WORKDIR /var/www/html

@@ -55,6 +55,12 @@ class SchoolClass extends Model {
         );
     }
 
+    public function currentGrade(): Attribute {
+        return Attribute::make(
+            get: fn() => $this->grade
+        );
+    }
+
     /**
      * Relationship: The school the class belongs to
      */

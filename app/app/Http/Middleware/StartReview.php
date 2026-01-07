@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class CompletedReview {
+class StartReview {
 
     /**
      * Handle an incoming request.
@@ -49,22 +49,6 @@ class CompletedReview {
             ->doesntExist()
         ) {
             return redirect()->route('review.show', ['review' => $reviewId]);
-        }
-
-        /**
-         * Ending review
-         */
-        if ($student->school_class->ended) {
-            $reviewId = $student->isMiddleSchoolStudent() ? 3 : 6;
-
-            if (
-                $reviewId &&
-                ReviewResult::where('studentId', Auth::id())
-                ->where('reviewId', $reviewId)
-                ->doesntExist()
-            ) {
-                return redirect()->route('review.show', ['review' => $reviewId]);
-            }
         }
 
         return $next($request);
