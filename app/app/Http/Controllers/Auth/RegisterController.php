@@ -64,6 +64,10 @@ class RegisterController extends Controller {
      * Store a newly created student in storage
      */
     private function storeStudent(Request $request): RedirectResponse {
+        $request->merge([
+            'email' => strtolower(trim((string) $request->input('email'))),
+        ]);
+
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -74,6 +78,13 @@ class RegisterController extends Controller {
         ]);
 
         $class = SchoolClass::where('code', $request->class)->first();
+
+        if (User::where('email', $request->email)->exists()) {
+            return redirect()
+                ->back()
+                ->withErrors(['email' => 'Esiste già un account registrato con questa email.'])
+                ->withInput();
+        }
 
         if (Student::where('schoolClassId', $class->id)
             ->whereHas('user', function ($query) use ($request) {

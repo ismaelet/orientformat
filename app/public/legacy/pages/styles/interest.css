@@ -24,7 +24,9 @@
 .interest_img {
 	border-radius: 2rem;
 	min-height: 28rem;
-	box-shadow: 1rem 1rem 2rem -0.5rem hsl(252, 30%, 93%), 0 -0.5rem 1rem hsl(252, 30%, 95%);
+	box-shadow:
+		1rem 1rem 2rem -0.5rem hsl(252, 30%, 93%),
+		0 -0.5rem 1rem hsl(252, 30%, 95%);
 }
 
 .interest_content {
@@ -165,17 +167,19 @@ input:checked + .circle .dot,
 	border: 1px solid var(--text-color);
 	border-radius: 2rem;
 	padding: 2rem;
+	padding-top: 0;
 }
 
 .school-type_title {
 	width: max-content;
-	max-width: 100%;
+	max-width: min(100%, 50rem);
 	padding-inline: 1rem;
 	margin-inline: auto;
-	margin-top: -3rem;
 	margin-bottom: 2rem;
+	translate: 0 -50%;
 	background-color: #fff;
 	line-height: 2rem;
+	text-align: center;
 }
 
 .school-type__description {
@@ -235,6 +239,11 @@ input:checked + .circle .dot,
 	list-style-type: square;
 	list-style-position: inside;
 	padding-left: 1rem;
+}
+
+.school-type a {
+	color: var(--color-tertiary-400);
+	text-decoration: underline;
 }
 
 /* Responsive */

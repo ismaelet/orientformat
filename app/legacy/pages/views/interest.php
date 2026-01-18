@@ -85,7 +85,13 @@
                     <ul class="school-list mar-t-4">
 
                         <?php if ($highschool) {
-                            foreach ($schoolList as $pathName => $pathData) { ?>
+                            foreach ($schoolList as $pathName => $pathData) {
+
+                                if ($pathName == 'referent') {
+                                    continue;
+                                }
+
+                        ?>
 
                                 <!-- School type -->
                                 <li class="school-type grid" data-spacing="700">
@@ -199,9 +205,26 @@
 
                                 </li>
 
-                            <?php }
-                        } else {
-                            foreach ($schoolList as $schoolTypeName => $courses) { ?>
+                            <?php } ?>
+
+                            <?php if (isset($schoolList['referent'])) {
+                                if (isset($schoolList['referent']['name'])) {
+                                    $referent = $schoolList['referent'];
+
+                                    include __DIR__ . '/interests/referent.php';
+                                } else {
+                                    foreach ($schoolList['referent'] as $referent) {
+                                        include __DIR__ . '/interests/referent.php';
+                                    }
+                                }
+                            } ?>
+
+                            <?php } else {
+                            foreach ($schoolList as $schoolTypeName => $courses) {
+
+                                if ($schoolTypeName == 'referent') {
+                                    continue;
+                                } ?>
 
                                 <!-- School type -->
                                 <li class="school-type">
@@ -250,6 +273,18 @@
                                 </li>
 
                             <?php } ?>
+
+                            <?php if (isset($schoolList['referent'])) {
+                                if (isset($schoolList['referent']['name'])) {
+                                    $referent = $schoolList['referent'];
+
+                                    include __DIR__ . '/interests/referent.php';
+                                } else {
+                                    foreach ($schoolList['referent'] as $referent) {
+                                        include __DIR__ . '/interests/referent.php';
+                                    }
+                                }
+                            } ?>
                         <?php } ?>
 
                     </ul>
