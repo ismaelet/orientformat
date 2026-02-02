@@ -7,9 +7,11 @@ use App\Models\Schools\SchoolClass;
 use App\Models\User;
 use App\Models\User\Student;
 use App\Models\User\Teacher;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller {
@@ -49,25 +51,27 @@ class RegisterController extends Controller {
      * Handle an incoming registration request
      */
     public function store(Request $request): RedirectResponse {
-        $loginType = $request->type;
-
-        if ($loginType == 'student') {
-            return $this->storeStudent($request);
-        } else if ($loginType == 'teacher') {
-            return $this->storeTeacher($request);
+        if ($request->has('email')) {
+            $request->merge([
+                'email' => strtolower(trim((string) $request->input('email'))),
+            ]);
         }
 
-        return redirect()->back()->withErrors(['type' => 'Si è verificato un errore. Riprova più tardi o contattaci tramite il supporto.'])->withInput();
+        $loginType = $request->type;
+
+        return match ($loginType) {
+            'student' => $this->storeStudent($request),
+            'teacher' => $this->storeTeacher($request),
+            default => redirect()->back()
+                ->withErrors(['type' => 'Si è verificato un errore. Riprova più tardi o contattaci tramite il supporto.'])
+                ->withInput(),
+        };
     }
 
     /**
      * Store a newly created student in storage
      */
     private function storeStudent(Request $request): RedirectResponse {
-        $request->merge([
-            'email' => strtolower(trim((string) $request->input('email'))),
-        ]);
-
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -78,13 +82,6 @@ class RegisterController extends Controller {
         ]);
 
         $class = SchoolClass::where('code', $request->class)->first();
-
-        if (User::where('email', $request->email)->exists()) {
-            return redirect()
-                ->back()
-                ->withErrors(['email' => 'Esiste già un account registrato con questa email.'])
-                ->withInput();
-        }
 
         if (Student::where('schoolClassId', $class->id)
             ->whereHas('user', function ($query) use ($request) {
@@ -101,23 +98,27 @@ class RegisterController extends Controller {
         $hashedPassword = Hash::make($request->password);
 
         // Create the user
-        $user = User::create([
-            'password' => $hashedPassword,
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'birthdate' => $request->birthdate,
-        ]);
+        $user = DB::transaction(function () use ($request, $class, $hashedPassword) {
+            $user = $this->createUserSafely([
+                'password' => $hashedPassword,
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'birthdate' => $request->birthdate ?? null,
+            ]);
 
-        // Create the student
-        Student::create([
-            'id' => $user->id,
-            'userId' => $user->id,
-            'schoolClassId' => $class->id,
-        ]);
+            // Create the student
+            Student::create([
+                'id' => $user->id,
+                'userId' => $user->id,
+                'schoolClassId' => $class->id,
+            ]);
+
+            return $user;
+        });
 
         // Sign in the user
-        Auth::attempt($request->only('email', 'password'));
+        Auth::login($user);
 
         // Redirect
         return redirect()->route('home');
@@ -147,23 +148,45 @@ class RegisterController extends Controller {
         $hashedPassword = Hash::make($request->password);
 
         // Create the user
-        $user = User::create([
-            'password' => $hashedPassword,
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-        ]);
+        $user = DB::transaction(function () use ($request, $hashedPassword) {
+            $user = $this->createUserSafely([
+                'password' => $hashedPassword,
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'birthdate' => $request->birthdate ?? null,
+            ]);
 
-        // Create the teacher
-        Teacher::create([
-            'id' => $user->id,
-            'user_id' => $user->id,
-        ]);
+            // Create the teacher
+            Teacher::create([
+                'id' => $user->id,
+                'user_id' => $user->id,
+            ]);
+
+            return $user;
+        });
 
         // Sign in the user
-        Auth::attempt($request->only('email', 'password'));
+        Auth::login($user);
 
         // Redirect
         return redirect()->route('home');
+    }
+
+    private function createUserSafely(array $data): User {
+        try {
+            return User::create($data);
+        } catch (QueryException $e) {
+            $sqlState = $e->errorInfo[0] ?? null;
+            $driverCode = $e->errorInfo[1] ?? null;
+
+            if ($sqlState === '23000' && $driverCode === 1062) {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'email' => 'Esiste già un account registrato con questa email.',
+                ]);
+            }
+
+            throw $e;
+        }
     }
 }
