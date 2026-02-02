@@ -97,12 +97,24 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                     ->schema([
                         Select::make('referentId')
                             ->label('Tutor della classe')
-                            ->options($this->school->teachers->load('user')
-                                ->pluck('inverted_full_name', 'id')->toArray())
-                            ->getOptionLabelUsing(fn($value): ?string => Teacher::find($value)?->inverted_full_name)
+                            ->options(
+                                fn() => $this->school->teachers()
+                                    ->whereHas('user')
+                                    ->with('user')
+                                    ->get()
+                                    ->mapWithKeys(fn(Teacher $teacher) => [
+                                        $teacher->id => ($teacher->inverted_full_name ?: "Docente #{$teacher->id}"),
+                                    ])
+                                    ->toArray()
+                            )
+                            ->getOptionLabelUsing(
+                                fn($value): string => optional(Teacher::with('user')->find($value))
+                                    ?->inverted_full_name
+                                    ?: "Docente #{$value}"
+                            )
                             ->searchable()
-                            ->placeholder('Seleziona il tutor della classe')
                             ->preload()
+                            ->placeholder('Seleziona il tutor della classe')
                             ->belowContent('Qui puoi selezionare il tutor della classe, tra gli insegnanti registrati nella scuola. Questa funzionalità è usata in particolare quando c\'è un cambio di tutor tra un anno e l\'altro.')
                             ->required()
                             ->afterStateUpdated(function ($state, callable $set, $get) {
@@ -117,11 +129,17 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                         Select::make('teachers')
                             ->label('Docenti assegnati alla classe')
                             ->multiple()
-                            ->relationship(name: 'teachers', titleAttribute: 'user.inverted_full_name', modifyQueryUsing: fn(Builder $query) => $query
-                                ->join('users', 'teachers.user_id', '=', 'users.id')
-                                ->where('school_id', $this->school->id)
-                                ->with('user'))
-                            ->getOptionLabelFromRecordUsing(fn(Teacher $record) => $record->inverted_full_name)
+                            ->relationship(
+                                name: 'teachers',
+                                modifyQueryUsing: fn(Builder $query) => $query
+                                    ->where('school_id', $this->school->id)
+                                    ->whereHas('user')
+                                    ->with('user')
+                            )
+                            ->getOptionLabelFromRecordUsing(
+                                fn(Teacher $record): string =>
+                                $record->inverted_full_name ?: "Docente #{$record->id}"
+                            )
                             ->searchable(['full_name', 'inverted_full_name'])
                             ->preload()
                             ->required(false)
