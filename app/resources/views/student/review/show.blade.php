@@ -338,7 +338,6 @@
 		})
 	</script>
 @endpushOnce
-
 <x-layouts.legacy-main>
 
 	<form
@@ -354,209 +353,183 @@
 			value="{{ $review->id }}"
 		>
 
-		<?php if ($legacyReview->completed) { ?>
+		@if ($legacyReview->completed)
 
-		<div class="grid content-center justify-items-center gap-8 py-20 text-center">
-			<div class="success-icon grid place-items-center">
-				<x-icon-correct class="w-2/3" />
-			</div>
-
-			<x-heading.main>Grazie per aver<br>completato il formulario</x-heading.main>
-
-			<x-subheading.main>Le tue risposte sono state salvate. Puoi cliccare qui sotto per continuare con le
-				attività
-				proposte</x-subheading.main>
-
-			<x-button
-				href="{{ route('home') }}"
-				variant="secondary"
-			>Continua le attività</x-button>
-		</div>
-
-		<?php } else { ?>
-
-		<div class="header pad-t-7">
-			<h1 class="txt-3rem fa-center txt-sbold"><?= $legacyReview->title ?></h1>
-			<p class="txt-12rem fa-center mar-t-2"><?= $legacyReview->description ?></p>
-		</div>
-
-		<!-- Questions -->
-		<div class="questions pad-b-5">
-
-			<?php
-
-			$i = 0;
-
-			foreach ($legacyReview->areas as $area) { ?>
-
-			<section class="section mar-b-4 mar-t-5">
-				<p class="stitle txt-c3 txt-15rem txt-sbold"><?= $area->title ?></p>
-
-				<?php if ($area->text) { ?>
-				<p><?= $area->text ?></p>
-				<?php } ?>
-
-				<?php foreach ($area->getQuestions($legacyReview->id) as $key => $question) {
-						$i++;
-					?>
-
-				<!-- Question -->
-				<div
-					id="question-<?= $question->fullSlug ?>"
-					class="question <?= $question->type ? 'mar-b-3' : '' ?> js-question"
-					data-optional="<?= $question->optional ?>"
-					data-completed="0"
-					data-multiple="<?= $question->multiple ?>"
-				>
-
-					<p class="text mar-t-2">
-						<?= $debugger ? '(' . $question->fullSlug . ')' : '' ?>
-						<?php if ($question->text) { ?>
-
-						<?= embed_icon('correct') ?>
-						<span class="number"><?= $i ?>.</span> <?= $question->text ?>
-
-						<?php } ?>
-					</p>
-
-					<p class="error-warning js-error-warning">Devi rispondere a tutte le domande prima di poter continuare.</p>
-
-					<?php switch ($question->type) {
-								case 'grid': { ?>
-
-					<!-- Grid -->
-					<div class="review-grid js-grid">
-
-						<!-- Head -->
-						<div class="grid-row grid-row--head <?= $question->hasLegend ? 'grid-row--legend' : '' ?>">
-
-							<?php if ($question->hasLegend) { ?>
-
-							<span></span>
-
-							<?php } ?>
-
-							<?php foreach ($question->gridHeader as $content) { ?>
-
-							<p class="grid-text"><?= $content ?></p>
-
-							<?php } ?>
-
-						</div>
-
-						<!-- Rows -->
-						<?php foreach ($question->rows as $row) { ?>
-
-						<!-- Row -->
-						<div class="grid-row js-grid-row <?= $question->hasLegend ? 'grid-row--legend' : '' ?>">
-
-							<?php if (isset($row['title'])) { ?>
-
-							<p class="grid-cell grid-cell--title"><?= $row['title'] ?></p>
-
-							<?php } ?>
-
-							<!-- Cells -->
-							<?php foreach ($row['content'] as $cell) { ?>
-
-							<div class="grid-cell">
-
-								<label class="checkbox">
-									<input
-										type="radio"
-										class="field js-cbx"
-										name="<?= $cell['name'] ?>"
-										value="<?= $cell['value'] ?>"
-										data-type="row"
-									>
-
-									<span></span>
-								</label>
-
-								<?php if ($debugger) { ?>
-								<p><?= $cell['name'] . ' = ' . $cell['value'] ?></p>
-								<?php } ?>
-
-							</div>
-
-
-							<?php } ?>
-
-						</div>
-
-						<?php } ?>
-
-					</div>
-
-					<?php }
-									break;
-
-								case 'list': { ?>
-
-					<div class="answers answers--list mt-2">
-
-						<?php foreach ($question->rows as $row) { ?>
-
-						<label class="checkbox">
-							<input
-								type="radio"
-								name="<?= $row['name'] ?>"
-								value="<?= $row['value'] ?>"
-								class="field js-cbx"
-							>
-
-							<span></span>
-
-							<p class="">
-								<?= $row['title'] ?>
-								<?= $debugger ? '<strong>(' . $row['name'] . ' = ' . $row['value'] . ')</strong>' : '' ?>
-							</p>
-						</label>
-
-						<?php } ?>
-
-					</div>
-
-					<?php }
-									break;
-
-								case 'number': { ?>
-					<input
-						type="number"
-						class="field js-input mar-t-1"
-						name="<?= $question->fullSlug ?>"
-						min="1"
-						max="100"
-						placeholder="Numero"
-						required
-					>
-
-					<?php }
-							} ?>
-
+			<div class="grid content-center justify-items-center gap-8 py-20 text-center">
+				<div class="success-icon grid place-items-center">
+					<x-icon-correct class="w-2/3" />
 				</div>
 
-				<?php } ?>
+				<x-heading.main>Grazie per aver<br>completato il formulario</x-heading.main>
 
-			</section>
+				<x-subheading.main>Le tue risposte sono state salvate. Puoi cliccare qui sotto per continuare con le
+					attività
+					proposte</x-subheading.main>
 
-			<?php } ?>
-
-			<div class="fa-center mar-t-3">
-				<button
-					type="submit"
-					id="submit"
-					class="js-submit hidden"
-				></button>
 				<x-button
-					type="button"
-					class="js-attempt-submit"
-				>Invia</x-button>
+					href="{{ route('home') }}"
+					variant="secondary"
+				>Continua le attività</x-button>
+			</div>
+		@else
+			<div class="header pad-t-7">
+				<h1 class="txt-3rem fa-center txt-sbold">{{ $legacyReview->title }}</h1>
+				<p class="txt-12rem fa-center mar-t-2">{{ $legacyReview->description }}</p>
 			</div>
 
-		</div>
+			<!-- Questions -->
+			<div class="questions pad-b-5">
 
-		<?php } ?>
+				@php $i = 0; @endphp
+
+				@foreach ($legacyReview->areas as $area)
+					<section class="section mar-b-4 mar-t-5">
+						<p class="stitle txt-c3 txt-15rem txt-sbold">{{ $area->title }}</p>
+
+						@if ($area->text)
+							<p>{{ $area->text }}</p>
+						@endif
+
+						@foreach ($area->getQuestions($legacyReview->id) as $key => $question)
+							@php $i++; @endphp
+
+							<!-- Question -->
+							<div
+								id="question-{{ $question->fullSlug }}"
+								class="question {{ $question->type ? 'mar-b-3' : '' }} js-question"
+								data-optional="{{ $question->optional }}"
+								data-completed="0"
+								data-multiple="{{ $question->multiple }}"
+							>
+
+								<p class="text mar-t-2">
+									@if ($debugger)
+										({{ $question->fullSlug }})
+									@endif
+									@if ($question->text)
+										{!! embed_icon('correct') !!}
+										<span class="number">{{ $i }}.</span> {{ $question->text }}
+									@endif
+								</p>
+
+								<p class="error-warning js-error-warning">Devi rispondere a tutte le domande prima di poter continuare.</p>
+
+								@switch($question->type)
+									@case('grid')
+										<!-- Grid -->
+										<div class="review-grid js-grid">
+
+											<!-- Head -->
+											<div class="grid-row grid-row--head {{ $question->hasLegend ? 'grid-row--legend' : '' }}">
+
+												@if ($question->hasLegend)
+													<span></span>
+												@endif
+
+												@foreach ($question->gridHeader as $content)
+													<p class="grid-text">{{ $content }}</p>
+												@endforeach
+
+											</div>
+
+											<!-- Rows -->
+											@foreach ($question->rows as $row)
+												<!-- Row -->
+												<div class="grid-row js-grid-row {{ $question->hasLegend ? 'grid-row--legend' : '' }}">
+
+													@if (isset($row['title']))
+														<p class="grid-cell grid-cell--title">{{ $row['title'] }}</p>
+													@endif
+
+													<!-- Cells -->
+													@foreach ($row['content'] as $cell)
+														<div class="grid-cell">
+
+															<label class="checkbox">
+																<input
+																	type="radio"
+																	class="field js-cbx"
+																	name="{{ $cell['name'] }}"
+																	value="{{ $cell['value'] }}"
+																	data-type="row"
+																>
+
+																<span></span>
+															</label>
+
+															@if ($debugger)
+																<p>{{ $cell['name'] . ' = ' . $cell['value'] }}</p>
+															@endif
+
+														</div>
+													@endforeach
+
+												</div>
+											@endforeach
+
+										</div>
+									@break
+
+									@case('list')
+										<div class="answers answers--list mt-2">
+
+											@foreach ($question->rows as $row)
+												<label class="checkbox">
+													<input
+														type="radio"
+														name="{{ $row['name'] }}"
+														value="{{ $row['value'] }}"
+														class="field js-cbx"
+													>
+
+													<span></span>
+
+													<p class="">
+														{{ $row['title'] }}
+														@if ($debugger)
+															<strong>({{ $row['name'] . ' = ' . $row['value'] }})</strong>
+														@endif
+													</p>
+												</label>
+											@endforeach
+
+										</div>
+									@break
+
+									@case('number')
+										<x-input
+											type="number"
+											class="field js-input mar-t-1"
+											name="{{ $question->fullSlug }}"
+											min="1"
+											max="100"
+											placeholder="Numero"
+											required
+										/>
+									@break
+								@endswitch
+
+							</div>
+						@endforeach
+
+					</section>
+				@endforeach
+
+				<div class="fa-center mar-t-3">
+					<button
+						type="submit"
+						id="submit"
+						class="js-submit hidden"
+					></button>
+					<x-button
+						type="button"
+						class="js-attempt-submit"
+					>Invia</x-button>
+				</div>
+
+			</div>
+
+		@endif
 
 	</form>
 
