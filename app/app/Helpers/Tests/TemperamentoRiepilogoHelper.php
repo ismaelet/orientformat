@@ -22,7 +22,7 @@ class TemperamentoRiepilogoHelper {
 
                 $results[] = collect([
                     'name' => self::getSections()[$dependentTest->step]['name'] ?? $dependentTest->name,
-                    'value' => round($percentage / 100 * 5) + 1,
+                    'value' => max(ceil($percentage / 100 * 5), 1),
                     'percentage' => $percentage
                 ]);
             }

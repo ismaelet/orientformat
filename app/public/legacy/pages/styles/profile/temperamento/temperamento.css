@@ -1,173 +1,179 @@
 /* Score */
 #scores {
-	position: relative;
+  position: relative;
 }
 
 .score {
-	opacity: 0;
-	width: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
-	transform: translateY(3rem);
-	transition: opacity 0.7s, transform 0.7s;
-	pointer-events: none;
+  opacity: 0;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(3rem);
+  transition:
+    opacity 0.7s,
+    transform 0.7s;
+  pointer-events: none;
 }
 
 .score.active {
-	opacity: 1;
-	position: relative;
-	transform: none;
-	z-index: 1;
-	pointer-events: all;
+  opacity: 1;
+  position: relative;
+  transform: none;
+  z-index: 1;
+  pointer-events: all;
 }
 
 .score.done {
-	transform: translateY(-10rem);
+  transform: translateY(-10rem);
 }
 
 .score-grid {
-	grid-template-columns: 15rem auto 15rem;
-	align-items: center;
-	gap: 2rem;
+  grid-template-columns: 15rem auto 15rem;
+  align-items: center;
+  gap: 2rem;
 }
 
 /* Dots */
 #dots {
-	display: grid;
-	grid-template-columns: 1.2fr 1fr 0.8fr 0.8fr 1fr 1.2fr;
-	align-items: center;
-	gap: 1rem;
-	font-size: 0;
-	text-align: center;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 0.8fr 0.8fr 1fr 1.2fr;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0;
+  text-align: center;
 }
 
 .dot {
-	aspect-ratio: 1;
-	border-width: 3px;
-	border-style: solid;
-	border-radius: 50%;
-	position: relative;
-	font-size: 1rem;
-	transition: background 0.4s;
+  aspect-ratio: 1;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 50%;
+  position: relative;
+  font-size: 1rem;
+  transition: background 0.4s;
 }
 
+#dot0,
 #dot1,
-#dot2,
-#dot3 {
-	border-color: var(--color-secondary-400);
+#dot2 {
+  border-color: var(--color-secondary-400);
 }
+#dot3,
 #dot4,
-#dot5,
-#dot6 {
-	border-color: var(--color-primary-400);
+#dot5 {
+  border-color: var(--color-primary-400);
 }
 
+#dot0:hover,
+#dot0.active,
 #dot1:hover,
 #dot1.active,
 #dot2:hover,
-#dot2.active,
-#dot3:hover,
-#dot3.active {
-	background-color: var(--color-secondary-400);
+#dot2.active {
+  background-color: var(--color-secondary-400);
 }
 
+#dot3:hover,
+#dot3.active,
 #dot4:hover,
 #dot4.active,
 #dot5:hover,
-#dot5.active,
-#dot6:hover,
-#dot6.active {
-	background-color: var(--color-primary-400);
+#dot5.active {
+  background-color: var(--color-primary-400);
 }
 
 .dot p {
-	padding-left: 5px;
-	font-size: 1.5rem;
-	font-weight: bold;
-	letter-spacing: 5px;
-	transition: color 0.4s;
+  padding-left: 5px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 5px;
+  transition: color 0.4s;
 }
 
+#dot0 p,
 #dot1 p,
-#dot2 p,
-#dot3 p {
-	color: var(--color-secondary-400);
+#dot2 p {
+  color: var(--color-secondary-400);
 }
 
+#dot3 p,
 #dot4 p,
-#dot5 p,
-#dot6 p {
-	color: var(--color-primary-400);
+#dot5 p {
+  color: var(--color-primary-400);
 }
 
 .dot:hover p,
 .dot.active p {
-	color: #fff !important;
+  color: #fff !important;
 }
 
 /* Confirm */
 .confirm {
-	visibility: hidden;
-	opacity: 0;
-	box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.3);
-	transition: opacity 0.4s, background 0.3s;
+  visibility: hidden;
+  opacity: 0;
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.3);
+  transition:
+    opacity 0.4s,
+    background 0.3s;
 }
 
 .confirm.active {
-	visibility: visible;
-	opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
-	#scores {
-		margin-top: 5rem;
-	}
+  #scores {
+    margin-top: 5rem;
+  }
 
-	.score-grid {
-		grid-template-columns: 11.5rem 1fr 11.5rem;
-	}
+  .score-grid {
+    grid-template-columns: 11.5rem 1fr 11.5rem;
+  }
 
-	.desc {
-		font-size: 1rem;
-	}
+  .desc {
+    font-size: 1rem;
+  }
 
-	.dot p {
-		font-size: 1rem;
-	}
+  .dot p {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 768px) {
-	.score-grid {
-		display: block;
-	}
+  .score-grid {
+    display: block;
+  }
 
-	.desc {
-		text-align: center;
-		padding: 0;
-		font-size: 1.5rem;
-	}
+  .desc {
+    text-align: center;
+    padding: 0;
+    font-size: 1.5rem;
+  }
 
-	#desc1 {
-		margin-bottom: 2rem;
-	}
-	#desc2 {
-		margin-top: 2rem;
-	}
+  #desc1 {
+    margin-bottom: 2rem;
+  }
+  #desc2 {
+    margin-top: 2rem;
+  }
 
-	#dots {
-		grid-template-columns: unset;
-		grid-template-rows: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 0.8fr) minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1.2fr);
-		justify-items: center;
-		height: 35rem;
-	}
+  #dots {
+    grid-template-columns: unset;
+    grid-template-rows:
+      minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 0.8fr) minmax(0, 0.8fr)
+      minmax(0, 1fr) minmax(0, 1.2fr);
+    justify-items: center;
+    height: 35rem;
+  }
 
-	.dot {
-		height: 100%;
-	}
+  .dot {
+    height: 100%;
+  }
 
-	.confirm {
-		margin-top: 2rem;
-	}
+  .confirm {
+    margin-top: 2rem;
+  }
 }

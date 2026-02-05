@@ -23,6 +23,8 @@ foreach ($sections as $step => $section) {
 
 $results = collect($results);
 
+// dd($results);
+
 // Reset test
 if (isset($_POST['reset-test'])) {
     (new Test($_POST['reset-test']))->redo();
