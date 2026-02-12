@@ -14,6 +14,15 @@
 				resettare la password.
 			</p>
 
+			<p class="text-danger-500">In caso tu sia uno/a <strong>studente/studentessa</strong>, è possibile che tu non possa
+				ricevere l'email di
+				recupero, in quanto gli indirizzi email d'Istituto spesso bloccano le email provenienti da domini esterni.<br><br>In
+				questo caso dovresti contattare il/la tuo/a docente e chiedere di effettuare un reset della password seguendo le
+				istruzioni indicate <a
+					class="text-secondary-400 font-bold"
+					href="https://www.iprase.tn.it/orientamento/help?category=5&topic=12#topic12"
+				>qui</a>.</p>
+
 			{{-- Email input --}}
 			<x-input
 				type="email"
