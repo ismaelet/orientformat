@@ -125,6 +125,13 @@
 <x-filament-panels::page>
 	<div class="grid grid-cols-1 gap-20">
 		<div class="grid grid-cols-1 gap-4">
+			<h3 class="component-title">Cifrario questionari</h3>
+			<p>Scarica il cifrario dei codici dei questionari.</p>
+
+			<livewire:admin.data-download.reviews-cypher />
+		</div>
+
+		<div class="grid grid-cols-1 gap-4">
 			<h3 class="component-title">Risultati dettagliati</h3>
 			<p>Scarica la lista degli studenti che hanno completato almeno un'attività nell'anno indicato. La lista include tutti
 				i risultati ottenuti nelle varie attività. Se l'anno scolastico non è specificato, verranno scaricati i dati per

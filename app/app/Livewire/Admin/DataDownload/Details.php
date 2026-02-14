@@ -4,6 +4,9 @@ namespace App\Livewire\Admin\DataDownload;
 
 use App\Models\Activities\Test;
 use App\Models\Results\User\TestResult;
+use App\Models\Review;
+use App\Models\ReviewQuestion;
+use App\Models\ReviewResult;
 use App\Models\User\Student;
 use Illuminate\Support\Carbon;
 use Livewire\Component;
@@ -92,30 +95,118 @@ class Details extends Component {
 
         $fileName = 'Lista_Studenti_' . now()->format('Ymd_His') . '.csv';
 
-        return response()->streamDownload(function () use ($studentsQuery, $tests, $testColumns, $yearColName, $startDate, $endDate) {
+        /**
+         * Reviews list
+         */
+        $reivewNames = [
+            1 => 'Questionario iniziale medie (vecchio)',
+            2 => 'Questionario iniziale medie',
+            3 => 'Questionario finale medie',
+            4 => 'Primo questionario iniziale superiori',
+            5 => 'Altro questionario iniziale superiori',
+            6 => 'Questionario finale superiori',
+        ];
+
+        $studentIds = (clone $studentsQuery)->pluck('id');
+
+        $reviews = Review::query()
+            ->whereHas('review_results', function ($q) use ($studentIds) {
+                $q->whereIn('studentId', $studentIds);
+            })
+            ->when($this->schoolType != 'all', function ($q) {
+                $reviewIds = $this->schoolType === 'highschool' ? [4, 5, 6] : [1, 2, 3];
+                $q->whereIn('id', $reviewIds);
+            })
+            ->orderBy('id')
+            ->get();
+
+        $reviewQuestions = ReviewQuestion::query()
+            ->whereHas('reviews', function ($q) use ($reviews) {
+                $q->whereIn('reviews.id', $reviews->pluck('id'));
+            })
+            ->with('reviews')
+            ->orderBy('full_slug')
+            ->get();
+
+        $flatQuestions = collect();
+
+        foreach ($reviews as $review) {
+            $questions = $reviewQuestions->filter(fn($q) => $q->reviews->contains('id', $review->id));
+
+            foreach ($questions as $question) {
+                if ($question->optionCount() > 1) {
+                    for ($optionKey = 1; $optionKey <= $question->optionCount(); $optionKey++) {
+                        $questionFullSlug = $question->full_slug . '_' . $optionKey;
+
+                        $flatQuestions->push(
+                            [
+                                'label' => $reivewNames[$review->id] . ' > ' . $questionFullSlug,
+                                'slug' => $questionFullSlug,
+                                'review_id' => $review->id,
+                            ]
+                        );
+                    }
+                } else {
+                    $flatQuestions->push([
+                        'label' => $reivewNames[$review->id] . ' > ' . $question->full_slug,
+                        'slug' => $question->full_slug,
+                        'review_id' => $review->id
+                    ]);
+                }
+            }
+        }
+
+        /**
+         * Stream the CSV download response
+         */
+        return response()->streamDownload(function () use (
+            $studentsQuery,
+            $tests,
+            $testColumns,
+            $yearColName,
+            $startDate,
+            $endDate,
+            $flatQuestions,
+            $reviews
+        ) {
             $out = fopen('php://output', 'w');
 
-            // Write header
             $baseHeader = ['ID', 'Cognome', 'Nome', 'Classe', 'Scuola', $yearColName, 'Registrato/a il'];
-            $fullHeader = array_merge($baseHeader, array_values($testColumns));
+            $fullHeader = array_merge($baseHeader, array_values($testColumns), $flatQuestions->pluck('label')->all());
             fputcsv($out, $fullHeader);
 
-            $wroteAnyRow = false;
+            // ✅ Precompute per-review question slugs once
+            $questionSlugsByReview = $flatQuestions
+                ->groupBy('review_id')
+                ->map(fn($items) => $items->pluck('slug')->values());
 
-            $studentsQuery->chunkById(500, function ($studentsChunk) use ($out, $tests, $testColumns, $yearColName, $startDate, $endDate, &$wroteAnyRow) {
+            $activeStudents = $this->activeStudents; // don't rely on $this inside deep closures
+
+            $studentsQuery->chunkById(500, function ($studentsChunk) use (
+                $out,
+                $tests,
+                $startDate,
+                $endDate,
+                $reviews,
+                $questionSlugsByReview,
+                $activeStudents
+            ) {
                 $studentIds = $studentsChunk->pluck('id')->all();
 
-                // Fetch ALL test results for this chunk in ONE query
-                $testResultsQuery = TestResult::query()
-                    ->whereIn('studentId', $studentIds);
+                // ✅ Test results: one query
+                $testResultsQuery = TestResult::query()->whereIn('studentId', $studentIds);
 
-                // If you ONLY care about results within the school year, also constrain here
-                if ($startDate && $endDate && $this->activeStudents) {
+                if ($startDate && $endDate && $activeStudents) {
                     $testResultsQuery->whereBetween('created_at', [$startDate, $endDate]);
                 }
 
-                // Keep select lean if possible (depends on your results() implementation)
-                $testResults = $testResultsQuery->get()
+                $testResultsByStudent = $testResultsQuery->get()->groupBy('studentId');
+
+                // ✅ Review results: one query
+                $reviewResultsByStudent = ReviewResult::query()
+                    ->whereIn('studentId', $studentIds)
+                    ->whereIn('reviewId', $reviews->pluck('id'))
+                    ->get()
                     ->groupBy('studentId');
 
                 foreach ($studentsChunk as $student) {
@@ -127,11 +218,6 @@ class Details extends Component {
                         continue;
                     }
 
-                    $wroteAnyRow = true;
-
-                    // Map testId => TestResult for O(1) lookup
-                    $studentResults = ($testResults[$student->id] ?? collect())->keyBy('testId');
-
                     $row = [
                         $student->id,
                         $student->user->last_name,
@@ -142,17 +228,44 @@ class Details extends Component {
                         $student->created_at->format('d/m/Y'),
                     ];
 
+                    // Test results O(1)
+                    $studentTestResults = ($testResultsByStudent[$student->id] ?? collect())->keyBy('testId');
+
                     foreach ($tests as $test) {
-                        $resultObj = $studentResults->get($test->id);
+                        $resultObj = $studentTestResults->get($test->id);
 
                         $row[] = $resultObj
                             ? (str_replace([',', ';', '.'], '-', implode('-', $resultObj->results())) ?: '.')
                             : '.';
                     }
 
+                    // Review results O(1)
+                    $studentReviewResults = ($reviewResultsByStudent[$student->id] ?? collect())->keyBy('reviewId');
+
+                    foreach ($reviews as $review) {
+                        $reviewResult = $studentReviewResults->get($review->id);
+
+                        $slugs = $questionSlugsByReview->get($review->id, collect());
+
+                        if (!$reviewResult) {
+                            // no result: fill dots for that review
+                            foreach ($slugs as $_slug) {
+                                $row[] = '.';
+                            }
+                            continue;
+                        }
+
+                        $resultsArray = $reviewResult->results(); // should return array
+
+                        foreach ($slugs as $slug) {
+                            $row[] = $resultsArray[$slug] ?? '.';
+                        }
+                    }
+
                     fputcsv($out, $row);
                 }
             });
+
             fclose($out);
         }, $fileName);
     }
