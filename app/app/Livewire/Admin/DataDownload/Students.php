@@ -85,6 +85,8 @@ class Students extends Component {
 
                 $this->schoolYear ? 'Anno di corso nel ' . $this->schoolYear : 'Anno di corso' => $gradeLevel?->school_relative_number ?? '.',
 
+                'Anno di fine corso' => $student->class?->ended ? $student->class?->lastActiveYear() : '.',
+
                 'Registrato/a il' => $student->created_at->format('d/m/Y'),
             ];
         }

@@ -171,7 +171,7 @@ class Details extends Component {
         ) {
             $out = fopen('php://output', 'w');
 
-            $baseHeader = ['ID', 'Cognome', 'Nome', 'Classe', 'Scuola', $yearColName, 'Registrato/a il'];
+            $baseHeader = ['ID', 'Cognome', 'Nome', 'Classe', 'Scuola', 'Scuola superiore', $yearColName, 'Anno di fine corso', 'Registrato/a il'];
             $fullHeader = array_merge($baseHeader, array_values($testColumns), $flatQuestions->pluck('label')->all());
             fputcsv($out, $fullHeader);
 
@@ -224,7 +224,9 @@ class Details extends Component {
                         $student->user->first_name,
                         $student->class?->name ?? '.',
                         $student->class?->school?->name ?? '.',
-                        $gradeLevel?->school_relative_number ?? '.',
+                        $student->class?->grade_level?->is_highschool ? 'Sì' : 'No',
+                        $this->schoolYear ? 'Anno di corso nel ' . $this->schoolYear : 'Anno di corso' => $gradeLevel?->school_relative_number ?? '.',
+                        $student->class?->ended ? $student->class?->lastActiveYear() : '.',
                         $student->created_at->format('d/m/Y'),
                     ];
 
