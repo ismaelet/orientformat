@@ -43,7 +43,7 @@
 				>UNICA</a>.<br><br>
 
 
-				<span class="text-error-400">A conclusione dell’anno scolastico i capolavori saranno rimossi da questo sito.</span>
+				<span class="text-error-400">A conclusione del percorso i capolavori saranno rimossi da questo sito.</span>
 			</p>
 
 			<livewire:tests.capolavori.table />
