@@ -176,7 +176,6 @@
 				data-direction="right"
 			>
 				@csrf
-
 				<input
 					type="hidden"
 					name="type"
@@ -193,6 +192,17 @@
 							class="mb-4"
 						/>
 					@enderror
+
+					<p class="text-error-400">Se ti sei registrato/a in passato, per esempio in un'altra classe o un'altra scuola,
+						<strong>NON</strong> creare un nuovo account, ma chiedi al/alla tuo/a docente di spostarti nella nuova classe
+						seguendo la procedura indicata <a
+							href="{{ route('help', ['category' => 5, 'topic' => 13]) }}#topic13"
+							class="text-secondary-400 font-semibold"
+						>qui</a>, oppure contattaci usando il formulario <a
+							href="{{ route('help.ticket.open') }}"
+							class="text-secondary-400 font-semibold"
+						>qui</a>.
+					</p>
 
 					<!-- First and last name -->
 					<div class="form__field">
