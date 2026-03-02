@@ -6,6 +6,7 @@ use App\Models\Schools\School;
 use App\Models\Schools\SchoolClass;
 use App\Models\User\Student;
 use Filament\Actions\Action;
+use Filament\Actions\ActionGroup;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Actions\EditAction;
@@ -26,148 +27,161 @@ use Livewire\Component;
 
 class Table extends Component implements HasTable, HasActions, HasSchemas {
 
-	use InteractsWithTable;
-	use InteractsWithSchemas;
-	use InteractsWithActions;
+    use InteractsWithTable;
+    use InteractsWithSchemas;
+    use InteractsWithActions;
 
-	/**
-	 * Property: The school being managed
-	 */
-	public ?School $school = null;
+    /**
+     * Property: The school being managed
+     */
+    public ?School $school = null;
 
-	/**
-	 * Property: The class being managed (if any)
-	 */
-	public ?SchoolClass $class = null;
+    /**
+     * Property: The class being managed (if any)
+     */
+    public ?SchoolClass $class = null;
 
-	/**
-	 * Lifecycle method: Initialize component
-	 */
-	public function mount() {
-		if ($this->class) {
-			$this->school = $this->class->school;
-		}
-	}
+    /**
+     * Property: Whether to display placeholders for testing
+     */
+    public bool $displayPlaceholders = false;
 
-	/**
-	 * Filament method: Define the table
-	 */
-	public function table(FilamentTable $table): FilamentTable {
-		return $table
-			->defaultSort('id', 'desc')
-			->defaultPaginationPageOption(25)
-			->query(fn() => $this->class ?
-				// Class view
-				Student::query()
-				->where('schoolClassId', $this->class->id)
-				->with('user', 'school_class.referent.user') :
+    /**
+     * Lifecycle method: Initialize component
+     */
+    public function mount() {
+        if ($this->class) {
+            $this->school = $this->class->school;
+        }
 
-				// School view
-				Student::query()
-				->whereHas('school_class', function ($query) {
-					$query->where('schoolId', $this->school->id);
-				})
-				->with('user', 'school_class.referent.user'))
-			->columns([
-				TextColumn::make('user.last_name')
-					->label('Cognome')
-					->searchable()
-					->sortable(),
-				TextColumn::make('user.first_name')
-					->label('Nome')
-					->searchable()
-					->sortable(),
-				TextColumn::make('school_class.name')
-					->label('Classe')
-					->searchable()
-					->sortable(),
-				TextColumn::make('school_class.referent.inverted_full_name')
-					->label('Tutor di classe')
-					->visible(fn(): bool => !$this->class),
-				TextColumn::make('user.email')
-					->label('Email')
-					->searchable()
-					->sortable(),
-				TextColumn::make('user.created_at')
-					->label('Registrato/a il')
-					->date()
-					->sortable(),
-			])
-			->searchable($this->class ? ['user.last_name', 'user.first_name', 'user.email'] : ['user.last_name', 'user.first_name', 'user.email', 'school_class.name', 'school_class.referent.user.first_name', 'school_class.referent.user.last_name'])
-			->filters([])
-			->recordActions([
-				EditAction::make()
-					->label('Modifica')
-					->color(Color::Blue)
-					->modalHeading(fn(Student $record): string => "Modifica: {$record->user->inverted_full_name}")
-					->schema([
-						Fieldset::make('Dati personali')
-							->columns(2)
-							->relationship('user')
-							->schema([
-								TextInput::make('first_name')
-									->required()
-									->label('Nome')
-									->maxLength(255),
-								TextInput::make('last_name')
-									->required()
-									->label('Cognome')
-									->maxLength(255),
-								TextInput::make('email')
-									->required()
-									->label('Email')
-									->maxLength(255),
-							]),
-						Select::make('classId')
-							->label('Classe')
-							->preload()
-							->helperText('Puoi assegnare lo/a studente/ssa ad una classe diversa, per esempio in caso di studenti ripetenti o che hanno cambiato classe rispetto all\'anno scorso. ATTENZIONE: Cambiare la classe di uno/a studente/ssa lo/a rimuoverà dalla classe attuale.')
-							->relationship(
-								name: 'school_class',
-								modifyQueryUsing: fn($query) => $query->where('schoolId', $this->school->id)
-									->where('ended', false)
-									->with('referent.user'),
-							)
-							->getOptionLabelFromRecordUsing(fn(SchoolClass $record) => "{$record->name} - {$record->referent?->inverted_full_name}")
-							->getOptionLabelUsing(
-								fn($value): ?string => optional(
-									SchoolClass::with('referent.user')->find($value)
-								)?->name . ' - ' . optional(
-									SchoolClass::with('referent.user')->find($value)?->referent
-								)?->inverted_full_name
-							)
-							->searchable()
-							->required(),
-					]),
-				Action::make('resetPassword')
-					->label('Reimposta password')
-					->color(Color::Red)
-					->icon('icon-key_vertical')
-					->action(function (Student $record) {
-						$newPassword = strtolower(str()->random(8));
-						$record->user->password = Hash::make($newPassword);
-						$record->user->save();
+        $this->displayPlaceholders = display_placeholders();
+    }
 
-						Notification::make()
-							->title('Password generata')
-							->body('La nuova password per ' . $record->user->inverted_full_name . ' è (cliccala per copiarla):<br><span class="font-bold text-blue-600 js-password transition-colors block mt-2 text-lg text-center cursor-pointer underline data-[copied=true]:text-primary-400">' . $newPassword . '</span>')
-							->info()
-							->iconColor(Color::Blue)
-							->duration(20000)
-							->send();
-					})
-					->size(Size::Small)
-					->requiresConfirmation()
-					->modalHeading('Reimpostare la password?')
-					->modalDescription('La nuova password verrà mostrata una sola volta, assicurati di annotarla.'),
-			])
-			->toolbarActions([]);
-	}
+    /**
+     * Filament method: Define the table
+     */
+    public function table(FilamentTable $table): FilamentTable {
+        return $table
+            ->defaultSort('id', 'desc')
+            ->defaultPaginationPageOption(25)
+            ->query(fn() => $this->class ?
+                // Class view
+                Student::query()
+                ->where('schoolClassId', $this->class->id)
+                ->with('user', 'school_class.referent.user') :
 
-	/**
-	 * Lifecycle method: Render the component
-	 */
-	public function render() {
-		return view('livewire.administrator.student.table');
-	}
+                // School view
+                Student::query()
+                ->whereHas('school_class', function ($query) {
+                    $query->where('schoolId', $this->school->id);
+                })
+                ->with('user', 'school_class.referent.user'))
+            ->columns([
+                TextColumn::make('user.last_name')
+                    ->label('Cognome')
+                    ->searchable()
+                    ->getStateUsing(fn(Student $record) => $this->displayPlaceholders ? 'Cognome test' : $record->user->last_name)
+                    ->sortable(),
+                TextColumn::make('user.first_name')
+                    ->label('Nome')
+                    ->searchable()
+                    ->getStateUsing(fn(Student $record) => $this->displayPlaceholders ? 'Nome test' : $record->user->first_name)
+                    ->sortable(),
+                TextColumn::make('school_class.name')
+                    ->label('Classe')
+                    ->searchable()
+                    ->getStateUsing(fn(Student $record) => $this->displayPlaceholders ? 'Classe test' : $record->school_class?->name)
+                    ->sortable(),
+                TextColumn::make('school_class.referent.inverted_full_name')
+                    ->label('Tutor di classe')
+                    ->visible(fn(): bool => !$this->class),
+                TextColumn::make('user.email')
+                    ->label('Email')
+                    ->searchable()
+                    ->getStateUsing(fn(Student $record) => $this->displayPlaceholders ? 'studente.test@iprase.tn.it' : $record->user->email)
+                    ->sortable(),
+                TextColumn::make('user.created_at')
+                    ->label('Registrato/a il')
+                    ->date()
+                    ->sortable(),
+            ])
+            ->searchable($this->class ? ['user.last_name', 'user.first_name', 'user.email'] : ['user.last_name', 'user.first_name', 'user.email', 'school_class.name', 'school_class.referent.user.first_name', 'school_class.referent.user.last_name'])
+            ->filters([])
+            ->recordActions([
+                ActionGroup::make([
+                    EditAction::make()
+                        ->label('Modifica')
+                        ->color(Color::Blue)
+                        ->modalHeading(fn(Student $record): string => "Modifica: {$record->user->inverted_full_name}")
+                        ->schema([
+                            Fieldset::make('Dati personali')
+                                ->columns(2)
+                                ->relationship('user')
+                                ->schema([
+                                    TextInput::make('first_name')
+                                        ->required()
+                                        ->label('Nome')
+                                        ->maxLength(255),
+                                    TextInput::make('last_name')
+                                        ->required()
+                                        ->label('Cognome')
+                                        ->maxLength(255),
+                                    TextInput::make('email')
+                                        ->required()
+                                        ->label('Email')
+                                        ->maxLength(255),
+                                ]),
+                            Select::make('classId')
+                                ->label('Classe')
+                                ->preload()
+                                ->helperText('Puoi assegnare lo/a studente/ssa ad una classe diversa, per esempio in caso di studenti ripetenti o che hanno cambiato classe rispetto all\'anno scorso. ATTENZIONE: Cambiare la classe di uno/a studente/ssa lo/a rimuoverà dalla classe attuale.')
+                                ->relationship(
+                                    name: 'school_class',
+                                    modifyQueryUsing: fn($query) => $query->where('schoolId', $this->school->id)
+                                        ->where('ended', false)
+                                        ->with('referent.user'),
+                                )
+                                ->getOptionLabelFromRecordUsing(fn(SchoolClass $record) => "{$record->name} - {$record->referent?->inverted_full_name}")
+                                ->getOptionLabelUsing(
+                                    fn($value): ?string => optional(
+                                        SchoolClass::with('referent.user')->find($value)
+                                    )?->name . ' - ' . optional(
+                                        SchoolClass::with('referent.user')->find($value)?->referent
+                                    )?->inverted_full_name
+                                )
+                                ->searchable()
+                                ->required(),
+                        ]),
+                    Action::make('resetPassword')
+                        ->label('Reimposta password')
+                        ->color(Color::Red)
+                        ->icon('icon-key_vertical')
+                        ->action(function (Student $record) {
+                            $newPassword = strtolower(str()->random(8));
+                            $record->user->password = Hash::make($newPassword);
+                            $record->user->save();
+
+                            Notification::make()
+                                ->title('Password generata')
+                                ->body('La nuova password per ' . $record->user->inverted_full_name . ' è (cliccala per copiarla):<br><span class="font-bold text-blue-600 js-password transition-colors block mt-2 text-lg text-center cursor-pointer underline data-[copied=true]:text-primary-400">' . $newPassword . '</span>')
+                                ->info()
+                                ->iconColor(Color::Blue)
+                                ->duration(20000)
+                                ->send();
+                        })
+                        ->size(Size::Small)
+                        ->requiresConfirmation()
+                        ->modalHeading('Reimpostare la password?')
+                        ->modalDescription('La nuova password verrà mostrata una sola volta, assicurati di annotarla.'),
+                ])
+            ])
+            ->toolbarActions([]);
+    }
+
+    /**
+     * Lifecycle method: Render the component
+     */
+    public function render() {
+        return view('livewire.administrator.student.table');
+    }
 }
