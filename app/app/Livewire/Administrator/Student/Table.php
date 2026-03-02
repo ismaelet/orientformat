@@ -18,6 +18,7 @@ use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\Size;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -68,14 +69,14 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                 // Class view
                 Student::query()
                 ->where('schoolClassId', $this->class->id)
-                ->with('user', 'school_class.referent.user') :
+                ->with('user', 'class', 'school_class.referent.user') :
 
                 // School view
                 Student::query()
                 ->whereHas('school_class', function ($query) {
                     $query->where('schoolId', $this->school->id);
                 })
-                ->with('user', 'school_class.referent.user'))
+                ->with('user', 'class', 'school_class.referent.user'))
             ->columns([
                 TextColumn::make('user.last_name')
                     ->label('Cognome')
@@ -152,6 +153,24 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                                 ->searchable()
                                 ->required(),
                         ]),
+                    Action::make("view-results")
+                        ->label('Visualizza risultati')
+                        ->color(Color::Cyan)
+                        ->icon(Heroicon::ArrowTopRightOnSquare)
+                        ->url(fn(Student $record) => route('class.students.results.show', ['class' => $record->class, 'student' => $record]))
+                        ->openUrlInNewTab(),
+                    Action::make("view-poi")
+                        ->label('Visualizza POI')
+                        ->color(Color::Green)
+                        ->icon(Heroicon::ArrowTopRightOnSquare)
+                        ->url(fn(Student $record) => route('class.students.poi.show', ['class' => $record->class, 'student' => $record]))
+                        ->openUrlInNewTab(),
+                    Action::make("view-self-evaluations")
+                        ->label('Visualizza autovalutazioni')
+                        ->color(Color::Orange)
+                        ->icon(Heroicon::ArrowTopRightOnSquare)
+                        ->url(fn(Student $record) => route('class.students.self-evaluations.show', ['class' => $record->class, 'student' => $record]))
+                        ->openUrlInNewTab(),
                     Action::make('resetPassword')
                         ->label('Reimposta password')
                         ->color(Color::Red)

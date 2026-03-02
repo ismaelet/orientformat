@@ -12,151 +12,149 @@ use App\Http\Middleware\HasClassAccess;
 use App\Http\Middleware\StudentBelongsToClass;
 use App\Http\Middleware\Teacher;
 use App\Http\Middleware\TeacherBelongsToSchool;
-use App\Http\Middleware\UnderContruction;
 use Illuminate\Support\Facades\Route;
-use Spatie\Browsershot\Browsershot;
 
 /**
  * Teacher routes
  */
 Route::prefix('/teacher')->middleware(Teacher::class)->name('teacher.')->group(function () {
-	// Dashboard landing page
-	Route::get('', [TeacherController::class, 'index'])
-		->middleware(TeacherBelongsToSchool::class)
-		->name('dashboard');
+    // Dashboard landing page
+    Route::get('', [TeacherController::class, 'index'])
+        ->middleware(TeacherBelongsToSchool::class)
+        ->name('dashboard');
 
-	// Further readings
-	Route::get('read/results', [TeacherController::class, 'showReadResults'])
-		->name('read.results');
+    // Further readings
+    Route::get('read/results', [TeacherController::class, 'showReadResults'])
+        ->name('read.results');
 
-	// Documents
-	Route::get('documents', [TeacherController::class, 'documentsIndex'])
-		->name('documents');
+    // Documents
+    Route::get('documents', [TeacherController::class, 'documentsIndex'])
+        ->name('documents');
 
-	// Attach school to teacher
-	Route::get('school/show', [TeacherController::class, 'showSchool'])
-		->name('school.show');
+    // Attach school to teacher
+    Route::get('school/show', [TeacherController::class, 'showSchool'])
+        ->name('school.show');
 
-	Route::post('school/store', [TeacherController::class, 'storeSchool'])
-		->name('school.store');
+    Route::post('school/store', [TeacherController::class, 'storeSchool'])
+        ->name('school.store');
 
-	// Simulation
-	Route::get('simulation', [TeacherController::class, 'simulationIndex'])
-		->name('simulation');
+    // Simulation
+    Route::get('simulation', [TeacherController::class, 'simulationIndex'])
+        ->name('simulation');
 
-	// Settings
-	Route::get('settings', [TeacherController::class, 'settingsIndex'])
-		->name('settings');
+    // Settings
+    Route::get('settings', [TeacherController::class, 'settingsIndex'])
+        ->name('settings');
 
-	Route::post('settings', [TeacherController::class, 'settingsUpdate'])
-		->name('settings.update');
+    Route::post('settings', [TeacherController::class, 'settingsUpdate'])
+        ->name('settings.update');
 
-	Route::post('password', [TeacherController::class, 'passwordUpdate'])
-		->name('password.update');
+    Route::post('password', [TeacherController::class, 'passwordUpdate'])
+        ->name('password.update');
 });
 
 /**
  * Class management
  */
 Route::prefix('/classes')->middleware(Teacher::class)->name('classes.')->group(function () {
-	// Display the class creation form
-	Route::get('create', [ClassController::class, 'create'])
-		->name('create');
+    // Display the class creation form
+    Route::get('create', [ClassController::class, 'create'])
+        ->name('create');
 
-	// Display the class creation form for middle school
-	Route::get('create/middleschool', [ClassController::class, 'createMiddleSchool'])
-		->name('create.middleschool');
+    // Display the class creation form for middle school
+    Route::get('create/middleschool', [ClassController::class, 'createMiddleSchool'])
+        ->name('create.middleschool');
 
-	// Display the class creation form for high school
-	Route::get('create/highschool', [ClassController::class, 'createHighSchool'])
-		->name('create.highschool');
+    // Display the class creation form for high school
+    Route::get('create/highschool', [ClassController::class, 'createHighSchool'])
+        ->name('create.highschool');
 
-	// Store the new class
-	Route::post('store', [ClassController::class, 'store'])
-		->name('store');
+    // Store the new class
+    Route::post('store', [ClassController::class, 'store'])
+        ->name('store');
 
-	// Display the form to join an existing class
-	Route::get('join', [ClassController::class, 'joinShow'])
-		->name('join.show');
+    // Display the form to join an existing class
+    Route::get('join', [ClassController::class, 'joinShow'])
+        ->name('join.show');
 
-	// Accept a join request
-	Route::post('join/accept/{join_request}', [ClassController::class, 'joinAccept'])
-		->name('join.accept');
+    // Accept a join request
+    Route::post('join/accept/{join_request}', [ClassController::class, 'joinAccept'])
+        ->name('join.accept');
 
-	// Reject a join request
-	Route::post('join/reject/{join_request}', [ClassController::class, 'joinReject'])
-		->name('join.reject');
+    // Reject a join request
+    Route::post('join/reject/{join_request}', [ClassController::class, 'joinReject'])
+        ->name('join.reject');
 
-	// Accept an invite request
-	Route::post('invite/accept/{invite_request}', [ClassController::class, 'inviteAccept'])
-		->name('invite.accept');
+    // Accept an invite request
+    Route::post('invite/accept/{invite_request}', [ClassController::class, 'inviteAccept'])
+        ->name('invite.accept');
 
-	// Reject an invite request
-	Route::post('invite/reject/{invite_request}', [ClassController::class, 'inviteReject'])
-		->name('invite.reject');
+    // Reject an invite request
+    Route::post('invite/reject/{invite_request}', [ClassController::class, 'inviteReject'])
+        ->name('invite.reject');
 
-	// Attach the teacher to the class
-	Route::post('join', [ClassController::class, 'joinStore'])
-		->name('join.store');
+    // Attach the teacher to the class
+    Route::post('join', [ClassController::class, 'joinStore'])
+        ->name('join.store');
 });
 
 /**
  * Class dashboard routes
  */
 Route::prefix('/class')->middleware([Teacher::class, HasClassAccess::class])->name('class.')->group(function () {
-	// Show class dashboard
-	Route::get('{class}', [SchoolClassController::class, 'show'])
-		->name('show');
+    // Show class dashboard
+    Route::get('{class}', [SchoolClassController::class, 'show'])
+        ->name('show');
 
-	/**
-	 * Class general routes
-	 */
-	Route::get('{class}/progress/areas', [SchoolClassProgressController::class, 'index'])
-		->name('general.progress');
-	Route::get('{class}/progress/areas/{area}', [SchoolClassProgressController::class, 'show'])
-		->name('general.progress.show');
+    /**
+     * Class general routes
+     */
+    Route::get('{class}/progress/areas', [SchoolClassProgressController::class, 'index'])
+        ->name('general.progress');
+    Route::get('{class}/progress/areas/{area}', [SchoolClassProgressController::class, 'show'])
+        ->name('general.progress.show');
 
-	Route::get('{class}/graphs', [GraphController::class, 'grades'])
-		->name('general.graphs');
-	Route::get('{class}/graphs/{grade}', [GraphController::class, 'index'])
-		->name('general.graphs.index');
+    Route::get('{class}/graphs', [GraphController::class, 'grades'])
+        ->name('general.graphs');
+    Route::get('{class}/graphs/{grade}', [GraphController::class, 'index'])
+        ->name('general.graphs.index');
 
-	/**
-	 * Student routes
-	 */
-	// Student results
-	Route::get('{class}/students/results', [SchoolClassController::class, 'studentResultsIndex'])
-		->name('students.results.index');
+    /**
+     * Student routes
+     */
+    // Student results
+    Route::get('{class}/students/results', [SchoolClassController::class, 'studentResultsIndex'])
+        ->name('students.results.index');
 
-	Route::get('{class}/students/results/{student}', [StudentResultController::class, 'show'])
-		->middleware(StudentBelongsToClass::class)
-		->name('students.results.show');
+    Route::get('{class}/students/results/{student}', [StudentResultController::class, 'show'])
+        ->middleware(StudentBelongsToClass::class)
+        ->name('students.results.show');
 
-	// POI
-	Route::get('{class}/students/poi/{student}', [StudentResultController::class, 'showPoi'])
-		->middleware(StudentBelongsToClass::class)
-		->name('students.poi.show');
+    // POI
+    Route::get('{class}/students/poi/{student}', [StudentResultController::class, 'showPoi'])
+        ->middleware(StudentBelongsToClass::class)
+        ->name('students.poi.show');
 
-	// Self-evaluations
-	Route::get('{class}/students/self-evaluations/{student}', [StudentResultController::class, 'showSelfEvaluations'])
-		->middleware(StudentBelongsToClass::class)
-		->name('students.self-evaluations.show');
+    // Self-evaluations
+    Route::get('{class}/students/self-evaluations/{student}', [StudentResultController::class, 'showSelfEvaluations'])
+        ->middleware(StudentBelongsToClass::class)
+        ->name('students.self-evaluations.show');
 
-	/**
-	 * Settings routes
-	 */
-	Route::get('{class}/students/index', [SettingsController::class, 'studentIndex'])
-		->name('students.index');
+    /**
+     * Settings routes
+     */
+    Route::get('{class}/students/index', [SettingsController::class, 'studentIndex'])
+        ->name('students.index');
 
-	Route::get('{class}/teachers/index', [TeacherManagementController::class, 'index'])
-		->name('teachers.index');
+    Route::get('{class}/teachers/index', [TeacherManagementController::class, 'index'])
+        ->name('teachers.index');
 
-	Route::get('{class}/settings', [SettingsController::class, 'showSettings'])
-		->name('settings');
+    Route::get('{class}/settings', [SettingsController::class, 'showSettings'])
+        ->name('settings');
 
-	Route::post('{class}/settings', [SettingsController::class, 'update'])
-		->name('settings.update');
+    Route::post('{class}/settings', [SettingsController::class, 'update'])
+        ->name('settings.update');
 
-	Route::post('{class}/delete', [SettingsController::class, 'destroy'])
-		->name('delete');
+    Route::post('{class}/delete', [SettingsController::class, 'destroy'])
+        ->name('delete');
 });
