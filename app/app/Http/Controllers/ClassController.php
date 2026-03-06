@@ -74,7 +74,7 @@ class ClassController extends Controller {
      */
     public function store(Request $request): RedirectResponse {
         $request->validate([
-            'letter' => 'required|string|max:255',
+            'letter' => 'required|string|max:10',
             'grade' => 'required|integer|in:1,2,3,4,5,6,7,8',
             'schoolId' => 'required|integer|exists:schools,id',
             'professional' => 'nullable|boolean',

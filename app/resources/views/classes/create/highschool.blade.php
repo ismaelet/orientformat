@@ -43,11 +43,15 @@
 			<x-input
 				name="letter"
 				:value="old('letter')"
-				placeholder="Lettera identificativa"
+				placeholder="Nome della classe"
 				maxlength="10"
 				class="uppercase"
 				required
 			/>
+
+			@error('letter')
+				<x-alert type="error">{{ $message }}</x-alert>
+			@enderror
 		</x-form.field>
 
 		<x-form.field>
