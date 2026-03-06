@@ -173,7 +173,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                         ->openUrlInNewTab(),
                     Action::make('resetPassword')
                         ->label('Reimposta password')
-                        ->color(Color::Red)
+                        ->color(Color::Purple)
                         ->icon('icon-key_vertical')
                         ->action(function (Student $record) {
                             $newPassword = strtolower(str()->random(8));
@@ -192,6 +192,24 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                         ->requiresConfirmation()
                         ->modalHeading('Reimpostare la password?')
                         ->modalDescription('La nuova password verrà mostrata una sola volta, assicurati di annotarla.'),
+                    Action::make('removeFromClass')
+                        ->label('Rimuovi dalla classe')
+                        ->color(Color::Red)
+                        ->icon(Heroicon::UserMinus)
+                        ->action(function (Student $record) {
+                            $record->schoolClassId = null;
+                            $record->save();
+
+                            Notification::make()
+                                ->title('Studente rimosso dalla classe')
+                                ->body($record->user->inverted_full_name . ' è stato rimosso dalla classe ' . $record->school_class?->name . '.')
+                                ->info()
+                                ->iconColor(Color::Red)
+                                ->send();
+                        })
+                        ->requiresConfirmation()
+                        ->modalHeading('Rimuovere lo/a studente/ssa dalla classe?')
+                        ->modalDescription('Questa azione rimuoverà lo/a studente/ssa dalla classe attuale, ma non eliminerà il suo account né i suoi dati. Questa operazione è da eseguire in caso di studenti che hanno cambiato scuola, NON in caso di studenti ripetenti o che hanno cambiato classe all\'interno della stessa scuola (in quel caso è sufficiente modificare la classe dello/a studente/ssa).'),
                 ])
             ])
             ->toolbarActions([]);
