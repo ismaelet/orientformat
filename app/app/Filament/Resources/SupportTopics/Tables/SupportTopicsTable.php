@@ -6,12 +6,16 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class SupportTopicsTable {
     public static function configure(Table $table): Table {
         return $table
             ->defaultSort('id', 'desc')
+            ->defaultPaginationPageOption(25)
             ->reorderable('sort')
             ->columns([
                 TextColumn::make('id')
@@ -22,6 +26,7 @@ class SupportTopicsTable {
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable()
+                    ->html()
                     ->wrap()
                     ->label('Domanda'),
                 TextColumn::make('category.name')
@@ -30,12 +35,16 @@ class SupportTopicsTable {
                     ->label('Categoria'),
                 TextColumn::make('text')
                     ->label('Risposta')
+                    ->searchable()
                     ->wrap()
                     ->limit(150),
             ])
             ->filters([
-                //
-            ])
+                SelectFilter::make('categoryId')
+                    ->label('Categoria')
+                    ->relationship('category', 'name'),
+            ], layout: FiltersLayout::AboveContent)
+            ->deferFilters(false)
             ->recordActions([
                 EditAction::make(),
             ])
