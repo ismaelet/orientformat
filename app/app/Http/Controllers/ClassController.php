@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Class\InviteRequest;
-use App\Models\Class\JoinRequest;
-use App\Models\Schools\Grade;
+use App\Models\Class\StudentJoinRequest;
+use App\Models\Class\TeacherJoinRequest;
 use App\Models\Schools\SchoolClass;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -103,11 +103,11 @@ class ClassController extends Controller {
             return back()->withErrors(['class_id' => 'La classe selezionata non appartiene al tuo istituto.'])->withInput();
         }
 
-        if ($class->referent && !JoinRequest::where('class_id', $class->id)
+        if ($class->referent && !TeacherJoinRequest::where('class_id', $class->id)
             ->where('requesting_teacher_id', teacher()->id)
             ->exists()) {
 
-            JoinRequest::create([
+            TeacherJoinRequest::create([
                 'class_id' => $class->id,
                 'referent_id' => $class->referent->id,
                 'requesting_teacher_id' => teacher()->id,
@@ -118,9 +118,9 @@ class ClassController extends Controller {
     }
 
     /**
-     * Accept a join request
+     * Accept a request to join a class as a teacher
      */
-    public function joinAccept(Request $request, JoinRequest $joinRequest): RedirectResponse {
+    public function teacherJoinAccept(Request $request, TeacherJoinRequest $joinRequest): RedirectResponse {
         if ($joinRequest->referent_id != teacher()->id) {
             return back()->withErrors(['join_request_id' => 'Non sei autorizzato ad accettare questa richiesta.']);
         }
@@ -135,10 +135,44 @@ class ClassController extends Controller {
     }
 
     /**
-     * Reject a join request
+     * Reject a request to join a class as a teacher
      */
-    public function joinReject(Request $request, JoinRequest $joinRequest): RedirectResponse {
+    public function teacherJoinReject(Request $request, TeacherJoinRequest $joinRequest): RedirectResponse {
         if ($joinRequest->referent_id != teacher()->id) {
+            return back()->withErrors(['join_request_id' => 'Non sei autorizzato a rifiutare questa richiesta.']);
+        }
+
+        $joinRequest->delete();
+
+        return redirect()->route('teacher.dashboard')->with('success', 'Richiesta rifiutata con successo.');
+    }
+
+    /**
+     * Accept a request to join a class as a student
+     */
+    public function studentJoinAccept(StudentJoinRequest $joinRequest): RedirectResponse {
+        $tutor = $joinRequest->tutor();
+
+        if ($tutor?->id != teacher()->id) {
+            return back()->withErrors(['join_request_id' => 'Non sei autorizzato ad accettare questa richiesta.']);
+        }
+
+        $student = $joinRequest->requesting_student;
+        $student->schoolClassId = $joinRequest->class_id;
+        $student->save();
+
+        $joinRequest->delete();
+
+        return redirect()->route('teacher.dashboard')->with('success', 'Richiesta accettata con successo.');
+    }
+
+    /**
+     * Reject a request to join a class as a student
+     */
+    public function studentJoinReject(Request $request, StudentJoinRequest $joinRequest): RedirectResponse {
+        $tutor = $joinRequest->tutor();
+
+        if ($tutor?->id != teacher()->id) {
             return back()->withErrors(['join_request_id' => 'Non sei autorizzato a rifiutare questa richiesta.']);
         }
 

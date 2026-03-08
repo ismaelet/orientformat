@@ -45,20 +45,21 @@
 				>qui</a>.</p> --}}
 
 			{{-- Join Requests --}}
-			@if ($joinRequests->count() || $inviteRequests->count() || session('success'))
+
+			@session('success')
+				<x-alerts.success>
+					{{ session('success') }}
+				</x-alerts.success>
+			@endsession
+
+			@if (!empty($notices))
 				{{-- Notices --}}
 				<section class="elements mar-t-3">
 					<x-heading.section>Avvisi</x-heading.section>
 
 					<div class="mt-4 grid grid-cols-1 gap-4">
 
-						@session('success')
-							<x-alerts.success>
-								{{ session('success') }}
-							</x-alerts.success>
-						@endsession
-
-						@foreach ($joinRequests as $joinRequest)
+						@foreach ($notices['teacher_join_requests'] ?? [] as $joinRequest)
 							@if (!$joinRequest->class)
 								@php
 									$joinRequest->delete();
@@ -82,20 +83,52 @@
 										size="xs"
 										variant="secondary"
 										color="success"
-										formaction="{{ route('classes.join.accept', $joinRequest) }}"
+										formaction="{{ route('classes.teacher.join.accept', $joinRequest) }}"
 									>Accetta</x-button>
 									<x-button
 										type="button"
 										size="xs"
 										variant="secondary"
 										color="danger"
-										formaction="{{ route('classes.join.reject', $joinRequest) }}"
+										formaction="{{ route('classes.teacher,join.reject', $joinRequest) }}"
 									>Rifiuta</x-button>
 								</div>
 							</form>
 						@endforeach
 
-						@foreach ($inviteRequests as $inviteRequest)
+						@foreach ($notices['student_join_requests'] ?? [] as $joinRequest)
+							<form
+								method="POST"
+								class="border-1 grid grid-cols-1 gap-4 rounded border-dashed border-neutral-400 p-2"
+							>
+								@csrf
+
+								<p class="text-center">Lo studente/studentessa
+									<strong>{{ $joinRequest->requesting_student->full_name }}</strong>
+									ha richiesto di unirsi alla classe
+									<strong>{{ $joinRequest->class?->name }}</strong>
+								</p>
+
+								<div class="wrap flex justify-center gap-4">
+									<x-button
+										type="submit"
+										size="xs"
+										variant="secondary"
+										color="success"
+										formaction="{{ route('classes.student.join.accept', $joinRequest) }}"
+									>Accetta</x-button>
+									<x-button
+										type="button"
+										size="xs"
+										variant="secondary"
+										color="danger"
+										formaction="{{ route('classes.student.join.reject', $joinRequest) }}"
+									>Rifiuta</x-button>
+								</div>
+							</form>
+						@endforeach
+
+						@foreach ($inviteRequests ?? [] as $inviteRequest)
 							@if (!$inviteRequest->class)
 								@php
 									$inviteRequest->delete();

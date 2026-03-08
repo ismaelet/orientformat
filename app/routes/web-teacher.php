@@ -77,13 +77,21 @@ Route::prefix('/classes')->middleware(Teacher::class)->name('classes.')->group(f
     Route::get('join', [ClassController::class, 'joinShow'])
         ->name('join.show');
 
-    // Accept a join request
-    Route::post('join/accept/{join_request}', [ClassController::class, 'joinAccept'])
-        ->name('join.accept');
+    // Accept a teacher join request
+    Route::post('join/accept/{join_request}', [ClassController::class, 'teacherJoinAccept'])
+        ->name('teacher.join.accept');
 
-    // Reject a join request
-    Route::post('join/reject/{join_request}', [ClassController::class, 'joinReject'])
-        ->name('join.reject');
+    // Reject a teacher join request
+    Route::post('join/reject/{join_request}', [ClassController::class, 'teacherJoinReject'])
+        ->name('teacher.join.reject');
+
+    // Accept a student join request
+    Route::post('join/accept/student/{join_request}', [ClassController::class, 'studentJoinAccept'])
+        ->name('student.join.accept');
+
+    // Reject a student join request
+    Route::post('join/reject/student/{join_request}', [ClassController::class, 'studentJoinReject'])
+        ->name('student.join.reject');
 
     // Accept an invite request
     Route::post('invite/accept/{invite_request}', [ClassController::class, 'inviteAccept'])

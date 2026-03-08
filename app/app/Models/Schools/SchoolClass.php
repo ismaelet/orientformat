@@ -61,6 +61,12 @@ class SchoolClass extends Model {
         );
     }
 
+    public function nameWithTutor(): Attribute {
+        return Attribute::make(
+            get: fn() => $this->name . ($this->tutor ? ' - ' . $this->tutor->inverted_full_name : '')
+        );
+    }
+
     /**
      * Relationship: The school the class belongs to
      */

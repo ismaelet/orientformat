@@ -69,25 +69,16 @@
 	        'url' => client_url('/help'),
 	    ],
 	    [
+	        'title' => 'Logout',
+	        'loc' => 'auth',
+	        'url' => client_url('/logout'),
+	        'logged' => true,
+	    ],
+	    [
 	        'title' => 'Login',
 	        'loc' => 'login',
 	        'url' => client_url('/login'),
 	        'logged' => false,
-	        'mobile' => true,
-	    ],
-	    [
-	        'title' => 'Logout',
-	        'loc' => 'login',
-	        'url' => client_url('/logout'),
-	        'logged' => true,
-	        'mobile' => false,
-	        'teacher' => true,
-	    ],
-	    [
-	        'title' => 'Logout',
-	        'loc' => 'login',
-	        'url' => client_url('/logout'),
-	        'logged' => true,
 	        'mobile' => true,
 	    ],
 	];
@@ -125,17 +116,12 @@
 	}
 
 	// login bar
-	$h_log_out = ['Login', client_url('/login')];
-	$h_log_in = false;
-
-	if ($userId) {
-	    if ($userGroupId == 2) {
-	        $h_log_in = ['Amministrazione', client_url('/management')];
-	    } elseif ($userGroupId == 1) {
-	        $h_log_in = ['Gestione Classi', client_url('/teacher')];
-	    } else {
-	        $h_log_in = ['Logout', client_url('/logout')];
-	    }
+	if (is_teacher()) {
+	    $h_log_in = ['Gestione', client_url('/teacher')];
+	} elseif (is_student()) {
+	    $h_log_in = ['Impostazioni', route('student.settings')];
+	} else {
+	    $h_log_in = ['Login', client_url('/login')];
 	}
 
 	// survey end
@@ -861,19 +847,9 @@
 					class="va-cen hidden lg:block"
 				>
 
-					<?php if ($userId) { ?>
-
 					<a href="<?= $h_log_in[1] ?>">
 						<p class="h-link-txt h-link-txt--button"><?= $h_log_in[0] ?></p>
 					</a>
-
-					<?php } else { ?>
-
-					<a href="<?= $h_log_out[1] ?>">
-						<p class="h-link-txt h-link-txt--button"><?= $h_log_out[0] ?></p>
-					</a>
-
-					<?php } ?>
 
 				</div>
 				<?php } ?>

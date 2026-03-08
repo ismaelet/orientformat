@@ -7,6 +7,7 @@ use App\Http\Controllers\MasterpieceController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SchoolClass\StudentResultController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentHomeController;
 use App\Http\Middleware\EndReview;
 use App\Http\Middleware\HasEmail;
@@ -30,6 +31,16 @@ Route::middleware([Student::class, HasEmail::class, StartReview::class, EndRevie
     // Masterpieces
     Route::post('masterpieces/upload', [MasterpieceController::class, 'upload'])->name('masterpieces.upload');
     Route::get('masterpieces/{masterpiece}/download', [MasterpieceController::class, 'download'])->name('masterpieces.download');
+
+    // Settings
+    Route::get('settings', [StudentController::class, 'settingsIndex'])
+        ->name('student.settings');
+
+    Route::post('settings', [StudentController::class, 'settingsUpdate'])
+        ->name('student.settings.update');
+
+    Route::post('password', [StudentController::class, 'passwordUpdate'])
+        ->name('student.password.update');
 });
 
 /**

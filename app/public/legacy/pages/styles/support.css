@@ -105,6 +105,10 @@ main {
   background-color: var(--color-tertiary-400);
   border-color: var(--color-tertiary-400);
   color: #fff;
+
+  strong {
+    color: #fff;
+  }
 }
 
 .topic_text {
