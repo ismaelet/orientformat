@@ -16,7 +16,7 @@
 
 			<div
 				class="dashboard-list"
-				style="--columns: 4;"
+				style="--columns: {{ $class->isHighschool() ? 5 : 4 }};"
 			>
 
 				@foreach ($class->students as $student)
@@ -63,6 +63,22 @@
 								<x-icon-arrow-long-right class="w-4" />
 							</x-button>
 						</a>
+
+						@if ($class->isHighschool())
+							<a
+								href="{{ route('class.students.masterpieces.show', ['class' => $class, 'student' => $student]) }}"
+								class="dashboard-list__field dashboard-list__field--buttons"
+							>
+								<x-button
+									class="center-icon"
+									size="xs"
+									variant="secondary"
+									color="green"
+								>Capolavori
+									<x-icon-arrow-long-right class="w-4" />
+								</x-button>
+							</a>
+						@endif
 					</div>
 				@endforeach
 

@@ -110,6 +110,16 @@
 						}
 					}
 
+					&[data-color="green"] {
+						--_border-color: var(--color-green-800);
+						--_color: var(--color-green-800);
+
+						&:hover {
+							--_border-color: var(--color-green-500);
+							--_color: var(--color-green-500);
+						}
+					}
+
 					&[data-color="danger"] {
 						--_border-color: var(--color-error-400);
 						--_color: var(--color-error-400);

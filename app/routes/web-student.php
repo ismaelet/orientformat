@@ -30,7 +30,6 @@ Route::middleware([Student::class, HasEmail::class, StartReview::class, EndRevie
 
     // Masterpieces
     Route::post('masterpieces/upload', [MasterpieceController::class, 'upload'])->name('masterpieces.upload');
-    Route::get('masterpieces/{masterpiece}/download', [MasterpieceController::class, 'download'])->name('masterpieces.download');
 
     // Settings
     Route::get('settings', [StudentController::class, 'settingsIndex'])
@@ -87,4 +86,7 @@ Route::middleware(HasStudentAccess::class)->group(function () {
     // Self-assessments
     Route::get('students/{student}/self-assessments/pdf', [StudentResultController::class, 'downloadSelfAssessmentPdf'])
         ->name('students.self-assessments.pdf');
+
+    // Masterpieces
+    Route::get('students/{student}/masterpieces/{masterpiece}/download', [MasterpieceController::class, 'download'])->name('masterpieces.download');
 });

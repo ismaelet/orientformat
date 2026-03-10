@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\User\Student;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Masterpiece extends Model {
 
@@ -39,10 +41,17 @@ class Masterpiece extends Model {
     public const array SKILLS = ['Competenza alfabetica funzionale (Comunicazione nella lingua italiana)', 'Competenza multilinguistica (Comunicazione nelle lingue straniere)', 'Competenza digitale', 'Competenza personale, sociale e capacità di imparare a imparare', 'Competenza in materia di cittadinanza', 'Competenza imprenditoriale (Spirito di iniziativa e imprenditorialità)', 'Consapevolezza ed espressione culturale', 'Non sono in grado di indicare quale competenza ho sviluppato'];
 
     /**
+     * Relationship: The student who created the masterpiece
+     */
+    public function student(): BelongsTo {
+        return $this->belongsTo(Student::class);
+    }
+
+    /**
      * Get the public URL for the masterpiece PDF
      */
     public function url(): string {
-        return route('masterpieces.download', $this);
+        return route('masterpieces.download', ['student' => $this->student, 'masterpiece' => $this]);
     }
 
     /**

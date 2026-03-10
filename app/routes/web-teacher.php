@@ -148,6 +148,11 @@ Route::prefix('/class')->middleware([Teacher::class, HasClassAccess::class])->na
         ->middleware(StudentBelongsToClass::class)
         ->name('students.self-evaluations.show');
 
+    // Masterpieces
+    Route::get('{class}/students/masterpieces/{student}', [StudentResultController::class, 'showMasterpieces'])
+        ->middleware(StudentBelongsToClass::class)
+        ->name('students.masterpieces.show');
+
     /**
      * Settings routes
      */
