@@ -24,6 +24,7 @@ Route::post('help/ticket/store', [HelpController::class, 'storeTicket'])->name('
 // Legacy API
 Route::get('api/section-graphs/{section}', [SectionGraphController::class, 'show']);
 
+include __DIR__ . '/web-admin.php';
 include __DIR__ . '/web-auth.php';
 include __DIR__ . '/web-student.php';
 include __DIR__ . '/web-teacher.php';

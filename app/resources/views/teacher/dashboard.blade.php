@@ -90,7 +90,7 @@
 										size="xs"
 										variant="secondary"
 										color="danger"
-										formaction="{{ route('classes.teacher,join.reject', $joinRequest) }}"
+										formaction="{{ route('classes.teacher.join.reject', $joinRequest) }}"
 									>Rifiuta</x-button>
 								</div>
 							</form>

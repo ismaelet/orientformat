@@ -282,4 +282,8 @@ class SchoolClass extends Model {
 
         return $class;
     }
+
+    public function nameInGrade(int $grade): string {
+        return ClassHelper::generateName($grade, $this->letter);
+    }
 }
