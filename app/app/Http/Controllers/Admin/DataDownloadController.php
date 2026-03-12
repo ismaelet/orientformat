@@ -85,6 +85,8 @@ class DataDownloadController extends Controller {
      * Action: Download data based on selected parameters
      */
     public function details() {
+        set_time_limit(300);
+
         $fileName = 'Lista_Studenti_' . now()->format('Ymd_His') . '.csv';
 
         /**
