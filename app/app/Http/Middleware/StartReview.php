@@ -15,13 +15,14 @@ class StartReview {
      */
     public function handle(Request $request, Closure $next): Response {
         $student = Auth::user()->student;
+        $class = $student->school_class;
 
         /**
          * Starting review
          */
-        $relativeGrade = $student->school_class->grade()?->relative_number;
-        $startingGrade = $student->school_class->startingGrade;
-        $currentGrade = $student->school_class->grade;
+        $relativeGrade = $class?->grade()->relative_number;
+        $startingGrade = $class?->startingGrade;
+        $currentGrade = $class?->grade;
 
         switch (true) {
             case $student->isMiddleSchoolStudent() && $relativeGrade == 3:
