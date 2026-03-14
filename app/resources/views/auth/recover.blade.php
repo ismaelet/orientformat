@@ -32,6 +32,18 @@
 				required
 			/>
 
+			@if ($errors->has('email'))
+				<x-alerts.error class="mt-4">
+					{{ $errors->first('email') }}
+				</x-alerts.error>
+			@endif
+
+			@if (session('mail_error'))
+				<x-alerts.error class="mt-4">
+					{{ session('mail_error') }}
+				</x-alerts.error>
+			@endif
+
 			{{-- If the form hasn't been submitted or the email is not found --}}
 			@if (session('not_found'))
 				{{-- Show error message if email is not found --}}
