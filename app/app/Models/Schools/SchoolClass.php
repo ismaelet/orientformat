@@ -256,14 +256,14 @@ class SchoolClass extends Model {
             $code = bin2hex(random_bytes(5));
         }
 
-        if (SchoolClass::where('schoolId', $data['schoolId'])
-            ->where('grade', $data['grade'])
-            ->where('letter', $letter)
-            ->where('ended', false)
-            ->exists()
-        ) {
-            return back()->withErrors(['duplicate' => "Esiste già una classe {$name} in questo istituto."])->withInput();
-        }
+        // if (SchoolClass::where('schoolId', $data['schoolId'])
+        //     ->where('grade', $data['grade'])
+        //     ->where('letter', $letter)
+        //     ->where('ended', false)
+        //     ->exists()
+        // ) {
+        //     return back()->withErrors(['duplicate' => "Esiste già una classe {$name} in questo istituto."])->withInput();
+        // }
 
         $class = SchoolClass::create([
             'name' => $name,

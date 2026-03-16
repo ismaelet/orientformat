@@ -44,6 +44,7 @@ class StartReview {
         }
 
         if (
+            $class &&
             $reviewId &&
             ReviewResult::where('studentId', Auth::id())
             ->where('reviewId', $reviewId)

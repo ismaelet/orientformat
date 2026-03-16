@@ -16,9 +16,10 @@ class EndReview {
     public function handle(Request $request, Closure $next): Response {
         $reviewId = 3;
         $student = Auth::user()->student;
-        $currentGrade = $student->class->current_grade;
-        $lastGrade = $student->class->last_grade;
-        $year = $student->class->year + 1;
+        $class = $student->class;
+        $currentGrade = $class?->current_grade;
+        $lastGrade = $class?->last_grade;
+        $year = $class?->year + 1;
         $endReviewDate = now()->setDate($year, 1, 6);
 
         $hasCompletedReview = ReviewResult::where('studentId', $student->id)
@@ -28,6 +29,7 @@ class EndReview {
         $isAfterEndDate = now()->greaterThanOrEqualTo($endReviewDate);
 
         if (
+            $class &&
             !$hasCompletedReview &&
             $isInFinalYear &&
             $isAfterEndDate

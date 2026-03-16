@@ -3,6 +3,7 @@
     'value' => null,
     'required' => false,
     'options' => null,
+    'placeholder' => null,
 ])
 
 @pushOnce('styles')
@@ -33,6 +34,13 @@
 	@required($required)
 	{{ $attributes->merge(['class' => 'select']) }}
 >
+	@if ($placeholder)
+		<option
+			selected
+			value=""
+		>{{ $placeholder }}</option>
+	@endif
+
 	@if ($options)
 		@foreach ($options as $optionValue => $label)
 			<option

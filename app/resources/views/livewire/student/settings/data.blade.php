@@ -63,13 +63,14 @@
 			<x-form.field>
 				<x-label>Istituto</x-label>
 				<x-select
-					name="school_id"
+					name="schoolId"
 					:options="$schools->pluck('name', 'id')"
 					wire:model.live="schoolId"
 					required
+					placeholder="Seleziona un istituto"
 				/>
 
-				@error('school_id')
+				@error('schoolId')
 					<x-alerts.error>{{ $message }}</x-alerts.error>
 				@enderror
 			</x-form.field>
@@ -77,36 +78,40 @@
 			<x-form.field>
 				<x-label>Classe</x-label>
 				<x-select
-					name="class_id"
-					:options="$classes->pluck('name_with_tutor', 'id')"
-					wire:model="classId"
+					name="classId"
+					:options="$classes?->pluck('name_with_tutor', 'id')"
+					wire:model.live="classId"
 					required
+					:disabled="$classes?->isEmpty()"
+					placeholder="Seleziona una classe"
 				/>
 
-				@error('school_id')
+				@error('classId')
 					<x-alerts.error>{{ $message }}</x-alerts.error>
 				@enderror
 			</x-form.field>
+
+			<div class="{{ $this->classId && $this->classId != $this->student->schoolClassId ? '' : 'hidden' }} col-span-full">
+				<p>Per confermare che puoi cambiare classe, inserisci il codice della nuova classe (deve essere fornito dal tutor):
+				</p>
+
+				<x-form.field class="">
+					<x-input
+						type="text"
+						name="class_code"
+						wire:model="classCode"
+						placeholder="Codice classe della nuova classe"
+					/>
+
+					@error('classCode')
+						<x-alerts.error>{{ $message }}</x-alerts.error>
+					@enderror
+				</x-form.field>
+			</div>
 		</div>
 	</div>
 
 	<div class="mt-8 flex justify-center">
 		<x-button type="submit">Modifica</x-button>
 	</div>
-
-	@if ($joinRequests->isNotEmpty())
-		<div class="mt-8">
-			<ul class="grid grid-cols-1 gap-2">
-				@foreach ($joinRequests as $request)
-					<li class="rounded bg-yellow-50 p-4">
-						<p class="mb-2">La tua richiesta di cambio classe alla classe
-							<strong>{{ $request->class?->name }}</strong> è in attesa di approvazione da parte del/della tutor
-							<strong>{{ $request->class?->tutor?->inverted_full_name }}</strong>.
-						</p>
-						<p class="text-sm text-gray-600">Attendi che la richiesta sia accettata...</p>
-					</li>
-				@endforeach
-			</ul>
-		</div>
-	@endif
 </form>
