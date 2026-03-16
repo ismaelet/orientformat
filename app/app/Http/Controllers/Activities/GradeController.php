@@ -5,9 +5,6 @@ namespace App\Http\Controllers\Activities;
 use App\Http\Controllers\Controller;
 use App\Models\Schools\Grade;
 use Illuminate\Support\Facades\Auth;
-use Legacy\SchoolSystem\Grade as LegacyGrade;
-use Legacy\SchoolSystem\SchoolClass as LegacySchoolClass;
-use LegacyModels\Activities\Grade as LegacyGradeModel;
 
 class GradeController extends Controller {
 
@@ -18,18 +15,20 @@ class GradeController extends Controller {
         $student = Auth::user()->student;
         $class = $student->school_class;
 
-        $grades = Grade::where('is_professional', $class->isProfessional())
-            ->where('absolute_number', '>=', $class->first_grade)
-            ->where('absolute_number', '<=', $class->grade)
-            ->orderBy('absolute_number')
-            ->with('completable_sections')
-            ->get();
+        if ($class) {
+            $grades = Grade::where('is_professional', $class->isProfessional())
+                ->where('absolute_number', '>=', $class->first_grade)
+                ->where('absolute_number', '<=', $class->grade)
+                ->orderBy('absolute_number')
+                ->with('completable_sections')
+                ->get();
+        }
 
-        \App\Legacy\LegacyView::setPage('activities/grades')
-            ->set('class', $class)
-            ->set('grades', $grades)
-            ->set('student', $student)
-            ->show();
+        return view('activities.grades.index', [
+            'class' => $class,
+            'student' => $student,
+            'grades' => $grades ?? collect(),
+        ]);
     }
 
     /**
