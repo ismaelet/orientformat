@@ -19,7 +19,7 @@ class Data extends Component {
     /**
      * Property: The first name of the student
      */
-    public string $firtsName;
+    public string $firstName;
 
     /**
      * Property: The last name of the student
@@ -44,7 +44,7 @@ class Data extends Component {
     /**
      * Property: List of classes that belong to the selected school
      */
-    public ?Collection $classes = null;
+    public array $classOptions = [];
 
     /**
      * Property: The class code for class change requests
@@ -60,7 +60,7 @@ class Data extends Component {
      * Lifecycle hook: Initialize component state with student data and related schools and classes
      */
     public function mount() {
-        $this->firtsName = $this->student?->user?->first_name;
+        $this->firstName = $this->student?->user?->first_name;
         $this->lastName = $this->student?->user?->last_name;
         $this->email = $this->student?->user?->email;
         $this->classId = $this->student?->schoolClassId;
@@ -70,14 +70,8 @@ class Data extends Component {
             })
             ->orderBy('name')
             ->get();
-    }
-
-    /**
-     * Lifecycle hook: Load the initial list of classes based on the selected school when the component is mounted
-     */
-    public function boot() {
         $this->schoolId = $this->student->class?->schoolId;
-        $this->classes = $this->getClasses();
+        $this->classOptions = $this->getClassOptions();
     }
 
     /**
@@ -91,7 +85,9 @@ class Data extends Component {
      * Event handler: Update the list of classes when the selected school changes
      */
     public function updatedSchoolId() {
-        $this->classes = $this->getClasses();
+        $this->classId = null;
+        $this->classCode = null;
+        $this->classOptions = $this->getClassOptions();
     }
 
     /**
@@ -99,7 +95,7 @@ class Data extends Component {
      */
     public function save() {
         $this->validate([
-            'firtsName' => 'required|string|max:255',
+            'firstName' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'classId' => 'nullable|exists:school_classes,id',
@@ -114,7 +110,7 @@ class Data extends Component {
 
         // Update the student's user information
         $this->student->user->update([
-            'first_name' => $this->firtsName,
+            'first_name' => $this->firstName,
             'last_name' => $this->lastName,
             'email' => $this->email,
         ]);
@@ -147,10 +143,20 @@ class Data extends Component {
     /**
      * Get the list of classes that belong to the selected school
      */
-    public function getClasses(): ?Collection {
-        return $this->schoolId ? School::find($this->schoolId)?->classes()->with('tutor', 'tutor.user')
-            ->orderByDesc('name')
+    public function getClassOptions(): array {
+        if (!$this->schoolId) {
+            return [];
+        }
+
+        return SchoolClass::query()
+            ->with(['tutor.user'])
+            ->where('schoolId', $this->schoolId)
             ->where('ended', false)
-            ->get() : null;
+            ->orderByDesc('name')
+            ->get()
+            ->mapWithKeys(function (SchoolClass $class) {
+                return [$class->id => $class->name_with_tutor];
+            })
+            ->toArray();
     }
 }

@@ -25,7 +25,7 @@
 				<x-input
 					type="text"
 					name="first_name"
-					wire:model="firtsName"
+					wire:model="firstName"
 					required
 				/>
 				<x-input
@@ -36,11 +36,11 @@
 				/>
 			</div>
 
-			@error('last_name')
+			@error('lastName')
 				<x-alerts.error>{{ $message }}</x-alerts.error>
 			@enderror
 
-			@error('first_name')
+			@error('firstName')
 				<x-alerts.error>{{ $message }}</x-alerts.error>
 			@enderror
 		</x-form.field>
@@ -79,10 +79,10 @@
 				<x-label>Classe</x-label>
 				<x-select
 					name="classId"
-					:options="$classes?->pluck('name_with_tutor', 'id')"
+					:options="$classOptions"
 					wire:model.live="classId"
 					required
-					:disabled="$classes?->isEmpty()"
+					:disabled="empty($classOptions)"
 					placeholder="Seleziona una classe"
 				/>
 
