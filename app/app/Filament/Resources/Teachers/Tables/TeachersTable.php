@@ -42,6 +42,7 @@ class TeachersTable {
                     ->date()
                     ->sortable(),
             ])
+            ->searchable(['id', 'user.first_name', 'user.last_name', 'user.email', 'school.name'])
             ->filters([
                 //
             ])

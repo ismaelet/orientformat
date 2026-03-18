@@ -193,7 +193,10 @@
 						/>
 					@enderror
 
-					<p class="text-error-400">Se ti sei registrato/a in passato, per esempio in un'altra classe o un'altra scuola,
+					<p
+						class="text-error-400"
+						x-show="type == 'student'"
+					>Se ti sei registrato/a in passato, per esempio in un'altra classe o un'altra scuola,
 						<strong>NON</strong> creare un nuovo account, ma chiedi al/alla tuo/a docente di spostarti nella nuova classe
 						seguendo la procedura indicata <a
 							href="{{ route('help', ['category' => 5, 'topic' => 13]) }}#topic13"
