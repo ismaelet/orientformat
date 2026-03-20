@@ -35,7 +35,7 @@ class GradeController extends Controller {
      * Display the sections of a specific grade
      */
     function show(Grade $grade) {
-        $grade->load('areas', 'areas.sections', 'sections.tests', 'sections.active_tests', 'sections.main_section');
+        $grade->load('areas', 'areas.sections', 'sections.tests', 'sections.tests.section', 'sections.active_tests', 'sections.main_section');
         $student = Auth::user()->student;
 
         session()->put('activities-year', $grade->absolute_number);

@@ -10,9 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Auth;
 
 class Test extends Model {
 
@@ -69,6 +67,15 @@ class Test extends Model {
     }
 
     /**
+     * Attribute: The slug of the test with the ID to ensure uniqueness
+     */
+    protected function slugWithId(): Attribute {
+        return Attribute::make(
+            get: fn() => $this->id . '-' . str()->slug($this->name)
+        );
+    }
+
+    /**
      * Attribute: The summary of the test
      */
     protected function summary(): Attribute {
@@ -87,7 +94,7 @@ class Test extends Model {
     }
 
     /**
-     * Attribute: The summary of the test
+     * Attribute: The description of the test
      */
     protected function description(): Attribute {
         return Attribute::make(
@@ -102,6 +109,16 @@ class Test extends Model {
                 return __('tests.description-' . $this->id);
             }
         );
+    }
+
+    public function resolveRouteBinding($value, $field = null): ?self {
+        $id = explode('-', $value, 2)[0];
+
+        if (!ctype_digit($id)) {
+            return null;
+        }
+
+        return $this->newQuery()->findOrFail($id);
     }
 
     /**
@@ -159,7 +176,7 @@ class Test extends Model {
      * Get the URL for the test
      */
     public function url(?int $studentId = null, ?string $from = null): string {
-        return route('test', ['test' => $this, 'student_id' => $studentId, 'from' => $from]);
+        return route('test', ['test' => $this->slug_with_id, 'student_id' => $studentId, 'from' => $from]);
     }
 
     /**
