@@ -172,11 +172,15 @@ class Test extends Model {
     /**
      * Get the helper class for the test
      */
-    public function helperClass(): ?string {
+    public function helper(): ?object {
         $className = $this->section->isCompletable() ? $this->section->slug . '-' . $this->slug : $this->section->slug;
-        $className = ucfirst(str()->camel($className)) . 'Helper';
+        $className = "App\\Helpers\\Tests\\" . ucfirst(str()->camel($className)) . 'Helper';
 
-        return 'App\\Helpers\\Tests\\' . $className;
+        if (class_exists($className)) {
+            return new $className();
+        }
+
+        return null;
     }
 
     /**
@@ -188,7 +192,7 @@ class Test extends Model {
             'testId' => $this->id,
         ], [
             'result' => implode(',', $fields),
-            'percentage' => 100,
+            'percentage' => $this->calcPercentage($fields),
             'completed' => true,
             'speed' => $timePassed,
         ]);
@@ -197,6 +201,16 @@ class Test extends Model {
         $this->section->updateProgress($student);
     }
 
+    /**
+     * Calculate the percentage of correct answers based on the provided fields
+     */
+    private function calcPercentage(array $fields): int {
+        if ($this->helper()) {
+            return $this->helper()->calculatePercentage($fields);
+        }
+
+        return 100;
+    }
 
     /**
      * Get the next URL after completing the test

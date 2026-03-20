@@ -8,7 +8,10 @@
 @endphp
 
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html
+	lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+	data-school-group="{{ is_student() ? (auth()->user()->isHighSchoolStudent() ? 'highschool' : 'middleschool') : 'none' }}"
+>
 
 <head>
 	<meta charset="utf-8">

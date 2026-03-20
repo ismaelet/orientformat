@@ -19,8 +19,9 @@ class StudentForm {
                         ->limit(50)
                         ->with('school', 'referent.user')
                         ->get()
-                        ->mapWithKeys(fn(SchoolClass $schoolClass): array => [$schoolClass->id => ($schoolClass->ended ? 'x' : '') . " {$schoolClass->name} ({$schoolClass->referent?->user?->first_name} {$schoolClass->referent?->user?->last_name}) - {$schoolClass->school->name}"])
+                        ->mapWithKeys(fn(SchoolClass $schoolClass): array => [$schoolClass->id => ($schoolClass->ended ? 'x' : '') . " {$schoolClass->name} ({$schoolClass->referent?->user?->first_name} {$schoolClass->referent?->user?->last_name}) - {$schoolClass->school?->name}"])
                         ->toArray())
+
                     ->getOptionLabelUsing(function ($value): ?string {
                         $schoolClass = SchoolClass::with('school', 'referent.user')->find($value);
 

@@ -39,7 +39,7 @@ class TestController extends Controller {
         }
 
         // Blade view handling
-        $helper = $test->helperClass();
+        $helper = $test->helper();
         $student = legacy_watched_student();
         $completed = $student->hasCompletedTest($test);
         $resultObj = $student->testResult($test);
@@ -50,6 +50,7 @@ class TestController extends Controller {
             'student' => $student,
             'completed' => $completed,
             'result' => $resultObj?->results(),
+            'percentage' => $resultObj?->percentage,
             'helper' => $helper,
         ]);
     }

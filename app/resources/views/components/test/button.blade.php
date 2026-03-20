@@ -40,22 +40,32 @@
 			const fields = document.querySelectorAll('.js-field');
 			const button = document.querySelector('.test-button[data-progressive="true"]');
 
-			if (!button) return;
+			if (!button || !fields.length) return;
+
+			const isFilled = field => {
+				if (field.tagName === 'SELECT') {
+					const selectedOption = field.options[field.selectedIndex];
+
+					return field.selectedIndex > 0 && selectedOption.value !== '';
+				}
+
+				return field.value.trim() !== '';
+			};
+
+			const updateProgress = () => {
+				const filledFields = [...fields].filter(isFilled).length;
+				const progress = (filledFields / fields.length) * 100;
+
+				button.style.setProperty('--_width', `${progress}%`);
+				button.disabled = progress !== 100;
+			};
 
 			fields.forEach(field => {
-				field.addEventListener('input', () => {
-					const filledFields = Array.from(fields).filter(f => f.value.trim() !== '').length;
-					const progress = (filledFields / fields.length) * 100;
-					button.style.setProperty('--_width', `${progress}%`);
-
-
-					if (progress === 100) {
-						button.disabled = false;
-					} else {
-						button.disabled = true;
-					}
-				});
+				field.addEventListener('input', updateProgress);
+				field.addEventListener('change', updateProgress);
 			});
+
+			updateProgress();
 		});
 	</script>
 @endpushOnce

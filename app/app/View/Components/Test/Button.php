@@ -24,16 +24,6 @@ class Button extends Component {
     public ?string $url = null;
 
     /**
-     * Property: The active student or teacher in simulation mode
-     */
-    // public Student|Teacher $student;
-
-    // /**
-    //  * Property: The active student or the student being watched in supervision mode
-    //  */
-    // public Student|Teacher $watchedStudent;
-
-    /**
      * Create a new component instance.
      */
     public function __construct(public Test $test, public bool $progressive = false) {

@@ -7,7 +7,6 @@ use App\Http\Controllers\LegacyController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Middleware\Locale;
 use Illuminate\Support\Facades\Route;
-use Livewire\Livewire;
 
 // Localization
 Route::get('locale/{locale}', [LocaleController::class, 'switchLocale'])->name('locale.switch');

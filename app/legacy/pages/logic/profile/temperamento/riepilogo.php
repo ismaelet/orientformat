@@ -5,7 +5,7 @@ use \Legacy\Activity\Test;
 $legacyTest = legacy_test();
 $test = legacy_test()->newTest();
 $student = legacy_watched_student();
-$helperClass = $test->helperClass();
+$helperClass = $test->helper();
 $resultData = $helperClass::results(test: $test, student: $student);
 $sections = $helperClass::getSections();
 $results = [];
