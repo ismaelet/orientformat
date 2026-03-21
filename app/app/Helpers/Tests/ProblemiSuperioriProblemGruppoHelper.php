@@ -2,12 +2,13 @@
 
 namespace App\Helpers\Tests;
 
+use App\Interfaces\TestHelperInterface;
 use App\Models\Activities\Test;
 use App\Models\User\Student;
 use App\Models\User\Teacher;
 use Illuminate\Support\Collection;
 
-class ProblemiSuperioriProblemGruppoHelper {
+class ProblemiSuperioriProblemGruppoHelper implements TestHelperInterface {
 
     /**
      * Constant: Maximum score per question
@@ -203,5 +204,12 @@ class ProblemiSuperioriProblemGruppoHelper {
      */
     public static function getAnswerPercentage(int $value): int {
         return round(($value / self::MAX_SCORE) * 100);
+    }
+
+    /**
+     * Always return 100% for the overall test percentage since it's a role-based test and not a score-based one
+     */
+    public function calculatePercentage(array $submittedAnswers): int {
+        return 100;
     }
 }
