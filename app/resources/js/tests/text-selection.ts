@@ -24,7 +24,6 @@ export function initTextSelection() {
 
   let currentSelectable: HTMLElement | null = null;
   let ignoreNextDocumentClick = false;
-  let selectionStartedInText = false;
 
   const options = window.textSelectionOptions || [];
   const isSingleMarker = textBlock.dataset.singleMarker === "true";
@@ -223,17 +222,16 @@ export function initTextSelection() {
     });
   }
 
-  textBlock.addEventListener("mousedown", function () {
-    selectionStartedInText = true;
+  document.addEventListener("mousedown", function () {
     textBlock.classList.remove("is-selection-error");
   });
 
-  document.addEventListener("mouseup", function () {
-    if (!selectionStartedInText) {
+  document.addEventListener("mouseup", function (event) {
+    const target = event.target;
+
+    if (target instanceof Node && menu.contains(target)) {
       return;
     }
-
-    selectionStartedInText = false;
 
     const selection = window.getSelection();
 
@@ -245,7 +243,7 @@ export function initTextSelection() {
 
     const range = selection.getRangeAt(0);
 
-    if (!textBlock.contains(range.commonAncestorContainer)) {
+    if (!range.intersectsNode(textBlock)) {
       return;
     }
 

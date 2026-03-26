@@ -24,7 +24,7 @@ class ImparareBaleneHelper implements TestHelperInterface {
     /**
      * Property: contains the HTML version of the text with spans for selectable parts, generated from the original text
      */
-    protected array $solutions = [];
+    public array $solutions = [];
 
     /**
      * Constructor: initializes the text and generates the HTML version with selectable spans
@@ -77,7 +77,7 @@ class ImparareBaleneHelper implements TestHelperInterface {
     protected function buildSolutions(): void {
         $this->solutions = [];
 
-        if (!preg_match_all('/\{\!\s*(.*?)\s*::\s*(marker\d+)\s*!\}/', $this->text, $matches, PREG_SET_ORDER)) {
+        if (!preg_match_all('/\{\!\s*([\s\S]*?)\s*::\s*(marker\d+)\s*!\}/', $this->text, $matches, PREG_SET_ORDER)) {
             return;
         }
 

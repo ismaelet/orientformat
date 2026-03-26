@@ -100,21 +100,21 @@
 		.selection-menu button:nth-child(1),
 		.selectable:has([value="marker0"]),
 		[data-completed="true"] .selectable[data-text-type="marker0"] {
-			--_type-color: hsl(253, 86%, 75%);
+			--_type-color: #6bb1f9;
 		}
 
 		.marker:nth-child(2),
 		.selection-menu button:nth-child(2),
 		.selectable:has([value="marker1"]),
 		[data-completed="true"] .selectable[data-text-type="marker1"] {
-			--_type-color: #6bb1f9;
+			--_type-color: #ffcf3b;
 		}
 
 		.marker:nth-child(3),
 		.selection-menu button:nth-child(3),
 		.selectable:has([value="marker2"]),
 		[data-completed="true"] .selectable[data-text-type="marker2"] {
-			--_type-color: #ffcf3b;
+			--_type-color: hsl(253, 86%, 75%);
 		}
 
 		.marker:nth-child(4),

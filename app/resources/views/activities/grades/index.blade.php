@@ -1,7 +1,8 @@
 @pushOnce('styles')
 	<style>
 		.grades {
-			justify-content: space-between;
+			flex-wrap: wrap;
+			justify-content: center;
 			align-content: center;
 			gap: 3rem;
 			height: 100%;
@@ -9,6 +10,7 @@
 		}
 
 		.grade {
+			max-width: 25rem;
 			flex-grow: 1;
 			text-align: center;
 			filter: saturate(0.2);
@@ -71,15 +73,15 @@
 			box-shadow: var(--shadow);
 			border-radius: 50%;
 			color: #fff;
-			font-size: var(--fs-800);
+			font-size: var(--text-3xl);
 			letter-spacing: 0.1em;
 			line-height: var(--_size);
 		}
 
 		.grade__content {
 			border: 1px solid transparent;
-			border-radius: var(--border-radius-700);
-			box-shadow: var(--shadow);
+			border-radius: var(--radius-lg);
+			box-shadow: var(--shadow-round);
 			transition: border 0.2s;
 		}
 
@@ -100,10 +102,6 @@
 			border-color: var(--_color) !important;
 		}
 
-		.grade__name {
-			font-size: var(--fs-600);
-		}
-
 		.grade__text {
 			max-width: 300px;
 			margin-inline: auto;
@@ -121,7 +119,7 @@
 
 		.grade__footer {
 			padding-block: 0.5rem;
-			background-color: var(--color-surface-400);
+			background-color: var(--color-slate-100);
 			overflow: hidden;
 			border-bottom-left-radius: inherit;
 			border-bottom-right-radius: inherit;
@@ -138,15 +136,15 @@
 
 		.grade__progress {
 			position: relative;
-			font-family: var(--ff-titles);
-			font-size: var(--fs-600);
-			font-weight: var(--fw-black);
-			text-shadow: 1px 1px 1px hsl(0, 0%, 0%, 0.2), -1px 1px 1px hsl(0, 0%, 0%, 0.2), 1px -1px 1px hsl(0, 0%, 0%, 0.2), -1px -1px 1px hsl(0, 0%, 0%, 0.2);
+			font-family: var(--font-heading);
+			font-size: var(--text-lg);
+			font-weight: var(--font-weight-bold);
+			text-shadow: 1px 1px 5px hsl(0, 0%, 0%, 0.2), -1px 1px 5px hsl(0, 0%, 0%, 0.2), 1px -1px 5px hsl(0, 0%, 0%, 0.2), -1px -1px 5px hsl(0, 0%, 0%, 0.2);
 		}
 	</style>
 @endpushOnce
 
-<x-layouts.legacy-main>
+<x-layouts.main>
 	<div
 		class="grades main-wrap {{ $class?->isMiddleSchool() ? 'grades--middleschool' : 'grades--highschool' }} flex items-center justify-center"
 	>
@@ -160,29 +158,23 @@
 					class="grade {{ $grade->id == $class?->grade ? 'grade--highlighted' : '' }}"
 					href="{{ route('activities.grades.show', $grade->id) }}"
 				>
-					<div
-						class="js-load load--fade-in"
-						data-direction="bottom"
-						data-delay="{{ $key }}"
-					>
-						<h3 class="grade__number ff-serif">{{ $grade->romanNumeral() }}</h3>
+					<h3 class="grade__number font-serif!">{{ $grade->romanNumeral() }}</h3>
 
-						<div class="grade__content">
-							<div class="grade__body center-content grid gap-4">
-								<h3 class="grade__name colored-title">{{ __('misc.grade-description', ['numeral' => __($grade->ordinal())]) }}
-								</h3>
-								<p class="grade__text">
-									{{ __('misc.grade-cta', ['numeral' => __($grade->ordinal())]) }}
-								</p>
-							</div>
+					<div class="grade__content">
+						<div class="grade__body center-content grid gap-4">
+							<x-heading.component>{{ __('misc.grade-description', ['numeral' => __($grade->ordinal())]) }}
+							</x-heading.component>
+							<p class="grade__text">
+								{{ __('misc.grade-cta', ['numeral' => __($grade->ordinal())]) }}
+							</p>
+						</div>
 
-							<div
-								class="grade__footer contrasting-background grid"
-								style="--_percentage: {{ $student->percentageSectionsCompletedInGrade($grade) }}"
-							>
-								<p class="grade__progress">{{ $student->sectionsCompletedInGrade($grade) }} /
-									{{ $grade->completable_sections->count() }}</p>
-							</div>
+						<div
+							class="grade__footer contrasting-background grid"
+							style="--_percentage: {{ $student->percentageSectionsCompletedInGrade($grade) }}"
+						>
+							<p class="grade__progress text-white">{{ $student->sectionsCompletedInGrade($grade) }} /
+								{{ $grade->completable_sections->count() }}</p>
 						</div>
 					</div>
 				</a>
@@ -190,4 +182,4 @@
 		@endif
 
 	</div>
-</x-layouts.legacy-main>
+</x-layouts.main>
