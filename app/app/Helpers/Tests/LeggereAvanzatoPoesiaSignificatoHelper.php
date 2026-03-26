@@ -1,28 +1,10 @@
 <?php
 
-namespace Legacy\Http\Controllers\Activities\Tests;
+namespace App\Helpers\Tests;
 
-
-
-/**
- * Superiori > 2a > Imparare > Probabilità
- * 
- * Dependent tests: []
- */
-class Test174 extends Test149 {
-
-	use \System\Traits\Singleton;
-
-	/**
-	 * Test paramenters
-	 */
-	// protected $skipEnabled = true;
-	// protected $retryEnabled = true;
-	// protected $buttonIsProgressive = true;
-	protected $arguments = [];
-
-	protected function init() {
-		$this->arguments['text'] = "
+class LeggereAvanzatoPoesiaSignificatoHelper extends ImparareBaleneHelper {
+    protected function text(): string {
+        return "
 		Spesso, per divertirsi, gli uomini d’equipaggio<br>
 		catturano degli albatri, grandi uccelli di mare,<br>
 		che {! seguono, indolenti compagni di viaggio,<br>
@@ -42,14 +24,12 @@ class Test174 extends Test149 {
 		che {! sfida la tempesta :: marker0 !} e {! se la ride dell’arciere :: marker0 !};<br>
 		fra le grida di scherno esule in terra,<br>
 		le sue ali di gigante non gli permettono di camminare.";
+    }
 
-		$this->arguments['markers'] = [
-			['label' => 'Albatro in volo'],
-			['label' => 'Albatro sul ponte'],
-		];
-
-		$this->view();
-
-		return $this;
-	}
+    protected function markerLabels(): array {
+        return [
+            'Albatro in volo',
+            'Albatro sul ponte',
+        ];
+    }
 }

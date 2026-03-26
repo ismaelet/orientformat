@@ -1,30 +1,11 @@
 <?php
 
-namespace Legacy\Http\Controllers\Activities\Tests;
+namespace App\Helpers\Tests;
 
+class LeggereEspertoPuntoDiVistaHelper extends ImparareBaleneHelper {
 
-
-/**
- * Specific test class
- * 
- * @property int $resultCount = 0 <inherited>
- * @property bool $buttonIsProgressive = false <inherited>
- * @property bool $skipEnabled = false <inherited>
- * @property bool $retryEnabled = false <inherited>
- * @property array $parameters = [] <inherited>
- * @property array $arguments = []
- */
-class Test191 extends Test149 {
-
-	use \System\Traits\Singleton;
-
-	// protected $skipEnabled = true;
-	// protected $retryEnabled = true;
-	protected $buttonIsProgressive = false;
-	protected $arguments = [];
-
-	protected function init() {
-		$this->arguments['text'] = "
+    protected function text(): string {
+        return "
 		{! Seduta alla finestra :: marker0 !} guardava {! la sera invadere il viale :: marker1 !}. {! Teneva la testa appoggiata contro le tendine :: marker0 !} e sentiva nelle narici {! l'odore della cretonne polverosa :: marker1 !}. Era stanca.
 {! Poca gente per strada :: marker1 !}. {! Passò l'inquilino della casa di fondo che rientrava :: marker1 !}. Lei ne sentì {! i passi risuonare sul marciapiede di cemento :: marker1 !}, poi scricchiolare sul sentiero di cenere dinanzi alle nuove case di color rosso. 
 
@@ -37,67 +18,12 @@ Il tempo passava ma {! lei rimaneva lì seduta presso la finestra, la testa appo
 {! Balzò in piedi con un subitaneo moto di terrore :: marker0 !}. Fuggire! Fuggire doveva! Frank l'avrebbe salvata. Le avrebbe dato una vita e forse anche l'amore. E in ogni modo  lei voleva vivere. Perché avrebbe dovuto essere infelice? Aveva diritto alla felicità. Frank l'avrebbe presa fra le braccia, l'avrebbe stretta fra le braccia, l'avrebbe salvata.
 
 {! Era alla stazione di North Wall, in mezzo alla folla ondeggiante :: marker0 !}. Egli la teneva per mano e lei sapeva che le stava parlando, che le ripeteva qualche cosa sulla traversata. La stazione era piena di soldati coi loro bagagli scuri e attraverso le ampie porte della tettoia si scorgeva a tratti, lungo la murata della banchina, {! la massa immobile e nera della nave, con gli oblò illuminati :: marker0 !}. Lei non rispondeva. Si sentiva  {! le guance pallide e fredde :: marker1 !} e da un confuso fondo di disperazione pregava Dio di guidarla, di mostrarle qual era il suo dovere. {! La nave lanciò nella nebbia un lungo, luttuoso ululo di sirena :: marker1 !}. Se partiva, domani si sarebbe trovata in alto mare, con Frank, diretta a Buenos Aires. I posti erano fissati. Come poteva tirarsi indietro dopo tutto quel che Frank aveva fatto per lei? Lo sgomento le dette quasi un senso di nausea: {! continuava a muovere le labbra :: marker0 !} in tacita e fervida preghiera.";
+    }
 
-		$this->arguments['markers'] = [
-			['label' => '<strong>Del narratore</strong><br>(oggettiva)'],
-			['label' => '<strong>Del personaggio</strong><br>(soggettiva)'],
-		];
-
-		$this->storeInlineStyles([$this->additionalStyle()]);
-		$this->storeInlineScripts([$this->additionalScripts()]);
-		$this->view();
-
-		return $this;
-	}
-
-	/**
-	 * Style
-	 */
-	protected function additionalStyle() {
-		ob_start();
-?>
-
-		<style>
-			#text {
-				font-size: var(--fs-400);
-				text-align: justify;
-			}
-
-			.selectable {
-				text-decoration: underline;
-				text-decoration-thickness: 1px;
-				text-decoration-color: var(--color-secondary-400);
-			}
-		</style>
-
-	<?php return ob_get_clean();
-	}
-
-	/**
-	 * Script
-	 */
-	protected function additionalScripts() {
-		ob_start(); ?>
-
-		<script defer>
-			document.addEventListener('DOMContentLoaded', function() {
-				const textBlock = document.querySelector('#text')
-				const startSelectingSelector = '.js-start-selecting'
-				const selectableItemSelector = '.js-selectable'
-
-				document.querySelectorAll(selectableItemSelector).forEach((element) => {
-					element.addEventListener('click', () => {
-						const selectingType = textBlock.dataset.selecting
-
-						if (selectingType && element.dataset.textType != selectingType) {
-							element.classList.add('active')
-							element.classList.add('wrong')
-						}
-					})
-				})
-			})
-		</script>
-
-<?php return ob_get_clean();
-	}
+    protected function markerLabels(): array {
+        return [
+            '<strong>Del narratore</strong><br>(oggettiva)',
+            '<strong>Del personaggio</strong><br>(soggettiva)',
+        ];
+    }
 }

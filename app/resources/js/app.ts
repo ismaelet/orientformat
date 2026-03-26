@@ -1,6 +1,10 @@
-import './bootstrap'
-import { printPage } from './print'
+/// <reference types="vite/client" />
 
-import.meta.glob(['../images/**'])
+import "./bootstrap";
+import { printPage } from "./print";
+import { initTextSelection } from "./tests/text-selection";
 
-window.printPage = printPage
+import.meta.glob(["../images/**"]);
+
+window.printPage = printPage;
+window.initTextSelection = initTextSelection;

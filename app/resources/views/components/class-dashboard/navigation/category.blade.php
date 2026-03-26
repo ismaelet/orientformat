@@ -14,6 +14,11 @@
 			display: none;
 		}
 
+		.dashboard-category__icon {
+			width: var(--icon-size);
+			height: var(--icon-size);
+		}
+
 		.dashboard-category__header {
 			grid-column: 1 / -1;
 			display: grid;
@@ -112,7 +117,10 @@
 					@checked($checked)
 				>
 
-				<x-dynamic-component :component="'icon-' . $category['icon']" />
+				<x-dynamic-component
+					class="dashboard-category__icon"
+					:component="'icon-' . $category['icon']"
+				/>
 
 				<p class="dashboard-category__label">{{ $category['title'] }}</p>
 			</a>
@@ -123,7 +131,10 @@
 					name="dashboard-category"
 				>
 
-				<x-dynamic-component :component="'icon-' . $category['icon']" />
+				<x-dynamic-component
+					class="dashboard-category__icon"
+					:component="'icon-' . $category['icon']"
+				/>
 				<p class="dashboard-category__label">{{ $category['title'] }}</p>
 			</div>
 		@endif

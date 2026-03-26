@@ -1,103 +1,103 @@
 /* Assets */
 svg:where(:not(.fi-icon)) {
-	fill: currentColor;
+  fill: currentColor;
 }
 
 /* Layout */
 .grid {
-	&.columns-15rem {
-		grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr));
-	}
+  &.columns-15rem {
+    grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr));
+  }
 
-	&.columns-20rem {
-		grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
-	}
+  &.columns-20rem {
+    grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+  }
 
-	&.columns-25rem {
-		grid-template-columns: repeat(auto-fill, minmax(min(25rem, 100%), 1fr));
-	}
+  &.columns-25rem {
+    grid-template-columns: repeat(auto-fill, minmax(min(25rem, 100%), 1fr));
+  }
 
-	&.columns-30rem {
-		grid-template-columns: repeat(auto-fill, minmax(min(30rem, 100%), 1fr));
-	}
+  &.columns-30rem {
+    grid-template-columns: repeat(auto-fill, minmax(min(30rem, 100%), 1fr));
+  }
 
-	&.columns-40rem {
-		grid-template-columns: repeat(auto-fill, minmax(min(40rem, 100%), 1fr));
-	}
+  &.columns-40rem {
+    grid-template-columns: repeat(auto-fill, minmax(min(40rem, 100%), 1fr));
+  }
 }
 
 .flex {
-	&.columns-15rem {
-		flex-grow: 1;
-		width: min(15rem, 100%);
-	}
+  &.columns-15rem * {
+    flex-grow: 1;
+    width: min(15rem, 100%);
+  }
 
-	&.columns-20rem {
-		flex-grow: 1;
-		width: min(20rem, 100%);
-	}
+  &.columns-20rem {
+    flex-grow: 1;
+    width: min(20rem, 100%);
+  }
 
-	&.columns-25rem {
-		flex-grow: 1;
-		width: min(25rem, 100%);
-	}
+  &.columns-25rem {
+    flex-grow: 1;
+    width: min(25rem, 100%);
+  }
 
-	&.columns-30rem {
-		flex-grow: 1;
-		width: min(30rem, 100%);
-	}
+  &.columns-30rem {
+    flex-grow: 1;
+    width: min(30rem, 100%);
+  }
 
-	&.columns-40rem {
-		flex-grow: 1;
-		width: min(40rem, 100%);
-	}
+  &.columns-40rem {
+    flex-grow: 1;
+    width: min(40rem, 100%);
+  }
 }
 
 .grid.stack-content,
 .full-width.stack-content {
-	grid-template-columns: unset;
-	grid-template-areas: 'content';
+  grid-template-columns: unset;
+  grid-template-areas: "content";
 
-	& > * {
-		grid-area: content;
-	}
+  & > * {
+    grid-area: content;
+  }
 }
 
 .content-grid,
 .full-width {
-	--breakout-column: calc((var(--breakout-width) - var(--content-width)) / 2);
-	display: grid;
-	grid-template-columns:
-		[full-width-start] minmax(var(--content-padding), 1fr)
-		[breakout-start] minmax(0, var(--breakout-column))
-		[content-start] min(100% - var(--content-padding) * 2, var(--content-width))
-		[content-end] minmax(0, var(--breakout-column))
-		[breakout-end] minmax(var(--content-padding), 1fr) [full-width-end];
+  --breakout-column: calc((var(--breakout-width) - var(--content-width)) / 2);
+  display: grid;
+  grid-template-columns:
+    [full-width-start] minmax(var(--content-padding), 1fr)
+    [breakout-start] minmax(0, var(--breakout-column))
+    [content-start] min(100% - var(--content-padding) * 2, var(--content-width))
+    [content-end] minmax(0, var(--breakout-column))
+    [breakout-end] minmax(var(--content-padding), 1fr) [full-width-end];
 }
 
 :where(.content-grid > :not(.breakout, .full-width)),
 :where(.full-width > :not(.breakout, .full-width)) {
-	grid-column: content;
+  grid-column: content;
 }
 
 :where(.content-grid > .breakout),
 :where(.full-width > .breakout) {
-	grid-column: breakout;
+  grid-column: breakout;
 }
 
 :where(.content-grid > .full-width),
 :where(.full-width > .full-width),
 :where(.content-grid > .stack-content),
 :where(.fill-width) {
-	grid-column: full-width;
+  grid-column: full-width;
 }
 
 .span-full-width {
-	grid-column: full-width;
+  grid-column: full-width;
 }
 
 .text-link {
-	color: var(--color-secondary-300);
-	font-weight: var(--font-weight-semibold);
-	text-decoration: underline;
+  color: var(--color-secondary-300);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: underline;
 }

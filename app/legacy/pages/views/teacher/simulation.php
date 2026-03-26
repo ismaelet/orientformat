@@ -7,102 +7,102 @@ use App\Models\Schools\Grade;
 {% block main %}
 
 <div class="main-wrap">
-	<div class="grid center-content" data-spacing="700">
-		<h1 class="page-title">Simulazione studente</h1>
-		<a href="<?= client_url('/teacher') ?>" class="button button--secondary">Indietro</a>
-		<p class="txt-1rem">
-			Cliccando qui sotto è possibile visualizzare le attività proposte agli studenti e testarne il funzionamento.<br>
-			Ogni anno le attività sono suddivise per aree, che possono variare da due a quattro e possono essere svolte in qualsiasi ordine,<br>anche se consigliamo di cominciare con il <strong>Profilo personale</strong> e finire con <strong>Scegliere</strong>, quando presente.
-		</p>
-	</div>
+    <div class="grid center-content" data-spacing="700">
+        <h1 class="page-title">Simulazione studente</h1>
+        <a href="<?= client_url('/teacher') ?>" class="button button--secondary">Indietro</a>
+        <p class="txt-1rem">
+            Cliccando qui sotto è possibile visualizzare le attività proposte agli studenti e testarne il funzionamento.<br>
+            Ogni anno le attività sono suddivise per aree, che possono variare da due a quattro e possono essere svolte in qualsiasi ordine,<br>anche se consigliamo di cominciare con il <strong>Profilo personale</strong> e finire con <strong>Scegliere</strong>, quando presente.
+        </p>
+    </div>
 
-	<div class="page-content mar-t-5">
-		<div class="school-types grid js-school-type-selectors <?= $selectedSchoolType ? '' : 'active' ?>" data-columns="20rem" data-spacing="700">
+    <div class="page-content mar-t-5">
+        <div class="school-types grid js-school-type-selectors <?= $selectedSchoolType ? '' : 'active' ?>" data-columns="20rem" data-spacing="700">
 
-			<?php foreach ($schoolTypes as $schoolTypeSlug => $schoolType) { ?>
+            <?php foreach ($schoolTypes as $schoolTypeSlug => $schoolType) { ?>
 
-				<div class="school-type-selector js-school-type-selector element element--school element_functionality" data-school-type="<?= $schoolTypeSlug ?>">
-					<div class="element-icon icon-box">
-						<?= embed_icon('schools') ?>
-					</div>
+                <div class="school-type-selector js-school-type-selector element element--school element_functionality" data-school-type="<?= $schoolTypeSlug ?>">
+                    <div class="element-icon icon-box">
+                        <?= embed_icon('schools') ?>
+                    </div>
 
-					<div>
-						<h3 class="element-title"><?= $schoolType['name'] ?></h3>
-					</div>
-				</div>
+                    <div>
+                        <h3 class="element-title"><?= $schoolType['name'] ?></h3>
+                    </div>
+                </div>
 
-			<?php } ?>
+            <?php } ?>
 
-		</div>
+        </div>
 
-		<?php foreach ($schoolTypes as $schoolTypeSlug => $schoolType) { ?>
+        <?php foreach ($schoolTypes as $schoolTypeSlug => $schoolType) { ?>
 
-			<div class="school-type js-school-type <?= $selectedSchoolType && $selectedSchoolType == $schoolTypeSlug ? 'active' : '' ?>" data-school-type="<?= $schoolTypeSlug ?>">
-				<div class="grades grid gap-8">
+            <div class="school-type js-school-type <?= $selectedSchoolType && $selectedSchoolType == $schoolTypeSlug ? 'active' : '' ?>" data-school-type="<?= $schoolTypeSlug ?>">
+                <div class="grades grid gap-8">
 
-					<?php for ($gradeId = $schoolType['grades'][0]; $gradeId <= $schoolType['grades'][1]; $gradeId++) {
-						$grade = Grade::where('absolute_number', $gradeId)
-							->where('is_professional', $schoolType['is-professional'])
-							->first();
+                    <?php for ($gradeId = $schoolType['grades'][0]; $gradeId <= $schoolType['grades'][1]; $gradeId++) {
+                        $grade = Grade::where('absolute_number', $gradeId)
+                            ->where('is_professional', $schoolType['is-professional'])
+                            ->first();
 
-						if (!$grade) {
-							continue;
-						}
-					?>
+                        if (!$grade) {
+                            continue;
+                        }
+                    ?>
 
-						<div class="grade border p-4 sm:px-8 py-12 rounded border-neutral-400 border-dashed">
-							<h3 class="grade__title"><?= __('misc.grade-description', ['numeral' => __($grade->ordinal())]) ?></h3>
+                        <div class="grade border p-4 sm:px-8 py-12 rounded border-neutral-400 border-dashed">
+                            <h3 class="grade__title"><?= __('misc.grade-description', ['numeral' => __($grade->ordinal())]) ?></h3>
 
-							<div class="areas">
+                            <div class="areas">
 
-								<?php foreach ($grade->areas as $area) {
-									$sections = $grade->sectionsInArea($area)->load('tests', 'main_section');
+                                <?php foreach ($grade->areas as $area) {
+                                    $sections = $grade->sectionsInArea($area)->load('tests', 'tests.section', 'main_section');
 
-									if ($sections?->count()) {
-								?>
+                                    if ($sections?->count()) {
+                                ?>
 
-										<div class="area">
-											<h3 class="area__title"><?= $area->name ?></h3>
+                                        <div class="area">
+                                            <h3 class="area__title"><?= $area->name ?></h3>
 
-											<div class="activities grid" data-columns='20rem' data-spacing="400">
+                                            <div class="activities grid" data-columns='20rem' data-spacing="400">
 
-												<?php foreach ($sections as $sectionKey => $section) { ?>
-													<div class="load--fade-in js-load" data-direction="bottom" data-delay="<?= $sectionKey % 3 ?>">
-														<a class="activity element element_functionality" href="<?= $section->url() ?>">
-															<div class="element-icon icon-box">
-																<?= $section->legacyIcon() ?>
-															</div>
+                                                <?php foreach ($sections as $sectionKey => $section) { ?>
+                                                    <div class="load--fade-in js-load" data-direction="bottom" data-delay="<?= $sectionKey % 3 ?>">
+                                                        <a class="activity element element_functionality" href="<?= $section->url() ?>">
+                                                            <div class="element-icon icon-box">
+                                                                <?= $section->legacyIcon() ?>
+                                                            </div>
 
-															<div>
-																<h3 class="element-title"><?= $section->name ?></h3>
-																<p class="element-subtitle mt-2"><?= $section->description ?></p>
+                                                            <div>
+                                                                <h3 class="element-title"><?= $section->name ?></h3>
+                                                                <p class="element-subtitle mt-2"><?= $section->description ?></p>
 
-																<?php if ($section->estimated_duration) { ?>
-																	<p class="element-subtitle mt-1"><?= trans_choice('misc.estimated-time', $section->estimated_duration, ['hours' => $section->estimated_duration]) ?></p>
-																<?php } ?>
-															</div>
-														</a>
-													</div>
+                                                                <?php if ($section->estimated_duration) { ?>
+                                                                    <p class="element-subtitle mt-1"><?= trans_choice('misc.estimated-time', $section->estimated_duration, ['hours' => $section->estimated_duration]) ?></p>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </a>
+                                                    </div>
 
-												<?php } ?>
+                                                <?php } ?>
 
-											</div>
-										</div>
+                                            </div>
+                                        </div>
 
-								<?php }
-								} ?>
+                                <?php }
+                                } ?>
 
-							</div>
-						</div>
+                            </div>
+                        </div>
 
-					<?php } ?>
+                    <?php } ?>
 
-				</div>
-			</div>
+                </div>
+            </div>
 
-		<?php } ?>
+        <?php } ?>
 
-	</div>
+    </div>
 </div>
 
 {% end main %}

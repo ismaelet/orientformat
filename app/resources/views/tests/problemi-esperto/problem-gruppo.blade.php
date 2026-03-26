@@ -1,1 +1,1 @@
-@include('tests.problemi-superiori.problem-gruppo')
+@include('tests.problemi.problem-gruppo')

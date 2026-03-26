@@ -193,6 +193,8 @@ class Test extends Model {
         $className = $this->section->isCompletable() ? $this->section->slug . '-' . $this->slug : $this->section->slug;
         $className = "App\\Helpers\\Tests\\" . ucfirst(str()->camel($className)) . 'Helper';
 
+        // dd($className);
+
         if (class_exists($className)) {
             return new $className();
         }
