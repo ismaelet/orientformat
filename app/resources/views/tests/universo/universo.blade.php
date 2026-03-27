@@ -395,7 +395,7 @@
 			:$test
 			class="w-full"
 		/>
-		<x-test.save />
+		<x-test.save :$completed />
 	</div>
 
 	<section class="map stack-content center-content fill-width grid">
@@ -406,58 +406,56 @@
 				alt=""
 			>
 		</div>
+
 		<div class="content-grid w-full">
 			<div class="breakout">
 				<div class="map__system stack-content center-content grid">
-
 					<div class="orbits stack-content center-content grid">
+						@php
+							$planetId = 0;
+						@endphp
 
-						<?php
+						@for ($i = 1; $i <= 5; $i++)
+							<div class="orbit">
+								@for ($j = 1; $j <= 3; $j++)
+									@php
+										$planetId++;
+									@endphp
 
-			$planetId = 0;
+									<div
+										class="planet {{ !isSupervisor() ? 'js-planet js-open-modal' : '' }} relative grid grid-cols-1 justify-items-center"
+										data-planet-id="{{ $planetId }}"
+										data-target="interest-modal"
+									>
+										<input
+											type="hidden"
+											class="js-planet-field"
+											name="field[]"
+											value="{{ $result ? $result[$planetId - 1] : null }}"
+										>
 
-			for ($i = 1; $i <= 5; $i++) { ?>
+										<img
+											src="{{ Vite::image('tests/universo/planet-' . $planetId . '.svg') }}"
+											alt=""
+											class="planet__image"
+										>
 
-						<div class="orbit">
-
-							<?php for ($j = 1; $j <= 3; $j++) {
-						$planetId++;
-					?>
-
-							<div
-								class="planet <?= !isSupervisor() ? 'js-planet js-open-modal' : '' ?> relative grid grid-cols-1 justify-items-center"
-								data-planet-id="<?= $planetId ?>"
-								data-target="interest-modal"
-							>
-								<input
-									type="hidden"
-									class="js-planet-field"
-									name="field[]"
-									value="<?= $result ? $result[$planetId - 1] : null ?>"
-								>
-								<img
-									src="{{ Vite::image('tests/universo/planet-' . $planetId . '.svg') }}"
-									alt=""
-									class="planet__image"
-								>
-								<p class="planet__text js-planet-text pointer-events-none absolute">
-									<?= $result ? $result[$planetId - 1] : null ?></p>
+										<p class="planet__text js-planet-text pointer-events-none absolute">
+											{{ $result ? $result[$planetId - 1] : null }}
+										</p>
+									</div>
+								@endfor
 							</div>
-
-							<?php } ?>
-
-						</div>
-
-						<?php } ?>
-
+						@endfor
 					</div>
 
 					<div class="star stack-content center-content grid">
 						<img
 							class="star__image relative"
 							src="{{ Vite::image('tests/universo/star.svg') }}"
+							alt=""
 						>
-						<p class="star__me font-heading relative font-bold"><?= __('ME') ?></p>
+						<p class="star__me font-heading relative font-bold">{{ __('ME') }}</p>
 					</div>
 				</div>
 			</div>
@@ -470,16 +468,20 @@
 	>
 		<div class="max-w-100 dark grid w-full grid-cols-1 gap-8 rounded bg-neutral-900 p-8">
 			<x-heading.component class="text-center">Inserisci l'interesse</x-heading.component>
+
 			<x-input
 				type="text"
 				class="js-interest"
 				placeholder="Interesse"
 				maxlength="50"
 			/>
+
 			<x-button
 				type="button"
 				class="js-add-interest js-close-modal"
-			>Inserisci</x-button>
+			>
+				Inserisci
+			</x-button>
 		</div>
 	</section>
 </x-layouts.test>
