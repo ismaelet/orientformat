@@ -15,6 +15,7 @@ use App\Http\Middleware\HasStudentAccess;
 use App\Http\Middleware\Locale;
 use App\Http\Middleware\StartReview;
 use App\Http\Middleware\Student;
+use App\Http\Middleware\StudentOrTeacher;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -45,7 +46,7 @@ Route::middleware([Student::class, HasEmail::class, StartReview::class, EndRevie
 /**
  * Student and teacher simulation routes
  */
-Route::middleware(['auth', Locale::class])->group(function () {
+Route::middleware([StudentOrTeacher::class, Locale::class])->group(function () {
     // Section recap
     Route::any('activities/sections/{section}', [SectionController::class, 'show'])->name('section');
 

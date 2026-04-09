@@ -50,8 +50,6 @@ class HelpController extends Controller {
             'reply-name' => $request->input('name'),
             'subject' => 'Richiesta informazioni',
             'text' => $emailContent,
-            'secure' => 'tls',
-            'port' => 587,
         ];
 
         EmailInterface::sendEmail($emailData);
