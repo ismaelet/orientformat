@@ -23,7 +23,7 @@
 @endPushOnce
 
 <x-layouts.app
-	title="{{ $title }}"
+	:$title
 	colorScheme="{{ $colorScheme }}"
 	theme="{{ $theme }}"
 >

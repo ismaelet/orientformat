@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Activities;
 
 use App\Http\Controllers\Controller;
 use App\Models\Activities\Test;
+use App\Models\Results\User\AdditionalResult;
 use App\Models\Results\User\TestResult;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -62,7 +63,7 @@ class TestController extends Controller {
         $student = student();
         $fields = $request->input('field', []);
         $timePassed = $request->input('speed', 0);
-        $test->storeResult(student: $student, fields: $fields, timePassed: $timePassed);
+        $test->storeResult(student: $student, fields: $fields, timePassed: $timePassed, request: $request);
 
         return redirect()->to($test->nextUrl($student));
     }
@@ -79,6 +80,14 @@ class TestController extends Controller {
 
         if ($testResult) {
             $testResult->delete();
+        }
+
+        $additionalResult = AdditionalResult::where('studentId', $user->id)
+            ->where('testId', $test->id)
+            ->first();
+
+        if ($additionalResult) {
+            $additionalResult->delete();
         }
 
         return redirect()->to($test->url());

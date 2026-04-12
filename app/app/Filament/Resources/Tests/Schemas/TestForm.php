@@ -23,15 +23,6 @@ class TestForm {
                     ->label('Slug')
                     ->placeholder('Inserisci lo slug')
                     ->required(),
-                Textarea::make('description')
-                    ->label('Descrizione')
-                    ->placeholder('Inserisci la descrizione')
-                    ->rows(5)
-                    ->required(),
-                Textarea::make('shortDescription')
-                    ->label('Descrizione breve')
-                    ->placeholder('Inserisci la descrizione breve')
-                    ->required(),
                 Select::make('sectionId')
                     ->label('Sezione')
                     ->placeholder('Seleziona la sezione')

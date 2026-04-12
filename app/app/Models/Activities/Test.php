@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Request;
 
 class Test extends Model {
 
@@ -205,7 +206,7 @@ class Test extends Model {
     /**
      * Store the result of the test
      */
-    public function storeResult(Student|Teacher $student, array $fields, int $timePassed): void {
+    public function storeResult(Student|Teacher $student, array $fields, int $timePassed, Request $request): void {
         TestResult::updateOrCreate([
             'studentId' => $student->id,
             'testId' => $this->id,
@@ -216,7 +217,10 @@ class Test extends Model {
             'speed' => $timePassed,
         ]);
 
-        // update section progress
+        // Store additional result if the helper defines it
+        $this->storeAdditionalResult($request);
+
+        // Update section progress
         $this->section->updateProgress($student);
     }
 
@@ -229,6 +233,15 @@ class Test extends Model {
         }
 
         return 100;
+    }
+
+    /**
+     * Store additional result if the helper defines the method
+     */
+    private function storeAdditionalResult(Request $request): void {
+        if ($this->helper() && method_exists($this->helper(), 'storeAdditionalResult')) {
+            $this->helper()->storeAdditionalResult($request);
+        }
     }
 
     /**

@@ -18,8 +18,8 @@
 			}
 		}
 
-		function closeModal(event) {
-			const modal = event.target.closest('.modal');
+		function closeModal(event = null, id = null) {
+			const modal = id ? document.getElementById(id) : event.target.closest('.modal');
 
 			if (modal) {
 				modal.setAttribute('data-open', 'false');
@@ -46,7 +46,7 @@
 >
 	<span
 		class="absolute inset-0 bg-gray-950/50"
-		@click="closeModal($event)"
+		@click="closeModal($event, '{{ $id }}')"
 	></span>
 
 	{{ $slot }}
