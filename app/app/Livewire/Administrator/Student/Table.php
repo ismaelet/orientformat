@@ -4,6 +4,7 @@ namespace App\Livewire\Administrator\Student;
 
 use App\Models\Schools\School;
 use App\Models\Schools\SchoolClass;
+use App\Models\User;
 use App\Models\User\Student;
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
@@ -24,6 +25,7 @@ use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table as FilamentTable;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class Table extends Component implements HasTable, HasActions, HasSchemas {
@@ -130,7 +132,11 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                                     TextInput::make('email')
                                         ->required()
                                         ->label('Email')
-                                        ->maxLength(255),
+                                        ->maxLength(255)
+                                        ->rule(fn(User $record) => Rule::unique('users', 'email')->ignore($record->user?->id))
+                                        ->validationMessages([
+                                            'unique' => 'Questo indirizzo email è già utilizzato da un altro utente.',
+                                        ]),
                                 ]),
                             Select::make('classId')
                                 ->label('Classe')
