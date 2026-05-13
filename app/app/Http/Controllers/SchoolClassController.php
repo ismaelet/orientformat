@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activities\Section;
-use App\Models\Results\User\PermanentResult;
 use App\Models\Results\User\SectionResult;
 use App\Models\Results\User\TestResult;
 use App\Models\Schools\SchoolClass;
-use App\Models\Student\Advice;
-use App\Models\User\Student;
-use Illuminate\Http\Request;
 
 class SchoolClassController extends Controller {
 
@@ -19,8 +15,6 @@ class SchoolClassController extends Controller {
     public function show(SchoolClass $class) {
         $students = $class->students->load('user');
         $studentCount = $students?->count() ?: 0;
-        $advicesCount = Advice::whereIn('userId', $students->pluck('userId'))
-            ->count() ?: 0;
 
         $sectionCount = Section::where('isStandard', true)
             ->where('active', true)
@@ -51,6 +45,7 @@ class SchoolClassController extends Controller {
         $feedEntriesData = $studentCount ? TestResult::query()
             ->select('studentId', 'testId')
             ->whereIn('studentId', $students->pluck('userId'))
+            ->whereHas('test')
             ->orderBy('time', 'desc')
             ->with('student', 'student.user', 'test')
             ->limit($maxFeedCount)
