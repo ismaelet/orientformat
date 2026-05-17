@@ -23,7 +23,7 @@
 					>Vedi autovalutazione</a>
 				</p>
 			@else
-				<span class="dashboard-panel_value font-bold text-neutral-700">Completata
+				<span class="dashboard-panel_value font-bold text-neutral-700">Completata</span>
 			@endif
 		@else
 			Non ancora completata
