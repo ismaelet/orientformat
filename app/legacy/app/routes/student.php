@@ -38,6 +38,7 @@ use \Legacy\Activity\Test as LegacyTest;
 
 \App\Legacy\LegacyRoute::add('/activities/tests/*', function ($path) {
     $testId = ArrayHelper::explodeLast('/', $path)[1];
+    $testId = explode('-', $testId)[0];
     $legacyTest = new LegacyTest($testId);
     $page = $legacyTest->filePath;
     $template = $legacyTest->template;
