@@ -1,6 +1,6 @@
 @props(['completed'])
 
-@if ($completed)
+@if ($completed && !isSupervisor())
 	<x-button
 		type="submit"
 		name="submit"
