@@ -31,7 +31,7 @@ class Button extends Component {
         $watchedStudent = legacy_watched_student();
         $section = $test->section;
         $from = request()->query('from');
-        $class = $student->class;
+        $class = $watchedStudent->class;
         $isSupervisor = isSupervisor();
         $testCompleted = $student->hasCompletedTest($test);
         $sectionCompleted = $student->hasCompletedSection($section);
@@ -42,7 +42,6 @@ class Button extends Component {
         $this->url = $this->url(
             testCompleted: $testCompleted,
             sectionCompleted: $sectionCompleted,
-            requiresReview: $requiresReview,
             watchedStudent: $watchedStudent,
             isSupervisor: $isSupervisor,
             from: $from,
@@ -83,7 +82,7 @@ class Button extends Component {
         };
     }
 
-    private function url(bool $testCompleted, bool $sectionCompleted, bool $requiresReview, Student|Teacher $watchedStudent, bool $isSupervisor, ?string $from, Section $section, ?SchoolClass $class): ?string {
+    private function url(bool $testCompleted, bool $sectionCompleted, Student|Teacher $watchedStudent, bool $isSupervisor, ?string $from, Section $section, ?SchoolClass $class): ?string {
         if ($from) {
             $fromTest = Test::where('slug', $from)->first();
         }
@@ -102,7 +101,7 @@ class Button extends Component {
             $from => $fromTest?->url(student_id: $watchedStudent->id),
 
             // Return to the list of results in supervisor view
-            $isSupervisor => route('class.students.results.show', ['class' => $class, 'student' => legacy_watched_student()]),
+            $isSupervisor && $class => route('class.students.results.show', ['class' => $class, 'student' => $watchedStudent]),
 
             // Return to the summary if both test and section are completed
             $testCompleted && $sectionCompleted => $section->url(),
