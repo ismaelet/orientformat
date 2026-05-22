@@ -143,7 +143,7 @@ class ImparareBaleneHelper implements TestHelperInterface {
     /**
      * Helper method: calculates the test result percentage based on the user's selections
      */
-    public function calculatePercentage($results): int {
+    public function calculatePercentage(array $results): int {
         if (!is_array($results) || $this->count === 0) {
             return 0;
         }
