@@ -34,10 +34,12 @@
   --color-transition-400: hsl(343, 48%, 53%);
   --color-transition-500: hsl(343, 48%, 33%);
 
+  --color-success-100: hsl(145deg 63% 90%);
   --color-success-200: hsl(145deg 63% 75%);
   --color-success-400: hsl(145deg 63% 40%);
   --color-success-500: hsl(145deg 63% 30%);
 
+  --color-error-100: hsl(0deg 100% 90%);
   --color-error-200: hsl(0deg 100% 75%);
   --color-error-400: hsl(0deg 100% 50%);
   --color-error-500: hsl(0deg 100% 30%);
