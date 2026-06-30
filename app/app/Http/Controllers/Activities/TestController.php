@@ -31,7 +31,7 @@ class TestController extends Controller {
         $template = $test->template;
         $title = $test->name;
 
-        if ($test->template != 'blade') {
+        if (!in_array($test->template, ['blade', 'survey'])) {
             return \App\Legacy\LegacyView::setPage($page)
                 ->setTemplate($template)
                 ->setTitle($title)
@@ -53,6 +53,7 @@ class TestController extends Controller {
             'result' => $resultObj?->results(),
             'percentage' => $resultObj?->percentage,
             'helper' => $helper,
+            'survey' => $test->survey,
         ]);
     }
 

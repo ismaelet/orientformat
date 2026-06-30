@@ -65,8 +65,11 @@ class SectionResultHelper {
         $relatedResults = TestResult::where('studentId', $student->id)
             ->whereIn('testId', $requiredTestIds)
             ->where('completed', true)
-            ->orderBy('created_at', 'desc')
-            ->get();
+            ->latest()
+            ->orderBy('id', 'desc')
+            ->get()
+            ->unique('testId')
+            ->values();
 
         if (!$relatedResults->count()) {
             return null;

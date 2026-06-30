@@ -100,7 +100,7 @@ class Teacher extends Model {
      * Relationship: The test results of the teacher
      */
     public function test_results(): HasMany {
-        return $this->hasMany(TestResult::class, 'studentId');
+        return $this->hasMany(TestResult::class, 'studentId')->orderBy('created_at', 'desc');
     }
 
     /**

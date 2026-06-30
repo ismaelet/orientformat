@@ -67,7 +67,7 @@ nell’e-portfolio.',
             ],
             [
                 'name' => "Area Personale",
-                'subtitle' => '(Competenze sociali, civiche e di cittadinanza)',
+                'subtitle' => '(Competenze in materia di cittadinanza)',
                 'description' => 'Qui puoi trovare le autovalutazioni relative alle competenze non (direttamente) cognitive.',
                 'sections' => [27, $stiliId, 3, $autostimaId, 6, 8],
             ],

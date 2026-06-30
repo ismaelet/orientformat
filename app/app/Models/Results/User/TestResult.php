@@ -53,4 +53,20 @@ class TestResult extends Model {
     public function results(): array {
         return explode(',', $this->result);
     }
+
+    /**
+     * Static method: Count completed attempts grouped by test for a student.
+     */
+    public static function completedAttemptsByTestFor(Student|int $student, iterable $testIds): array {
+        $studentId = $student instanceof Student ? $student->id : $student;
+
+        return self::where('studentId', $studentId)
+            ->whereIn('testId', $testIds)
+            ->where('completed', true)
+            ->selectRaw('testId, COUNT(*) as attempts')
+            ->groupBy('testId')
+            ->pluck('attempts', 'testId')
+            ->map(fn($attempts) => (int) $attempts)
+            ->toArray();
+    }
 }

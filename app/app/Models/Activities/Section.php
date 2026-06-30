@@ -100,7 +100,7 @@ class Section extends Model {
     /**
      * The tests that can be reviewed for this section
      */
-    public function reviewable_tests(): Collection {
+    public function reviewableTests(): Collection {
         return $this->tests()
             ->where('id', '<>', $this->evaluation_test?->id)
             ->where('template', '<>', 'survey')

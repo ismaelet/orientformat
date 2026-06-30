@@ -112,6 +112,9 @@ class Test extends Model {
         );
     }
 
+    /**
+     * Use the slug with ID for route model binding to ensure uniqueness
+     */
     public function resolveRouteBinding($value, $field = null): ?self {
         $id = explode('-', $value, 2)[0];
 
@@ -127,6 +130,13 @@ class Test extends Model {
      */
     public function section(): BelongsTo {
         return $this->belongsTo(Section::class, 'sectionId');
+    }
+
+    /**
+     * Relationship: The survey that owns the test
+     */
+    public function survey(): BelongsTo {
+        return $this->belongsTo(Survey::class, 'surveyId');
     }
 
     /**
@@ -184,7 +194,15 @@ class Test extends Model {
      * Get the view name for the test
      */
     public function view(): string {
-        return $this->section->isCompletable() ? 'tests.' . $this->section->slug . '.' . $this->slug : 'tests.' . $this->section->slug;
+        if ($this->template == 'survey') {
+            return 'tests.survey';
+        }
+
+        if ($this->section->isCompletable()) {
+            return 'tests.' . $this->section->slug . '.' . $this->slug;
+        }
+
+        return 'tests.' . $this->section->slug;
     }
 
     /**
@@ -207,10 +225,9 @@ class Test extends Model {
      * Store the result of the test
      */
     public function storeResult(Student|Teacher $student, array $fields, int $timePassed, Request $request): void {
-        TestResult::updateOrCreate([
+        TestResult::create([
             'studentId' => $student->id,
             'testId' => $this->id,
-        ], [
             'result' => implode(',', $fields),
             'percentage' => $this->calcPercentage($fields),
             'completed' => true,
@@ -232,7 +249,34 @@ class Test extends Model {
             return $this->helper()->calculatePercentage($fields);
         }
 
+        if ($this->template === 'survey') {
+            return $this->calcSurveyPercentage($fields);
+        }
+
+
         return 100;
+    }
+
+    /**
+     * Calculate the percentage for survey tests based on the provided fields
+     */
+    private function calcSurveyPercentage(array $fields): int {
+        $survey = $this->survey;
+        $total = 0;
+        $result = [];
+
+        // get results
+        $max = $survey->questionCount() * ($survey->answerCount() - 1);
+
+        foreach ($fields as $value) {
+            $result[] = $value;
+            $total += $value;
+        }
+
+        $result = implode(',', $result);
+
+        // get the score
+        return round($total / $max * 100);
     }
 
     /**
@@ -252,12 +296,50 @@ class Test extends Model {
             // If the test requires review, reload the same test
             $this->reviewResult => $this->url(),
 
+            // If the test is a survey, go to the next test
+            $this->template === 'survey' => $this->nextTest()?->url(),
+
             // If the student has completed the section, go to the section URL
             $student->hasCompletedSection($this->section) => $this->section->url(),
 
             // Default: go to the next test or section URL 
             default => $this->nextTest()?->url() ?? $this->section->url(),
         };
+    }
+
+    /**
+     * Count how many times this test was completed by a student.
+     */
+    public function completedAttemptsFor(Student|int $student): int {
+        $studentId = $student instanceof Student ? $student->id : $student;
+
+        return TestResult::where('studentId', $studentId)
+            ->where('testId', $this->id)
+            ->where('completed', true)
+            ->count();
+    }
+
+    /**
+     * Get the test ID that should be used to display dashboard attempts.
+     */
+    public function dashboardAttemptTestId(): ?int {
+        // If this evaluation test has one direct required test,
+        // use the required test attempts instead.
+        if ($this->required_test) {
+            return $this->required_test->id;
+        }
+
+        // If this evaluation test summarizes multiple tests,
+        // do not display a single attempt count.
+        if (
+            $this->required_tests->isNotEmpty() ||
+            $this->previous_tests->isNotEmpty()
+        ) {
+            return null;
+        }
+
+        // Otherwise, use the evaluation test itself.
+        return $this->id;
     }
 
     /**

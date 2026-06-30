@@ -16,6 +16,8 @@
 					{{ $section->result_label ?: 'Risultato dell\'autovalutazione' }}:</p>
 				<p class="dashboard-panel_value font-bold">{{ $result }}</p>
 
+				<x-student-result.completed-attempts :attempts="$evaluationAttempts" />
+
 				<p class="mt-0">
 					<a
 						href="{{ $section->evaluation_test->url($student->id) }}"
@@ -23,7 +25,9 @@
 					>Vedi autovalutazione</a>
 				</p>
 			@else
-				<span class="dashboard-panel_value font-bold text-neutral-700">Completata</span>
+				<p class="dashboard-panel_value font-bold text-neutral-700">Completata</p>
+
+				<x-student-result.completed-attempts :attempts="$evaluationAttempts" />
 			@endif
 		@else
 			Non ancora completata
@@ -32,30 +36,36 @@
 	</div>
 
 	<div class="group">
-		<p class="group-not-[&:has(.test-result)]:hidden group text-sm">Attività svolte:</p>
+		<p class="group-not-[&:has(.test-result)]:hidden group text-sm">Altre attività svolte:</p>
 
 		<ul>
-			@foreach ($section->reviewable_tests() as $test)
-				@if ($student->hasCompletedTest($test))
+			@foreach ($nonEvaluationTests as $test)
+				@if ($attemptsByTest[$test->id] ?? 0)
 					<li class="test-result">
-						<a
-							href="{{ $test->url($student->id) }}"
-							class="text-secondary-400 hover:text-secondary-300 font-medium transition-colors"
-						>Risultato di "{{ $test->name }}"</a>
+						@if (in_array($test->id, $reviewableTestIds))
+							<a
+								href="{{ $test->url($student->id) }}"
+								class="text-secondary-400 hover:text-secondary-300 font-medium italic transition-colors"
+							>{{ $test->name }}</a>
+						@else
+							<span class="italic text-neutral-700">{{ $test->name }}</span>
+						@endif
+
+						<x-student-result.completed-attempts :attempts="$attemptsByTest[$test->id] ?? null" />
 					</li>
 				@endif
 			@endforeach
 		</ul>
 	</div>
 
-	<p>
+	<div>
 		@if ($speed)
 			Tempo impiegato: <strong>{{ $speed }}</strong>
 		@endif
-	</p>
+	</div>
 
 
-	@if (!empty($infos[$section->originalSection()->id]))
+	@if ($info)
 		<label class="info-icon icon-box">
 			<input
 				type="checkbox"
@@ -66,7 +76,7 @@
 		</label>
 
 		<p class="section-info">
-			{{ $infos[$section->originalSection()->id] }}
+			{{ $info }}
 		</p>
 	@endif
 </div>

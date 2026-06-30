@@ -51,7 +51,7 @@
 														    ->first()
 														    ?->verboseSpeed();
 
-														$reviewableTests = $section->reviewable_tests();
+														$reviewableTests = $section->reviewableTests();
 														$completedTests = $reviewableTests->filter(fn($test) => $student->hasCompletedTest($test));
 													@endphp
 

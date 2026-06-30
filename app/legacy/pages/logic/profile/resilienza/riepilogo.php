@@ -11,5 +11,5 @@ $score = round($sibling->percentage / 25) + 1;
 
 // reset test
 if (isset($_POST['reset'])) {
-	$sibling->reset();
+    $sibling->reset();
 }
