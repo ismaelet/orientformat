@@ -90,7 +90,7 @@
 @endpushOnce
 
 <div class="page__content">
-	<div class="grid grid-cols-1 justify-items-center gap-8">
+	<div class="grid grid-cols-1 justify-items-center gap-12">
 		<div class="grid grid-cols-1 justify-items-center">
 			<p class="text-xl">
 				<span class="text-secondary-400 font-semibold">P</span>rofilo <span
@@ -100,13 +100,23 @@
 
 			<p>di</p>
 
-			<x-heading.main><?= $student->fullName ?></x-heading.main>
+			<x-heading.main>{{ $student->fullName }}</x-heading.main>
 		</div>
 
-		<x-button
-			href="{{ $returnUrl }}"
-			variant="secondary"
-		>Indietro</x-button>
+		<div class="grid grid-cols-1 gap-4">
+			<x-button
+				href="{{ route('students.poi.pdf', $student) }}"
+				class="center-icon btn-print"
+			>
+				<x-icon-download />
+				Scarica come PDF
+			</x-button>
+
+			<x-button
+				href="{{ $returnUrl }}"
+				variant="secondary"
+			>Indietro</x-button>
+		</div>
 
 		<p class="max-w-220 mx-auto text-center text-lg">{!! $description[$userType] !!}</p>
 	</div>
@@ -126,14 +136,12 @@
 					<div class="result__content">
 						<h3 class="result__title">Scelta indicata nel questionario iniziale:</h3>
 
-						<?php if ($beginnerChoice) { ?>
-						<p class="answer"></p><span class="font-semibold"><?= $beginnerChoice['primary_choice_area'] ?></span>
-						(<?= trim($beginnerChoice['primary_choice_intensity']) ?>)</p>
-						<?php } else { ?>
-
-						<p class="answer"><span class="font-semibold">Non ancora compilato</span></p>
-
-						<?php } ?>
+						@if ($beginnerChoice)
+							<p class="answer"></p><span class="font-semibold">{{ $beginnerChoice['primary_choice_area'] }}</span>
+							({{ trim($beginnerChoice['primary_choice_intensity']) }})</p>
+						@else
+							<p class="answer"><span class="font-semibold">Non ancora compilato</span></p>
+						@endif
 
 					</div>
 				</div>
@@ -146,15 +154,12 @@
 					<div class="result__content">
 						<h3 class="result__title">Scelta indicata nel questionario finale:</h3>
 
-						<?php if ($endChoice) { ?>
-						<p class="answer"></p><span class="font-semibold"><?= $endChoice['primary_choice_area'] ?></span>
-						(<?= trim($endChoice['primary_choice_intensity']) ?>)</p>
-						<?php } else { ?>
-
-						<p class="answer"><span class="font-semibold">Non ancora compilato</span></p>
-
-						<?php } ?>
-
+						@if ($endChoice)
+							<p class="answer"></p><span class="font-semibold">{{ $endChoice['primary_choice_area'] }}</span>
+							({{ trim($endChoice['primary_choice_intensity']) }})</p>
+						@else
+							<p class="answer"><span class="font-semibold">Non ancora compilato</span></p>
+						@endif
 					</div>
 				</div>
 			</div>
@@ -185,16 +190,15 @@
 						<h3 class="result__title">Risultati della sezione <span class="font-normal italic">"Creatività e
 								autoimprenditorialità"</span>:</h3>
 
-						<?php if ($results['creatività'] == null) { ?>
-						<span class="font-normal">non ancora completata</span>
-						<?php } else { ?>
-						<div class="mt-2">
-							<?php foreach ($results['creatività'] as $key => $result) { ?>
-
-							<p class="answer"><?= $result['name'] ?>: <span class="font-semibold"><?= $result['percentage'] ?>%</span></p>
-							<?php } ?>
-						</div>
-						<?php } ?>
+						@if ($results['creatività'] == null)
+							<span class="font-normal">non ancora completata</span>
+						@else
+							<div class="mt-2">
+								@foreach ($results['creatività'] as $key => $result)
+									<p class="answer">{{ $result['name'] }}: <span class="font-semibold">{{ $result['percentage'] }}%</span></p>
+								@endforeach
+							</div>
+						@endif
 					</div>
 				</div>
 			</div>
@@ -210,6 +214,7 @@
 				data-spacing="400"
 				method="POST"
 			>
+				@csrf
 				<p>È possibile selezionare qui sotto uno o più consigli orientativi. Si può indicare un'area generica (ad esempio
 					"Liceo") oppure un indirizzo più specifico:</p>
 
@@ -217,36 +222,27 @@
 					class="mar-t-2 grid"
 					data-spacing="400"
 				>
+					@for ($i = 0; $i < 3; $i++)
+						<x-select name="advice[]">
+							<option value="0">- nessuno -</option>
 
-					<?php for ($i = 0; $i < 3; $i++) { ?>
-
-					<select
-						name="advice[]"
-						class="sel"
-					>
-						<option value="0">- nessuno -</option>
-
-						<?php foreach ($advices as $adviceId => $adviceTitle) { ?>
-
-						<option
-							value="<?= $adviceId ?>"
-							<?= isset($student->advices[$i]) && $student->advices[$i]->id == $adviceId ? 'selected' : '' ?>
-						>
-							<?= $adviceTitle ?>
-						</option>
-
-						<?php } ?>
-
-					</select>
-
-					<?php } ?>
+							@foreach ($advices as $adviceId => $adviceTitle)
+								<option
+									value="{{ $adviceId }}"
+									{{ isset($student->advices[$i]) && $student->advices[$i]->id == $adviceId ? 'selected' : '' }}
+								>
+									{{ $adviceTitle }}
+								</option>
+							@endforeach
+						</x-select>
+					@endfor
 				</div>
 
-				<button
+				<x-button
 					type="submit"
 					name="submit"
 					class="button push-right"
-				>Salva</button>
+				>Salva</x-button>
 			</form>
 		</div>
 	@endif

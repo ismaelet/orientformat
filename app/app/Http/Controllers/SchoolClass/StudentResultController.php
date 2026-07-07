@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\SchoolClass;
 
 use App\Http\Controllers\Controller;
+use App\Models\Activities\Section;
 use App\Models\ReviewResult;
 use App\Models\Schools\Grade;
 use App\Models\Schools\SchoolClass;
 use App\Models\User\Student;
+use App\View\Components\Student\Poi;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
-use Spatie\Browsershot\Browsershot;
 
 class StudentResultController extends Controller {
 
@@ -93,12 +94,6 @@ class StudentResultController extends Controller {
 
         // Download
         return $pdf->download("$title.pdf");
-
-        return view('pdf.student-result', [
-            'student' => $student,
-            'title' => $title,
-            'grades' => $grades,
-        ]);
     }
 
     /**
@@ -124,11 +119,43 @@ class StudentResultController extends Controller {
 
         // Download
         return $pdf->download("$title.pdf");
+    }
 
-        return view('pdf.self-assessment', [
+    public function downloadPoi(Student $student) {
+        $poi = new Poi($student);
+
+        $title = 'Profilo Orientativo Individualizzato di '
+            . $student->full_name
+            . ' - '
+            . $poi->class->name;
+
+        $sectionIds = collect($poi->structure)
+            ->flatMap(fn(array $area) => $area['sections'])
+            ->unique()
+            ->values();
+
+        $sections = Section::whereIn('id', $sectionIds)
+            ->with('evaluation_test')
+            ->get()
+            ->keyBy('id');
+
+        $pdf = Pdf::loadView('pdf.poi', [
             'student' => $student,
             'title' => $title,
-            'grades' => $grades,
-        ]);
+            'class' => $poi->class,
+            'beginnerChoice' => $poi->beginnerChoice,
+            'endChoice' => $poi->endChoice,
+            'results' => $poi->results,
+            'structure' => $poi->structure,
+            'sections' => $sections,
+        ])
+            ->setPaper('a4', 'portrait')
+            ->setOptions([
+                'isRemoteEnabled' => true,
+                'isHtml5ParserEnabled' => true,
+                'isFontSubsettingEnabled' => true,
+            ]);
+
+        return $pdf->download("$title.pdf");
     }
 }

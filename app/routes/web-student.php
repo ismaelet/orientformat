@@ -84,6 +84,10 @@ Route::middleware(HasStudentAccess::class)->group(function () {
     Route::get('students/{student}/results/pdf', [StudentResultController::class, 'downloadPdf'])
         ->name('students.results.pdf');
 
+    // POI
+    Route::get('students/{student}/poi', [StudentResultController::class, 'downloadPoi'])
+        ->name('students.poi.pdf');
+
     // Self-assessments
     Route::get('students/{student}/self-assessments/pdf', [StudentResultController::class, 'downloadSelfAssessmentPdf'])
         ->name('students.self-assessments.pdf');
