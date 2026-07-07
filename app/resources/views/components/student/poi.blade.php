@@ -206,44 +206,9 @@
 	</div>
 
 	@if ($userType == 'teacher' && $class->grade == 3)
-		{{-- Consiglio Orientativo --}}
-		<div class="">
-			<h2 class="dashboard-panel__title text-center">Consiglio orientativo</h2>
-			<form
-				class="grid grid-cols-1 gap-4 rounded bg-neutral-50 p-8 shadow"
-				data-spacing="400"
-				method="POST"
-			>
-				@csrf
-				<p>È possibile selezionare qui sotto uno o più consigli orientativi. Si può indicare un'area generica (ad esempio
-					"Liceo") oppure un indirizzo più specifico:</p>
-
-				<div
-					class="mar-t-2 grid"
-					data-spacing="400"
-				>
-					@for ($i = 0; $i < 3; $i++)
-						<x-select name="advice[]">
-							<option value="0">- nessuno -</option>
-
-							@foreach ($advices as $adviceId => $adviceTitle)
-								<option
-									value="{{ $adviceId }}"
-									{{ isset($student->advices[$i]) && $student->advices[$i]->id == $adviceId ? 'selected' : '' }}
-								>
-									{{ $adviceTitle }}
-								</option>
-							@endforeach
-						</x-select>
-					@endfor
-				</div>
-
-				<x-button
-					type="submit"
-					name="submit"
-					class="button push-right"
-				>Salva</x-button>
-			</form>
-		</div>
+		<livewire:class.advices
+			:student="$student"
+			:advices="$advices"
+		/>
 	@endif
 </div>
