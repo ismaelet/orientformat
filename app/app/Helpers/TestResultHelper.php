@@ -6,46 +6,104 @@ use App\Models\Results\User\TestResult;
 
 class TestResultHelper {
 
-	public static function getResult(int $studentId, int $testId): ?string {
-		return match ($testId) {
-			// Ruota delle emozioni
-			116 => self::getResultRuota($studentId, $testId),
+    public static function getResult(
+        int $studentId,
+        int $testId,
+    ): ?string {
+        return match ($testId) {
+            // Stili cognitivi
+            // 31 => self::getResultStiliCognitivi(
+            //     $studentId,
+            //     $testId,
+            // ),
 
-			// Default
-			default => null,
-		};
-	}
+            // // Resilienza
+            // 49 => self::getResultResilienza(
+            //     $studentId,
+            //     $testId,
+            // ),
 
-	public static function getResultRuota(int $studentId, int $testId): ?string {
-		$testIds = [102, 115, 116];
-		$results = [];
+            // // Autostima
+            // 15,
+            // 107,
+            // 146 => self::getResultAutostima(
+            //     $studentId,
+            //     $testId,
+            // ),
 
-		$result1 = TestResult::where('studentId', $studentId)
-			->where('testId', $testIds[0])
-			->where('completed', true)
-			->orderBy('created_at', 'desc')
-			->first();
+            // // Stile attributivo
+            // 48 => self::getResultStileAttributivo(
+            //     $studentId,
+            //     $testId,
+            // ),
 
-		$result2 = TestResult::where('studentId', $studentId)
-			->where('testId', $testIds[1])
-			->where('completed', true)
-			->orderBy('created_at', 'desc')
-			->first();
+            // // Motivazione
+            // 20 => self::getResultMotivazione(
+            //     $studentId,
+            //     $testId,
+            // ),
 
-		$result3 = TestResult::where('studentId', $studentId)
-			->where('testId', $testIds[2])
-			->where('completed', true)
-			->orderBy('created_at', 'desc')
-			->first();
+            // // Temperamento
+            // 46 => self::getResultTemperamento(
+            //     $studentId,
+            //     $testId,
+            // ),
 
-		collect([$result1, $result2, $result3])->filter()->each(function ($result) use (&$results) {
-			$resultString = explode(',', $result->result)[0];
+            // // Creatività
+            // 81 => self::getResultCreativita(
+            //     $studentId,
+            //     $testId,
+            // ),
 
-			if ($resultString) {
-				$results[] = ucfirst(__($resultString));
-			}
-		});
+            // Ruota delle emozioni
+            116 => self::getResultRuota($studentId),
 
-		return implode(', ', $results);
-	}
+            // etc.
+            default => null,
+        };
+    }
+
+    private static function getResultRuota(
+        int $studentId,
+    ): ?string {
+        $testIds = [
+            102,
+            115,
+            116,
+        ];
+
+        $latestResults = TestResult::query()
+            ->where('studentId', $studentId)
+            ->whereIn('testId', $testIds)
+            ->where('completed', true)
+            ->orderByDesc('created_at')
+            ->get()
+            ->unique('testId')
+            ->keyBy('testId');
+
+        $results = [];
+
+        foreach ($testIds as $testId) {
+            $result = $latestResults->get($testId);
+
+            if (!$result) {
+                continue;
+            }
+
+            $resultString = explode(
+                ',',
+                $result->result,
+            )[0];
+
+            if ($resultString) {
+                $results[] = ucfirst(
+                    __($resultString),
+                );
+            }
+        }
+
+        return $results
+            ? implode(', ', $results)
+            : null;
+    }
 }

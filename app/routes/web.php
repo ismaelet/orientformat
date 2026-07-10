@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\SectionGraphController;
 use App\Http\Controllers\HelpController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LegacyController;
@@ -19,9 +18,6 @@ Route::get('help', [HelpController::class, 'index'])->name('help');
 
 Route::get('help/ticket/open', [HelpController::class, 'openTicket'])->name('help.ticket.open');
 Route::post('help/ticket/store', [HelpController::class, 'storeTicket'])->name('help.ticket.store');
-
-// Legacy API
-Route::get('api/section-graphs/{section}', [SectionGraphController::class, 'show']);
 
 include __DIR__ . '/web-admin.php';
 include __DIR__ . '/web-auth.php';

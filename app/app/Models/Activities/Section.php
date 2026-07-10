@@ -154,6 +154,13 @@ class Section extends Model {
     }
 
     /**
+     * Get the effective main section ID.
+     */
+    public function effectiveMainSectionId(): int {
+        return $this->mainSectionId ?: $this->id;
+    }
+
+    /**
      * Update the progress of the section for the current student
      */
     public function updateProgress(Student|Teacher $student): void {
