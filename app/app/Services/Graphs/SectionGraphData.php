@@ -155,15 +155,13 @@ class SectionGraphData {
             $section->id,
             'condensedType',
         )) {
-            'max' => $this->maxLabel(
-                $rawValues,
-            ),
-
             'average' => $this->averagePercentage(
                 $graphValues,
             ),
 
-            default => null,
+            default => $this->maxLabel(
+                $rawValues,
+            ),
         };
     }
 

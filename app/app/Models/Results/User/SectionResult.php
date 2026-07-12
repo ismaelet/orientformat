@@ -3,12 +3,12 @@
 namespace App\Models\Results\User;
 
 use App\Helpers\SectionResultHelper;
-use App\Helpers\TestResultHelper;
 use App\Models\Activities\Section;
+use App\Models\Activities\Test;
 use App\Models\User\Student;
+use App\Services\Results\StudentSectionResultCalculator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Legacy\Activity\Result\Handler\StudentSectionResult;
 
 class SectionResult extends Model {
 
@@ -44,26 +44,15 @@ class SectionResult extends Model {
     }
 
     /**
-     * Get the verbose result of the student in the section
+     * Get the verbose result of the student in the section.
      */
     public function verboseResult(): ?string {
-        if ($this->section->evaluation_test_id) {
-            $result = TestResultHelper::getResult(
-                $this->studentId,
-                $this->section->evaluation_test_id,
-            );
-
-            if ($result) {
-                return $result;
-            }
-        }
-
-        return (
-            new StudentSectionResult(
-                $this->sectionId,
-                $this->studentId,
-            )
-        )->result;
+        return app(
+            StudentSectionResultCalculator::class,
+        )->result(
+            section: $this->section,
+            student: $this->student,
+        );
     }
 
     /**
@@ -77,8 +66,13 @@ class SectionResult extends Model {
      * Get the speed of the student in the section
      */
     public function speed(): ?int {
-        return TestResult::where('studentId', $this->studentId)
-            ->whereIn('testId', $this->section->tests->pluck('id'))
+        $testIds = Test::query()
+            ->where('sectionId', $this->sectionId)
+            ->pluck('id');
+
+        return TestResult::query()
+            ->where('studentId', $this->studentId)
+            ->whereIn('testId', $testIds)
             ->sum('speed');
     }
 

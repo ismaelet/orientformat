@@ -27,30 +27,15 @@
 		@endif
 	</div>
 
-	<div class="relative">
-		{{-- Small loading state while changing selected section --}}
+	<div class="relative min-h-[32rem]">
 		<div
-			wire:loading
+			wire:loading.class="pointer-events-none opacity-30"
 			wire:target="previous,next,select"
-			class="grid min-h-80 place-items-center"
-		>
-			<div class="grid justify-items-center gap-4 text-center">
-				<x-icon-loading class="w-16" />
-
-				<p>
-					Caricamento attività...
-				</p>
-			</div>
-		</div>
-
-		{{-- Current section --}}
-		<div
-			wire:loading.remove
-			wire:target="previous,next,select"
+			class="min-h-[32rem] transition-opacity"
 		>
 			@if ($currentSection)
 				<div class="graph-item section section-color section-color--area-{{ $areaId }}">
-					<div class="dashboard-panel">
+					<div class="dashboard-panel min-h-[32rem]">
 						<h3 class="dashboard-panel__title flex items-center justify-between">
 							<span class="block">
 								{{ $currentSection->name }}
@@ -76,6 +61,20 @@
 				</div>
 			@endif
 		</div>
+
+		<div
+			wire:loading.flex
+			wire:target="previous,next,select"
+			class="absolute inset-0 z-10 hidden items-center justify-center"
+		>
+			<div class="grid justify-items-center gap-4 rounded bg-white/90 p-6 text-center shadow">
+				<x-icon-loading class="w-16" />
+
+				<p>
+					Caricamento attività...
+				</p>
+			</div>
+		</div>
 	</div>
 
 	@if (count($sectionIds) > 1)
@@ -83,12 +82,10 @@
 			@foreach ($sectionIds as $index => $sectionId)
 				<button
 					type="button"
-					class="section-dot"
-					@class([
-						'active' => $position === $index,
-					])
+					@class(['section-dot', 'active' => $position === $index])
 					wire:click="select({{ $index }})"
 					aria-label="Vai alla sezione {{ $index + 1 }}"
+					aria-current="{{ $position === $index ? 'true' : 'false' }}"
 				></button>
 			@endforeach
 		</div>

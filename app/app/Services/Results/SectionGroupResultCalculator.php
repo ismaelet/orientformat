@@ -82,7 +82,8 @@ class SectionGroupResultCalculator {
     ];
 
     public function __construct(
-        private StudentSectionResultCalculator $studentResults,
+        private StudentSectionResultCalculator $studentSectionResults,
+        private StudentTestResultCalculator $studentTestResults,
     ) {
     }
 
@@ -131,6 +132,18 @@ class SectionGroupResultCalculator {
         Section $section,
         Collection $students,
     ): array {
+        $testIds = $this->studentSectionResults
+            ->requiredTestIds($section);
+
+        $expandedTestIds = $this->studentTestResults
+            ->expandRequiredTestIds($testIds);
+
+        $this->studentTestResults
+            ->preloadCompletedResults(
+                students: $students,
+                testIds: $expandedTestIds,
+            );
+
         if (
             in_array(
                 $section->id,
@@ -173,7 +186,7 @@ class SectionGroupResultCalculator {
         $count = 0;
 
         foreach ($students as $student) {
-            $studentResult = $this->studentResults
+            $studentResult = $this->studentSectionResults
                 ->detailedResult(
                     section: $section,
                     student: $student,
@@ -230,11 +243,10 @@ class SectionGroupResultCalculator {
         $count = 0;
 
         foreach ($students as $student) {
-            $result = $this->studentResults
-                ->result(
-                    section: $section,
-                    student: $student,
-                );
+            $result = $this->studentSectionResults->result(
+                section: $section,
+                student: $student,
+            );
 
             if (!$result) {
                 continue;

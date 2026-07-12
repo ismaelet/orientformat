@@ -6,7 +6,7 @@ use App\Models\Activities\Section;
 use App\Models\Activities\Test;
 use App\Models\Results\User\TestResult;
 use App\Models\User\Student;
-use Legacy\Activity\Result\Handler\StudentSectionResult;
+use App\Services\Results\StudentSectionResultCalculator;
 
 class SectionResultHelper {
 
@@ -30,9 +30,16 @@ class SectionResultHelper {
             // Result of the "Ruota" section
             27, 58  => self::ruotaResult($student, $section),
 
-            // Legacy fallback
-            default => (new StudentSectionResult($section->id, $student->id))->result,
+            // Generic fallback
+            default => self::calculator()->result(
+                section: $section,
+                student: $student,
+            ),
         };
+    }
+
+    private static function calculator(): StudentSectionResultCalculator {
+        return app(StudentSectionResultCalculator::class);
     }
 
     /**

@@ -2,12 +2,13 @@
 
 namespace App\View\Components\Student;
 
+use App\Models\Activities\Section;
 use App\Models\Schools\SchoolClass;
 use App\Models\User\Student;
+use App\Services\Results\StudentSectionResultCalculator;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use Legacy\Activity\Result\Handler\StudentSectionResult;
 use Legacy\UserSystem\Student as LegacyStudent;
 
 class Poi extends Component {
@@ -37,7 +38,10 @@ nell’e-portfolio.',
     /**
      * Create a new component instance.
      */
-    public function __construct(public Student $student) {
+    public function __construct(
+        public Student $student,
+        private StudentSectionResultCalculator $sectionResults,
+    ) {
         $this->class = $student->school_class;
         $gradeNumber = $this->class->grade()->absolute_number;
 
@@ -83,18 +87,16 @@ nell’e-portfolio.',
                 'description' => 'Qui puoi trovare i risultati conseguiti nelle sezioni relative alle abilità e strumenti inerenti alle competenze di apprendimento.',
                 'sections' => [9, 10, 5, 40],
             ],
-            // [
-            // 	'name' => "Area Competenza Imprenditoriale",
-            // 	'subtitle' => '(Spirito di iniziativa e imprenditorialità)',
-            // 	'description' => 'Qui puoi trovare i risultati relativi ai tipi di pensiero e alle capacità autoimprenditoriali.',
-            // 	'custom' => true,
-            // ],
         ];
+
+        $creativitySection = Section::findOrFail(17);
 
         $this->results = [
-            'creatività' => (new StudentSectionResult(17, $student->id))->detailedResult,
+            'creatività' => $this->sectionResults->detailedResult(
+                section: $creativitySection,
+                student: $student,
+            ),
         ];
-
 
         // fetch advices
         $advices = [];
