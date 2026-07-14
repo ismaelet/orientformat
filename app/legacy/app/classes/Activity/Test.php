@@ -2,6 +2,7 @@
 
 namespace Legacy\Activity;
 
+use App\Models\Activities\Survey;
 use App\Models\Activities\Test as ActivitiesTest;
 use Illuminate\Support\Facades\Auth;
 use \Legacy\Activity\Result\AdditionalTestResult;
@@ -194,7 +195,7 @@ class Test {
     }
 
     private function getSurvey() {
-        return new Survey($this->surveyId);
+        return Survey::find($this->surveyId);
     }
 
     /**

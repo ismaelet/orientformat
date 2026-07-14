@@ -224,7 +224,7 @@
 
 			{{-- Text --}}
 			<div class="">
-				<x-heading.section class="text-center">{{ __('Text') }}</x-heading.section>
+				<x-heading.section class="text-center">{{ $helper->title ?? __('Text') }}</x-heading.section>
 
 				<p
 					id="text"

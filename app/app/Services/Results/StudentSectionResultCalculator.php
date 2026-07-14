@@ -2,10 +2,12 @@
 
 namespace App\Services\Results;
 
+use App\Helpers\Tests\ScrivereSemplificatoMappaHelper;
 use App\Models\Activities\Section;
 use App\Models\Activities\Test;
 use App\Models\Results\User\TestResult;
 use App\Models\User\Student;
+use App\Support\SectionResultDefinitions;
 use RuntimeException;
 
 class StudentSectionResultCalculator {
@@ -52,93 +54,9 @@ class StudentSectionResultCalculator {
         9,
     ];
 
-    private const MAIN_TEST_IDS = [
-        // Stili cognitivi
-        1 => 31,
-        28 => 109,
-        36 => 111,
-        37 => 113,
+    private const SCRIVERE_SEMPLIFICATO_SECTION_ID = 34;
 
-        // Resilienza
-        3 => 49,
-
-        // Autostima
-        4 => 15,
-        29 => 107,
-        41 => 146,
-
-        // Stile attributivo
-        6 => 48,
-
-        // Motivazione
-        7 => 20,
-
-        // Temperamento
-        8 => 46,
-
-        // Creatività
-        17 => 81,
-
-        // Albero dei saperi informali
-        18 => 82,
-
-        // Interessi
-        24 => 92,
-        45 => 151,
-
-        // Universo personale
-        25 => 100,
-
-        // L'albero della vita
-        26 => 101,
-
-        // Ruota delle emozioni
-        27 => 116,
-    ];
-
-    private const FULL_RESULT_SKIPPED_TEST_IDS = [
-        // Risolvere problemi
-        5 => [94, 119, 147, 162],
-        30 => [94, 119, 147, 162],
-        38 => [94, 119, 147, 162],
-        42 => [94, 119, 147, 162],
-
-        // Ricordare
-        10 => [56],
-        32 => [56],
-        49 => [56],
-
-        // Ascoltare
-        11 => [],
-        33 => [],
-        47 => [],
-        48 => [],
-
-        // Parlare
-        12 => [],
-        50 => [],
-
-        // Leggere
-        13 => [70],
-        39 => [70],
-        53 => [70],
-        54 => [70],
-
-        // Scrivere
-        14 => [62, 63, 167, 168],
-        34 => [62, 63, 167, 168],
-        51 => [62, 63, 167, 168],
-        55 => [62, 63, 167, 168],
-        57 => [62, 63, 167, 168],
-
-        // Imparare
-        15 => [131],
-        40 => [131],
-        56 => [131],
-
-        // Stare attenti
-        31 => [],
-    ];
+    private const SCRIVERE_SEMPLIFICATO_TEST_ID = 62;
 
     public function __construct(
         private StudentTestResultCalculator $studentTestResults,
@@ -146,11 +64,40 @@ class StudentSectionResultCalculator {
     }
 
     /**
+     * Preload the test results needed to calculate a section.
+     *
+     * @param iterable<int, Student> $students
+     */
+    public function preloadResults(
+        Section $section,
+        iterable $students,
+    ): void {
+        $testIds = $this->requiredTestIds($section);
+
+        $expandedTestIds =
+            $this->studentTestResults->expandRequiredTestIds(
+                $testIds,
+            );
+
+        $this->studentTestResults->preloadCompletedResults(
+            students: $students,
+            testIds: $expandedTestIds,
+        );
+    }
+
+    public function clearPreloadedResults(): void {
+        $this->studentTestResults
+            ->clearCompletedResultCache();
+    }
+
+    /**
      * Get the test IDs needed to calculate a section result.
      *
      * @return array<int>
      */
-    public function requiredTestIds(Section $section): array {
+    public function requiredTestIds(
+        Section $section,
+    ): array {
         if ($section->id === 9) {
             return [
                 16,
@@ -159,26 +106,38 @@ class StudentSectionResultCalculator {
         }
 
         if (
-            array_key_exists(
+            SectionResultDefinitions::usesFullSectionResults(
                 $section->id,
-                self::FULL_RESULT_SKIPPED_TEST_IDS,
             )
         ) {
             $skipTestIds =
-                self::FULL_RESULT_SKIPPED_TEST_IDS[$section->id];
+                SectionResultDefinitions::skippedTestIds(
+                    $section->id,
+                );
 
             return Test::query()
                 ->where('sectionId', $section->id)
                 ->whereNotIn('id', $skipTestIds)
-                ->where('template', '!=', 'survey-results')
+                ->where(
+                    fn($query) => $query
+                        ->whereNull('template')
+                        ->orWhere(
+                            'template',
+                            '!=',
+                            'survey-results',
+                        ),
+                )
                 ->pluck('id')
-                ->map(fn($id) => (int) $id)
+                ->map(
+                    fn($id): int => (int) $id,
+                )
                 ->all();
         }
 
         $mainTestId =
-            self::MAIN_TEST_IDS[$section->id]
-            ?? null;
+            SectionResultDefinitions::mainTestId(
+                $section->id,
+            );
 
         return $mainTestId !== null
             ? [$mainTestId]
@@ -213,7 +172,6 @@ class StudentSectionResultCalculator {
             )
         ) {
             return $this->attentionResult(
-                section: $section,
                 student: $student,
             );
         }
@@ -238,10 +196,16 @@ class StudentSectionResultCalculator {
         }
 
         if (
-            array_key_exists(
-                $section->id,
-                self::FULL_RESULT_SKIPPED_TEST_IDS,
-            )
+            $section->id
+            === self::SCRIVERE_SEMPLIFICATO_SECTION_ID
+        ) {
+            return $this->scrivereSemplificatoResult(
+                student: $student,
+            );
+        }
+
+        if (
+            SectionResultDefinitions::usesFullSectionResults($section->id)
         ) {
             return $this->fullSectionDetailedResult(
                 section: $section,
@@ -249,9 +213,9 @@ class StudentSectionResultCalculator {
             );
         }
 
-        $mainTestId =
-            self::MAIN_TEST_IDS[$section->id]
-            ?? null;
+        $mainTestId = SectionResultDefinitions::mainTestId(
+            $section->id,
+        );
 
         if ($mainTestId !== null) {
             return $this->studentTestResults
@@ -270,10 +234,57 @@ class StudentSectionResultCalculator {
         Section $section,
         Student $student,
     ): array {
-        return $this->calculateFullSectionResults(
-            section: $section,
-            student: $student,
-        );
+        $skipTestIds =
+            SectionResultDefinitions::skippedTestIds(
+                $section->id,
+            );
+
+        $results = [];
+
+        $tests = $section->active_tests()
+            ->orderBy('step')
+            ->get();
+
+        foreach ($tests as $test) {
+            if (
+                in_array(
+                    $test->id,
+                    $skipTestIds,
+                    true,
+                )
+            ) {
+                continue;
+            }
+
+            if ($test->template === 'survey-results') {
+                continue;
+            }
+
+            if (
+                !$this->studentTestResults->isCompleted(
+                    testId: $test->id,
+                    student: $student,
+                )
+            ) {
+                continue;
+            }
+
+            $result = $this->studentTestResults->result(
+                testId: $test->id,
+                student: $student,
+            );
+
+            if ($result === null) {
+                continue;
+            }
+
+            $results[] = [
+                'test' => $test->title,
+                'percentage' => (int) $result,
+            ];
+        }
+
+        return $results;
     }
 
     /**
@@ -307,7 +318,9 @@ class StudentSectionResultCalculator {
         Section $section,
         Student $student,
     ): mixed {
-        $testId = self::MAIN_TEST_IDS[$section->id] ?? null;
+        $testId = SectionResultDefinitions::mainTestId(
+            $section->id,
+        );
 
         if ($testId === null) {
             throw new RuntimeException(
@@ -326,8 +339,7 @@ class StudentSectionResultCalculator {
         Student $student,
     ): array {
         $skipTestIds =
-            self::FULL_RESULT_SKIPPED_TEST_IDS[$section->id]
-            ?? [];
+            SectionResultDefinitions::skippedTestIds($section->id);
 
         $tests = Test::query()
             ->where('sectionId', $section->id)
@@ -381,95 +393,73 @@ class StudentSectionResultCalculator {
         return $results;
     }
 
-    private function calculateAttentionResult(
-        Section $section,
-        Student $student,
-    ): ?string {
-        $results = $this->detailedResult(
-            section: $section,
-            student: $student,
-        );
-
-        if (empty($results)) {
-            return null;
-        }
-
-        if ($results) {
-            $average = 0;
-
-            if (isset($results['Autovalutazione'])) {
-                $average += $results['Autovalutazione']['percentage'];
-            }
-
-            if (isset($results['Iperattività'])) {
-                $average += 100 - $results['Iperattività']['percentage'];
-            }
-
-            if (isset($results['Distraibilità'])) {
-                $average += 100 - $results['Distraibilità']['percentage'];
-            }
-
-            return round($average / count($results)) . '%';
-        } else {
-            return null;
-        }
-    }
-
     private function attentionResult(
-        Section $section,
         Student $student,
     ): ?string {
-        $modernResult = $this->calculateAttentionResult(
-            section: $section,
+        $detailedResult = $this->attentionDetailedResult(
             student: $student,
         );
 
-        return $modernResult;
+        if (empty($detailedResult)) {
+            return null;
+        }
+
+        $total = 0;
+
+        if (isset($detailedResult['Autovalutazione'])) {
+            $total +=
+                $detailedResult['Autovalutazione']['percentage'];
+        }
+
+        if (isset($detailedResult['Iperattività'])) {
+            $total +=
+                100
+                - $detailedResult['Iperattività']['percentage'];
+        }
+
+        if (isset($detailedResult['Distraibilità'])) {
+            $total +=
+                100
+                - $detailedResult['Distraibilità']['percentage'];
+        }
+
+        return round(
+            $total / count($detailedResult),
+        ) . '%';
     }
 
     private function attentionDetailedResult(
         Student $student,
     ): ?array {
-        return $this->calculateAttentionDetailedResult(
-            student: $student,
-        );
-    }
-
-    private function calculateAttentionDetailedResult(
-        Student $student,
-    ): ?array {
         $results = [];
 
-        $selfEvaluationResult =
+        $selfEvaluation =
             $this->studentTestResults->detailedResult(
                 testId: 16,
                 student: $student,
             );
 
-        $hyperactivityResults =
+        $hyperactivity =
             $this->studentTestResults->detailedResult(
                 testId: 21,
                 student: $student,
             );
 
-        if ($selfEvaluationResult !== null) {
+        if ($selfEvaluation !== null) {
             $results['Autovalutazione'] = [
                 'name' => 'Autovalutazione',
-                'value' => $selfEvaluationResult,
-                'percentage' => $selfEvaluationResult,
+                'value' => $selfEvaluation,
+                'percentage' => $selfEvaluation,
             ];
         }
 
-        if ($hyperactivityResults !== null) {
-            foreach (
-                $hyperactivityResults
-                as $resultName => $result
-            ) {
-                $results[$resultName] = [
-                    'name' => $resultName,
-                    'value' => $result,
+        if ($hyperactivity !== null) {
+            foreach ($hyperactivity as $name => $value) {
+                $results[$name] = [
+                    'name' => $name,
+                    'value' => $value,
                     'percentage' => round(
-                        $result / 36 * 100,
+                        $value / 36 * 100,
                     ),
                 ];
             }
@@ -478,5 +468,80 @@ class StudentSectionResultCalculator {
         return empty($results)
             ? null
             : $results;
+    }
+
+    /**
+     * Return the 16 Scrivere semplificato values for one student.
+     *
+     * @return array<int, array{
+     *     name: string,
+     *     percentage: float
+     * }>|null
+     */
+    private function scrivereSemplificatoResult(
+        Student $student,
+    ): ?array {
+        $testResult = TestResult::query()
+            ->where(
+                'testId',
+                self::SCRIVERE_SEMPLIFICATO_TEST_ID,
+            )
+            ->where('studentId', $student->id)
+            ->where('completed', true)
+            ->first();
+
+        if (!$testResult?->result) {
+            return null;
+        }
+
+        $values = array_map(
+            static fn(string $value): int =>
+            (int) trim($value),
+            explode(',', $testResult->result),
+        );
+
+        $types = app(
+            ScrivereSemplificatoMappaHelper::class,
+        )->getTypes();
+
+        if (
+            count($values) !== count($types)
+            || count($types) !== 16
+        ) {
+            return null;
+        }
+
+        foreach ($values as $value) {
+            if ($value < 1 || $value > 6) {
+                return null;
+            }
+        }
+
+        return collect($types)
+            ->map(
+                fn(
+                    string $type,
+                    int $index,
+                ): array => [
+                    'name' => $type,
+                    'percentage' =>
+                    $this->scrivereSemplificatoPercentage(
+                        $values[$index],
+                    ),
+                ],
+            )
+            ->values()
+            ->all();
+    }
+
+    /**
+     * Convert a score from 1–6 to a percentage from 0–100.
+     */
+    private function scrivereSemplificatoPercentage(
+        int $value,
+    ): int {
+        return (int) round(
+            ($value - 1) / 5 * 100,
+        );
     }
 }

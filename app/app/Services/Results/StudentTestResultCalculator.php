@@ -5,102 +5,11 @@ namespace App\Services\Results;
 use App\Models\Activities\Test;
 use App\Models\Results\User\TestResult;
 use App\Models\User\Student;
+use App\Support\TestResultDefinitions;
+use Illuminate\Support\Collection;
 use RuntimeException;
 
 class StudentTestResultCalculator {
-    /**
-     * Tests whose condensed result is the name
-     * of the detailed result with the highest value.
-     */
-    private const MAX_NAME_VALUE_TEST_IDS = [
-        // Motivazione
-        20,
-
-        // Stili cognitivi
-        31,
-        113,
-
-        // Temperamento
-        46,
-
-        // Interessi
-        92,
-        109,
-        111,
-        151,
-
-        // Stile attributivo
-        48,
-    ];
-
-    /**
-     * Tests whose condensed result is the average
-     * of detailed-result percentages.
-     */
-    private const AVERAGE_PERCENTAGE_TEST_IDS = [
-        // Autostima
-        15,
-        107,
-        146,
-
-        // Scrivere - mappa degli stili
-        63,
-        168,
-
-        // Creatività
-        81,
-    ];
-
-    private const GENERIC_RESULT_TEST_IDS = [
-        // Resilienza
-        49,
-    ];
-
-    private const MERGED_NAME_TEST_IDS = [
-        116,
-    ];
-
-    private const DETAILED_RESULT_TEST_IDS = [
-        101,
-    ];
-
-    private const COMPLETED_TEST_IDS = [
-        82,
-        100,
-    ];
-
-    private const COGNITIVE_STYLE_TEST_IDS = [
-        31,
-        109,
-        111,
-        113,
-    ];
-
-    private const TESTS_AVERAGE_DETAILED_TEST_IDS = [
-        // Autostima
-        15,
-        107,
-        146,
-
-        // Creatività
-        81,
-    ];
-
-    private const INTEREST_TEST_IDS = [
-        92,
-        151,
-    ];
-
-    private const GENERIC_DETAILED_TEST_IDS = [
-        // Resilienza
-        49,
-
-        // Albero dei saperi informali
-        82,
-
-        // Universo personale
-        100,
-    ];
 
     /**
      * Completed test results already loaded during the current request.
@@ -115,6 +24,18 @@ class StudentTestResultCalculator {
      * @var array<int, Test>
      */
     private array $testCache = [];
+
+    /**
+     * Tests used by the temperament calculation, indexed by step.
+     */
+    private ?Collection $temperamentTests = null;
+
+    /**
+     * Tests preceding a main result test, indexed by main test ID.
+     *
+     * @var array<int, \Illuminate\Support\Collection>
+     */
+    private array $previousTestsCache = [];
 
     /**
      * Preload the latest completed results for multiple students and tests.
@@ -168,7 +89,46 @@ class StudentTestResultCalculator {
     }
 
     /**
-     * Expand main test IDs with the tests needed by their calculations.
+     * Clear all request-level cached test data.
+     */
+    public function clearPreloadedResults(): void {
+        $this->completedResultCache = [];
+        $this->testCache = [];
+        $this->temperamentTests = null;
+        $this->previousTestsCache = [];
+    }
+
+    public function clearCompletedResultCache(): void {
+        $this->completedResultCache = [];
+    }
+
+    private function previousTests(Test $mainTest): Collection {
+        if (
+            array_key_exists(
+                $mainTest->id,
+                $this->previousTestsCache,
+            )
+        ) {
+            return $this->previousTestsCache[$mainTest->id];
+        }
+
+        return $this->previousTestsCache[$mainTest->id] =
+            Test::query()
+            ->where(
+                'sectionId',
+                $mainTest->sectionId,
+            )
+            ->where(
+                'step',
+                '<',
+                $mainTest->step,
+            )
+            ->orderBy('step')
+            ->get();
+    }
+
+    /**
+     * Expand test IDs with every test needed by their calculations.
      *
      * @param iterable<int, int> $testIds
      *
@@ -178,8 +138,9 @@ class StudentTestResultCalculator {
         iterable $testIds,
     ): array {
         $testIds = collect($testIds)
-            ->map(fn($id) => (int) $id)
-            ->unique();
+            ->map(fn($id): int => (int) $id)
+            ->unique()
+            ->values();
 
         $tests = Test::query()
             ->whereIn('id', $testIds)
@@ -190,57 +151,71 @@ class StudentTestResultCalculator {
 
         foreach ($testIds as $testId) {
             $test = $tests->get($testId);
+            $dependency =
+                TestResultDefinitions::dependency($testId);
 
-            if ($test?->required_test_id) {
-                $expandedIds[] =
-                    (int) $test->required_test_id;
+            if (!$test || !$dependency) {
+                continue;
             }
 
-            if (
-                in_array(
-                    $testId,
-                    self::TESTS_AVERAGE_DETAILED_TEST_IDS,
-                    true,
-                )
-                && $test
-            ) {
-                $previousTestIds = Test::query()
-                    ->where('sectionId', $test->sectionId)
-                    ->where('step', '<', $test->step)
+            $dependencyIds = match ($dependency['type']) {
+                TestResultDefinitions::DEPENDENCY_REQUIRED_TEST =>
+                $test->requiredTestId
+                    ? [(int) $test->requiredTestId]
+                    : [],
+
+                TestResultDefinitions::DEPENDENCY_PREVIOUS_SECTION_TESTS =>
+                Test::query()
+                    ->where(
+                        'sectionId',
+                        $test->sectionId,
+                    )
+                    ->where(
+                        'step',
+                        '<',
+                        $test->step,
+                    )
                     ->pluck('id')
-                    ->all();
+                    ->map(
+                        fn($id): int => (int) $id,
+                    )
+                    ->all(),
 
-                $expandedIds = [
-                    ...$expandedIds,
-                    ...$previousTestIds,
-                ];
-            }
-
-            if ($testId === 46 && $test) {
-                $temperamentTestIds = Test::query()
-                    ->where('sectionId', $test->sectionId)
-                    ->whereBetween('step', [1, 5])
+                TestResultDefinitions::DEPENDENCY_SECTION_STEPS =>
+                Test::query()
+                    ->where(
+                        'sectionId',
+                        $test->sectionId,
+                    )
+                    ->whereBetween(
+                        'step',
+                        [
+                            $dependency['from'],
+                            $dependency['to'],
+                        ],
+                    )
                     ->pluck('id')
-                    ->all();
+                    ->map(
+                        fn($id): int => (int) $id,
+                    )
+                    ->all(),
 
-                $expandedIds = [
-                    ...$expandedIds,
-                    ...$temperamentTestIds,
-                ];
-            }
+                TestResultDefinitions::DEPENDENCY_FIXED_TESTS =>
+                $dependency['test_ids'],
 
-            if ($testId === 116) {
-                $expandedIds = [
-                    ...$expandedIds,
-                    102,
-                    115,
-                    116,
-                ];
-            }
+                default => throw new RuntimeException(
+                    "Unsupported dependency type [{$dependency['type']}] for test [{$testId}].",
+                ),
+            };
+
+            $expandedIds = [
+                ...$expandedIds,
+                ...$dependencyIds,
+            ];
         }
 
         return collect($expandedIds)
-            ->map(fn($id) => (int) $id)
+            ->map(fn($id): int => (int) $id)
             ->unique()
             ->values()
             ->all();
@@ -268,63 +243,52 @@ class StudentTestResultCalculator {
         int $testId,
         Student $student,
     ): mixed {
-        return match (true) {
-            in_array(
+        if (
+            !TestResultDefinitions::supportsResult(
                 $testId,
-                self::MAX_NAME_VALUE_TEST_IDS,
-                true,
-            ) => $this->maxNameValueResult(
+            )
+        ) {
+            return $this->genericResult(
+                testId: $testId,
+                student: $student,
+            );
+        }
+
+        return match (TestResultDefinitions::resultType($testId)) {
+            TestResultDefinitions::RESULT_MAX_NAME_VALUE =>
+            $this->maxNameValueResult(
                 testId: $testId,
                 student: $student,
             ),
 
-            in_array(
-                $testId,
-                self::AVERAGE_PERCENTAGE_TEST_IDS,
-                true,
-            ) => $this->averagePercentageResult(
+            TestResultDefinitions::RESULT_AVERAGE_PERCENTAGE =>
+            $this->averagePercentageResult(
                 testId: $testId,
                 student: $student,
             ),
 
-            in_array(
-                $testId,
-                self::MERGED_NAME_TEST_IDS,
-                true,
-            ) => $this->mergedNamesResult(
+            TestResultDefinitions::RESULT_GENERIC =>
+            $this->genericResult(
                 testId: $testId,
                 student: $student,
             ),
 
-            in_array(
-                $testId,
-                self::DETAILED_RESULT_TEST_IDS,
-                true,
-            ) => $this->detailedResult(
+            TestResultDefinitions::RESULT_MERGED_NAMES =>
+            $this->mergedNamesResult(
                 testId: $testId,
                 student: $student,
             ),
 
-            in_array(
-                $testId,
-                self::COMPLETED_TEST_IDS,
-                true,
-            ) => $this->completedResult(
+            TestResultDefinitions::RESULT_DETAILED =>
+            $this->detailedResult(
                 testId: $testId,
                 student: $student,
             ),
 
-            in_array(
-                $testId,
-                self::GENERIC_RESULT_TEST_IDS,
-                true,
-            ) => $this->genericResult(
+            TestResultDefinitions::RESULT_COMPLETED =>
+            $this->completedResult(
                 testId: $testId,
                 student: $student,
-            ),
-
-            default => throw new RuntimeException(
-                "Unsupported condensed test result [{$testId}].",
             ),
         };
     }
@@ -350,73 +314,64 @@ class StudentTestResultCalculator {
         int $testId,
         Student $student,
     ): mixed {
-        return match (true) {
-            $testId === 16 => $this->attentionSelfEvaluationDetailedResult(
+        return match (TestResultDefinitions::detailedType($testId)) {
+            TestResultDefinitions::DETAIL_ATTENTION_SELF_EVALUATION =>
+            $this->attentionSelfEvaluationDetailedResult(
                 student: $student,
             ),
 
-            $testId === 20 => $this->motivationDetailedResult(
+            TestResultDefinitions::DETAIL_MOTIVATION =>
+            $this->motivationDetailedResult(
                 student: $student,
             ),
 
-            $testId === 21 => $this->attentionHyperactivityDetailedResult(
+            TestResultDefinitions::DETAIL_ATTENTION_HYPERACTIVITY =>
+            $this->attentionHyperactivityDetailedResult(
                 student: $student,
             ),
 
-            in_array(
-                $testId,
-                self::COGNITIVE_STYLE_TEST_IDS,
-                true,
-            ) => $this->cognitiveStyleDetailedResult(
+            TestResultDefinitions::DETAIL_COGNITIVE_STYLE =>
+            $this->cognitiveStyleDetailedResult(
                 testId: $testId,
                 student: $student,
             ),
 
-            $testId === 46 => $this->temperamentDetailedResult(
+            TestResultDefinitions::DETAIL_TEMPERAMENT =>
+            $this->temperamentDetailedResult(
                 student: $student,
             ),
 
-            $testId === 48 => $this->attributionStyleDetailedResult(
+            TestResultDefinitions::DETAIL_ATTRIBUTION_STYLE =>
+            $this->attributionStyleDetailedResult(
                 student: $student,
             ),
 
-            in_array(
-                $testId,
-                self::GENERIC_DETAILED_TEST_IDS,
-                true,
-            ) => $this->genericDetailedResult(
+            TestResultDefinitions::DETAIL_GENERIC =>
+            $this->genericDetailedResult(
                 testId: $testId,
                 student: $student,
             ),
 
-            in_array(
-                $testId,
-                self::TESTS_AVERAGE_DETAILED_TEST_IDS,
-                true,
-            ) => $this->testsAverageDetailedResult(
+            TestResultDefinitions::DETAIL_TESTS_AVERAGE =>
+            $this->testsAverageDetailedResult(
                 testId: $testId,
                 student: $student,
             ),
 
-            in_array(
-                $testId,
-                self::INTEREST_TEST_IDS,
-                true,
-            ) => $this->interestsDetailedResult(
+            TestResultDefinitions::DETAIL_INTERESTS =>
+            $this->interestsDetailedResult(
                 testId: $testId,
                 student: $student,
             ),
 
-            $testId === 101 => $this->lifeTreeDetailedResult(
+            TestResultDefinitions::DETAIL_LIFE_TREE =>
+            $this->lifeTreeDetailedResult(
                 student: $student,
             ),
 
-            $testId === 116 => $this->emotionWheelDetailedResult(
+            TestResultDefinitions::DETAIL_EMOTION_WHEEL =>
+            $this->emotionWheelDetailedResult(
                 student: $student,
-            ),
-
-            default => throw new RuntimeException(
-                "Unsupported detailed test result [{$testId}].",
             ),
         };
     }
@@ -464,11 +419,9 @@ class StudentTestResultCalculator {
     ): array {
         $mainTest = $this->test($testId);
 
-        $previousTests = Test::query()
-            ->where('sectionId', $mainTest->sectionId)
-            ->where('step', '<', $mainTest->step)
-            ->orderBy('step')
-            ->get();
+        $previousTests = $this->previousTests(
+            $mainTest,
+        );
 
         $results = [];
 
@@ -692,8 +645,16 @@ class StudentTestResultCalculator {
     private function attentionHyperactivityDetailedResult(
         Student $student,
     ): ?array {
+        $test = $this->test(21);
+
+        $requiredTestId = (int) $test->requiredTestId;
+
+        if (!$requiredTestId) {
+            return null;
+        }
+
         $rawResults = $this->rawResults(
-            testId: 21,
+            testId: $requiredTestId,
             student: $student,
         );
 
@@ -707,12 +668,10 @@ class StudentTestResultCalculator {
         ];
 
         foreach ($rawResults as $key => $value) {
-            $value = (int) $value;
-
             if ($key % 2) {
-                $results['Iperattività'] += $value;
+                $results['Iperattività'] += (int) $value;
             } else {
-                $results['Distraibilità'] += $value;
+                $results['Distraibilità'] += (int) $value;
             }
         }
 
@@ -725,7 +684,7 @@ class StudentTestResultCalculator {
     ): array {
         $test = $this->test($testId);
 
-        $requiredTestId = $test->required_test_id;
+        $requiredTestId = $test->requiredTestId;
 
         if (!$requiredTestId) {
             return [];
@@ -777,7 +736,7 @@ class StudentTestResultCalculator {
     ): ?array {
         $test = $this->test(48);
 
-        $requiredTestId = $test->required_test_id;
+        $requiredTestId = $test->requiredTestId;
 
         if (!$requiredTestId) {
             return null;
@@ -831,7 +790,7 @@ class StudentTestResultCalculator {
     ): array {
         $test = $this->test(20);
 
-        $requiredTestId = $test->required_test_id;
+        $requiredTestId = $test->requiredTestId;
 
         if (!$requiredTestId) {
             return [];
@@ -880,19 +839,12 @@ class StudentTestResultCalculator {
     private function temperamentDetailedResult(
         Student $student,
     ): ?array {
-        $mainTest = $this->test(46);
-
         $sectionNames = test_config(
             46,
             'sections',
         );
 
-        $tests = Test::query()
-            ->where('sectionId', $mainTest->sectionId)
-            ->whereBetween('step', [1, 5])
-            ->orderBy('step')
-            ->get()
-            ->keyBy('step');
+        $tests = $this->temperamentTests();
 
         $results = [];
 
@@ -934,7 +886,7 @@ class StudentTestResultCalculator {
     ): array {
         $test = $this->test($testId);
 
-        $requiredTestId = $test->required_test_id;
+        $requiredTestId = $test->requiredTestId;
 
         if (!$requiredTestId) {
             return [];
@@ -989,5 +941,20 @@ class StudentTestResultCalculator {
         }
 
         return $results;
+    }
+
+    private function temperamentTests(): Collection {
+        if ($this->temperamentTests !== null) {
+            return $this->temperamentTests;
+        }
+
+        $mainTest = $this->test(46);
+
+        return $this->temperamentTests = Test::query()
+            ->where('sectionId', $mainTest->sectionId)
+            ->whereBetween('step', [1, 5])
+            ->orderBy('step')
+            ->get()
+            ->keyBy('step');
     }
 }

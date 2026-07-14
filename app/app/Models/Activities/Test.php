@@ -208,13 +208,20 @@ class Test extends Model {
     /**
      * Get the helper class for the test
      */
-    public function helper(): ?object {
+    public function helperClass(): string {
         $className = $this->section->isCompletable() ? $this->section->slug . '-' . $this->slug : $this->section->slug;
         $className = "App\\Helpers\\Tests\\" . ucfirst(str()->camel($className)) . 'Helper';
 
-        // dd($className);
+        return $className;
+    }
 
-        if (class_exists($className)) {
+    /**
+     * Get the helper instance for the test if the class exists
+     */
+    public function helper(): ?object {
+        if (class_exists($this->helperClass())) {
+            $className = $this->helperClass();
+
             return new $className();
         }
 

@@ -1,8 +1,7 @@
 <?php
 
-use LogicManager\TestLogic;
-
-$characters = test_config(testId(), 'characters');
+$test = legacy_test()->newTest();
+$characters = $test->helper()->getCharacters();
 
 bump($characters);
 

@@ -2,9 +2,18 @@
 
 namespace App\Services\Graphs;
 
+use App\Helpers\Tests\RuotaHelper;
+use App\Helpers\Tests\ScrivereSemplificatoMappaHelper;
 use App\Models\Activities\Section;
+use App\Models\Activities\Test;
+use App\Support\GraphSections;
 
 class SectionGraphData {
+
+    private const RUOTA_SECTION_ID = 27;
+    private const RUOTA_TEST_ID = 116;
+    private const SCRIVERE_SEMPLIFICATO_SECTION_ID = 34;
+
     /**
      * Prepare one aggregated section result for graph display.
      */
@@ -18,20 +27,50 @@ class SectionGraphData {
             return null;
         }
 
-        $graphValues = $this->normalizeValues(
+        $labels = $this->labelsForSection(
             section: $section,
             values: $values,
         );
 
+        $alignedValues = $this->alignValues(
+            labels: $labels,
+            values: $values,
+        );
+
+        $graphValues = $this->normalizeValues(
+            section: $section,
+            values: $alignedValues,
+        );
+
+        $condensed = $this->condensedResult(
+            section: $section,
+            rawValues: $alignedValues,
+            graphValues: $graphValues,
+            studentAverage: $result['average'] ?? null,
+        );
+
         return [
-            'labels' => array_keys($values),
+            'labels' => $this->displayLabels(
+                section: $section,
+                labels: $labels,
+            ),
 
             'data' => $graphValues,
 
-            'condensed' => $this->condensedValue(
+            'condensed_label' =>
+            GraphSections::condensedLabelForSection(
+                sectionId: $section->id,
+                valueCount: $condensed['count'],
+            ),
+
+            'condensed' => $this->displayCondensedValue(
                 section: $section,
-                rawValues: $values,
-                graphValues: $graphValues,
+                value: $condensed['value'],
+            ),
+
+            'description' =>
+            GraphSections::descriptionForSection(
+                $section->id,
             ),
         ];
     }
@@ -54,7 +93,15 @@ class SectionGraphData {
         $platformValues =
             $platformResult['values'] ?? [];
 
-        $labels = array_keys($schoolClassValues);
+        $labels = $this->labelsForSection(
+            section: $section,
+            values: $schoolClassValues,
+        );
+
+        $alignedSchoolClassValues = $this->alignValues(
+            labels: $labels,
+            values: $schoolClassValues,
+        );
 
         $alignedPlatformValues = $this->alignValues(
             labels: $labels,
@@ -64,7 +111,7 @@ class SectionGraphData {
         $schoolClassGraphValues =
             $this->normalizeValues(
                 section: $section,
-                values: $schoolClassValues,
+                values: $alignedSchoolClassValues,
             );
 
         $platformGraphValues =
@@ -73,23 +120,70 @@ class SectionGraphData {
                 values: $alignedPlatformValues,
             );
 
-        return [
-            'labels' => $labels,
+        $condensed = $this->condensedResult(
+            section: $section,
+            rawValues: $alignedSchoolClassValues,
+            graphValues: $schoolClassGraphValues,
+            studentAverage: $schoolClassResult['average']
+                ?? null,
+        );
+
+        $graph = [
+            'description' =>
+            GraphSections::descriptionForSection(
+                $section->id,
+            ),
+
+            'labels' => $this->displayLabels(
+                section: $section,
+                labels: $labels,
+            ),
 
             'datasets' => [
-                'school_class' =>
-                $schoolClassGraphValues,
-
-                'platform' =>
-                $platformGraphValues,
+                'school_class' => $schoolClassGraphValues,
+                'platform' => $platformGraphValues,
             ],
 
-            'condensed' => $this->condensedValue(
-                section: $section,
-                rawValues: $schoolClassValues,
-                graphValues: $schoolClassGraphValues,
+            'condensed_label' =>
+            GraphSections::condensedLabelForSection(
+                sectionId: $section->id,
+                valueCount: $condensed['count'],
             ),
+
+            'condensed' => $this->displayCondensedValue(
+                section: $section,
+                value: $condensed['value'],
+            ),
+
+            'dataset_labels' => [
+                'school_class' =>
+                GraphSections::classDatasetLabelForSection(
+                    $section->id,
+                ),
+
+                'platform' =>
+                GraphSections::platformDatasetLabelForSection(
+                    $section->id,
+                ),
+            ],
         ];
+
+        if (
+            GraphSections::typeForSection($section->id)
+            === GraphSections::TYPE_TIER
+        ) {
+            $graph['tooltip_values'] = [
+                'school_class' => array_values(
+                    $this->alignValues(
+                        labels: $labels,
+                        values: $schoolClassResult['counts']
+                            ?? [],
+                    ),
+                ),
+            ];
+        }
+
+        return $graph;
     }
 
     /**
@@ -100,10 +194,9 @@ class SectionGraphData {
         array $values,
     ): array {
         if (
-            section_config(
+            GraphSections::normalizationForSection(
                 $section->id,
-                'type',
-            ) !== 'tiers'
+            ) !== GraphSections::NORMALIZATION_TIER_PERCENTAGE
         ) {
             return array_values($values);
         }
@@ -144,46 +237,105 @@ class SectionGraphData {
     }
 
     /**
-     * Generate the condensed graph result.
+     * Generate the condensed graph result and its item count.
+     *
+     * @return array{
+     *     value: string|int|float|null,
+     *     count: int
+     * }
      */
-    private function condensedValue(
+    private function condensedResult(
         Section $section,
         array $rawValues,
         array $graphValues,
-    ): string|int|float|null {
-        return match (section_config(
+        int|float|null $studentAverage,
+    ): array {
+        return match (GraphSections::condensedTypeForSection(
             $section->id,
-            'condensedType',
         )) {
-            'average' => $this->averagePercentage(
-                $graphValues,
-            ),
+            GraphSections::CONDENSED_AVERAGE => [
+                'value' => $this->averagePercentage(
+                    $graphValues,
+                ),
+                'count' => 1,
+            ],
 
-            default => $this->maxLabel(
+            GraphSections::CONDENSED_STUDENT_AVERAGE => [
+                'value' => $studentAverage === null
+                    ? null
+                    : round($studentAverage) . '%',
+                'count' => 1,
+            ],
+
+            GraphSections::CONDENSED_MAX =>
+            $this->maxLabelsResult(
                 $rawValues,
             ),
         };
     }
 
     /**
-     * Get the label associated with the maximum value.
+     * Get all labels associated with the maximum value.
+     *
+     * @return array{
+     *     value: ?string,
+     *     count: int
+     * }
      */
-    private function maxLabel(
+    private function maxLabelsResult(
         array $values,
-    ): ?string {
+    ): array {
         if (empty($values)) {
-            return null;
+            return [
+                'value' => null,
+                'count' => 0,
+            ];
         }
 
         $maximum = max($values);
 
+        if ((float) $maximum <= 0) {
+            return [
+                'value' => null,
+                'count' => 0,
+            ];
+        }
+
+        $labels = [];
+
         foreach ($values as $label => $value) {
-            if ($value === $maximum) {
-                return (string) $label;
+            if ((float) $value === (float) $maximum) {
+                $labels[] = (string) $label;
             }
         }
 
-        return null;
+        return [
+            'value' => $this->formatLabelList($labels),
+            'count' => count($labels),
+        ];
+    }
+
+    /**
+     * Format labels as an Italian-language list.
+     */
+    private function formatLabelList(
+        array $labels,
+    ): ?string {
+        $labels = array_values($labels);
+
+        return match (count($labels)) {
+            0 => null,
+            1 => $labels[0],
+            2 => implode(' e ', $labels),
+            default => sprintf(
+                '%s e %s',
+                implode(
+                    ', ',
+                    array_slice($labels, 0, -1),
+                ),
+                $labels[array_key_last($labels)],
+            ),
+        };
     }
 
     /**
@@ -200,5 +352,67 @@ class SectionGraphData {
             array_sum($values),
             count($values) * 100,
         ) . '%';
+    }
+
+    /**
+     * Generate the labels for a section, with special handling for the RUOTA section
+     */
+    private function labelsForSection(
+        Section $section,
+        array $values,
+    ): array {
+        if ($section->id === self::RUOTA_SECTION_ID) {
+            return RuotaHelper::emotions(
+                Test::findOrFail(self::RUOTA_TEST_ID),
+            );
+        }
+
+        if (
+            $section->id
+            === self::SCRIVERE_SEMPLIFICATO_SECTION_ID
+        ) {
+            return app(
+                ScrivereSemplificatoMappaHelper::class,
+            )->getTypes();
+        }
+
+        return array_keys($values);
+    }
+
+    /**
+     * Display labels for a section, with special handling for the RUOTA section
+     */
+    private function displayLabels(
+        Section $section,
+        array $labels,
+    ): array {
+        if ($section->id !== self::RUOTA_SECTION_ID) {
+            return $labels;
+        }
+
+        return array_map(
+            static fn(string $label): string =>
+            ucfirst($label),
+            $labels,
+        );
+    }
+
+    /**
+     * Display a condensed value for a section, with special handling for the RUOTA section
+     */
+    private function displayCondensedValue(
+        Section $section,
+        string|int|float|null $value,
+    ): string|int|float|null {
+        if (
+            $section->id !== self::RUOTA_SECTION_ID
+            || !is_string($value)
+        ) {
+            return $value;
+        }
+
+        return mb_strtoupper(
+            mb_substr($value, 0, 1),
+        ) . mb_substr($value, 1);
     }
 }

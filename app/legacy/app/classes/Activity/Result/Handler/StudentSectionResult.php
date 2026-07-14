@@ -39,6 +39,9 @@ class StudentSectionResult {
     private $studentId;
     private $section;
 
+    private bool $ignoreStaticResult = false;
+    private bool $persistCalculatedResult = true;
+
     /**
      * Magic methods
      */
@@ -46,6 +49,20 @@ class StudentSectionResult {
         $this->sectionId = $sectionId;
         $this->studentId = $studentId ?: \Illuminate\Support\Facades\Auth::id();
         $this->section = (new Section($this->sectionId))->setStudentId($this->studentId);
+    }
+
+    public function ignoreStaticResult(
+        bool $ignore = true,
+    ): self {
+        $this->ignoreStaticResult = $ignore;
+
+        return $this;
+    }
+
+    public function withoutPersistingResult(): self {
+        $this->persistCalculatedResult = false;
+
+        return $this;
     }
 
     /**
@@ -58,7 +75,10 @@ class StudentSectionResult {
     }
 
     private function getResult() {
-        if ($this->staticResult) {
+        if (
+            !$this->ignoreStaticResult
+            && $this->staticResult
+        ) {
             return $this->staticResult[LegacyCondensedSectionResult::resultIndex()];
         } else {
             switch ($this->sectionId) {
@@ -112,12 +132,14 @@ class StudentSectionResult {
                     }
             }
 
-            CondensedSectionResult::create([
-                'student_id' => $this->studentId,
-                'section_id' => $this->sectionId,
-                'result' => $result,
-                'speed' => $this->calcSpeed(),
-            ]);
+            if ($this->persistCalculatedResult) {
+                CondensedSectionResult::create([
+                    'student_id' => $this->studentId,
+                    'section_id' => $this->sectionId,
+                    'result' => $result,
+                    'speed' => $this->calcSpeed(),
+                ]);
+            }
 
             return $result;
         }
@@ -195,16 +217,40 @@ class StudentSectionResult {
     /**
      * General results
      */
-    private function calcFullSectionResults(array $skipTestIds = []) {
+    private function calcFullSectionResults(
+        array $skipTestIds = [],
+    ): array {
         $results = [];
 
-        foreach ($this->section->tests as $legacyTest) {
-            $legacyTest->setStudentId($this->studentId);
+        $modernTitles = \App\Models\Activities\Test::query()
+            ->where('sectionId', $this->sectionId)
+            ->pluck('title', 'id');
 
-            if ($legacyTest->completed && !in_array($legacyTest->id, $skipTestIds) && $legacyTest->template != 'survey-results') {
+        foreach ($this->section->tests as $legacyTest) {
+            $legacyTest->setStudentId(
+                $this->studentId,
+            );
+
+            if (
+                $legacyTest->completed
+                && !in_array(
+                    $legacyTest->id,
+                    $skipTestIds,
+                    true,
+                )
+                && $legacyTest->template !== 'survey-results'
+            ) {
                 $results[] = [
-                    'test' => $legacyTest->title,
-                    'percentage' => (int) (new StudentTestResult($legacyTest->id, $this->studentId))->result,
+                    'test' => $modernTitles->get(
+                        $legacyTest->id,
+                        $legacyTest->title,
+                    ),
+                    'percentage' => (int) (
+                        new StudentTestResult(
+                            $legacyTest->id,
+                            $this->studentId,
+                        )
+                    )->result,
                 ];
             }
         }

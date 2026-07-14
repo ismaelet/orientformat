@@ -40,6 +40,7 @@ class TestController extends Controller {
         }
 
         // Blade view handling
+        // dd($test->helperClass());
         $helper = $test->helper();
         $student = legacy_watched_student();
         $completed = $student->hasCompletedTest($test);

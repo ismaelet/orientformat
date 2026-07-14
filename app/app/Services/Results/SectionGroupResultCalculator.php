@@ -2,88 +2,19 @@
 
 namespace App\Services\Results;
 
+use App\Helpers\Tests\RuotaHelper;
 use App\Models\Activities\Section;
+use App\Models\Activities\Test;
 use App\Models\Schools\SchoolClass;
 use App\Models\User\Student;
+use App\Support\GraphSections;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use RuntimeException;
 
 class SectionGroupResultCalculator {
-    /**
-     * Sections whose aggregated result consists of named percentages.
-     */
-    private const NAMED_PERCENTAGE_SECTION_IDS = [
-        // Profilo - Stili cognitivi
-        1,
-        28,
-        36,
-        37,
-
-        // Profilo - Autostima
-        4,
-        29,
-        41,
-
-        // Profilo - Stile attributivo
-        6,
-
-        // Profilo - Motivazione
-        7,
-
-        // Profilo - Temperamento
-        8,
-
-        // Saperi - Creatività
-        17,
-
-        // Scegliere - Interessi
-        24,
-        45,
-
-        // Profilo - La ruota delle emozioni
-        27,
-    ];
-
-    /**
-     * Sections whose aggregated result consists of tiers.
-     */
-    private const TIER_SECTION_IDS = [
-        // Profilo - Resilienza
-        3,
-
-        // Profilo - Risolvere i problemi
-        5,
-        30,
-
-        // Competenze - Stare attenti
-        9,
-        31,
-
-        // Competenze - Ricordare
-        10,
-        32,
-
-        // Competenze - Ascoltare
-        11,
-        33,
-
-        // Competenze - Parlare
-        12,
-
-        // Competenze - Scrivere
-        14,
-        34,
-
-        // Competenze - Leggere
-        39,
-
-        // Competenze - Imparare
-        40,
-    ];
 
     public function __construct(
         private StudentSectionResultCalculator $studentSectionResults,
-        private StudentTestResultCalculator $studentTestResults,
     ) {
     }
 
@@ -110,19 +41,72 @@ class SectionGroupResultCalculator {
     public function forPlatform(
         Section $section,
     ): array {
-        $students = Student::query()
+        return match (GraphSections::typeForSection($section->id)) {
+            GraphSections::TYPE_NAMED_PERCENTAGE,
+            GraphSections::TYPE_FIXED_SCORE =>
+            $this->calculatePlatformNamedPercentages(
+                section: $section,
+            ),
+
+            GraphSections::TYPE_TIER =>
+            $this->calculatePlatformTierResults(
+                section: $section,
+            ),
+        };
+    }
+
+    /**
+     * Calculate the aggregated result for the given students
+     */
+    private function calculatePlatformNamedPercentages(
+        Section $section,
+    ): array {
+        $values = $this->initialNamedPercentageValues(
+            section: $section,
+        );
+
+        $count = 0;
+
+        $this->platformStudentsQuery($section)
+            ->chunkById(
+                500,
+                function (Collection $students) use (
+                    $section,
+                    &$values,
+                    &$count,
+                ): void {
+                    $this->studentSectionResults
+                        ->clearPreloadedResults();
+
+                    $this->accumulateNamedPercentages(
+                        section: $section,
+                        students: $students,
+                        values: $values,
+                        count: $count,
+                    );
+                },
+                column: 'id',
+            );
+
+        return $this->finalizeNamedPercentages(
+            values: $values,
+            count: $count,
+        );
+    }
+
+    /**
+     * This method returns a query builder for students who have completed the given section. It is used to calculate aggregated results for the whole platform
+     */
+    private function platformStudentsQuery(
+        Section $section,
+    ): Builder {
+        return Student::query()
             ->whereHas(
                 'section_results',
                 fn($query) => $query
                     ->where('sectionId', $section->id)
                     ->where('completed', true),
-            )
-            ->get();
-
-        return $this->calculate(
-            section: $section,
-            students: $students,
-        );
+            );
     }
 
     /**
@@ -132,58 +116,59 @@ class SectionGroupResultCalculator {
         Section $section,
         Collection $students,
     ): array {
-        $testIds = $this->studentSectionResults
-            ->requiredTestIds($section);
-
-        $expandedTestIds = $this->studentTestResults
-            ->expandRequiredTestIds($testIds);
-
-        $this->studentTestResults
-            ->preloadCompletedResults(
-                students: $students,
-                testIds: $expandedTestIds,
-            );
-
-        if (
-            in_array(
-                $section->id,
-                self::NAMED_PERCENTAGE_SECTION_IDS,
-                true,
-            )
-        ) {
-            return $this->calculateNamedPercentages(
+        return match (GraphSections::typeForSection($section->id)) {
+            GraphSections::TYPE_NAMED_PERCENTAGE,
+            GraphSections::TYPE_FIXED_SCORE =>
+            $this->calculateNamedPercentages(
                 section: $section,
                 students: $students,
-            );
-        }
+            ),
 
-        if (
-            in_array(
-                $section->id,
-                self::TIER_SECTION_IDS,
-                true,
-            )
-        ) {
-            return $this->calculateTierResults(
+            GraphSections::TYPE_TIER =>
+            $this->calculateTierResults(
                 section: $section,
                 students: $students,
-            );
+            ),
+        };
+    }
+
+    /**
+     * Create the initial values for a named-percentage graph
+     *
+     * The Ruota delle emozioni graph must always contain every emotion,
+     * including emotions whose aggregated value is zero.
+     */
+    private function initialNamedPercentageValues(
+        Section $section,
+    ): array {
+        if ($section->id !== 27) {
+            return [];
         }
 
-        throw new RuntimeException(
-            "Unsupported graph section [{$section->id}].",
+        $test = Test::findOrFail(116);
+
+        return array_fill_keys(
+            array_map(
+                fn($emotion) => ucfirst($emotion),
+                RuotaHelper::emotions($test),
+            ),
+            0,
         );
     }
 
     /**
-     * Calculate average named percentages.
+     * Add students to a named-percentage aggregation.
      */
-    private function calculateNamedPercentages(
+    private function accumulateNamedPercentages(
         Section $section,
         Collection $students,
-    ): array {
-        $values = [];
-        $count = 0;
+        array &$values,
+        int &$count,
+    ): void {
+        $this->studentSectionResults->preloadResults(
+            section: $section,
+            students: $students,
+        );
 
         foreach ($students as $student) {
             $studentResult = $this->studentSectionResults
@@ -206,10 +191,18 @@ class SectionGroupResultCalculator {
                 $values[$name] += $percentage;
             }
         }
+    }
 
+    /**
+     * Calculate the aggregated result for the given students
+     */
+    private function finalizeNamedPercentages(
+        array $values,
+        int $count,
+    ): array {
         if ($count === 0) {
             return [
-                'values' => [],
+                'values' => $values,
                 'count' => 0,
             ];
         }
@@ -227,20 +220,19 @@ class SectionGroupResultCalculator {
     }
 
     /**
-     * Calculate tier percentages.
+     * Add students to a tier aggregation
      */
-    private function calculateTierResults(
+    private function accumulateTierResults(
         Section $section,
         Collection $students,
-    ): array {
-        $tierCounts = [
-            'Basso' => 0,
-            'Medio' => 0,
-            'Alto' => 0,
-            'Molto alto' => 0,
-        ];
-
-        $count = 0;
+        array &$tierCounts,
+        int &$count,
+        float &$percentageTotal,
+    ): void {
+        $this->studentSectionResults->preloadResults(
+            section: $section,
+            students: $students,
+        );
 
         foreach ($students as $student) {
             $result = $this->studentSectionResults->result(
@@ -252,41 +244,163 @@ class SectionGroupResultCalculator {
                 continue;
             }
 
-            $count++;
-
             $percentage = (float) rtrim(
                 (string) $result,
                 '%',
             );
 
+            $count++;
+            $percentageTotal += $percentage;
+
             $tierIndex = (int) floor(
                 min($percentage, 99) / 25,
             );
 
-            $tierName = array_keys($tierCounts)[$tierIndex];
+            $tierName = array_keys(
+                $tierCounts,
+            )[$tierIndex];
 
             $tierCounts[$tierName]++;
         }
+    }
 
+    /**
+     * Calculate the aggregated result for the given students
+     */
+    private function emptyTierCounts(): array {
+        return [
+            'Basso' => 0,
+            'Medio' => 0,
+            'Alto' => 0,
+            'Molto alto' => 0,
+        ];
+    }
+
+    /**
+     * Finalize the tier aggregation
+     */
+    private function finalizeTierResults(
+        array $tierCounts,
+        int $count,
+        float $percentageTotal,
+    ): array {
         if ($count === 0) {
             return [
                 'values' => [],
+                'counts' => $tierCounts,
                 'count' => 0,
+                'average' => null,
             ];
         }
 
-        $values = [];
+        $percentages = [];
 
         foreach ($tierCounts as $tierName => $tierCount) {
-            $values[$tierName] = percent(
+            $percentages[$tierName] = percent(
                 $tierCount,
                 $count,
             );
         }
 
         return [
-            'values' => $values,
+            'values' => $percentages,
+            'counts' => $tierCounts,
             'count' => $count,
+            'average' => round(
+                $percentageTotal / $count,
+            ),
         ];
+    }
+
+    /**
+     * Calculate average named percentages
+     */
+    private function calculateNamedPercentages(
+        Section $section,
+        Collection $students,
+    ): array {
+        $values = $this->initialNamedPercentageValues(
+            section: $section,
+        );
+
+        $count = 0;
+
+        $this->accumulateNamedPercentages(
+            section: $section,
+            students: $students,
+            values: $values,
+            count: $count,
+        );
+
+        return $this->finalizeNamedPercentages(
+            values: $values,
+            count: $count,
+        );
+    }
+
+    /**
+     * Calculate the aggregated result for the given students
+     */
+    private function calculatePlatformTierResults(
+        Section $section,
+    ): array {
+        $tierCounts = $this->emptyTierCounts();
+        $count = 0;
+        $percentageTotal = 0.0;
+
+        $this->platformStudentsQuery($section)
+            ->chunkById(
+                500,
+                function (Collection $students) use (
+                    $section,
+                    &$tierCounts,
+                    &$count,
+                    &$percentageTotal,
+                ): void {
+                    $this->studentSectionResults
+                        ->clearPreloadedResults();
+
+                    $this->accumulateTierResults(
+                        section: $section,
+                        students: $students,
+                        tierCounts: $tierCounts,
+                        count: $count,
+                        percentageTotal: $percentageTotal,
+                    );
+                },
+                column: 'id',
+            );
+
+        return $this->finalizeTierResults(
+            tierCounts: $tierCounts,
+            count: $count,
+            percentageTotal: $percentageTotal,
+        );
+    }
+
+    /**
+     * Calculate tier percentages
+     */
+    private function calculateTierResults(
+        Section $section,
+        Collection $students,
+    ): array {
+        $tierCounts = $this->emptyTierCounts();
+        $count = 0;
+        $percentageTotal = 0.0;
+
+        $this->accumulateTierResults(
+            section: $section,
+            students: $students,
+            tierCounts: $tierCounts,
+            count: $count,
+            percentageTotal: $percentageTotal,
+        );
+
+        return $this->finalizeTierResults(
+            tierCounts: $tierCounts,
+            count: $count,
+            percentageTotal: $percentageTotal,
+        );
     }
 }

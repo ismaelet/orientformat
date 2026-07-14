@@ -11,24 +11,24 @@ $requiredTest = $legacyTest->requiredTest;
 $survey = $requiredTest->survey;
 
 $questions = $survey->questions;
-$questionCount = $survey->questionCount;
-$range  = $survey->answerCount;
+$questionCount = $survey->questionCount();
+$range  = $survey->answerCount();
 $max = $questionCount * ($range - 1);
 
 if ($requiredTest->completed) {
-	$answers = [];
+    $answers = [];
 
-	foreach ($questions as $key => $question) {
-		$answer = [];
+    foreach ($questions as $key => $question) {
+        $answer = [];
 
-		$answer['result'] = $requiredTest->rawResults[$key] ?? 0;
-		$answer['question'] = $fixedQuestions[$key] ?? $question[0];
-		$total += $answer['result'];
+        $answer['result'] = $requiredTest->rawResults[$key] ?? 0;
+        $answer['question'] = $fixedQuestions[$key] ?? $question->text;
+        $total += $answer['result'];
 
-		$answers[] = $answer;
-	}
+        $answers[] = $answer;
+    }
 
-	bump($answers);
+    bump($answers);
 }
 
 $average = $total / $questionCount;

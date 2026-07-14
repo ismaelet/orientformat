@@ -30,6 +30,7 @@ class SectionGraph extends Component {
         PlatformSectionResultProvider $platformResultProvider,
         SectionGraphData $graphData,
     ): void {
+
         $this->sectionId = $sectionId;
         $this->schoolClassId = $schoolClassId;
 
