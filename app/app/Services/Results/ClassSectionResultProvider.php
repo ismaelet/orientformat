@@ -4,6 +4,8 @@ namespace App\Services\Results;
 
 use App\Models\Activities\Section;
 use App\Models\Schools\SchoolClass;
+use App\Support\Graphs\SectionGraphDefinition;
+use App\Support\Graphs\GraphSections;
 use Illuminate\Support\Facades\Cache;
 
 class ClassSectionResultProvider {
@@ -17,50 +19,73 @@ class ClassSectionResultProvider {
      */
     public function get(
         Section $section,
-        SchoolClass $class,
+        SchoolClass $schoolClass,
+    ): array {
+        return $this->getForGraph(
+            graph: GraphSections::graphDefinitionForSection(
+                $section,
+            ),
+            schoolClass: $schoolClass,
+        );
+    }
+
+    public function getForGraph(
+        SectionGraphDefinition $graph,
+        SchoolClass $schoolClass,
     ): array {
         return Cache::remember(
-            key: $this->cacheKey(
-                section: $section,
-                class: $class,
+            key: $this->cacheKeyForGraph(
+                graph: $graph,
+                schoolClass: $schoolClass,
             ),
             ttl: now()->addMinutes(30),
-            callback: fn() => $this->resultCalculator
-                ->forSchoolClass(
-                    section: $section,
-                    class: $class,
+            callback: fn(): array =>
+            $this->resultCalculator
+                ->forSchoolClassGraph(
+                    graph: $graph,
+                    schoolClass: $schoolClass,
                 ),
         );
     }
 
-    /**
-     * Forget the cached result.
-     */
-    public function forget(
-        Section $section,
-        SchoolClass $class,
-    ): void {
-        Cache::forget(
-            $this->cacheKey(
-                section: $section,
-                class: $class,
-            ),
-        );
-    }
-
-    /**
-     * Generate the cache key.
-     */
-    private function cacheKey(
-        Section $section,
-        SchoolClass $class,
+    private function cacheKeyForGraph(
+        SectionGraphDefinition $graph,
+        SchoolClass $schoolClass,
     ): string {
         return implode(':', [
-            'school-class',
-            $class->id,
-            'section',
-            $section->id,
-            'result',
+            'class-section-result',
+            'v3',
+            $schoolClass->id,
+            $graph->section->id,
+            $graph->key,
         ]);
+    }
+
+    public function forget(
+        Section $section,
+        SchoolClass $schoolClass,
+    ): void {
+        foreach (
+            GraphSections::graphDefinitionsForSection(
+                $section,
+            ) as $graph
+        ) {
+            $this->forgetForGraph(
+                graph: $graph,
+                schoolClass: $schoolClass,
+            );
+        }
+    }
+
+    public function forgetForGraph(
+        SectionGraphDefinition $graph,
+        SchoolClass $schoolClass,
+    ): void {
+        Cache::forget(
+            $this->cacheKeyForGraph(
+                graph: $graph,
+                schoolClass: $schoolClass,
+            ),
+        );
     }
 }

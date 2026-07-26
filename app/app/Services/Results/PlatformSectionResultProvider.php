@@ -3,9 +3,12 @@
 namespace App\Services\Results;
 
 use App\Models\Activities\Section;
+use App\Support\Graphs\SectionGraphDefinition;
+use App\Support\Graphs\GraphSections;
 use Illuminate\Support\Facades\Cache;
 
 class PlatformSectionResultProvider {
+
     public function __construct(
         private SectionGroupResultCalculator $resultCalculator,
     ) {
@@ -17,20 +20,53 @@ class PlatformSectionResultProvider {
     public function get(
         Section $section,
     ): array {
-        return Cache::remember(
-            key: $this->cacheKey($section),
-            ttl: now()->addMonth(),
-            callback: fn() => $this->resultCalculator
-                ->forPlatform($section),
+        return $this->getForGraph(
+            GraphSections::graphDefinitionForSection(
+                $section,
+            ),
         );
     }
 
-    /**
-     * Get the platform result cache key.
-     */
-    private function cacheKey(
-        Section $section,
+    public function getForGraph(
+        SectionGraphDefinition $graph,
+    ): array {
+        return Cache::remember(
+            key: $this->cacheKeyForGraph($graph),
+            ttl: now()->addMinutes(30),
+            callback: fn(): array =>
+            $this->resultCalculator
+                ->forPlatformGraph($graph),
+        );
+    }
+
+    private function cacheKeyForGraph(
+        SectionGraphDefinition $graph,
     ): string {
-        return "section:{$section->id}:platform-result";
+        return implode(':', [
+            'platform-section-result',
+            'v3',
+            $graph->section->id,
+            $graph->key,
+        ]);
+    }
+
+    public function forget(
+        Section $section,
+    ): void {
+        foreach (
+            GraphSections::graphDefinitionsForSection(
+                $section,
+            ) as $graph
+        ) {
+            $this->forgetForGraph($graph);
+        }
+    }
+
+    public function forgetForGraph(
+        SectionGraphDefinition $graph,
+    ): void {
+        Cache::forget(
+            $this->cacheKeyForGraph($graph),
+        );
     }
 }

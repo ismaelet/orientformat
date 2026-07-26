@@ -40,9 +40,9 @@ class GradeController extends Controller {
 
         session()->put('activities-year', $grade->absolute_number);
 
-        \App\Legacy\LegacyView::setPage('activities/list')
-            ->set('student', $student)
-            ->set('grade', $grade)
-            ->show();
+        return view('activities.grades.show', [
+            'grade' => $grade,
+            'student' => $student,
+        ]);
     }
 }

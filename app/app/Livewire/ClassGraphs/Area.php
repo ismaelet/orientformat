@@ -3,12 +3,12 @@
 namespace App\Livewire\ClassGraphs;
 
 use App\Models\Activities\Section;
+use App\Support\Graphs\GraphSections;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
 
 class Area extends Component {
-
     #[Locked]
     public string $areaName;
 
@@ -19,14 +19,20 @@ class Area extends Component {
     public int $schoolClassId;
 
     /**
-     * Section IDs available in this area.
+     * @var array<int>
      */
     #[Locked]
     public array $sectionIds = [];
 
     /**
-     * Currently visible section position.
+     * @var array<int, array{
+     *     section_id: int,
+     *     graph_key: string
+     * }>
      */
+    #[Locked]
+    public array $graphItems = [];
+
     public int $position = 0;
 
     public function mount(
@@ -38,35 +44,57 @@ class Area extends Component {
         $this->areaId = $areaId;
         $this->areaName = $areaName;
         $this->schoolClassId = $schoolClassId;
-        $this->sectionIds = array_values($sectionIds);
+        $this->sectionIds = $sectionIds;
+
+        $sections = Section::query()
+            ->whereIn('id', $sectionIds)
+            ->get()
+            ->keyBy('id');
+
+        foreach ($sectionIds as $sectionId) {
+            $section = $sections->get($sectionId);
+
+            if ($section === null) {
+                continue;
+            }
+
+            foreach (
+                GraphSections::graphDefinitionsForSection(
+                    $section,
+                ) as $graphDefinition
+            ) {
+                $this->graphItems[] = [
+                    'section_id' => $section->id,
+                    'graph_key' => $graphDefinition->key,
+                ];
+            }
+        }
     }
 
     public function previous(): void {
-        $count = count($this->sectionIds);
+        $count = count($this->graphItems);
 
         if ($count === 0) {
             return;
         }
 
-        $this->position = $this->position <= 0
-            ? $count - 1
-            : $this->position - 1;
+        $this->position =
+            ($this->position - 1 + $count) % $count;
     }
 
     public function next(): void {
-        $count = count($this->sectionIds);
+        $count = count($this->graphItems);
 
         if ($count === 0) {
             return;
         }
 
-        $this->position = $this->position >= $count - 1
-            ? 0
-            : $this->position + 1;
+        $this->position =
+            ($this->position + 1) % $count;
     }
 
     public function select(int $position): void {
-        if (!array_key_exists($position, $this->sectionIds)) {
+        if (!isset($this->graphItems[$position])) {
             return;
         }
 
@@ -74,23 +102,18 @@ class Area extends Component {
     }
 
     public function render(): View {
-        $sections = Section::query()
-            ->whereIn('id', $this->sectionIds)
-            ->get()
-            ->keyBy('id');
+        $currentGraphItem =
+            $this->graphItems[$this->position] ?? null;
 
-        $orderedSections = collect($this->sectionIds)
-            ->map(
-                fn(int $sectionId) => $sections->get($sectionId),
+        $currentSection = $currentGraphItem
+            ? Section::find(
+                $currentGraphItem['section_id'],
             )
-            ->filter()
-            ->values();
+            : null;
 
         return view('livewire.class-graphs.area', [
-            'sections' => $orderedSections,
-            'currentSection' => $orderedSections->get(
-                $this->position,
-            ),
+            'currentSection' => $currentSection,
+            'currentGraphItem' => $currentGraphItem,
         ]);
     }
 }

@@ -2,12 +2,16 @@
 
 namespace App\Services\Results;
 
+use App\Helpers\Tests\ProblemiSuperioriProblemGruppoHelper;
 use App\Helpers\Tests\ScrivereSemplificatoMappaHelper;
 use App\Models\Activities\Section;
 use App\Models\Activities\Test;
 use App\Models\Results\User\TestResult;
 use App\Models\User\Student;
+use App\Support\Graphs\SectionGraphDefinition;
+use App\Support\Graphs\GraphSections;
 use App\Support\SectionResultDefinitions;
+use Illuminate\Support\Collection;
 use RuntimeException;
 
 class StudentSectionResultCalculator {
@@ -54,9 +58,15 @@ class StudentSectionResultCalculator {
         9,
     ];
 
+    private const RUOTA_SECTION_ID = 27;
+
     private const SCRIVERE_SEMPLIFICATO_SECTION_ID = 34;
 
     private const SCRIVERE_SEMPLIFICATO_TEST_ID = 62;
+
+    private const PROBLEMI_GRUPPO_SECTION_ID = 5;
+
+    private const PROBLEMI_GRUPPO_TEST_ID = 218;
 
     public function __construct(
         private StudentTestResultCalculator $studentTestResults,
@@ -334,38 +344,140 @@ class StudentSectionResultCalculator {
         );
     }
 
-    private function calculateFullSectionResults(
-        Section $section,
+    public function detailedResultForGraph(
+        SectionGraphDefinition $graph,
         Student $student,
-    ): array {
-        $skipTestIds =
-            SectionResultDefinitions::skippedTestIds($section->id);
+    ): ?array {
+        if (
+            $graph->section->id
+            === self::PROBLEMI_GRUPPO_SECTION_ID
+            && $graph->key
+            === GraphSections::PROBLEMI_GRUPPO_GRAPH_KEY
+        ) {
+            return $this->problemiGruppoResult(
+                student: $student,
+            );
+        }
 
-        $tests = Test::query()
-            ->where('sectionId', $section->id)
-            ->orderBy('step')
-            ->get();
+        if (
+            in_array(
+                $graph->section->id,
+                [
+                    self::RUOTA_SECTION_ID,
+                    self::SCRIVERE_SEMPLIFICATO_SECTION_ID,
+                ],
+                true,
+            )
+        ) {
+            return $this->detailedResult(
+                section: $graph->section,
+                student: $student,
+            );
+        }
 
+        if ($graph->testIds === null) {
+            return $this->detailedResult(
+                section: $graph->section,
+                student: $student,
+            );
+        }
+
+        return $this->detailedResultForTestIds(
+            testIds: $graph->testIds,
+            student: $student,
+        );
+    }
+
+    /**
+     * @param array<int> $testIds
+     */
+    private function detailedResultForTestIds(
+        array $testIds,
+        Student $student,
+    ): ?array {
         $results = [];
 
-        foreach ($tests as $test) {
+        foreach ($testIds as $testId) {
             if (
-                in_array(
-                    $test->id,
-                    $skipTestIds,
-                    true,
+                !$this->studentTestResults->isCompleted(
+                    testId: $testId,
+                    student: $student,
                 )
             ) {
                 continue;
             }
 
-            if ($test->template === 'survey-results') {
+            $testResult =
+                $this->studentTestResults->detailedResult(
+                    testId: $testId,
+                    student: $student,
+                );
+
+            if ($testResult === null) {
                 continue;
             }
 
+            $test = Test::find($testId);
+
+            if (is_numeric($testResult)) {
+                $results[] = [
+                    'name' => $test?->title
+                        ?? "Test {$testId}",
+                    'percentage' => (float) $testResult,
+                ];
+
+                continue;
+            }
+
+            foreach ($testResult as $name => $value) {
+                $results[] = [
+                    'name' => is_string($name)
+                        ? $name
+                        : ($test?->title
+                            ?? "Test {$testId}"),
+
+                    'percentage' => (float) $value,
+                ];
+            }
+        }
+
+        return $results === []
+            ? null
+            : $results;
+    }
+
+    public function resultForGraph(
+        SectionGraphDefinition $graph,
+        Student $student,
+    ): string|int|float|null {
+        if ($graph->testIds === null) {
+            return $this->result(
+                section: $graph->section,
+                student: $student,
+            );
+        }
+
+        return $this->averageResultForTestIds(
+            testIds: $graph->testIds,
+            student: $student,
+        );
+    }
+
+    /**
+     * Calculate the average percentage for a specific set of tests.
+     *
+     * @param array<int> $testIds
+     */
+    private function averageResultForTestIds(
+        array $testIds,
+        Student $student,
+    ): ?string {
+        $values = [];
+
+        foreach ($testIds as $testId) {
             if (
                 !$this->studentTestResults->isCompleted(
-                    testId: $test->id,
+                    testId: $testId,
                     student: $student,
                 )
             ) {
@@ -373,7 +485,7 @@ class StudentSectionResultCalculator {
             }
 
             $result = $this->studentTestResults->result(
-                testId: $test->id,
+                testId: $testId,
                 student: $student,
             );
 
@@ -381,18 +493,46 @@ class StudentSectionResultCalculator {
                 continue;
             }
 
-            $results[] = [
-                'test' => $test->title,
-                'percentage' => (int) rtrim(
-                    (string) $result,
-                    '%',
-                ),
-            ];
+            $percentage = (float) rtrim(
+                (string) $result,
+                '%',
+            );
+
+            $values[] = $percentage;
         }
 
-        return $results;
+        if ($values === []) {
+            return null;
+        }
+
+        return round(
+            array_sum($values) / count($values),
+        ) . '%';
     }
 
+    public function preloadResultsForGraph(
+        SectionGraphDefinition $graph,
+        iterable $students,
+    ): void {
+        if ($graph->testIds === null) {
+            $this->preloadResults(
+                section: $graph->section,
+                students: $students,
+            );
+
+            return;
+        }
+
+        $expandedTestIds =
+            $this->studentTestResults->expandRequiredTestIds(
+                $graph->testIds,
+            );
+
+        $this->studentTestResults->preloadCompletedResults(
+            students: $students,
+            testIds: $expandedTestIds,
+        );
+    }
     private function attentionResult(
         Student $student,
     ): ?string {
@@ -543,5 +683,49 @@ class StudentSectionResultCalculator {
         return (int) round(
             ($value - 1) / 5 * 100,
         );
+    }
+
+    /**
+     * @return array<int, array{
+     *     name: string,
+     *     percentage: int|float
+     * }>|null
+     */
+    private function problemiGruppoResult(
+        Student $student,
+    ): ?array {
+        if (
+            !$this->studentTestResults->isCompleted(
+                testId: self::PROBLEMI_GRUPPO_TEST_ID,
+                student: $student,
+            )
+        ) {
+            return null;
+        }
+
+        $test = Test::findOrFail(
+            self::PROBLEMI_GRUPPO_TEST_ID,
+        );
+
+        $results =
+            ProblemiSuperioriProblemGruppoHelper::results(
+                test: $test,
+                user: $student,
+            );
+
+        if ($results->isEmpty()) {
+            return null;
+        }
+
+        return $results
+            ->map(
+                static fn(Collection $result): array => [
+                    'name' => (string) $result->get('name'),
+                    'percentage' =>
+                    (float) $result->get('percentage'),
+                ],
+            )
+            ->values()
+            ->all();
     }
 }

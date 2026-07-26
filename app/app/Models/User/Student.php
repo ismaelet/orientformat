@@ -251,6 +251,7 @@ class Student extends Model {
         return $this->test_results
             ->whereIn('testId', $section->tests->pluck('id'))
             ->where('completed', true)
+            ->groupBy('testId')
             ->count();
     }
 

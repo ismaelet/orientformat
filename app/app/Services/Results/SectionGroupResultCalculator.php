@@ -2,12 +2,14 @@
 
 namespace App\Services\Results;
 
+use App\Helpers\Tests\ProblemiSuperioriProblemGruppoHelper;
 use App\Helpers\Tests\RuotaHelper;
 use App\Models\Activities\Section;
 use App\Models\Activities\Test;
 use App\Models\Schools\SchoolClass;
 use App\Models\User\Student;
-use App\Support\GraphSections;
+use App\Support\Graphs\SectionGraphDefinition;
+use App\Support\Graphs\GraphSections;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -23,14 +25,26 @@ class SectionGroupResultCalculator {
      */
     public function forSchoolClass(
         Section $section,
-        SchoolClass $class,
+        SchoolClass $schoolClass,
     ): array {
-        $students = Student::query()
-            ->where('schoolClassId', $class->id)
-            ->get();
+        return $this->forSchoolClassGraph(
+            graph: GraphSections::graphDefinitionForSection(
+                $section,
+            ),
+            schoolClass: $schoolClass,
+        );
+    }
+
+    public function forSchoolClassGraph(
+        SectionGraphDefinition $graph,
+        SchoolClass $schoolClass,
+    ): array {
+        $students = $this->studentsForSchoolClass(
+            $schoolClass,
+        );
 
         return $this->calculate(
-            section: $section,
+            graph: $graph,
             students: $students,
         );
     }
@@ -41,16 +55,42 @@ class SectionGroupResultCalculator {
     public function forPlatform(
         Section $section,
     ): array {
-        return match (GraphSections::typeForSection($section->id)) {
+        return $this->forPlatformGraph(
+            GraphSections::graphDefinitionForSection(
+                $section,
+            ),
+        );
+    }
+
+    private function studentsForSchoolClass(
+        SchoolClass $schoolClass,
+    ): Collection {
+        return $schoolClass
+            ->students()
+            ->get();
+    }
+
+    public function forPlatformGraph(
+        SectionGraphDefinition $graph,
+    ): array {
+        return match ($graph->type) {
             GraphSections::TYPE_NAMED_PERCENTAGE,
             GraphSections::TYPE_FIXED_SCORE =>
             $this->calculatePlatformNamedPercentages(
-                section: $section,
+                graph: $graph,
             ),
 
             GraphSections::TYPE_TIER =>
             $this->calculatePlatformTierResults(
-                section: $section,
+                graph: $graph,
+            ),
+
+            default => throw new \LogicException(
+                sprintf(
+                    'Unsupported graph type [%s] for section [%d].',
+                    $graph->type,
+                    $graph->section->id,
+                ),
             ),
         };
     }
@@ -59,19 +99,19 @@ class SectionGroupResultCalculator {
      * Calculate the aggregated result for the given students
      */
     private function calculatePlatformNamedPercentages(
-        Section $section,
+        SectionGraphDefinition $graph,
     ): array {
         $values = $this->initialNamedPercentageValues(
-            section: $section,
+            graph: $graph,
         );
 
         $count = 0;
 
-        $this->platformStudentsQuery($section)
+        $this->platformStudentsQuery($graph->section)
             ->chunkById(
                 500,
                 function (Collection $students) use (
-                    $section,
+                    $graph,
                     &$values,
                     &$count,
                 ): void {
@@ -79,7 +119,7 @@ class SectionGroupResultCalculator {
                         ->clearPreloadedResults();
 
                     $this->accumulateNamedPercentages(
-                        section: $section,
+                        graph: $graph,
                         students: $students,
                         values: $values,
                         count: $count,
@@ -113,21 +153,29 @@ class SectionGroupResultCalculator {
      * Calculate the aggregated result for the given students.
      */
     private function calculate(
-        Section $section,
+        SectionGraphDefinition $graph,
         Collection $students,
     ): array {
-        return match (GraphSections::typeForSection($section->id)) {
+        return match ($graph->type) {
             GraphSections::TYPE_NAMED_PERCENTAGE,
             GraphSections::TYPE_FIXED_SCORE =>
             $this->calculateNamedPercentages(
-                section: $section,
+                graph: $graph,
                 students: $students,
             ),
 
             GraphSections::TYPE_TIER =>
             $this->calculateTierResults(
-                section: $section,
+                graph: $graph,
                 students: $students,
+            ),
+
+            default => throw new \LogicException(
+                sprintf(
+                    'Unsupported graph type [%s] for section [%d].',
+                    $graph->type,
+                    $graph->section->id,
+                ),
             ),
         };
     }
@@ -139,41 +187,63 @@ class SectionGroupResultCalculator {
      * including emotions whose aggregated value is zero.
      */
     private function initialNamedPercentageValues(
-        Section $section,
+        SectionGraphDefinition $graph,
     ): array {
-        if ($section->id !== 27) {
-            return [];
+        if (
+            $graph->key
+            === GraphSections::PROBLEMI_GRUPPO_GRAPH_KEY
+        ) {
+            return array_fill_keys(
+                array_values(
+                    ProblemiSuperioriProblemGruppoHelper::roles(),
+                ),
+                0,
+            );
         }
 
-        $test = Test::findOrFail(116);
+        if ($graph->section->id === 27) {
+            $test = Test::findOrFail(116);
 
-        return array_fill_keys(
-            array_map(
-                fn($emotion) => ucfirst($emotion),
+            return array_fill_keys(
                 RuotaHelper::emotions($test),
-            ),
-            0,
-        );
+                0,
+            );
+        }
+
+        return [];
     }
 
     /**
      * Add students to a named-percentage aggregation.
      */
     private function accumulateNamedPercentages(
-        Section $section,
+        SectionGraphDefinition $graph,
         Collection $students,
         array &$values,
         int &$count,
     ): void {
-        $this->studentSectionResults->preloadResults(
-            section: $section,
+        $this->studentSectionResults->preloadResultsForGraph(
+            graph: $graph,
             students: $students,
         );
 
+        if (
+            $graph->key
+            === GraphSections::PROBLEMI_GRUPPO_GRAPH_KEY
+            && $graph->testIds !== null
+        ) {
+            $students->load([
+                'test_results' => static fn($query) =>
+                $query
+                    ->whereIn('testId', $graph->testIds)
+                    ->where('completed', true),
+            ]);
+        }
+
         foreach ($students as $student) {
             $studentResult = $this->studentSectionResults
-                ->detailedResult(
-                    section: $section,
+                ->detailedResultForGraph(
+                    graph: $graph,
                     student: $student,
                 );
 
@@ -223,22 +293,23 @@ class SectionGroupResultCalculator {
      * Add students to a tier aggregation
      */
     private function accumulateTierResults(
-        Section $section,
+        SectionGraphDefinition $graph,
         Collection $students,
         array &$tierCounts,
         int &$count,
         float &$percentageTotal,
     ): void {
-        $this->studentSectionResults->preloadResults(
-            section: $section,
+        $this->studentSectionResults->preloadResultsForGraph(
+            graph: $graph,
             students: $students,
         );
 
         foreach ($students as $student) {
-            $result = $this->studentSectionResults->result(
-                section: $section,
-                student: $student,
-            );
+            $result = $this->studentSectionResults
+                ->resultForGraph(
+                    graph: $graph,
+                    student: $student,
+                );
 
             if (!$result) {
                 continue;
@@ -316,17 +387,17 @@ class SectionGroupResultCalculator {
      * Calculate average named percentages
      */
     private function calculateNamedPercentages(
-        Section $section,
+        SectionGraphDefinition $graph,
         Collection $students,
     ): array {
         $values = $this->initialNamedPercentageValues(
-            section: $section,
+            graph: $graph,
         );
 
         $count = 0;
 
         $this->accumulateNamedPercentages(
-            section: $section,
+            graph: $graph,
             students: $students,
             values: $values,
             count: $count,
@@ -342,17 +413,17 @@ class SectionGroupResultCalculator {
      * Calculate the aggregated result for the given students
      */
     private function calculatePlatformTierResults(
-        Section $section,
+        SectionGraphDefinition $graph,
     ): array {
         $tierCounts = $this->emptyTierCounts();
         $count = 0;
         $percentageTotal = 0.0;
 
-        $this->platformStudentsQuery($section)
+        $this->platformStudentsQuery($graph->section)
             ->chunkById(
                 500,
                 function (Collection $students) use (
-                    $section,
+                    $graph,
                     &$tierCounts,
                     &$count,
                     &$percentageTotal,
@@ -361,7 +432,7 @@ class SectionGroupResultCalculator {
                         ->clearPreloadedResults();
 
                     $this->accumulateTierResults(
-                        section: $section,
+                        graph: $graph,
                         students: $students,
                         tierCounts: $tierCounts,
                         count: $count,
@@ -382,7 +453,7 @@ class SectionGroupResultCalculator {
      * Calculate tier percentages
      */
     private function calculateTierResults(
-        Section $section,
+        SectionGraphDefinition $graph,
         Collection $students,
     ): array {
         $tierCounts = $this->emptyTierCounts();
@@ -390,7 +461,7 @@ class SectionGroupResultCalculator {
         $percentageTotal = 0.0;
 
         $this->accumulateTierResults(
-            section: $section,
+            graph: $graph,
             students: $students,
             tierCounts: $tierCounts,
             count: $count,

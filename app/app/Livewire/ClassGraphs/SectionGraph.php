@@ -5,9 +5,9 @@ namespace App\Livewire\ClassGraphs;
 use App\Models\Activities\Section;
 use App\Models\Schools\SchoolClass;
 use App\Services\Graphs\SectionGraphData;
-use App\Services\Results\PlatformSectionResultProvider;
 use App\Services\Results\ClassSectionResultProvider;
-use App\Services\Results\SectionGroupResultCalculator;
+use App\Services\Results\PlatformSectionResultProvider;
+use App\Support\Graphs\GraphSections;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Lazy;
 use Livewire\Attributes\Locked;
@@ -19,45 +19,71 @@ class SectionGraph extends Component {
     public int $sectionId;
 
     #[Locked]
+    public string $graphKey;
+
+    #[Locked]
     public int $schoolClassId;
+
+    #[Locked]
+    public int $areaId;
+
+    #[Locked]
+    public string $sectionName;
+
+    #[Locked]
+    public int $iconSectionId;
 
     public ?array $graph = null;
 
     public function mount(
         int $sectionId,
         int $schoolClassId,
+        int $areaId,
+        string $graphKey,
         ClassSectionResultProvider $schoolClassResultProvider,
         PlatformSectionResultProvider $platformResultProvider,
         SectionGraphData $graphData,
     ): void {
-
         $this->sectionId = $sectionId;
         $this->schoolClassId = $schoolClassId;
+        $this->areaId = $areaId;
+        $this->graphKey = $graphKey;
 
-        $section = Section::findOrFail(
-            $sectionId,
-        );
+        $section = Section::findOrFail($sectionId);
 
-        $class = SchoolClass::findOrFail(
+        $graphDefinition =
+            GraphSections::graphDefinitionForSection(
+                section: $section,
+                graphKey: $graphKey,
+            );
+
+        $this->sectionName =
+            $graphDefinition->displayTitle();
+
+        $this->iconSectionId =
+            $section->effectiveMainSectionId();
+
+        $schoolClass = SchoolClass::findOrFail(
             $schoolClassId,
         );
 
         $schoolClassResult =
-            $schoolClassResultProvider->get(
-                section: $section,
-                class: $class,
+            $schoolClassResultProvider->getForGraph(
+                graph: $graphDefinition,
+                schoolClass: $schoolClass,
             );
 
         $platformResult =
-            $platformResultProvider->get(
-                $section,
+            $platformResultProvider->getForGraph(
+                graph: $graphDefinition,
             );
 
-        $this->graph = $graphData->buildComparison(
-            section: $section,
-            schoolClassResult: $schoolClassResult,
-            platformResult: $platformResult,
-        );
+        $this->graph =
+            $graphData->buildComparisonForGraph(
+                graph: $graphDefinition,
+                schoolClassResult: $schoolClassResult,
+                platformResult: $platformResult,
+            );
     }
 
     public function render(): View {

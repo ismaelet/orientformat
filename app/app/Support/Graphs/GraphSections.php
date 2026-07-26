@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Support;
+namespace App\Support\Graphs;
 
+use App\Models\Activities\Section;
+use App\Support\Graphs\SectionGraphDefinition;
 use RuntimeException;
 
 final class GraphSections {
@@ -15,6 +17,8 @@ final class GraphSections {
     public const TYPE_TIER = 'tier';
 
     public const TYPE_FIXED_SCORE = 'fixed_score';
+
+    public const DEFAULT_GRAPH_KEY = 'default';
 
     public const DEFAULT_TIER_DESCRIPTION =
     'Qui puoi vedere come si distribuiscono i risultati della classe in questa sezione, in base al livello raggiunto dagli studenti: basso, medio, alto e così via. Se, ad esempio, la colonna “alto” è più alta delle altre, significa che la maggior parte degli studenti ha ottenuto un buon punteggio in questa sezione. Passa il mouse sopra le colonne per vedere il numero di studenti in ciascun livello.';
@@ -35,6 +39,8 @@ final class GraphSections {
     'Studenti della classe in questa fascia';
 
     public const DEFAULT_CONDENSED_LABEL = 'Risultato medio:';
+
+    public const PROBLEMI_GRUPPO_GRAPH_KEY = 'problemi-gruppo';
 
     /**
      * Graph section IDs grouped by aggregation type.
@@ -108,11 +114,12 @@ final class GraphSections {
         ],
         6 => [
             'condensed_label' =>
-            'Principalmente attribuiscono successi e fallimenti a:',
+            'Stile attributivo più marcato nella classe:',
+            'description' => "Qui puoi vedere a chi o cosa mediamente gli studenti della classe attribuiscono i propri successi e insuccessi."
         ],
         7 => [
             'condensed_label' =>
-            'Area di interesse prevalente:',
+            'Area che suscita più interesse nella classe:',
         ],
         8 => [
             'condensed_label' =>
@@ -228,6 +235,56 @@ final class GraphSections {
         ],
     ];
 
+    private const GRAPHS = [
+        5 => [
+            [
+                'key' => self::DEFAULT_GRAPH_KEY,
+                'type' => self::TYPE_TIER,
+                'test_ids' => null,
+            ],
+            [
+                'key' => self::PROBLEMI_GRUPPO_GRAPH_KEY,
+                'type' => self::TYPE_NAMED_PERCENTAGE,
+                'test_ids' => [218],
+
+                'title' => 'Risolvere problemi in gruppo',
+
+                'description' =>
+                'Qui puoi vedere quali ruoli sono più o meno adottati dagli studenti quando si trovano ad affrontare problemi in gruppo.',
+
+                'school_class_dataset_label' =>
+                'Prevalenza del ruolo nella classe',
+
+                'platform_dataset_label' =>
+                'Prevalenza del ruolo nella piattaforma',
+
+                'condensed_type' => self::CONDENSED_MAX,
+
+                'condensed_label' =>
+                'Ruolo in cui si identificano più studenti della classe:',
+
+                'condensed_plural_label' =>
+                'Ruoli in cui si identificano più studenti della classe:',
+            ],
+        ],
+
+        27 => [
+            [
+                'key' => 'emotions',
+                'type' => self::TYPE_NAMED_PERCENTAGE,
+                'test_ids' => [116],
+            ],
+        ],
+
+        34 => [
+            [
+                'key' => 'scrivere-semplificato',
+                'type' => self::TYPE_FIXED_SCORE,
+                'test_ids' => [62],
+            ],
+        ],
+    ];
+
     /**
      * Return all supported graph section IDs.
      *
@@ -251,6 +308,98 @@ final class GraphSections {
             ?? throw new RuntimeException(
                 "Unsupported graph aggregation type [{$type}].",
             );
+    }
+
+    /**
+     * Return all graphs for a section ID
+     */
+    public static function graphsForSection(
+        int $sectionId,
+    ): array {
+        return self::GRAPHS[$sectionId] ?? [
+            [
+                'key' => self::DEFAULT_GRAPH_KEY,
+                'type' => self::typeForSection(
+                    $sectionId,
+                ),
+                'test_ids' => null,
+            ],
+        ];
+    }
+
+    /**
+     * Return a specific graph for a section ID and graph key
+     */
+    public static function graphForSection(
+        int $sectionId,
+        ?string $graphKey = null,
+    ): array {
+        $graphs = self::graphsForSection(
+            $sectionId,
+        );
+
+        if ($graphKey === null) {
+            return $graphs[0];
+        }
+
+        foreach ($graphs as $graph) {
+            if ($graph['key'] === $graphKey) {
+                return $graph;
+            }
+        }
+
+        throw new \InvalidArgumentException(
+            sprintf(
+                'Graph [%s] is not defined for section [%d].',
+                $graphKey,
+                $sectionId,
+            ),
+        );
+    }
+
+    /**
+     * Return all graph definitions for a section
+     */
+    public static function graphDefinitionsForSection(
+        Section $section,
+    ): array {
+        return array_map(
+            static fn(array $config): SectionGraphDefinition =>
+            SectionGraphDefinition::fromArray(
+                section: $section,
+                config: $config,
+            ),
+            self::graphsForSection($section->id),
+        );
+    }
+
+    /**
+     * Return a specific graph definition for a section and graph key
+     */
+    public static function graphDefinitionForSection(
+        Section $section,
+        ?string $graphKey = null,
+    ): SectionGraphDefinition {
+        $definitions =
+            self::graphDefinitionsForSection($section);
+
+        if ($graphKey === null) {
+            return $definitions[0];
+        }
+
+        foreach ($definitions as $definition) {
+            if ($definition->key === $graphKey) {
+                return $definition;
+            }
+        }
+
+        throw new \InvalidArgumentException(
+            sprintf(
+                'Graph [%s] is not defined for section [%d].',
+                $graphKey,
+                $section->id,
+            ),
+        );
     }
 
     /**

@@ -4,7 +4,7 @@
 			{{ $areaName }}
 		</h2>
 
-		@if (count($sectionIds) > 1)
+		@if (count($graphItems) > 1)
 			<div class="area_arrows">
 				<button
 					type="button"
@@ -33,32 +33,15 @@
 			wire:target="previous,next,select"
 			class="min-h-[32rem] transition-opacity"
 		>
-			@if ($currentSection)
-				<div class="graph-item section section-color section-color--area-{{ $areaId }}">
-					<div class="dashboard-panel min-h-[32rem]">
-						<h3 class="dashboard-panel__title flex items-center justify-between">
-							<span class="block">
-								{{ $currentSection->name }}
-							</span>
-
-							<div
-								class="gradient-overlady graph-item__icon text-background invisible flex aspect-square w-20 items-center justify-center rounded-full text-4xl md:visible"
-							>
-								<x-dynamic-component
-									:component="'icon-sections.section-' . $currentSection->effectiveMainSectionId()"
-									class="h-1/2 w-1/2"
-								/>
-							</div>
-						</h3>
-
-						<livewire:class-graphs.section-graph
-							:section-id="$currentSection->id"
-							:school-class-id="$schoolClassId"
-							:key="'class-graph-' . $schoolClassId . '-' . $currentSection->id"
-							lazy
-						/>
-					</div>
-				</div>
+			@if ($currentSection && ($currentGraphItem = $graphItems[$position]))
+				<livewire:class-graphs.section-graph
+					:section-id="$currentSection->id"
+					:school-class-id="$schoolClassId"
+					:area-id="$areaId"
+					:graph-key="$currentGraphItem['graph_key']"
+					:key="'class-graph-' . $schoolClassId . '-' . $currentSection->id . '-' . $currentGraphItem['graph_key']"
+					lazy
+				/>
 			@endif
 		</div>
 
@@ -77,9 +60,9 @@
 		</div>
 	</div>
 
-	@if (count($sectionIds) > 1)
+	@if (count($graphItems) > 1)
 		<div class="section-dots">
-			@foreach ($sectionIds as $index => $sectionId)
+			@foreach ($graphItems as $index => $graphItem)
 				<button
 					type="button"
 					@class(['section-dot', 'active' => $position === $index])

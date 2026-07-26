@@ -83,6 +83,8 @@
     var(--theme-dark-s),
     var(--color-background-l)
   );
+  --color-background-400: hsl(240deg 0% 100%);
+  --color-background-500: hsl(240deg 30% 97%);
 
   --color-surface-700: hsl(0deg 0% 70%);
 

@@ -2,11 +2,13 @@
 
 namespace App\Services\Graphs;
 
+use App\Helpers\Tests\ProblemiSuperioriProblemGruppoHelper;
 use App\Helpers\Tests\RuotaHelper;
 use App\Helpers\Tests\ScrivereSemplificatoMappaHelper;
 use App\Models\Activities\Section;
 use App\Models\Activities\Test;
-use App\Support\GraphSections;
+use App\Support\Graphs\SectionGraphDefinition;
+use App\Support\Graphs\GraphSections;
 
 class SectionGraphData {
 
@@ -21,14 +23,28 @@ class SectionGraphData {
         Section $section,
         array $result,
     ): ?array {
+        return $this->buildForGraph(
+            graph: GraphSections::graphDefinitionForSection(
+                $section,
+            ),
+            result: $result,
+        );
+    }
+
+    public function buildForGraph(
+        SectionGraphDefinition $graph,
+        array $result,
+    ): ?array {
+        $section = $graph->section;
+
         $values = $result['values'] ?? [];
 
         if (empty($values)) {
             return null;
         }
 
-        $labels = $this->labelsForSection(
-            section: $section,
+        $labels = $this->labelsForGraph(
+            graph: $graph,
             values: $values,
         );
 
@@ -43,13 +59,15 @@ class SectionGraphData {
         );
 
         $condensed = $this->condensedResult(
-            section: $section,
+            graph: $graph,
             rawValues: $alignedValues,
             graphValues: $graphValues,
             studentAverage: $result['average'] ?? null,
         );
 
         return [
+            'key' => $graph->key,
+
             'labels' => $this->displayLabels(
                 section: $section,
                 labels: $labels,
@@ -58,8 +76,8 @@ class SectionGraphData {
             'data' => $graphValues,
 
             'condensed_label' =>
-            GraphSections::condensedLabelForSection(
-                sectionId: $section->id,
+            $this->condensedLabelForGraph(
+                graph: $graph,
                 valueCount: $condensed['count'],
             ),
 
@@ -69,9 +87,10 @@ class SectionGraphData {
             ),
 
             'description' =>
-            GraphSections::descriptionForSection(
-                $section->id,
-            ),
+            $graph->description
+                ?? GraphSections::descriptionForSection(
+                    $section->id,
+                ),
         ];
     }
 
@@ -83,6 +102,22 @@ class SectionGraphData {
         array $schoolClassResult,
         array $platformResult,
     ): ?array {
+        return $this->buildComparisonForGraph(
+            graph: GraphSections::graphDefinitionForSection(
+                $section,
+            ),
+            schoolClassResult: $schoolClassResult,
+            platformResult: $platformResult,
+        );
+    }
+
+    public function buildComparisonForGraph(
+        SectionGraphDefinition $graph,
+        array $schoolClassResult,
+        array $platformResult,
+    ): ?array {
+        $section = $graph->section;
+
         $schoolClassValues =
             $schoolClassResult['values'] ?? [];
 
@@ -93,8 +128,8 @@ class SectionGraphData {
         $platformValues =
             $platformResult['values'] ?? [];
 
-        $labels = $this->labelsForSection(
-            section: $section,
+        $labels = $this->labelsForGraph(
+            graph: $graph,
             values: $schoolClassValues,
         );
 
@@ -121,18 +156,20 @@ class SectionGraphData {
             );
 
         $condensed = $this->condensedResult(
-            section: $section,
+            graph: $graph,
             rawValues: $alignedSchoolClassValues,
             graphValues: $schoolClassGraphValues,
-            studentAverage: $schoolClassResult['average']
-                ?? null,
+            studentAverage: $schoolClassResult['average'] ?? null,
         );
 
-        $graph = [
+        $graphData = [
+            'key' => $graph->key,
+
             'description' =>
-            GraphSections::descriptionForSection(
-                $section->id,
-            ),
+            $graph->description
+                ?? GraphSections::descriptionForSection(
+                    $section->id,
+                ),
 
             'labels' => $this->displayLabels(
                 section: $section,
@@ -140,13 +177,16 @@ class SectionGraphData {
             ),
 
             'datasets' => [
-                'school_class' => $schoolClassGraphValues,
-                'platform' => $platformGraphValues,
+                'school_class' =>
+                $schoolClassGraphValues,
+
+                'platform' =>
+                $platformGraphValues,
             ],
 
             'condensed_label' =>
-            GraphSections::condensedLabelForSection(
-                sectionId: $section->id,
+            $this->condensedLabelForGraph(
+                graph: $graph,
                 valueCount: $condensed['count'],
             ),
 
@@ -157,22 +197,17 @@ class SectionGraphData {
 
             'dataset_labels' => [
                 'school_class' =>
-                GraphSections::classDatasetLabelForSection(
-                    $section->id,
-                ),
+                $graph->schoolClassDatasetLabel
+                    ?? 'Risultato della classe',
 
                 'platform' =>
-                GraphSections::platformDatasetLabelForSection(
-                    $section->id,
-                ),
+                $graph->platformDatasetLabel
+                    ?? 'Risultato della piattaforma',
             ],
         ];
 
-        if (
-            GraphSections::typeForSection($section->id)
-            === GraphSections::TYPE_TIER
-        ) {
-            $graph['tooltip_values'] = [
+        if ($graph->type === GraphSections::TYPE_TIER) {
+            $graphData['tooltip_values'] = [
                 'school_class' => array_values(
                     $this->alignValues(
                         labels: $labels,
@@ -183,7 +218,7 @@ class SectionGraphData {
             ];
         }
 
-        return $graph;
+        return $graphData;
     }
 
     /**
@@ -238,21 +273,20 @@ class SectionGraphData {
 
     /**
      * Generate the condensed graph result and its item count.
-     *
-     * @return array{
-     *     value: string|int|float|null,
-     *     count: int
-     * }
      */
     private function condensedResult(
-        Section $section,
+        SectionGraphDefinition $graph,
         array $rawValues,
         array $graphValues,
         int|float|null $studentAverage,
     ): array {
-        return match (GraphSections::condensedTypeForSection(
-            $section->id,
-        )) {
+        $condensedType =
+            $graph->condensedType
+            ?? GraphSections::condensedTypeForSection(
+                $graph->section->id,
+            );
+
+        return match ($condensedType) {
             GraphSections::CONDENSED_AVERAGE => [
                 'value' => $this->averagePercentage(
                     $graphValues,
@@ -272,6 +306,27 @@ class SectionGraphData {
                 $rawValues,
             ),
         };
+    }
+
+    private function condensedLabelForGraph(
+        SectionGraphDefinition $graph,
+        int $valueCount,
+    ): string {
+        if (
+            $valueCount > 1
+            && $graph->condensedPluralLabel !== null
+        ) {
+            return $graph->condensedPluralLabel;
+        }
+
+        if ($graph->condensedLabel !== null) {
+            return $graph->condensedLabel;
+        }
+
+        return GraphSections::condensedLabelForSection(
+            sectionId: $graph->section->id,
+            valueCount: $valueCount,
+        );
     }
 
     /**
@@ -357,10 +412,21 @@ class SectionGraphData {
     /**
      * Generate the labels for a section, with special handling for the RUOTA section
      */
-    private function labelsForSection(
-        Section $section,
+    private function labelsForGraph(
+        SectionGraphDefinition $graph,
         array $values,
     ): array {
+        $section = $graph->section;
+
+        if (
+            $graph->key
+            === GraphSections::PROBLEMI_GRUPPO_GRAPH_KEY
+        ) {
+            return array_values(
+                ProblemiSuperioriProblemGruppoHelper::roles(),
+            );
+        }
+
         if ($section->id === self::RUOTA_SECTION_ID) {
             return RuotaHelper::emotions(
                 Test::findOrFail(self::RUOTA_TEST_ID),
