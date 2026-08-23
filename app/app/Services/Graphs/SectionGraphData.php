@@ -420,6 +420,16 @@ class SectionGraphData {
 
         if (
             $graph->key
+            === GraphSections::DISTRAIBILITA_IPERATTIVITA_GRAPH_KEY
+        ) {
+            return [
+                'Distraibilità',
+                'Iperattività',
+            ];
+        }
+
+        if (
+            $graph->key
             === GraphSections::PROBLEMI_GRUPPO_GRAPH_KEY
         ) {
             return array_values(

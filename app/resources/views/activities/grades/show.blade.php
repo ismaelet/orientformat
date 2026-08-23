@@ -3,7 +3,7 @@
 		.title {
 			background: -webkit-linear-gradient(180deg, var(--color-primary-400), var(--color-secondary-400));
 			font-size: var(--text-900);
-			-webkit-background-clip: text;
+			-webkit-background-clip: text !important;
 			-webkit-text-fill-color: transparent;
 
 			[data-school-group='highschool'] & {

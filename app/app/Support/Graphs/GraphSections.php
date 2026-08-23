@@ -42,6 +42,8 @@ final class GraphSections {
 
     public const PROBLEMI_GRUPPO_GRAPH_KEY = 'problemi-gruppo';
 
+    public const DISTRAIBILITA_IPERATTIVITA_GRAPH_KEY = 'distraibilita-iperattivita';
+
     /**
      * Graph section IDs grouped by aggregation type.
      *
@@ -249,22 +251,50 @@ final class GraphSections {
 
                 'title' => 'Risolvere problemi in gruppo',
 
-                'description' =>
-                'Qui puoi vedere quali ruoli sono più o meno adottati dagli studenti quando si trovano ad affrontare problemi in gruppo.',
+                'description' => 'Qui puoi vedere quali ruoli sono più o meno adottati dagli studenti quando si trovano ad affrontare problemi in gruppo.',
 
-                'school_class_dataset_label' =>
-                'Prevalenza del ruolo nella classe',
-
-                'platform_dataset_label' =>
-                'Prevalenza del ruolo nella piattaforma',
+                'school_class_dataset_label' => 'Prevalenza del ruolo nella classe',
+                'platform_dataset_label' => 'Prevalenza del ruolo nella piattaforma',
 
                 'condensed_type' => self::CONDENSED_MAX,
+                'condensed_label' => 'Ruolo in cui si identificano più studenti della classe:',
+                'condensed_plural_label' => 'Ruoli in cui si identificano più studenti della classe:',
+            ],
+        ],
 
-                'condensed_label' =>
-                'Ruolo in cui si identificano più studenti della classe:',
+        9 => [
+            [
+                'key' => self::DEFAULT_GRAPH_KEY,
+                'type' => self::TYPE_TIER,
+                'test_ids' => [16],
+                'condensed_label' => 'Risultato medio dell\'autovalutazione:',
+            ],
+            [
+                'key' => self::DISTRAIBILITA_IPERATTIVITA_GRAPH_KEY,
+                'type' => self::TYPE_NAMED_PERCENTAGE,
+                'test_ids' => [17],
 
-                'condensed_plural_label' =>
-                'Ruoli in cui si identificano più studenti della classe:',
+                'description' => 'Qui puoi vedere quali sono i tassi di distraibilità e di iperattività medi nella classe.',
+            ],
+        ],
+
+        17 => [
+            [
+                'key' => self::DEFAULT_GRAPH_KEY,
+                'type' => self::TYPE_NAMED_PERCENTAGE,
+                'description' => 'Qui puoi vedere quali sono i tipi di pensiero più o meno presenti nella classe.',
+                'condensed_label' => 'Tipo di pensiero più presente nella classe:',
+                'condensed_plural_label' => 'Tipi di pensiero più presenti nella classe:',
+            ],
+        ],
+
+        24 => [
+            [
+                'key' => self::DEFAULT_GRAPH_KEY,
+                'type' => self::TYPE_NAMED_PERCENTAGE,
+                'description' => 'Qui puoi vedere quali aree suscitano più o meno interesse nella classe, nell\'ambito della scelta di un percorso di studi futuro.',
+                'condensed_label' => 'Area che risulta mediamente più interessante nella classe:',
+                'condensed_plural_label' => 'Aree che risultano mediamente più interessanti nella classe:',
             ],
         ],
 

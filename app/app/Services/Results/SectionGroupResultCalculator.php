@@ -191,6 +191,16 @@ class SectionGroupResultCalculator {
     ): array {
         if (
             $graph->key
+            === GraphSections::DISTRAIBILITA_IPERATTIVITA_GRAPH_KEY
+        ) {
+            return [
+                'Distraibilità' => 0,
+                'Iperattività' => 0,
+            ];
+        }
+
+        if (
+            $graph->key
             === GraphSections::PROBLEMI_GRUPPO_GRAPH_KEY
         ) {
             return array_fill_keys(
@@ -227,15 +237,14 @@ class SectionGroupResultCalculator {
             students: $students,
         );
 
-        if (
-            $graph->key
-            === GraphSections::PROBLEMI_GRUPPO_GRAPH_KEY
-            && $graph->testIds !== null
-        ) {
+        if ($graph->testIds !== null) {
             $students->load([
                 'test_results' => static fn($query) =>
                 $query
-                    ->whereIn('testId', $graph->testIds)
+                    ->whereIn(
+                        'testId',
+                        $graph->testIds,
+                    )
                     ->where('completed', true),
             ]);
         }

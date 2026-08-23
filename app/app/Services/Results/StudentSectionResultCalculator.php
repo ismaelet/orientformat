@@ -2,6 +2,7 @@
 
 namespace App\Services\Results;
 
+use App\Helpers\Tests\AttenzioneRiepilogoHelper;
 use App\Helpers\Tests\ProblemiSuperioriProblemGruppoHelper;
 use App\Helpers\Tests\ScrivereSemplificatoMappaHelper;
 use App\Models\Activities\Section;
@@ -348,6 +349,16 @@ class StudentSectionResultCalculator {
         SectionGraphDefinition $graph,
         Student $student,
     ): ?array {
+
+        if (
+            $graph->key
+            === GraphSections::DISTRAIBILITA_IPERATTIVITA_GRAPH_KEY
+        ) {
+            return $this->distraibilitaIperattivitaResult(
+                student: $student,
+            );
+        }
+
         if (
             $graph->section->id
             === self::PROBLEMI_GRUPPO_SECTION_ID
@@ -723,6 +734,35 @@ class StudentSectionResultCalculator {
                     'name' => (string) $result->get('name'),
                     'percentage' =>
                     (float) $result->get('percentage'),
+                ],
+            )
+            ->values()
+            ->all();
+    }
+
+    private function distraibilitaIperattivitaResult(
+        Student $student,
+    ): ?array {
+        $test = Test::findOrFail(17);
+
+        $percentages =
+            AttenzioneRiepilogoHelper::percentages(
+                test: $test,
+                student: $student,
+            );
+
+        if ($percentages === null) {
+            return null;
+        }
+
+        return collect($percentages)
+            ->map(
+                static fn(
+                    int|float $percentage,
+                    string $name,
+                ): array => [
+                    'name' => $name,
+                    'percentage' => $percentage,
                 ],
             )
             ->values()
