@@ -371,6 +371,7 @@ class StudentTestResultCalculator {
 
             TestResultDefinitions::DETAIL_EMOTION_WHEEL =>
             $this->emotionWheelDetailedResult(
+                testId: $testId,
                 student: $student,
             ),
         };
@@ -568,19 +569,19 @@ class StudentTestResultCalculator {
     }
 
     private function emotionWheelDetailedResult(
+        int $testId,
         Student $student,
     ): array {
-        $testIds = [
-            102,
-            115,
-            116,
-        ];
+        $mainTest = $this->test($testId);
+
+        $tests = $this->previousTests($mainTest)
+            ->concat([$mainTest]);
 
         $emotions = [];
 
-        foreach ($testIds as $testId) {
+        foreach ($tests as $test) {
             $rawResults = $this->rawResults(
-                testId: $testId,
+                testId: $test->id,
                 student: $student,
             );
 
@@ -589,6 +590,7 @@ class StudentTestResultCalculator {
             }
 
             $emotion = $rawResults[0] ?? null;
+
             $intensity = isset($rawResults[1])
                 ? (int) $rawResults[1]
                 : null;

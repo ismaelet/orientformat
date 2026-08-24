@@ -196,6 +196,14 @@ class Grade extends Model {
      * Get the last middle school grade
      */
     public static function lastMiddleschool(): int {
-        return Grade::MIDDLE_SCHOOL_GRADES[count(Grade::MIDDLE_SCHOOL_GRADES) - 1];
+        return Grade::MIDDLE_SCHOOL_GRADES[array_key_last(Grade::MIDDLE_SCHOOL_GRADES)];
+    }
+
+    public static function lastHighschool(): int {
+        return Grade::HIGH_SCHOOL_GRADES[array_key_last(Grade::HIGH_SCHOOL_GRADES)];
+    }
+
+    public static function lastProfessional(): int {
+        return Grade::PROFESSIONAL_GRADES[array_key_last(Grade::PROFESSIONAL_GRADES)];
     }
 }

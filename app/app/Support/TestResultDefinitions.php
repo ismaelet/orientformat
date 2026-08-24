@@ -58,6 +58,7 @@ final class TestResultDefinitions {
 
         // Merge detailed names
         116 => self::RESULT_MERGED_NAMES,
+        208 => self::RESULT_MERGED_NAMES,
 
         // Return detailed result directly
         101 => self::RESULT_DETAILED,
@@ -99,6 +100,7 @@ final class TestResultDefinitions {
 
         101 => self::DETAIL_LIFE_TREE,
         116 => self::DETAIL_EMOTION_WHEEL,
+        208 => self::DETAIL_EMOTION_WHEEL,
     ];
 
     public const DEPENDENCY_REQUIRED_TEST = 'required_test';
@@ -169,12 +171,11 @@ final class TestResultDefinitions {
 
         // Emotion wheel
         116 => [
-            'type' => self::DEPENDENCY_FIXED_TESTS,
-            'test_ids' => [
-                102,
-                115,
-                116,
-            ],
+            'type' => self::DEPENDENCY_PREVIOUS_SECTION_TESTS,
+        ],
+
+        208 => [
+            'type' => self::DEPENDENCY_PREVIOUS_SECTION_TESTS,
         ],
     ];
 

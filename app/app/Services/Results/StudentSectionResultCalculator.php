@@ -59,7 +59,7 @@ class StudentSectionResultCalculator {
         9,
     ];
 
-    private const RUOTA_SECTION_ID = 27;
+    private const RUOTA_SECTION_IDS = [27, 58];
 
     private const SCRIVERE_SEMPLIFICATO_SECTION_ID = 34;
 
@@ -373,12 +373,19 @@ class StudentSectionResultCalculator {
         if (
             in_array(
                 $graph->section->id,
-                [
-                    self::RUOTA_SECTION_ID,
-                    self::SCRIVERE_SEMPLIFICATO_SECTION_ID,
-                ],
+                self::RUOTA_SECTION_IDS,
                 true,
             )
+        ) {
+            return $this->ruotaResultForGraph(
+                graph: $graph,
+                student: $student,
+            );
+        }
+
+        if (
+            $graph->section->id
+            === self::SCRIVERE_SEMPLIFICATO_SECTION_ID
         ) {
             return $this->detailedResult(
                 section: $graph->section,
@@ -544,6 +551,7 @@ class StudentSectionResultCalculator {
             testIds: $expandedTestIds,
         );
     }
+
     private function attentionResult(
         Student $student,
     ): ?string {
@@ -694,6 +702,33 @@ class StudentSectionResultCalculator {
         return (int) round(
             ($value - 1) / 5 * 100,
         );
+    }
+
+    /**
+     * @return array<int, array{
+     *     name: string,
+     *     percentage: int|float
+     * }>|null
+     */
+    private function ruotaResultForGraph(
+        SectionGraphDefinition $graph,
+        Student $student,
+    ): ?array {
+        $testId = $graph->testIds[0] ?? null;
+
+        if ($testId === null) {
+            return null;
+        }
+
+        $result =
+            $this->studentTestResults->detailedResult(
+                testId: $testId,
+                student: $student,
+            );
+
+        return empty($result)
+            ? null
+            : $result;
     }
 
     /**

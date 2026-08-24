@@ -15,6 +15,11 @@ use Illuminate\Database\Eloquent\Collection;
 
 class SectionGroupResultCalculator {
 
+    private const RUOTA_SECTION_IDS = [
+        27,
+        58,
+    ];
+
     public function __construct(
         private StudentSectionResultCalculator $studentSectionResults,
     ) {
@@ -211,11 +216,23 @@ class SectionGroupResultCalculator {
             );
         }
 
-        if ($graph->section->id === 27) {
-            $test = Test::findOrFail(116);
+        if (
+            in_array(
+                $graph->section->id,
+                self::RUOTA_SECTION_IDS,
+                true,
+            )
+        ) {
+            $testId = $graph->testIds[0] ?? null;
+
+            if ($testId === null) {
+                return [];
+            }
 
             return array_fill_keys(
-                RuotaHelper::emotions($test),
+                RuotaHelper::emotions(
+                    Test::findOrFail($testId),
+                ),
                 0,
             );
         }
@@ -237,14 +254,13 @@ class SectionGroupResultCalculator {
             students: $students,
         );
 
-        if ($graph->testIds !== null) {
+        $testIds = $graph->testIds;
+
+        if ($testIds !== null) {
             $students->load([
                 'test_results' => static fn($query) =>
                 $query
-                    ->whereIn(
-                        'testId',
-                        $graph->testIds,
-                    )
+                    ->whereIn('testId', $testIds)
                     ->where('completed', true),
             ]);
         }

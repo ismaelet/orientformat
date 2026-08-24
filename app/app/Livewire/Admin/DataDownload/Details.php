@@ -2,16 +2,6 @@
 
 namespace App\Livewire\Admin\DataDownload;
 
-use App\Models\Activities\Test;
-use App\Models\Results\User\TestResult;
-use App\Models\Review;
-use App\Models\ReviewQuestion;
-use App\Models\ReviewResult;
-use App\Models\Schools\Grade;
-use App\Models\User\Student;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Collection as SupportCollection;
 use Livewire\Component;
 
 class Details extends Component {

@@ -65,6 +65,7 @@ final class GraphSections {
             37,
             41,
             45,
+            58,
         ],
 
         self::TYPE_TIER => [
@@ -74,13 +75,17 @@ final class GraphSections {
             10,
             11,
             12,
+            13,
             14,
+            15,
             30,
             31,
             32,
             33,
             39,
             40,
+            47,
+            55,
         ],
 
         self::TYPE_FIXED_SCORE => [
@@ -235,6 +240,13 @@ final class GraphSections {
             'condensed_label' =>
             'Interesse prevalente:',
         ],
+        58 => [
+            'condensed_label' => 'Emozione più pronunciata nella classe:',
+            'condensed_label_plural' => 'Emozioni più pronunciate nella classe:',
+            'description' => 'Qui sono rappresentate le emozioni più o meno sentite dagli alunni della classe.',
+            'class_dataset_label' => 'Intensità dell’emozione nella classe',
+            'platform_dataset_label' => 'Intensità media dell’emozione sulla piattaforma',
+        ],
     ];
 
     private const GRAPHS = [
@@ -311,6 +323,31 @@ final class GraphSections {
                 'key' => 'scrivere-semplificato',
                 'type' => self::TYPE_FIXED_SCORE,
                 'test_ids' => [62],
+            ],
+        ],
+
+        58 => [
+            [
+                'key' => 'emotions',
+                'type' => self::TYPE_NAMED_PERCENTAGE,
+                'test_ids' => [208],
+            ],
+            [
+                'key' => 'percentage',
+                'type' => self::TYPE_TIER,
+                'test_ids' => [205],
+
+                'title' => 'Dipingere le emozioni',
+                'description' => 'Qui puoi vedere i risultati medi della classe nell\'attività “Dipingere le emozioni”, che misura la capacità di riconoscere le emozioni in base alle espressioni facciali dei pesonaggi dipinti da Caravaggio.',
+
+                'condensed_type' =>
+                self::CONDENSED_STUDENT_AVERAGE,
+
+                'condensed_label' =>
+                'Risultato medio della classe:',
+
+                'school_class_dataset_label' =>
+                self::DEFAULT_TIER_CLASS_DATASET_LABEL,
             ],
         ],
     ];

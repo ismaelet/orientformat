@@ -3,9 +3,6 @@
 namespace App\Livewire\Admin\DataDownload;
 
 use App\Models\Schools\School;
-use App\Models\Schools\SchoolClass;
-use App\Models\User\Student;
-use Illuminate\Support\Carbon;
 use Livewire\Component;
 
 class Schools extends Component {

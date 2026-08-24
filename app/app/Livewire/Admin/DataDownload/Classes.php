@@ -61,7 +61,7 @@ class Classes extends Component {
 
             $classes = $classes->filter(
                 fn($class) =>
-                $class->grade_level?->is_highschool == $expected
+                $class->grade_level->is_highschool == $expected
             );
         }
 
@@ -73,9 +73,8 @@ class Classes extends Component {
                 'Nome' => $class->name,
                 $this->schoolYear ? 'Anno di corso nel ' . $this->schoolYear : 'Anno di corso' => $gradeLevel?->school_relative_number ?? '.',
                 'Scuola' => $class->school?->name ?? '.',
-                'Scuola superiore' => $class->grade_level?->is_highschool ? 'Sì' : 'No',
+                'Scuola superiore' => $class->grade_level->is_highschool ? 'Sì' : 'No',
                 'Ha terminato il percorso' => $class->ended ? 'Sì' : 'No',
-
                 'Registrata il' => $class->created_at->format('d/m/Y'),
             ];
         }

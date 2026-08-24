@@ -12,8 +12,7 @@ use App\Support\Graphs\GraphSections;
 
 class SectionGraphData {
 
-    private const RUOTA_SECTION_ID = 27;
-    private const RUOTA_TEST_ID = 116;
+    private const RUOTA_SECTION_IDS = [27, 58];
     private const SCRIVERE_SEMPLIFICATO_SECTION_ID = 34;
 
     /**
@@ -437,9 +436,23 @@ class SectionGraphData {
             );
         }
 
-        if ($section->id === self::RUOTA_SECTION_ID) {
+        if (
+            in_array(
+                $section->id,
+                self::RUOTA_SECTION_IDS,
+                true,
+            )
+            && $graph->type
+            === GraphSections::TYPE_NAMED_PERCENTAGE
+        ) {
+            $testId = $graph->testIds[0] ?? null;
+
+            if ($testId === null) {
+                return [];
+            }
+
             return RuotaHelper::emotions(
-                Test::findOrFail(self::RUOTA_TEST_ID),
+                Test::findOrFail($testId),
             );
         }
 
@@ -462,7 +475,7 @@ class SectionGraphData {
         Section $section,
         array $labels,
     ): array {
-        if ($section->id !== self::RUOTA_SECTION_ID) {
+        if (!in_array($section->id, self::RUOTA_SECTION_IDS, true)) {
             return $labels;
         }
 
@@ -481,7 +494,7 @@ class SectionGraphData {
         string|int|float|null $value,
     ): string|int|float|null {
         if (
-            $section->id !== self::RUOTA_SECTION_ID
+            !in_array($section->id, self::RUOTA_SECTION_IDS, true)
             || !is_string($value)
         ) {
             return $value;

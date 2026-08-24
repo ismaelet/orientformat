@@ -51,7 +51,11 @@ class SchoolClass extends Model {
      */
     public function lastGrade(): Attribute {
         return Attribute::make(
-            get: fn() => $this->isMiddleSchool() ? Grade::MIDDLE_SCHOOL_GRADES[count(Grade::MIDDLE_SCHOOL_GRADES) - 1] : ($this->professional ? Grade::PROFESSIONAL_GRADES[count(Grade::PROFESSIONAL_GRADES) - 1] : Grade::HIGH_SCHOOL_GRADES[count(Grade::HIGH_SCHOOL_GRADES) - 1])
+            get: fn() => $this->isMiddleSchool() ?
+                Grade::lastMiddleschool() : (
+                    $this->isProfessional() ?
+                    Grade::lastProfessional() : Grade::lastHighschool()
+                )
         );
     }
 
@@ -256,20 +260,14 @@ class SchoolClass extends Model {
             $code = bin2hex(random_bytes(5));
         }
 
-        // if (SchoolClass::where('schoolId', $data['schoolId'])
-        //     ->where('grade', $data['grade'])
-        //     ->where('letter', $letter)
-        //     ->where('ended', false)
-        //     ->exists()
-        // ) {
-        //     return back()->withErrors(['duplicate' => "Esiste già una classe {$name} in questo istituto."])->withInput();
-        // }
+        $grade = Grade::getByNumber($data['grade'], $data['professional'] ?? false);
 
         $class = SchoolClass::create([
             'name' => $name,
             'schoolId' => $data['schoolId'],
             'referentId' => $referentId,
             'grade' => $data['grade'],
+            'grade_level_id' => $grade->id,
             'startingGrade' => $data['grade'],
             'letter' => $letter,
             'code' => $code,

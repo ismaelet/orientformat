@@ -6,73 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Activities\Section;
 use App\Models\Schools\Grade;
 use App\Models\Schools\SchoolClass;
+use App\Support\Graphs\GraphSections;
 use Illuminate\View\View;
 
 class GraphController extends Controller {
-
-    private const GRAPH_SECTION_IDS = [
-        // Profilo - Stili cognitivi
-        1,
-        28,
-        36,
-        37,
-
-        // Profilo - Resilienza
-        3,
-
-        // Profilo - Autostima
-        4,
-        29,
-        41,
-
-        // Profilo - Risolvere i problemi
-        5,
-        30,
-
-        // Profilo - Stile attributivo
-        6,
-
-        // Profilo - Motivazione
-        7,
-
-        // Profilo - Temperamento
-        8,
-
-        // Profilo - La ruota delle emozioni
-        27,
-
-        // Competenze - Stare attenti
-        9,
-        31,
-
-        // Competenze - Ricordare
-        10,
-        32,
-
-        // Competenze - Ascoltare
-        11,
-        33,
-
-        // Competenze - Parlare
-        12,
-
-        // Competenze - Scrivere
-        14,
-        34,
-
-        // Competenze - Leggere
-        39,
-
-        // Competenze - Imparare
-        40,
-
-        // Saperi - Creatività
-        17,
-
-        // Scegliere - Interessi
-        24,
-        45,
-    ];
 
     /**
      * Display the class graphs landing page.
@@ -93,7 +30,7 @@ class GraphController extends Controller {
                 )
                 ->whereIn(
                     'id',
-                    self::GRAPH_SECTION_IDS,
+                    GraphSections::ids(),
                 )
                 ->orderByDesc('legacy_grades')
                 ->get();
