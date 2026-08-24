@@ -65,10 +65,6 @@ class StudentSectionResultCalculator {
 
     private const SCRIVERE_SEMPLIFICATO_TEST_ID = 62;
 
-    private const PROBLEMI_GRUPPO_SECTION_ID = 5;
-
-    private const PROBLEMI_GRUPPO_TEST_ID = 218;
-
     public function __construct(
         private StudentTestResultCalculator $studentTestResults,
     ) {
@@ -360,12 +356,11 @@ class StudentSectionResultCalculator {
         }
 
         if (
-            $graph->section->id
-            === self::PROBLEMI_GRUPPO_SECTION_ID
-            && $graph->key
+            $graph->key
             === GraphSections::PROBLEMI_GRUPPO_GRAPH_KEY
         ) {
             return $this->problemiGruppoResult(
+                graph: $graph,
                 student: $student,
             );
         }
@@ -738,20 +733,25 @@ class StudentSectionResultCalculator {
      * }>|null
      */
     private function problemiGruppoResult(
+        SectionGraphDefinition $graph,
         Student $student,
     ): ?array {
+        $testId = $graph->testIds[0] ?? null;
+
+        if ($testId === null) {
+            return null;
+        }
+
         if (
             !$this->studentTestResults->isCompleted(
-                testId: self::PROBLEMI_GRUPPO_TEST_ID,
+                testId: $testId,
                 student: $student,
             )
         ) {
             return null;
         }
 
-        $test = Test::findOrFail(
-            self::PROBLEMI_GRUPPO_TEST_ID,
-        );
+        $test = Test::findOrFail($testId);
 
         $results =
             ProblemiSuperioriProblemGruppoHelper::results(

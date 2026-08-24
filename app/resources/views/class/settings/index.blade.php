@@ -14,17 +14,21 @@
 					select_grade();
 				})
 
+				const gradeIdsByRelativeNumber = @json($gradeIdsByRelativeNumber);
+
 				function select_grade() {
-					const validGrades = [1, 2, 3, 4, 5];
+					let relativeGrade = parseInt(
+						schoolClassNameInput.value.replace(/[a-zA-Z]/g, '')
+					);
 
-					let relativeGrade = parseInt(schoolClassNameInput.value.replace(/[a-zA-Z]/g, ''));
+					if (!gradeIdsByRelativeNumber[relativeGrade]) {
+						relativeGrade = 1;
+					}
 
-					relativeGrade = validGrades.includes(relativeGrade) ? relativeGrade : 1;
+					const gradeId = gradeIdsByRelativeNumber[relativeGrade];
 
-					const fullGradeName = relativeGrade + 3;
-
-					gradeInput.value = fullGradeName;
-					visibleGradeInput.value = fullGradeName;
+					gradeInput.value = gradeId;
+					visibleGradeInput.value = gradeId;
 				}
 			})
 		</script>
@@ -73,7 +77,7 @@
 						<x-select
 							name="grade"
 							:value="$class->grade()->absolute_number"
-							:options="[1 => 'Primo anno', 2 => 'Secondo anno', 3 => 'Terzo anno']"
+							:options="$grades"
 							required
 						>
 						</x-select>
@@ -122,7 +126,7 @@
 						<x-select
 							name="visible_grade"
 							:value="$class->grade()->absolute_number"
-							:options="[4 => 'Primo anno', 5 => 'Secondo anno', 6 => 'Terzo anno', 7 => 'Quarto anno', 8 => 'Quinto anno']"
+							:options="$grades"
 							disabled
 						>
 						</x-select>

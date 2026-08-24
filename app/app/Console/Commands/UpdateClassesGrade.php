@@ -13,6 +13,7 @@ class UpdateClassesGrade extends Command {
 
     public function handle(): int {
         $activeClasses = SchoolClass::where('ended', false)
+            ->with('grade_level')
             ->get();
 
         $currentYear = now()->year;
@@ -30,16 +31,19 @@ class UpdateClassesGrade extends Command {
             $realNewGrade = $ended ? $lastGrade : $newGrade;
 
             $currentClassYear = $startingYear + $realNewGrade - $startingGrade;
-            $newName = str_replace($class->grade, $realNewGrade, $class->letter);
 
-            $gradeLevel = Grade::getByNumber($realNewGrade, $class->isProfessional());
+            $oldGradeLevel = $class->grade_level;
+            $newGradeLevel = Grade::getByNumber($realNewGrade, $class->isProfessional());
+
+            $newName = str_replace($oldGradeLevel->school_relative_number, $newGradeLevel->school_relative_number, $class->letter);
 
             $class->update([
                 'grade' => $realNewGrade,
+                'name' => $newName,
                 'letter' => $newName,
                 'year' => $currentClassYear,
                 'ended' => $ended,
-                'grade_level_id' => $gradeLevel->id,
+                'grade_level_id' => $newGradeLevel->id,
             ]);
         }
 

@@ -84,8 +84,12 @@ final class GraphSections {
             33,
             39,
             40,
+            42,
             47,
+            48,
+            53,
             55,
+            57,
         ],
 
         self::TYPE_FIXED_SCORE => [
@@ -323,6 +327,51 @@ final class GraphSections {
                 'key' => 'scrivere-semplificato',
                 'type' => self::TYPE_FIXED_SCORE,
                 'test_ids' => [62],
+            ],
+        ],
+
+        42 => [
+            [
+                'key' => self::DEFAULT_GRAPH_KEY,
+                'type' => self::TYPE_TIER,
+                'test_ids' => [3, 148, 169],
+
+                'condensed_type' =>
+                self::CONDENSED_STUDENT_AVERAGE,
+
+                'condensed_label' =>
+                'Risultato medio della classe:',
+
+                'description' =>
+                self::DEFAULT_TIER_DESCRIPTION,
+
+                'school_class_dataset_label' =>
+                self::DEFAULT_TIER_CLASS_DATASET_LABEL,
+            ],
+            [
+                'key' => self::PROBLEMI_GRUPPO_GRAPH_KEY,
+                'type' => self::TYPE_NAMED_PERCENTAGE,
+                'test_ids' => [214],
+
+                'title' => 'Risolvere problemi in gruppo',
+
+                'description' =>
+                'Qui puoi vedere quali ruoli sono più o meno adottati dagli studenti quando si trovano ad affrontare problemi in gruppo.',
+
+                'school_class_dataset_label' =>
+                'Prevalenza del ruolo nella classe',
+
+                'platform_dataset_label' =>
+                'Prevalenza del ruolo nella piattaforma',
+
+                'condensed_type' =>
+                self::CONDENSED_MAX,
+
+                'condensed_label' =>
+                'Ruolo in cui si identificano più studenti della classe:',
+
+                'condensed_plural_label' =>
+                'Ruoli in cui si identificano più studenti della classe:',
             ],
         ],
 
