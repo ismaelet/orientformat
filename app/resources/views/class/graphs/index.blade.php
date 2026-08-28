@@ -347,7 +347,6 @@ use Legacy\SchoolSystem\Grade;
 			data,
 			section,
 			specific = true,
-			tooltipData = null,
 			customLabel = null
 		) {
 			const colorIncrement = 10
@@ -397,8 +396,6 @@ use Legacy\SchoolSystem\Grade;
 					'school_class' : 'platform',
 
 				data,
-
-				tooltipData,
 
 				backgroundColor: colors,
 				borderColor: borderColors,
@@ -489,14 +486,6 @@ use Legacy\SchoolSystem\Grade;
 			const platformData =
 				graph.datasets.platform ?? []
 
-			const schoolClassTooltipData =
-				Array.isArray(
-					graph.tooltip_values?.school_class
-				) &&
-				graph.tooltip_values.school_class.length > 0 ?
-				graph.tooltip_values.school_class :
-				null
-
 			const schoolClassLabel =
 				graph.dataset_labels?.school_class ??
 				'Risultato della classe'
@@ -510,7 +499,6 @@ use Legacy\SchoolSystem\Grade;
 					schoolClassData,
 					section,
 					true,
-					schoolClassTooltipData,
 					schoolClassLabel
 				),
 
@@ -518,7 +506,6 @@ use Legacy\SchoolSystem\Grade;
 					platformData,
 					section,
 					false,
-					null,
 					platformLabel
 				),
 			]
@@ -548,20 +535,6 @@ use Legacy\SchoolSystem\Grade;
 						tooltip: {
 							callbacks: {
 								label(context) {
-									const tooltipData =
-										context.dataset.tooltipData
-
-									if (Array.isArray(tooltipData)) {
-										const studentCount =
-											tooltipData[context.dataIndex] ?? 0
-
-										return (
-											context.dataset.label +
-											': ' +
-											studentCount
-										)
-									}
-
 									return (
 										context.dataset.label +
 										': ' +

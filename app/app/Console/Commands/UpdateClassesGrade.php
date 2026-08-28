@@ -35,7 +35,38 @@ class UpdateClassesGrade extends Command {
             $oldGradeLevel = $class->grade_level;
             $newGradeLevel = Grade::getByNumber($realNewGrade, $class->isProfessional());
 
-            $newName = str_replace($oldGradeLevel->school_relative_number, $newGradeLevel->school_relative_number, $class->letter);
+            $oldRelativeNumber = $oldGradeLevel->school_relative_number;
+            $newRelativeNumber = $newGradeLevel->school_relative_number;
+
+            // Make sure the new relative grade is numeric
+            if (filter_var($newRelativeNumber, FILTER_VALIDATE_INT) === false) {
+                $this->warn(
+                    "Skipping class {$class->id} ({$class->name}): " .
+                        "invalid school_relative_number '{$newRelativeNumber}' for grade level {$newGradeLevel->id}."
+                );
+
+                continue;
+            }
+
+            // Make sure the old relative grade actually exists in the class letter
+            if (! str_contains($class->name, (string) $oldRelativeNumber)) {
+                if (preg_match('/\d/', $class->name)) {
+                    $this->warn(
+                        "Skipping class {$class->id} ({$class->name}): " .
+                            "old school_relative_number '{$oldRelativeNumber}' was not found."
+                    );
+
+                    continue;
+                }
+
+                $newName = $newRelativeNumber . $class->name;
+            } else {
+                $newName = str_replace(
+                    (string) $oldRelativeNumber,
+                    (string) $newRelativeNumber,
+                    $class->name
+                );
+            }
 
             $class->update([
                 'grade' => $realNewGrade,
@@ -47,6 +78,6 @@ class UpdateClassesGrade extends Command {
             ]);
         }
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

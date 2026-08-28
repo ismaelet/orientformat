@@ -22,37 +22,31 @@ class StudentSectionResultCalculator {
      */
     private const AVERAGE_SECTION_IDS = [
         5,
-        30,
-        38,
-        42,
-
         10,
-        32,
-
         11,
-        33,
-        48,
-
         12,
-        47,
-        50,
-
         13,
-        39,
-
         14,
+        15,
+        30,
+        31,
+        32,
+        33,
         34,
+        38,
+        39,
+        40,
+        42,
+        48,
+        47,
+        49,
+        50,
         51,
         53,
         54,
         55,
-        57,
-
-        15,
-        40,
         56,
-
-        31,
+        57,
     ];
 
     private const ATTENTION_SECTION_IDS = [
@@ -60,10 +54,6 @@ class StudentSectionResultCalculator {
     ];
 
     private const RUOTA_SECTION_IDS = [27, 58];
-
-    private const SCRIVERE_SEMPLIFICATO_SECTION_ID = 34;
-
-    private const SCRIVERE_SEMPLIFICATO_TEST_ID = 62;
 
     public function __construct(
         private StudentTestResultCalculator $studentTestResults,
@@ -198,15 +188,6 @@ class StudentSectionResultCalculator {
     ): ?array {
         if ($section->id === 9) {
             return $this->attentionDetailedResult(
-                student: $student,
-            );
-        }
-
-        if (
-            $section->id
-            === self::SCRIVERE_SEMPLIFICATO_SECTION_ID
-        ) {
-            return $this->scrivereSemplificatoResult(
                 student: $student,
             );
         }
@@ -378,12 +359,9 @@ class StudentSectionResultCalculator {
             );
         }
 
-        if (
-            $graph->section->id
-            === self::SCRIVERE_SEMPLIFICATO_SECTION_ID
-        ) {
-            return $this->detailedResult(
-                section: $graph->section,
+        if ($graph->key === 'scrivere-semplificato') {
+            return $this->scrivereSemplificatoResult(
+                graph: $graph,
                 student: $student,
             );
         }
@@ -633,13 +611,17 @@ class StudentSectionResultCalculator {
      * }>|null
      */
     private function scrivereSemplificatoResult(
+        SectionGraphDefinition $graph,
         Student $student,
     ): ?array {
+        $testId = $graph->testIds[0] ?? null;
+
+        if ($testId === null) {
+            return null;
+        }
+
         $testResult = TestResult::query()
-            ->where(
-                'testId',
-                self::SCRIVERE_SEMPLIFICATO_TEST_ID,
-            )
+            ->where('testId', $testId)
             ->where('studentId', $student->id)
             ->where('completed', true)
             ->first();

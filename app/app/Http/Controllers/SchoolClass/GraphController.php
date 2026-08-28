@@ -20,7 +20,7 @@ class GraphController extends Controller {
     ): View {
         $areas = [];
 
-        foreach ($class->grade()->areas as $doableArea) {
+        foreach ($grade->areas as $doableArea) {
             $sections = Section::query()
                 ->where('areaId', $doableArea->id)
                 ->whereHas(
