@@ -21,7 +21,7 @@ final class GraphSections {
     public const DEFAULT_GRAPH_KEY = 'default';
 
     public const DEFAULT_TIER_DESCRIPTION =
-    'Qui puoi vedere come si distribuiscono i risultati della classe in questa sezione, in base al livello raggiunto dagli studenti: basso, medio, alto e così via. Se, ad esempio, la colonna “alto” è più alta delle altre, significa che la maggior parte degli studenti ha ottenuto un buon punteggio in questa sezione. Passa il mouse sopra le colonne per vedere il numero di studenti in ciascun livello.';
+    'Qui puoi vedere come si distribuiscono i risultati della classe in questa sezione, in base al livello raggiunto dagli studenti: basso, medio, alto e così via. Se, ad esempio, la colonna “alto” è più alta delle altre, significa che la maggior parte degli studenti ha ottenuto un buon punteggio in questa sezione. Passa il mouse sopra le colonne per vedere che percentuale degli studenti della classe è stata collocata nel livello scelto.';
 
     public const CONDENSED_MAX = 'max';
 
@@ -82,13 +82,19 @@ final class GraphSections {
             31,
             32,
             33,
+            38,
             39,
             40,
             42,
             47,
             48,
+            49,
+            50,
+            51,
             53,
+            54,
             55,
+            56,
             57,
         ],
 
@@ -298,7 +304,7 @@ final class GraphSections {
             [
                 'key' => self::DEFAULT_GRAPH_KEY,
                 'type' => self::TYPE_NAMED_PERCENTAGE,
-                'description' => 'Qui puoi vedere quali sono i tipi di pensiero più o meno presenti nella classe.',
+                'description' => 'Qui puoi vedere quali sono i tipi di pensiero e di personalità creativi più o meno presenti nella classe.',
                 'condensed_label' => 'Tipo di pensiero più presente nella classe:',
                 'condensed_plural_label' => 'Tipi di pensiero più presenti nella classe:',
             ],
@@ -327,6 +333,56 @@ final class GraphSections {
                 'key' => 'scrivere-semplificato',
                 'type' => self::TYPE_FIXED_SCORE,
                 'test_ids' => [62],
+            ],
+        ],
+
+        38 => [
+            [
+                'key' => self::DEFAULT_GRAPH_KEY,
+                'type' => self::TYPE_TIER,
+                'test_ids' => [
+                    4,
+                    5,
+                    13,
+                    161,
+                ],
+
+                'condensed_type' =>
+                self::CONDENSED_STUDENT_AVERAGE,
+
+                'condensed_label' =>
+                'Risultato medio della classe:',
+
+                'description' =>
+                self::DEFAULT_TIER_DESCRIPTION,
+
+                'school_class_dataset_label' =>
+                self::DEFAULT_TIER_CLASS_DATASET_LABEL,
+            ],
+            [
+                'key' => self::PROBLEMI_GRUPPO_GRAPH_KEY,
+                'type' => self::TYPE_NAMED_PERCENTAGE,
+                'test_ids' => [216],
+
+                'title' => 'Risolvere problemi in gruppo',
+
+                'description' =>
+                'Qui puoi vedere quali ruoli sono più o meno adottati dagli studenti quando si trovano ad affrontare problemi in gruppo.',
+
+                'school_class_dataset_label' =>
+                'Prevalenza del ruolo nella classe',
+
+                'platform_dataset_label' =>
+                'Prevalenza del ruolo nella piattaforma',
+
+                'condensed_type' =>
+                self::CONDENSED_MAX,
+
+                'condensed_label' =>
+                'Ruolo in cui si identificano più studenti della classe:',
+
+                'condensed_plural_label' =>
+                'Ruoli in cui si identificano più studenti della classe:',
             ],
         ],
 
@@ -372,6 +428,48 @@ final class GraphSections {
 
                 'condensed_plural_label' =>
                 'Ruoli in cui si identificano più studenti della classe:',
+            ],
+        ],
+
+        51 => [
+            [
+                'key' => self::DEFAULT_GRAPH_KEY,
+                'type' => self::TYPE_TIER,
+                'test_ids' => [171],
+
+                'condensed_type' =>
+                self::CONDENSED_STUDENT_AVERAGE,
+
+                'condensed_label' =>
+                'Risultato medio della classe:',
+
+                'description' =>
+                self::DEFAULT_TIER_DESCRIPTION,
+
+                'school_class_dataset_label' =>
+                self::DEFAULT_TIER_CLASS_DATASET_LABEL,
+            ],
+            [
+                'key' => 'scrivere-semplificato',
+                'type' => self::TYPE_FIXED_SCORE,
+                'test_ids' => [167],
+
+                'condensed_type' => self::CONDENSED_MAX,
+
+                'condensed_label' =>
+                'Stile di scrittura più usato nella classe:',
+
+                'condensed_plural_label' =>
+                'Stili di scrittura più usati nella classe:',
+
+                'school_class_dataset_label' =>
+                'Percentuale di uso dello stile nella classe',
+
+                'platform_dataset_label' =>
+                'Percentuale di uso dello stile sulla piattaforma',
+
+                'description' =>
+                'Qui puoi vedere quali stili di scrittura sono mediamente più o meno usati dagli alunni della classe.',
             ],
         ],
 
