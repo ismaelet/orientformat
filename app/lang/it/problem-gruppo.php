@@ -68,60 +68,35 @@ return [
 						chiedi al compagno di identificare i suoi 3–5 criteri di scelta prioritari
 						(es. possibilità di studio all\'estero, vicinanza, focus sulle materie scientifiche, ambiente creativo, prospettive
 						lavorative).
-						Questo riduce l\'ansia da troppe opzioni.
 					</li>
 					<li>
 						<span class="underline">Sintesi delle opzioni</span>:
 						raccogli i dati e le ipotesi generate dall’Esploratore e raggruppale in categorie chiare
 						(es. Percorsi Tecnici, Percorsi Liceali Umanistici, Percorsi Liceali Scientifici/Matematici, Percorsi
 						Professionali).
-						Questo renderà la visione più chiara.
-					</li>
-					<li>
-						<span class="underline">Creazione di una matrice di valutazione</span>:
-						proponi di creare una tabella di confronto (una matrice decisionale) che metta in relazione le opzioni selezionate
-						con i criteri di scelta prioritari del compagno.
 					</li>
 				</ul>
 			</li>
 
 			<li>
-				<h4>Pianifico con cura le varie attività e organizzo tempi e materiali</h4>
-				<p>
-					Trasforma la necessità di “decidere” in una serie di compiti specifici e realistici, definendo chi fa cosa e
-					quando.
-				</p>
+				<h4>Pianifico con cura le varie attività e le organizzo definendo i tempi e i materiali necessari</h4>
 				<ul>
 					<li>
 						<span class="underline">Assegnazione dei compiti</span>:
 						<ul>
 							<li>
-								<strong>All\'Esploratore</strong>: assegna il compito di cercare dati specifici e verificati per le 2–3 opzioni
-								più promettenti emerse dalla matrice
-								(es. contattare ex-studenti, cercare i programmi dettagliati delle materie specifiche).
+								<strong>All\'Esploratore</strong>: assegna il compito di cercare dati specifici e verificati.
 							</li>
 							<li>
-								<strong>Al Critico</strong>: chiedi di preparare una lista di domande “difficili” o contro-intuitive da porre ai
-								professori
-								o durante gli Open Day delle scuole selezionate.
+								<strong>Al Critico</strong>: chiedi di preparare una lista di domande “difficili” o contro-intuitive da porre ai professori.
 							</li>
 							<li>
-								<strong>Al Saggio</strong>: potresti chiedergli di organizzare un momento di riflessione guidata con il compagno
-								sulle sue passioni a lungo termine.
+								<strong>Al Saggio</strong>: potresti chiedergli di organizzare un momento di riflessione guidata con il compagno sulle sue passioni a lungo termine.
 							</li>
 						</ul>
 					</li>
 					<li>
-						<span class="underline">Definizione di tempi e materiali</span>:
-						stabilisci una timeline chiara.
-						<em>Esempio:</em> “Entro la fine della prossima settimana dobbiamo aver visitato almeno due scuole e completato la
-						matrice di confronto.
-						Fissiamo subito gli appuntamenti e vediamo chi può accompagnare il compagno.”
-					</li>
-					<li>
-						<span class="underline">Organizzazione delle visite</span>:
-						pianifica gli Open Day e le visite alle scuole che hanno superato il primo filtro,
-						assicurandoti di avere a disposizione i materiali informativi ufficiali di ogni istituto.
+						<span class="underline">Definizione di tempi e materiali</span>
 					</li>
 				</ul>
 			</li>
@@ -130,25 +105,9 @@ return [
 				<h4>Prevedo gli esiti e mi interrogo sulle conseguenze</h4>
 				<p>
 					Prima di spingere il compagno verso la scelta, il tuo ruolo è di aiutarlo a immaginare realisticamente il suo
-					futuro
-					in ciascuna delle opzioni finali.
+					futuro in ciascuna delle opzioni finali.<br>
+                    In sintesi, l\'Esploratore genera le idee; lo Stratega crea il percorso per passare da quelle idee a una decisione finale informata e ponderata.
 				</p>
-				<ul>
-					<li>
-						<span class="underline">Simulazione degli scenari</span>:
-						per le 2–3 opzioni finali, crea degli scenari “se-allora”.
-						<em>Esempio:</em> “Se scegli il Liceo Scientifico, allora dovrai studiare <span class="italic">[Materia X]</span>
-						che non ami particolarmente,
-						ma avrai la possibilità di accedere a <span class="italic">[Università Y]</span>. Sei disposto a questo
-						compromesso?”
-					</li>
-					<li>
-						<span class="underline">Piano B (mitigazione del rischio)</span>:
-						dato che la decisione è importante, prevedi un “Piano B” o un percorso di adattamento.
-						<em>Esempio:</em> “Se la scelta iniziale si rivelasse insoddisfacente dopo il primo anno,
-						quali sono i percorsi di cambio scuola (o di recupero) più semplici e veloci per non perdere tempo?”
-					</li>
-				</ul>
 			</li>
 		</ol>',
     "example-middle-school-2" => '
@@ -169,25 +128,15 @@ return [
 						<span class="underline">Identificazione degli interessi</span>:
 						inizierai con domande mirate per identificare i veri interessi e le attitudini nascoste del compagno, andando
 						oltre le materie scolastiche tradizionali.
-						<br>
-						<em>Esempio:</em> “Cosa ti annoia e cosa ti accende veramente? C\'è un hobby o un\'attività in cui perdi la
-						cognizione del tempo?”
-						Può essere di aiuto la sezione di <strong>OrientFormat Motivazione e aree di interesse</strong>.
 					</li>
 					<li>
 						<span class="underline">Indagine oltre il noto</span>:
-						non ti limiterai alle scuole più popolari o vicine. Cercherai attivamente indirizzi di studio meno comuni,
-						scuole professionali specifiche o programmi misti (come percorsi che integrano studio e lavoro/alternanza)
-						che potrebbero non essere stati considerati.
-						<br>
-						<em>Esempio:</em> “Oltre al Liceo Classico o all\'Istituto Tecnico, hai mai sentito parlare di Istituto d\'Arte,
-						Liceo Musicale,
-						Istituto Alberghiero o Programmi di scambio specifici?”
+						non ti limiterai alle scuole più popolari o vicine. Cercherai attivamente indirizzi di studio meno comuni o 
+						scuole professionali specifiche.
 					</li>
 					<li>
 						<span class="underline">Prospettive future</span>:
-						cercherai dati aggiornati (come trend di lavoro o nuove professioni) per collegare gli indirizzi scolastici
-						non solo all\'università, ma anche alle realtà emergenti del mondo del lavoro.
+						cercherai dati aggiornati (come trend di lavoro o nuove professioni).
 					</li>
 				</ul>
 			</li>
@@ -196,49 +145,19 @@ return [
 				<h4>Prendo in considerazione diverse ipotesi e guardo da diversi punti di vista</h4>
 				<p>
 					In quanto Esploratore, non ti accontenterai di due o tre opzioni.
-					Il tuo ruolo è di mettere sul tavolo quante più possibilità realistiche possibili (anche quelle che sembrano
+					Il tuo ruolo è di mettere sul tavolo quante più possibilità realistiche (anche quelle che sembrano
 					“strane”),
 					in modo che il gruppo, e lo <strong>Stratega</strong> in particolare, abbia molto materiale su cui lavorare.
 				</p>
-				<ul>
-					<li>
-						<span class="underline">Brainstorming non convenzionale</span>:
-						proporrai scenari che combinano interessi diversi.
-						<br>
-						<em>Esempio:</em> “Potresti frequentare un Istituto Tecnico per avere una preparazione pratica,
-						ma dedicare il tempo libero a un corso di fotografia per sviluppare il tuo lato artistico.
-						Vediamo quali scuole lo permettono.”
-					</li>
-					<li>
-						<span class="underline">Analisi dei pro e contro con approccio laterale</span>:
-						suggerirai di esaminare le scuole non solo per il piano di studi, ma per criteri nuovi
-						(e magari più importanti per il compagno) come la distanza da casa, la possibilità di fare sport,
-						la presenza di laboratori specifici o un ambiente che favorisca la creatività.
-					</li>
-				</ul>
 			</li>
 
 			<li>
 				<h4>Mi accorgo prima degli altri quando c’è un problema</h4>
 				<p>
 					Sfruttando la tua capacità di notare i problemi in anticipo, porrai le domande scomode che potrebbero
-					rivelare la vera causa dell\'indecisione, superando le insoddisfazioni iniziali.
+					rivelare la vera causa dell\'indecisione, superando le insoddisfazioni iniziali.<br>
+                    In sintesi, il tuo intervento è quello di un apripista: fornire i dati, gli indizi e le prospettive necessarie affinché lo Stratega possa pianificare e il Critico possa valutare con cognizione di causa.
 				</p>
-				<ul>
-					<li>
-						<span class="underline">Scavare nell\'indecisione</span>:
-						non darai per scontato che l\'indecisione sia solo per la scuola.
-						Chiederai se ci sono pressioni esterne (famiglia, amici), paure nascoste (fallimento, difficoltà di una materia)
-						o conflitti interiori tra diversi desideri che stanno bloccando la scelta.
-					</li>
-					<li>
-						<span class="underline">Feedback sulle soluzioni note</span>:
-						dopo che il compagno avrà nominato le opzioni che ha già scartato, chiederai:
-						<em>“Quali risultati raggiunti (dalle opzioni scartate) non ti hanno soddisfatto?
-							Cosa, in quelle opzioni, ti annoiava veramente?”</em>
-						Questo fornirà indizi vitali per la ricerca di nuovi dati e soluzioni alternative.
-					</li>
-				</ul>
 			</li>
 		</ol>',
     "example-middle-school-3" => '<p class="text-block">
@@ -253,34 +172,14 @@ return [
 				</p>
 				<ul>
 					<li>
-						<span class="underline">Mi interrogo sull’attendibilità delle fonti</span>:
-						non accetterai informazioni basate sul “sentito dire”.
-						<br>
-						<em>Domande chiave:</em> i dati provengono da siti ufficiali della scuola?
-						Le opinioni sono di studenti recenti o di anni passati? Le statistiche sul successo lavorativo sono aggiornate?
+						<span class="underline">Mi interrogo sull’attendibilità delle fonti</span>.
 					</li>
-					<ul>
-						<li>
-							<em>Intervento esempio</em>:
-							“L’Esploratore ha trovato questa testimonianza entusiasta.
-							Ma è un’opinione isolata o un dato confermato da altre fonti?
-							Controlliamo i tassi di abbandono di quella scuola.”
-						</li>
-					</ul>
 					<li>
 						<span class="underline">Smascherare la retorica</span>:
 						analizzerai il linguaggio usato dalle scuole negli Open Day o nei dépliant per distinguere le promesse
 						(opinioni/possibilità)
 						dai fatti concreti (ciò che è realmente probabile).
 					</li>
-					<ul>
-						<li>
-							<em>Intervento esempio</em>:
-							“La scuola X parla di ‘successo garantito’. Qual è la percentuale reale di studenti che accedono a
-							quell’università?
-							Non fermiamoci allo slogan.”
-						</li>
-					</ul>
 				</ul>
 			</li>
 
@@ -297,27 +196,12 @@ return [
 						carichi di studio eccessivi, materie obbligatorie poco amate, rigidità dell’ambiente scolastico,
 						o cattiva reputazione di alcuni corsi o docenti.
 					</li>
-					<ul>
-						<li>
-							<em>Intervento esempio</em>:
-							“L’opzione Y sembra ottima per le materie che ami, ma richiede 6 ore a settimana di [Materia che non ti piace].
-							Siamo disposti ad accettare quel compromesso? Non affrettiamoci solo perché la parte buona è allettante.”
-						</li>
-					</ul>
 					<li>
 						<span class="underline">Analisi delle conseguenze a lungo termine</span>:
 						ti interrogherai sulle <strong>reali motivazioni</strong> del compagno (che potrebbero essere influenzate da amici
 						o genitori)
 						e sulle conseguenze durature della scelta.
 					</li>
-					<ul>
-						<li>
-							<em>Intervento esempio</em>:
-							“Se scegli la scuola Z solo perché ci va il tuo migliore amico,
-							cosa succede se l’amico cambia idea o se tu scopri che il percorso non ti piace?
-							Stiamo scegliendo per te o per evitare un’ansia temporanea?”
-						</li>
-					</ul>
 				</ul>
 			</li>
 
@@ -328,17 +212,6 @@ return [
 					ma che la decisione finale sia pienamente ponderata e solida.
 				</p>
 				<ul>
-					<li>
-						<span class="underline">Questioni di stress test</span>:
-						proporrai scenari ipotetici negativi per mettere alla prova la solidità della scelta finale.
-					</li>
-					<ul>
-						<li>
-							<em>Intervento esempio</em>:
-							“Immagina di aver scelto la scuola A. A febbraio hai 4 insufficienze: cosa fai?
-							Questa scuola offre un buon supporto per il recupero o ti sentiresti abbandonato?”
-						</li>
-					</ul>
 					<li>
 						<span class="underline">Richiesta di dettagli</span>:
 						se lo Stratega propone un piano, chiederai maggiori informazioni sulla sua fattibilità e sui rischi.
@@ -373,45 +246,17 @@ return [
 					<li>
 						<span class="underline">Riconoscimento della dinamica</span>:
 						devi chiamare un momento di pausa, riconoscendo ad alta voce che c’è qualcosa che non va nel gruppo.
-						<ul>
-							<li>
-								<em>Intervento Esempio:</em> “Fermi tutti. Mi accorgo che la tensione è alta e le frustrazioni sono reciproche.
-								Questo è naturale in un processo decisionale importante, ma non possiamo risolverlo litigando.
-								Mettiamo in pausa la decisione sulla scuola e parliamo del nostro processo.”
-							</li>
-						</ul>
 					</li>
 
 					<li>
 						<span class="underline">Ascolto con attenzione quando qualcuno mi parla di un suo problema</span>:
 						dedica un momento all’ascolto attivo delle parti in conflitto, mettendo a frutto la tua capacità
 						di comprendere le emozioni.
-						<ul>
-							<li>
-								<strong>Verso l’Esploratore e lo Stratega:</strong>
-								“Capisco la vostra frustrazione. Avete investito tempo e creatività nel trovare e strutturare le opzioni,
-								e vedere che vengono subito smontate può scoraggiare. Vi sentite bloccati.”
-							</li>
-							<li>
-								<strong>Verso il Critico:</strong>
-								“Capisco anche la tua necessità. Il tuo ruolo è essenziale: tu non stai distruggendo le idee,
-								stai cercando di proteggere il nostro compagno dal rischio di una scelta affrettata o basata su illusioni.
-								Stai garantendo la qualità del risultato.”
-							</li>
-						</ul>
 					</li>
 
 					<li>
 						<span class="underline">Principio di non-giudizio</span>:
 						applica il tuo principio fondamentale: la ragione e il torto non stanno mai da una sola parte.
-						<ul>
-							<li>
-								<em>Intervento Esempio:</em> “Il Critico non è un ostacolo alla nostra pianificazione, è la nostra rete di
-								sicurezza.
-								Esploratore e Stratega non sono superficiali, sono la nostra forza motrice.
-								Ogni punto di vista è necessario.”
-							</li>
-						</ul>
 					</li>
 				</ul>
 			</li>
@@ -422,36 +267,6 @@ return [
 					Una volta smorzato il conflitto, è necessario riformulare il ruolo del Critico affinché diventi
 					un <strong>alleato</strong> e non un avversario.
 				</p>
-				<ul>
-					<li>
-						<span class="underline">Ridefinire l’insuccesso come opportunità</span>:
-						sfrutta la tua resilienza agli insuccessi.
-						Spiega che le critiche del Critico non sono un fallimento, ma <strong>dati aggiuntivi</strong> che devono essere
-						integrati nel piano dello Stratega e che genereranno nuove ricerche per l’Esploratore.
-						<ul>
-							<li>
-								<em>Intervento Esempio:</em> “Ogni punto debole che il Critico trova non è un fallimento del piano,
-								ma una nuova sfida che ci permette di ripartire da un punto più solido.
-								Il ‘punto debole’ deve diventare un ‘requisito di verifica’ per l’Esploratore.”
-							</li>
-						</ul>
-					</li>
-
-					<li>
-						<span class="underline">Proposta di collaborazione strutturata</span>:
-						suggerisci di istituzionalizzare il momento della critica, trasformandolo da scontro spontaneo
-						a fase strutturata del processo.
-						<ul>
-							<li>
-								<em>Intervento Esempio:</em> “D’ora in poi, quando lo Stratega presenta un progetto o l’Esploratore
-								proponga una nuova ipotesi, il Critico avrà un tempo dedicato (ad esempio 5 minuti) per esporre tutti i punti
-								deboli
-								prima che la proposta venga adottata.
-								La critica deve avvenire <strong>a valle</strong> della proposta, non mentre viene formulata.”
-							</li>
-						</ul>
-					</li>
-				</ul>
 			</li>
 
 			<li>
@@ -470,19 +285,13 @@ return [
 						chiedi al compagno indeciso, che ha osservato la dinamica, di esprimere un parere onesto
 						sull’utilità dei diversi approcci.
 						Questo non serve a decidere, ma a confermare che ogni ruolo ha valore per lui.
-						<ul>
-							<li>
-								<em>Intervento Esempio:</em> “Caro amico, hai sentito il fervore dell’Esploratore,
-								la chiarezza dello Stratega e la cautela del Critico.
-								In questo momento, sentendo i pro e i contro di ognuno,
-								quale tipo di informazione ti è più utile per sentirti meno confuso?
-								La tua risposta è la nostra bussola.”
-							</li>
-						</ul>
 					</li>
 				</ul>
-			</li>
-		</ol>',
+
+                </li>
+            </ol>
+        <p>In questo modo, il Saggio non risolve il conflitto con la saggezza di una soluzione, ma con la saggezza di riconoscere e bilanciare i contributi di tutti.</p>
+        ',
 
     "example-highschool-1" => '
 		<p class="text-block">
@@ -550,15 +359,16 @@ return [
 				<p>Lo Stratega ama elaborare e proporre progetti. L\'intervento non sarebbe una reazione casuale,
 					ma un progetto strutturato e controllato:</p>
 				<ul>
-					<li><span class="underline">Creazione di un diagramma di flusso</span>: svilupperebbe un piano visivo (come
-						un diagramma di Gantt) per monitorare lo stato di ogni attività.</li>
+					<li><span class="underline">Creazione di un diagramma di flusso</span>: svilupperebbe un piano visivo per monitorare lo stato di ogni attività.</li>
 					<li><span class="underline">Monitoraggio e feedback</span>: verificherebbe che le attività siano eseguite con
 						cura rispettando i materiali necessari (come le prove raccolte) e i tempi definiti, intervenendo se
 						un\'attività
 						ritarda o non produce l\'esito previsto.</li>
 				</ul>
 			</li>
-		</ol>',
+		</ol>
+        <p>In sintesi, lo Stratega porta ordine, logica e un approccio <i>step-by-step</i> alla crisi, garantendo che l\'intervento
+non sia emotivo, ma calcolato per massimizzare la sicurezza della vittima e ottenere un risultato definitivo.</p>',
     "example-highschool-2" => "<p class=\"\"></p>
                 Ecco come agirebbe, in linea con le sue caratteristiche.
             </>
@@ -627,7 +437,9 @@ return [
                         </li>
                     </ul>
                 </li>
-            </ol>",
+            </ol>
+            <p>In sintesi, <strong>accorgendosi prima degli altri quando c’è un problema</strong>, si concentrerebbe sulla raccolta di informazioni rilevanti e sull'identificazione di opzioni di intervento non convenzionali.</p>",
+
     "example-highschool-3" => '<p class="text-block">
 			Ecco come il Critico eserciterebbe le sue caratteristiche contro le proposte degli altri ruoli, focalizzandosi sul
 			problema del cyberbullismo.
@@ -729,7 +541,10 @@ return [
 					</tbody>
 				</table>
 			</li>
-		</ol>',
+		</ol>
+        <p>In sintesi, il Critico assicura che il gruppo non cada nell&#39;ottimismo cieco (dell&#39;Esploratore) né nella rigidità
+procedurale (dello Stratega), ma agisca basandosi sulla verità, sulla prudenza e sulla previsione realistica dei
+rischi.</p>',
     "example-highschool-4" => '<p class="text-block">Il saggio agirebbe in questo modo:
 		</p>
 
@@ -810,5 +625,9 @@ return [
 						costante.</li>
 				</ul>
 			</li>
-		</ol>',
+		</ol>
+        <p>In sintesi, il ruolo del Saggio è agire come <strong>catalizzatore emotivo e mediatore decisionale</strong>, garantendo che il
+gruppo non si paralizzi a causa del conflitto tra la creatività (Esploratore/Stratega) e il realismo (Critico).
+Il suo intervento sarebbe mirato a <strong>riconoscere il valore di ogni contributo</strong> e a <strong>ricostruire la coesione</strong> per
+finalizzare l\'azione sul problema.</p>',
 ];
