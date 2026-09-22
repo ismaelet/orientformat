@@ -25,7 +25,7 @@
 
 <p {{ $attributes->merge(['class' => 'error-message text-red-600']) }}>
 	@if ($message)
-		{{ $message }}
+		{!! $message !!}
 	@else
 		{{ $slot }}
 	@endif
