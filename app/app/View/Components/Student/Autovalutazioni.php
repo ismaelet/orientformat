@@ -26,7 +26,7 @@ class Autovalutazioni extends Component {
      * Create a new component instance.
      */
     public function __construct(public Student $student) {
-        $this->class = $student->school_class;
+        $this->class = $student->class;
 
         $startGrade = $this->class->first_grade;
         $currentGrade = $this->class->grade()->absolute_number;

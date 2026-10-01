@@ -42,7 +42,7 @@ nell’e-portfolio.',
         public Student $student,
         private StudentSectionResultCalculator $sectionResults,
     ) {
-        $this->class = $student->school_class;
+        $this->class = $student->class;
         $gradeNumber = $this->class->grade()->absolute_number;
 
         $this->userType = is_teacher() ? 'teacher' : 'student';

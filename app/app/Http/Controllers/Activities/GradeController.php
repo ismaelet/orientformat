@@ -13,7 +13,7 @@ class GradeController extends Controller {
      */
     function index() {
         $student = Auth::user()->student;
-        $class = $student->school_class;
+        $class = $student->class;
 
         if ($class) {
             $grades = Grade::where('is_professional', $class->isProfessional())

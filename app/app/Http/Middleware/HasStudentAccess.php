@@ -17,7 +17,7 @@ class HasStudentAccess {
 	public function handle(Request $request, Closure $next): Response {
 		$student = $request->route('student');
 		$student = is_string($student) ? Student::find($student) : $student;
-		$studentClass = $student->school_class;
+		$studentClass = $student->class;
 
 		if ($student->userId == Auth::id()) {
 			return $next($request);

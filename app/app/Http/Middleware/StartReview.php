@@ -15,7 +15,7 @@ class StartReview {
      */
     public function handle(Request $request, Closure $next): Response {
         $student = Auth::user()->student;
-        $class = $student->school_class;
+        $class = $student->class;
 
         /**
          * Starting review

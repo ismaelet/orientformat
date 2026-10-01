@@ -122,7 +122,9 @@ class StudentResultController extends Controller {
     }
 
     public function downloadPoi(Student $student) {
-        $poi = new Poi($student);
+        $poi = app(Poi::class, [
+            'student' => $student,
+        ]);
 
         $title = 'Profilo Orientativo Individualizzato di '
             . $student->full_name
