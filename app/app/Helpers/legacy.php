@@ -307,17 +307,6 @@ function snippet_binary_icon($value) {
     return $snippet;
 }
 
-function sort_subvalue_desc(&$array, $key) {
-    usort($array, function ($a, $b) use ($key) {
-        if (is_numeric($a[$key]) && is_numeric($b[$key])) {
-            return $b[$key] > $a[$key] ? 1 : -1;
-        } else {
-            return strcmp($b[$key], $a[$key]);
-        }
-    });
-}
-
-
 function title(?string $title = null, ?string $description = null) {
     $test = legacy_test()->newTest();
     $section = $test->section;
