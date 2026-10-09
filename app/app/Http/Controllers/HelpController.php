@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Legacy\EmailInterface;
+use App\Mail\ContactMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class HelpController extends Controller {
     public function index() {
@@ -33,26 +34,24 @@ class HelpController extends Controller {
      * Store a new support ticket
      */
     public function storeTicket(Request $request) {
-        $user = Auth::user();
+        $isAdministrator = is_administrator();
+        $isTeacher = is_teacher();
+        $isStudent = is_student();
 
-        $mailText = '<h1 style="text-align: center; padding-bottom: 16px; font-weight: 600;">Richiesta informazioni</h1>
-	<p>Sei stato contattato da <strong>' . $request->input('name') . '</strong> ' . ($user ? '' : '(utente non registrato)') . ' (<a href="mailto:' . $request->input('email') . '">' . $request->input('email') . '</a>) con la seguente domanda:<br><br>' . $request->input('message') . '</p>';
+        $position = match (true) {
+            $isAdministrator => 'referente per l\'orientamento',
+            $isTeacher => 'docente',
+            $isStudent => 'studente',
+            default => 'utente non registrato/a',
+        };
 
-        $emailContent = EmailInterface::generateEmailContent($mailText);
-
-        // send email
-        $emailData = [
-            'debug' => false,
-            'from-address' => 'no-reply@iprase.tn.it',
-            'from-name' => 'OrientFormat',
-            'to' => 'ismaele.tuffanelli@gmail.com',
-            'reply-address' => $request->input('email'),
-            'reply-name' => $request->input('name'),
-            'subject' => 'Richiesta informazioni',
-            'text' => $emailContent,
-        ];
-
-        EmailInterface::sendEmail($emailData);
+        Mail::to('ismaele.tuffanelli@gmail.com')
+            ->send(new ContactMail(
+                email: $request->email,
+                name: $request->name,
+                message: $request->message,
+                position: $position,
+            ));
 
         return redirect()->route('help.ticket.open')->with('success', 'Richiesta inviata con successo');
     }
