@@ -48,16 +48,25 @@ Route::middleware([Student::class, HasEmail::class, StartReview::class, EndRevie
  */
 Route::middleware([StudentOrTeacher::class, Locale::class])->group(function () {
     // Section recap
-    Route::any('activities/sections/{section}', [SectionController::class, 'show'])->name('section');
+    Route::get('activities/sections/{section}', [SectionController::class, 'show'])->name('section');
 
-    // Test routes
-    Route::any('activities/tests/{test}', [TestController::class, 'show'])->name('test');
+    // Display test
+    Route::get('activities/tests/{test}', [TestController::class, 'show'])->name('test');
 
+    // Store test results
     Route::post('activities/tests/{test}/store', [TestController::class, 'store'])->name('test.store');
 
+    // Reset test results
     Route::post('activities/tests/{test}/reset', [TestController::class, 'reset'])->name('test.reset');
 
+    // Reset test results, including dependent test results
     Route::post('activities/tests/{test}/reset-dependent', [TestController::class, 'resetDependent'])->name('test.reset.dependent');
+
+    // Download test answers
+    Route::get(
+        'activities/tests/{test}/answers/download',
+        [TestController::class, 'downloadAnswers']
+    )->name('test.answers.download');
 });
 
 /**

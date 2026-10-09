@@ -1,70 +1,70 @@
 {% block content %}
 
-<div class="main-wrap pad-t-4 pad-b-5 pos-rel">
+<div class="main-wrap pad-t-4 pb-20 pos-rel">
 
-	<?= title() ?>
+    <?= title() ?>
 
-	<div id="content" class="mar-t-5 <?= $legacyTest->completed ? 'completed' : '' ?>">
+    <div id="content" class="mar-t-5 <?= $legacyTest->completed ? 'completed' : '' ?>">
 
-		<!-- Example -->
-		<div id="example" class="image-box fa-center">
+        <!-- Example -->
+        <div id="example" class="image-box fa-center">
 
-			<img class="image push-center" src="<?= client_path('0.png') ?>">
+            <img class="image push-center" src="<?= client_path('0.png') ?>">
 
-			<div class="fa-center mar-t-5">
-				<div class="button js-start"><?= __('Start') ?></div>
-			</div>
+            <div class="fa-center mar-t-5">
+                <div class="button js-start"><?= __('Start') ?></div>
+            </div>
 
-		</div>
+        </div>
 
-		<!-- Slider -->
-		<div id="slider" class=" mar-b-4">
+        <!-- Slider -->
+        <div id="slider" class=" mar-b-4">
 
-			<?php for ($i = 1; $i < 7; $i++) { ?>
+            <?php for ($i = 1; $i < 7; $i++) { ?>
 
-				<div id="image<?= $i ?>" class="image-box fa-center">
-					<p class="number txt-3rem font-bold"><?= $i ?>.</p>
-					<img class="image push-center block" src="<?= client_path($i . '.png') ?>">
-				</div>
+                <div id="image<?= $i ?>" class="image-box fa-center">
+                    <p class="number txt-3rem font-bold"><?= $i ?>.</p>
+                    <img class="image push-center block" src="<?= client_path($i . '.png') ?>">
+                </div>
 
-			<?php } ?>
+            <?php } ?>
 
-		</div>
+        </div>
 
-		<!-- Solutions -->
-		<div id="solutions">
+        <!-- Solutions -->
+        <div id="solutions">
 
-			<input type="hidden" name="field[]" class="filler-inp" value="0">
+            <input type="hidden" name="field[]" class="filler-inp" value="0">
 
-			<?php if ($legacyTest->completed) { ?>
+            <?php if ($legacyTest->completed) { ?>
 
-				<p id="result-text" class="mar-b-4 fa-center txt-12rem font-bold <?= $legacyTest->percentage == 100 ? 'right' : 'wrong' ?>"><?= $legacyTest->percentage == 100 ? __('tests.54-right') : __('tests.54-wrong') ?></p>
+                <p id="result-text" class="mar-b-4 fa-center txt-12rem font-bold <?= $legacyTest->percentage == 100 ? 'right' : 'wrong' ?>"><?= $legacyTest->percentage == 100 ? __('tests.54-right') : __('tests.54-wrong') ?></p>
 
-			<?php } ?>
+            <?php } ?>
 
-			<div class="grid6 mar-b-5">
+            <div class="grid6 mar-b-5">
 
-				<?php for ($i = 1; $i < 7; $i++) { ?>
+                <?php for ($i = 1; $i < 7; $i++) { ?>
 
-					<div class="fa-center">
-						<p class="solution inlb clickable <?php if ($legacyTest->completed && $legacyTest->rawResults[0] == $i) echo $legacyTest->percentage == 100 ? 'right' : 'wrong' ?>" data-val="<?= $i ?>">
+                    <div class="fa-center">
+                        <p class="solution inlb clickable <?php if ($legacyTest->completed && $legacyTest->rawResults[0] == $i) echo $legacyTest->percentage == 100 ? 'right' : 'wrong' ?>" data-val="<?= $i ?>">
 
-							<?= $i ?>
+                            <?= $i ?>
 
-						</p>
-					</div>
+                        </p>
+                    </div>
 
-				<?php } ?>
+                <?php } ?>
 
-			</div>
+            </div>
 
-			<div class="grid" data-spacing="400">
-				<?= submit(true) ?>
-				<?= renderRedoButton() ?>
-			</div>
+            <div class="grid" data-spacing="400">
+                <?= submit(true) ?>
+                <?= renderRedoButton() ?>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 
 {% end content %}

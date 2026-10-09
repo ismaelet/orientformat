@@ -2,7 +2,7 @@
 
 <div class="main-wrap" autocomplete="off">
 
-    <div id="body" class="grid va-items-cen pad-b-5">
+    <div id="body" class="grid va-items-cen pb-20">
 
         <!-- Graphic -->
         <?php if ($legacyTest->completed || !$supervisorView) { ?>

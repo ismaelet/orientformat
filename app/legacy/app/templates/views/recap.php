@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<div id="content" class="pad-t-5 pad-b-5">
+<div id="content" class="py-20 pb-20">
 
     <div class="main-wrap">
 

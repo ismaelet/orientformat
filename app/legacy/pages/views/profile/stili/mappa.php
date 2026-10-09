@@ -1,54 +1,54 @@
 {% block content %}
 
-<div class="main-wrap pad-t-5 pad-b-5 grid" data-spacing="700" data-test-id="<?= testId() ?>">
+<div class="main-wrap pt-20 pb-20 grid" data-spacing="700" data-test-id="<?= testId() ?>">
 
-	<?= title() ?>
-	<?= no_results() ?>
+    <?= title() ?>
+    <?= no_results() ?>
 
-	<?php if ($results) { ?>
+    <?php if ($results) { ?>
 
-		<div class="graph-wrapper">
+        <div class="graph-wrapper">
 
-			<div id="circles" class="circles mar-t-10 mb-40" style="--group-count: <?= count($sortedResults) ?>">
+            <div id="circles" class="circles mar-t-10 mb-40" style="--group-count: <?= count($sortedResults) ?>">
 
-				<p id="title-center" class="cen fa-center txt-c3 font-bold"><?= $title ?></p>
+                <p id="title-center" class="cen fa-center txt-c3 font-bold"><?= $title ?></p>
 
-				<?php for ($i = 1; $i < 5; $i++) { ?>
+                <?php for ($i = 1; $i < 5; $i++) { ?>
 
-					<div id="border<?= $i ?>" class="border"></div>
+                    <div id="border<?= $i ?>" class="border"></div>
 
-				<?php } ?>
+                <?php } ?>
 
-				<?php foreach ($sortedResults as $key => $result) { ?>
+                <?php foreach ($sortedResults as $key => $result) { ?>
 
-					<div class="group" style="--group-i: <?= $key ?>">
-						<div class="group__circles">
+                    <div class="group" style="--group-i: <?= $key ?>">
+                        <div class="group__circles">
 
-							<?php for ($j = 1; $j <= 4; $j++) { ?>
+                            <?php for ($j = 1; $j <= 4; $j++) { ?>
 
-								<div class="circle js-load <?= $result['tier'] == $j ? 'checked' : '' ?>">
-									<div class="bgr"></div>
-								</div>
+                                <div class="circle js-load <?= $result['tier'] == $j ? 'checked' : '' ?>">
+                                    <div class="bgr"></div>
+                                </div>
 
-							<?php } ?>
+                            <?php } ?>
 
-						</div>
+                        </div>
 
-						<div class="result__title-box txt-c3" data-group="<?= $result['name'] ?>">
-							<p class="result__title txt-15rem js-load"><?= $result['translated_name'] ?> (<?= $result['percentage'] ?>%)</p>
-							<p class="stitle txt-c3 js-load"><?= $result['info'] ?></p>
-						</div>
+                        <div class="result__title-box txt-c3" data-group="<?= $result['name'] ?>">
+                            <p class="result__title txt-15rem js-load"><?= $result['translated_name'] ?> (<?= $result['percentage'] ?>%)</p>
+                            <p class="stitle txt-c3 js-load"><?= $result['info'] ?></p>
+                        </div>
 
-					</div>
+                    </div>
 
-				<?php } ?>
+                <?php } ?>
 
-			</div>
-		</div>
+            </div>
+        </div>
 
-	<?php } ?>
+    <?php } ?>
 
-	<?= submit() ?>
+    <?= submit() ?>
 
 </div>
 

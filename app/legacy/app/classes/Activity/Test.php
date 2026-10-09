@@ -3,7 +3,9 @@
 namespace Legacy\Activity;
 
 use App\Models\Activities\Survey;
-use App\Models\Activities\Test as ActivitiesTest;
+use App\Models\Activities\Test as ModernTest;
+use App\Models\User\Student;
+use App\Models\User\Teacher;
 use Illuminate\Support\Facades\Auth;
 use \Legacy\Activity\Result\AdditionalTestResult;
 use \Legacy\Activity\Result\Handler\StudentTestResult;
@@ -226,31 +228,43 @@ class Test {
     }
 
     // advance to the next test
-    public function advance(bool $reloadPage = false) {
-        // redirect
+    public function advanceUrl(
+        Student|Teacher $student,
+        bool $reloadPage = false
+    ): string {
+        $test = ModernTest::findOrFail($this->id);
+
         if ($reloadPage) {
-            redirect_old($this->url);
-        } else if ($this->hasRecapTest && $this->nextTest->completed) {
-            redirect_old($this->recapTest->url);
-        } else if ($this->hasFollowUpTest) {
-            redirect_old($this->followUpTest->url);
-        } else {
-            redirect_old($this->section->url);
+            return $test->url();
         }
+
+        return $test->nextUrl($student);
     }
 
-    public function redo() {
-        \App\Legacy\LegacyDB::delete(TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ?', [\Illuminate\Support\Facades\Auth::id(), $this->id]);
-        \App\Legacy\LegacyDB::delete(AdditionalTestResult::TABLE . ' WHERE ' . AdditionalTestResult::USER_INDEX . ' = ? AND ' . AdditionalTestResult::TEST_INDEX . ' = ?', [\Illuminate\Support\Facades\Auth::id(), $this->id]);
-        \App\Legacy\LegacyDB::delete('results_others WHERE userID = ? AND testID = ?', [userId(), $this->id]);
+    public function redo(): void {
+        \App\Legacy\LegacyDB::delete(
+            TestResult::TABLE . ' WHERE ' .
+                TestResult::USER_INDEX . ' = ? AND ' .
+                TestResult::TEST_INDEX . ' = ?',
+            [\Illuminate\Support\Facades\Auth::id(), $this->id]
+        );
 
-        // update section progress
+        \App\Legacy\LegacyDB::delete(
+            AdditionalTestResult::TABLE . ' WHERE ' .
+                AdditionalTestResult::USER_INDEX . ' = ? AND ' .
+                AdditionalTestResult::TEST_INDEX . ' = ?',
+            [\Illuminate\Support\Facades\Auth::id(), $this->id]
+        );
+
+        \App\Legacy\LegacyDB::delete(
+            'results_others WHERE userID = ? AND testID = ?',
+            [userId(), $this->id]
+        );
+
         $this->section->updateProgress();
-
-        redirect_old($this->url);
     }
 
-    public function newTest(): ActivitiesTest {
-        return ActivitiesTest::find($this->id);
+    public function newTest(): ModernTest {
+        return ModernTest::find($this->id);
     }
 }

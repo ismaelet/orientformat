@@ -1,8 +1,8 @@
 {% block content %}
 
-<div class="main-wrap pad-t-5">
+<div class="main-wrap pt-20">
 
-    <div id="body" class="pad-b-5">
+    <div id="body" class="pb-20">
 
         <!-- Title and instructions -->
         <?= title() ?>

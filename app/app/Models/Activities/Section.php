@@ -61,14 +61,6 @@ class Section extends Model {
         return $this->belongsTo(Section::class, 'mainSectionId');
     }
 
-    public function originalSection(): ?self {
-        if ($this->main_section) {
-            return $this->main_section;
-        }
-
-        return $this;
-    }
-
     /**
      * Relationship: The grades that this section belongs to
      */
@@ -95,6 +87,13 @@ class Section extends Model {
      */
     public function active_tests(): HasMany {
         return $this->hasMany(Test::class, 'sectionId')->where('active', true);
+    }
+
+    /**
+     * Get the original/main section for this section
+     */
+    public function originalSection(): self {
+        return $this->main_section ?? $this;
     }
 
     /**

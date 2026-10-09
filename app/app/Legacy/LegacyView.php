@@ -159,7 +159,7 @@ class LegacyView {
         return new static;
     }
 
-    public static function show() {
+    public static function show(bool $returnResponse = false) {
         // load the middlewares
         $middlewareLoader = MiddlewareLoader::getInstance();
 
@@ -185,6 +185,14 @@ class LegacyView {
         }
 
         // render page
-        echo Viewer::render();
+        $html = Viewer::render();
+
+        if ($returnResponse) {
+            return response($html);
+        }
+
+        echo $html;
+
+        return null;
     }
 }

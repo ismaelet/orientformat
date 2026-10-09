@@ -1,6 +1,6 @@
 {% block main %}
 
-<div class="main-wrap pad-t-5 pad-b-7">
+<div class="main-wrap pt-20 pad-b-7">
 	<h1 class="page-title">Come utilizzare la piattaforma</h1>
 
 	<a href="<?= client_url('/' .$returnUrl == 'add' ? 'teacher/add-class?type=new' : 'class/settings/general') ?>" class="button button--secondary back mar-t-1">Indietro</a>

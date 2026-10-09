@@ -43,7 +43,7 @@
 						transition: inherit;
 					}
 
-					/* Primary button: Hover state */
+					/* Primary but ton: Hover state */
 					&:hover::before {
 						opacity: 0;
 					}

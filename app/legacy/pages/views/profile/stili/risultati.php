@@ -2,40 +2,40 @@
 
 <div class="bgr bg-secondary"></div>
 
-<div class="main-wrap pad-t-5 pad-b-5">
+<div class="main-wrap pt-20 pb-20">
 
-	<?= title() ?>
+    <?= title() ?>
 
-	<div id="circles" class="wrap mar-t-5 mb-40">
+    <div id="circles" class="wrap mar-t-5 mb-40">
 
-		<p id="title-center" class="cen fa-center txt-c3 font-bold"><?= __('Cognitive styles') ?></p>
+        <p id="title-center" class="cen fa-center txt-c3 font-bold"><?= __('Cognitive styles') ?></p>
 
-		<?php for ($i = 1; $i < 5; $i++) { ?>
+        <?php for ($i = 1; $i < 5; $i++) { ?>
 
-			<div id="border<?= $i ?>" class="border"></div>
+            <div id="border<?= $i ?>" class="border"></div>
 
-		<?php } ?>
+        <?php } ?>
 
-		<?php foreach ($circles as $key => $circle) { ?>
+        <?php foreach ($circles as $key => $circle) { ?>
 
-			<div class="circle row<?= $circle['val'] ?> group<?= $circle['group'] ?> <?= $circle['checked'] ? 'checked' : '' ?>" style="--w:<?= $circle['w'] ?>; --h:<?= $circle['h'] ?>" data-group="<?= $circle['group'] ?>">
+            <div class="circle row<?= $circle['val'] ?> group<?= $circle['group'] ?> <?= $circle['checked'] ? 'checked' : '' ?>" style="--w:<?= $circle['w'] ?>; --h:<?= $circle['h'] ?>" data-group="<?= $circle['group'] ?>">
 
-				<div class="bgr load"></div>
-			</div>
+                <div class="bgr load"></div>
+            </div>
 
-		<?php } ?>
+        <?php } ?>
 
-		<?php foreach ($groups as $key => $group) { ?>
+        <?php foreach ($groups as $key => $group) { ?>
 
-			<div id="title-box<?= $key ?>" class="title-box txt-wht" data-group="<?= $key ?>">
-				<p class="title txt-15rem load"><?= $group ?></p>
-			</div>
+            <div id="title-box<?= $key ?>" class="title-box txt-wht" data-group="<?= $key ?>">
+                <p class="title txt-15rem load"><?= $group ?></p>
+            </div>
 
-		<?php } ?>
+        <?php } ?>
 
-	</div>
+    </div>
 
-	<?= submit() ?>
+    <?= submit() ?>
 
 </div>
 

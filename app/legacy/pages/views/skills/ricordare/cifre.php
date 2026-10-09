@@ -1,6 +1,6 @@
 {% block content %}
 
-<div class="main-wrap pad-t-4 pad-b-5" autocomplete="off">
+<div class="main-wrap pad-t-4 pb-20" autocomplete="off">
 
     <input type="text" name="field[]" value="<?= $level ?>" class="hidden">
 

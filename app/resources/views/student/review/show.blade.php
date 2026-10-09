@@ -378,7 +378,7 @@
 			</div>
 
 			<!-- Questions -->
-			<div class="questions pad-b-5">
+			<div class="questions pb-20">
 
 				@php $i = 0; @endphp
 

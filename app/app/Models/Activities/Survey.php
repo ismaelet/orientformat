@@ -21,7 +21,8 @@ class Survey extends Model {
      * Relationship: The questions that belong to the survey
      */
     public function questions(): HasMany {
-        return $this->hasMany(SurveyQuestion::class, 'surveyId');
+        return $this->hasMany(SurveyQuestion::class, 'surveyId')
+            ->orderBy('id');
     }
 
     /**

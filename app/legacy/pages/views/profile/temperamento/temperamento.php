@@ -1,6 +1,6 @@
 {% block content %}
 
-<div class="main-wrap pad-t-5 pad-b-5">
+<div class="main-wrap pt-20 pb-20">
 
     <?= title() ?>
 

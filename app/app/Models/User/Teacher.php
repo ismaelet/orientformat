@@ -121,9 +121,13 @@ class Teacher extends Model {
      * Get the IDs of all students in the classes taught by this teacher
      */
     public function studentIds(): array {
-        return $this->school_classes->flatMap(function (SchoolClass $class) {
-            return $class->students->pluck('id');
-        })->unique()->values()->all();
+        return $this->classes()
+            ->with('students')
+            ->get()
+            ->flatMap(fn($class) => $class->students->pluck('id'))
+            ->unique()
+            ->values()
+            ->all();
     }
 
     /**

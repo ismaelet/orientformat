@@ -6,91 +6,91 @@ use \Legacy\Activity\Test;
 
 {% block content %}
 
-<div class="pad-b-5 main-wrap">
+<div class="pb-20 main-wrap">
 
-	<div class="title__wrapper">
-		<div>
-			<?= title() ?>
-			<?= no_results() ?>
+    <div class="title__wrapper">
+        <div>
+            <?= title() ?>
+            <?= no_results() ?>
 
-			<?php if (!$supervisorView) { ?>
+            <?php if (!$supervisorView) { ?>
 
-				<a href="<?= (new Test(70))->clientUrl ?>">
-					<p class="txt-c5 txt-1rem br-b-1 br-c5 inlb"><?= __('Read the story again') ?></p>
-				</a>
+                <a href="<?= (new Test(70))->clientUrl ?>">
+                    <p class="txt-c5 txt-1rem br-b-1 br-c5 inlb"><?= __('Read the story again') ?></p>
+                </a>
 
-			<?php } ?>
-		</div>
+            <?php } ?>
+        </div>
 
-		<?php if ($legacyTest->completed && !$supervisorView) { ?>
-			<div>
+        <?php if ($legacyTest->completed && !$supervisorView) { ?>
+            <div>
 
-				<p class="result txt-15rem mar-b-2 pad-1 br-2 br-c1 fa-center"><?= __('tests.69-result', ['percentage' => $legacyTest->percentage]) ?></p>
+                <p class="result txt-15rem mar-b-2 pad-1 br-2 br-c1 fa-center"><?= __('tests.69-result', ['percentage' => $legacyTest->percentage]) ?></p>
 
-				<?= renderRedoButton(true) ?>
+                <?= renderRedoButton(true) ?>
 
-			</div>
+            </div>
 
-		<?php } ?>
+        <?php } ?>
 
-		<div>
-			<?= submit(true) ?>
-			<?= skip() ?>
-		</div>
-	</div>
+        <div>
+            <?= submit(true) ?>
+            <?= skip() ?>
+        </div>
+    </div>
 
-	<?php if ($legacyTest->completed || !$supervisorView) { ?>
+    <?php if ($legacyTest->completed || !$supervisorView) { ?>
 
-		<div id="graph-box" class="mar-t-4">
+        <div id="graph-box" class="mar-t-4">
 
-			<div id="graph" class="grid3">
+            <div id="graph" class="grid3">
 
-				<?php foreach ($boxes as $key => $box) {
+                <?php foreach ($boxes as $key => $box) {
 
-					if ($box) { ?>
+                    if ($box) { ?>
 
-						<div id="box<?= $key ?>" class="box <?= $box['classes'] ?> <?= $box['reader'] ? 'reader' : '' ?>">
+                        <div id="box<?= $key ?>" class="box <?= $box['classes'] ?> <?= $box['reader'] ? 'reader' : '' ?>">
 
-							<p class="txt-1rem fa-center"><?= $box['text'] ?></p>
+                            <p class="txt-1rem fa-center"><?= $box['text'] ?></p>
 
-							<?php if (!$box['autofilled']) { ?>
+                            <?php if (!$box['autofilled']) { ?>
 
-								<input type="hidden" class="filler-inp" name="field[]" value="0">
+                                <input type="hidden" class="filler-inp" name="field[]" value="0">
 
-								<div class="reset clickable bgr text-red-500"><?= embed_icon('close') ?></div>
+                                <div class="reset clickable bgr text-red-500"><?= embed_icon('close') ?></div>
 
-							<?php } ?>
+                            <?php } ?>
 
-						</div>
+                        </div>
 
-					<?php } else { ?>
+                    <?php } else { ?>
 
-						<div class="empty"></div>
+                        <div class="empty"></div>
 
-					<?php } ?>
-				<?php } ?>
+                    <?php } ?>
+                <?php } ?>
 
-			</div>
+            </div>
 
-		</div>
+        </div>
 
-		<?php if (!$legacyTest->completed) { ?>
+        <?php if (!$legacyTest->completed) { ?>
 
-			<h2 class="subsection-title txt-blk txt-15rem font-bold mar-t-3">Elementi:</h2>
-			<div id="causes" class="mar-b-3 mar-t-2 grid3">
+            <h2 class="subsection-title txt-blk txt-15rem font-bold mar-t-3">Elementi:</h2>
+            <div id="causes" class="mar-b-3 mar-t-2 grid3">
 
-				<?php foreach ($boxes as $key => $box) if ($box && !$box['autofilled']) { ?>
+                <?php foreach ($boxes as $key => $box) if ($box && !$box['autofilled']) { ?>
 
-					<div id="cause<?= $key ?>" class="cause <?= $box['reader'] ? 'reader' : '' ?>" data-id="<?= $key ?>">
-						<p class="txt-1rem fa-center"><?= $box['content'] ?></p>
-					</div>
+                    <div id="cause<?= $key ?>" class="cause <?= $box['reader'] ? 'reader' : '' ?>" data-id="<?= $key ?>">
+                        <p class="txt-1rem fa-center"><?= $box['content'] ?></p>
+                    </div>
 
-				<?php } ?>
+                <?php } ?>
 
-			</div>
+            </div>
 
-		<?php } ?>
-	<?php } ?>
+        <?php } ?>
+    <?php } ?>
 
 </div>
 

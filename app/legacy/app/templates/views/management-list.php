@@ -10,7 +10,7 @@
 </section>
 
 <!-- Content -->
-<section id="body" class="main-wrap pad-b-5">
+<section id="body" class="main-wrap pb-20">
 	
 	<!-- Title -->
 	<div class="title-box mar-t-4 text-center">

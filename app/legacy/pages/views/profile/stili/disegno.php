@@ -3,48 +3,48 @@
 <!-- Review view -->
 <?php if ($legacyTest->completed) { ?>
 
-	<div id="results-sec" class="grid main-wrap pad-t-5 pad-b-5" data-spacing="700">
+    <div id="results-sec" class="grid main-wrap pt-20 pb-20" data-spacing="700">
 
-		<?= title(__('tests.32-title'), __('tests.32-description')) ?>
+        <?= title(__('tests.32-title'), __('tests.32-description')) ?>
 
-		<!-- Methods -->
-		<div class="grid" data-columns="25rem" data-spacing="700">
+        <!-- Methods -->
+        <div class="grid" data-columns="25rem" data-spacing="700">
 
-			<?php foreach ($methods as $method) { ?>
+            <?php foreach ($methods as $method) { ?>
 
-				<div class="method interactive">
+                <div class="method interactive">
 
-					<h3 class="subsection-title txt-15rem font-bold br-b-1 br-5 pad-b-05 mar-b-05"><?= $method[0] ?></h3>
+                    <h3 class="subsection-title txt-15rem font-bold br-b-1 br-5 pad-b-05 mar-b-05"><?= $method[0] ?></h3>
 
-					<?php foreach ($method[1] as $desc) { ?>
+                    <?php foreach ($method[1] as $desc) { ?>
 
-						<p class="desc txt-1rem txt-2 mar-b-05">- <?= $desc ?></p>
+                        <p class="desc txt-1rem txt-2 mar-b-05">- <?= $desc ?></p>
 
-					<?php } ?>
+                    <?php } ?>
 
-				</div>
+                </div>
 
-			<?php } ?>
+            <?php } ?>
 
-		</div>
+        </div>
 
-		<!-- Submit -->
-		<?= submit() ?>
+        <!-- Submit -->
+        <?= submit() ?>
 
-	</div>
+    </div>
 
-	<!-- Initial view -->
+    <!-- Initial view -->
 <?php } else { ?>
 
-	<div id="image-sec" class="main-wrap pad-t-5 pad-b-5">
+    <div id="image-sec" class="main-wrap pt-20 pb-20">
 
-		<?= title() ?>
+        <?= title() ?>
 
-		<img id="img" class="mar-t-2" src="<?= client_path('img.jpg') ?>">
+        <img id="img" class="mar-t-2" src="<?= client_path('img.jpg') ?>">
 
-		<button type="submit" name="review" class="button button--full-width mar-t-5"><?= __('tests.32-cta') ?></button>
+        <button type="submit" name="review" class="button button--full-width mar-t-5"><?= __('tests.32-cta') ?></button>
 
-	</div>
+    </div>
 
 <?php } ?>
 

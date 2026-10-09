@@ -44,7 +44,7 @@
     });
 </script>
 
-<div class="pad-t-5 pad-b-5 main-wrap">
+<div class="pt-20 pb-20 main-wrap">
 
     <?= title() ?>
 

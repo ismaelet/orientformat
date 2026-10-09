@@ -3,131 +3,131 @@
 <!-- Slider -->
 <section id="slider">
 
-	<div id="bgr-img" class="bgr" <?= background_image('/pages/assets/teacher/bgr.png') ?>></div>
+    <div id="bgr-img" class="bgr" <?= background_image('/pages/assets/teacher/bgr.png') ?>></div>
 
 </section>
 
 <!-- Content -->
-<section class="main-wrap pad-b-5">
+<section class="main-wrap pb-20">
 
-	<!-- Title -->
-	<div class="title-box mar-t-4 fa-center">
+    <!-- Title -->
+    <div class="title-box mar-t-4 fa-center">
 
-		<h1 class="title txt-25rem txt-sbold"><?= $legacySection['name'] ?></h1>
+        <h1 class="title txt-25rem txt-sbold"><?= $legacySection['name'] ?></h1>
 
-		<p class="stitle txt-1rem mar-t-1">Qui puoi controllare e stampare i risultati della classe in questa attività.</p>
+        <p class="stitle txt-1rem mar-t-1">Qui puoi controllare e stampare i risultati della classe in questa attività.</p>
 
-		<a href="<?= client_url('/teacher/sections') ?>" class="button button--secondary back">Tutte le attività</a><br>
+        <a href="<?= client_url('/teacher/sections') ?>" class="button button--secondary back">Tutte le attività</a><br>
 
-	</div>
+    </div>
 
-	<?php if (count($results)) { ?>
+    <?php if (count($results)) { ?>
 
-		<form method="POST" class="hidden">
-			<input type="hidden" id="inp-studentId" name="studentId">
-			<input type="hidden" id="inp-testId" name="testId">
-			<button type="submit" class="hidden" id="btn-download" name="download"></button>
-		</form>
+        <form method="POST" class="hidden">
+            <input type="hidden" id="inp-studentId" name="studentId">
+            <input type="hidden" id="inp-testId" name="testId">
+            <button type="submit" class="hidden" id="btn-download" name="download"></button>
+        </form>
 
-		<!-- List -->
-		<h1 class="mar-t-3 font-bold txt-12rem mar-b-05">Risultati della classe</h1>
+        <!-- List -->
+        <h1 class="mar-t-3 font-bold txt-12rem mar-b-05">Risultati della classe</h1>
 
-		<div id="list" class="panel">
+        <div id="list" class="panel">
 
-			<div class="list">
+            <div class="list">
 
-				<div class="head">
+                <div class="head">
 
-					<p class="field field-l">Studente</p>
+                    <p class="field field-l">Studente</p>
 
-					<?php foreach ($legacyTests as $legacyTest) { ?>
-						<p class="field field-l"><?= $legacyTest['title'] ?></p>
-					<?php } ?>
+                    <?php foreach ($legacyTests as $legacyTest) { ?>
+                        <p class="field field-l"><?= $legacyTest['title'] ?></p>
+                    <?php } ?>
 
-				</div>
+                </div>
 
-				<?php foreach ($results as $key => $result) { ?>
+                <?php foreach ($results as $key => $result) { ?>
 
-					<div class="row">
+                    <div class="row">
 
-						<?php foreach ($result['values'] as $key => $field) { ?>
+                        <?php foreach ($result['values'] as $key => $field) { ?>
 
-							<p class="field" data-student-id="<?= $result['studentId'] ?>" data-test-id="<?= $legacyTests[$key - 1]['id'] ?? '' ?>" onclick="$('#inp-testId').val($(this).data('test-id')); $('#inp-studentId').val($(this).data('student-id')); $('#btn-download').click();">
+                            <p class="field" data-student-id="<?= $result['studentId'] ?>" data-test-id="<?= $legacyTests[$key - 1]['id'] ?? '' ?>" onclick="$('#inp-testId').val($(this).data('test-id')); $('#inp-studentId').val($(this).data('student-id')); $('#btn-download').click();">
 
-								<?= $field ?>
+                                <?= $field ?>
 
-							</p>
+                            </p>
 
-						<?php } ?>
+                        <?php } ?>
 
-					</div>
+                    </div>
 
-				<?php } ?>
+                <?php } ?>
 
-			</div>
-		</div>
+            </div>
+        </div>
 
-		<?php if ($enableAverage) { ?>
+        <?php if ($enableAverage) { ?>
 
-			<!-- Average -->
-			<h1 class="mar-t-3 font-bold txt-12rem mar-b-05">Valori medi di confronto</h1>
+            <!-- Average -->
+            <h1 class="mar-t-3 font-bold txt-12rem mar-b-05">Valori medi di confronto</h1>
 
-			<div id="average" class="panel">
+            <div id="average" class="panel">
 
-				<div class="list">
+                <div class="list">
 
-					<div class="head">
+                    <div class="head">
 
-						<p class="field field-l">Confronto</p>
+                        <p class="field field-l">Confronto</p>
 
-						<?php foreach ($legacyTests as $legacyTest) { ?>
-							<p class="field field-l"><?= $legacyTest['title'] ?></p>
-						<?php } ?>
+                        <?php foreach ($legacyTests as $legacyTest) { ?>
+                            <p class="field field-l"><?= $legacyTest['title'] ?></p>
+                        <?php } ?>
 
-					</div>
+                    </div>
 
-					<form method="POST" class="row">
+                    <form method="POST" class="row">
 
-						<?php foreach ($average_class as $key => $field) { ?>
+                        <?php foreach ($average_class as $key => $field) { ?>
 
-							<p class="field"><?= $field ?></p>
+                            <p class="field"><?= $field ?></p>
 
-						<?php } ?>
+                        <?php } ?>
 
-					</form>
+                    </form>
 
-					<form method="POST" class="row">
+                    <form method="POST" class="row">
 
-						<?php foreach ($average_all as $key => $field) { ?>
+                        <?php foreach ($average_all as $key => $field) { ?>
 
-							<p class="field"><?= $field ?></p>
+                            <p class="field"><?= $field ?></p>
 
-						<?php } ?>
+                        <?php } ?>
 
-					</form>
+                    </form>
 
-				</div>
+                </div>
 
-			</div>
+            </div>
 
-		<?php } ?>
+        <?php } ?>
 
-		<!-- Print -->
-		<div class="fa-center">
-			<div class="printbuttonmar-t-3">
-				<span class="text-icon bgr-wht" <?= icon_svg('print') ?>></span>
-				<span class="btn-text">Stampa</span>
-			</div>
-		</div>
+        <!-- Print -->
+        <div class="fa-center">
+            <div class="printbuttonmar-t-3">
+                <span class="text-icon bgr-wht" <?= icon_svg('print') ?>></span>
+                <span class="btn-text">Stampa</span>
+            </div>
+        </div>
 
-	<?php } else { ?>
+    <?php } else { ?>
 
-		<!-- Empty -->
-		<div class="empty">
-			<p>Non ci sono studenti registrati in questa classe.</p>
-		</div>
+        <!-- Empty -->
+        <div class="empty">
+            <p>Non ci sono studenti registrati in questa classe.</p>
+        </div>
 
-	<?php } ?>
+    <?php } ?>
 
 </section>
 

@@ -24,8 +24,8 @@
 
 <x-layouts.app
 	:$title
-	colorScheme="{{ $colorScheme }}"
-	theme="{{ $theme }}"
+	:$colorScheme
+	:$theme
 >
 	{{-- Page content --}}
 	<div class="main-content min-h-svh">

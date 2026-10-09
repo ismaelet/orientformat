@@ -1,39 +1,39 @@
 {% block content %}
 
-<div class="main-wrap pad-t-4 pad-b-5 grid" data-spacing="700">
+<div class="main-wrap pad-t-4 pb-20 grid" data-spacing="700">
 
-	<?= title() ?>
+    <?= title() ?>
 
-	<div id="content">
+    <div id="content">
 
-		<?php $key = -1;
-		foreach ($groups as $group) { ?>
+        <?php $key = -1;
+        foreach ($groups as $group) { ?>
 
-			<div class="group pad-b-2">
+            <div class="group pad-b-2">
 
-				<h3 class="subsection-title font-bold txt-15rem mb-4"><?= $group ?></h3>
+                <h3 class="subsection-title font-bold txt-15rem mb-4"><?= $group ?></h3>
 
-				<div class="grid gap-4">
-					<?php for ($i = 0; $i < 5; $i++) {
-						$key++; ?>
+                <div class="grid gap-4">
+                    <?php for ($i = 0; $i < 5; $i++) {
+                        $key++; ?>
 
-						<div class="answer">
-							<h1 class="number font-bold"><?= $i + 1 ?></h1>
-							<input type="text" name="field_other[]" class="inp filler-inp" value="<?= $results[$key] ?? '' ?>" placeholder="<?= __('Activity') ?> n&#176;<?= $i + 1 ?>" maxlength="50" <?= legacy_test()->completed || isSupervisor() ? 'readonly' : '' ?>>
-						</div>
+                        <div class="answer">
+                            <h1 class="number font-bold"><?= $i + 1 ?></h1>
+                            <input type="text" name="field_other[]" class="inp filler-inp" value="<?= $results[$key] ?? '' ?>" placeholder="<?= __('Activity') ?> n&#176;<?= $i + 1 ?>" maxlength="50" <?= legacy_test()->completed || isSupervisor() ? 'readonly' : '' ?>>
+                        </div>
 
-					<?php } ?>
-				</div>
-			</div>
+                    <?php } ?>
+                </div>
+            </div>
 
-		<?php } ?>
+        <?php } ?>
 
-	</div>
+    </div>
 
-	<div>
-		<?= submit() ?>
-		<?= skip() ?>
-	</div>
+    <div>
+        <?= submit() ?>
+        <?= skip() ?>
+    </div>
 
 </div>
 

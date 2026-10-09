@@ -65,8 +65,8 @@
   --color-neutral-400: var(--color-slate-600);
   --color-neutral-700: var(--color-slate-800);
 
-  --color-neutral-heading: var(--color-tertiary-500);
-  --color-neutral-text: var(--color-neutral-700);
+  --color-neutral-heading: var(--color-slate-900);
+  --color-neutral-text: var(--color-slate-800);
   --color-neutral-border: var(--color-slate-300);
 
   --gradient-primary-secondary:
@@ -104,6 +104,7 @@
   --text-700: clamp(2.5rem, 8vw, 2.75rem);
   --text-800: min(3rem, 10vw);
   --text-800--line-height: 1;
+  --text-850: min(4rem, 13vw);
   --text-900: min(5rem, 15vw);
 
   /* Spacing */
@@ -145,7 +146,7 @@
 /* Basic setup */
 body {
   background-color: var(--color-background);
-  color: var(--color-neutral-700);
+  color: var(--color-neutral-text);
 }
 
 .progressive-color-1 {
@@ -298,7 +299,7 @@ body {
   --color-secondary-hsl-300: 343, 48%, 63%;
   --color-secondary-hsl-400: 343, 48%, 53%;
 
-  --color-transition-400: hsl(301, 39%, 42%);
+  --color-transition-400: hsl(343, 48%, 53%);
 
   /* gradients */
   --gradient-primary-tertiary:
