@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Response;
+
 class StudentHomeController extends Controller {
 
-	/**
-	 * * Action: Index
-	 */
-	public function index() {
-		$page = 'home';
-
-		\App\Legacy\LegacyView::setPage($page)
-			->show();
-	}
+    public function index(): Response {
+        return \App\Legacy\LegacyView::setPage('home')
+            ->show();
+    }
 }

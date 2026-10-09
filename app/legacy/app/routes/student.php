@@ -48,7 +48,7 @@ use \Legacy\Activity\Test as LegacyTest;
     add_grade_style();
 
     // render
-    \App\Legacy\LegacyView::setPage($page)
+    return \App\Legacy\LegacyView::setPage($page)
         ->setTemplate($template)
         ->setTitle($title)
         ->setMiddlewares(['public', 'logged', 'active', 'beginner-review', 'required-email'])
@@ -63,7 +63,7 @@ use \Legacy\Activity\Test as LegacyTest;
 
     add_grade_style();
 
-    \App\Legacy\LegacyView::setPage('interest')
+    return \App\Legacy\LegacyView::setPage('interest')
         ->setMiddlewares(['logged'])
         ->show();
 });
@@ -73,7 +73,7 @@ use \Legacy\Activity\Test as LegacyTest;
 
     add_grade_style();
 
-    \App\Legacy\LegacyView::setPage('review')
+    return \App\Legacy\LegacyView::setPage('review')
         ->setMiddlewares(['public', 'student', 'logged', 'active', 'required-email'])
         ->show();
 });

@@ -31,18 +31,18 @@
 @endpushOnce
 
 <x-layouts.legacy-main :$title>
+
+	<p class="mb-8 rounded border-2 border-red-600 px-4 py-2 font-medium text-red-700">
+		A causa di un problema tecnico
+		potremmo non aver ricevuto tutte le richieste di supporto nelle ultime settimane. In caso tu ci abbia scritto, ma
+		non abbia ricevuto risposta, ti preghiamo di contattare nuovamente il supporto. Ci scusiamo per il disagio.
+	</p>
+
 	<div class="page-content breakout">
 		<div class="pos-rel">
 			{{-- Title --}}
 			{{-- <x-heading.main>Funzionalità<br> {{ is_administrator() ? 'di referente' : "per l'insegnante" }}
 			</x-heading.main> --}}
-
-			{{-- <p class="border-transition-400 text-transition-500 mt-12 rounded border-2 px-4 py-2">La dashboard insegnante è in
-				fase di
-				aggiornamento, se dovessi riscontrare qualche problema, ti preghiamo di contattare il supporto <a
-					href="teacher/support/open-ticket"
-					class="text-secondary-300 font-semibold"
-				>qui</a>.</p> --}}
 
 			{{-- Join Requests --}}
 

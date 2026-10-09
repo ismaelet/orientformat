@@ -45,7 +45,7 @@ class TestController extends Controller {
                     ->setTemplate($template)
                     ->setTitle($title)
                     ->set('test', $test)
-                    ->show(true);
+                    ->show();
             } catch (LegacyRedirectException $e) {
                 return redirect()->to($e->url);
             }
@@ -117,9 +117,13 @@ class TestController extends Controller {
         }
 
         // Initialize legacy test logic
-        Logic::add($test->template, 'template');
-        Logic::add($test->filePath(), 'page');
-        Logic::load();
+        try {
+            Logic::add($test->template, 'template');
+            Logic::add($test->filePath(), 'page');
+            Logic::load();
+        } catch (LegacyRedirectException $e) {
+            return redirect()->to($e->url);
+        }
 
         // No normal submission handling for test-next templates
         if ($test->template === 'test-next') {
@@ -207,9 +211,11 @@ class TestController extends Controller {
             $testResult->delete();
         }
 
-        $firstDependentTest = $dependentTests->first();
+        $firstDependentTest = $dependentTests?->first();
 
-        return redirect()->to($firstDependentTest?->url());
+        return redirect()->to(
+            $firstDependentTest?->url() ?? $test->url()
+        );
     }
 
 

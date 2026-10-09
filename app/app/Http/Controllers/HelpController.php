@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Legacy\LegacyView;
 use App\Mail\ContactMail;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class HelpController extends Controller {
-    public function index() {
-        ob_start();
 
-        require app_path('Http') . '/legacy.php';
-
-        $output = ob_get_clean();
-
-        return $output;
+    /**
+     * Display the support page
+     */
+    public function index(): Response {
+        return LegacyView::setPage('support')
+            ->setTitle('Supporto')
+            ->show();
     }
 
     /**

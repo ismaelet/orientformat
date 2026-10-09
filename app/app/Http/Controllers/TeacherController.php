@@ -11,6 +11,7 @@ use App\Models\Schools\SchoolClass;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
@@ -244,8 +245,8 @@ completate sia di quelle non ancora completate.'
     /**
      * Display the simulation index
      */
-    public function simulationIndex() {
-        \App\Legacy\LegacyView::setPage('teacher/simulation')
+    public function simulationIndex(): Response {
+        return \App\Legacy\LegacyView::setPage('teacher/simulation')
             ->show();
     }
 

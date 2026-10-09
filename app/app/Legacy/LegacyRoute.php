@@ -4,41 +4,41 @@ namespace App\Legacy;
 
 class LegacyRoute {
 
-	private static $routes = [];
+    private static $routes = [];
 
-	public static function add($paths, $function) {
+    public static function add($paths, $function) {
+        $paths = (array) $paths;
 
-		$paths = (array) $paths;
+        foreach ($paths as $path) {
+            self::$routes[] = [
+                'path' => CLIENT_ROOT . $path,
+                'function' => $function,
+            ];
+        }
+    }
 
-		foreach ($paths as $path)
-			array_push(self::$routes, [
-				'path' => CLIENT_ROOT . $path,
-				'function' => $function,
-			]);
-	}
+    public static function run() {
+        $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-	public static function run() {
+        if ($path !== null && $path !== false) {
+            foreach (self::$routes as $route) {
+                if (
+                    in_array($path, [$route['path'], $route['path'] . '/']) ||
+                    (
+                        str_contains($route['path'], '*') &&
+                        str_contains($path, rtrim($route['path'], '/*'))
+                    )
+                ) {
+                    return call_user_func_array($route['function'], [$path]);
+                }
+            }
+        }
 
-		$path_found = false;
-		$path = parse_url($_SERVER['REQUEST_URI'])['path'] ?? null;
-
-		if ($path !== null) {
-			foreach (self::$routes as $route) {
-				if ((in_array($path, [$route['path'], $route['path'] . '/'])) || (strpos($route['path'], '*') && strpos($path, rtrim($route['path'], '/*')) !== false)) {
-					$path_found = true;
-					call_user_func_array($route['function'], [$path]);
-					break;
-				}
-			}
-		}
-
-		// error 404
-		if (!$path_found) {
-			\App\Legacy\LegacyView::setPage('errors/404')
-				->setTitle(__('Error 404'))
-				->setTemplate('void')
-				->setMiddlewares()
-				->show();
-		}
-	}
+        // Error 404
+        return LegacyView::setPage('errors/404')
+            ->setTitle(__('Error 404'))
+            ->setTemplate('void')
+            ->setMiddlewares([])
+            ->show();
+    }
 }

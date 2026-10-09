@@ -159,40 +159,41 @@ class LegacyView {
         return new static;
     }
 
-    public static function show(bool $returnResponse = false) {
-        // load the middlewares
-        $middlewareLoader = MiddlewareLoader::getInstance();
+    public static function show() {
+        $level = ob_get_level();
 
-        foreach (self::$middlewares as $middleware) {
-            $middlewareLoader->run($middleware);
+        ob_start();
+
+        try {
+            // Load middlewares
+            $middlewareLoader = MiddlewareLoader::getInstance();
+
+            foreach (self::$middlewares as $middleware) {
+                $middlewareLoader->run($middleware);
+            }
+
+            // Load logic
+            Logic::add(self::$template, 'template');
+            Logic::add(self::$page, 'page');
+            Logic::load();
+
+            // Load page resources
+            StyleLoader::addPageStyles(self::$page);
+            ScriptLoader::addPageScripts(self::$page);
+
+            // Render page
+            $html = Viewer::render();
+
+            // Include any output emitted by legacy code
+            $output = ob_get_clean();
+
+            return response($output . $html);
+        } catch (\Throwable $e) {
+            while (ob_get_level() > $level) {
+                ob_end_clean();
+            }
+
+            throw $e;
         }
-
-        // load the logic
-        Logic::add(self::$template, 'template');
-        Logic::add(self::$page, 'page');
-        Logic::load();
-
-        // load page resources
-        StyleLoader::addPageStyles(LegacyView::$page);
-        ScriptLoader::addPageScripts(LegacyView::$page);
-
-        if (headers_sent($file, $line)) {
-            logger()->warning('Headers already sent before legacy render', [
-                'file' => $file,
-                'line' => $line,
-                'buffer_level' => ob_get_level(),
-            ]);
-        }
-
-        // render page
-        $html = Viewer::render();
-
-        if ($returnResponse) {
-            return response($html);
-        }
-
-        echo $html;
-
-        return null;
     }
 }
