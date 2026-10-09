@@ -1,5 +1,6 @@
 <?php
 
+use App\Legacy\Exceptions\LegacyRedirectException;
 use App\Models\Activities\Section;
 use App\Models\Activities\Test;
 use App\Models\User\Administrator;
@@ -171,9 +172,7 @@ function redirect_old($path = false) {
 
     \App\Legacy\ConnectionInterface::getInstance()->close();
 
-    header('Location: ' . $url);
-
-    exit();
+    throw new LegacyRedirectException($url);
 }
 
 /**
