@@ -58,7 +58,7 @@ class TestController extends Controller {
         $completed = $student->hasCompletedTest($test);
         $resultObj = $student->testResult($test);
 
-        return view($test->view(), [
+        $data = [
             'test' => $test,
             'title' => $title,
             'student' => $student,
@@ -67,7 +67,16 @@ class TestController extends Controller {
             'percentage' => $resultObj?->percentage,
             'helper' => $helper,
             'survey' => $test->survey,
-        ]);
+        ];
+
+        if ($helper && method_exists($helper, 'viewData')) {
+            $data = array_merge(
+                $data,
+                $helper->viewData($test, $student, $resultObj)
+            );
+        }
+
+        return view($test->view(), $data);
     }
 
     /**
@@ -77,11 +86,18 @@ class TestController extends Controller {
         $student = student();
 
         // Handle legacy templates separately
-        if (!in_array($test->template, ['blade', 'survey'])) {
+        if (!in_array($test->template, ['blade', 'survey'], true)) {
             return $this->storeLegacy($request, $test);
         }
 
-        // Modern test handling
+        $helper = $test->helper();
+
+        // Allow custom test submission handling
+        if ($helper && method_exists($helper, 'store')) {
+            return $helper->store($request, $test, $student);
+        }
+
+        // Default submission handling
         $fields = $request->input('field', []);
         $timePassed = $request->integer('speed', 0);
 

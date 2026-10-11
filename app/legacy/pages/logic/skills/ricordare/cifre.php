@@ -64,15 +64,6 @@ if (isset($_POST['check'])) {
     redirect_old();
 }
 
-if (isset($_POST['reset'])) {
-    $oldTestResult = TestResult::where('studentId', Auth::id())
-        ->where('testId', $legacyTest->id)
-        ->first()
-        ?->delete();
-
-    redirect_old();
-}
-
 \Legacy\LogicManager\TestLogic::setTestSubmitFunction(
     function () {
         $maxLevel = count(\App\Legacy\LegacyView::get('answers'));
