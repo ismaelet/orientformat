@@ -10,6 +10,8 @@
 	<h1 class="text-800 text-neutral-heading font-semibold">{{ $test->name }}</h1>
 
 	{{-- Description --}}
-	<p class="border-neutral-border text-neutral-text mt-4 border-t pt-4 text-lg">
-		{!! $description ? $description : nl2br($test->description) !!}</p>
+	@if ($description !== '')
+		<p class="border-neutral-border text-neutral-text mt-4 border-t pt-4 text-lg">
+			{!! $description ?: nl2br($test->description) !!}</p>
+	@endif
 </div>
