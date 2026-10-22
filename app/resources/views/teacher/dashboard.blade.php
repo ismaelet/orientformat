@@ -32,11 +32,11 @@
 
 <x-layouts.legacy-main :$title>
 
-	<p class="mb-8 rounded border-2 border-red-600 px-4 py-2 font-medium text-red-700">
+	{{-- <p class="mb-8 rounded border-2 border-red-600 px-4 py-2 font-medium text-red-700">
 		A causa di un problema tecnico
 		potremmo non aver ricevuto tutte le richieste di supporto nelle ultime settimane. In caso tu ci abbia scritto, ma
 		non abbia ricevuto risposta, ti preghiamo di contattare nuovamente il supporto. Ci scusiamo per il disagio.
-	</p>
+	</p> --}}
 
 	<div class="page-content breakout">
 		<div class="pos-rel">

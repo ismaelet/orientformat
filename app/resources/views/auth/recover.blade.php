@@ -20,7 +20,7 @@
 				questo caso dovresti contattare il/la tuo/a docente e chiedere di effettuare un reset della password seguendo le
 				istruzioni indicate <a
 					class="text-secondary-400 font-bold"
-					href="https://www.iprase.tn.it/orientamento/help?category=5&topic=12#topic12"
+					href="https://www.iprase.tn.it/orientamento/help?category=2&topic=12#topic12"
 				>qui</a>.</p>
 
 			{{-- Email input --}}

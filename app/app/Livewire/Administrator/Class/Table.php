@@ -130,15 +130,16 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                             ->relationship(
                                 name: 'teachers',
                                 modifyQueryUsing: fn(Builder $query) => $query
+                                    ->join('users', 'users.id', '=', 'teachers.user_id')
                                     ->where('school_id', $this->school->id)
-                                    ->whereHas('user')
-                                    ->with('user')
+                                    ->whereNull('users.deleted_at')
+                                    ->select('teachers.*')
                             )
                             ->getOptionLabelFromRecordUsing(
                                 fn(Teacher $record): string =>
                                 $record->inverted_full_name ?: "Docente #{$record->id}"
                             )
-                            ->searchable(['full_name', 'inverted_full_name'])
+                            ->searchable(['users.full_name', 'users.inverted_full_name'])
                             ->preload()
                             ->required(false)
                             ->helperText('Seleziona tutti i docenti che collaborano a questa classe.')
