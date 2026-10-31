@@ -11,7 +11,11 @@
     redir /orientamento /orientamento/
 
     handle_path /orientamento/* {
-        php_server
+        vars rewritten_uri {uri}
+
+        php_server {
+            env REQUEST_URI {vars.rewritten_uri}
+        }
     }
 
     handle {
