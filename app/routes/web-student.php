@@ -21,6 +21,18 @@ use Illuminate\Support\Facades\Route;
 /**
  * Student only routes
  */
+Route::middleware([Student::class, HasEmail::class, Locale::class])->group(function () {
+    // Settings
+    Route::get('settings', [StudentController::class, 'settingsIndex'])
+        ->name('student.settings');
+
+    Route::post('settings', [StudentController::class, 'settingsUpdate'])
+        ->name('student.settings.update');
+
+    Route::post('password', [StudentController::class, 'passwordUpdate'])
+        ->name('student.password.update');
+});
+
 Route::middleware([Student::class, HasEmail::class, StartReview::class, EndReview::class, Locale::class])->group(function () {
     // Home
     Route::any('student', [StudentHomeController::class, 'index'])->name('student');
@@ -31,16 +43,6 @@ Route::middleware([Student::class, HasEmail::class, StartReview::class, EndRevie
 
     // Masterpieces
     Route::post('masterpieces/upload', [MasterpieceController::class, 'upload'])->name('masterpieces.upload');
-
-    // Settings
-    Route::get('settings', [StudentController::class, 'settingsIndex'])
-        ->name('student.settings');
-
-    Route::post('settings', [StudentController::class, 'settingsUpdate'])
-        ->name('student.settings.update');
-
-    Route::post('password', [StudentController::class, 'passwordUpdate'])
-        ->name('student.password.update');
 });
 
 /**
