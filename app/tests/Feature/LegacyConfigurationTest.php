@@ -3,7 +3,7 @@
 use App\Legacy\LegacyConfig;
 use App\Legacy\LegacyView;
 
-test('legacy helpers read laravel configuration without stale values', function (): void {
+beforeEach(function (): void {
     config([
         'app.name' => 'Test application',
         'app.url' => 'https://example.test/orientamento',
@@ -15,7 +15,9 @@ test('legacy helpers read laravel configuration without stale values', function 
         'custom.meta_data.short_description' => 'Short description',
         'custom.meta_data.default_color_scheme' => 'dark',
     ]);
+});
 
+test('legacy helpers read laravel configuration without stale values', function (): void {
     $legacy = LegacyConfig::getInstance();
 
     expect($legacy->name)->toBe('Test application');
@@ -37,12 +39,6 @@ test('legacy helpers read laravel configuration without stale values', function 
 });
 
 test('legacy page metadata uses laravel configuration', function (): void {
-    config([
-        'app.name' => 'Test application',
-        'custom.meta_data.short_description' => 'Short description',
-        'custom.meta_data.description' => 'Application description',
-    ]);
-
     try {
         LegacyView::setTitle('');
         expect(LegacyView::getTabTitle())->toBe('Test application | Short description');

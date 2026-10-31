@@ -57,17 +57,10 @@ class Setup
     private static function initializeRoutes()
     {
         $systemRoutes = glob(__DIR__.'/../routes/*.php');
-        $appRoutes = glob(__DIR__.'/../../app/routes/*.php');
-
-        // system routes
         foreach ($systemRoutes as $route) {
             include_once $route;
         }
 
-        // app routes
-        foreach ($appRoutes as $route) {
-            include_once $route;
-        }
     }
 
     /**

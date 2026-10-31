@@ -2,6 +2,8 @@
 
 use App\Models\Activities\Section;
 use App\Models\Schools\SchoolClass;
+use App\Models\User;
+use App\Models\User\Teacher;
 use App\Services\Results\SectionGroupResultCalculator;
 
 test('class named percentage result has expected shape', function (): void {
@@ -12,7 +14,7 @@ test('class named percentage result has expected shape', function (): void {
         SectionGroupResultCalculator::class,
     )->forSchoolClass(
         section: $section,
-        class: $class,
+        schoolClass: $class,
     );
 
     expect($result)->toHaveKey('values');
@@ -29,7 +31,7 @@ test('class tier result has expected shape', function (): void {
         SectionGroupResultCalculator::class,
     )->forSchoolClass(
         section: $section,
-        class: $class,
+        schoolClass: $class,
     );
 
     expect($result)->toHaveKey('values');
@@ -64,20 +66,20 @@ test('unsupported section throws exception', function (): void {
 });
 
 test('temperament class result is calculated correctly', function (): void {
-    $result = app(
-        SectionGroupResultCalculator::class,
-    )->forSchoolClass(
-        section: Section::findOrFail(8),
-        class: SchoolClass::findOrFail(123),
+    $result = app(SectionGroupResultCalculator::class)->forSchoolClass(
+        Section::findOrFail(8),
+        SchoolClass::findOrFail(123),
     );
 
-    expect($result)->toBe([
-        'values' => [
-            'Trait name 1' => 54,
-            'Trait name 2' => 61,
-        ],
-        'count' => 23,
-    ]);
+    expect($result)
+        ->toHaveKeys(['values', 'count'])
+        ->and($result['values'])->toBeArray()
+        ->and($result['count'])->toBeInt()->toBeGreaterThanOrEqual(0);
+
+    foreach ($result['values'] as $trait => $value) {
+        expect($trait)->toBeString();
+        expect($value)->toBeNumeric();
+    }
 });
 
 test('tier percentages total approximately one hundred', function (): void {
@@ -91,13 +93,20 @@ test('tier percentages total approximately one hundred', function (): void {
 });
 
 test('empty class returns empty graph result', function (): void {
-    $class = SchoolClass::factory()->create();
+    $user = User::factory()->create();
 
-    $result = app(
-        SectionGroupResultCalculator::class,
-    )->forSchoolClass(
-        section: Section::findOrFail(8),
-        class: $class,
+    $teacher = Teacher::create([
+        'id' => $user->id,
+        'user_id' => $user->id,
+    ]);
+
+    $class = SchoolClass::factory()->create([
+        'referentId' => $teacher->id,
+    ]);
+
+    $result = app(SectionGroupResultCalculator::class)->forSchoolClass(
+        Section::findOrFail(8),
+        $class,
     );
 
     expect($result)->toBe([

@@ -5,17 +5,14 @@ use App\Models\Schools\SchoolClass;
 use App\Models\User;
 use App\Models\User\Student;
 use App\Models\User\Teacher;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
-
-pest()->use(RefreshDatabase::class);
 
 test('student can login', function (): void {
     $user = User::factory()->create([
         'password' => bcrypt('password123'),
     ]);
 
-    Student::factory()->create([
+    Student::create([
         'id' => $user->id,
         'userId' => $user->id,
     ]);
@@ -44,7 +41,7 @@ test('teacher can login', function (): void {
         'password' => Hash::make('password123'),
     ]);
 
-    Teacher::factory()->create([
+    Teacher::create([
         'id' => $user->id,
         'user_id' => $user->id,
     ]);
@@ -69,7 +66,16 @@ test('teacher can login', function (): void {
 });
 
 test('student registration', function (): void {
-    $class = SchoolClass::factory()->create();
+    $teacherUser = User::factory()->create();
+
+    $teacher = Teacher::create([
+        'id' => $teacherUser->id,
+        'user_id' => $teacherUser->id,
+    ]);
+
+    $class = SchoolClass::factory()
+        ->withReferent($teacher)
+        ->create();
 
     $response = $this->post(route('register.store'), [
         'type' => 'student',

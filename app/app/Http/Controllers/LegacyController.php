@@ -3,22 +3,137 @@
 namespace App\Http\Controllers;
 
 use App\Legacy\Exceptions\LegacyRedirectException;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
+use App\Legacy\LegacyRoute;
+use App\Legacy\LegacyView;
+use App\Models\Activities\Area;
+use App\Models\Activities\Section;
+use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Throwable;
 
-class LegacyController extends Controller {
+class LegacyController extends Controller
+{
+    public function __invoke(): SymfonyResponse
+    {
+        return $this->execute(fn () => LegacyRoute::run());
+    }
 
-    public function __invoke(): SymfonyResponse {
+    public function landing(): SymfonyResponse
+    {
+        return redirect()->route('login');
+    }
+
+    public function wait(): SymfonyResponse
+    {
+        return $this->execute(function () {
+            if (user()->status) {
+                return redirect()->route('home');
+            }
+
+            return LegacyView::setPage('access/wait')
+                ->setMiddlewares(['public', 'logged'])
+                ->setTitle('Attendi')
+                ->show();
+        });
+    }
+
+    public function addEmail(): SymfonyResponse
+    {
+        return $this->execute(function () {
+            if (user()->email) {
+                return redirect()->route('home');
+            }
+
+            return LegacyView::setPage('access/add-email')
+                ->setTemplate('form')
+                ->setMiddlewares(['public', 'logged'])
+                ->setTitle('Aggiungi il tuo indirizzo e-mail')
+                ->show();
+        });
+    }
+
+    public function tutorial(): SymfonyResponse
+    {
+        return $this->execute(fn () => LegacyView::setPage('support')
+            ->setTitle('Supporto')
+            ->show());
+    }
+
+    public function interest(): SymfonyResponse
+    {
+        return $this->execute(function () {
+            add_grade_style();
+
+            return LegacyView::setPage('interest')
+                ->setMiddlewares(['logged'])
+                ->show();
+        });
+    }
+
+    public function review(): SymfonyResponse
+    {
+        return $this->execute(function () {
+            add_grade_style();
+
+            return LegacyView::setPage('review')
+                ->setMiddlewares(['public', 'student', 'logged', 'active', 'required-email'])
+                ->show();
+        });
+    }
+
+    public function knowMore(): SymfonyResponse
+    {
+        return $this->execute(fn () => LegacyView::setPage('teacher/know-more')
+            ->setMiddlewares(['public', 'teacherOrAdministrator'])
+            ->setTitle('Saperne di più')
+            ->show());
+    }
+
+    public function paths(): SymfonyResponse
+    {
+        return $this->execute(fn () => LegacyView::setPage('teacher/paths')
+            ->setMiddlewares(['public', 'teacherOrAdministrator'])
+            ->setTitle('Percorsi')
+            ->show());
+    }
+
+    public function read(Request $request): SymfonyResponse
+    {
+        return $this->execute(function () use ($request) {
+            $sectionId = $request->query('id');
+            $areaId = $request->query('area-id');
+            $slug = $sectionId
+                ? Section::query()->whereKey($sectionId)->value('slug')
+                : ($areaId ? Area::query()->whereKey($areaId)->value('slug') : null);
+
+            if (! $slug) {
+                return redirect()->route('home');
+            }
+
+            $page = $sectionId ? $slug : 'area-'.$slug;
+
+            return LegacyView::setPage('read/'.$page)
+                ->setTemplate('read')
+                ->show();
+        });
+    }
+
+    protected function initializeLegacy(): void
+    {
+        require_once base_path('legacy/system/setup/setup.php');
+    }
+
+    protected function execute(Closure $action): SymfonyResponse
+    {
         $initialBufferLevel = ob_get_level();
 
         ob_start();
 
         try {
-            // Execute legacy application and capture its response
-            $result = require app_path('Http/legacy.php');
+            $this->initializeLegacy();
+            $result = $action();
 
             // Capture any output from legacy code
             $output = ob_get_contents();

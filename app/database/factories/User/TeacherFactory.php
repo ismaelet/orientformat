@@ -3,28 +3,23 @@
 namespace Database\Factories\User;
 
 use App\Models\User;
-use App\Models\User\Student;
 use App\Models\User\Teacher;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
-class TeacherFactory extends Factory {
+class TeacherFactory extends Factory
+{
+    protected $model = Teacher::class;
 
-	/**
-	 * The name of the factory's corresponding model.
-	 *
-	 * @var string
-	 */
-	protected $model = Teacher::class;
+    public function definition(): array
+    {
+        return [];
+    }
 
-	/**
-	 * Define the model's default state.
-	 *
-	 * @return array
-	 */
-	public function definition() {
-		return [
-			'user_id' => User::factory(),
-		];
-	}
+    public function forUser(User $user): static
+    {
+        return $this->state([
+            'id' => $user->id,
+            'user_id' => $user->id,
+        ]);
+    }
 }
