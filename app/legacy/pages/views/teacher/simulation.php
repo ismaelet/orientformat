@@ -9,7 +9,7 @@ use App\Models\Schools\Grade;
 <div class="main-wrap">
     <div class="grid center-content" data-spacing="700">
         <h1 class="page-title">Simulazione studente</h1>
-        <a href="<?= client_url('/teacher') ?>" class="button button--secondary">Indietro</a>
+        <a href="<?= route('teacher.dashboard') ?>" class="button button--secondary">Indietro</a>
         <p class="txt-1rem">
             Cliccando qui sotto è possibile visualizzare le attività proposte agli studenti e testarne il funzionamento.<br>
             Ogni anno le attività sono suddivise per aree, che possono variare da due a quattro e possono essere svolte in qualsiasi ordine,<br>anche se consigliamo di cominciare con il <strong>Profilo personale</strong> e finire con <strong>Scegliere</strong>, quando presente.

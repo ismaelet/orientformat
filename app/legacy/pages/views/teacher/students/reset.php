@@ -8,7 +8,7 @@
 		<p class="txt-15rem pt-8 fa-center">Nuova password: <span class="font-bold"><?= $password ?></span></p>
 
 		<div class="fa-center mar-t-3">
-			<a href="<?= client_url('/teacher/students') ?>" class="button button--secondary">Torna indietro</a>
+			<a href="<?= route('class.students.index', ['class' => schoolClassId()]) ?>" class="button button--secondary">Torna indietro</a>
 		</div>
 
 	</div>

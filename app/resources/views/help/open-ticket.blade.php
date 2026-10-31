@@ -168,7 +168,7 @@
 
 						Per sfruttare al meglio la piattaforma consigliamo di leggere <a
 							class="txt-c2"
-							href="<?= client_url('/help?category=4&topic=8#topic8') ?>"
+							href="<?= route('help', ['category' => 4, 'topic' => 8]).'#topic8' ?>"
 						>I 10 passi per utilizzare OrientFormat</a>.
 					</p>
 

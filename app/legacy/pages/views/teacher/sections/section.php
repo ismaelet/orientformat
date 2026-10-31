@@ -17,7 +17,7 @@
 
         <p class="stitle txt-1rem mar-t-1">Qui puoi controllare e stampare i risultati della classe in questa attività.</p>
 
-        <a href="<?= client_url('/teacher/sections') ?>" class="button button--secondary back">Tutte le attività</a><br>
+        <a href="<?= route('teacher.simulation') ?>" class="button button--secondary back">Tutte le attività</a><br>
 
     </div>
 

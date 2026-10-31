@@ -26,7 +26,7 @@
 						<p class="dashboard-field"><?= $student->fullName ?></p>
 
 						<div class="dashboard-field dashboard-field_btns">
-							<a class="btn gre" href="<?= client_url('/class/student-progress/student?id=' . \Illuminate\Support\Facades\Auth::id()) ?>">Vedi il progresso</a>
+							<a class="btn gre" href="<?= route('class.students.results.show', ['class' => schoolClassId(), 'student' => $student->id]) ?>">Vedi il progresso</a>
 						</div>
 					</form>
 

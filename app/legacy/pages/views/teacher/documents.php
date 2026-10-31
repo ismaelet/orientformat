@@ -5,7 +5,7 @@
 
 	<h1 class="page-title">Modulistica</h1>
 	<div class="fa-center mar-v-1">
-		<a href="<?= client_url('/teacher') ?>" class="button button--secondary back">Indietro</a>
+		<a href="<?= route('teacher.dashboard') ?>" class="button button--secondary back">Indietro</a>
 	</div>
 	<p class="page-subtitle">
 		Qui puoi scaricare i moduli della <span class="txt-sbold">Certificazione delle competenze</span>, del <span class="txt-sbold">Consiglio orientativo</span> e altri documenti di supporto.

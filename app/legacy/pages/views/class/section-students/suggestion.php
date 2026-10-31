@@ -7,7 +7,7 @@
 	</div>
 
 	<div class="page-content">
-		<a class="dashboard-panel" href="<?= client_url('/class/students/suggestion/give') ?>">
+		<a class="dashboard-panel" href="<?= route('class.students.results.index', ['class' => schoolClassId()]) ?>">
 			<div class="dashboard-panel_icon icon-box">
 				<?= embed_icon('suggestion') ?>
 			</div>
@@ -18,7 +18,7 @@
 			</div>
 		</a>
 
-		<!-- <a class="dashboard-panel" href="<?= client_url('/class/students/suggestion/compare') ?>">
+		<!-- <a class="dashboard-panel" href="<?= route('class.students.results.index', ['class' => schoolClassId()]) ?>">
 			<div class="dashboard-panel_icon icon-box">
 				<?= embed_icon('section2') ?>
 			</div>

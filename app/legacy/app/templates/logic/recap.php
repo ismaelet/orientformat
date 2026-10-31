@@ -12,7 +12,7 @@ $area = Area::find($legacyArea->id);
 $student = student();
 
 if (is_teacher_or_administrator()) {
-    $backUrl = client_url('/teacher/simulation');
+    $backUrl = route('teacher.simulation');
 } else {
     $gradeNumber = session()->get('activities-year') ?? legacy_student()->schoolClass->relativeGrade;
     $backUrl = route('activities.grades.show', $gradeNumber);

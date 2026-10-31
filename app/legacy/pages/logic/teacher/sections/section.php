@@ -58,7 +58,7 @@ while ($studentRow = $students->fetch_assoc()) {
 
 				$area = \App\Legacy\LegacyDB::find('slug FROM areas WHERE id = ?', [$legacyTest['areaID']]);
 
-				$text .= '<br><a href="' . client_url('/' . $area . '/section?id=' . $legacyTest['sectionID'] . '&step=' . $legacyTest['step'] . '&user=' . \Illuminate\Support\Facades\Auth::id()) . '" class="txt-c4 font-bold view-result">Visualizza</a>';
+				$text .= '<br><a href="' . route('test', ['test' => $legacyTest['id'], 'student_id' => $student->id]) . '" class="txt-c4 font-bold view-result">Visualizza</a>';
 			}
 
 			if ($legacyTest['template'] == 'survey' && \App\Legacy\LegacyDB::exists('surveys WHERE testId = ?', [$legacyTest['id']]))

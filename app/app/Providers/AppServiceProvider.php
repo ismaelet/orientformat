@@ -12,66 +12,70 @@ use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 
-class AppServiceProvider extends ServiceProvider {
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        $files = glob(app_path('Helpers').'/*.php');
 
-	/**
-	 * Register any application services.
-	 */
-	public function register(): void {
-		$files = glob(app_path('Helpers') . "/*.php");
+        foreach ($files as $key => $file) {
+            require_once $file;
+        }
 
-		foreach ($files as $key => $file) {
-			require_once $file;
-		}
+        $this->app->bind(ContractsLogoutResponse::class, LogoutResponse::class);
+    }
 
-		$this->app->bind(ContractsLogoutResponse::class, LogoutResponse::class);
-	}
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
+    {
+        // Register Vite image helper
+        Vite::macro('image', fn (string $asset) => $this->asset("resources/images/{$asset}"));
 
-	/**
-	 * Bootstrap any application services.
-	 */
-	public function boot(): void {
-		// Register Vite image helper
-		Vite::macro('image', fn(string $asset) => $this->asset("resources/images/{$asset}"));
+        // Prevent lazy loading in non-production environments
+        Model::preventLazyLoading(! app()->isProduction());
 
-		// Prevent lazy loading in non-production environments
-		Model::preventLazyLoading(! app()->isProduction());
+        // Force base URL
+        URL::forceRootUrl(config('app.url'));
 
-		// Force base URL
-		URL::forceRootUrl(config('app.url'));
+        // If using HTTPS, also force it
+        if (app()->isProduction()) {
+            URL::forceScheme('https');
+        }
 
-		// If using HTTPS, also force it
-		if (app()->isProduction()) {
-			URL::forceScheme('https');
-		}
+        // Extract subdir from APP_URL (e.g. "/orientamento")
+        $prefix = trim(
+            parse_url(config('app.url'), PHP_URL_PATH) ?? '',
+            '/'
+        );
 
-		// Extract subdir from APP_URL (e.g. "/orientamento")
-		$prefix = 'orientamento';
+        Livewire::setUpdateRoute(function ($handle) use ($prefix) {
+            return Route::post($prefix.'/livewire/update', $handle)
+                ->name('livewire.update');
+        });
 
-		Livewire::setUpdateRoute(function ($handle) use ($prefix) {
-			return Route::post($prefix . '/livewire/update', $handle)
-				->name('livewire.update');
-		});
+        if (config('app.debug')) {
+            Livewire::setScriptRoute(function ($handle) use ($prefix) {
+                return Route::get($prefix.'/livewire/livewire.js', $handle)
+                    ->name('livewire.js');
+            });
+        } else {
+            Livewire::setScriptRoute(function ($handle) use ($prefix) {
+                return Route::get($prefix.'/livewire/livewire.min.js', $handle)
+                    ->name('livewire.js');
+            });
+        }
 
-		if (config('app.debug')) {
-			Livewire::setScriptRoute(function ($handle) use ($prefix) {
-				return Route::get($prefix . '/livewire/livewire.js', $handle)
-					->name('livewire.js');
-			});
-		} else {
-			Livewire::setScriptRoute(function ($handle) use ($prefix) {
-				return Route::get($prefix . '/livewire/livewire.min.js', $handle)
-					->name('livewire.js');
-			});
-		}
-
-
-		// Fix filament favicon
-		Filament::serving(function () {
-			Filament::registerRenderHook(
-				'panels::head.start',
-				fn() => '<link rel="icon" type="image/png" href="' . asset('favicon.ico') . '">'
-			);
-		});
-	}
+        // Fix filament favicon
+        Filament::serving(function () {
+            Filament::registerRenderHook(
+                'panels::head.start',
+                fn () => '<link rel="icon" type="image/png" href="'.asset('favicon.ico').'">'
+            );
+        });
+    }
 }

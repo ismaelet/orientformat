@@ -44,14 +44,14 @@ class TeacherController extends Controller
                 'title' => 'Simulazione studente',
                 'subtitle' => 'Per esplorare le attività',
                 'desc' => 'Qui è possibile vedere quali saranno le attività proposte ai tuoi studenti e testare come funzionano.',
-                'url' => client_url('/teacher/simulation'),
+                'url' => route('teacher.simulation'),
                 'slug' => 'simulation',
             ],
             [
                 'title' => 'Saperne di più',
                 'subtitle' => 'Per approfondire',
                 'desc' => 'Qui potrai accedere ad agili schede di approfondimento, arricchite da un Glossario ipertestuale.',
-                'url' => client_url('/teacher/know-more'),
+                'url' => route('teacher.know-more'),
                 'slug' => 'know-more',
             ],
             [

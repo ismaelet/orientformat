@@ -120,7 +120,7 @@ $entries = [
     [
         'title' => 'Coscienziosità',
         'tag' => 'coscienziosita',
-        'text' => "È una delle cinque aree del modello <a href='" . client_url('/read?id=8#bigfive') . "' class='link'>Big Five</a>, col quale abbiamo cercato di evidenziare le caratteristiche temperamentali. Il termine è associabile con “affidabilità” e “costanza”, che solitamente correlano con uno <a href='#g-stile' class='link'>stile cognitivo</a> sistematico  e con i modi di agire che abbiamo definito metodico e pianificatore.",
+        'text' => "È una delle cinque aree del modello <a href='" . route('read', ['id' => 8]).'#bigfive' . "' class='link'>Big Five</a>, col quale abbiamo cercato di evidenziare le caratteristiche temperamentali. Il termine è associabile con “affidabilità” e “costanza”, che solitamente correlano con uno <a href='#g-stile' class='link'>stile cognitivo</a> sistematico  e con i modi di agire che abbiamo definito metodico e pianificatore.",
     ],
     [
         'title' => 'Costituzione',

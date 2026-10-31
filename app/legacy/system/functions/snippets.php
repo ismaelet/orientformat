@@ -52,8 +52,8 @@ function playable_video(string $videoUrl, array $parameters = null, array $custo
 
 	return '
 		<div class="' . $classes . '">
-			<video class="js-playable-video" ' . ($posterUrl ? 'poster="' . client_url($posterUrl) . '"' : '') . '">
-				<source src="' . client_url($videoUrl) . '" type="video/mp4">
+			<video class="js-playable-video" ' . ($posterUrl ? 'poster="' . asset(ltrim($posterUrl, '/')) . '"' : '') . '">
+				<source src="' . asset(ltrim($videoUrl, '/')) . '" type="video/mp4">
 			</video>
 			<div class="playable-video__overlay js-playable-video-overlay">
 				<div class="playable-video__play-button">

@@ -16,7 +16,7 @@ Route::post('/login', [LoginController::class, 'auth'])->middleware('guest')->na
 // Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest')->name('register.store');
 
-Route::get('/logout', [LogoutController::class, 'index'])->name('logout')->middleware('auth')->name('logout');
+Route::get('/logout', [LogoutController::class, 'index'])->middleware('auth')->name('logout');
 Route::post('/logout', [LogoutController::class, 'logout'])->middleware('auth')->name('logout.logout');
 
 Route::get('/recover', [RecoverController::class, 'index'])->name('auth.recover')->middleware('guest')->name('auth.recover');

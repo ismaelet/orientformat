@@ -30,7 +30,7 @@
 
                 <?php } ?>
 
-                <a class="interest <?= $i == 1 ? 'interest--main' : 'interest--other' ?>" href="<?= client_url('/interest?id=' . $result['id'] . '&student-id=' . watchedStudentId() . '&highschool=' . ($isMiddleSchool ? 0 : 1)) ?>">
+                <a class="interest <?= $i == 1 ? 'interest--main' : 'interest--other' ?>" href="<?= route('interest', ['id' => $result['id'], 'student-id' => watchedStudentId(), 'highschool' => $isMiddleSchool ? 0 : 1]) ?>">
                     <img src="<?= client_path($isMiddleSchool ? '/pages/assets/interests/highschool/' . $result['id'] . '.jpg' : '/pages/assets/interests/universities/' . $result['id']) ?>" alt="" class="interest_img img-fill">
                     <div class="interest_content">
                         <h3 class="interest_title"><?= $interests[$result['id']]['name'] ?></h3>

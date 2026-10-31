@@ -227,9 +227,9 @@
     fra il bambino e l’adolescente, cadenzando i passaggi da un’età all’altra. La
     complessità che queste competenze comportano richiede molto tempo, investimenti
     cognitivi notevoli e non ammette troppe accelerazioni<sup>1</sup>.<br>
-    I testi espositivi, accessibili al <a href="<?= client_url('/read?id=13#comprendere') ?>" class="link">pensiero paradigmatico</a>, sono centrati sul
+    I testi espositivi, accessibili al <a href="<?= route('read', ['id' => 13]).'#comprendere' ?>" class="link">pensiero paradigmatico</a>, sono centrati sul
     contenuto del messaggio, anche se contengono spesso delle tesi sulle quali si vuole
-    ottenere il consenso del destinatario, ibridandosi così col <a href="<?= client_url('/read?id=13#tipologie') ?>" class="link">tipo di testo</a> che si
+    ottenere il consenso del destinatario, ibridandosi così col <a href="<?= route('read', ['id' => 13]).'#tipologie' ?>" class="link">tipo di testo</a> che si
     definisce argomentativo. Che cosa fa un lettore esperto quando comprende un
     testo?<br>
     Potremmo dire che un lettore riesce a sbrogliare la matassa testuale se riesce a

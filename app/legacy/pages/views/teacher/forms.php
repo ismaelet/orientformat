@@ -11,7 +11,7 @@
 <section class="main-wrap pad-b-7">
 
 	<div class="fa-center mar-t-3">
-		<a href="<?= client_url('/teacher') ?>" class="button button--secondary back">Torna alla gestione</a>
+		<a href="<?= route('teacher.dashboard') ?>" class="button button--secondary back">Torna alla gestione</a>
 	</div>
 
 	<div id="grid" class="grid2 grid1-1024w al-top mar-t-2">
@@ -26,8 +26,8 @@
 
 			<!-- Buttons -->
 			<div class="buttons fa-center mar-t-2">
-				<a href="<?= client_url('Consiglio-Orientativo.pdf') ?>" class="button wid-100">Scarica in PDF</a><br>
-				<a href="<?= client_url('Consiglio-Orientativo.docx') ?>" class="button wid-100 bg-secondary">Scarica in DOCX</a>
+				<a href="<?= asset('legacy/pages/assets/teacher/documents/Consiglio-Orientativo.pdf') ?>" class="button wid-100">Scarica in PDF</a><br>
+				<a href="<?= asset('legacy/pages/assets/teacher/documents/Consiglio-Orientativo.docx') ?>" class="button wid-100 bg-secondary">Scarica in DOCX</a>
 			</div>
 
 		</section>
@@ -42,8 +42,8 @@
 
 			<!-- Buttons -->
 			<div class="buttons fa-center mar-t-2">
-				<a href="<?= client_url('Certificazione-delle-Competenze.pdf') ?>" class="button wid-100">Scarica in PDF</a><br>
-				<a href="<?= client_url('Certificazione-delle-Competenze.docx') ?>" class="button wid-100 bg-secondary">Scarica in DOCX</a>
+				<a href="<?= asset('legacy/pages/assets/teacher/documents/Certificazione-delle-Competenze.pdf') ?>" class="button wid-100">Scarica in PDF</a><br>
+				<a href="<?= asset('legacy/pages/assets/teacher/documents/Certificazione-delle-Competenze.docx') ?>" class="button wid-100 bg-secondary">Scarica in DOCX</a>
 			</div>
 
 		</section>
@@ -58,7 +58,7 @@
 
 			<!-- Buttons -->
 			<div class="buttons fa-center mar-t-2">
-				<a href="<?= client_url('Informativa-Privacy.pdf') ?>" class="button wid-100">Scarica</a><br>
+				<a href="<?= asset('legacy/pages/assets/teacher/documents/Informativa-Privacy.pdf') ?>" class="button wid-100">Scarica</a><br>
 			</div>
 
 		</section>

@@ -7,7 +7,7 @@
 		<p class="section-subtitle">Qui puoi trovare le principali risposte che lo studente/studentessa ha segnato nel questionario</p>
 
 		<div class="center-content">
-			<a href="<?= client_url('/class/students/progress/focus?studentId=' . $student->id) ?>" class="button button--secondary">Indietro</a>
+			<a href="<?= route('class.students.results.show', ['class' => schoolClassId(), 'student' => $student->id]) ?>" class="button button--secondary">Indietro</a>
 		</div>
 	</div>
 

@@ -2,6 +2,8 @@
 
 namespace App\Support;
 
+use Illuminate\Support\Facades\Route as LaravelRoute;
+
 class Route {
 
 	private static $routes = [
@@ -13,8 +15,12 @@ class Route {
 	 * Add a route to the list
 	 */
 	private static function add(string $path, string $method, callable $function): void {
+        $name = 'legacy.support.'.strtolower($method).'.'.str_replace('/', '.', trim($path, '/'));
+        LaravelRoute::match([$method], $path, $function)->name($name);
+        LaravelRoute::getRoutes()->refreshNameLookups();
+
 		array_push(self::$routes[$method], [
-			'path' => client_url($path),
+			'path' => parse_url(route($name), PHP_URL_PATH),
 			'function' => $function,
 			'name' => explode('/', $path, 2)[1]
 		]);

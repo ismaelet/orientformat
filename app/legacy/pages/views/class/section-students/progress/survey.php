@@ -4,7 +4,7 @@
     <div class="title-block fa-center mar-b-4">
         <h1 class="section-title txt-3rem txt-sbold"><?= $student->fullName ?></h1>
         <h3 class="section-subtitle txt-12rem txt-sbold">Risultati del questionario <?= $pageType == 'start' ? 'iniziale' : 'finale' ?></h3>
-        <a href="<?= client_url('/class/students/progress/focus?id=' . \Illuminate\Support\Facades\Auth::id()) ?>" class="button button--secondary block push-center mar-t-2">Indietro</a>
+        <a href="<?= route('class.students.results.show', ['class' => schoolClassId(), 'student' => $student->id]) ?>" class="button button--secondary block push-center mar-t-2">Indietro</a>
     </div>
 
     <?php if ($profile->id) {

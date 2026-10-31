@@ -23,7 +23,7 @@
 <?php if (!$done) { ?>
 	<button type="submit" name="submit" class="button">Reimposta la password</button>
 <?php } else { ?>
-	<a href="<?= client_url('/login') ?>" class="button button--secondary">Torna al login</a>
+	<a href="<?= route('login') ?>" class="button button--secondary">Torna al login</a>
 <?php } ?>
 
 {% end form-footer %}

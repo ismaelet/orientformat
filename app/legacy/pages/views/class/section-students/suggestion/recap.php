@@ -5,7 +5,7 @@
 		<h1 class="section-title"><span class="fw-light txt-2rem">profilo di</span><br><?= $student->fullName ?></h1>
 
 		<div class="center-content">
-			<a href="<?= client_url('/class/students/suggestion/give') ?>" class="button button--secondary">Indietro</a>
+			<a href="<?= route('class.students.results.index', ['class' => schoolClassId()]) ?>" class="button button--secondary">Indietro</a>
 		</div>
 	</div>
 

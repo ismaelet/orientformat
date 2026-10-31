@@ -31,7 +31,7 @@ function public_client_url(string $parcialUrl = '') {
     if (defined('PUBLIC_CLIENT_ROOT')) {
         $url = PUBLIC_CLIENT_ROOT . $parcialUrl;
     } else {
-        $url = client_url($parcialUrl);
+        $url = asset(ltrim($parcialUrl, '/'));
     }
 
     return $url;

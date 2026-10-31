@@ -16,7 +16,7 @@
 		</p>
 
 		<div class="fa-center mar-t-3">
-			<a href="<?= client_url('/class/students/list') ?>" class="button button--secondary">Torna indietro</a>
+			<a href="<?= route('class.students.index', ['class' => schoolClassId()]) ?>" class="button button--secondary">Torna indietro</a>
 		</div>
 
 	</div>

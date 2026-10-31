@@ -13,7 +13,7 @@
 			Potrai usare questo username o l'indirizzo email per accedere nuovamente.
 		</p>
 
-		<a href="<?= client_url('/') ?>" class="button button--secondary">Prosegui</a>
+		<a href="<?= route('home') ?>" class="button button--secondary">Prosegui</a>
 	</div>
 </div>
 

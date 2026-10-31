@@ -32,7 +32,7 @@
         [
             'title' => 'Gestisci classe',
             'loc' => 'teacher',
-            'url' => client_url('/teacher'),
+            'url' => route('teacher.dashboard'),
             'logged' => true,
             'teacher' => true,
             'mobile' => true,
@@ -47,14 +47,14 @@
         [
             'title' => 'Simulazione',
             'loc' => '',
-            'url' => client_url('/teacher/simulation'),
+            'url' => route('teacher.simulation'),
             'teacher' => true,
             'drop' => 'simulation',
         ],
         [
             'title' => 'Saperne di più',
             'loc' => '',
-            'url' => client_url('/teacher/know-more'),
+            'url' => route('teacher.know-more'),
             'teacher' => true,
         ],
         [
@@ -65,18 +65,18 @@
         [
             'title' => 'Supporto',
             'loc' => 'help',
-            'url' => client_url('/help'),
+            'url' => route('help'),
         ],
         [
             'title' => 'Logout',
             'loc' => 'auth',
-            'url' => client_url('/logout'),
+            'url' => route('logout'),
             'logged' => true,
         ],
         [
             'title' => 'Login',
             'loc' => 'login',
-            'url' => client_url('/login'),
+            'url' => route('login'),
             'logged' => false,
             'mobile' => true,
         ],
@@ -116,11 +116,11 @@
 
     // login bar
     if (is_teacher()) {
-        $h_log_in = ['Gestione', client_url('/teacher')];
+        $h_log_in = ['Gestione', route('teacher.dashboard')];
     } elseif (is_student()) {
         $h_log_in = ['Impostazioni', route('student.settings')];
     } else {
-        $h_log_in = ['Login', client_url('/login')];
+        $h_log_in = ['Login', route('login')];
     }
 
     // survey end
@@ -137,9 +137,9 @@
 
     $h_drop = [
         'simulation' => [
-            ['Scuola secondaria di primo grado', '/teacher/simulation?type=middle-school'],
-            ['Istituti Tecnici, Professionali e Licei', '/teacher/simulation?type=high-school'],
-            ['Istruzione e Formazione Professionale', '/teacher/simulation?type=professional-school'],
+            ['Scuola secondaria di primo grado', route('teacher.simulation', ['type' => 'middle-school'])],
+            ['Istituti Tecnici, Professionali e Licei', route('teacher.simulation', ['type' => 'high-school'])],
+            ['Istruzione e Formazione Professionale', route('teacher.simulation', ['type' => 'professional-school'])],
         ],
     ];
 
@@ -757,7 +757,7 @@
                             <?php foreach ($h_drop[$h_link['drop']] as $h_drop_link) { ?>
 
                             <p class="h-drop-link bgr-wht-h txt-wht txt-blk-h">
-                                <a href="<?= client_url($h_drop_link[1]) ?>"><?= $h_drop_link[0] ?></a>
+                                <a href="<?= $h_drop_link[1] ?>"><?= $h_drop_link[0] ?></a>
                             </p>
                             <?php } ?>
                         </div>
@@ -899,7 +899,7 @@
                                     <?php foreach ($h_drop[$h_link['drop']] as $h_drop_link) { ?>
 
                                     <p class="h-dropM-link txt-wht-h bgr-c3-h">
-                                        <a href="<?= client_url($h_drop_link[1]) ?>">
+                                        <a href="<?= $h_drop_link[1] ?>">
                                             <?= $h_drop_link[0] ?>
                                         </a>
                                     </p>

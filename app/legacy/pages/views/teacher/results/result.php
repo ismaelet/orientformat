@@ -13,7 +13,7 @@
     <!-- Title -->
     <div class="title-box mar-t-4 fa-center">
         <h1 class="title txt-25rem fw-light">Risultati<br><span class="txt-sbold"><?= $student['last_name'] . ' ' . $student['first_name'] ?></span></h1>
-        <a href="<?= client_url('/teacher/results') ?>" class="button button--secondary back">Torna agli studenti</a>
+        <a href="<?= route('class.students.results.index', ['class' => schoolClassId()]) ?>" class="button button--secondary back">Torna agli studenti</a>
     </div>
 
     <div id="areas" class="mar-t-3">

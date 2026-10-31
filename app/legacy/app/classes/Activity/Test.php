@@ -88,7 +88,7 @@ class Test {
     }
 
     private function getClientUrl() {
-        return client_url($this->url);
+        return route('test', ['test' => $this->id]);
     }
 
     private function getFilePath() {

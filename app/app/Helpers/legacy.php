@@ -1,7 +1,6 @@
 <?php
 
 use App\Legacy\ActiveUser;
-use App\Legacy\ConnectionInterface;
 use App\Legacy\Exceptions\LegacyRedirectException;
 use App\Legacy\LegacyView;
 use App\Legacy\Query_Result;
@@ -10,10 +9,14 @@ use App\Models\Activities\Test;
 use App\Models\User\Administrator;
 use App\Models\User\Student;
 use App\Models\User\Teacher;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
 use Legacy\Activity\Test as LegacyTest;
 use Legacy\UserSystem\ActiveStudent;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 function legacy_student()
 {
@@ -32,11 +35,6 @@ function userId()
     }
 
     return ActiveUser::getInstance()->id;
-}
-
-function client_url(string $parcialUrl = '')
-{
-    return env('APP_SUBDOMAIN').$parcialUrl;
 }
 
 function server_path(string $relativePath): string
@@ -190,12 +188,24 @@ function redirect_old($path = false)
     } elseif ($path[0] == '&') {
         $url = $_SERVER['REQUEST_URI'].$path;
     } elseif ($path[0] == '/') {
-        $url = client_url($path);
+        $parts = parse_url($path);
+        parse_str($parts['query'] ?? '', $query);
+
+        try {
+            $matched = Route::getRoutes()->match(Request::create($parts['path'], 'GET'));
+            $url = $matched->getName()
+                ? route($matched->getName(), array_merge($query, $matched->parameters()))
+                : url($path);
+            if ($matched->getName() && isset($parts['fragment'])) {
+                $url .= '#'.$parts['fragment'];
+            }
+        } catch (NotFoundHttpException|MethodNotAllowedHttpException) {
+            // Keep redirects to arbitrary paths compatible with the legacy API.
+            $url = url($path);
+        }
     } else {
         $url = $path;
     }
-
-    ConnectionInterface::getInstance()->close();
 
     throw new LegacyRedirectException($url);
 }

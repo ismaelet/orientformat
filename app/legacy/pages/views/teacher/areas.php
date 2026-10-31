@@ -14,7 +14,7 @@
     <div class="title-box mar-t-4 fa-center">
         <h1 class="title txt-25rem txt-sbold">Progresso per area</h1>
         <p class="stitle txt-1rem mar-t-1">Qui puoi controllare quali macro-aree sono state completate, per avere una panoramica generale dell'andamento della classe.<br>Per avere di risultati più specifici è possibile tornare indietro e usare il pannello <strong>Progresso per attività</strong>.</p>
-        <a href="<?= client_url('/teacher') ?>" class="button button--secondary back">Torna alla gestione</a>
+        <a href="<?= route('teacher.dashboard') ?>" class="button button--secondary back">Torna alla gestione</a>
     </div>
 
     <?php if ($students->num_rows) { ?>

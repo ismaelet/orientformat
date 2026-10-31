@@ -8,7 +8,7 @@
 	$f_columns = [
 	    [
 	        'title' => 'Esplora',
-	        'links' => [['Home', client_url('/')], ['Supporto', client_url('/help')]],
+	        'links' => [['Home', route('home')], ['Supporto', route('help')]],
 	    ],
 	    [
 	        'title' => 'Legali',

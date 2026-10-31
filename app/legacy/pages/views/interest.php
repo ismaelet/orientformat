@@ -18,7 +18,7 @@
 
                     <p class="interest_info txt-1rem"><?= $interest['info'] ?></p>
 
-                    <a href="<?= client_url($watch ? '/choose/section?id=' . ($highschool ? 44 : 23) . '#area' . $interestId : '/choose/section?id=' . ($highschool ? 45 : 24) . '&test-id=' . $resultTestId . '&studentId=' . $studentId) ?>" class="button button--secondary">Indietro</a>
+                    <a href="<?= $watch ? route('section', ['section' => $highschool ? 44 : 23]).'#area'.$interestId : route('test', ['test' => $resultTestId, 'student_id' => $studentId]) ?>" class="button button--secondary">Indietro</a>
                 </div>
             </section>
         </div>

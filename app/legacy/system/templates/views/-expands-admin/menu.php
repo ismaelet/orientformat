@@ -25,7 +25,7 @@
 
 					<!-- Home link -->
 					<div class="menu-item <?= !$currentSection ? 'active' : '' ?>">
-						<a class="menu-item__header" href="<?= client_url('/') ?>">
+						<a class="menu-item__header" href="<?= route('home') ?>">
 							<?= embed_icon('home') ?>
 							<p class="menu-item__title">Home</p>
 						</a>
@@ -69,7 +69,7 @@
 				<div class="menu__group">
 					<!-- Logout link -->
 					<div class="menu-item">
-						<a class="menu-item__header" href="<?= client_url('/logout') ?>">
+						<a class="menu-item__header" href="<?= route('logout') ?>">
 							<?= embed_icon('logout') ?>
 							<p class="menu-item__title">Logout</p>
 						</a>

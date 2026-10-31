@@ -9,7 +9,7 @@
 		<p class="section-subtitle">
 			<?= __("Questa pagina verrà riattivata a breve") ?>
 		</p>
-		<a href="<?= client_url('/') ?>" class="button button--secondary">Indietro</a>
+		<a href="<?= route('home') ?>" class="button button--secondary">Indietro</a>
 	</div>
 </div>
 

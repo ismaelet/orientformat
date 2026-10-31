@@ -10,8 +10,8 @@ $sectionId = $_GET['sectionId'];
 $pageTitle = \App\Legacy\LegacyDB::find('name FROM sections WHERE id = ?', [$sectionId]);
 
 $breadcrumbs = [
-	schoolClass()->name => client_url('/class'),
-	'Progresso della classe' => client_url('/class/class-progress/list'),
+	schoolClass()->name => route('class.show', ['class' => schoolClassId()]),
+	'Progresso della classe' => route('class.general.progress', ['class' => schoolClassId()]),
 	$pageTitle => false,
 ];
 

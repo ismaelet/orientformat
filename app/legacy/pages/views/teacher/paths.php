@@ -3,7 +3,7 @@
 <div class="main-wrap pt-20 pad-b-7">
 	<h1 class="page-title">Come utilizzare la piattaforma</h1>
 
-	<a href="<?= client_url('/' .$returnUrl == 'add' ? 'teacher/add-class?type=new' : 'class/settings/general') ?>" class="button button--secondary back mar-t-1">Indietro</a>
+	<a href="<?= $returnUrl === 'add' ? route('classes.create') : (isset($_SESSION['dashboard-schoolClassId']) ? route('class.settings', ['class' => $_SESSION['dashboard-schoolClassId']]) : route('teacher.dashboard')) ?>" class="button button--secondary back mar-t-1">Indietro</a>
 
 	<p class="page_text mar-t-2 txt-1rem txt-jus">
 		Orient-Format si presta a modalità di impiego che possono variare in base alle classi, al tempo disponibile, a particolari interessi del docente-orientatore, a bisogni formativi specifici all’interno della classe e alla disponibilità di collaborazione da parte dei colleghi. Elenchiamo sinteticamente alcuni possibili percorsi. Altri percorsi ci potranno essere suggeriti dagli stessi docenti. Quando il docente orientatore sceglie un percorso, nell’ambiente studente compariranno solo le relative aree e sezioni. Tuttavia l’orientatore potrà decidere in seguito di intraprendere un nuovo e più ampio percorso.

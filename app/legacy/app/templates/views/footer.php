@@ -12,8 +12,8 @@ $f_columns = [
 	[
 		'title' => __('Explore'),
 		'links' => [
-			['Home', client_url('/')],
-			['Supporto', client_url('/help')],
+			['Home', route('home')],
+			['Supporto', route('help')],
 		]
 	],
 	[

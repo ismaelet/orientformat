@@ -21,7 +21,7 @@
             Quando desideri puoi indicare il consiglio orientativo per ogni studente.
         </p>
 
-        <a href="<?= client_url('/teacher') ?>" class="button button--secondary back">Torna alla gestione</a><br>
+        <a href="<?= route('teacher.dashboard') ?>" class="button button--secondary back">Torna alla gestione</a><br>
 
     </div>
 

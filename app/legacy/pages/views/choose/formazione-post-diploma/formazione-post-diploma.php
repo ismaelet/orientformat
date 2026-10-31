@@ -5,7 +5,7 @@
 		<?= title() ?>
 
 		<div class="center-content">
-			<a href="<?= is_teacher_or_administrator() ? client_url('/teacher/simulation') : route('activities.grades.show', 3) ?>" class="button button--secondary">Indietro</a>
+			<a href="<?= is_teacher_or_administrator() ? route('teacher.simulation') : route('activities.grades.show', 3) ?>" class="button button--secondary">Indietro</a>
 		</div>
 	</div>
 

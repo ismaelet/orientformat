@@ -16,7 +16,7 @@
 	<div class="title-box mar-t-4 text-center">
 		
 		<h1 class="title txt-25rem txt-sbold mb-4"><?= $title ?></h1>
-		<a href="<?= $back ? $back[1] : client_url('/management') ?>" class="sbtn back"><?= $back ? $back[0] : 'Torna alla gestione'?></a><br>
+		<a href="<?= $back ? $back[1] : route('filament.admin.pages.dashboard') ?>" class="sbtn back"><?= $back ? $back[0] : 'Torna alla gestione'?></a><br>
 
 	</div>
 

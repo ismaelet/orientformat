@@ -66,7 +66,7 @@ class Section {
 	}
 
 	private function getClientUrl() {
-		return client_url($this->url);
+		return $this->newSection()->url();
 	}
 
 	private function getFilePath() {

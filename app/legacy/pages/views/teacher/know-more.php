@@ -6,7 +6,7 @@
     <!-- Title -->
     <div class="title-box mar-t-4 fa-center">
         <h1 class="page-title">Saperne di più</h1>
-        <a href="<?= client_url('/teacher') ?>" class="button button--secondary back mar-t-1">Indietro</a>
+        <a href="<?= route('teacher.dashboard') ?>" class="button button--secondary back mar-t-1">Indietro</a>
         <p class="stitle txt-1rem mar-t-1">Qui potrai accedere ad agili schede di approfondimento, arricchite da un <strong>Glossario ipertestuale</strong>.</p>
     </div>
 
@@ -21,7 +21,7 @@
 
                     <?php if ($area->id == 4) { ?>
 
-                        <a href="<?= client_url('/read?area-id=' . $area->id) ?>" class="section fa-center section-color section-color--area-<?= $area->id ?>">
+                        <a href="<?= route('read', ['area-id' => $area->id]) ?>" class="section fa-center section-color section-color--area-<?= $area->id ?>">
                             <?= embed_icon($area->icon) ?>
                             <p class="section__title"><?= $area->name ?></p>
                         </a>
@@ -30,7 +30,7 @@
                         foreach ($area->getAplhabeticalDoableSections() as $legacySection) {
                             if ($legacySection->isMainSection) { ?>
 
-                                <a href="<?= client_url('/read?id=' . $legacySection->id) ?>" id="section<?= $legacySection->id ?>" class="section fa-center section-color section-color--area-<?= $area->id ?>">
+                                <a href="<?= route('read', ['id' => $legacySection->id]) ?>" id="section<?= $legacySection->id ?>" class="section fa-center section-color section-color--area-<?= $area->id ?>">
                                     <?= embed_icon($legacySection->icon) ?>
                                     <p class="section__title"><?= $legacySection->name ?></p>
                                 </a>

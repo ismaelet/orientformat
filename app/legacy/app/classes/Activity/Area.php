@@ -56,6 +56,6 @@ class Area {
 	}
 
 	private function getUrl() {
-		return client_url('/' . $this->slug);
+		return route('analysis.student.area', ['area' => $this->id]);
 	}
 }

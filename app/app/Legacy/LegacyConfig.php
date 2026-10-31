@@ -98,7 +98,7 @@ class LegacyConfig
     private function getEmailLogo()
     {
         if (file_exists(server_path($file = LOGO_DIR.'logo-email.png'))) {
-            return $this->websiteUrl.public_client_url($file);
+            return public_client_url($file);
         } else {
             return $this->absoluteLogo;
         }

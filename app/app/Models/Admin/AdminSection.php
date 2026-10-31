@@ -9,50 +9,61 @@ use Illuminate\Support\Facades\Route;
 /**
  * Admin section class
  */
-class AdminSection extends Model {
+class AdminSection extends Model
+{
+    /**
+     * The attributes that are mass assignable
+     */
+    protected $fillable = ['category_id', 'name', 'resource', 'action', 'order', 'hidden', 'for_superadmins'];
 
-	/**
-	 * The attributes that are mass assignable
-	 */
-	protected $fillable = ['category_id', 'name', 'resource', 'action', 'order', 'hidden', 'for_superadmins'];
+    /**
+     * Get the category
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(AdminCategory::class);
+    }
 
-	/**
-	 * Get the category
-	 */
-	public function category(): BelongsTo {
-		return $this->belongsTo(AdminCategory::class);
-	}
+    /**
+     * Get the url
+     */
+    public function routeName(): string
+    {
+        return implode('.', ['admin', $this->resource, $this->action]);
+    }
 
-	/**
-	 * Get the url
-	 */
-	public function routeName(): string {
-		return implode('.', ['admin', $this->resource, $this->action]);
-	}
+    /**
+     * Get the url
+     */
+    public function url(): string
+    {
+        $routeName = $this->routeName();
 
-	/**
-	 * Get the url
-	 */
-	public function url(): string {
-		$routeName = $this->routeName();
+        if (Route::has($routeName)) {
+            return route($routeName);
+        }
 
-		if (Route::has($routeName)) {
-			return route($routeName);
-		}
+        $action = match ($this->action) {
+            'list' => 'index',
+            'add' => 'create',
+            default => $this->action,
+        };
+        $filamentRoute = 'filament.admin.resources.'.$this->resource.'.'.$action;
 
-		return client_url('/' . str_replace('.', '/', $routeName));
-	}
+        return route(Route::has($filamentRoute) ? $filamentRoute : 'filament.admin.pages.dashboard');
+    }
 
-	/**
-	 * Get the section by slug
-	 */
-	public static function findBySlug(string $routeName): ?self {
-		$routeName = explode('.', $routeName);
-		$resource = $routeName[1];
-		$action = $routeName[2];
+    /**
+     * Get the section by slug
+     */
+    public static function findBySlug(string $routeName): ?self
+    {
+        $routeName = explode('.', $routeName);
+        $resource = $routeName[1];
+        $action = $routeName[2];
 
-		return self::where('resource', $resource)
-			->where('action', $action)
-			->first();
-	}
+        return self::where('resource', $resource)
+            ->where('action', $action)
+            ->first();
+    }
 }
