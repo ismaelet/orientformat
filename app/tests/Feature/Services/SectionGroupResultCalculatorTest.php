@@ -1,131 +1,107 @@
 <?php
 
-namespace Tests\Feature\Services;
-
 use App\Models\Activities\Section;
 use App\Models\Schools\SchoolClass;
 use App\Services\Results\SectionGroupResultCalculator;
-use RuntimeException;
-use Tests\TestCase;
 
-class SectionGroupResultCalculatorTest extends TestCase {
-    public function test_class_named_percentage_result_has_expected_shape(): void {
-        $section = Section::findOrFail(8);
-        $class = SchoolClass::query()->firstOrFail();
+test('class named percentage result has expected shape', function (): void {
+    $section = Section::findOrFail(8);
+    $class = SchoolClass::query()->firstOrFail();
 
-        $result = app(
-            SectionGroupResultCalculator::class,
-        )->forSchoolClass(
-            section: $section,
-            class: $class,
-        );
+    $result = app(
+        SectionGroupResultCalculator::class,
+    )->forSchoolClass(
+        section: $section,
+        class: $class,
+    );
 
-        $this->assertArrayHasKey('values', $result);
-        $this->assertArrayHasKey('count', $result);
-        $this->assertIsArray($result['values']);
-        $this->assertIsInt($result['count']);
+    expect($result)->toHaveKey('values');
+    expect($result)->toHaveKey('count');
+    expect($result['values'])->toBeArray();
+    expect($result['count'])->toBeInt();
+});
+
+test('class tier result has expected shape', function (): void {
+    $section = Section::findOrFail(9);
+    $class = SchoolClass::query()->firstOrFail();
+
+    $result = app(
+        SectionGroupResultCalculator::class,
+    )->forSchoolClass(
+        section: $section,
+        class: $class,
+    );
+
+    expect($result)->toHaveKey('values');
+    expect($result)->toHaveKey('count');
+
+    foreach ($result['values'] as $value) {
+        expect($value)->toBeNumeric();
     }
+});
 
-    public function test_class_tier_result_has_expected_shape(): void {
-        $section = Section::findOrFail(9);
-        $class = SchoolClass::query()->firstOrFail();
+test('platform result has expected shape', function (): void {
+    $section = Section::findOrFail(8);
 
-        $result = app(
-            SectionGroupResultCalculator::class,
-        )->forSchoolClass(
-            section: $section,
-            class: $class,
-        );
+    $result = app(
+        SectionGroupResultCalculator::class,
+    )->forPlatform(
+        section: $section,
+    );
 
-        $this->assertArrayHasKey('values', $result);
-        $this->assertArrayHasKey('count', $result);
+    expect($result)->toHaveKey('values');
+    expect($result)->toHaveKey('count');
+    expect($result['values'])->toBeArray();
+    expect($result['count'])->toBeInt();
+});
 
-        foreach ($result['values'] as $value) {
-            $this->assertIsNumeric($value);
-        }
-    }
+test('unsupported section throws exception', function (): void {
+    $section = new Section;
+    $section->id = 9999;
 
-    public function test_platform_result_has_expected_shape(): void {
-        $section = Section::findOrFail(8);
+    expect(fn () => app(SectionGroupResultCalculator::class)->forPlatform(section: $section))
+        ->toThrow(RuntimeException::class, 'Unsupported graph section [9999].');
+});
 
-        $result = app(
-            SectionGroupResultCalculator::class,
-        )->forPlatform(
-            section: $section,
-        );
+test('temperament class result is calculated correctly', function (): void {
+    $result = app(
+        SectionGroupResultCalculator::class,
+    )->forSchoolClass(
+        section: Section::findOrFail(8),
+        class: SchoolClass::findOrFail(123),
+    );
 
-        $this->assertArrayHasKey('values', $result);
-        $this->assertArrayHasKey('count', $result);
-        $this->assertIsArray($result['values']);
-        $this->assertIsInt($result['count']);
-    }
+    expect($result)->toBe([
+        'values' => [
+            'Trait name 1' => 54,
+            'Trait name 2' => 61,
+        ],
+        'count' => 23,
+    ]);
+});
 
-    public function test_unsupported_section_throws_exception(): void {
-        $section = new Section();
-        $section->id = 9999;
+test('tier percentages total approximately one hundred', function (): void {
+    $result = app(
+        SectionGroupResultCalculator::class,
+    )->forPlatform(
+        section: Section::findOrFail(9),
+    );
 
-        $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage(
-            'Unsupported graph section [9999].',
-        );
+    expect(array_sum($result['values']))->toEqualWithDelta(100, 1);
+});
 
-        app(
-            SectionGroupResultCalculator::class,
-        )->forPlatform(
-            section: $section,
-        );
-    }
+test('empty class returns empty graph result', function (): void {
+    $class = SchoolClass::factory()->create();
 
-    public function test_temperament_class_result_is_calculated_correctly(): void {
-        $result = app(
-            SectionGroupResultCalculator::class,
-        )->forSchoolClass(
-            section: Section::findOrFail(8),
-            class: SchoolClass::findOrFail(123),
-        );
+    $result = app(
+        SectionGroupResultCalculator::class,
+    )->forSchoolClass(
+        section: Section::findOrFail(8),
+        class: $class,
+    );
 
-        $this->assertSame(
-            [
-                'values' => [
-                    'Trait name 1' => 54,
-                    'Trait name 2' => 61,
-                ],
-                'count' => 23,
-            ],
-            $result,
-        );
-    }
-
-    public function test_tier_percentages_total_approximately_one_hundred(): void {
-        $result = app(
-            SectionGroupResultCalculator::class,
-        )->forPlatform(
-            section: Section::findOrFail(9),
-        );
-
-        $this->assertEqualsWithDelta(
-            100,
-            array_sum($result['values']),
-            1,
-        );
-    }
-
-    public function test_empty_class_returns_empty_graph_result(): void {
-        $class = SchoolClass::factory()->create();
-
-        $result = app(
-            SectionGroupResultCalculator::class,
-        )->forSchoolClass(
-            section: Section::findOrFail(8),
-            class: $class,
-        );
-
-        $this->assertSame(
-            [
-                'values' => [],
-                'count' => 0,
-            ],
-            $result,
-        );
-    }
-}
+    expect($result)->toBe([
+        'values' => [],
+        'count' => 0,
+    ]);
+});

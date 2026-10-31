@@ -2,109 +2,129 @@
 
 namespace App\Legacy;
 
-class LegacyView {
-
-    use Singleton;
+class LegacyView
+{
     use DynamicProperties;
+    use Singleton;
 
     private static $page;
+
     private static $title;
+
     private static $description;
+
     private static $location;
+
     private static $thumbnail;
+
     private static $middlewares = ['public'];
+
     private static $template = 'main';
+
     private static $variables = [];
 
     /**
      * Magic methods
      */
-    private function __construct() {
-    }
+    private function __construct() {}
 
     /**
      * Get methods
      */
-    private function getName() {
+    private function getName()
+    {
         return self::$page;
     }
 
-    private function getPage() {
+    private function getPage()
+    {
         return self::$page;
     }
 
-    private function getTitle() {
+    private function getTitle()
+    {
         return self::$title;
     }
 
-    private function getLocation() {
+    private function getLocation()
+    {
         return self::$location ?: self::$page;
     }
 
-    private function getTemplate() {
+    private function getTemplate()
+    {
         return self::$template;
     }
 
-    private function getVariables() {
+    private function getVariables()
+    {
         return self::$variables;
     }
 
-    private function getUrl() {
-        return server_root() . '/pages/views/' . self::$page . '.php';
+    private function getUrl()
+    {
+        return server_root().'/pages/views/'.self::$page.'.php';
     }
 
-    public static function getTabTitle() {
-        $config = LegacyConfig::getInstance();
+    public static function getTabTitle()
+    {
 
         if (self::$title) {
-            $tabTitle = self::$title . ' | ' . LegacyConfig::getInstance()->name;
+            $tabTitle = self::$title.' | '.config('app.name');
         } else {
-            $tabTitle = $config->name;
+            $tabTitle = config('app.name');
 
-            if ($config->shortDescription) {
-                $tabTitle .= ' | ' . $config->shortDescription;
+            if (config('custom.meta_data.short_description')) {
+                $tabTitle .= ' | '.config('custom.meta_data.short_description');
             }
         }
 
         return $tabTitle;
     }
 
-    public static function getDescription() {
-        return __(LegacyConfig::getInstance()->description);
+    public static function getDescription()
+    {
+        return __(config('custom.meta_data.description'));
     }
 
-    public static function getThumbnail() {
+    public static function getThumbnail()
+    {
         return self::$thumbnail ?: LegacyConfig::getInstance()->clientLogo;
     }
 
     /**
      * Set methods
      */
-    public static function setPage(string $page) {
+    public static function setPage(string $page)
+    {
         self::$page = $page;
 
         return new static;
     }
 
-    public static function setTemplate(string $template) {
+    public static function setTemplate(string $template)
+    {
         self::$template = $template;
 
         return new static;
     }
 
-    public static function setTitle(string $title) {
+    public static function setTitle(string $title)
+    {
         self::$title = $title;
 
         return new static;
     }
 
-    public static function setDescription(string $description) {
+    public static function setDescription(string $description)
+    {
         self::$description = $description;
 
         return new static;
     }
 
-    public static function setThumbnail(string $thumbnail = null) {
+    public static function setThumbnail(?string $thumbnail = null)
+    {
         if ($thumbnail) {
             self::$thumbnail = $thumbnail;
         }
@@ -112,13 +132,15 @@ class LegacyView {
         return new static;
     }
 
-    public static function setLocation(string $location) {
+    public static function setLocation(string $location)
+    {
         self::$location = $location;
 
         return new static;
     }
 
-    public static function setMiddlewares(array $middlewares = []) {
+    public static function setMiddlewares(array $middlewares = [])
+    {
         $middlewares = (array) $middlewares;
 
         self::$middlewares = $middlewares;
@@ -129,11 +151,12 @@ class LegacyView {
     /**
      * Misc methods
      */
-    public static function set(string $var, $value, $arrayKey = null) {
-        if (!$arrayKey) {
+    public static function set(string $var, $value, $arrayKey = null)
+    {
+        if (! $arrayKey) {
             self::$variables[$var] = $value;
         } else {
-            if (!isset(self::$variables[$var]) || !is_array(self::$variables[$var])) {
+            if (! isset(self::$variables[$var]) || ! is_array(self::$variables[$var])) {
                 self::$variables[$var] = [];
             }
 
@@ -143,13 +166,15 @@ class LegacyView {
         return new static;
     }
 
-    public static function get($var) {
+    public static function get($var)
+    {
         return self::$variables[$var] ?? null;
 
         return new static;
     }
 
-    public static function addMiddlewares(array $middlewares) {
+    public static function addMiddlewares(array $middlewares)
+    {
         $middlewares = (array) $middlewares;
 
         foreach ($middlewares as $middleware) {
@@ -159,7 +184,8 @@ class LegacyView {
         return new static;
     }
 
-    public static function show() {
+    public static function show()
+    {
         $level = ob_get_level();
 
         ob_start();
@@ -187,7 +213,7 @@ class LegacyView {
             // Include any output emitted by legacy code
             $output = ob_get_clean();
 
-            return response($output . $html);
+            return response($output.$html);
         } catch (\Throwable $e) {
             while (ob_get_level() > $level) {
                 ob_end_clean();

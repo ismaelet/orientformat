@@ -3,9 +3,9 @@
 
 		<div class="">
 			<!-- Title -->
-			<div class="menu__header" href="<?= \App\Legacy\LegacyConfig::getInstance()->websiteUrl ?>">
+			<div class="menu__header" href="<?= config('app.url') ?>">
 				<?= $navigationLogo ?>
-				<h1 class="menu__title"><?= \App\Legacy\LegacyConfig::getInstance()->name ?></h1>
+				<h1 class="menu__title"><?= config('app.name') ?></h1>
 			</div>
 
 			<!-- Admin sections -->

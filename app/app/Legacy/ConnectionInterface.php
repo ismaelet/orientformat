@@ -3,94 +3,92 @@
 namespace App\Legacy;
 
 use Exception;
+use Illuminate\Support\Facades\DB;
 use mysqli;
 
 /**
  * Connection Interface class
- * 
+ *
  * @property object connection
  * @property string hostname
  * @property string database
  * @property string username
  * @property string password
  */
-class ConnectionInterface {
+class ConnectionInterface
+{
+    use DynamicProperties;
+    use Singleton;
 
-	use DynamicProperties;
-	use Singleton;
+    private static $connection;
 
-	private const DEVELOPEMENT_DATA_PREFIX = 'local';
-	private const PRODUCTION_DATA_PREFIX = 'live';
+    private static $hostname;
 
-	private static $connection;
-	private static $hostname;
-	private static $database;
-	private static $username;
-	private static $password;
-	private static $envirnoment;
-	public static $timeOpen;
-	public static $queryCount = 0;
+    private static $database;
 
-	/**
-	 * Magic methods
-	 */
-	private function __construct() {
-		$config = LegacyConfig::getInstance();
-		$currentServerAddress = $_SERVER['REMOTE_ADDR'];
-		$liveServerAddress = $config->serverAddress;
+    private static $username;
 
-		if ($currentServerAddress == $liveServerAddress) {
-			$dataPrefix = self::PRODUCTION_DATA_PREFIX;
-			self::$envirnoment = 'production';
-		} else {
-			$dataPrefix = self::DEVELOPEMENT_DATA_PREFIX;
-			self::$envirnoment = 'developement';
-		}
+    private static $password;
 
-		self::$hostname = $config->{$dataPrefix . 'DatabaseHostname'};
-		self::$database = $config->{$dataPrefix . 'DatabaseDatabase'};
-		self::$username = $config->{$dataPrefix . 'DatabaseUsername'};
-		self::$password = $config->{$dataPrefix . 'DatabasePassword'};
+    public static $timeOpen;
 
-		try {
-			self::$timeOpen = microtime(true);
-			$connection = new mysqli(self::$hostname, self::$username, self::$password, self::$database);
-			$connection->query('SET NAMES utf8');
+    public static $queryCount = 0;
 
-			self::$connection = $connection;
-		} catch (Exception $e) {
-			echo $error = $e->getMessage();
+    /**
+     * Magic methods
+     */
+    private function __construct()
+    {
+        // Resolve Laravel's connection so DATABASE_URL is respected as well.
+        $config = DB::connection()->getConfig();
+        self::$hostname = $config['host'];
+        self::$database = $config['database'];
+        self::$username = $config['username'];
+        self::$password = $config['password'];
 
-			error_log('Connection error: ' . $error . PHP_EOL . 'On page: ' . $_SERVER['REQUEST_URI']);
-		}
-	}
+        try {
+            self::$timeOpen = microtime(true);
+            $connection = new mysqli(self::$hostname, self::$username, self::$password, self::$database, (int) ($config['port'] ?? 3306), $config['unix_socket'] ?? null);
+            $connection->query('SET NAMES utf8');
 
-	/**
-	 * Get methods
-	 */
-	private function getConnection() {
-		return self::$connection;
-	}
+            self::$connection = $connection;
+        } catch (Exception $e) {
+            echo $error = $e->getMessage();
 
-	private function getHostname() {
-		return self::$hostname;
-	}
+            error_log('Connection error: '.$error.PHP_EOL.'On page: '.$_SERVER['REQUEST_URI']);
+        }
+    }
 
-	private function getDatabase() {
-		return self::$database;
-	}
+    /**
+     * Get methods
+     */
+    private function getConnection()
+    {
+        return self::$connection;
+    }
 
-	private function getUsername() {
-		return self::$username;
-	}
+    private function getHostname()
+    {
+        return self::$hostname;
+    }
 
-	private function getPassword() {
-		return self::$password;
-	}
+    private function getDatabase()
+    {
+        return self::$database;
+    }
 
-	/**
-	 * Singleton methods
-	 */
-	public function close() {
-	}
+    private function getUsername()
+    {
+        return self::$username;
+    }
+
+    private function getPassword()
+    {
+        return self::$password;
+    }
+
+    /**
+     * Singleton methods
+     */
+    public function close() {}
 }

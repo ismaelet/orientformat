@@ -4,12 +4,10 @@ namespace App\Legacy;
 
 /**
  * Access the system configuration
- * 
- * @property bool hasDatabase 
- * 
+ *
+ * @property bool hasDatabase
  * @property string title
  * @property string websiteUrl
- * 
  * @property string logoFileName
  * @property string logo
  * @property string clientLogo
@@ -18,110 +16,101 @@ namespace App\Legacy;
  * @property string emailLogo
  * @property string themeColor
  */
+class LegacyConfig
+{
+    use Singleton;
 
-class LegacyConfig {
+    private const CONFIG_KEYS = [
+        'name' => 'app.name',
+        'fullName' => 'custom.meta_data.full_name',
+        'description' => 'custom.meta_data.description',
+        'shortDescription' => 'custom.meta_data.short_description',
+        'timezone' => 'app.timezone',
+        'languages' => 'app.locales',
+        'themeColor' => 'custom.meta_data.default_color_scheme',
+        'domain' => 'app.url',
+        'websiteUrl' => 'app.url',
+    ];
 
-	use Singleton;
+    private function __construct() {}
 
-	private const CONFIG_FILE = 'app/config/config.php';
-	private const DEFAULT_THEME = 'light';
+    public function __get($property)
+    {
+        if (isset(self::CONFIG_KEYS[$property])) {
+            return config(self::CONFIG_KEYS[$property]);
+        }
 
-	private static $values = [];
+        $method = 'get'.ucfirst($property);
 
-	/**
-	 * Magic methods
-	 */
-	private function __construct() {
-		$configSettings = require base_path() . '/legacy/' . self::CONFIG_FILE;
+        return method_exists($this, $method) ? $this->$method() : null;
+    }
 
-		foreach ($configSettings as $key => $value) {
-			self::$values[$key] = $value;
-		}
-	}
+    /**
+     * Get methods
+     */
+    private function getHasDatabase()
+    {
+        return true;
+    }
 
-	function __get($property) {
-		$method = 'get' . ucfirst($property);
-		$property = camel_case_to_kebab_case($property);
+    private function getDefaultLanguage()
+    {
+        return config('app.fallback_locale');
+    }
 
-		if (array_key_exists($property, self::$values)) {
-			return self::$values[$property];
-		} else if (method_exists($this, $method)) {
-			return self::$values[$property] = $this->$method();
-		} else {
-			return self::$values[$property] = null;
-		}
-	}
+    private function getLogoFileName()
+    {
+        return 'logo-preview.jpg';
+    }
 
-	/**
-	 * Get methods
-	 */
-	private function getHasDatabase() {
-		return true;
-	}
+    private function getLogo()
+    {
+        return LOGO_DIR.$this->logoFileName;
+    }
 
-	private function getDefaultLanguage() {
-		return key($this->languages);
-	}
+    private function getClientLogo()
+    {
+        if (file_exists(server_path($this->logo))) {
+            return client_path($this->logo);
+        } elseif (file_exists(server_path($this->logo))) {
+            return public_client_path($this->logo);
+        } else {
+            return null;
+        }
+    }
 
-	private function getLogoFileName() {
-		return 'logo-preview.jpg';
-	}
+    private function getSeverLogo()
+    {
+        if (file_exists($file = server_path($this->logo))) {
+            return $file;
+        } elseif (file_exists($file = server_path($this->logo))) {
+            return $file;
+        } else {
+            return null;
+        }
+    }
 
-	private function getLogo() {
-		return LOGO_DIR . $this->logoFileName;
-	}
+    private function getAbsoluteLogo()
+    {
+        return $this->websiteUrl.$this->logoImage;
+    }
 
-	private function getClientLogo() {
-		if (file_exists(server_path($this->logo))) {
-			return client_path($this->logo);
-		} else if (file_exists(server_path($this->logo))) {
-			return public_client_path($this->logo);
-		} else {
-			return null;
-		}
-	}
+    private function getEmailLogo()
+    {
+        if (file_exists(server_path($file = LOGO_DIR.'logo-email.png'))) {
+            return $this->websiteUrl.public_client_url($file);
+        } else {
+            return $this->absoluteLogo;
+        }
+    }
 
-	private function getSeverLogo() {
-		if (file_exists($file = server_path($this->logo))) {
-			return $file;
-		} else if (file_exists($file = server_path($this->logo))) {
-			return $file;
-		} else {
-			return null;
-		}
-	}
+    private function getCookiesWarning()
+    {
+        return false;
+    }
 
-	private function getAbsoluteLogo() {
-		return $this->websiteUrl . $this->logoImage;
-	}
-
-	private function getEmailLogo() {
-		if (file_exists(server_path($file = LOGO_DIR . 'logo-email.png'))) {
-			return $this->websiteUrl . public_client_url($file);
-		} else {
-			return $this->absoluteLogo;
-		}
-	}
-
-	private function getThemeColor() {
-		return self::DEFAULT_THEME;
-	}
-
-	private function getCookiesWarning() {
-		return false;
-	}
-
-	private function getLoggedRedirectUrl() {
-		return '/';
-	}
-
-	private function getWebsiteUrl() {
-		if ($this->domain) {
-			return 'https://' . $this->domain;
-		} else {
-			$https = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
-
-			return $https . '://' . $_SERVER['HTTP_HOST'] . CLIENT_ROOT;
-		}
-	}
+    private function getLoggedRedirectUrl()
+    {
+        return '/';
+    }
 }
