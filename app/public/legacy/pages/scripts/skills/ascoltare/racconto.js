@@ -1,13 +1,9 @@
-$(document).ready(function() {
+$(document).ready(function () {
+  $("#questions .block").click(function () {
+    const self = $(this);
 
-	$('#questions .block').click(function() {
+    self.parents(".question").find(".cbx-mirror").prop("checked", false);
 
-		const self = $(this);
-
-		self.parents('.question').find('.cbx-mirror').prop('checked', false);
-		
-		self.find('.cbx-mirror').prop('checked', true).change();
-
-	});
-
+    self.find(".cbx-mirror").prop("checked", true).change();
+  });
 });

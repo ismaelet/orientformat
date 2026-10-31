@@ -1,17 +1,17 @@
-document.addEventListener('DOMContentLoaded', function () {
-	const scoreInput = document.querySelector('.js-score')
+document.addEventListener("DOMContentLoaded", function () {
+  const scoreInput = document.querySelector(".js-score");
 
-	let score = 0
+  let score = 0;
 
-	document.querySelectorAll('.js-pattern').forEach((element) => {
-		element.addEventListener('click', () => {
-			if (!element.classList.contains('selected')) {
-				element.classList.add('selected')
+  document.querySelectorAll(".js-pattern").forEach((element) => {
+    element.addEventListener("click", () => {
+      if (!element.classList.contains("selected")) {
+        element.classList.add("selected");
 
-				score++
+        score++;
 
-				scoreInput.value = score
-			}
-		})
-	})
-})
+        scoreInput.value = score;
+      }
+    });
+  });
+});

@@ -2,16 +2,16 @@
 * Grid
 */
 .image-box {
-	padding: 0;
+  padding: 0;
 }
 
 .image-box--empty,
 .image-box--answer {
-	border-radius: var(--border-radius-400);
-	box-shadow: var(--shadow);
-	overflow: hidden;
+  border-radius: var(--border-radius-400);
+  box-shadow: var(--shadow);
+  overflow: hidden;
 }
 
 .image-box--answer {
-	background-color: transparent;
+  background-color: transparent;
 }

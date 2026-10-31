@@ -1,97 +1,99 @@
 /* Text */
 #text-title {
-	letter-spacing: 0.2em;
+  letter-spacing: 0.2em;
 }
 
 #text {
-	line-height: 2;
+  line-height: 2;
 }
 
 #text.selecting.argomento {
-	cursor: url('../../../assets/skills/imparare/analizzare/argomento.png'), pointer;
+  cursor: url("../../../assets/skills/imparare/analizzare/argomento.png"), pointer;
 }
 #text.selecting.causa {
-	cursor: url('../../../assets/skills/imparare/analizzare/causa.png'), pointer;
+  cursor: url("../../../assets/skills/imparare/analizzare/causa.png"), pointer;
 }
 #text.selecting.scopo {
-	cursor: url('../../../assets/skills/imparare/analizzare/scopo.png'), pointer;
+  cursor: url("../../../assets/skills/imparare/analizzare/scopo.png"), pointer;
 }
 #text.selecting.dove {
-	cursor: url('../../../assets/skills/imparare/analizzare/dove.png'), pointer;
+  cursor: url("../../../assets/skills/imparare/analizzare/dove.png"), pointer;
 }
 
 #text .argomento.active,
 .completed #text .argomento {
-	background-color: #6bb1f9;
-	color: #000;
+  background-color: #6bb1f9;
+  color: #000;
 }
 #text .causa.active,
 .completed #text .causa {
-	background-color: #ffcf3b;
-	color: #000;
+  background-color: #ffcf3b;
+  color: #000;
 }
 #text .scopo.active,
 .completed #text .scopo {
-	background-color: #6dcf25;
-	color: #000;
+  background-color: #6dcf25;
+  color: #000;
 }
 #text .dove.active,
 .completed #text .dove {
-	background-color: #f689d3;
-	color: #000;
+  background-color: #f689d3;
+  color: #000;
 }
 
 .selectable.wrong {
-	background-color: var(--color-bad-400) !important;
+  background-color: var(--color-bad-400) !important;
 }
 
 /* Selectors */
 .completed #selectors {
-	pointer-events: none;
+  pointer-events: none;
 }
 
 .selector {
-	display: grid;
-	align-items: center;
-	border-radius: 0.5rem;
-	height: 100%;
-	padding: 0.5rem 1rem;
-	text-align: center;
-	transition: background 0.4s, box-shadow 0.4s;
+  display: grid;
+  align-items: center;
+  border-radius: 0.5rem;
+  height: 100%;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  transition:
+    background 0.4s,
+    box-shadow 0.4s;
 }
 
 .selector.active {
-	box-shadow: 0 15px 40px -15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 15px 40px -15px rgba(0, 0, 0, 0.5);
 }
 
 .selector p {
-	font-size: 1.2rem;
-	transition: color 0.4s;
+  font-size: 1.2rem;
+  transition: color 0.4s;
 }
 
 .selector.argomento {
-	background-color: #6bb1f9;
+  background-color: #6bb1f9;
 }
 .selector.causa {
-	background-color: #ffcf3b;
+  background-color: #ffcf3b;
 }
 .selector.scopo {
-	background-color: #6dcf25;
+  background-color: #6dcf25;
 }
 .selector.dove {
-	background-color: #f689d3;
+  background-color: #f689d3;
 }
 
 .selector.disabled {
-	background-color: #ccc;
+  background-color: #ccc;
 }
 .selector.disabled p {
-	color: #fff;
+  color: #fff;
 }
 
 /* Responsive */
 @media (max-width: 480px) {
-	.selector p {
-		font-size: 0.9rem;
-	}
+  .selector p {
+    font-size: 0.9rem;
+  }
 }

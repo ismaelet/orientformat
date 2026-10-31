@@ -2,271 +2,271 @@
 * Layout
 */
 .section-title {
-	margin-bottom: 1rem;
-	font-weight: 600;
-	text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-align: center;
 }
 
 .section-title--watching {
-	margin-top: 5rem;
-	font-size: 2.2rem;
+  margin-top: 5rem;
+  font-size: 2.2rem;
 }
 
 /*
 * Presentation
 */
 .presentation {
-	display: grid;
-	grid-template-columns: 0.9fr 1fr;
-	align-items: center;
+  display: grid;
+  grid-template-columns: 0.9fr 1fr;
+  align-items: center;
 }
 
 .interest_img {
-	border-radius: 2rem;
-	min-height: 28rem;
-	box-shadow:
-		1rem 1rem 2rem -0.5rem hsl(252, 30%, 93%),
-		0 -0.5rem 1rem hsl(252, 30%, 95%);
+  border-radius: 2rem;
+  min-height: 28rem;
+  box-shadow:
+    1rem 1rem 2rem -0.5rem hsl(252, 30%, 93%),
+    0 -0.5rem 1rem hsl(252, 30%, 95%);
 }
 
 .interest_content {
-	padding-block: 2rem;
-	padding-left: 3rem;
+  padding-block: 2rem;
+  padding-left: 3rem;
 }
 
 .interest_title {
-	margin-bottom: 0.5rem;
-	font-size: 3rem;
-	font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 3rem;
+  font-weight: 600;
 }
 
 .interest_value {
-	margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 /*
 * Answers
 */
 .answers {
-	background-color: hsl(213, 26%, 96%);
-	padding-block: 3rem;
+  background-color: hsl(213, 26%, 96%);
+  padding-block: 3rem;
 }
 
 .answer-list.completed {
-	pointer-events: none;
+  pointer-events: none;
 }
 
 .question {
-	display: grid;
-	grid-template-columns: 1fr max-content;
-	align-items: center;
-	padding-inline: 1rem;
-	border-radius: 20rem;
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  align-items: center;
+  padding-inline: 1rem;
+  border-radius: 20rem;
 }
 
 .question:nth-child(2n + 1) {
-	background-color: #fff;
+  background-color: #fff;
 }
 
 .name-box {
-	display: grid;
-	align-items: center;
-	height: 100%;
-	padding-left: 0.5rem;
-	padding-right: 2rem;
+  display: grid;
+  align-items: center;
+  height: 100%;
+  padding-left: 0.5rem;
+  padding-right: 2rem;
 }
 
 .score-box {
-	height: 100%;
-	padding-right: 10px;
-	word-spacing: 10px;
+  height: 100%;
+  padding-right: 10px;
+  word-spacing: 10px;
 }
 
 .score {
-	display: inline-block;
-	padding: 10px 0 6px 0;
+  display: inline-block;
+  padding: 10px 0 6px 0;
 }
 
 .score--supervisor {
-	pointer-events: none;
+  pointer-events: none;
 }
 
 .editable .score {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .score .circle {
-	position: relative;
-	border: 2px solid var(--color-secondary-400);
-	border-radius: 50%;
+  position: relative;
+  border: 2px solid var(--color-secondary-400);
+  border-radius: 50%;
 }
 
 .score0 .circle {
-	width: 1.5rem;
-	height: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 .score1 .circle {
-	width: 1.8rem;
-	height: 1.8rem;
+  width: 1.8rem;
+  height: 1.8rem;
 }
 .score2 .circle {
-	width: 2.1rem;
-	height: 2.1rem;
+  width: 2.1rem;
+  height: 2.1rem;
 }
 .score3 .circle {
-	width: 2.4rem;
-	height: 2.4rem;
+  width: 2.4rem;
+  height: 2.4rem;
 }
 
 .score p {
-	color: var(--color-tertiary-400);
-	font-size: 0.9rem;
-	font-weight: bold;
+  color: var(--color-tertiary-400);
+  font-size: 0.9rem;
+  font-weight: bold;
 }
 
 .score .dot {
-	opacity: 0;
-	border-radius: inherit;
-	width: 42%;
-	aspect-ratio: 1;
-	transition: opacity 0.3s;
+  opacity: 0;
+  border-radius: inherit;
+  width: 42%;
+  aspect-ratio: 1;
+  transition: opacity 0.3s;
 }
 
 .score0 .dot {
-	background-color: #de0000;
+  background-color: #de0000;
 }
 .score1 .dot {
-	background-color: #ec9615;
+  background-color: #ec9615;
 }
 .score2 .dot {
-	background-color: #ecdd00;
+  background-color: #ecdd00;
 }
 .score3 .dot {
-	background-color: #01d64c;
+  background-color: #01d64c;
 }
 
 input:checked + .circle .dot,
 .editable .score:hover .dot {
-	opacity: 1;
+  opacity: 1;
 }
 
 .js-asnwers-edit {
-	display: none;
+  display: none;
 }
 
 /*
 * Schools
 */
 .school-list {
-	display: grid;
-	grid-template-columns: minmax(0, 1fr);
-	gap: 3rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3rem;
 }
 
 .school-type {
-	border: 1px solid var(--text-color);
-	border-radius: 2rem;
-	padding: 2rem;
-	padding-top: 0;
+  border: 1px solid var(--text-color);
+  border-radius: 2rem;
+  padding: 2rem;
+  padding-top: 0;
 }
 
 .school-type_title {
-	width: max-content;
-	max-width: min(100%, 50rem);
-	padding-inline: 1rem;
-	margin-inline: auto;
-	margin-bottom: 2rem;
-	translate: 0 -50%;
-	background-color: #fff;
-	line-height: 2rem;
-	text-align: center;
+  width: max-content;
+  max-width: min(100%, 50rem);
+  padding-inline: 1rem;
+  margin-inline: auto;
+  margin-bottom: 2rem;
+  translate: 0 -50%;
+  background-color: #fff;
+  line-height: 2rem;
+  text-align: center;
 }
 
 .school-type__description {
-	font-size: var(--fs-500);
+  font-size: var(--fs-500);
 }
 
 .courses {
-	display: grid;
-	grid-template-columns: minmax(0, 1fr);
-	gap: 2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
 }
 
 .jobs {
-	display: grid;
-	grid-template-columns: minmax(0, 1fr);
-	gap: 1.5rem;
-	margin-top: 0.5rem;
-	padding-left: 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+  padding-left: 1rem;
 }
 
 .job_title {
-	width: max-content;
-	max-width: 100%;
-	padding-inline: 0.5rem;
-	position: relative;
-	isolation: isolate;
+  width: max-content;
+  max-width: 100%;
+  padding-inline: 0.5rem;
+  position: relative;
+  isolation: isolate;
 }
 
 .schools {
-	display: grid;
-	gap: 0.3rem;
-	margin-top: 0.75rem;
-	padding-left: 2rem;
+  display: grid;
+  gap: 0.3rem;
+  margin-top: 0.75rem;
+  padding-left: 2rem;
 }
 
 .school_title {
-	font-weight: 600;
-	color: var(--color-tertiary-400);
+  font-weight: 600;
+  color: var(--color-tertiary-400);
 }
 
 .school > p {
-	padding-left: 0.6rem;
-	font-size: 0.95rem;
+  padding-left: 0.6rem;
+  font-size: 0.95rem;
 }
 
 .role__data-list {
-	padding-left: 1rem;
+  padding-left: 1rem;
 }
 
 .role__activity {
-	list-style-type: circle;
-	list-style-position: inside;
-	padding-left: 1rem;
+  list-style-type: circle;
+  list-style-position: inside;
+  padding-left: 1rem;
 }
 
 .explore__link {
-	list-style-type: square;
-	list-style-position: inside;
-	padding-left: 1rem;
+  list-style-type: square;
+  list-style-position: inside;
+  padding-left: 1rem;
 }
 
 .school-type a {
-	color: var(--color-tertiary-400);
-	text-decoration: underline;
+  color: var(--color-tertiary-400);
+  text-decoration: underline;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-	.presentation {
-		grid-template-columns: 1fr;
-	}
+  .presentation {
+    grid-template-columns: 1fr;
+  }
 
-	.interest_content {
-		padding-left: 0;
-	}
+  .interest_content {
+    padding-left: 0;
+  }
 
-	.answer-list {
-		grid-template-columns: 1fr;
-	}
+  .answer-list {
+    grid-template-columns: 1fr;
+  }
 
-	.name-box {
-		padding-top: 10px;
-	}
+  .name-box {
+    padding-top: 10px;
+  }
 
-	.score-box {
-		text-align: left;
-		padding-left: 10px;
-		padding-bottom: 5px;
-	}
+  .score-box {
+    text-align: left;
+    padding-left: 10px;
+    padding-bottom: 5px;
+  }
 }

@@ -1,81 +1,85 @@
 /* Numbers */
 .num-row {
-	background: var(--gradient);
-	box-shadow: var(--shadow);
-	transition: box-shadow 0.2s, outline 0.2s;
+  background: var(--gradient);
+  box-shadow: var(--shadow);
+  transition:
+    box-shadow 0.2s,
+    outline 0.2s;
 }
 
 .uncompleted .num-row {
-	outline: 2px solid transparent;
+  outline: 2px solid transparent;
 }
 
 .num-row:hover,
 .num-row:active {
-	outline-color: var(--color-tertiary-400);
+  outline-color: var(--color-tertiary-400);
 }
 
 .num-row.right {
-	background: var(--color-good-400);
+  background: var(--color-good-400);
 }
 .num-row.wrong {
-	background: var(--color-bad-400);
+  background: var(--color-bad-400);
 }
 
 .num {
-	font-size: 2.8rem;
-	letter-spacing: 0.1em;
+  font-size: 2.8rem;
+  letter-spacing: 0.1em;
 }
 
 .num-emp {
-	background-color: transparent;
-	outline: none !important;
-	border: 2px solid var(--fc-700);
-	border-width: 0 0 2px 0 !important;
-	border-radius: 0;
-	width: 5rem;
-	margin: 0;
-	font-size: 3rem;
-	line-height: 1;
-	transition: width 0.2s, border 0.2s;
+  background-color: transparent;
+  outline: none !important;
+  border: 2px solid var(--fc-700);
+  border-width: 0 0 2px 0 !important;
+  border-radius: 0;
+  width: 5rem;
+  margin: 0;
+  font-size: 3rem;
+  line-height: 1;
+  transition:
+    width 0.2s,
+    border 0.2s;
 }
 
 .num-emp:active,
 .num-emp:focus {
-	border-color: #fff;
-	width: 8rem;
+  border-color: #fff;
+  width: 8rem;
 }
 
 .result-txt.right {
-	color: var(--color-good-400);
+  color: var(--color-good-400);
 }
 .result-txt.wrong {
-	color: var(--color-bad-400);
+  color: var(--color-bad-400);
 }
 
 #submit {
-	line-height: 4;
+  line-height: 4;
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
-	.num,
-	.num-emp {
-		letter-spacing: 0.05em;
-	}
+  .num,
+  .num-emp {
+    letter-spacing: 0.05em;
+  }
 
-	.dots {
-		margin: 0 1rem;
-	}
+  .dots {
+    margin: 0 1rem;
+  }
 }
 
 @media (max-width: 768px) {
-	.num,
-	.num-emp {
-		font-size: 4.5vw;
-		letter-spacing: 0;
-	}
+  .num,
+  .num-emp {
+    font-size: 4.5vw;
+    letter-spacing: 0;
+  }
 
-	.dots {
-		margin: 0 1.7vw;
-	}
+  .dots {
+    margin: 0 1.7vw;
+  }
 }

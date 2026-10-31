@@ -2,14 +2,14 @@
 * Layout
 */
 .page__content {
-	min-height: 100%;
+  min-height: 100%;
 }
 
 .success-icon {
-	--icon-size: 70%;
-	width: 7rem;
-	aspect-ratio: 1;
-	border: 10px solid;
-	color: var(--color-good-400);
-	border-radius: 50%;
+  --icon-size: 70%;
+  width: 7rem;
+  aspect-ratio: 1;
+  border: 10px solid;
+  color: var(--color-good-400);
+  border-radius: 50%;
 }

@@ -1,3 +1,9 @@
 app/node_modules
-app/vendor
+app/public/build
 app/storage/app/filament_exports
+app/storage/framework/cache
+app/storage/framework/sessions
+app/storage/framework/views
+app/storage/logs
+app/vendor
+.git

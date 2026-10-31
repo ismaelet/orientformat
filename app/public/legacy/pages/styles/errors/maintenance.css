@@ -2,32 +2,32 @@
 * Layout
 */
 .page-body {
-	--fc-400: #405b91;
-	--fc-700: #405b91;
-	--button--secondary-border-color: #405b91;
-	place-content: center;
-	gap: 4rem;
-	color: #405b91;
+  --fc-400: #405b91;
+  --fc-700: #405b91;
+  --button--secondary-border-color: #405b91;
+  place-content: center;
+  gap: 4rem;
+  color: #405b91;
 }
 
 .title {
-	color: inherit;
+  color: inherit;
 }
 
 .section-subtitle {
-	font-size: min(var(--fs-450), 3.5vw);
+  font-size: min(var(--fs-450), 3.5vw);
 }
 
 /*
 * Main content
 */
 .page-image {
-	width: 40rem;
+  width: 40rem;
 }
 
 /*
 * Login bar
 */
 .login-btn {
-	color: var(--color-primary-400);
+  color: var(--color-primary-400);
 }

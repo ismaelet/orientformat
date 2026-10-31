@@ -2,20 +2,20 @@
 * Responsive
 */
 @media (max-width: 480px) {
-	.dashboard h1 {
-		font-size: min(3rem, 8vw);
-	}
+  .dashboard h1 {
+    font-size: min(3rem, 8vw);
+  }
 
-	.dashboard-field:nth-child(1) {
-		padding-left: 1rem;
-	}
+  .dashboard-field:nth-child(1) {
+    padding-left: 1rem;
+  }
 
-	.dashboard-list-header.dashboard-list-header {
-		border-radius: 1rem;
-	}
+  .dashboard-list-header.dashboard-list-header {
+    border-radius: 1rem;
+  }
 
-	.subtitle {
-		padding-inline: 0;
-		font-size: 0.9rem;
-	}
+  .subtitle {
+    padding-inline: 0;
+    font-size: 0.9rem;
+  }
 }

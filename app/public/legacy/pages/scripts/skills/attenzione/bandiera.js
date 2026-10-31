@@ -1,82 +1,61 @@
-$(document).ready(function() {
+$(document).ready(function () {
+  $("#start").click(function () {
+    start();
+  });
 
-	$('#start').click(function() {
+  function start() {
+    var seconds = 60;
 
-		start();
+    $("body").addClass("fixed");
+    $("#backgrounds").fadeIn();
 
-	});
+    var interval = setInterval(function () {
+      --seconds;
 
-	function start() {
+      if (seconds >= 0) {
+        var str = seconds < 10 ? "0" + seconds : seconds;
 
-		var seconds = 60;
+        $("#countdown").html(str);
+      } else {
+        clearInterval(interval);
 
-		$('body').addClass('fixed');
-		$('#backgrounds').fadeIn();
+        $("#countdown").fadeOut();
 
-		var interval = setInterval(function() {
+        interlude();
+      }
+    }, 1000);
+  }
 
-			--seconds;
-			
-			if (seconds >= 0) {
+  function interlude() {
+    $("#blank").fadeIn();
+    $("#interlude").fadeIn();
 
-				var str = (seconds < 10) ? '0' + seconds : seconds;
+    setTimeout(function () {
+      $("#interlude").fadeOut();
 
-				$('#countdown').html(str);
+      memory();
+    }, 5000);
+  }
 
-			} else {
+  function memory() {
+    var seconds = 60;
 
-				clearInterval(interval);
+    $("#countdown").html(seconds);
+    $("#countdown").fadeIn();
 
-				$('#countdown').fadeOut();
+    var interval = setInterval(function () {
+      --seconds;
 
-				interlude();
-			}
+      if (seconds >= 0) {
+        var str = seconds < 10 ? "0" + seconds : seconds;
 
-		}, 1000);
-	}
+        $("#countdown").html(str);
+      } else {
+        clearInterval(interval);
 
-	function interlude() {
-
-		$('#blank').fadeIn();
-		$('#interlude').fadeIn();
-
-		setTimeout(function() {
-
-			$('#interlude').fadeOut();
-
-			memory();
-
-		}, 5000);
-
-	}
-
-	function memory() {
-
-		var seconds = 60;
-
-		$('#countdown').html(seconds);
-		$('#countdown').fadeIn();
-
-		var interval = setInterval(function() {
-
-			--seconds;
-			
-			if (seconds >= 0) {
-
-				var str = (seconds < 10) ? '0' + seconds : seconds;
-
-				$('#countdown').html(str);
-
-			} else {
-
-				clearInterval(interval);
-
-				$('#countdown').fadeOut();
-				$('#end').fadeIn();
-
-			}
-
-		}, 1000);
-	}
-
+        $("#countdown").fadeOut();
+        $("#end").fadeIn();
+      }
+    }, 1000);
+  }
 });

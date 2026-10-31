@@ -2,82 +2,92 @@
 * Layout
 */
 .page__content {
-	gap: min(7.5rem, 20vw);
-	min-height: 100%;
-	align-content: center;
+  gap: min(7.5rem, 20vw);
+  min-height: 100%;
+  align-content: center;
 }
 
 .page-content {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: min(5rem, 6vw);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: min(5rem, 6vw);
 }
 
 .dashboard-panel {
-	display: grid;
-	grid-template-columns: min(7rem, 12vw) 1fr;
-	align-items: center;
-	gap: 2rem;
-	overflow: hidden;
-	min-height: 15rem;
-	isolation: isolate;
-	position: relative;
+  display: grid;
+  grid-template-columns: min(7rem, 12vw) 1fr;
+  align-items: center;
+  gap: 2rem;
+  overflow: hidden;
+  min-height: 15rem;
+  isolation: isolate;
+  position: relative;
 }
 
 .dashboard-panel:hover {
-	color: #fff;
+  color: #fff;
 }
 
 .dashboard-panel h2,
 .dashboard-panel p {
-	color: inherit;
-	transition: color 0.25s;
+  color: inherit;
+  transition: color 0.25s;
 }
 
 .dashboard-panel:hover .font-bold {
-	color: var(--color-primary-400);
+  color: var(--color-primary-400);
 }
 
 .dashboard-panel svg {
-	fill: currentColor;
-	transition: fill 0.25s;
+  fill: currentColor;
+  transition: fill 0.25s;
 }
 
 .dashboard-panel::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	z-index: -1;
-	opacity: 0;
-	background: linear-gradient(170deg, #18304f, #162c49, #142842, #12253c, #102136, #0f1d30, #0d1a2a, #0b1624);
-	transition: opacity 0.25s;
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  background: linear-gradient(
+    170deg,
+    #18304f,
+    #162c49,
+    #142842,
+    #12253c,
+    #102136,
+    #0f1d30,
+    #0d1a2a,
+    #0b1624
+  );
+  transition: opacity 0.25s;
 }
 
 .dashboard-panel:hover::before {
-	opacity: 1;
+  opacity: 1;
 }
 
 .dashboard-panel_icon {
-	--_fill: var(--fc-700);
+  --_fill: var(--fc-700);
 }
 
 .dashboard-panel_title {
-	font-size: min(1.5rem, 4vw);
-	font-weight: 600;
-	transition: color 0.3s;
+  font-size: min(1.5rem, 4vw);
+  font-weight: 600;
+  transition: color 0.3s;
 }
 
 /*
 * Responsive
 */
 @media (max-width: 1924px) {
-	.page-content {
-		grid-template-columns: minmax(0, 1fr);
-		align-items: center;
-	}
+  .page-content {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+  }
 
-	.dashboard-panel {
-		padding-block: 5rem;
-		min-height: unset;
-	}
+  .dashboard-panel {
+    padding-block: 5rem;
+    min-height: unset;
+  }
 }

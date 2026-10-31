@@ -1,5 +1,5 @@
-$(document).ready(function() {
-
-	$('.restart').click(function() { $(this).next().click(); });
-
+$(document).ready(function () {
+  $(".restart").click(function () {
+    $(this).next().click();
+  });
 });

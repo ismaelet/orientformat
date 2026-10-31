@@ -5,11 +5,11 @@
 .graph-subcolumn:nth-child(1),
 .graph-info-row:nth-child(1) .graph-info-icon,
 .graph-legend-row:nth-child(1) .graph-legend-icon {
-	background-color: var(--color-4);
+  background-color: var(--color-4);
 }
 
 .graph-subcolumn:nth-child(2),
 .graph-info-row:nth-child(2) .graph-info-icon,
 .graph-legend-row:nth-child(2) .graph-legend-icon {
-	background-color: #ecd697;
+  background-color: #ecd697;
 }

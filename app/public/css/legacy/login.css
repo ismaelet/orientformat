@@ -1,140 +1,146 @@
 /* Structure */
 main {
-	display: grid;
-	min-height: calc(100svh - 86px);
+  display: grid;
+  min-height: calc(100svh - 86px);
 }
 
 .page-body {
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: 100%;
-	align-items: center;
-	height: 100%;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 100%;
+  align-items: center;
+  height: 100%;
 }
 
 /*
 * Images
 */
 .images {
-	grid-template-rows: 100%;
-	align-items: center;
-	width: 100%;
-	height: 100%;
+  grid-template-rows: 100%;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .page-background {
-	display: flex;
-	height: 100%;
-	background-size: 100% 100%;
-	background-size: cover;
-	background-position: right;
-	object-position: right;
-	transition: translate 0.5s, opacity 0.3s;
+  display: flex;
+  height: 100%;
+  background-size: 100% 100%;
+  background-size: cover;
+  background-position: right;
+  object-position: right;
+  transition:
+    translate 0.5s,
+    opacity 0.3s;
 }
 
 .page-background__title {
-	position: relative;
-	justify-self: left;
-	margin-inline: auto;
-	padding-left: 3rem;
-	opacity: 0.7;
-	color: #fff;
-	font-family: var(--ff-titles);
-	font-weight: var(--fw-bold);
-	font-size: max(5vw, 4.5rem);
-	line-height: 0.8;
-	letter-spacing: 0.05em;
-	writing-mode: vertical-rl;
-	text-orientation: mixed;
-	transition: translate 0.5s, opacity 0.3s;
+  position: relative;
+  justify-self: left;
+  margin-inline: auto;
+  padding-left: 3rem;
+  opacity: 0.7;
+  color: #fff;
+  font-family: var(--ff-titles);
+  font-weight: var(--fw-bold);
+  font-size: max(5vw, 4.5rem);
+  line-height: 0.8;
+  letter-spacing: 0.05em;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transition:
+    translate 0.5s,
+    opacity 0.3s;
 }
 
 /*
 * Access forms
 */
 .forms {
-	padding-block: 2rem;
-	padding-inline: var(--wrap-padding);
-	align-items: center;
+  padding-block: 2rem;
+  padding-inline: var(--wrap-padding);
+  align-items: center;
 }
 
 .form {
-	display: grid;
-	gap: 2rem;
-	width: 100%;
-	max-width: 540px;
-	margin-inline: auto;
-	transition: translate 0.5s, opacity 0.3s;
+  display: grid;
+  gap: 2rem;
+  width: 100%;
+  max-width: 540px;
+  margin-inline: auto;
+  transition:
+    translate 0.5s,
+    opacity 0.3s;
 }
 
 .form__title {
-	text-align: center;
-	font-weight: var(--fw-bold);
-	font-size: var(--fs-750);
-	color: var(--color-secondary-400);
+  text-align: center;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-750);
+  color: var(--color-secondary-400);
 }
 
 .form__body {
-	display: grid;
-	gap: 1rem;
+  display: grid;
+  gap: 1rem;
 }
 
 .form__footer {
-	display: grid;
-	gap: 0.5rem;
+  display: grid;
+  gap: 0.5rem;
 }
 
 .form__field {
-	display: grid;
-	gap: 0.5rem;
+  display: grid;
+  gap: 0.5rem;
 }
 
 .form__divider {
-	display: grid;
-	grid-template-columns: 1fr max-content 1fr;
-	align-items: center;
-	gap: 1rem;
-	width: 100%;
-	max-width: 250px;
-	margin-inline: auto;
-	margin-block: 1rem;
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 250px;
+  margin-inline: auto;
+  margin-block: 1rem;
 }
 
 .form__divider::before,
 .form__divider::after {
-	content: '';
-	border-top: var(--border-width) solid var(--border-clr-700);
+  content: "";
+  border-top: var(--border-width) solid var(--border-clr-700);
 }
 
 /*
 * Register switch
 */
-[data-page='login'] .register-only[data-direction='left'],
-[data-page='register'] .login-only[data-direction='left'] {
-	translate: -100% 0;
-	opacity: 0;
+[data-page="login"] .register-only[data-direction="left"],
+[data-page="register"] .login-only[data-direction="left"] {
+  translate: -100% 0;
+  opacity: 0;
 }
 
-[data-page='login'] .register-only[data-direction='right'],
-[data-page='register'] .login-only[data-direction='right'] {
-	translate: 100% 0;
-	opacity: 0;
+[data-page="login"] .register-only[data-direction="right"],
+[data-page="register"] .login-only[data-direction="right"] {
+  translate: 100% 0;
+  opacity: 0;
 }
 
 /*
 * Responsive
 */
 @media (max-width: 1280px) {
-	.page-background__title {
-		display: none;
-	}
+  .page-background__title {
+    display: none;
+  }
 }
 
 @media (max-width: 1024px) {
-	.page-body {
-		grid-template-columns: minmax(0, 1fr);
-	}
+  .page-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
 
-	.images {
-		display: none;
-	}
+  .images {
+    display: none;
+  }
 }

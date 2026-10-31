@@ -1,41 +1,41 @@
 /* Structure */
 main {
-	background-color: #EDF0F7;
+  background-color: #edf0f7;
 }
 
 /* Slider */
 #slider {
-	background-color: #fff;
-	height: 15rem;
-	clip-path: polygon(0 0, 0 93%, 20% 100%, 38% 92%, 62% 100%, 80% 96%, 100% 95%, 100% 0);
+  background-color: #fff;
+  height: 15rem;
+  clip-path: polygon(0 0, 0 93%, 20% 100%, 38% 92%, 62% 100%, 80% 96%, 100% 95%, 100% 0);
 }
 
 #bgr {
-	opacity: .5;
-	background: linear-gradient(60deg, #fff, #000);
-	mix-blend-mode: overlay;
+  opacity: 0.5;
+  background: linear-gradient(60deg, #fff, #000);
+  mix-blend-mode: overlay;
 }
 
 #bgr-img {
-	opacity: .85;
+  opacity: 0.85;
 }
 
 /* Title */
 .sbtn.back {
-	margin-top: 2rem;
-	font-size: .9rem;
-	line-height: 3;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  line-height: 3;
 }
 
 /* Form */
 .inp,
 .sel {
-	background-color: #fff;
+  background-color: #fff;
 }
 
 .inp.ok,
 .inp.err {
-	font-size: .9rem;
-	font-weight: bold;
-	line-height: 2;
+  font-size: 0.9rem;
+  font-weight: bold;
+  line-height: 2;
 }

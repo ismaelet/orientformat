@@ -1,214 +1,221 @@
 /* Structure */
 .main-wrap {
-	max-width: 1600px;
+  max-width: 1600px;
 }
 
 /* Containers */
 #body {
-	--canv: 350px;
-	--size: 4rem;
-	grid-template-columns: calc(var(--canv) * 2) auto;
-	grid-column-gap: 5rem;
+  --canv: 350px;
+  --size: 4rem;
+  grid-template-columns: calc(var(--canv) * 2) auto;
+  grid-column-gap: 5rem;
 }
 
 /* Title */
 #stitle .txt-wht {
-	color: var(--color-primary-400);
+  color: var(--color-primary-400);
 }
 
 .test__description span {
-	color: var(--color-tertiary-400);
+  color: var(--color-tertiary-400);
 }
 
 /* Graph */
 #page-graph-box {
-	aspect-ratio: 1;
+  aspect-ratio: 1;
 }
 
 #page-graph {
-	position: relative;
+  position: relative;
 }
 
 .page-graph-box.js-load {
-	opacity: 0;
-	transform: translate(-50%, -50%) !important;
+  opacity: 0;
+  transform: translate(-50%, -50%) !important;
 }
 
 .page-graph-box {
-	box-shadow: 0 10px 10px -7px rgba(0, 0, 0, 0.3);
-	opacity: 1;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transition: opacity 0.5s, transform 0.5s;
-	z-index: 1;
+  box-shadow: 0 10px 10px -7px rgba(0, 0, 0, 0.3);
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transition:
+    opacity 0.5s,
+    transform 0.5s;
+  z-index: 1;
 }
 
 .page-graph-box.origin {
-	transform: translate(-50%, -50%);
-	z-index: 2;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 .page-graph-box.circle {
-	transform: translate(calc((var(--canv) - var(--size) / 2) * var(--w) - var(--size) / 2), calc((var(--canv) - var(--size) / 2) * var(--h) - var(--size) / 2));
-	transform-origin: center;
+  transform: translate(
+    calc((var(--canv) - var(--size) / 2) * var(--w) - var(--size) / 2),
+    calc((var(--canv) - var(--size) / 2) * var(--h) - var(--size) / 2)
+  );
+  transform-origin: center;
 }
 
 #page-graph-box1,
 #page-graph-line1 {
-	transition-delay: 0.05s;
+  transition-delay: 0.05s;
 }
 #page-graph-box2,
 #page-graph-line2 {
-	transition-delay: 0.1s;
+  transition-delay: 0.1s;
 }
 #page-graph-box3,
 #page-graph-line3 {
-	transition-delay: 0.15s;
+  transition-delay: 0.15s;
 }
 #page-graph-box4,
 #page-graph-line4 {
-	transition-delay: 0.2s;
+  transition-delay: 0.2s;
 }
 #page-graph-box5,
 #page-graph-line5 {
-	transition-delay: 0.25s;
+  transition-delay: 0.25s;
 }
 #page-graph-box6,
 #page-graph-line6 {
-	transition-delay: 0.3s;
+  transition-delay: 0.3s;
 }
 #page-graph-box7,
 #page-graph-line7 {
-	transition-delay: 0.35s;
+  transition-delay: 0.35s;
 }
 #page-graph-box8,
 #page-graph-line8 {
-	transition-delay: 0.4s;
+  transition-delay: 0.4s;
 }
 #page-graph-box9,
 #page-graph-line9 {
-	transition-delay: 0.45s;
+  transition-delay: 0.45s;
 }
 #page-graph-box10,
 #page-graph-line10 {
-	transition-delay: 0.5s;
+  transition-delay: 0.5s;
 }
 #page-graph-box11,
 #page-graph-line11 {
-	transition-delay: 0.55s;
+  transition-delay: 0.55s;
 }
 #page-graph-box12,
 #page-graph-line12 {
-	transition-delay: 0.6s;
+  transition-delay: 0.6s;
 }
 
 .page-graph-box .inp {
-	background-color: var(--color-tertiary-400);
-	border: none;
-	border-radius: 2px;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-	width: var(--size);
-	margin: 0;
-	color: #fff;
-	font-size: 1.4rem;
-	line-height: var(--size);
-	transition: background 0.4s, box-shadow 0.4s;
-	cursor: pointer;
+  background-color: var(--color-tertiary-400);
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: var(--size);
+  margin: 0;
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: var(--size);
+  transition:
+    background 0.4s,
+    box-shadow 0.4s;
+  cursor: pointer;
 }
 
 .page-graph-box .inp:disabled {
-	color: #fff;
-	cursor: default;
+  color: #fff;
+  cursor: default;
 }
 
 .page-graph-box .inp:focus {
-	background-color: var(--color-primary-400);
-	box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  background-color: var(--color-primary-400);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .page-graph-box.right .inp {
-	background-color: #3cb144;
+  background-color: #3cb144;
 }
 .page-graph-box.origin.wrong .inp {
-	background-color: #e5c555;
+  background-color: #e5c555;
 }
 .page-graph-box.circle.wrong .inp {
-	background-color: #c62727;
+  background-color: #c62727;
 }
 
 .page-graph-line {
-	background-color: #999;
-	width: calc(50% - var(--size) / 2);
-	height: 2px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: rotate(calc(360deg / 12 * (var(--i) - 1)));
-	transform-origin: left;
-	transition: width 0.5s;
+  background-color: #999;
+  width: calc(50% - var(--size) / 2);
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: rotate(calc(360deg / 12 * (var(--i) - 1)));
+  transform-origin: left;
+  transition: width 0.5s;
 }
 
 .page-graph-line.js-load {
-	width: 0;
+  width: 0;
 }
 
 .page-graph-line.active {
-	background: var(--color-primary-400);
+  background: var(--color-primary-400);
 }
 .page-graph-line.right {
-	background-color: #3cb144;
+  background-color: #3cb144;
 }
 .page-graph-line.wrong {
-	background-color: #c62727;
+  background-color: #c62727;
 }
 
 /* Responsive */
 @media (max-width: 1440px) {
-	#body {
-		--canv: 300px;
-		grid-column-gap: 4rem;
-	}
+  #body {
+    --canv: 300px;
+    grid-column-gap: 4rem;
+  }
 }
 
 @media (max-width: 1024px) {
-	#body {
-		--canv: 300px;
-		display: flex;
-		flex-direction: column;
-	}
+  #body {
+    --canv: 300px;
+    display: flex;
+    flex-direction: column;
+  }
 
-	#page-graph-box {
-		order: 2;
-		width: 100%;
-		max-width: calc(var(--canv) * 2);
-		padding-bottom: 0;
-	}
+  #page-graph-box {
+    order: 2;
+    width: 100%;
+    max-width: calc(var(--canv) * 2);
+    padding-bottom: 0;
+  }
 
-	#page-graph {
-		padding-bottom: 100%;
-		position: relative;
-	}
+  #page-graph {
+    padding-bottom: 100%;
+    position: relative;
+  }
 
-	#texts {
-		order: 1;
-		width: 100%;
-		margin-bottom: 2rem;
-	}
+  #texts {
+    order: 1;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
-	#body {
-		--canv: calc(50vw - 2rem);
-	}
+  #body {
+    --canv: calc(50vw - 2rem);
+  }
 }
 
 @media (max-width: 480px) {
-	#body {
-		--size: 3rem;
-	}
+  #body {
+    --size: 3rem;
+  }
 
-	#page-graph .inp {
-		font-size: 1rem;
-	}
+  #page-graph .inp {
+    font-size: 1rem;
+  }
 }

@@ -2,27 +2,27 @@
 * Layout
 */
 .dashboard-field:nth-child(5n) {
-	text-align: center;
+  text-align: center;
 }
 
 .binary-icon {
-	margin-inline: auto;
+  margin-inline: auto;
 }
 
 /*
 * Responsive
 */
 @media (max-width: 480px) {
-	.dashboard-field:nth-child(1) {
-		padding-left: 1rem;
-	}
+  .dashboard-field:nth-child(1) {
+    padding-left: 1rem;
+  }
 
-	.dashboard-list-header.dashboard-list-header {
-		border-radius: 1rem;
-	}
+  .dashboard-list-header.dashboard-list-header {
+    border-radius: 1rem;
+  }
 
-	.stitle {
-		padding-inline: 0;
-		font-size: 0.9rem;
-	}
+  .stitle {
+    padding-inline: 0;
+    font-size: 0.9rem;
+  }
 }

@@ -10,12 +10,9 @@ declare global {
 }
 
 export function initTextSelection() {
-  const textBlockElement =
-    document.querySelector<HTMLElement>(".js-text-block");
+  const textBlockElement = document.querySelector<HTMLElement>(".js-text-block");
   const menuElement = document.querySelector<HTMLElement>(".js-selection-menu");
-  const markerElements = [
-    ...document.querySelectorAll<HTMLElement>(".js-marker"),
-  ];
+  const markerElements = [...document.querySelectorAll<HTMLElement>(".js-marker")];
 
   if (!textBlockElement || !menuElement) return;
 
@@ -162,9 +159,7 @@ export function initTextSelection() {
     let matchedSelectable: HTMLElement | null = null;
 
     for (const element of selectableElements) {
-      const textElement = element.querySelector<HTMLElement>(
-        ".js-selectable-text",
-      );
+      const textElement = element.querySelector<HTMLElement>(".js-selectable-text");
 
       if (!textElement) {
         continue;
@@ -174,9 +169,7 @@ export function initTextSelection() {
         continue;
       }
 
-      const textNode = [...textElement.childNodes].find(
-        (node) => node.nodeType === Node.TEXT_NODE,
-      );
+      const textNode = [...textElement.childNodes].find((node) => node.nodeType === Node.TEXT_NODE);
 
       if (!textNode || !textNode.textContent) {
         continue;
@@ -214,9 +207,9 @@ export function initTextSelection() {
       const markerType = markerElement.dataset.markerType;
       const maxCount = Number(markerElement.dataset.maxCount || 0);
 
-      const selectedCount = [
-        ...textBlock.querySelectorAll<HTMLInputElement>(".js-answer"),
-      ].filter((input) => input.value === markerType).length;
+      const selectedCount = [...textBlock.querySelectorAll<HTMLInputElement>(".js-answer")].filter(
+        (input) => input.value === markerType,
+      ).length;
 
       markerElement.classList.toggle("inactive", selectedCount >= maxCount);
     });
@@ -277,10 +270,7 @@ export function initTextSelection() {
       return;
     }
 
-    if (
-      menu.contains(target) ||
-      (currentSelectable && currentSelectable.contains(target))
-    ) {
+    if (menu.contains(target) || (currentSelectable && currentSelectable.contains(target))) {
       return;
     }
 

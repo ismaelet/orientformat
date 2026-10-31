@@ -2,86 +2,89 @@
 * Layout
 */
 .page-body {
-	display: grid;
-	grid-template-columns: minmax(0, 1fr);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 /* Shapes */
 #full-shape {
-	background-size: contain;
-	background-position: center;
-	height: 16rem;
+  background-size: contain;
+  background-position: center;
+  height: 16rem;
 }
 
 .shape-box {
-	padding: 0.5rem;
+  padding: 0.5rem;
 }
 
 .shape-inp {
-	background-color: #fff;
-	border: 2px solid var(--color-primary-400);
-	width: 15%;
-	max-width: 150px;
-	font-size: 1.5rem;
-	font-weight: bold;
-	line-height: 2;
-	text-align: center;
-	transition: box-shadow 0.2s, background 0.2s, color 0.2s;
+  background-color: #fff;
+  border: 2px solid var(--color-primary-400);
+  width: 15%;
+  max-width: 150px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 2;
+  text-align: center;
+  transition:
+    box-shadow 0.2s,
+    background 0.2s,
+    color 0.2s;
 }
 
 .shape-inp:focus {
-	background-color: var(--color-primary-400);
-	border-color: var(--color-primary-400);
-	box-shadow: 0 12px 20px -6px rgba(0, 0, 0, 0.4) !important;
-	color: #fff;
+  background-color: var(--color-primary-400);
+  border-color: var(--color-primary-400);
+  box-shadow: 0 12px 20px -6px rgba(0, 0, 0, 0.4) !important;
+  color: #fff;
 }
 
 .test-completed #solution {
-	grid-row: 1;
+  grid-row: 1;
 }
 
 #solution-box {
-	border: 2px dashed #ebebeb;
+  border: 2px dashed #ebebeb;
 }
 
 #solution.right .title {
-	color: #3cb144;
+  color: #3cb144;
 }
 #solution.wrong .title {
-	color: #c62727;
+  color: #c62727;
 }
 
 #solution.right #solution-box {
-	border-color: #3cb144;
+  border-color: #3cb144;
 }
 #solution.wrong #solution-box {
-	border-color: #c62727;
+  border-color: #c62727;
 }
 
 .shape {
-	border: 1px solid #ddd;
-	background-color: #ddd;
-	background-position: center;
-	background-size: cover;
-	padding-bottom: 76%;
+  border: 1px solid #ddd;
+  background-color: #ddd;
+  background-position: center;
+  background-size: cover;
+  padding-bottom: 76%;
 }
 
 #solution-txt.right {
-	color: #3cb144;
-	border-color: #3cb144;
+  color: #3cb144;
+  border-color: #3cb144;
 }
 #solution-txt.wrong {
-	color: #c62727;
-	border-color: #c62727;
+  color: #c62727;
+  border-color: #c62727;
 }
 
 #submit {
-	line-height: 4;
+  line-height: 4;
 }
 
 /* Responsive */
 @media (max-width: 480px) {
-	.shape-inp {
-		margin: 0 0.5rem;
-	}
+  .shape-inp {
+    margin: 0 0.5rem;
+  }
 }

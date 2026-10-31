@@ -2,12 +2,12 @@
 * Layout
 */
 main {
-	display: grid;
-	min-height: 100svh;
+  display: grid;
+  min-height: 100svh;
 }
 
 @supports not (min-height: 100svh) {
-	main {
-		min-height: 100vh;
-	}
+  main {
+    min-height: 100vh;
+  }
 }

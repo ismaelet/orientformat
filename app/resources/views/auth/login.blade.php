@@ -123,6 +123,7 @@
 						name="email"
 						placeholder="Indirizzo e-mail"
 						required
+						autocomplete="off"
 						class="w-full"
 					/>
 

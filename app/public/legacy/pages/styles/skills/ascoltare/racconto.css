@@ -1,26 +1,26 @@
 #audio {
-	width: 100%;
-	max-width: 30rem;
+  width: 100%;
+  max-width: 30rem;
 }
 
 #questions.completed {
-	pointer-events: none;
+  pointer-events: none;
 }
 
 #questions.completed .right p,
 #questions.completed .wrong p {
-	color: var(--color-primary-400);
+  color: var(--color-primary-400);
 }
 
 #questions.completed .right .icon,
 #questions.completed .wrong .icon {
-	outline-color: var(--color-primary-400);
+  outline-color: var(--color-primary-400);
 }
 
 .checkbox.right {
-	--color-primary-400: var(--color-good-400);
+  --color-primary-400: var(--color-good-400);
 }
 
 .checkbox.wrong {
-	--color-primary-400: var(--color-bad-400);
+  --color-primary-400: var(--color-bad-400);
 }

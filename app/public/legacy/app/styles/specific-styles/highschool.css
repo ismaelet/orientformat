@@ -19,10 +19,8 @@
   --color-transition-400: hsl(301, 39%, 42%);
 
   /* gradients */
-  --gradient-primary-tertiary:
-    var(--color-primary-400), var(--color-tertiary-400);
-  --gradient-secondary-tertiary:
-    var(--color-secondary-400), #753875, var(--color-tertiary-400);
+  --gradient-primary-tertiary: var(--color-primary-400), var(--color-tertiary-400);
+  --gradient-secondary-tertiary: var(--color-secondary-400), #753875, var(--color-tertiary-400);
 
   /* sets */
   --color-1-of-4: #0c4aa8;

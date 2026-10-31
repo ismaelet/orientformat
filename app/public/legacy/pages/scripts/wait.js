@@ -1,20 +1,16 @@
-$(window).on('load', function() {
+$(window).on("load", function () {
+  const counter = $("#countdown .number");
+  var countdown = 10;
 
-	const counter = $('#countdown .number');
-	var countdown = 10;
+  counter.html(countdown);
 
-	counter.html(countdown);
+  setInterval(function () {
+    countdown--;
 
-	setInterval(function() {
+    counter.html(countdown);
 
-		countdown--;
-
-		counter.html(countdown);
-
-		if (countdown < 1) {
-			location.reload();
-		}
-
-	}, 1000);
-
+    if (countdown < 1) {
+      location.reload();
+    }
+  }, 1000);
 });

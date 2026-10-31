@@ -1,6 +1,5 @@
-$(document).ready(function() {
-
-	/*fix_height();
+$(document).ready(function () {
+  /*fix_height();
 
 	$(window).resize(function() {
 
@@ -32,5 +31,4 @@ $(document).ready(function() {
 		});
 
 	}*/
-
 });

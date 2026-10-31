@@ -1,61 +1,61 @@
-const selectorItemClass = '.js-test-selector'
-const selectableItemClass = '.js-selectable'
+const selectorItemClass = ".js-test-selector";
+const selectableItemClass = ".js-selectable";
 
-document.addEventListener('DOMContentLoaded', function () {
-	let selecting = false
-	let type = null
+document.addEventListener("DOMContentLoaded", function () {
+  let selecting = false;
+  let type = null;
 
-	// start selecting
-	document.querySelectorAll(selectorItemClass).forEach((element) => {
-		element.addEventListener('click', () => {
-			if (!element.classList.contains('disabled')) {
-				$('#text').removeClass(type)
+  // start selecting
+  document.querySelectorAll(selectorItemClass).forEach((element) => {
+    element.addEventListener("click", () => {
+      if (!element.classList.contains("disabled")) {
+        $("#text").removeClass(type);
 
-				selecting = true
-				type = element.dataset.type
+        selecting = true;
+        type = element.dataset.type;
 
-				document.querySelectorAll(selectorItemClass).forEach((item) => {
-					item.classList.remove('active')
-				})
+        document.querySelectorAll(selectorItemClass).forEach((item) => {
+          item.classList.remove("active");
+        });
 
-				element.classList.add('active')
+        element.classList.add("active");
 
-				$('#text').addClass('selecting').addClass(type)
-			}
-		})
-	})
+        $("#text").addClass("selecting").addClass(type);
+      }
+    });
+  });
 
-	// click on a selector
-	document.querySelectorAll(selectableItemClass).forEach((element) => {
-		element.addEventListener('click', () => {
-			const selector = document.querySelector(selectorItemClass + '[data-type="' + type + '"]')
-			const count = selector.dataset.count - 1
+  // click on a selector
+  document.querySelectorAll(selectableItemClass).forEach((element) => {
+    element.addEventListener("click", () => {
+      const selector = document.querySelector(selectorItemClass + '[data-type="' + type + '"]');
+      const count = selector.dataset.count - 1;
 
-			if (selecting) {
-				if (element.dataset.type == type) {
-					element.classList.add('active')
-					selector.dataset.count = count
+      if (selecting) {
+        if (element.dataset.type == type) {
+          element.classList.add("active");
+          selector.dataset.count = count;
 
-					if (!count) {
-						selector.classList.add('disabled')
-					}
+          if (!count) {
+            selector.classList.add("disabled");
+          }
 
-					$('.inp-' + type + '.inactive')
-						.first()
-						.removeClass('inactive')
-						.val(1)
-						.change()
-				}
-			}
-		})
-	})
+          $(".inp-" + type + ".inactive")
+            .first()
+            .removeClass("inactive")
+            .val(1)
+            .change();
+        }
+      }
+    });
+  });
 
-	// click on the text
-	$('#text').click(function () {
-		selecting = false
+  // click on the text
+  $("#text").click(function () {
+    selecting = false;
 
-		$('#text').removeClass('selecting')
+    $("#text").removeClass("selecting");
 
-		$('.js-test-selector').removeClass('active')
-	})
-})
+    $(".js-test-selector").removeClass("active");
+  });
+});

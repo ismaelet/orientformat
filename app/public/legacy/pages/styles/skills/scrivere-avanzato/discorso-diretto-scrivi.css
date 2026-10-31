@@ -2,26 +2,26 @@
 * Layout
 */
 .test-text {
-	display: inline;
+  display: inline;
 }
 
 .test-input {
-	max-width: 100%;
-	width: 40rem;
-	margin-inline: 0.5rem;
+  max-width: 100%;
+  width: 40rem;
+  margin-inline: 0.5rem;
 }
 
 .wrong .test-input,
 .correct .test-input {
-	pointer-events: none;
+  pointer-events: none;
 }
 
 .wrong .test-input {
-	color: var(--color-bad-400);
-	border-color: var(--color-bad-400);
+  color: var(--color-bad-400);
+  border-color: var(--color-bad-400);
 }
 
 .correct .test-input {
-	color: var(--color-good-400);
-	border-color: var(--color-good-400);
+  color: var(--color-good-400);
+  border-color: var(--color-good-400);
 }

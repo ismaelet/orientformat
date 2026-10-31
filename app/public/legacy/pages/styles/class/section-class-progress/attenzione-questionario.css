@@ -3,68 +3,68 @@
 */
 .graph-subcolumn:nth-child(1),
 .graph-info-row:nth-child(1) .graph-info-icon {
-	background: linear-gradient(to bottom, #3095bb, #22718d);
+  background: linear-gradient(to bottom, #3095bb, #22718d);
 }
 .graph-subcolumn:nth-child(2),
 .graph-info-row:nth-child(2) .graph-info-icon {
-	background: linear-gradient(to bottom, #40b2db, #3095bb);
+  background: linear-gradient(to bottom, #40b2db, #3095bb);
 }
 .graph-subcolumn:nth-child(3),
 .graph-info-row:nth-child(3) .graph-info-icon {
-	background: linear-gradient(to bottom, #5ac7ee, #40b2db);
+  background: linear-gradient(to bottom, #5ac7ee, #40b2db);
 }
 .graph-subcolumn:nth-child(4),
 .graph-info-row:nth-child(4) .graph-info-icon {
-	background: linear-gradient(to bottom, #6ed8ff, #5ac7ee);
+  background: linear-gradient(to bottom, #6ed8ff, #5ac7ee);
 }
 .graph-subcolumn:nth-child(2),
 .graph-info-row:nth-child(2) .graph-info-icon {
-	background: linear-gradient(to bottom, #8be0ff, #6ed8ff);
+  background: linear-gradient(to bottom, #8be0ff, #6ed8ff);
 }
 
 .graph-column {
-	background-color: transparent;
+  background-color: transparent;
 }
 
 .graph-column:hover {
-	background-color: hsl(200, 30%, 40%);
+  background-color: hsl(200, 30%, 40%);
 }
 
 .graph-column:hover .graph-subcolumn {
-	filter: brightness(1.1);
+  filter: brightness(1.1);
 }
 
 .graph-column-average {
-	opacity: 0;
-	border-bottom: 2px solid orangered;
-	transition: opacity 0.3s;
+  opacity: 0;
+  border-bottom: 2px solid orangered;
+  transition: opacity 0.3s;
 }
 
 .graph-column:hover .graph-column-average {
-	opacity: 0;
+  opacity: 0;
 }
 
 .graph-box {
-	border-color: #217c9c;
+  border-color: #217c9c;
 }
 
 .graph-info-title {
-	background-color: var(--color-4);
-	color: #fff;
+  background-color: var(--color-4);
+  color: #fff;
 }
 
 .graph-box-average:last-child {
-	border-color: purple;
+  border-color: purple;
 }
 
 .graph-legend-row:nth-child(1) .graph-legend-icon {
-	opacity: 0.8;
-	border-color: var(--color-4);
+  opacity: 0.8;
+  border-color: var(--color-4);
 }
 .graph-legend-row:nth-child(2) .graph-legend-icon {
-	opacity: 0.8;
-	border-color: purple;
+  opacity: 0.8;
+  border-color: purple;
 }
 .graph-legend-row:nth-child(3) .graph-legend-icon {
-	border-color: orangered;
+  border-color: orangered;
 }

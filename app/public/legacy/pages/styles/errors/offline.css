@@ -2,25 +2,25 @@
 * Layout
 */
 main {
-	grid-template-rows: 1fr max-content;
+  grid-template-rows: 1fr max-content;
 }
 
 .page__content {
-	place-content: center;
+  place-content: center;
 }
 
 /*
 * Main content
 */
 .logo {
-	--box-height: 5rem;
-	height: var(--box-height);
-	margin-top: calc(var(--box-height) / -2);
+  --box-height: 5rem;
+  height: var(--box-height);
+  margin-top: calc(var(--box-height) / -2);
 }
 
 /*
 * Login bar
 */
 .login-btn {
-	color: var(--color-primary-400);
+  color: var(--color-primary-400);
 }

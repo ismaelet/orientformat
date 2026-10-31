@@ -1,58 +1,60 @@
 /* Questions */
 #questions {
-	padding-top: 3rem;
+  padding-top: 3rem;
 }
 
 .completed #questions {
-	display: none;
+  display: none;
 }
 
 .result {
-	display: none;
-	margin-top: 2rem;
+  display: none;
+  margin-top: 2rem;
 }
 
 .result.right {
-	color: green;
+  color: green;
 }
 .result.wrong {
-	color: red;
+  color: red;
 }
 
 .question {
-	display: none;
+  display: none;
 }
 
 .question.active {
-	display: grid;
+  display: grid;
 }
 
 .answer {
-	height: 100%;
-	box-shadow: var(--shadow-strong);
-	border-radius: var(--border-radius-700);
-	overflow: hidden;
-	transition: background 0.4s, border-color 0.4s;
+  height: 100%;
+  box-shadow: var(--shadow-strong);
+  border-radius: var(--border-radius-700);
+  overflow: hidden;
+  transition:
+    background 0.4s,
+    border-color 0.4s;
 }
 
 .answer:hover {
-	background-color: var(--color-primary-400);
-	border-color: var(--color-primary-400);
+  background-color: var(--color-primary-400);
+  border-color: var(--color-primary-400);
 }
 
 .answer:hover .answer-txt {
-	color: #fff;
-	transition: color 0.4s;
+  color: #fff;
+  transition: color 0.4s;
 }
 
 .answer:hover .title {
-	color: #fff;
+  color: #fff;
 }
 
 #end {
-	display: none;
+  display: none;
 }
 
 .completed #end {
-	display: block;
+  display: block;
 }

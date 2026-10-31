@@ -1,29 +1,29 @@
-$(document).ready(function() {
+$(document).ready(function () {
+  $(".number").hover(
+    function () {
+      const id = $(this).data("question");
 
-	$('.number').hover(function() {
+      $(".question")
+        .not("#question" + id)
+        .addClass("blur");
+    },
+    function () {
+      $(".question").removeClass("blur");
+    },
+  );
 
-		const id = $(this).data('question');
+  $(".number").click(function () {
+    const self = $(this);
+    const id = $(this).data("question");
+    const val = $(this).data("val");
 
-		$('.question').not('#question' + id).addClass('blur');
+    self.addClass("active");
 
-	}, function() {
-
-		$('.question').removeClass('blur');
-
-	});
-
-
-	$('.number').click(function() {
-
-		const self = $(this);
-		const id = $(this).data('question');
-		const val = $(this).data('val');
-
-		self.addClass('active');
-
-		$('.number[data-question=' + id + ']').not(self).removeClass('active');
-		$('#field' + id).val(val).change();
-
-	});
-
+    $(".number[data-question=" + id + "]")
+      .not(self)
+      .removeClass("active");
+    $("#field" + id)
+      .val(val)
+      .change();
+  });
 });

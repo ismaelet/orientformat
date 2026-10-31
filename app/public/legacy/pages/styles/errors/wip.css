@@ -1,38 +1,42 @@
 /* Containers */
 main {
-	height: 100vh;
-	min-height: 400px;
+  height: 100vh;
+  min-height: 400px;
 }
 
-.grid {height: 100%;}
+.grid {
+  height: 100%;
+}
 
 /* Body */
 #logo {
-	width: 5rem;
-	height: 5rem;
+  width: 5rem;
+  height: 5rem;
 }
 
 #title {
-	letter-spacing: .2rem;
-	margin-right: -.2rem;
+  letter-spacing: 0.2rem;
+  margin-right: -0.2rem;
 }
 
-#txt {max-width: 400px;}
+#txt {
+  max-width: 400px;
+}
 
 /* Login */
 #login {
-	position: absolute;
-	bottom: 1rem;
+  position: absolute;
+  bottom: 1rem;
 }
 
 #login-txt {
-	background: none;
-	border: none;
+  background: none;
+  border: none;
 }
 
 #login-txt .btn-txt {
-	border-bottom: 1px dashed #0090D5;
-	color: #0090D5;
-	font-size: 14px;
-	font-family: Tahoma, Arial, Helvetica, sans-serif;
+  border-bottom: 1px dashed #0090d5;
+  color: #0090d5;
+  font-size: 14px;
+  font-family: Tahoma, Arial, Helvetica, sans-serif;
 }

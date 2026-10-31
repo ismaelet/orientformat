@@ -2,87 +2,89 @@
 * Cryptograms
 */
 .cryptograms {
-	width: fit-content;
-	grid-template-columns: minmax(0, 1fr);
-	margin-inline: auto;
+  width: fit-content;
+  grid-template-columns: minmax(0, 1fr);
+  margin-inline: auto;
 }
 
 .cryptogram {
-	position: relative;
-	width: 100%;
-	padding: 2rem;
-	border: var(--border-width) solid var(--fc-700);
-	border-radius: var(--border-radius-700);
+  position: relative;
+  width: 100%;
+  padding: 2rem;
+  border: var(--border-width) solid var(--fc-700);
+  border-radius: var(--border-radius-700);
 }
 
 .cryptogram::before {
-	content: attr(data-id) '.';
-	position: absolute;
-	top: 0;
-	translate: 0 -50%;
-	padding-inline: 1em;
-	background-color: #fff;
-	font-size: var(--fs-600);
-	font-weight: var(--fw-bold);
+  content: attr(data-id) ".";
+  position: absolute;
+  top: 0;
+  translate: 0 -50%;
+  padding-inline: 1em;
+  background-color: #fff;
+  font-size: var(--fs-600);
+  font-weight: var(--fw-bold);
 }
 
 .cryptogram__text {
-	font-size: min(var(--fs-450), 5vw);
-	line-height: 2;
+  font-size: min(var(--fs-450), 5vw);
+  line-height: 2;
 }
 
 .cryptogram__fragment span {
-	cursor: pointer;
-	transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 
 .cryptogram__fragment :checked + span {
-	color: #fff;
+  color: #fff;
 }
 
 .cryptogram:nth-child(1) :checked + span {
-	background-color: var(--color-secondary-400);
+  background-color: var(--color-secondary-400);
 }
 
 .cryptogram:nth-child(2) :checked + span {
-	background-color: var(--color-transition-400);
+  background-color: var(--color-transition-400);
 }
 
 .cryptogram:nth-child(3) :checked + span {
-	background-color: var(--color-primary-400);
+  background-color: var(--color-primary-400);
 }
 
 .cryptogram--correct,
 .cryptogram--wrong {
-	pointer-events: none;
+  pointer-events: none;
 }
 
 .cryptogram--correct {
-	border-color: var(--color-good-400);
+  border-color: var(--color-good-400);
 }
 
 .cryptogram--correct::before {
-	color: var(--color-good-400);
+  color: var(--color-good-400);
 }
 
 .cryptogram--correct .solutionFragment {
-	background-color: var(--color-good-400);
-	color: #fff;
+  background-color: var(--color-good-400);
+  color: #fff;
 }
 
 .cryptogram--wrong {
-	border-color: var(--color-bad-400);
+  border-color: var(--color-bad-400);
 }
 
 .cryptogram--wrong::before {
-	color: var(--color-bad-400);
+  color: var(--color-bad-400);
 }
 
 .result__text {
-	font-size: var(--fs-500);
-	text-align: center;
+  font-size: var(--fs-500);
+  text-align: center;
 }
 
 .result__text span {
-	font-weight: var(--fw-bold);
+  font-weight: var(--fw-bold);
 }

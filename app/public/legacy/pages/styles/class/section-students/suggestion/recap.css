@@ -2,74 +2,74 @@
 * Layout
 */
 .dashboard-panel {
-	grid-template-rows: max-content max-content auto;
-	gap: 1rem;
+  grid-template-rows: max-content max-content auto;
+  gap: 1rem;
 }
 
 .result {
-	display: grid;
-	grid-template-columns: 3rem minmax(0, 1fr);
-	gap: 1rem;
-	padding-block: 1.5rem;
-	border-top: 1px solid var(--border-color);
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 1rem;
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--border-color);
 }
 
 .result:first-child {
-	border-top: none;
-	padding-top: unset;
+  border-top: none;
+  padding-top: unset;
 }
 
 .result:last-child {
-	padding-bottom: unset;
+  padding-bottom: unset;
 }
 
 .result__icon {
-	--icon-size: 50%;
-	position: relative;
-	isolation: isolate;
-	width: 100%;
-	aspect-ratio: 1;
-	overflow: hidden;
-	border-radius: 50%;
-	color: #fff;
+  --icon-size: 50%;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 50%;
+  color: #fff;
 }
 
 .result__icon::after {
-	content: '';
-	position: absolute;
-	z-index: -1;
-	inset: 0;
-	opacity: 0.4;
-	mix-blend-mode: overlay;
-	background: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 0%, 0%));
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+  background: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 0%, 0%));
 }
 
 .result:nth-child(1) .result__icon {
-	background-color: var(--color-primary-400);
+  background-color: var(--color-primary-400);
 }
 
 .result:nth-child(2) .result__icon {
-	background-color: var(--color-secondary-400);
+  background-color: var(--color-secondary-400);
 }
 
 .result:nth-child(3) .result__icon {
-	background-color: var(--color-4);
+  background-color: var(--color-4);
 }
 
 .result:nth-child(4) .result__icon {
-	background-color: var(--color-transition-400);
+  background-color: var(--color-transition-400);
 }
 
 .result__title {
-	font-size: var(--fs-400);
-	font-weight: var(--font-semibold);
+  font-size: var(--fs-400);
+  font-weight: var(--font-semibold);
 }
 
 .answer {
-	font-size: var(--fs-400);
+  font-size: var(--fs-400);
 }
 
 .panel-title {
-	font-size: 1.75rem;
-	font-weight: 600;
+  font-size: 1.75rem;
+  font-weight: 600;
 }

@@ -1,7 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Playfair:wght@400&display=swap");
-
 body {
   background-color: var(--color-background);
   color: var(--color-neutral-400);
@@ -239,22 +235,16 @@ svg {
   --color-neutral-light-700-hsl: var(--theme-h) var(--theme-light-s) 13%;
   --color-neutral-light-900-hsl: var(--theme-h) var(--theme-light-s) 0%;
   --color-neutral-dark-100-hsl: var(--theme-h) var(--theme-dark-s) 0%;
-  --color-neutral-dark-200-hsl: var(--theme-h) calc(var(--theme-dark-s) * 0.8)
-    13%;
-  --color-neutral-dark-250-hsl: var(--theme-h) calc(var(--theme-dark-s) * 0.65)
-    40%;
-  --color-neutral-dark-300-hsl: var(--theme-h) calc(var(--theme-dark-s) * 0.5)
-    50%;
-  --color-neutral-dark-350-hsl: var(--theme-h) calc(var(--theme-dark-s) * 0.4)
-    60%;
-  --color-neutral-dark-400-hsl: var(--theme-h) calc(var(--theme-dark-s) * 0.35)
-    70%;
+  --color-neutral-dark-200-hsl: var(--theme-h) calc(var(--theme-dark-s) * 0.8) 13%;
+  --color-neutral-dark-250-hsl: var(--theme-h) calc(var(--theme-dark-s) * 0.65) 40%;
+  --color-neutral-dark-300-hsl: var(--theme-h) calc(var(--theme-dark-s) * 0.5) 50%;
+  --color-neutral-dark-350-hsl: var(--theme-h) calc(var(--theme-dark-s) * 0.4) 60%;
+  --color-neutral-dark-400-hsl: var(--theme-h) calc(var(--theme-dark-s) * 0.35) 70%;
   --color-neutral-dark-700-hsl: var(--theme-h) var(--theme-dark-s) 95%;
   --color-neutral-dark-900-hsl: var(--theme-h) var(--theme-dark-s) 100%;
   --color-background-s: var(--theme-light-s);
   --color-background-l: 100%;
-  --color-background-hsl:
-    var(--theme-h), var(--theme-dark-s), var(--color-background-l);
+  --color-background-hsl: var(--theme-h), var(--theme-dark-s), var(--color-background-l);
   --color-surface-700-hsl: 0deg 0% 70%;
   --color-success-400-hsl: 145deg 63% 50%;
   --color-error-400-hsl: 0deg 100% 50%;
@@ -321,8 +311,7 @@ svg {
   --color-neutral-900-hsl: var(--color-neutral-dark-900-hsl);
   --color-background-s: var(--theme-dark-s);
   --color-background-l: 10%;
-  --color-background-hsl:
-    var(--theme-h), var(--theme-dark-s), var(--color-background-l);
+  --color-background-hsl: var(--theme-h), var(--theme-dark-s), var(--color-background-l);
   --color-surface-400-hsl: var(--color-neutral-dark-200-hsl);
   --color-surface-500-hsl: var(--color-neutral-dark-250-hsl);
   --shadow-400: 0 2rem 3rem -1rem rgba(0, 0, 0, 0.1);
@@ -787,9 +776,9 @@ video {
   flex-grow: 1;
 }
 .transform {
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y))
-    rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
-    scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate))
+    skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
+    scaleY(var(--tw-scale-y));
 }
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -1101,53 +1090,31 @@ video {
   --tw-shadow: var(--shadow-400);
   --tw-shadow-colored: var(--shadow-400);
   box-shadow:
-    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
-    var(--tw-shadow);
+    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .outline {
   outline-style: solid;
 }
 .filter {
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast)
-    var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate)
-    var(--tw-sepia) var(--tw-drop-shadow);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale)
+    var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .transition {
   transition-duration: 0.15s;
   transition-property:
-    color,
-    background-color,
-    border-color,
-    text-decoration-color,
-    fill,
-    stroke,
-    opacity,
-    box-shadow,
-    transform,
-    filter,
-    -webkit-backdrop-filter;
+    color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
+    transform, filter, -webkit-backdrop-filter;
   transition-property:
-    color, background-color, border-color, text-decoration-color, fill, stroke,
-    opacity, box-shadow, transform, filter, backdrop-filter;
+    color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
+    transform, filter, backdrop-filter;
   transition-property:
-    color,
-    background-color,
-    border-color,
-    text-decoration-color,
-    fill,
-    stroke,
-    opacity,
-    box-shadow,
-    transform,
-    filter,
-    backdrop-filter,
-    -webkit-backdrop-filter;
+    color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
+    transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .transition-colors {
   transition-duration: 0.15s;
-  transition-property:
-    color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hover\:text-neutral-700:hover {
@@ -1256,9 +1223,7 @@ video {
   display: grid;
   grid-template-rows: repeat(var(--rows, 1), minmax(0, 1fr));
   grid-auto-flow: column;
-  grid-auto-columns: calc(
-    100% / var(--columns) - var(--gap) * (1 - 1 / var(--columns))
-  );
+  grid-auto-columns: calc(100% / var(--columns) - var(--gap) * (1 - 1 / var(--columns)));
   column-gap: var(--gap);
   overflow: hidden;
   position: relative;
@@ -5027,9 +4992,7 @@ main {
   display: grid;
   grid-template-rows: repeat(var(--rows, 1), minmax(0, 1fr));
   grid-auto-flow: column;
-  grid-auto-columns: calc(
-    100% / var(--columns) - var(--gap) * (1 - 1 / var(--columns))
-  );
+  grid-auto-columns: calc(100% / var(--columns) - var(--gap) * (1 - 1 / var(--columns)));
   column-gap: var(--gap);
   overflow: hidden;
   position: relative;
@@ -5680,8 +5643,8 @@ main {
 
 .full-wrap_left {
   max-width: calc(
-    var(--wrap-width) + (100vw - var(--wrap-width) - var(--wrap-padding) / 2) /
-      2 + var(--wrap-padding)
+    var(--wrap-width) + (100vw - var(--wrap-width) - var(--wrap-padding) / 2) / 2 +
+      var(--wrap-padding)
   );
   padding-left: var(--wrap-padding);
   margin-left: auto;
@@ -6871,9 +6834,7 @@ body.fixed {
 }
 
 .half-wrap--left {
-  padding-left: calc(
-    (100vw - var(--wrap-outer-width) - var(--wrap-padding) / 2) / 2
-  );
+  padding-left: calc((100vw - var(--wrap-outer-width) - var(--wrap-padding) / 2) / 2);
   margin-left: var(--wrap-padding);
 }
 
@@ -7197,9 +7158,7 @@ body.fixed {
     color 0.3s;
 }
 
-.button:where(
-    :not(.button--secondary):not([data-variant="secondary"]):not(.button--empty)
-  ):hover {
+.button:where(:not(.button--secondary):not([data-variant="secondary"]):not(.button--empty)):hover {
   background-color: var(--color-primary-500);
 }
 
@@ -9147,8 +9106,7 @@ body {
   --color-surface-700: var(--color-neutral-400);
 
   --gradient-primary-secondary:
-    var(--color-primary-400), var(--color-transition-400),
-    var(--color-secondary-400);
+    var(--color-primary-400), var(--color-transition-400), var(--color-secondary-400);
   --gradient: linear-gradient(120deg, var(--gradient-primary-secondary));
 
   /* Surface */
@@ -9286,9 +9244,9 @@ h3 {
   isolation: isolate;
 }
 
-.button:not(.button--secondary):not([data-variant="secondary"]):not(
-    .button--empty
-  ):not(.button--mono)::before {
+.button:not(.button--secondary):not([data-variant="secondary"]):not(.button--empty):not(
+    .button--mono
+  )::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -9298,18 +9256,18 @@ h3 {
   transition: opacity 0.2s;
 }
 
-.button:not(.button--secondary):not([data-variant="secondary"]):not(
-    .button--empty
-  ):not(.button--mono),
-.button:not(.button--secondary):not([data-variant="secondary"]):not(
-    .button--empty
-  ):not(.button--mono):hover {
+.button:not(.button--secondary):not([data-variant="secondary"]):not(.button--empty):not(
+    .button--mono
+  ),
+.button:not(.button--secondary):not([data-variant="secondary"]):not(.button--empty):not(
+    .button--mono
+  ):hover {
   background-color: var(--color-primary-400);
 }
 
-.button:not(.button--secondary):not([data-variant="secondary"]):not(
-    .button--empty
-  ):not(.button--mono):hover::before {
+.button:not(.button--secondary):not([data-variant="secondary"]):not(.button--empty):not(
+    .button--mono
+  ):hover::before {
   opacity: 0;
 }
 
@@ -9404,11 +9362,7 @@ h3 {
 }
 
 .page-header__overlay::before {
-  background: linear-gradient(
-    135deg,
-    var(--color-tertiary-100),
-    var(--color-tertiary-700)
-  );
+  background: linear-gradient(135deg, var(--color-tertiary-100), var(--color-tertiary-700));
 }
 
 .page-header .button {
@@ -9426,10 +9380,7 @@ h3 {
 * Sections
 */
 .section-color {
-  --_h: calc(
-    (var(--_h-start) - var(--_h-range) / 2) + var(--_h-range) *
-      (var(--counter) - 1)
-  );
+  --_h: calc((var(--_h-start) - var(--_h-range) / 2) + var(--_h-range) * (var(--counter) - 1));
   --_color: hsl(var(--_h), var(--_s), var(--_l));
 }
 
@@ -9732,10 +9683,8 @@ body {
   --color-5-of-6: #cd566a;
   --color-6-of-6: #c14e6e;
 
-  --gradient-primary-tertiary:
-    var(--color-primary-400), var(--color-tertiary-400);
-  --gradient-secondary-tertiary:
-    var(--color-secondary-400), #753875, var(--color-tertiary-400);
+  --gradient-primary-tertiary: var(--color-primary-400), var(--color-tertiary-400);
+  --gradient-secondary-tertiary: var(--color-secondary-400), #753875, var(--color-tertiary-400);
 }
 
 [data-school-group="middleschool"] {
@@ -9745,10 +9694,8 @@ body {
   --color-secondary-hsl-300: 343, 48%, 63%;
   --color-secondary-hsl-400: 343, 48%, 53%;
   --color-transition-400: #ee7e59;
-  --gradient-primary-tertiary:
-    var(--color-primary-400), var(--color-tertiary-400);
-  --gradient-secondary-tertiary:
-    var(--color-secondary-400), #753875, var(--color-tertiary-400);
+  --gradient-primary-tertiary: var(--color-primary-400), var(--color-tertiary-400);
+  --gradient-secondary-tertiary: var(--color-secondary-400), #753875, var(--color-tertiary-400);
 
   --color-1-of-4: #f4c152;
   --color-2-of-4: #f69f52;

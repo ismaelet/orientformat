@@ -1,113 +1,118 @@
 /* Start */
 .completed #start {
-	display: none;
+  display: none;
 }
 
 /* Concepts */
 #concepts {
-	display: none;
+  display: none;
 }
 
 #concepts.active {
-	display: block;
+  display: block;
 }
 
 .concept {
-	cursor: default;
-	transition: opacity 0.5s, transform 0.5s;
-	transition-delay: var(--del);
+  cursor: default;
+  transition:
+    opacity 0.5s,
+    transform 0.5s;
+  transition-delay: var(--del);
 }
 
 .concept.loadA {
-	opacity: 0;
-	transform: translateY(2rem);
+  opacity: 0;
+  transform: translateY(2rem);
 }
 
 .concept-line {
-	border-bottom: 2px solid var(--color-secondary-400);
-	width: 100%;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	transform: scale(0, 1);
-	transition: transform 0.4s;
+  border-bottom: 2px solid var(--color-secondary-400);
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: scale(0, 1);
+  transition: transform 0.4s;
 }
 
 .concept:hover .concept-line {
-	transform: none;
+  transform: none;
 }
 
 /* Answers */
 #answers {
-	display: none;
-	gap: 1rem;
+  display: none;
+  gap: 1rem;
 }
 
 .completed #answers,
 #answers.active {
-	display: grid;
+  display: grid;
 }
 
 .answer {
-	position: relative;
+  position: relative;
 }
 
 .completed .answer {
-	pointer-events: none;
+  pointer-events: none;
 }
 
 .inp {
-	margin-block: 1rem;
-	font-size: 1rem;
+  margin-block: 1rem;
+  font-size: 1rem;
 }
 
 .completed .inp {
-	margin-block: 0.5rem;
+  margin-block: 0.5rem;
 }
 
 .inp.right,
 .inp.wrong {
-	border: none;
-	font-weight: bold;
+  border: none;
+  font-weight: bold;
 }
 
 .inp.right {
-	background-color: green;
+  background-color: green;
 }
 .inp.wrong {
-	background-color: red;
+  background-color: red;
 }
 
 .inp:focus {
-	border: 1px dashed var(--color-5);
+  border: 1px dashed var(--color-5);
 }
 
 .number {
-	position: absolute;
-	top: 50%;
-	left: 10px;
-	transform: translateY(-50%);
-	transform-origin: left;
-	font-size: 1.5rem;
-	pointer-events: none;
-	transition: transform 0.3s, color 0.3s, scale 0.3s;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  transform-origin: left;
+  font-size: 1.5rem;
+  pointer-events: none;
+  transition:
+    transform 0.3s,
+    color 0.3s,
+    scale 0.3s;
 }
 
 .answer:has(:focus) .number,
 .answer:not(:has(:placeholder-shown)) .number {
-	color: var(--color-primary-400);
-	scale: 0.9;
-	transform: translateY(-3.5rem);
+  color: var(--color-primary-400);
+  scale: 0.9;
+  transform: translateY(-3.5rem);
 }
 
 /*
 * Footer
 */
 .page-footer {
-	display: none;
+  display: none;
 }
 
 .completed .page-footer,
 .page-footer.active {
-	display: grid;
+  display: grid;
 }

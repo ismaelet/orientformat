@@ -1,49 +1,51 @@
-$(document).ready(function() {
+$(document).ready(function () {
+  var curr_pos = 1;
 
-	var curr_pos = 1;
+  //fix height to avoid puzzle jump on mobile
+  fix_height();
 
-	//fix height to avoid puzzle jump on mobile
-	fix_height();
+  $(window).resize(function () {
+    fix_height();
+  });
 
-	$(window).resize(function() {fix_height();});
-	
-	function fix_height() {
+  function fix_height() {
+    $(".title-box").css("height", "auto");
 
-		$('.title-box').css('height','auto');
+    const maxHeight = Math.max.apply(
+      null,
+      $(".title-box")
+        .map(function () {
+          return $(this).height();
+        })
+        .get(),
+    );
 
-		const maxHeight = Math.max.apply(null, $('.title-box').map(function() {
+    $(".title-box").height(maxHeight);
+  }
 
-			return $(this).height();
+  //puzzle pieces
+  $(".piece-area").hover(
+    function () {
+      $(".piece-area")
+        .not("#piece-area" + curr_pos)
+        .removeClass("active");
+      $(this).addClass("active");
+    },
+    function () {
+      $(".piece-area")
+        .not("#piece-area" + curr_pos)
+        .removeClass("active");
+    },
+  );
 
-		}).get());
+  $(".piece-area").click(function () {
+    const pos = $(this).data("pos");
+    curr_pos = pos;
 
-		$('.title-box').height(maxHeight);
-	}
+    $(".piece-area").removeClass("active");
+    $(".title-box").removeClass("active");
 
-	//puzzle pieces
-	$('.piece-area').hover(function() {
-
-		const pos = $(this).data('pos');
-		
-		$('.piece-area').not('#piece-area' + curr_pos).removeClass('active');
-		$(this).addClass('active');
-	
-	}, function() {
-		
-		$('.piece-area').not('#piece-area' + curr_pos).removeClass('active');
-
-	});
-
-	$('.piece-area').click(function() {
-
-		const pos = $(this).data('pos');
-		curr_pos = pos;
-
-		$('.piece-area').removeClass('active');
-		$('.title-box').removeClass('active');
-		
-		$(this).addClass('active');
-		$('#title-box' + pos).addClass('active');
-	});
-
+    $(this).addClass("active");
+    $("#title-box" + pos).addClass("active");
+  });
 });

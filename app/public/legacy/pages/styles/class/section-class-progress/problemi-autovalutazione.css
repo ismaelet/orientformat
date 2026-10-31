@@ -2,39 +2,39 @@
 * Layout
 */
 h1 {
-	margin-top: 3rem;
+  margin-top: 3rem;
 }
 
 .graph-column {
-	max-width: 3rem;
+  max-width: 3rem;
 }
 
 .graph-box-average {
-	transition-delay: 0.5s;
+  transition-delay: 0.5s;
 }
 
 .graph-column,
 .graph-column .graph-info-icon {
-	--_h: calc(50 / var(--_total-columns) * var(--_count) + 160);
-	background: linear-gradient(to top, hsl(var(--_h), 55%, 65%), hsl(var(--_h), 65%, 40%));
+  --_h: calc(50 / var(--_total-columns) * var(--_count) + 160);
+  background: linear-gradient(to top, hsl(var(--_h), 55%, 65%), hsl(var(--_h), 65%, 40%));
 }
 
 .graph-column:hover .graph-column-average {
-	opacity: 1;
+  opacity: 1;
 }
 
 .graph-box {
-	border-color: var(--color-tertiary-400);
+  border-color: var(--color-tertiary-400);
 }
 
 .graph-info-title {
-	background: linear-gradient(225deg, hsl(var(--_h), 55%, 25%), hsl(var(--_h), 65%, 15%));
-	color: #fff;
+  background: linear-gradient(225deg, hsl(var(--_h), 55%, 25%), hsl(var(--_h), 65%, 15%));
+  color: #fff;
 }
 
 .graph-box-average,
 .graph-legend-row .graph-legend-icon {
-	opacity: 0.9;
-	border-color: var(--color-4);
-	border-bottom-style: dashed;
+  opacity: 0.9;
+  border-color: var(--color-4);
+  border-bottom-style: dashed;
 }

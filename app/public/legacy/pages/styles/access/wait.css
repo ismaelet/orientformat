@@ -1,40 +1,40 @@
 /* Content */
 #content {
-	height: calc(100vh - 84px);
+  height: calc(100vh - 84px);
 }
 
 /* Countdown */
 #countdown {
-	--radius: calc(80 * 1rem / 16);
-	margin-top: calc(var(--radius) + 2rem);
-	text-align: center;
+  --radius: calc(80 * 1rem / 16);
+  margin-top: calc(var(--radius) + 2rem);
+  text-align: center;
 }
 
 .countdown-circle {
-	width: calc(var(--radius) * 2);
-	height: calc(var(--radius) * 2);
+  width: calc(var(--radius) * 2);
+  height: calc(var(--radius) * 2);
 }
 
 .countdown-circle circle {
-	--stroke: 10px;
-	--radius-inner: calc(var(--radius) - var(--stroke) * 2);
-	--circle: calc(var(--radius-inner) * 2 * 3.14);
-	cy: var(--radius);
-	cx: var(--radius);
-	r: var(--radius-inner);
-	stroke-dasharray: var(--circle);
-	stroke-dashoffset: 0px;
-	stroke-width: var(--stroke);
-	stroke: var(--color-tertiary-400);
-	fill: none;
-	animation: countdown 10s linear infinite forwards;
+  --stroke: 10px;
+  --radius-inner: calc(var(--radius) - var(--stroke) * 2);
+  --circle: calc(var(--radius-inner) * 2 * 3.14);
+  cy: var(--radius);
+  cx: var(--radius);
+  r: var(--radius-inner);
+  stroke-dasharray: var(--circle);
+  stroke-dashoffset: 0px;
+  stroke-width: var(--stroke);
+  stroke: var(--color-tertiary-400);
+  fill: none;
+  animation: countdown 10s linear infinite forwards;
 }
 
 @keyframes countdown {
-	from {
-		stroke-dashoffset: 0;
-	}
-	to {
-		stroke-dashoffset: var(--circle);
-	}
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: var(--circle);
+  }
 }

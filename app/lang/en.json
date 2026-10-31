@@ -1,12 +1,12 @@
 {
-	"Falso": "False",
-	"Abbastanza falso": "Somewhat false",
-	"Abbastanza vero": "Somewhat true",
-	"Vero": "True",
-	"Per niente": "Not at all",
-	"Poco": "A little",
-	"Abbastanza": "Fairly",
-	"Molto": "Very",
-	"Moltissimo": "Extremely",
-	"Non so": "I don't know"
+  "Falso": "False",
+  "Abbastanza falso": "Somewhat false",
+  "Abbastanza vero": "Somewhat true",
+  "Vero": "True",
+  "Per niente": "Not at all",
+  "Poco": "A little",
+  "Abbastanza": "Fairly",
+  "Molto": "Very",
+  "Moltissimo": "Extremely",
+  "Non so": "I don't know"
 }

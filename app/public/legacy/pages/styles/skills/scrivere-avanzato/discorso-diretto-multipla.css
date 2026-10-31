@@ -3,24 +3,24 @@
 */
 .sentence.correct,
 .sentence.wrong {
-	pointer-events: none;
+  pointer-events: none;
 }
 
 .original-sentence {
-	font-size: var(--fs-450);
-	font-weight: var(--font-weight-medium);
+  font-size: var(--fs-450);
+  font-weight: var(--font-weight-medium);
 }
 
 .correct .checkbox:has(:checked) {
-	--color-primary-400: var(--color-good-400);
-	--border-clr-400: var(--color-good-400);
-	--fc-700: var(--color-good-400);
-	color: var(--color-good-400);
+  --color-primary-400: var(--color-good-400);
+  --border-clr-400: var(--color-good-400);
+  --fc-700: var(--color-good-400);
+  color: var(--color-good-400);
 }
 
 .wrong .checkbox:has(:checked) {
-	--color-primary-400: var(--color-bad-400);
-	--border-clr-400: var(--color-bad-400);
-	--fc-700: var(--color-bad-400);
-	color: var(--color-bad-400);
+  --color-primary-400: var(--color-bad-400);
+  --border-clr-400: var(--color-bad-400);
+  --fc-700: var(--color-bad-400);
+  color: var(--color-bad-400);
 }
