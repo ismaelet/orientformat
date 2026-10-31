@@ -45,28 +45,21 @@ class AppServiceProvider extends ServiceProvider
         // If using HTTPS, also force it
         if (app()->isProduction()) {
             URL::forceScheme('https');
-        }
 
-        // Extract subdir from APP_URL (e.g. "/orientamento")
-        $prefix = trim(
-            parse_url(config('app.url'), PHP_URL_PATH) ?? '',
-            '/'
-        );
-
-        Livewire::setUpdateRoute(function ($handle) use ($prefix) {
-            return Route::post($prefix.'/livewire/update', $handle)
-                ->name('livewire.update');
-        });
-
-        if (config('app.debug')) {
-            Livewire::setScriptRoute(function ($handle) use ($prefix) {
-                return Route::get($prefix.'/livewire/livewire.js', $handle)
-                    ->name('livewire.js');
+            URL::formatPathUsing(function (string $path): string {
+                return preg_replace(
+                    '~^/orientamento(?=/livewire-[a-f0-9]+/update$)~',
+                    '',
+                    $path
+                );
             });
-        } else {
-            Livewire::setScriptRoute(function ($handle) use ($prefix) {
-                return Route::get($prefix.'/livewire/livewire.min.js', $handle)
-                    ->name('livewire.js');
+
+            Livewire::setUpdateRoute(function ($handle, $path) {
+                return Route::post($path, $handle);
+            });
+
+            Livewire::setScriptRoute(function ($handle, $path) {
+                return Route::get($path, $handle);
             });
         }
 

@@ -18,6 +18,16 @@ Route::get('help', [HelpController::class, 'index'])->name('help');
 Route::get('help/ticket/open', [HelpController::class, 'openTicket'])->name('help.ticket.open');
 Route::post('help/ticket/store', [HelpController::class, 'storeTicket'])->name('help.ticket.store');
 
+Route::get('/debug-url', function () {
+    return response()->json([
+        'app_url' => config('app.url'),
+        'request_base_url' => request()->getBaseUrl(),
+        'request_path' => request()->path(),
+        'generated_update_url' => route('livewire.update'),
+        'generated_login_url' => route('login'),
+    ]);
+});
+
 include __DIR__.'/web-legacy.php';
 
 include __DIR__.'/web-admin.php';
