@@ -1,4 +1,10 @@
-/.resources
 /.vscode
+/.resources
 
-.env.production
+/app/node_modules
+/app/public/build
+/app/public/hot
+/app/public/storage
+/app/vendor
+
+.env
