@@ -6,7 +6,8 @@
     "dev": "vite",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
-    "lint": "oxlint"
+    "lint": "oxlint",
+    "test:js": "node --experimental-strip-types tests/JavaScript/ui.test.mjs"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",

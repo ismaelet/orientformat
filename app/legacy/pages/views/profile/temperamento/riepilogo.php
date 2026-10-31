@@ -36,7 +36,7 @@
 
                     <?php if (!isSupervisor()) { ?>
 
-                        <p class="reset hide responsive clickable" data-id="<?= $i ?>" onclick="$(this).next().click()"><?= __('Restart') ?></p>
+                        <p class="reset hide responsive clickable" data-id="<?= $i ?>" onclick="this.nextElementSibling.click()"><?= __('Restart') ?></p>
                         <button type="submit" name="reset-test" class="hidden" value="<?= $result['test']->id ?>"></button>
 
                     <?php } ?>

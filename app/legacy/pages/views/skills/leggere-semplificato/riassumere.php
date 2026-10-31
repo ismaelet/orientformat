@@ -67,7 +67,7 @@
             <?php } ?>
 
             <!-- Read the full text -->
-            <p class="clickable text-secondary-400 flex wrap items-center gap-2" onclick="$('.section').toggleClass('hidden');">
+            <p class="clickable text-secondary-400 flex wrap items-center gap-2" onclick="document.querySelectorAll('.section').forEach(element => element.classList.toggle('hidden'));">
                 <span class="text-icon text-c3"> <?= embed_icon('read') ?></span>
                 <span class="btn-txt"><?= __('Click here to read the text again') ?></span>
             </p>
@@ -81,7 +81,7 @@
                 <?= __('tests.39-full-text') ?>
             </p>
 
-            <p class="clickable mar-b-2 txt-c3 fc-primary-h inlb" onclick="$('.section').toggleClass('hidden');">
+            <p class="clickable mar-b-2 txt-c3 fc-primary-h inlb" onclick="document.querySelectorAll('.section').forEach(element => element.classList.toggle('hidden'));">
                 <span class="text-icon text-c3"><?= embed_icon('navigation/back') ?></span>
                 <span class="btn-txt"><?= __('tests.39-back') ?></span>
             </p>

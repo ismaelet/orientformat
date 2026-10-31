@@ -73,14 +73,14 @@
 
                                 <?php if ($test->template == 'survey' && $test->completed) { ?>
 
-                                    <p class="test-btn fc-confirmation" onclick="$(this).next().click()"><?= __('Download answers') ?></p>
+                                    <p class="test-btn fc-confirmation" onclick="this.nextElementSibling.click()"><?= __('Download answers') ?></p>
                                     <button type="submit" class="hidden" name="download"></button>
 
                                 <?php } ?>
 
                                 <?php if ($test->completed && !$test->static) { ?>
 
-                                    <p class="test-btn fc-warning" onclick="$(this).next().click()"><?= __('Restart') ?></p>
+                                    <p class="test-btn fc-warning" onclick="this.nextElementSibling.click()"><?= __('Restart') ?></p>
 
                                     <button type="submit" name="reset" class="hidden" onclick="return confirm('<?= __('Are you sure you want to restart the activity?') ?>')"
                                         formaction="<?= route('test.reset', $test->id) ?>"></button>

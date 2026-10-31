@@ -1,0 +1,103 @@
+export function reviewQuestionCompleted(question: HTMLElement): boolean {
+  const choices = [...question.querySelectorAll<HTMLInputElement>(".js-cbx")];
+  const inputs = [
+    ...question.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(".js-input"),
+  ];
+  const checked = choices.filter((input) => input.checked);
+  if (choices.length) {
+    return question.dataset.multiple === "1"
+      ? checked.length > 0
+      : [...new Set(choices.map((input) => input.name))].every((name) =>
+          checked.some((input) => input.name === name),
+        );
+  }
+  return inputs.every((input) => input.value.trim() !== "");
+}
+
+export function initReview() {
+  const form = document.querySelector<HTMLFormElement>("[data-review-form]");
+  if (!form) return;
+  const questions = [...form.querySelectorAll<HTMLElement>(".js-question")];
+  const complete = (question: HTMLElement) => {
+    const done = reviewQuestionCompleted(question);
+    question.dataset.completed = done ? "1" : "0";
+    question.classList.toggle("question--completed", done);
+    if (done)
+      question
+        .querySelector<HTMLElement>(".js-error-warning")
+        ?.style.setProperty("display", "none");
+  };
+  const dependent = (id: string, visible: boolean) => {
+    const question = document.getElementById(`question-${id}`);
+    if (!question) return;
+    question.style.display = visible ? "" : "none";
+    question.dataset.optional = visible ? "0" : "1";
+    if (!visible) {
+      question
+        .querySelectorAll<HTMLInputElement>(".js-cbx")
+        .forEach((input) => (input.checked = false));
+    }
+    complete(question);
+  };
+  const dependencies = (input: HTMLInputElement) => {
+    const value = input.checked ? input.value : "0";
+    if (input.closest("#question-s2d2")) {
+      const suffix = ["3a", "3b", "3c", "3d"][Number(input.name.split("_")[1]) - 1];
+      if (suffix) dependent(`s2d${suffix}`, Number(value) > 1);
+    }
+    if (input.closest("#question-s6d2")) dependent("s6d3", Number(value) > 1);
+    if (input.closest("#question-s7d2")) {
+      dependent("s7d3", value === "1");
+      dependent("s7d4", value === "2");
+      dependent("s7d5", value === "2");
+    }
+  };
+  const radioSelections = new WeakMap<HTMLInputElement, boolean>();
+  form
+    .querySelectorAll<HTMLInputElement>('input[type="radio"]')
+    .forEach((input) => radioSelections.set(input, input.checked));
+  form.addEventListener("click", (event) => {
+    if (!(event.target instanceof HTMLInputElement) || event.target.type !== "radio") return;
+    const input = event.target;
+    if (radioSelections.get(input)) input.checked = false;
+    form.querySelectorAll<HTMLInputElement>('input[type="radio"]').forEach((other) => {
+      if (other.name === input.name) radioSelections.set(other, other.checked);
+    });
+    const question = input.closest<HTMLElement>(".js-question");
+    if (question) complete(question);
+  });
+  form.addEventListener("change", (event) => {
+    if (!(event.target instanceof HTMLInputElement)) return;
+    const input = event.target;
+    const question = input.closest<HTMLElement>(".js-question");
+    if (!question) return;
+    if (input.matches(".js-cbx") && question.dataset.multiple !== "1" && input.checked) {
+      question.querySelectorAll<HTMLInputElement>(".js-cbx").forEach((other) => {
+        if (other !== input && other.name === input.name) other.checked = false;
+      });
+    }
+    dependencies(input);
+    complete(question);
+  });
+  form.addEventListener("input", (event) => {
+    if (!(event.target instanceof Element)) return;
+    const question = event.target.closest<HTMLElement>(".js-question");
+    if (question) complete(question);
+  });
+  form.querySelector(".js-attempt-submit")?.addEventListener("click", () => {
+    questions.forEach(complete);
+    const missing = questions.find(
+      (question) => question.dataset.completed !== "1" && question.dataset.optional !== "1",
+    );
+    if (missing) {
+      missing
+        .querySelector<HTMLElement>(".js-error-warning")
+        ?.style.setProperty("display", "block");
+      missing.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      form.querySelector<HTMLButtonElement>(".js-submit")?.click();
+    }
+  });
+  questions.forEach(complete);
+  form.querySelectorAll<HTMLInputElement>(".js-cbx:checked").forEach(dependencies);
+}

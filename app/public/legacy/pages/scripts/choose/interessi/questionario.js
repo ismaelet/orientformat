@@ -1,3 +1,4 @@
+const fieldInput = ".filler-inp, .js-field";
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(fieldInput).forEach((element) => {
     element.addEventListener("change", () => {

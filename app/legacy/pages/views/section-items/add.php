@@ -103,7 +103,7 @@
 
 					<?php if ($item->id) { ?>
 						<button type="submit" class="upload-img hidden" name="upload-img"></button>
-						<input type="file" class="inp" name="new-img-files[]" multiple accept=".jpg, .png, .jpeg" onchange="$(this).prev().click()">
+						<input type="file" class="inp" name="new-img-files[]" multiple accept=".jpg, .png, .jpeg">
 					<?php } else { ?>
 						<input type="file" class="inp" name="new-img-files[]" multiple accept=".jpg, .png, .jpeg">
 					<?php } ?>

@@ -15,8 +15,8 @@
     <?= PHP_EOL . \App\Legacy\StyleLoader::loadInline() ?>
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="<?= asset('js/legacy.js') . '?v=' . filemtime(base_path() . '/public/js/legacy.js') ?>"></script>
+
+    <?= app(\Illuminate\Foundation\Vite::class)('resources/js/app.ts') ?>
     <?= PHP_EOL . \App\Legacy\ScriptLoader::load() ?>
 
     <!-- Google tag (gtag.js) -->

@@ -52,7 +52,7 @@
 
                         <?php foreach ($result['values'] as $key => $field) { ?>
 
-                            <p class="field" data-student-id="<?= $result['studentId'] ?>" data-test-id="<?= $legacyTests[$key - 1]['id'] ?? '' ?>" onclick="$('#inp-testId').val($(this).data('test-id')); $('#inp-studentId').val($(this).data('student-id')); $('#btn-download').click();">
+                            <p class="field" data-student-id="<?= $result['studentId'] ?>" data-test-id="<?= $legacyTests[$key - 1]['id'] ?? '' ?>">
 
                                 <?= $field ?>
 

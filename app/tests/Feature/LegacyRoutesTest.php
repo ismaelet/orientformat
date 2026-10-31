@@ -49,11 +49,6 @@ test('remaining system endpoints have bounded Laravel routes', function (string 
     expect($route->getActionName())->toBe(LegacyController::class);
     expect($route->getName())->toBe($name);
 })->with([
-    ['/ajax/grade-list', 'legacy.ajax'],
-    ['/api-old/call-function/Some/function', 'legacy.api.call-function'],
-    ['/api-old/search-table/students', 'legacy.api.search-table'],
-    ['/api-old/get-class-properties/Legacy/Activity/Test', 'legacy.api.get-class-properties'],
-    ['/api-old/call-class-method/Legacy/Activity/Test', 'legacy.api.call-class-method'],
     ['/favicon.ico', 'legacy.favicon'],
 ]);
 

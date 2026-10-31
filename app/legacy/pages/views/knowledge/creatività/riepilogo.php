@@ -34,7 +34,7 @@
 
 								<?php if ($result['completed']) { ?>
 
-									<p class="reset hide inlb font-bold" onclick="$(this).next().click()"><?= __('repeat') ?></p>
+									<p class="reset hide inlb font-bold" onclick="this.nextElementSibling.click()"><?= __('repeat') ?></p>
 									<button type="submit" name="reset-test" value="<?= $result['id'] ?>" class="hidden" onclick="return confirm('<?= __('Are you sure you want to restart the activity?') ?>')"></button>
 
 								<?php } else { ?>

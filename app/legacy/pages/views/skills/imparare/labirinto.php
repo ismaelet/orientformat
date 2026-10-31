@@ -22,7 +22,7 @@
 
 					<label>
 						<p class="txt-c3 clickable inlb"><?= __('tests.36-skip') ?></p>
-						<input type="checkbox" name="skip-cbx" class="hidden" onchange="$(this).next().click();">
+						<input type="checkbox" name="skip-cbx" class="hidden" onchange="this.nextElementSibling.click();">
 						<button type="submit" name="submit" class="hidden"></button>
 					</label>
 

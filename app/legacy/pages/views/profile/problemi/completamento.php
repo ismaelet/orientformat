@@ -29,7 +29,7 @@ $sets = _SETS;
                 ?>
 
                     <div class="num-row mar-t-2 px-8 py-4 <?php if ($legacyTest->completed) echo $right ? 'right' : 'wrong';
-                                                            else echo 'clickable' ?>" onclick="$(this).find('.num-emp').focus();">
+                                                            else echo 'clickable' ?>" onclick="this.querySelector('.num-emp')?.focus();">
 
                         <?php foreach ($numbers as $i => $number) {
 

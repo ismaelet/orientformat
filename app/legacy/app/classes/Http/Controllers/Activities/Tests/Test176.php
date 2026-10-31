@@ -116,7 +116,7 @@ class Test176 extends Test {
 					<?php } ?>
 
 					<!-- Read the full text -->
-					<p class="clickable text-transition-400 flex wrap items-center gap-2" onclick="$('.section').toggleClass('hidden');">
+					<p class="clickable text-transition-400 flex wrap items-center gap-2" onclick="document.querySelectorAll('.section').forEach(element => element.classList.toggle('hidden'));">
 						<span class="text-icon text-c3"> <?= embed_icon('read') ?></span>
 						<span class="btn-txt"><?= __('Click here to read the text again') ?></span>
 					</p>
@@ -148,7 +148,7 @@ class Test176 extends Test {
 							le sue ali di gigante non gli permettono di camminare.
 						</p>
 
-						<p class="clickable mar-b-2 txt-c3 fc-primary-h inlb" onclick="$('.section').toggleClass('hidden');">
+						<p class="clickable mar-b-2 txt-c3 fc-primary-h inlb" onclick="document.querySelectorAll('.section').forEach(element => element.classList.toggle('hidden'));">
 							<span class="text-icon text-tertiary-400"><?= embed_icon('navigation/back') ?></span>
 							<span class="btn-txt">Clicca qui per tornare al riassunto</span>
 						</p>

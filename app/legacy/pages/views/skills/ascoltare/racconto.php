@@ -8,7 +8,7 @@
 
         <div class="fa-center mar-t-4">
 
-            <p class="font-bold txt-12rem mb-4 fc-primary clickable" onclick="$(this).next()[0].play();"><?= __('Listen to the story:') ?></p>
+            <p class="font-bold txt-12rem mb-4 fc-primary clickable" onclick="this.nextElementSibling.play();"><?= __('Listen to the story:') ?></p>
 
             <audio id="audio" controls>
                 <source src="<?= client_path('audio.mp3') ?>" type="audio/mpeg">

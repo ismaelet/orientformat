@@ -685,36 +685,7 @@
     </style>
 @endPushOnce
 
-@pushOnce('scripts')
-    <script
-        src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-        crossorigin="anonymous"
-    ></script>
-    <script defer>
-        $(document).ready(function () {
-            fix_height();
 
-            $(window).resize(function () {
-                fix_height();
-            });
-
-            function fix_height() {
-                var head_height = $('#h-pan').outerHeight();
-                $('header').css('height', head_height + 'px');
-                $('#h-navM').css({
-                    top: head_height + 'px',
-                    height: 'calc(100% - ' + head_height + 'px)',
-                });
-            }
-
-            //survey prompot
-            $('#survey-prompt .icon').click(function () {
-                $('#survey-prompt').hide();
-            });
-        });
-    </script>
-@endPushOnce
 
 <header class="<?= $header['color'] ?> <?= $header['floating'] ? 'floating' : '' ?>">
     <div id="h-pan">
@@ -812,7 +783,7 @@
                 <!-- Mobile menu -->
                 <div id="h-mob-pan" class="txt-rig block lg:hidden">
                     <!-- Mobile icon -->
-                    <input type="checkbox" id="h-cbxM" class="hidden" onclick="$('#h-pan').toggleClass('h-open')" />
+                    <input type="checkbox" id="h-cbxM" class="hidden" onclick="document.getElementById('h-pan').classList.toggle('h-open')" />
 
                     <label id="h-icoM-box" for="h-cbxM" class="">
                         <div id="h-icoM-line1" class="h-icoM-line">
@@ -832,7 +803,7 @@
                         class="txt-lef <?php if (! $h_comp['force-mob']) {
                             echo 'mob';
                         } ?>"
-                        onClick="$('#h-cbxM').click()"
+                        onClick="document.getElementById('h-cbxM').click()"
                     >
                         <div id="h-navM-bgr" class="bgr bg-secondary"></div>
 

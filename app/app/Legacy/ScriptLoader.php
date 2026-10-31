@@ -2,79 +2,104 @@
 
 namespace App\Legacy;
 
-class ScriptLoader {
+use Illuminate\Foundation\Vite;
 
-	private static $list = [];
-	private static $headInlineScripts = [];
-	private static $footInlineScripts = [];
+class ScriptLoader
+{
+    private static $list = [];
 
-	public static function __constructStatic() {
-	}
+    private static $headInlineScripts = [];
 
-	// load a script
-	public static function add($fileName, $type, $priority = false) {
-		$file = false;
+    private static $footInlineScripts = [];
 
-		switch ($type) {
-			case 'template':
-				if (file_exists(base_path() . '/public/legacy' . $fetchingFile = '/templates/scripts/' . $fileName . '.js')) {
-					$file = $fetchingFile;
-					if (!$priority) $priority = 3;
-				}
-				break;
-			case 'page':
-				if (file_exists(base_path() . '/public/legacy' . $fetchingFile = '/pages/scripts/' . $fileName . '.js')) {
-					$file = $fetchingFile;
-					if (!$priority) $priority = 4;
-				}
-				break;
-			case 'inline':
-				self::$footInlineScripts[] = $fileName;
-		}
+    public static function __constructStatic() {}
 
-		// store the file URL in the list
-		if ($file) {
-			$file .= '?v=' . filemtime(base_path() . '/public/legacy' . $file);
-			self::$list[] = [$priority, $file];
-		}
-	}
+    // load a script
+    public static function add($fileName, $type, $priority = false)
+    {
+        $file = false;
+        if (in_array($type, ['page', 'template'])) {
+            $entry = 'resources/js/exercises/'.($type === 'page' ? 'pages' : 'templates').'/'.$fileName.'.js';
+            if (is_file(base_path($entry))) {
+                self::$list[] = [$priority ?: ($type === 'page' ? 4 : 3), $entry, true];
 
-	public static function addPageScripts($pageName) {
-		$pageScripts = glob(base_path() . '/public/legacy' . '/pages/scripts/-expands-' . $pageName . '/*.js');
+                return;
+            }
+        }
 
-		self::add($pageName, 'page');
+        switch ($type) {
+            case 'template':
+                if (file_exists(base_path().'/public/legacy'.$fetchingFile = '/templates/scripts/'.$fileName.'.js')) {
+                    $file = $fetchingFile;
+                    if (! $priority) {
+                        $priority = 3;
+                    }
+                }
+                break;
+            case 'page':
+                if (file_exists(base_path().'/public/legacy'.$fetchingFile = '/pages/scripts/'.$fileName.'.js')) {
+                    $file = $fetchingFile;
+                    if (! $priority) {
+                        $priority = 4;
+                    }
+                }
+                break;
+            case 'inline':
+                self::$footInlineScripts[] = $fileName;
+        }
 
-		foreach ($pageScripts as $pageScript) {
-			self::add('-expands-' . $pageName . '/' . self::getFileName($pageScript), 'page', 5);
-		}
-	}
+        // store the file URL in the list
+        if ($file) {
+            $file .= '?v='.filemtime(base_path().'/public/legacy'.$file);
+            self::$list[] = [$priority, $file];
+        }
+    }
 
-	// get the file name
-	private static function getFileName($fileUrl) {
-		return explode('.js', legacy_explode_last('/', $fileUrl))[0];
-	}
+    public static function addPageScripts($pageName)
+    {
+        $pageScripts = glob(base_path().'/public/legacy'.'/pages/scripts/-expands-'.$pageName.'/*.js');
 
-	/*
-	* Load the scripts
-	*/
-	// load all the scripts
-	public static function load() {
-		$list = [];
+        self::add($pageName, 'page');
 
-		sort_subvalue(self::$list, 0);
+        foreach ($pageScripts as $pageScript) {
+            self::add('-expands-'.$pageName.'/'.self::getFileName($pageScript), 'page', 5);
+        }
+    }
 
-		foreach (self::$list as $style) $list[] = '<script src="' . asset('legacy' . $style[1]) . '"></script>';
+    // get the file name
+    private static function getFileName($fileUrl)
+    {
+        return explode('.js', legacy_explode_last('/', $fileUrl))[0];
+    }
 
-		return implode(PHP_EOL, $list);
-	}
+    /*
+    * Load the scripts
+    */
+    // load all the scripts
+    public static function load()
+    {
+        $list = [];
 
-	// load the inline script to be placed in the head
-	public static function loadHeadInline() {
-		return implode(PHP_EOL . PHP_EOL, self::$headInlineScripts);
-	}
+        sort_subvalue(self::$list, 0);
 
-	// load the inline script to be placed at the end of the body
-	public static function loadFootInline() {
-		return implode(self::$footInlineScripts);
-	}
+        foreach (self::$list as $script) {
+            $list[$script[1]] = ! empty($script[2])
+                ? (string) app(Vite::class)($script[1])
+                : '<script src="'.asset('legacy'.$script[1]).'"></script>';
+        }
+
+        return implode(PHP_EOL, $list);
+    }
+
+    // load the inline script to be placed in the head
+    public static function loadHeadInline()
+    {
+        return implode(PHP_EOL.PHP_EOL, self::$headInlineScripts);
+    }
+
+    // load the inline script to be placed at the end of the body
+    public static function loadFootInline()
+    {
+        return implode(self::$footInlineScripts);
+    }
 }

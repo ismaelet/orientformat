@@ -22,11 +22,4 @@ if ($landingAlias !== '') {
     Route::any($landingAlias, [LegacyController::class, 'landing'])->name('legacy.landing');
 }
 
-// System endpoints still use their legacy handlers, with explicit route bounds.
-Route::any('ajax/{module?}', LegacyController::class)->where('module', '.*')->name('legacy.ajax');
-foreach (['call-function', 'search-table', 'get-class-properties', 'call-class-method'] as $operation) {
-    Route::any('api-old/'.$operation.'/{target?}', LegacyController::class)
-        ->where('target', '.*')
-        ->name('legacy.api.'.$operation);
-}
 Route::any('favicon.ico', LegacyController::class)->name('legacy.favicon');

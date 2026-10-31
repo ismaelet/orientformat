@@ -170,12 +170,6 @@ function generate_input($input, $data, $error, $done) {
 				<?php }
 				break;
 
-			case 'search':
-
-				input_search($input);
-
-				break;
-
 			case 'file': ?>
 
 				<input type="file" class="inp file" name="<?= $name ?>" <?= isset($input['multiple']) ? 'multiple' : '' ?> <?= isset($input['required']) ? 'required' : '' ?>>

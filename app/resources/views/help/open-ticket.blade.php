@@ -240,8 +240,8 @@
 						 name="message"
 						 class="form-textarea"
 						 maxlength="500"
-						 onfocus="$(this).prev().addClass('focus')"
-						 onblur="if (!$(this).val().length) {$(this).prev().removeClass('focus')}"
+						 onfocus="this.previousElementSibling.classList.add('focus')"
+						 onblur="if (!this.value.length) this.previousElementSibling.classList.remove('focus')"
 						 required
 						></textarea>
 

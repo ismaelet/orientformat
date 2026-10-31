@@ -1,3 +1,4 @@
+const fieldInput = ".filler-inp, .js-field";
 const drawingWrapperSelector = ".js-drawing-wrapper";
 const characterSelector = ".js-character";
 const layerSelector = ".js-layer";

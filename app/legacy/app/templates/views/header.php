@@ -817,7 +817,7 @@ $localeEnabled = in_array('App\Http\Middleware\Locale', Route::current()->gather
                 <div id="h-mob-pan" class="txt-rig <?php if (!$h_comp['force-mob']) echo 'mob1024'; ?>">
 
                     <!-- Mobile icon -->
-                    <input type="checkbox" id="h-cbxM" class="hidden" onclick="$('#h-pan').toggleClass('h-open');">
+                    <input type="checkbox" id="h-cbxM" class="hidden" onclick="document.getElementById('h-pan').classList.toggle('h-open');">
 
                     <label id="h-icoM-box" for="h-cbxM" class="">
                         <div id="h-icoM-line1" class="h-icoM-line">
@@ -832,7 +832,7 @@ $localeEnabled = in_array('App\Http\Middleware\Locale', Route::current()->gather
                     </label>
 
                     <!-- Mobile box -->
-                    <div id="h-navM" class="txt-lef <?php if (!$h_comp['force-mob']) echo 'mob'; ?>" onClick="$('#h-cbxM').click();">
+                    <div id="h-navM" class="txt-lef <?php if (!$h_comp['force-mob']) echo 'mob'; ?>" onClick="document.getElementById('h-cbxM').click();">
 
                         <div id="h-navM-bgr" class="bgr bg-secondary"></div>
 
