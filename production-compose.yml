@@ -1,0 +1,58 @@
+name: orientformat
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+      target: run
+    ports:
+      - 8010:80
+    configs:
+      - source: caddy_config
+        target: /etc/frankenphp/Caddyfile
+      - source: php_config
+        target: /usr/local/etc/php/conf.d/app.ini
+    volumes:
+      - app_storage:/var/www/html/storage
+    environment:
+      APP_NAME: OrientFormat
+      APP_LOCALE: it
+      APP_FALLBACK_LOCALE: en
+      APP_ENV: production
+      APP_DEBUG: false
+      APP_KEY: ${APP_KEY}
+
+      APP_SUBDOMAIN: orientamento
+      APP_URL: https://www.iprase.tn.it/orientamento
+      ASSET_URL: https://www.iprase.tn.it/orientamento
+
+      DB_CONNECTION: mysql
+      DB_HOST: ${DB_HOST}
+      DB_PORT: 3306
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+
+      MAIL_MAILER: smtp
+      MAIL_HOST: ${MAIL_HOST}
+      MAIL_PORT: 25
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      MAIL_FROM_ADDRESS: no-reply@iprase.tn.it
+      MAIL_FROM_NAME: Orientamento Formativo
+
+      # Services
+      SENTRY_LARAVEL_DSN: ${SENTRY_LARAVEL_DSN}
+      SENTRY_TRACES_SAMPLE_RATE: 0
+    labels:
+      owner: orientamentoformativo2
+
+volumes:
+  app_storage:
+
+configs:
+  caddy_config:
+    file: ./docker/app/Caddyfile
+  php_config:
+    file: ./docker/app/app.ini
