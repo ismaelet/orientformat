@@ -1,5 +1,9 @@
 <?php
 
-$public = sysData('static') ?: \App\Legacy\LegacyDB::find('value FROM variables WHERE name=?', ['public']);
+use App\Legacy\LegacyDB;
 
-if (!$public && !$user->admin) redirect_old('/offline');
+$public = sysData('static') ?: LegacyDB::find('value FROM variables WHERE name=?', ['public']);
+
+if (! $public && ! $user->admin) {
+    redirect_old('/offline');
+}

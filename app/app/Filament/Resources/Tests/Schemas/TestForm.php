@@ -5,14 +5,13 @@ namespace App\Filament\Resources\Tests\Schemas;
 use App\Models\Activities\Section;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
-use League\Uri\UriTemplate\Template;
 
-class TestForm {
-
-    public static function configure(Schema $schema): Schema {
+class TestForm
+{
+    public static function configure(Schema $schema): Schema
+    {
         return $schema
             ->components([
                 TextInput::make('title')
@@ -27,7 +26,7 @@ class TestForm {
                     ->label('Sezione')
                     ->placeholder('Seleziona la sezione')
                     ->relationship('section', 'name')
-                    ->getOptionLabelFromRecordUsing(fn(Section $record) => $record->name . ' (' . $record->slug . ')')
+                    ->getOptionLabelFromRecordUsing(fn (Section $record) => $record->name.' ('.$record->slug.')')
                     ->preload()
                     ->searchable()
                     ->required(),

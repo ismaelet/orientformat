@@ -5,8 +5,8 @@ namespace App\Helpers\Tests;
 use App\Models\Activities\Test;
 use App\Models\User\Student;
 
-class AttenzioneRiepilogoHelper {
-
+class AttenzioneRiepilogoHelper
+{
     private const QUESTION_COUNT = 18;
 
     private const MAX_SCORE = 36;

@@ -11,8 +11,8 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Button extends Component {
-
+class Button extends Component
+{
     /**
      * Property: The button label
      */
@@ -26,7 +26,8 @@ class Button extends Component {
     /**
      * Create a new component instance.
      */
-    public function __construct(public Test $test, public bool $progressive = false) {
+    public function __construct(public Test $test, public bool $progressive = false)
+    {
         $student = student();
         $watchedStudent = legacy_watched_student();
         $section = $test->section;
@@ -53,14 +54,16 @@ class Button extends Component {
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): View|Closure|string {
+    public function render(): View|Closure|string
+    {
         return view('components.test.button');
     }
 
     /**
      * Determine the button label based on the test state
      */
-    private function label(bool $testCompleted, bool $sectionCompleted, bool $requiresReview, bool $isSupervisor, ?string $from): string {
+    private function label(bool $testCompleted, bool $sectionCompleted, bool $requiresReview, bool $isSupervisor, ?string $from): string
+    {
         return match (true) {
             // Supervisor view
             $from => __('Ritorna alle autovalutazioni'),
@@ -72,7 +75,7 @@ class Button extends Component {
             $testCompleted && $sectionCompleted => __('Return to the summary'),
 
             // Test that requires review
-            $requiresReview && !$testCompleted => __('Check your answer'),
+            $requiresReview && ! $testCompleted => __('Check your answer'),
 
             // Uncompleted test, completed section
             $sectionCompleted => __('Save the new result'),
@@ -82,7 +85,8 @@ class Button extends Component {
         };
     }
 
-    private function url(bool $testCompleted, bool $sectionCompleted, Student|Teacher $watchedStudent, bool $isSupervisor, ?string $from, Section $section, ?SchoolClass $class): ?string {
+    private function url(bool $testCompleted, bool $sectionCompleted, Student|Teacher $watchedStudent, bool $isSupervisor, ?string $from, Section $section, ?SchoolClass $class): ?string
+    {
         if ($from) {
             $fromTest = Test::where('slug', $from)->first();
         }

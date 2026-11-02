@@ -9,12 +9,13 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
-class HelpController extends Controller {
-
+class HelpController extends Controller
+{
     /**
      * Display the support page
      */
-    public function index(): Response {
+    public function index(): Response
+    {
         return LegacyView::setPage('support')
             ->setTitle('Supporto')
             ->show();
@@ -23,7 +24,8 @@ class HelpController extends Controller {
     /**
      * Show the form to open a support ticket
      */
-    public function openTicket() {
+    public function openTicket()
+    {
         $user = Auth::user();
 
         return view('help.open-ticket', [
@@ -35,7 +37,8 @@ class HelpController extends Controller {
     /**
      * Store a new support ticket
      */
-    public function storeTicket(Request $request) {
+    public function storeTicket(Request $request)
+    {
         $isAdministrator = is_administrator();
         $isTeacher = is_teacher();
         $isStudent = is_student();

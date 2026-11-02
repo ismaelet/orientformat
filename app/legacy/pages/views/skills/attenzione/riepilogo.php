@@ -80,7 +80,9 @@
 
         <?= submit() ?>
 
-    <?php } else echo no_results() ?>
+    <?php } else {
+        echo no_results();
+    } ?>
 
 </div>
 

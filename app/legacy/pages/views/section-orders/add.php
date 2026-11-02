@@ -97,21 +97,21 @@
 				Ripristina l'ordine
 			</button>
 
-		<?php } else if ($cart->statusCode == 'waiting-payment') { ?>
+		<?php } elseif ($cart->statusCode == 'waiting-payment') { ?>
 
 			<button type="submit" class="cart-action button button--auto-width" name="statusId" value="2">
 				<?= embed_icon('correct') ?>
 				Pagamento ricevuto
 			</button>
 
-		<?php } else if ($cart->statusCode == 'confirmed-payment') { ?>
+		<?php } elseif ($cart->statusCode == 'confirmed-payment') { ?>
 
 			<button type="submit" class="cart-action button button--auto-width" name="statusId" value="3">
 				<?= embed_icon('correct') ?>
 				Spedito
 			</button>
 
-		<?php } else if ($cart->statusCode == 'shipped') { ?>
+		<?php } elseif ($cart->statusCode == 'shipped') { ?>
 
 			<button type="submit" class="cart-action button button--auto-width" name="statusId" value="4">
 				<?= embed_icon('correct') ?>

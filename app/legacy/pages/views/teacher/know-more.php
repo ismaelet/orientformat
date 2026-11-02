@@ -27,8 +27,8 @@
                         </a>
 
                         <?php } else {
-                        foreach ($area->getAplhabeticalDoableSections() as $legacySection) {
-                            if ($legacySection->isMainSection) { ?>
+                            foreach ($area->getAplhabeticalDoableSections() as $legacySection) {
+                                if ($legacySection->isMainSection) { ?>
 
                                 <a href="<?= route('read', ['id' => $legacySection->id]) ?>" id="section<?= $legacySection->id ?>" class="section fa-center section-color section-color--area-<?= $area->id ?>">
                                     <?= embed_icon($legacySection->icon) ?>
@@ -36,8 +36,8 @@
                                 </a>
 
                     <?php }
-                        }
-                    } ?>
+                                }
+                        } ?>
 
                 </div>
 

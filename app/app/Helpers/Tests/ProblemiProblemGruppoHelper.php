@@ -2,5 +2,4 @@
 
 namespace App\Helpers\Tests;
 
-class ProblemiProblemGruppoHelper extends ProblemiSuperioriProblemGruppoHelper {
-}
+class ProblemiProblemGruppoHelper extends ProblemiSuperioriProblemGruppoHelper {}

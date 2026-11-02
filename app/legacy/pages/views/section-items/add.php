@@ -16,7 +16,7 @@
 					<div class="form-field mt-2">
 						<p class="form-lbl">URL del prodotto</p>
 						<div class="slug">
-							<p class="slug-url"><?= str_replace('/', '<wbr>/', __PUBLIC_CLIENT_URL__ . '/' . __('item') . '/' . $item->id . '-') ?></p>
+							<p class="slug-url"><?= str_replace('/', '<wbr>/', __PUBLIC_CLIENT_URL__.'/'.__('item').'/'.$item->id.'-') ?></p>
 							<input type="text" class="slug-inp inp" name="slug" value="<?= $item->slug ?>" placeholder="slug" required>
 						</div>
 					</div>
@@ -43,7 +43,7 @@
 		<h3 class="form-title">Galleria</h3>
 		<div class="form-content">
 
-			<?php if ($item->id && $item->images && !empty($item->images)) { ?>
+			<?php if ($item->id && $item->images && ! empty($item->images)) { ?>
 
 				<p class="mar-b-2 flex flex-wrap gap-2 ha-cen va-cen">
 					<span class="icon text-icon" <?= icon_svg('move') ?>></span>
@@ -155,15 +155,15 @@
 					<p class="form-lbl">Stato del prodotto</p>
 					<select class="sel" name="status">
 						<option value="0" <?= $item->status ? '' : 'selected' ?>>Bozza</option>
-						<option value="1" <?= !$item->id || $item->status ? 'selected' : '' ?>>Attivo</option>
+						<option value="1" <?= ! $item->id || $item->status ? 'selected' : '' ?>>Attivo</option>
 					</select>
 				</div>
 
-				<div class="inventory-field <?= !$item->id || $item->inStock ? 'inventory-field_present' : 'inventory-field_absent' ?> form-field">
+				<div class="inventory-field <?= ! $item->id || $item->inStock ? 'inventory-field_present' : 'inventory-field_absent' ?> form-field">
 					<p class="form-lbl">Inventario</p>
 					<select class="sel" name="inStock">
 						<option value="0" <?= $item->inStock ? '' : 'selected' ?>>Esaurito</option>
-						<option value="1" <?= !$item->id || $item->inStock ? 'selected' : '' ?>>Disponibile</option>
+						<option value="1" <?= ! $item->id || $item->inStock ? 'selected' : '' ?>>Disponibile</option>
 					</select>
 				</div>
 
@@ -239,65 +239,65 @@
 
 	<!-- Variations -->
 	<?php /*
-	<section class="variations form" data-count="<?= $item->variations ? 1 : 0 ?>">
-		<h3 class="form-title">Variações</h3>
+    <section class="variations form" data-count="<?= $item->variations ? 1 : 0 ?>">
+        <h3 class="form-title">Variações</h3>
 
-		<div class="form-content">
+        <div class="form-content">
 
-			<p>Para cada variação é possível especificar um preço. Se deixar o campo do preço vazio, será utilizado o preço geral do produto para a variação.</p>
+            <p>Para cada variação é possível especificar um preço. Se deixar o campo do preço vazio, será utilizado o preço geral do produto para a variação.</p>
 
-			<?php if (!$item->variations) { ?>
-				<!-- Add a variation type -->
-				<div class="add-variation mar-t-1">
-					<input type="text" class="add-variation-inp inp" placeholder="Nome do tipo de variação" data-function="add-variation">
-					<button type="button" class="add-variation-btn icon-box">
-						<?= embed_icon('add') ?>
-					</button>
-				</div>
-			<?php } ?>
+            <?php if (!$item->variations) { ?>
+                <!-- Add a variation type -->
+                <div class="add-variation mar-t-1">
+                    <input type="text" class="add-variation-inp inp" placeholder="Nome do tipo de variação" data-function="add-variation">
+                    <button type="button" class="add-variation-btn icon-box">
+                        <?= embed_icon('add') ?>
+                    </button>
+                </div>
+            <?php } ?>
 
-			<!-- Variation list -->
-			<div class="variation-list mar-t-1">
+            <!-- Variation list -->
+            <div class="variation-list mar-t-1">
 
-				<?php if ($item->variations) foreach ($item->variations as $variation) { ?>
+                <?php if ($item->variations) foreach ($item->variations as $variation) { ?>
 
-					<div class='variation'>
-						<input type='hidden' name='variation-1' value='<?= $variation['title'] ?>'>
-						<h3 class='variation-title'><?= $variation['title'] ?>
-							<button type="button" class="delete-variation icon-box">
-								<?= embed_icon('delete') ?>
-							</button>
-						</h3>
+                    <div class='variation'>
+                        <input type='hidden' name='variation-1' value='<?= $variation['title'] ?>'>
+                        <h3 class='variation-title'><?= $variation['title'] ?>
+                            <button type="button" class="delete-variation icon-box">
+                                <?= embed_icon('delete') ?>
+                            </button>
+                        </h3>
 
-						<!-- Variant list -->
-						<div class='variants mt-2'>
+                        <!-- Variant list -->
+                        <div class='variants mt-2'>
 
-							<?php foreach ($variation['variants'] as $variant) { ?>
+                            <?php foreach ($variation['variants'] as $variant) { ?>
 
-								<div class='variant'>
-									<input type='text' class='inp' name='variation-1-variants[]' value="<?= $variant[0] ?>" placeholder='Nome da variação'>
-									<input type='text' class='inp' name='variation-1-prices[]' value="<?= $variant[1] ? format_price($variant[1]) : '' ?>" placeholder='Preço (opcional)'>
-									<button type="button" class="delete-variant icon-box">
-										<?= embed_icon('close') ?>
-									</button>
-								</div>
+                                <div class='variant'>
+                                    <input type='text' class='inp' name='variation-1-variants[]' value="<?= $variant[0] ?>" placeholder='Nome da variação'>
+                                    <input type='text' class='inp' name='variation-1-prices[]' value="<?= $variant[1] ? format_price($variant[1]) : '' ?>" placeholder='Preço (opcional)'>
+                                    <button type="button" class="delete-variant icon-box">
+                                        <?= embed_icon('close') ?>
+                                    </button>
+                                </div>
 
-							<?php } ?>
+                            <?php } ?>
 
-						</div>
+                        </div>
 
-						<!-- Add a variant -->
-						<button type='button' class='add-variant icon-box mt-2'>
-							<?= embed_icon('add') ?>
-						</button>
-					</div>
+                        <!-- Add a variant -->
+                        <button type='button' class='add-variant icon-box mt-2'>
+                            <?= embed_icon('add') ?>
+                        </button>
+                    </div>
 
-				<?php } ?>
+                <?php } ?>
 
-			</div>
-		</div>
-	</section>
-	*/ ?>
+            </div>
+        </div>
+    </section>
+    */ ?>
 
 	<?php if ($item->id) { ?>
 		<!-- SEO preview -->

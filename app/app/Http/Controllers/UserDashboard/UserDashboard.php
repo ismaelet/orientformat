@@ -3,32 +3,33 @@
 namespace App\Http\Controllers\UserDashboard;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
-class UserDashboard extends Controller {
+class UserDashboard extends Controller
+{
+    /**
+     * Render the user dashboard
+     */
+    public function index()
+    {
+        View::share('dashboardlocation', 'recap');
 
-	/**
-	 * Render the user dashboard
-	 */
-	public function index() {
-		View::share('dashboardlocation', 'recap');
+        return view('user-dashboard.recap')
+            ->with('location', 'user-dashboard')
 
-		return view('user-dashboard.recap')
-			->with('location', 'user-dashboard')
+            ->with('title', Auth::user()->name.' - Profilo');
+    }
 
-			->with('title', Auth::user()->name . ' - Profilo');
-	}
+    /**
+     * Render the courses page
+     */
+    public function indexCourses()
+    {
+        View::share('dashboardlocation', 'courses');
 
-	/**
-	 * Render the courses page
-	 */
-	public function indexCourses() {
-		View::share('dashboardlocation', 'courses');
-
-		return view('user-dashboard.courses')
-			->with('location', 'user-dashboard')
-			->with('title', 'Profilo - Videocorsi');
-	}
+        return view('user-dashboard.courses')
+            ->with('location', 'user-dashboard')
+            ->with('title', 'Profilo - Videocorsi');
+    }
 }

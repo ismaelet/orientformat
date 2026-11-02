@@ -15,8 +15,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Collection;
 
-class SchoolClass extends Model {
-
+class SchoolClass extends Model
+{
     use HasFactory, SoftDeletes;
 
     /**
@@ -40,18 +40,20 @@ class SchoolClass extends Model {
     /**
      * Attribute: The class's first grade
      */
-    public function firstGrade(): Attribute {
+    public function firstGrade(): Attribute
+    {
         return Attribute::make(
-            get: fn() => $this->isMiddleSchool() ? Grade::MIDDLE_SCHOOL_GRADES[0] : Grade::HIGH_SCHOOL_GRADES[0]
+            get: fn () => $this->isMiddleSchool() ? Grade::MIDDLE_SCHOOL_GRADES[0] : Grade::HIGH_SCHOOL_GRADES[0]
         );
     }
 
     /**
      * Attribute: The class's last grade
      */
-    public function lastGrade(): Attribute {
+    public function lastGrade(): Attribute
+    {
         return Attribute::make(
-            get: fn() => $this->isMiddleSchool() ?
+            get: fn () => $this->isMiddleSchool() ?
                 Grade::lastMiddleschool() : (
                     $this->isProfessional() ?
                     Grade::lastProfessional() : Grade::lastHighschool()
@@ -59,82 +61,93 @@ class SchoolClass extends Model {
         );
     }
 
-    public function currentGrade(): Attribute {
+    public function currentGrade(): Attribute
+    {
         return Attribute::make(
-            get: fn() => $this->grade
+            get: fn () => $this->grade
         );
     }
 
-    public function nameWithTutor(): Attribute {
+    public function nameWithTutor(): Attribute
+    {
         return Attribute::make(
-            get: fn() => $this->name . ($this->tutor ? ' - ' . $this->tutor->inverted_full_name : '')
+            get: fn () => $this->name.($this->tutor ? ' - '.$this->tutor->inverted_full_name : '')
         );
     }
 
     /**
      * Relationship: The school the class belongs to
      */
-    public function school(): BelongsTo {
+    public function school(): BelongsTo
+    {
         return $this->belongsTo(School::class, 'schoolId');
     }
 
     /**
      * Relationship: The school the class belongs to
-     * 
+     *
      * ! Legacy
      */
-    public function referent(): BelongsTo {
+    public function referent(): BelongsTo
+    {
         return $this->belongsTo(Teacher::class, 'referentId');
     }
 
     /**
      * Relationship: The school the class belongs to
      */
-    public function tutor(): BelongsTo {
+    public function tutor(): BelongsTo
+    {
         return $this->belongsTo(Teacher::class, 'referentId');
     }
 
     /**
      * Relationship: The teachers in the class
      */
-    public function teachers(): BelongsToMany {
+    public function teachers(): BelongsToMany
+    {
         return $this->belongsToMany(Teacher::class);
     }
 
     /**
      * Relationship: The students in the class
      */
-    public function students(): HasMany {
+    public function students(): HasMany
+    {
         return $this->hasMany(Student::class, 'schoolClassId');
     }
 
     /**
      * Relationship: The students in the class
      */
-    public function active_students(): HasMany {
+    public function active_students(): HasMany
+    {
         return $this->hasMany(Student::class, 'schoolClassId')->where('status', true);
     }
 
     /**
      * Relationship: The grade level of the class
      */
-    public function grade_level(): BelongsTo {
+    public function grade_level(): BelongsTo
+    {
         return $this->belongsTo(Grade::class, 'grade_level_id');
     }
 
     /**
      * Grade
-     * 
+     *
      * ! NOT A RELATIONSHIP
      */
-    public function grade(): ?Grade {
+    public function grade(): ?Grade
+    {
         return Grade::getByNumber($this->grade, $this->professional);
     }
 
     /**
      * Get the available grades for the class
      */
-    public function availableGrades(): Collection {
+    public function availableGrades(): Collection
+    {
         $grades = collect();
 
         foreach ($this->gradeNumbers() as $gradeNumber) {
@@ -151,42 +164,48 @@ class SchoolClass extends Model {
     /**
      * Get the class's url
      */
-    public function url(): string {
+    public function url(): string
+    {
         return route('class.show', ['class' => $this->id]);
     }
 
     /**
      * Check if the class is in middle school
      */
-    public function isMiddleSchool(): bool {
+    public function isMiddleSchool(): bool
+    {
         return $this->startingGrade < 4;
     }
 
     /**
      * Check if the class is in high school
      */
-    public function isHighSchool(): bool {
+    public function isHighSchool(): bool
+    {
         return $this->startingGrade > 3;
     }
 
     /**
      * Get the last active year
      */
-    function lastActiveYear(): int {
+    public function lastActiveYear(): int
+    {
         return $this->year;
     }
 
     /**
      * Get the year range string
      */
-    public function yearRangeString(): string {
-        return $this->lastActiveYear() . ' - ' . ($this->lastActiveYear() + 1);
+    public function yearRangeString(): string
+    {
+        return $this->lastActiveYear().' - '.($this->lastActiveYear() + 1);
     }
 
     /**
      * Get grade numbers
      */
-    public function gradeNumbers(): array {
+    public function gradeNumbers(): array
+    {
         if ($this->professional) {
             return range(4, 7);
         }
@@ -201,14 +220,16 @@ class SchoolClass extends Model {
     /**
      * Check if the class has a grade
      */
-    public function hasGrade(int $gradeNumber): bool {
+    public function hasGrade(int $gradeNumber): bool
+    {
         return in_array($gradeNumber, $this->gradeNumbers());
     }
 
     /**
      * Get the grade number at a specific date
      */
-    public function gradeWhen(int $year): int {
+    public function gradeWhen(int $year): int
+    {
         $diffYear = $year - $this->startingYear;
 
         return max($this->first_grade, min($this->startingGrade + $diffYear, $this->last_grade));
@@ -217,7 +238,8 @@ class SchoolClass extends Model {
     /**
      * Get the grade level at a specific date
      */
-    public function gradeLevelAt(int $year): ?Grade {
+    public function gradeLevelAt(int $year): ?Grade
+    {
         $gradeNumber = $this->gradeWhen($year);
 
         return Grade::getByNumber($gradeNumber, $this->professional);
@@ -226,29 +248,33 @@ class SchoolClass extends Model {
     /**
      * Check if the class was active in a specific year
      */
-    public function wasActiveInYear(int $year): bool {
+    public function wasActiveInYear(int $year): bool
+    {
         return $year >= $this->startingYear && $year <= $this->lastActiveYear();
     }
 
     /**
      * Check if the class is part of a professional school
      */
-    public function isProfessional(): bool {
+    public function isProfessional(): bool
+    {
         return $this->professional;
     }
 
     /**
      * Get the class's full name
      */
-    public function fullName(): string {
-        return $this->name . ' (' . ($this->year) . '-' . ($this->year + 1)
-            . ')';
+    public function fullName(): string
+    {
+        return $this->name.' ('.($this->year).'-'.($this->year + 1)
+            .')';
     }
 
     /**
      * Create a new class from data
      */
-    public static function createFromData(array $data = []): SchoolClass|RedirectResponse {
+    public static function createFromData(array $data = []): SchoolClass|RedirectResponse
+    {
         $letter = strtoupper($data['letter']);
         $referentId = teacher()->id ?: administrator()->id;
         $code = bin2hex(random_bytes(5));
@@ -281,7 +307,8 @@ class SchoolClass extends Model {
         return $class;
     }
 
-    public function nameInGrade(int $grade): string {
+    public function nameInGrade(int $grade): string
+    {
         return ClassHelper::generateName($grade, $this->letter);
     }
 }

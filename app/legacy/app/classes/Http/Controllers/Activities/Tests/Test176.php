@@ -3,11 +3,11 @@
 namespace Legacy\Http\Controllers\Activities\Tests;
 
 use Legacy\Http\Controllers\Activities\Test;
-
+use System\Traits\Singleton;
 
 /**
  * Specific test class
- * 
+ *
  * @property int $resultCount = 0 <inherited>
  * @property bool $buttonIsProgressive = false <inherited>
  * @property bool $skipEnabled = false <inherited>
@@ -15,79 +15,88 @@ use Legacy\Http\Controllers\Activities\Test;
  * @property array $parameters = [] <inherited>
  * @property array $arguments = []
  */
-class Test176 extends Test {
+class Test176 extends Test
+{
+    use Singleton;
 
-	use \System\Traits\Singleton;
+    protected $retryEnabled = true;
 
-	protected $retryEnabled = true;
-	protected $skipEnabled = true;
-	protected $buttonIsProgressive = true;
-	protected $arguments = [];
-	protected $options = [];
+    protected $skipEnabled = true;
 
-	function __construct() {
-		$this->arguments['correctAnswers'] = [[1], [2], [3], [4, 5], [4, 5], [6, 7], [7, 6], [8], [9], [10]];
+    protected $buttonIsProgressive = true;
 
-		for ($i = 1; $i <= 20; $i++) {
-			$this->options[] = ['id' => $i, 'text' => __('tests.176-missing-' . $i), 'correct' => true];
-		}
+    protected $arguments = [];
 
-		shuffle($this->options);
+    protected $options = [];
 
-		$this->arguments['text'] = __('tests.176-text');
-	}
+    public function __construct()
+    {
+        $this->arguments['correctAnswers'] = [[1], [2], [3], [4, 5], [4, 5], [6, 7], [7, 6], [8], [9], [10]];
 
-	protected function init() {
-		$this->view();
+        for ($i = 1; $i <= 20; $i++) {
+            $this->options[] = ['id' => $i, 'text' => __('tests.176-missing-'.$i), 'correct' => true];
+        }
 
-		return $this;
-	}
+        shuffle($this->options);
 
-	protected function logic() {
+        $this->arguments['text'] = __('tests.176-text');
+    }
 
-		// results
-		$this->parameters['correctAnswers'] = $this->arguments['correctAnswers'];
+    protected function init()
+    {
+        $this->view();
 
-		// text
-		$text = $this->arguments['text'];
+        return $this;
+    }
 
-		function _process_text($text, $correctAnswers) {
-			$text = explode('{{ place-input }}', $text);
+    protected function logic()
+    {
 
-			foreach ($text as $key => $part) {
-				$element = '';
+        // results
+        $this->parameters['correctAnswers'] = $this->arguments['correctAnswers'];
 
-				if ($key) {
-					if (legacy_test()->completed) {
-						$elementClasses = ['test-answer'];
-						$status = in_array((legacy_test()->rawResults[$key - 1]), $correctAnswers[$key - 1]) ? 'font-bold text-success-400' : 'font-bold text-error-400';
-						array_push($elementClasses, $status);
+        // text
+        $text = $this->arguments['text'];
 
-						$element = '<span class="' . (implode(' ', $elementClasses)) . '">' . __('tests.176-missing-' . legacy_test()->rawResults[$key - 1]) . '</span>';
-					} else {
-						$value = legacy_test()->rawResults[$key - 1] ?? '';
-						$element = '<label class="droppable"><span class="option"></span><input type="hidden" class=" js-field" name="field[]" value="' . $value . '" readonly></label>';
-					}
-				}
+        function _process_text($text, $correctAnswers)
+        {
+            $text = explode('{{ place-input }}', $text);
 
-				$text[$key] = $element . '<span>' . $part . '</span>';
-			}
+            foreach ($text as $key => $part) {
+                $element = '';
 
-			return implode('', $text);
-		}
+                if ($key) {
+                    if (legacy_test()->completed) {
+                        $elementClasses = ['test-answer'];
+                        $status = in_array((legacy_test()->rawResults[$key - 1]), $correctAnswers[$key - 1]) ? 'font-bold text-success-400' : 'font-bold text-error-400';
+                        array_push($elementClasses, $status);
 
-		$this->parameters['text'] = _process_text($text, $this->parameters['correctAnswers']);
+                        $element = '<span class="'.(implode(' ', $elementClasses)).'">'.__('tests.176-missing-'.legacy_test()->rawResults[$key - 1]).'</span>';
+                    } else {
+                        $value = legacy_test()->rawResults[$key - 1] ?? '';
+                        $element = '<label class="droppable"><span class="option"></span><input type="hidden" class=" js-field" name="field[]" value="'.$value.'" readonly></label>';
+                    }
+                }
 
-		// result count
-		$this->resultCount = substr_count($text, '{{ place-input }}');
-	}
+                $text[$key] = $element.'<span>'.$part.'</span>';
+            }
 
-	/**
-	 * Template
-	 */
-	protected function template() {
-		ob_start();
-?>
+            return implode('', $text);
+        }
+
+        $this->parameters['text'] = _process_text($text, $this->parameters['correctAnswers']);
+
+        // result count
+        $this->resultCount = substr_count($text, '{{ place-input }}');
+    }
+
+    /**
+     * Template
+     */
+    protected function template()
+    {
+        ob_start();
+        ?>
 
 		<section class="grid" data-spacing="700">
 
@@ -97,7 +106,7 @@ class Test176 extends Test {
 
 			<?php } ?>
 
-			<?php if (legacy_test()->completed || !isSupervisor()) { ?>
+			<?php if (legacy_test()->completed || ! isSupervisor()) { ?>
 
 				<div id="text-box" class="section grid grid-cols-1 gap-8">
 
@@ -107,7 +116,7 @@ class Test176 extends Test {
 					<div class="leading-[2] text-lg summary-text"><?= $this->parameters['text'] ?></div>
 
 					<!-- Draggable options -->
-					<?php if (!legacy_test()->completed) { ?>
+					<?php if (! legacy_test()->completed) { ?>
 						<div class="flex gap-4 wrap justify-center <?= isSupervisor() ? 'pointer-events-none' : '' ?>">
 							<?php foreach ($this->options as $key => $option) { ?>
 								<p id="draggable-<?= $key ?>" class="border px-2 rounded-sm draggable-option draggable" draggable="true" data-id="<?= $option['id'] ?>"><?= $option['text'] ?></p>
@@ -162,14 +171,15 @@ class Test176 extends Test {
 		</section>
 
 	<?php return ob_get_clean();
-	}
+    }
 
-	/**
-	 * Scripts
-	 */
-	protected function scripts() {
-		ob_start();
-	?>
+    /**
+     * Scripts
+     */
+    protected function scripts()
+    {
+        ob_start();
+        ?>
 
 		<script defer>
 			document.addEventListener('DOMContentLoaded', () => {
@@ -216,14 +226,15 @@ class Test176 extends Test {
 		</script>
 
 	<?php return ob_get_clean();
-	}
+    }
 
-	/**
-	 * Style
-	 */
-	protected function style() {
-		ob_start();
-	?>
+    /**
+     * Style
+     */
+    protected function style()
+    {
+        ob_start();
+        ?>
 
 		<style>
 			#text,
@@ -288,21 +299,22 @@ class Test176 extends Test {
 		</style>
 
 <?php return ob_get_clean();
-	}
+    }
 
-	/**
-	 * Post methods
-	 */
-	public function calcResult(array $results = [], int $count = null) {
-		$rightAnswerCount = 0;
-		$correctAnswers = $this->arguments['correctAnswers'];
+    /**
+     * Post methods
+     */
+    public function calcResult(array $results = [], ?int $count = null)
+    {
+        $rightAnswerCount = 0;
+        $correctAnswers = $this->arguments['correctAnswers'];
 
-		foreach ($results as $key => $result) {
-			if (in_array($result, $correctAnswers[$key])) {
-				$rightAnswerCount++;
-			}
-		}
+        foreach ($results as $key => $result) {
+            if (in_array($result, $correctAnswers[$key])) {
+                $rightAnswerCount++;
+            }
+        }
 
-		return percent($rightAnswerCount, $count);
-	}
+        return percent($rightAnswerCount, $count);
+    }
 }

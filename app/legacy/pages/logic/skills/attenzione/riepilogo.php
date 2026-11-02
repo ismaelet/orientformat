@@ -10,24 +10,24 @@ $hyper['score'] = 0;
 $sibling = $legacyTest->requiredTest;
 
 $questions = [
-    __("surveys.136"),
-    __("surveys.137"),
-    __("surveys.138"),
-    __("surveys.139"),
-    __("surveys.140"),
-    __("surveys.141"),
-    __("surveys.142"),
-    __("surveys.143"),
-    __("surveys.144"),
-    __("surveys.145"),
-    __("surveys.146"),
-    __("surveys.147"),
-    __("surveys.148"),
-    __("surveys.149"),
-    __("surveys.150"),
-    __("surveys.151"),
-    __("surveys.152"),
-    __("surveys.153"),
+    __('surveys.136'),
+    __('surveys.137'),
+    __('surveys.138'),
+    __('surveys.139'),
+    __('surveys.140'),
+    __('surveys.141'),
+    __('surveys.142'),
+    __('surveys.143'),
+    __('surveys.144'),
+    __('surveys.145'),
+    __('surveys.146'),
+    __('surveys.147'),
+    __('surveys.148'),
+    __('surveys.149'),
+    __('surveys.150'),
+    __('surveys.151'),
+    __('surveys.152'),
+    __('surveys.153'),
 ];
 
 $questN = count($questions);
@@ -47,8 +47,11 @@ if ($sibling->completed) {
 
         $answers[] = $answer;
 
-        if ($key % 2) $hyper['score'] += $answer['result'];
-        else $focus['score'] += $answer['result'];
+        if ($key % 2) {
+            $hyper['score'] += $answer['result'];
+        } else {
+            $focus['score'] += $answer['result'];
+        }
     }
 
     bump($answers);

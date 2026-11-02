@@ -7,17 +7,21 @@
 	<!-- Title -->
 	<div class="page-title flex" data-spacing="200">
 		<a href="list" class="title-arrow border border-radius">
-			<?= embed_icon('navigation/arrow1-left') ?>
+			<?php
+
+use App\Legacy\LegacyView;
+
+?><?= embed_icon('navigation/arrow1-left') ?>
 		</a>
 
-		<h1 class="panel__title"><?= \App\Legacy\LegacyView::$title ?></h1>
+		<h1 class="panel__title"><?= LegacyView::$title ?></h1>
 	</div>
 
 	<?php if ($added) { ?>
 
 		<p class="confirmation-message">Elemento aggiunto</p>
 
-	<?php } else if ($updated) { ?>
+	<?php } elseif ($updated) { ?>
 
 		<p class="confirmation-message">Modifiche salvate</p>
 
@@ -30,12 +34,12 @@
 
 	</div>
 
-	<?php if (!$pageConfig['free']) { ?>
+	<?php if (! $pageConfig['free']) { ?>
 
 		<!-- Footer -->
 		<section class="page-footer">
 
-			<?php if (\App\Legacy\LegacyView::get('id') && $pageConfig['delete']) { ?>
+			<?php if (LegacyView::get('id') && $pageConfig['delete']) { ?>
 
 				<!-- Delete -->
 				<button type="submit" class="button button--secondary button--auto-width button--bad" name="delete" onclick="return confirm('Confermi di voler eliminare questo elemento? Non potrà essere ripristinato.')">
@@ -45,7 +49,7 @@
 
 			<?php } ?>
 
-			<?php if (!empty($pageConfig['preview-url'])) { ?>
+			<?php if (! empty($pageConfig['preview-url'])) { ?>
 
 				<!-- Preview -->
 				<a class="button button--secondary button--auto-width" href="<?= $pageConfig['preview-url'] ?>" target="_blank">
@@ -57,8 +61,8 @@
 
 			<!-- Save -->
 			<button type="submit" class="button" name="submit">
-				<?= \App\Legacy\LegacyView::get('id') ? 'Salva' : 'Aggiungi' ?>
-				<?= embed_icon(\App\Legacy\LegacyView::get('id') ? 'save' : 'add') ?>
+				<?= LegacyView::get('id') ? 'Salva' : 'Aggiungi' ?>
+				<?= embed_icon(LegacyView::get('id') ? 'save' : 'add') ?>
 			</button>
 		</section>
 

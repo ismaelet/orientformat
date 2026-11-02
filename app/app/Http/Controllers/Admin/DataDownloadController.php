@@ -13,10 +13,9 @@ use App\Models\User\Student;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Collection as SupportCollection;
-use Illuminate\Http\Request;
 
-class DataDownloadController extends Controller {
-
+class DataDownloadController extends Controller
+{
     /**
      * Property: School year
      */
@@ -31,6 +30,7 @@ class DataDownloadController extends Controller {
      * Property: Download only active students
      */
     public bool $activeStudents = false;
+
     /**
      * Property: The list of grades, to avoid querying the database multiple times when generating rows
      */
@@ -84,10 +84,11 @@ class DataDownloadController extends Controller {
     /**
      * Action: Download data based on selected parameters
      */
-    public function details() {
+    public function details()
+    {
         set_time_limit(300);
 
-        $fileName = 'Lista_Studenti_' . now()->format('Ymd_His') . '.csv';
+        $fileName = 'Lista_Studenti_'.now()->format('Ymd_His').'.csv';
 
         /**
          * Stream the CSV download response
@@ -128,7 +129,7 @@ class DataDownloadController extends Controller {
 
             $this->reviewColumnsByReview = $this->reviewData
                 ->groupBy('review_id')
-                ->map(fn($group) => $group->values()->all())
+                ->map(fn ($group) => $group->values()->all())
                 ->all();
 
             // generate the table header
@@ -170,7 +171,8 @@ class DataDownloadController extends Controller {
     /**
      * Helper: Build the base student query with necessary relationships
      */
-    private function baseStudentQuery(): Builder {
+    private function baseStudentQuery(): Builder
+    {
         return Student::query()
             ->with(['user', 'class.school', 'class.grade_level'])
             ->orderBy('id');
@@ -179,14 +181,15 @@ class DataDownloadController extends Controller {
     /**
      * Helper: Apply school year filter to the query, optionally limiting to  students active in that year
      */
-    private function filterBySchoolYear(Builder $query, ?int $year, bool $onlyActiveStudents): Builder {
+    private function filterBySchoolYear(Builder $query, ?int $year, bool $onlyActiveStudents): Builder
+    {
         // if no year is selected, return the unfiltered query
-        if (!$year) {
+        if (! $year) {
             return $query;
         }
 
         $startDate = now()->setDate($year, 9, 1)->startOfDay();
-        $endDate   = now()->setDate($year + 1, 8, 31)->endOfDay();
+        $endDate = now()->setDate($year + 1, 8, 31)->endOfDay();
 
         // if only active students are requested, filter to those with test results in the date range
         if ($onlyActiveStudents) {
@@ -202,22 +205,23 @@ class DataDownloadController extends Controller {
     /**
      * Helper: Apply school type filter to the query
      */
-    private function filterBySchoolType(Builder $query, string $schoolType): Builder {
+    private function filterBySchoolType(Builder $query, string $schoolType): Builder
+    {
         if ($schoolType == 'all') {
             return $query;
         }
 
         return $query->whereHas(
             'class.grade_level',
-            fn($q) =>
-            $q->where('is_highschool', $schoolType === 'highschool')
+            fn ($q) => $q->where('is_highschool', $schoolType === 'highschool')
         );
     }
 
     /**
      * Helper: Build an associative array of grades indexed by a composite key of absolute number and professional status, to optimize lookups when generating rows
      */
-    private function buildGradesByKey(): array {
+    private function buildGradesByKey(): array
+    {
         $gradesByKey = [];
 
         foreach ($this->grades as $grade) {
@@ -231,7 +235,8 @@ class DataDownloadController extends Controller {
     /**
      * Helper: Build an associative array of test IDs indexed by the same composite key of the grade, to optimize lookups when generating rows
      */
-    private function buildTestsByGradeKey(): array {
+    private function buildTestsByGradeKey(): array
+    {
         $testsByGradeKey = [];
 
         foreach ($this->grades as $grade) {
@@ -251,24 +256,28 @@ class DataDownloadController extends Controller {
     /**
      * Helper: Get a list of base columns for the CSV export
      */
-    private function baseColumns(): array {
+    private function baseColumns(): array
+    {
         return ['ID', 'Cognome', 'Nome',  'Classe', 'Anno di corso', 'Anno scolastico', 'Scuola', 'È superiore'];
     }
 
     /**
      * Helper: Get a list of columns for the test results, based on the selected tests
      */
-    private function testColumns(): array {
+    private function testColumns(): array
+    {
         return $this->tests->map(function ($test) {
-            $safeName = str_replace([',', ';', '.'], '-', $test->section->name . ' > ' . $test->name);
-            return 'Risultato ' . $safeName;
+            $safeName = str_replace([',', ';', '.'], '-', $test->section->name.' > '.$test->name);
+
+            return 'Risultato '.$safeName;
         })->all();
     }
 
     /**
      * Helper: Get review results for the given students, grouped by student ID
      */
-    private function reviewResults(array $studentIds): SupportCollection {
+    private function reviewResults(array $studentIds): SupportCollection
+    {
         return ReviewResult::query()
             ->select(['studentId', 'reviewId', 'results'])
             ->whereIn('studentId', $studentIds)
@@ -279,7 +288,8 @@ class DataDownloadController extends Controller {
     /**
      * Helper: Get a list of columns for the review results, based on the reviews completed by the selected students and the questions related to those reviews
      */
-    private function buildReviewData(): SupportCollection {
+    private function buildReviewData(): SupportCollection
+    {
         $reviewNames = [
             1 => 'Questionario iniziale medie (vecchio)',
             2 => 'Questionario iniziale medie',
@@ -297,11 +307,11 @@ class DataDownloadController extends Controller {
             foreach ($questions as $question) {
                 if ($question->optionCount() > 1) {
                     for ($optionKey = 1; $optionKey <= $question->optionCount(); $optionKey++) {
-                        $questionFullSlug = $question->full_slug . '_' . $optionKey;
+                        $questionFullSlug = $question->full_slug.'_'.$optionKey;
 
                         $flatQuestions->push(
                             [
-                                'label' => $reviewNames[$review->id] . ' > ' . $questionFullSlug,
+                                'label' => $reviewNames[$review->id].' > '.$questionFullSlug,
                                 'slug' => $questionFullSlug,
                                 'review_id' => $review->id,
                             ]
@@ -309,9 +319,9 @@ class DataDownloadController extends Controller {
                     }
                 } else {
                     $flatQuestions->push([
-                        'label' => $reviewNames[$review->id] . ' > ' . $question->full_slug,
+                        'label' => $reviewNames[$review->id].' > '.$question->full_slug,
                         'slug' => $question->full_slug,
-                        'review_id' => $review->id
+                        'review_id' => $review->id,
                     ]);
                 }
             }
@@ -323,7 +333,8 @@ class DataDownloadController extends Controller {
     /**
      * Helper: Build an associative array of review questions indexed by review ID, to optimize lookups when generating rows
      */
-    private function buildReviewQuestionsByReview(): array {
+    private function buildReviewQuestionsByReview(): array
+    {
         $map = [];
 
         foreach ($this->reviewQuestions as $question) {
@@ -339,14 +350,16 @@ class DataDownloadController extends Controller {
     /**
      * Helper: Get a list of columns for the review results
      */
-    private function reviewColumns(): array {
+    private function reviewColumns(): array
+    {
         return $this->reviewData->pluck('label')->all();
     }
 
     /**
      * Helper: Get reviews completed by the given students
      */
-    private function reviewsForStudents(Builder $studentsQuery, string $schoolType): Collection {
+    private function reviewsForStudents(Builder $studentsQuery, string $schoolType): Collection
+    {
         return Review::query()
             ->whereHas('review_results', function ($q) use ($studentsQuery) {
                 $q->whereIn('studentId', (clone $studentsQuery)->select('id'));
@@ -362,7 +375,8 @@ class DataDownloadController extends Controller {
     /**
      * Helper: Get all questions related to the given reviews
      */
-    private function questionsForReviews(Collection $reviews): Collection {
+    private function questionsForReviews(Collection $reviews): Collection
+    {
         return ReviewQuestion::query()
             ->whereHas('reviews', function ($q) use ($reviews) {
                 $q->whereIn('reviews.id', $reviews->pluck('id'));
@@ -375,7 +389,8 @@ class DataDownloadController extends Controller {
     /**
      * Helper: Get test results for the given students and tests, grouped by student ID
      */
-    private function testResults(array $studentIds): Collection {
+    private function testResults(array $studentIds): Collection
+    {
         return TestResult::query()
             ->select(['studentId', 'testId', 'result'])
             ->whereIn('studentId', $studentIds)
@@ -387,10 +402,11 @@ class DataDownloadController extends Controller {
     /**
      * Helper: Generate CSV rows for a student, including one row per grade level they were registered in
      */
-    private function writeStudentRows($out, Student $student, SupportCollection $studentTestResults, SupportCollection $studentReviewResults): void {
+    private function writeStudentRows($out, Student $student, SupportCollection $studentTestResults, SupportCollection $studentReviewResults): void
+    {
         $class = $student->class;
 
-        if (!$class) {
+        if (! $class) {
             return;
         }
 
@@ -402,7 +418,7 @@ class DataDownloadController extends Controller {
             $gradeKey = $this->gradeKey($gradeNumber, $isProfessional);
             $grade = $this->gradesByKey[$gradeKey] ?? null;
 
-            if (!$grade) {
+            if (! $grade) {
                 continue;
             }
 
@@ -421,20 +437,22 @@ class DataDownloadController extends Controller {
     /**
      * Helper: Generate a composite key for grades based on absolute number and professional status
      */
-    private function gradeKey(int $absoluteNumber, bool $isProfessional): string {
-        return $absoluteNumber . '_' . (int) $isProfessional;
+    private function gradeKey(int $absoluteNumber, bool $isProfessional): string
+    {
+        return $absoluteNumber.'_'.(int) $isProfessional;
     }
 
     /**
      * Helper: Generate the base student data for a specific grade
      */
-    private function generateBaseStudentData(Student $student, Grade $grade): array {
+    private function generateBaseStudentData(Student $student, Grade $grade): array
+    {
         $class = $student->class;
         $startGrade = $class->startingGrade;
         $startYear = $class->startingYear;
         $gradeString = $grade->relative_number;
         $year = $startYear + ($grade->absolute_number - $startGrade);
-        $yearString = $year . '-' . ($year + 1);
+        $yearString = $year.'-'.($year + 1);
 
         return [
             $student->id,
@@ -451,13 +469,15 @@ class DataDownloadController extends Controller {
     /**
      * Helper: Generate test result data for a student
      */
-    private function generateStudentTestResults(array $testInGrade, SupportCollection $studentTestResults): array {
+    private function generateStudentTestResults(array $testInGrade, SupportCollection $studentTestResults): array
+    {
         $resultData = [];
         $testInGradeLookup = array_flip($testInGrade);
 
         foreach ($this->tests as $test) {
-            if (!isset($testInGradeLookup[$test->id])) {
+            if (! isset($testInGradeLookup[$test->id])) {
                 $resultData[] = '.';
+
                 continue;
             }
 
@@ -471,16 +491,18 @@ class DataDownloadController extends Controller {
         return $resultData;
     }
 
-    private function generateStudentReviewResults(SupportCollection $studentReviewResults): array {
+    private function generateStudentReviewResults(SupportCollection $studentReviewResults): array
+    {
         $row = [];
 
         foreach ($this->reviewColumnsByReview as $reviewId => $columns) {
             $reviewResult = $studentReviewResults->get($reviewId);
 
-            if (!$reviewResult) {
+            if (! $reviewResult) {
                 foreach ($columns as $_column) {
                     $row[] = '.';
                 }
+
                 continue;
             }
 

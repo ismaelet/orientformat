@@ -2,8 +2,8 @@
 
 namespace App\Interfaces;
 
-interface TestHelperInterface {
-
+interface TestHelperInterface
+{
     /**
      * Required method: calculate the percentage score based on the submitted answers and the correct answers
      */

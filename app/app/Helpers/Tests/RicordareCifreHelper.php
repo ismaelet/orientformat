@@ -11,7 +11,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class RicordareCifreHelper implements TestHelperInterface {
+class RicordareCifreHelper implements TestHelperInterface
+{
     public const int MAX_LEVEL = 8;
 
     public const array ANSWERS = [
@@ -47,7 +48,8 @@ class RicordareCifreHelper implements TestHelperInterface {
     /**
      * Determine the current state of the test based on the provided result.
      */
-    public function state(?TestResult $result): array {
+    public function state(?TestResult $result): array
+    {
         $raw = $result?->getRawOriginal('result');
 
         $values = $raw !== null && $raw !== ''
@@ -84,14 +86,15 @@ class RicordareCifreHelper implements TestHelperInterface {
             'right' => $right,
             'finished' => $level > self::MAX_LEVEL,
             'sequence' => self::ANSWERS[$level] ?? [],
-            'awaitingRetry' => $previousAnswers !== [] && !$right,
+            'awaitingRetry' => $previousAnswers !== [] && ! $right,
         ];
     }
 
     /**
      * Calculate the percentage of passed levels based on the provided fields.
      */
-    public function calculatePercentage(array $fields): int {
+    public function calculatePercentage(array $fields): int
+    {
         $passedLevels = (int) ($fields[0] ?? 0);
 
         return (int) round(
@@ -103,7 +106,8 @@ class RicordareCifreHelper implements TestHelperInterface {
     /**
      * Check whether the submitted sequence is correct.
      */
-    public function checkAnswer(int $level, array $answers): bool {
+    public function checkAnswer(int $level, array $answers): bool
+    {
         return isset(self::ANSWERS[$level])
             && array_values(array_map('intval', $answers))
             === self::ANSWERS[$level];
@@ -157,15 +161,15 @@ class RicordareCifreHelper implements TestHelperInterface {
             $action = array_key_first($actions);
 
             // Prepare the existing or new result.
-            if (!$result) {
-                $result = new TestResult();
+            if (! $result) {
+                $result = new TestResult;
                 $result->studentId = $student->id;
                 $result->testId = $test->id;
             }
 
             // Retry after an incorrect answer.
             if ($action === 'reset') {
-                if (!$state['awaitingRetry']) {
+                if (! $state['awaitingRetry']) {
                     abort(422, 'Retry is not available.');
                 }
 
@@ -218,7 +222,7 @@ class RicordareCifreHelper implements TestHelperInterface {
                     'field' => [
                         'required',
                         'array',
-                        'size:' . $expectedCount,
+                        'size:'.$expectedCount,
                     ],
                     'field.*' => [
                         'required',

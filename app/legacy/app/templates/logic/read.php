@@ -1,9 +1,11 @@
 <?php
 
-//setup page
-\App\Legacy\LegacyView::setTitle('Approfondisci');
+use App\Legacy\LegacyView;
 
-//setup variables
+// setup page
+LegacyView::setTitle('Approfondisci');
+
+// setup variables
 $glossary = [
     ['A', [
         ['Atteggiamento', 'atteggiamento'],
@@ -71,7 +73,7 @@ $entries = [
     [
         'title' => 'Atteggiamento',
         'tag' => 'atteggiamento',
-        'text' => "È un orientamento profondo, solo in parte consapevole, che si manifesta in comportamenti non sempre lineari. Alcuni comportamenti infatti tendono a coprire e a dissimulare l’atteggiamento più che a svelarlo. Così possiamo avere dei comportamenti apparentemente cordiali che nascondono un’ostilità di fondo,  oppure una discordanza, che si manifesta solo in modo sintomatico, tra opinioni chiaramente espresse (ad esempio predicare la fratellanza e la solidarietà) ed emozioni o stati d’animo provati in modo latente (ad esempio diffidenza ed ostilità). Nell’atteggiamento quindi si mescolano, spesso inestricabilmente, idee, giudizi, sentimenti, percezioni e pregiudizi.",
+        'text' => 'È un orientamento profondo, solo in parte consapevole, che si manifesta in comportamenti non sempre lineari. Alcuni comportamenti infatti tendono a coprire e a dissimulare l’atteggiamento più che a svelarlo. Così possiamo avere dei comportamenti apparentemente cordiali che nascondono un’ostilità di fondo,  oppure una discordanza, che si manifesta solo in modo sintomatico, tra opinioni chiaramente espresse (ad esempio predicare la fratellanza e la solidarietà) ed emozioni o stati d’animo provati in modo latente (ad esempio diffidenza ed ostilità). Nell’atteggiamento quindi si mescolano, spesso inestricabilmente, idee, giudizi, sentimenti, percezioni e pregiudizi.',
     ],
     [
         'title' => 'Attenzione',
@@ -87,7 +89,7 @@ $entries = [
     [
         'title' => 'Autorappresentazione',
         'tag' => 'autorappresentazione',
-        'text' => "La rappresentazione di sé è il risultato di un lungo processo autoconoscitivo. Per costruire un’immagine articolata, complessa e coerente di sé, il soggetto utilizza una gran mole di dati, tra i quali acquistano un’importanza primaria quelli provenienti dalle relazioni con le figure più importanti, prime fra tutte quelle  genitoriali. Attraverso lo specchio degli altri, le loro reazioni e narrazioni esplicite su di lui, l’individuo è in grado di elaborare e consolidare una sua autorappresentazione o autonarrazione.",
+        'text' => 'La rappresentazione di sé è il risultato di un lungo processo autoconoscitivo. Per costruire un’immagine articolata, complessa e coerente di sé, il soggetto utilizza una gran mole di dati, tra i quali acquistano un’importanza primaria quelli provenienti dalle relazioni con le figure più importanti, prime fra tutte quelle  genitoriali. Attraverso lo specchio degli altri, le loro reazioni e narrazioni esplicite su di lui, l’individuo è in grado di elaborare e consolidare una sua autorappresentazione o autonarrazione.',
     ],
     [
         'title' => 'Autoregolazione fine',
@@ -114,13 +116,13 @@ $entries = [
     [
         'title' => 'Conscio-Inconscio-Preconscio',
         'tag' => 'conscio',
-        'text' => "La scoperta di una dimensione inconscia che, in quanto tale, sfugge alla consapevolezza e al controllo critico, si può far risalire molto indietro nel tempo, almeno a Eraclito e a Empedocle. Nota anche in San Paolo, viene tuttavia riscoperta da filosofi come Leibniz, Kant, Schelling e, soprattutto, Schopenauer, al quale Freud, che per primo ne fornì una trattazione scientifica, si riconobbe debitore. Nella teoria psicanalitica freudiana l’inconscio è descritto come un sistema i cui contenuti sono i rappresentanti delle pulsioni. Tali contenuti rimossi tentano di accedere al sistema preconscio-conscio, ma, sottoposti a “censura”, possono emergere solo in modo deformato attraverso sogni, sintomi, lapsus o atti mancati, la cui interpretazione è il compito fondamentale dell’analista. Jung affianca ad un inconscio individuale un inconscio collettivo, che in parte struttura anche la psiche individuale. Con Jung l’inconscio perde quella caratterizzazione preminentemente sessuale e negativa che aveva in Freud, e gli si riconosce una funzione importante per la creatività e la crescita del soggetto. L’energia psichica, chiamata talvolta “libido”, che promana dall’inconscio, è concepita da Jung come una costante tensione dell’uomo, che si manifesta attraverso i suoi desideri e la sua volontà di autorealizzazione. 
-	   Il preconscio è una dimensione intermedia fra l’inconscio e il conscio. Vi si trovano i contenuti che, pur non disponibili direttamente alla coscienza, sono tuttavia accessibili, come ad esempio un ricordo attivamente cercato dal soggetto. Dopo Freud, al preconscio è stata riconosciuta una funzione importante nei processi creativi.",
+        'text' => 'La scoperta di una dimensione inconscia che, in quanto tale, sfugge alla consapevolezza e al controllo critico, si può far risalire molto indietro nel tempo, almeno a Eraclito e a Empedocle. Nota anche in San Paolo, viene tuttavia riscoperta da filosofi come Leibniz, Kant, Schelling e, soprattutto, Schopenauer, al quale Freud, che per primo ne fornì una trattazione scientifica, si riconobbe debitore. Nella teoria psicanalitica freudiana l’inconscio è descritto come un sistema i cui contenuti sono i rappresentanti delle pulsioni. Tali contenuti rimossi tentano di accedere al sistema preconscio-conscio, ma, sottoposti a “censura”, possono emergere solo in modo deformato attraverso sogni, sintomi, lapsus o atti mancati, la cui interpretazione è il compito fondamentale dell’analista. Jung affianca ad un inconscio individuale un inconscio collettivo, che in parte struttura anche la psiche individuale. Con Jung l’inconscio perde quella caratterizzazione preminentemente sessuale e negativa che aveva in Freud, e gli si riconosce una funzione importante per la creatività e la crescita del soggetto. L’energia psichica, chiamata talvolta “libido”, che promana dall’inconscio, è concepita da Jung come una costante tensione dell’uomo, che si manifesta attraverso i suoi desideri e la sua volontà di autorealizzazione. 
+	   Il preconscio è una dimensione intermedia fra l’inconscio e il conscio. Vi si trovano i contenuti che, pur non disponibili direttamente alla coscienza, sono tuttavia accessibili, come ad esempio un ricordo attivamente cercato dal soggetto. Dopo Freud, al preconscio è stata riconosciuta una funzione importante nei processi creativi.',
     ],
     [
         'title' => 'Coscienziosità',
         'tag' => 'coscienziosita',
-        'text' => "È una delle cinque aree del modello <a href='" . route('read', ['id' => 8]).'#bigfive' . "' class='link'>Big Five</a>, col quale abbiamo cercato di evidenziare le caratteristiche temperamentali. Il termine è associabile con “affidabilità” e “costanza”, che solitamente correlano con uno <a href='#g-stile' class='link'>stile cognitivo</a> sistematico  e con i modi di agire che abbiamo definito metodico e pianificatore.",
+        'text' => "È una delle cinque aree del modello <a href='".route('read', ['id' => 8]).'#bigfive'."' class='link'>Big Five</a>, col quale abbiamo cercato di evidenziare le caratteristiche temperamentali. Il termine è associabile con “affidabilità” e “costanza”, che solitamente correlano con uno <a href='#g-stile' class='link'>stile cognitivo</a> sistematico  e con i modi di agire che abbiamo definito metodico e pianificatore.",
     ],
     [
         'title' => 'Costituzione',
@@ -135,12 +137,12 @@ $entries = [
     [
         'title' => 'Estroverso-Introverso',
         'tag' => 'estroverso',
-        'text' => "Jung (1993) utilizza questa polarità per indicare due atteggiamenti opposti, l’uno (estroversione) di orientamento verso i fatti esterni, l’altro (l’introversione) indirizzato verso i fattori soggettivi. Freud interpreta l’introversione come un ripiegamento su sé stessi conseguente alla frustrazione che l’individuo può aver provato nel contatto con la realtà. Nella tipologia proposta da Eysenck ci si avvicina di più all’uso popolare non psicologico che identifica l’estroversione con l’esuberanza e l’introversione con la riservatezza e la chiusura in sé stessi.",
+        'text' => 'Jung (1993) utilizza questa polarità per indicare due atteggiamenti opposti, l’uno (estroversione) di orientamento verso i fatti esterni, l’altro (l’introversione) indirizzato verso i fattori soggettivi. Freud interpreta l’introversione come un ripiegamento su sé stessi conseguente alla frustrazione che l’individuo può aver provato nel contatto con la realtà. Nella tipologia proposta da Eysenck ci si avvicina di più all’uso popolare non psicologico che identifica l’estroversione con l’esuberanza e l’introversione con la riservatezza e la chiusura in sé stessi.',
     ],
     [
         'title' => 'Identità personale',
         'tag' => 'identita',
-        'text' => "Si intende la percezione e la consapevolezza di essere un’entità  distinta da quella degli altri e permanente nel tempo. La psicologia ha sostanzialmente mutuato dalla filosofia moderna di J. Locke e D. Hume la concezione dell’identità come costruzione della memoria, un’ auto-rappresentazione che si fonda su ciò che gli altri hanno mostrato di percepire e di pensare di noi. In questo senso  la crisi di identità coinciderebbe con la fragilità e precarietà di questa costruzione.  Alla base di tale debolezza identitaria starebbe un inadeguato processo di identificazione con le figure parentali, delle quali l’individuo tende ad assimilare uno o più tratti, modellandosi su di esse. Nella cultura occidentale un importante criterio valutativo dell’identità personale è costituito dal principio di originalità.",
+        'text' => 'Si intende la percezione e la consapevolezza di essere un’entità  distinta da quella degli altri e permanente nel tempo. La psicologia ha sostanzialmente mutuato dalla filosofia moderna di J. Locke e D. Hume la concezione dell’identità come costruzione della memoria, un’ auto-rappresentazione che si fonda su ciò che gli altri hanno mostrato di percepire e di pensare di noi. In questo senso  la crisi di identità coinciderebbe con la fragilità e precarietà di questa costruzione.  Alla base di tale debolezza identitaria starebbe un inadeguato processo di identificazione con le figure parentali, delle quali l’individuo tende ad assimilare uno o più tratti, modellandosi su di esse. Nella cultura occidentale un importante criterio valutativo dell’identità personale è costituito dal principio di originalità.',
     ],
 
     [
@@ -156,14 +158,14 @@ $entries = [
     [
         'title' => 'Iperattività',
         'tag' => 'iperattivita',
-        'text' => "Si manifesta attraverso agitazione, intolleranza a stare fermi, come se ci fosse “un motorino dentro” che non smette mai di girare. Si correla frequentemente, ma non necessariamente,  con distraibilità e impulsività. La tendenza ad agire senza pensare a ciò che si sta facendo deriva da un deficit di controllo inibitorio che deriva con molte probabilità da caratteristiche genetiche.  Rispetto ai casi segnalati, quelli che hanno una rilevanza clinica sono relativamente pochi (in media 1 su 10), con un’incidenza percentuale sulla popolazione scolastica del 4-6%, dato per altro molto variabile da paese a paese in base ai criteri diagnostici adottati. Per avere una rilevanza clinica i sintomi caratteristici devono comparire prima dei sette anni ed essere presenti da almeno sei mesi. Nonostante si usi frequentemente il termine “disturbo”, si deve precisare che buona parte dei soggetti a elevata distraibilità e iperattività, se aiutata tempestivamente con interventi educativi, riesce ad avere una vita scolastica e sociale adeguata. Molto dipende, naturalmente, dal tipo di compiti ai quali sono sottoposti e dal tipo di ambiente nel quale si collocano.",
+        'text' => 'Si manifesta attraverso agitazione, intolleranza a stare fermi, come se ci fosse “un motorino dentro” che non smette mai di girare. Si correla frequentemente, ma non necessariamente,  con distraibilità e impulsività. La tendenza ad agire senza pensare a ciò che si sta facendo deriva da un deficit di controllo inibitorio che deriva con molte probabilità da caratteristiche genetiche.  Rispetto ai casi segnalati, quelli che hanno una rilevanza clinica sono relativamente pochi (in media 1 su 10), con un’incidenza percentuale sulla popolazione scolastica del 4-6%, dato per altro molto variabile da paese a paese in base ai criteri diagnostici adottati. Per avere una rilevanza clinica i sintomi caratteristici devono comparire prima dei sette anni ed essere presenti da almeno sei mesi. Nonostante si usi frequentemente il termine “disturbo”, si deve precisare che buona parte dei soggetti a elevata distraibilità e iperattività, se aiutata tempestivamente con interventi educativi, riesce ad avere una vita scolastica e sociale adeguata. Molto dipende, naturalmente, dal tipo di compiti ai quali sono sottoposti e dal tipo di ambiente nel quale si collocano.',
     ],
     [
         'title' => 'Memoria',
         'tag' => 'memoria',
-        'text' => "Interagiamo col mondo e lo interpretiamo  attraverso i ricordi depositati in memoria. Ma, prima di consolidarsi attraverso la ripetizione, le memorie si devono formare. Ciò avviene attraverso tre fasi: l’acquisizione di nuova informazione (codificazione), la ritenzione dell’informazione (immagazzinamento) e infine il recupero dell’informazione, la reminiscenza. 
+        'text' => 'Interagiamo col mondo e lo interpretiamo  attraverso i ricordi depositati in memoria. Ma, prima di consolidarsi attraverso la ripetizione, le memorie si devono formare. Ciò avviene attraverso tre fasi: l’acquisizione di nuova informazione (codificazione), la ritenzione dell’informazione (immagazzinamento) e infine il recupero dell’informazione, la reminiscenza. 
 	 La memoria implicita costituisce di fatto la maggior parte dei processi di memoria, in contrapposizione con la memoria esplicita. Una traccia di memoria a lungo termine è esplicita quando, oltre che essere attivata, diviene anche consapevole, cioè accessibile alla memoria di lavoro. È implicita invece quando viene attivata ma rimane inconscia. Sono proprio le amnesie infantili e il ricordare inconscio che costituiscono, secondo diversi scienziati, i circuiti profondi, il “cuore” del sistema col quale opera il nostro <em>software of the mind</em>. 
-	   Quindi la maggior parte dei ricordi rimangono impliciti, non divengono coscienti. Ma non per questo sono inoperanti. Anzi, possiamo dire che l’intuizione è il frutto di un processo di incubazione, durante il quale le memorie inconsce, il serbatoio più grande di ricordi al quale possiamo attingere, sono libere di combinarsi liberamente.",
+	   Quindi la maggior parte dei ricordi rimangono impliciti, non divengono coscienti. Ma non per questo sono inoperanti. Anzi, possiamo dire che l’intuizione è il frutto di un processo di incubazione, durante il quale le memorie inconsce, il serbatoio più grande di ricordi al quale possiamo attingere, sono libere di combinarsi liberamente.',
     ],
     [
         'title' => 'Metacognizione',
@@ -183,7 +185,7 @@ $entries = [
     [
         'title' => 'Nevrosi',
         'tag' => 'nevrosi',
-        'text' => "Secondo la psicanalisi freudiana, che per prima ne ha fornito una classificazione organizzata, nasce da un conflitto fra desiderio (istinto sessuale, impulso al piacere e alla libertà totale) da una parte e difesa imposta dalla necessità sociale della repressione del desiderio. L’interiorizzazione, in parte inconsapevole, della repressione e il compromesso sempre rinnovato fra i termini in conflitto fa della nevrosi una condizione normale dell’individuo. Acquista caratteristiche patologiche, configurandosi come un vero e proprio disturbo, quando l’intensità del conflitto è troppo elevata e la mediazione fra le due istanze è inefficace.",
+        'text' => 'Secondo la psicanalisi freudiana, che per prima ne ha fornito una classificazione organizzata, nasce da un conflitto fra desiderio (istinto sessuale, impulso al piacere e alla libertà totale) da una parte e difesa imposta dalla necessità sociale della repressione del desiderio. L’interiorizzazione, in parte inconsapevole, della repressione e il compromesso sempre rinnovato fra i termini in conflitto fa della nevrosi una condizione normale dell’individuo. Acquista caratteristiche patologiche, configurandosi come un vero e proprio disturbo, quando l’intensità del conflitto è troppo elevata e la mediazione fra le due istanze è inefficace.',
     ],
     [
         'title' => 'Nevroticismo',
@@ -208,7 +210,7 @@ $entries = [
     [
         'title' => 'Problema',
         'tag' => 'problema',
-        'text' => "Il significato etimologico del termine è “ciò che viene gettato davanti”. Quando è la scuola a “gettarli davanti” allo studente si hanno spesso dei problemi fittizi, a percorso obbligato, mentre i problemi imposti dalla vita sono di solito più aperti e complessi. Nel risolvere un problema  si fondono indissolubilmente almeno due dimensioni: una che potremmo definire “fredda”, di natura cognitiva, e un’altra “calda”, di natura emozionale. Questo ci fa capire bene come non sia per niente facile accettare l’esistenza di un problema e farsene carico. Per potersi “pro-gettare” (come vuole l’etimologia del termine), proiettarsi oltre, spingersi in avanti, buttando per così dire il cuore oltre l’ostacolo, è necessario, nei problemi veri, riuscire a trasformare il disagio in problema, facendolo uscire dal suo stato di latenza.",
+        'text' => 'Il significato etimologico del termine è “ciò che viene gettato davanti”. Quando è la scuola a “gettarli davanti” allo studente si hanno spesso dei problemi fittizi, a percorso obbligato, mentre i problemi imposti dalla vita sono di solito più aperti e complessi. Nel risolvere un problema  si fondono indissolubilmente almeno due dimensioni: una che potremmo definire “fredda”, di natura cognitiva, e un’altra “calda”, di natura emozionale. Questo ci fa capire bene come non sia per niente facile accettare l’esistenza di un problema e farsene carico. Per potersi “pro-gettare” (come vuole l’etimologia del termine), proiettarsi oltre, spingersi in avanti, buttando per così dire il cuore oltre l’ostacolo, è necessario, nei problemi veri, riuscire a trasformare il disagio in problema, facendolo uscire dal suo stato di latenza.',
     ],
     [
         'title' => 'Resilienza',
@@ -224,12 +226,12 @@ $entries = [
     [
         'title' => 'Rete neurale',
         'tag' => 'rete',
-        'text' => "Nel cervello, attraverso particolari connessioni o sinapsi, si formano numerosissime e complessissime “reti” che collegano fra loro gruppi di neuroni o cellule nervose. Si pensi che nell’uomo si stima che i neuroni raggiungano l’ordine di grandezza dei 100 miliardi. Ogni neurone comunica, fa rete,  con altri neuroni attraverso moltissime connessioni, in un numero che oscilla da 1000 a 10.000. In base all’esperienza, alcune reti neurali si stabilizzano più di altre. Insomma agirebbe a livello cerebrale un specie di meccanismo evolutivo di tipo darwiniano (Edelman, 1995): alcune potenzialità – leggi: connessioni neuronali – si realizzano, mentre altre non prenderanno mai corpo. “Cambiare idea”, dal punto di vista neurobiologico, significa “cambiare il proprio cervello”.",
+        'text' => 'Nel cervello, attraverso particolari connessioni o sinapsi, si formano numerosissime e complessissime “reti” che collegano fra loro gruppi di neuroni o cellule nervose. Si pensi che nell’uomo si stima che i neuroni raggiungano l’ordine di grandezza dei 100 miliardi. Ogni neurone comunica, fa rete,  con altri neuroni attraverso moltissime connessioni, in un numero che oscilla da 1000 a 10.000. In base all’esperienza, alcune reti neurali si stabilizzano più di altre. Insomma agirebbe a livello cerebrale un specie di meccanismo evolutivo di tipo darwiniano (Edelman, 1995): alcune potenzialità – leggi: connessioni neuronali – si realizzano, mentre altre non prenderanno mai corpo. “Cambiare idea”, dal punto di vista neurobiologico, significa “cambiare il proprio cervello”.',
     ],
     [
         'title' => 'Socievolezza (o “Amicalità”)',
         'tag' => 'socievolezza',
-        'text' => "È una delle cinque aree del modello Big Five, col quale abbiamo cercato di evidenziare le caratteristiche temperamentali. È un tratto che si caratterizza per il calore, la disponibilità, la buona disposizione verso gli altri, la gentilezza, la correttezza, la solidarietà. Naturalmente un basso livello di socievolezza coincide con tratti di ostilità, egoismo e freddezza.",
+        'text' => 'È una delle cinque aree del modello Big Five, col quale abbiamo cercato di evidenziare le caratteristiche temperamentali. È un tratto che si caratterizza per il calore, la disponibilità, la buona disposizione verso gli altri, la gentilezza, la correttezza, la solidarietà. Naturalmente un basso livello di socievolezza coincide con tratti di ostilità, egoismo e freddezza.',
     ],
     [
         'title' => 'Stabilità emotiva',

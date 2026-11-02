@@ -15,11 +15,13 @@ use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Auth;
 
-class StudentsTable {
-    public static function configure(Table $table): Table {
+class StudentsTable
+{
+    public static function configure(Table $table): Table
+    {
         return $table
             ->defaultSort('id', 'desc')
-            ->modifyQueryUsing(fn($query) => $query->with(['user', 'school_class.school', 'school_class.referent', 'school_class.referent.user']))
+            ->modifyQueryUsing(fn ($query) => $query->with(['user', 'school_class.school', 'school_class.referent', 'school_class.referent.user']))
             ->columns([
                 TextColumn::make('id')
                     ->label('ID')

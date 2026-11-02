@@ -4,8 +4,8 @@ namespace App\Helpers\Tests;
 
 use App\Interfaces\TestHelperInterface;
 
-class ProblemiAnagrammaHelper implements TestHelperInterface {
-
+class ProblemiAnagrammaHelper implements TestHelperInterface
+{
     /**
      * Property: contains the riddles for the test, each riddle is an array with the scrambled word, the clue, and the correct answer
      */
@@ -16,13 +16,13 @@ class ProblemiAnagrammaHelper implements TestHelperInterface {
         ['xwyj', 'affettuoso, ma anche poco economico', 'CARO'],
     ];
 
-    public function __construct() {
-    }
+    public function __construct() {}
 
     /**
      * Helper method: calculate the percentage of correct answers
      */
-    public function calculatePercentage(array $results): int {
+    public function calculatePercentage(array $results): int
+    {
         $count = count($this->riddles);
         $rightAnswers = 0;
 

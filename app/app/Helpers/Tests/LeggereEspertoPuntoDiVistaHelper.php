@@ -2,9 +2,10 @@
 
 namespace App\Helpers\Tests;
 
-class LeggereEspertoPuntoDiVistaHelper extends ImparareBaleneHelper {
-
-    protected function text(): string {
+class LeggereEspertoPuntoDiVistaHelper extends ImparareBaleneHelper
+{
+    protected function text(): string
+    {
         return "
 		{! Seduta alla finestra :: marker0 !} guardava {! la sera invadere il viale :: marker1 !}. {! Teneva la testa appoggiata contro le tendine :: marker0 !} e sentiva nelle narici {! l'odore della cretonne polverosa :: marker1 !}. Era stanca.
 {! Poca gente per strada :: marker1 !}. {! Passò l'inquilino della casa di fondo che rientrava :: marker1 !}. Lei ne sentì {! i passi risuonare sul marciapiede di cemento :: marker1 !}, poi scricchiolare sul sentiero di cenere dinanzi alle nuove case di color rosso. 
@@ -20,7 +21,8 @@ Il tempo passava ma {! lei rimaneva lì seduta presso la finestra, la testa appo
 {! Era alla stazione di North Wall, in mezzo alla folla ondeggiante :: marker0 !}. Egli la teneva per mano e lei sapeva che le stava parlando, che le ripeteva qualche cosa sulla traversata. La stazione era piena di soldati coi loro bagagli scuri e attraverso le ampie porte della tettoia si scorgeva a tratti, lungo la murata della banchina, {! la massa immobile e nera della nave, con gli oblò illuminati :: marker0 !}. Lei non rispondeva. Si sentiva  {! le guance pallide e fredde :: marker1 !} e da un confuso fondo di disperazione pregava Dio di guidarla, di mostrarle qual era il suo dovere. {! La nave lanciò nella nebbia un lungo, luttuoso ululo di sirena :: marker1 !}. Se partiva, domani si sarebbe trovata in alto mare, con Frank, diretta a Buenos Aires. I posti erano fissati. Come poteva tirarsi indietro dopo tutto quel che Frank aveva fatto per lei? Lo sgomento le dette quasi un senso di nausea: {! continuava a muovere le labbra :: marker0 !} in tacita e fervida preghiera.";
     }
 
-    protected function markerLabels(): array {
+    protected function markerLabels(): array
+    {
         return [
             '<strong>Del narratore</strong><br>(oggettiva)',
             '<strong>Del personaggio</strong><br>(soggettiva)',

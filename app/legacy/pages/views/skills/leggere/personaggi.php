@@ -1,6 +1,6 @@
 <?php
 
-use \Legacy\Activity\Test;
+use Legacy\Activity\Test;
 
 ?>
 
@@ -13,7 +13,7 @@ use \Legacy\Activity\Test;
         <!-- Title -->
         <?= title() ?>
 
-        <?php if (!$supervisorView) { ?>
+        <?php if (! $supervisorView) { ?>
 
             <!-- Link to the tale -->
             <a href="<?= (new Test(70))->clientUrl ?>">
@@ -37,7 +37,7 @@ use \Legacy\Activity\Test;
 
     </div>
 
-    <?php if ($legacyTest->completed || !$supervisorView) { ?>
+    <?php if ($legacyTest->completed || ! $supervisorView) { ?>
 
         <!-- Questions -->
         <div id="questions" class="mar-t-3 mar-b-3 <?= $legacyTest->completed ? 'completed' : '' ?>">
@@ -63,7 +63,7 @@ use \Legacy\Activity\Test;
                                 <?php foreach ($question['answers'] as $i => $answer) {
                                     $val = $legacyTest->rawResults[$key - 1] ?? false;
                                     $resultClass = null;
-                                    $cheched = !legacy_test()->completed && $val && $val == $i + 1;
+                                    $cheched = ! legacy_test()->completed && $val && $val == $i + 1;
 
                                     if ($val && ($val == $i + 1 || $answers[$key - 1] == $i + 1)) {
                                         if ($val == $answers[$key - 1]) {
@@ -103,7 +103,7 @@ use \Legacy\Activity\Test;
                                             $resultClass = in_array($i + 1, $val) ? 'wrong' : 'not-checked';
                                         }
                                     }
-                                ?>
+                                    ?>
 
                                     <div>
                                         <input type="checkbox" class="hidden" data-val="<?= $i + 1 ?>">

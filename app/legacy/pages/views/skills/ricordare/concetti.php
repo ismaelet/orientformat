@@ -34,7 +34,9 @@
             <?php for ($i = 0; $i < $count; $i++) { ?>
 
                 <div class="answer">
-                    <input type="text" name="field_other[]" class="inp filler-inp <?php if ($legacyTest->completed) echo in_array(strtolower($results[$i]), _CONCEPTS) ? 'right' : 'wrong' ?>" maxlength="40" required value="<?= $results[$i] ?? '' ?>" <?= $legacyTest->completed ? 'readonly' : '' ?>>
+                    <input type="text" name="field_other[]" class="inp filler-inp <?php if ($legacyTest->completed) {
+                        echo in_array(strtolower($results[$i]), _CONCEPTS) ? 'right' : 'wrong';
+                    } ?>" maxlength="40" required value="<?= $results[$i] ?? '' ?>" <?= $legacyTest->completed ? 'readonly' : '' ?>>
                     <h3 class="number font-bold txt-c3"><?= $i + 1 ?>.</h3>
                 </div>
 

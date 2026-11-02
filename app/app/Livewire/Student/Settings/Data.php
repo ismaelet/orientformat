@@ -9,8 +9,8 @@ use App\Models\User\Student;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
-class Data extends Component {
-
+class Data extends Component
+{
     /**
      * Property: The student whose settings are being managed
      */
@@ -59,7 +59,8 @@ class Data extends Component {
     /**
      * Lifecycle hook: Initialize component state with student data and related schools and classes
      */
-    public function mount() {
+    public function mount()
+    {
         $this->firstName = $this->student?->user?->first_name;
         $this->lastName = $this->student?->user?->last_name;
         $this->email = $this->student?->user?->email;
@@ -77,14 +78,16 @@ class Data extends Component {
     /**
      * Lifecycle hook: Render the component view
      */
-    public function render() {
+    public function render()
+    {
         return view('livewire.student.settings.data');
     }
 
     /**
      * Event handler: Update the list of classes when the selected school changes
      */
-    public function updatedSchoolId() {
+    public function updatedSchoolId()
+    {
         $this->classId = null;
         $this->classCode = null;
         $this->classOptions = $this->getClassOptions();
@@ -93,7 +96,8 @@ class Data extends Component {
     /**
      * Event handler: Validate and save the updated student data, including name, email, and class association
      */
-    public function save() {
+    public function save()
+    {
         $this->validate([
             'firstName' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
@@ -105,6 +109,7 @@ class Data extends Component {
         // Check if the email is already in use by another user
         if (User::where('email', $this->email)->whereNot('id', $this->student->userId)->exists()) {
             $this->addError('email', 'L\'email è già in uso da un altro utente.');
+
             return;
         }
 
@@ -119,8 +124,9 @@ class Data extends Component {
         if ($this->classId != $this->student->schoolClassId) {
             $newClass = SchoolClass::find($this->classId);
 
-            if (!$newClass) {
+            if (! $newClass) {
                 $this->addError('classId', 'La classe selezionata non esiste.');
+
                 return;
             }
 
@@ -128,6 +134,7 @@ class Data extends Component {
 
             if ($newClass->code && $newClass->code !== $classCode) {
                 $this->addError('classCode', 'Il codice classe inserito è errato.');
+
                 return;
             }
 
@@ -143,8 +150,9 @@ class Data extends Component {
     /**
      * Get the list of classes that belong to the selected school
      */
-    public function getClassOptions(): array {
-        if (!$this->schoolId) {
+    public function getClassOptions(): array
+    {
+        if (! $this->schoolId) {
             return [];
         }
 

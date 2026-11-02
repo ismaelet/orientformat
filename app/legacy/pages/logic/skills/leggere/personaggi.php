@@ -1,6 +1,8 @@
 <?php
 
-use LogicManager\TestLogic;
+use App\Legacy\LegacyDB;
+use App\Legacy\LegacyView;
+use Illuminate\Support\Facades\Auth;
 
 $legacyTest = legacy_test();
 
@@ -10,17 +12,17 @@ $questions = [];
 
 for ($i = 1; $i <= 12; $i++) {
     $question = [
-        'text' => __('tests.71-text-' . $i),
+        'text' => __('tests.71-text-'.$i),
         'answers' => [],
         'emotions' => [],
     ];
 
     for ($k = 1; $k <= 4; $k++) {
-        $question['answers'][] = __('tests.71-answer-' . $i . '-' . $k);
+        $question['answers'][] = __('tests.71-answer-'.$i.'-'.$k);
     }
 
     for ($k = 1; $k <= 3; $k++) {
-        $question['emotions'][] = __('tests.71-emotion-' . $i . '-' . $k);
+        $question['emotions'][] = __('tests.71-emotion-'.$i.'-'.$k);
     }
 
     $questions[] = $question;
@@ -42,24 +44,24 @@ $answers_emotions = [
     [2, 3],
 ];
 
-$results_emotions = explode(',', \App\Legacy\LegacyDB::find('result FROM results_others WHERE userID = ? AND testID = ?', [\Illuminate\Support\Facades\Auth::id(), $legacyTest->id]));
+$results_emotions = explode(',', LegacyDB::find('result FROM results_others WHERE userID = ? AND testID = ?', [Auth::id(), $legacyTest->id]));
 
 $count = count($questions) * 2;
 
 bump($questions);
 
-\Legacy\LogicManager\TestLogic::setParameterCount($count)
+Legacy\LogicManager\TestLogic::setParameterCount($count)
     ->setTestSubmitFunction(function ($count) {
         $rightN = 0;
-        $answers = \App\Legacy\LegacyView::getInstance()->get('answers');
-        $answers_emotions = \App\Legacy\LegacyView::getInstance()->get('answers_emotions');
+        $answers = LegacyView::getInstance()->get('answers');
+        $answers_emotions = LegacyView::getInstance()->get('answers_emotions');
 
         $results = implode(',', $_POST['field_other']);
 
-        \App\Legacy\LegacyDB::delete('results_others WHERE userID = ? AND testID = ?', [\Illuminate\Support\Facades\Auth::id(), testId()]);
-        \App\Legacy\LegacyDB::add('results_others (userID, testID, result) VALUES (?, ?, ?)', [\Illuminate\Support\Facades\Auth::id(), testId(), $results]);
+        LegacyDB::delete('results_others WHERE userID = ? AND testID = ?', [Auth::id(), testId()]);
+        LegacyDB::add('results_others (userID, testID, result) VALUES (?, ?, ?)', [Auth::id(), testId(), $results]);
 
-        if (!empty($_POST['field'])) {
+        if (! empty($_POST['field'])) {
             foreach ($_POST['field'] as $key => $field) {
                 if ($field == $answers[$key]) {
                     $rightN++;
@@ -67,25 +69,27 @@ bump($questions);
             }
         }
 
-        if (!empty($_POST['field_other'])) {
+        if (! empty($_POST['field_other'])) {
             foreach ($_POST['field_other'] as $key => $field) {
                 $valid = true;
                 $values = explode('+', $field);
                 $emotions = $answers_emotions[$key];
 
                 foreach ($values as $val) {
-                    if (!in_array($val, $emotions)) {
+                    if (! in_array($val, $emotions)) {
                         $valid = false;
                     }
                 }
 
                 foreach ($emotions as $emotion) {
-                    if (!in_array($emotion, $values)) {
+                    if (! in_array($emotion, $values)) {
                         $valid = false;
                     }
                 }
 
-                if ($valid) $rightN++;
+                if ($valid) {
+                    $rightN++;
+                }
             }
         }
 

@@ -10,8 +10,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\Component;
 
-class Autovalutazioni extends Component {
-
+class Autovalutazioni extends Component
+{
     public string $description;
 
     public Collection $grades;
@@ -25,7 +25,8 @@ class Autovalutazioni extends Component {
     /**
      * Create a new component instance.
      */
-    public function __construct(public Student $student) {
+    public function __construct(public Student $student)
+    {
         $this->class = $student->class;
 
         $startGrade = $this->class->first_grade;
@@ -50,7 +51,8 @@ class Autovalutazioni extends Component {
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): View|Closure|string {
+    public function render(): View|Closure|string
+    {
         return view('components.student.autovalutazioni');
     }
 }

@@ -1,7 +1,11 @@
 <?php
 
+use App\Providers\AppServiceProvider;
+use App\Providers\Filament\AdminPanelProvider;
+use App\Providers\FixSignedRoutesProvider;
+
 return [
-    App\Providers\AppServiceProvider::class,
-    App\Providers\Filament\AdminPanelProvider::class,
-    App\Providers\FixSignedRoutesProvider::class,
+    AppServiceProvider::class,
+    AdminPanelProvider::class,
+    FixSignedRoutesProvider::class,
 ];

@@ -19,11 +19,11 @@ use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table as FilamentTable;
 use Livewire\Component;
 
-class Table extends Component implements HasTable, HasActions, HasSchemas {
-
-    use InteractsWithTable;
-    use InteractsWithSchemas;
+class Table extends Component implements HasActions, HasSchemas, HasTable
+{
     use InteractsWithActions;
+    use InteractsWithSchemas;
+    use InteractsWithTable;
 
     /**
      * Property: Current user's teacher model
@@ -43,14 +43,16 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
     /**
      * Lifecycle method: Initialize component
      */
-    public function mount() {
+    public function mount()
+    {
         $this->isReferent = $this->teacher->id == $this->class->referentId;
     }
 
     /**
      * Filament method: Define the table
      */
-    public function table(FilamentTable $table): FilamentTable {
+    public function table(FilamentTable $table): FilamentTable
+    {
         return $table
             ->query(Teacher::query()
                 ->whereHas('school_classes', function ($query) {
@@ -66,11 +68,11 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                     ->sortable(),
                 IconColumn::make('is_referent')
                     ->label('Tutor')
-                    ->state(fn(Teacher $record): bool => $record->id === $this->class->referentId)
+                    ->state(fn (Teacher $record): bool => $record->id === $this->class->referentId)
                     ->boolean(),
                 TextColumn::make('user.created_at')
                     ->label('Registrato/a il')
-                    ->date()
+                    ->date(),
             ])
             ->searchable(['user.first_name', 'user.last_name'])
             ->filters([])
@@ -90,7 +92,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                     ->requiresConfirmation()
                     ->modalHeading('Rimuovi docente dalla classe')
                     ->modalDescription('Sei sicuro di voler rimuovere questo/a docente dalla classe?')
-                    ->visible(fn(Teacher $record): bool => $this->isReferent && $this->teacher->id !== $record->id)
+                    ->visible(fn (Teacher $record): bool => $this->isReferent && $this->teacher->id !== $record->id)
                     ->successRedirectUrl(route('class.teachers.index', ['class' => $this->class->id])),
                 Action::make('removeSelfFromClass')
                     ->action(function (Teacher $record) {
@@ -102,8 +104,8 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                     ->requiresConfirmation()
                     ->modalHeading('Esci dalla classe')
                     ->modalDescription('Sei sicuro di voler rimuoverti dalla gestione di questa classe? Per riaccedervi dovrai chiedere al tutor di aggiungerti nuovamente.')
-                    ->visible(fn(Teacher $record): bool => $this->teacher->id === $record->id)
-                    ->disabled(fn(): bool => $this->isReferent)
+                    ->visible(fn (Teacher $record): bool => $this->teacher->id === $record->id)
+                    ->disabled(fn (): bool => $this->isReferent)
                     ->successRedirectUrl(route('class.teachers.index', ['class' => $this->class->id])),
                 Action::make('makeReferent')
                     ->action(function (Teacher $record) {
@@ -116,7 +118,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                     ->requiresConfirmation()
                     ->modalHeading('Imposta docente come tutor')
                     ->modalDescription('Sei sicuro di voler impostare questo/a docente come tutor della classe? Sarai rimosso/a da questa posizione.')
-                    ->visible(fn(Teacher $record): bool => $this->isReferent && $this->teacher->id !== $record->id)
+                    ->visible(fn (Teacher $record): bool => $this->isReferent && $this->teacher->id !== $record->id)
                     ->successRedirectUrl(route('class.teachers.index', ['class' => $this->class->id])),
             ])
             ->toolbarActions([]);
@@ -125,7 +127,8 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
     /**
      * Lifecycle method: Render the component
      */
-    public function render() {
+    public function render()
+    {
         return view('livewire.teachers.table');
     }
 }

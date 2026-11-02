@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
-use \Legacy\UserSystem\Student;
+use Legacy\UserSystem\Student;
 
 $userId = Auth::id();
 $user = Auth::user();
@@ -92,26 +92,37 @@ foreach ($raw_links as $link) {
     // check logged filter
     if (isset($link['logged'])) {
 
-        if ($link['logged'] && !$userId) $valid = false;
-        else if (!$link['logged'] && $userId) $valid = false;
+        if ($link['logged'] && ! $userId) {
+            $valid = false;
+        } elseif (! $link['logged'] && $userId) {
+            $valid = false;
+        }
     }
 
     // check student filter
-    if (isset($link['student']) && $userGroupId != 0) $valid = false;
+    if (isset($link['student']) && $userGroupId != 0) {
+        $valid = false;
+    }
 
     // check teacher filter
-    if (isset($link['teacher']) && !is_teacher()) $valid = false;
+    if (isset($link['teacher']) && ! is_teacher()) {
+        $valid = false;
+    }
 
     // check manager filter
-    if (isset($link['manager']) && !manager()) $valid = false;
+    if (isset($link['manager']) && ! manager()) {
+        $valid = false;
+    }
 
-    if ($valid) $h_links[] = $link;
+    if ($valid) {
+        $h_links[] = $link;
+    }
 }
 
 // login bar
 if (is_teacher()) {
     $h_log_in = ['Gestione', route('teacher.dashboard')];
-} else if (is_student()) {
+} elseif (is_student()) {
     $h_log_in = ['Impostazioni', route('student.settings')];
 } else {
     $h_log_in = ['Login', route('login')];
@@ -122,9 +133,9 @@ $header['survey-end'] = false;
 
 if (
     $logged &&
-    !$userGroupId &&
-    \App\Legacy\LegacyView::getInstance()->location != 'review' &&
-    !\App\Legacy\LegacyDB::exists('review_results WHERE studentId = ? AND (reviewId = 3 OR reviewId = 6)', [$userId])
+    ! $userGroupId &&
+    LegacyView::getInstance()->location != 'review' &&
+    ! LegacyDB::exists('review_results WHERE studentId = ? AND (reviewId = 3 OR reviewId = 6)', [$userId])
 ) {
     $h_grade = (new Student($userId))->schoolClass;
     $header['survey-end'] = $h_grade && $h_grade->ended;
@@ -703,9 +714,11 @@ $localeEnabled = in_array('App\Http\Middleware\Locale', Route::current()->gather
 
                 <?php
 
-                use Illuminate\Support\Facades\App;
+                use App\Legacy\LegacyDB;
+use App\Legacy\LegacyView;
+use Illuminate\Support\Facades\App;
 
-                if ($h_comp['logo']) { ?>
+if ($h_comp['logo']) { ?>
 
                     <!-- Logo -->
                     <a
@@ -742,18 +755,22 @@ $localeEnabled = in_array('App\Http\Middleware\Locale', Route::current()->gather
             <section id="h-nav-rig" class="h-nav-bar">
 
                 <!-- Links -->
-                <?php if (!$h_comp['force-mob']) { ?>
+                <?php if (! $h_comp['force-mob']) { ?>
 
                     <div class="h-nav-box desk1024 inlb va-cen txt-wht ">
 
                         <?php foreach ($h_links as $h_link) {
-                            if (!isset($h_link['mobile']) || !$h_link['mobile']) { ?>
+                            if (! isset($h_link['mobile']) || ! $h_link['mobile']) { ?>
 
                                 <div class="h-link relative">
-                                    <p class="h-link-txt <?php if (\App\Legacy\LegacyView::getInstance()->location == $h_link['loc']) echo 'active'; ?>">
+                                    <p class="h-link-txt <?php if (LegacyView::getInstance()->location == $h_link['loc']) {
+                                        echo 'active';
+                                    } ?>">
                                         <a href="<?= $h_link['url']; ?>">
                                             <?= __($h_link['title']);
-                                            if (isset($h_link['drop'])) echo ' <span class="h-drop-ico">&#x25BC;</span>' ?>
+                                if (isset($h_link['drop'])) {
+                                    echo ' <span class="h-drop-ico">&#x25BC;</span>';
+                                } ?>
                                         </a>
                                     </p>
 
@@ -797,7 +814,7 @@ $localeEnabled = in_array('App\Http\Middleware\Locale', Route::current()->gather
                                     </a>
 
                             <?php }
-                            } ?>
+                                } ?>
                         </div>
                     </div>
                 <?php } ?>
@@ -814,7 +831,9 @@ $localeEnabled = in_array('App\Http\Middleware\Locale', Route::current()->gather
                 <?php } ?>
 
                 <!-- Mobile menu -->
-                <div id="h-mob-pan" class="txt-rig <?php if (!$h_comp['force-mob']) echo 'mob1024'; ?>">
+                <div id="h-mob-pan" class="txt-rig <?php if (! $h_comp['force-mob']) {
+                    echo 'mob1024';
+                } ?>">
 
                     <!-- Mobile icon -->
                     <input type="checkbox" id="h-cbxM" class="hidden" onclick="document.getElementById('h-pan').classList.toggle('h-open');">
@@ -832,7 +851,9 @@ $localeEnabled = in_array('App\Http\Middleware\Locale', Route::current()->gather
                     </label>
 
                     <!-- Mobile box -->
-                    <div id="h-navM" class="txt-lef <?php if (!$h_comp['force-mob']) echo 'mob'; ?>" onClick="document.getElementById('h-cbxM').click();">
+                    <div id="h-navM" class="txt-lef <?php if (! $h_comp['force-mob']) {
+                        echo 'mob';
+                    } ?>" onClick="document.getElementById('h-cbxM').click();">
 
                         <div id="h-navM-bgr" class="bgr bg-secondary"></div>
 
@@ -843,27 +864,35 @@ $localeEnabled = in_array('App\Http\Middleware\Locale', Route::current()->gather
 
                                 $h_valid = true;
 
-                                //check logged filter
+                                // check logged filter
                                 if (isset($h_link['logged'])) {
 
-                                    if ($h_link['logged'] && !$userId) $h_valid = false;
-                                    else if (!$h_link['logged'] && $userId) $h_valid = false;
+                                    if ($h_link['logged'] && ! $userId) {
+                                        $h_valid = false;
+                                    } elseif (! $h_link['logged'] && $userId) {
+                                        $h_valid = false;
+                                    }
                                 }
 
-                                //check mobile filter
-                                if (isset($h_link['mobile']) && !$h_link['mobile']) {
+                                // check mobile filter
+                                if (isset($h_link['mobile']) && ! $h_link['mobile']) {
                                     $h_valid = false;
                                 }
 
-                                //check seller filter
+                                // check seller filter
                                 if (isset($h_link['seller'])) {
 
-                                    if ($h_link['seller'] && !$user->is_seller()) $h_valid = false;
-                                    else if (!$h_link['seller'] && $user->is_seller()) $h_valid = false;
+                                    if ($h_link['seller'] && ! $user->is_seller()) {
+                                        $h_valid = false;
+                                    } elseif (! $h_link['seller'] && $user->is_seller()) {
+                                        $h_valid = false;
+                                    }
                                 }
 
-                                //check cart filter
-                                if (isset($h_link['cart']) && !$user->cart_count) $h_valid = false;
+                                // check cart filter
+                                if (isset($h_link['cart']) && ! $user->cart_count) {
+                                    $h_valid = false;
+                                }
 
                                 if ($h_valid) { ?>
 
@@ -871,16 +900,19 @@ $localeEnabled = in_array('App\Http\Middleware\Locale', Route::current()->gather
 
                                         <input type="checkbox" class="h-dropM-cbx hidden">
 
-                                        <a <?php if (!isset($h_link['drop'])) echo 'href="' . $h_link['url'] . '"'; ?>>
+                                        <a <?php if (! isset($h_link['drop'])) {
+                                            echo 'href="'.$h_link['url'].'"';
+                                        } ?>>
 
                                             <p class="h-linkM-txt">
 
                                                 <span class="h-linkM-bgr bgr bgr-c1"></span>
 
-                                                <?=
-                                                $h_link['title'];
-                                                if (isset($h_link['drop'])) echo ' <span class="h-dropM-ico">&#x25BC;</span>';
-                                                ?>
+                                                <?= $h_link['title'];
+                                    if (isset($h_link['drop'])) {
+                                        echo ' <span class="h-dropM-ico">&#x25BC;</span>';
+                                    }
+                                    ?>
 
                                             </p>
 
@@ -905,7 +937,7 @@ $localeEnabled = in_array('App\Http\Middleware\Locale', Route::current()->gather
                                         <?php } ?>
                                     </label>
                             <?php }
-                            } ?>
+                                } ?>
 
                             <!-- Language -->
                             <?php if (is_student() || $localeEnabled) { ?>

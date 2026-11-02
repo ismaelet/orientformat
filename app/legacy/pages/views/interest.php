@@ -6,11 +6,15 @@
         <!-- Presentation -->
         <div class="main-wrap">
             <section class="presentation">
-                <img src="<?= client_path(!$highschool ? '/pages/assets/interests/highschool/' . $interestId . '.jpg' : '/pages/assets/interests/universities/' . $interestId) ?>" alt="" class="interest_img img-fill">
+                <img src="<?php
+
+use Illuminate\Support\Facades\Auth;
+
+?><?= client_path(! $highschool ? '/pages/assets/interests/highschool/'.$interestId.'.jpg' : '/pages/assets/interests/universities/'.$interestId) ?>" alt="" class="interest_img img-fill">
                 <div class="interest_content grid" data-spacing="400">
                     <h1 class="interest_title"><?= $interest['name'] ?></h1>
 
-                    <?php if (!$watch) { ?>
+                    <?php if (! $watch) { ?>
 
                         <h3 class="interest_value txt-12rem"><span class="txt-sbold"><?= $result ?>%</span> di interesse</h3>
 
@@ -23,7 +27,7 @@
             </section>
         </div>
 
-        <?php if (!$watch) { ?>
+        <?php if (! $watch) { ?>
 
             <!-- Answers -->
             <form class="answers mar-t-3" id="answers" method="POST">
@@ -49,7 +53,7 @@
 
                                     <?php for ($i = 0; $i <= 3; $i++) { ?>
 
-                                        <label class="score<?= $i ?> score <?= $studentId != \Illuminate\Support\Facades\Auth::id() ? 'score--supervisor' : '' ?>">
+                                        <label class="score<?= $i ?> score <?= $studentId != Auth::id() ? 'score--supervisor' : '' ?>">
 
                                             <input type="checkbox" class="hidden filler-inp" name="field[<?= $questionId - 1 ?>]" value="<?= $i + 1 ?>" <?= isset($survey->rawResults[$questionId - 1]) && $i + 1 == $survey->rawResults[$questionId - 1] ? 'checked' : '' ?>>
 
@@ -91,13 +95,13 @@
                                     continue;
                                 }
 
-                        ?>
+                                ?>
 
                                 <!-- School type -->
                                 <li class="school-type grid" data-spacing="700">
                                     <h3 class="school-type_title txt-sbold txt-15rem"><?= $pathName ?></h3>
 
-                                    <?php if (!empty($pathData['description'])) { ?>
+                                    <?php if (! empty($pathData['description'])) { ?>
 
                                         <p class="school-type__description"><?= $pathData['description'] ?></p>
 
@@ -112,7 +116,7 @@
                                                 <h3 class="txt-sbold txt-125rem"><?= $roleName ?></h3>
                                                 <ul class="role__data-list">
 
-                                                    <?php if (!empty($role['where'])) { ?>
+                                                    <?php if (! empty($role['where'])) { ?>
 
                                                         <li class="role__data">
                                                             <div>
@@ -122,7 +126,7 @@
 
                                                     <?php } ?>
 
-                                                    <?php if (!empty($role['description'])) { ?>
+                                                    <?php if (! empty($role['description'])) { ?>
 
                                                         <li class="role__data">
                                                             <div>
@@ -132,7 +136,7 @@
 
                                                     <?php } ?>
 
-                                                    <?php if (!empty($role['activities'])) { ?>
+                                                    <?php if (! empty($role['activities'])) { ?>
 
                                                         <li class="role__data">
                                                             <div>
@@ -149,7 +153,7 @@
 
                                                     <?php } ?>
 
-                                                    <?php if (!empty($role['addresses'])) { ?>
+                                                    <?php if (! empty($role['addresses'])) { ?>
 
                                                         <li class="role__data">
                                                             <div>
@@ -165,7 +169,7 @@
 
                                                     <?php } ?>
 
-                                                    <?php if (!empty($role['links'])) { ?>
+                                                    <?php if (! empty($role['links'])) { ?>
 
                                                         <li class="role__data">
                                                             <div>
@@ -211,20 +215,20 @@
                                 if (isset($schoolList['referent']['name'])) {
                                     $referent = $schoolList['referent'];
 
-                                    include __DIR__ . '/interests/referent.php';
+                                    include __DIR__.'/interests/referent.php';
                                 } else {
                                     foreach ($schoolList['referent'] as $referent) {
-                                        include __DIR__ . '/interests/referent.php';
+                                        include __DIR__.'/interests/referent.php';
                                     }
                                 }
                             } ?>
 
                             <?php } else {
-                            foreach ($schoolList as $schoolTypeName => $courses) {
+                                foreach ($schoolList as $schoolTypeName => $courses) {
 
-                                if ($schoolTypeName == 'referent') {
-                                    continue;
-                                } ?>
+                                    if ($schoolTypeName == 'referent') {
+                                        continue;
+                                    } ?>
 
                                 <!-- School type -->
                                 <li class="school-type">
@@ -249,11 +253,11 @@
 
                                                                     <!-- School -->
                                                                     <li class="school">
-                                                                        <h3 class="school_title txt-med">&middot; <?= $school['name'] ?><?= !empty($school['location']) ? ' - ' . $school['location'] : '' ?></h3>
-                                                                        <?php if (!empty($school['link'])) { ?>
+                                                                        <h3 class="school_title txt-med">&middot; <?= $school['name'] ?><?= ! empty($school['location']) ? ' - '.$school['location'] : '' ?></h3>
+                                                                        <?php if (! empty($school['link'])) { ?>
                                                                             <p class="txt-sbold"><a class="fc-primary-h" href="<?= $school['link'] ?>">Sito web</a></p>
                                                                         <?php } ?>
-                                                                        <?php if (!empty($school['phone'])) { ?>
+                                                                        <?php if (! empty($school['phone'])) { ?>
                                                                             <p class="txt-sbold">Tel. <a class="fc-primary-h" href="tel:<?= $school['phone'] ?>"><?= $school['phone'] ?></a></p>
                                                                         <?php } ?>
                                                                     </li>
@@ -278,10 +282,10 @@
                                 if (isset($schoolList['referent']['name'])) {
                                     $referent = $schoolList['referent'];
 
-                                    include __DIR__ . '/interests/referent.php';
+                                    include __DIR__.'/interests/referent.php';
                                 } else {
                                     foreach ($schoolList['referent'] as $referent) {
-                                        include __DIR__ . '/interests/referent.php';
+                                        include __DIR__.'/interests/referent.php';
                                     }
                                 }
                             } ?>

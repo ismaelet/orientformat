@@ -9,8 +9,8 @@ use App\Models\Schools\SchoolClass;
 use App\Support\Graphs\GraphSections;
 use Illuminate\View\View;
 
-class GraphController extends Controller {
-
+class GraphController extends Controller
+{
     /**
      * Display the class graphs landing page.
      */
@@ -25,7 +25,7 @@ class GraphController extends Controller {
                 ->where('areaId', $doableArea->id)
                 ->whereHas(
                     'grades',
-                    fn($query) => $query
+                    fn ($query) => $query
                         ->whereKey($grade->id),
                 )
                 ->whereIn(

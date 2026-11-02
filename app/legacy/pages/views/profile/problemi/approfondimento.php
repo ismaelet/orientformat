@@ -24,14 +24,16 @@
 
 					<div class="quiz-pan">
 
-						<div class="quiz-cont no-trans" data-pos="<?= $pos; ?>" <?php if ($legacyTest->completed) echo 'data-locked="1"' ?> data-max="<?= $count; ?>">
+						<div class="quiz-cont no-trans" data-pos="<?= $pos; ?>" <?php if ($legacyTest->completed) {
+						    echo 'data-locked="1"';
+						} ?> data-max="<?= $count; ?>">
 
 							<?php
-							foreach ($questions as $key => $question) {
+                            foreach ($questions as $key => $question) {
 
-								$fieldID = $count - $key;
+                                $fieldID = $count - $key;
 
-								$val = $legacyTest->completed ? $legacyTest->rawResults[$key] : 0; ?>
+                                $val = $legacyTest->completed ? $legacyTest->rawResults[$key] : 0; ?>
 
 								<div id="quiz<?= $fieldID; ?>" class="quiz no-trans" data-pos="<?= $fieldID; ?>">
 
@@ -41,7 +43,9 @@
 
 									<p class="quiz-text"><?= $question[1]; ?></p>
 
-									<div class="quiz-scor-box mar-t-1 <?php if ($legacyTest->completed) echo 'disabled' ?>">
+									<div class="quiz-scor-box mar-t-1 <?php if ($legacyTest->completed) {
+									    echo 'disabled';
+									} ?>">
 
 										<?php for ($i = 1; $i < 6; $i++) { ?>
 
@@ -58,7 +62,7 @@
 									</div>
 								</div>
 							<?php }
-							?>
+                            ?>
 						</div>
 					</div>
 				</div>

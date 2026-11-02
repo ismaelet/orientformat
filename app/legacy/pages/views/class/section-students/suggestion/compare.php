@@ -7,13 +7,16 @@
 	</div>
 
 	<!-- List -->
-	<?php if ($students->num_rows) { ?>
+	<?php
+use Legacy\UserSystem\Student;
+
+if ($students->num_rows) { ?>
 
 		<div class="students grid gap-4">
 
 			<?php while ($student = $students->fetch_assoc()) {
-				$student = new \Legacy\UserSystem\Student($student['id']);
-			?>
+			    $student = new Student($student['id']);
+			    ?>
 
 				<div class="student dashboard-panel">
 					<h3 class="txt-13rem txt-c3 font-bold"><?= $student->invertedFullName ?></h3>
@@ -24,21 +27,21 @@
 
 							<?php
 
-							$hasChoices = false;
+			                    $hasChoices = false;
 
-							foreach ($student->combinedChoices as $choicePlace => $choice) {
-								if ($choice != 'Lo escludo') {
-									$hasChoices = true;
-							?>
+			    foreach ($student->combinedChoices as $choicePlace => $choice) {
+			        if ($choice != 'Lo escludo') {
+			            $hasChoices = true;
+			            ?>
 
 									<p class="choice">
-										<?= $choicePlace . ' - <strong>' . $parseAnswer[trim($choice)] . '</strong>' ?>
+										<?= $choicePlace.' - <strong>'.$parseAnswer[trim($choice)].'</strong>' ?>
 									</p>
 
 								<?php } ?>
 							<?php } ?>
 
-							<?php if (!$hasChoices) { ?>
+							<?php if (! $hasChoices) { ?>
 
 								<p class="choice choice--empty">Lo studente non ha espresso alcuna preferenza</p>
 
@@ -50,8 +53,8 @@
 							<h3 class="student_subtitle">Consigli orientativi</h3>
 
 							<?php foreach ($student->advices as $advice) {
-								$result = $hasChoices && _compare_advice($student, $advice) ? _compare_advice($student, $advice) : 0;
-							?>
+							    $result = $hasChoices && _compare_advice($student, $advice) ? _compare_advice($student, $advice) : 0;
+							    ?>
 
 								<div class="advice-box advice--<?= $result ?>">
 									<span class="advice_icon icon-box">

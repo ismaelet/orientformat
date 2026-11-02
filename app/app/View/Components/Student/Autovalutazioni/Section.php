@@ -10,8 +10,8 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Section extends Component {
-
+class Section extends Component
+{
     public string $resultLabel;
 
     public string $userType;
@@ -25,7 +25,8 @@ class Section extends Component {
     /**
      * Create a new component instance.
      */
-    public function __construct(public ActivitiesSection $section, public Student $student, public int $key) {
+    public function __construct(public ActivitiesSection $section, public Student $student, public int $key)
+    {
         $this->userType = is_teacher() ? 'teacher' : 'student';
 
         // Result data
@@ -42,7 +43,8 @@ class Section extends Component {
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): View|Closure|string {
+    public function render(): View|Closure|string
+    {
         return view('components.student.autovalutazioni.section');
     }
 }

@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Review extends Model {
-
+class Review extends Model
+{
     /**
      * The attributes that are mass assignable
      */
@@ -14,7 +14,8 @@ class Review extends Model {
     /**
      * Relationship: The review results associated with this review
      */
-    public function review_results() {
+    public function review_results()
+    {
         return $this->hasMany(ReviewResult::class, 'reviewId', 'id');
     }
 }

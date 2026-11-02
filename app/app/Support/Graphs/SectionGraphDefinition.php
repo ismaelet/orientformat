@@ -4,9 +4,10 @@ namespace App\Support\Graphs;
 
 use App\Models\Activities\Section;
 
-final readonly class SectionGraphDefinition {
+final readonly class SectionGraphDefinition
+{
     /**
-     * @param array<int>|null $testIds
+     * @param  array<int>|null  $testIds
      */
     public function __construct(
         public Section $section,
@@ -20,8 +21,7 @@ final readonly class SectionGraphDefinition {
         public ?string $condensedType = null,
         public ?string $condensedLabel = null,
         public ?string $condensedPluralLabel = null,
-    ) {
-    }
+    ) {}
 
     public static function fromArray(
         Section $section,
@@ -47,7 +47,8 @@ final readonly class SectionGraphDefinition {
         );
     }
 
-    public function displayTitle(): string {
+    public function displayTitle(): string
+    {
         return $this->title ?? $this->section->name;
     }
 }

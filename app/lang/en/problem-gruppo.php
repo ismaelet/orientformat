@@ -2,42 +2,42 @@
 <?php
 
 return [
-    "completed-description" => "Highlighted is the role (or roles) you are best suited for, as indicated by the questionnaire. However, a good problem solver should possess all the characteristics of the different roles. By looking at the descriptors with the lowest scores, you will discover where you can take action to improve your performance.",
+    'completed-description' => 'Highlighted is the role (or roles) you are best suited for, as indicated by the questionnaire. However, a good problem solver should possess all the characteristics of the different roles. By looking at the descriptors with the lowest scores, you will discover where you can take action to improve your performance.',
 
-    "main-role-singular" => "Main Role",
-    "main-role-plural" => "Main Roles",
-    "other-roles-singular" => "Secondary Role",
-    "other-roles-plural" => "Secondary Roles",
+    'main-role-singular' => 'Main Role',
+    'main-role-plural' => 'Main Roles',
+    'other-roles-singular' => 'Secondary Role',
+    'other-roles-plural' => 'Secondary Roles',
 
-    "role-1-title" => "Strategist",
-    "role-2-title" => "Explorer",
-    "role-3-title" => "Critic",
-    "role-4-title" => "Sage",
-    "role-1-title-article" => "The Strategist",
-    "role-2-title-article" => "The Explorer",
-    "role-3-title-article" => "The Critic",
-    "role-4-title-article" => "The Sage",
-    "role-1-description" => "The Strategist takes the many options and pieces of information provided by the Explorer and turns them into a clear, structured, and measurable action plan. Their role is to bring order, logic, and a step-by-step approach to problems, ensuring that interventions are not emotional but carefully calculated to maximize possible results.",
-    "role-2-description" => "The Explorer’s role is that of a trailblazer: they focus on the diagnosis and ideation phase of the problem, gather as much information as possible, formulate different hypotheses, and propose fresh and targeted solutions that take all aspects of the problem into account. They then leave it to the Critic and the Strategist to evaluate and implement the best option.",
-    "role-3-description" => "They play the essential role of reality evaluator and \"devil's advocate\". Their mission is to subject the Explorer’s innovative ideas and the Strategist’s structured plans to rigorous logical scrutiny in order to ensure their effectiveness and long-term sustainability. They prevent the group from giving in too much to the Explorer’s optimism or the Strategist’s procedural rigidity, ensuring instead that it acts on the basis of truth, caution, and realistic risk assessment. Their role is not to block ideas, but to strengthen them by eliminating illusions and hasty choices.",
-    "role-4-description" => "The Sage acts as a mediator, emotional catalyst, and decision-making facilitator, ensuring that the group does not become paralyzed by the conflict between the creativity of the Explorer and Strategist and the realism of the Critic. The Sage immediately notices when something is wrong within the group and suggests discussing it, and is able to put themselves in other people’s shoes. Their intervention aims to recognize the value of every contribution and rebuild group cohesion.",
+    'role-1-title' => 'Strategist',
+    'role-2-title' => 'Explorer',
+    'role-3-title' => 'Critic',
+    'role-4-title' => 'Sage',
+    'role-1-title-article' => 'The Strategist',
+    'role-2-title-article' => 'The Explorer',
+    'role-3-title-article' => 'The Critic',
+    'role-4-title-article' => 'The Sage',
+    'role-1-description' => 'The Strategist takes the many options and pieces of information provided by the Explorer and turns them into a clear, structured, and measurable action plan. Their role is to bring order, logic, and a step-by-step approach to problems, ensuring that interventions are not emotional but carefully calculated to maximize possible results.',
+    'role-2-description' => 'The Explorer’s role is that of a trailblazer: they focus on the diagnosis and ideation phase of the problem, gather as much information as possible, formulate different hypotheses, and propose fresh and targeted solutions that take all aspects of the problem into account. They then leave it to the Critic and the Strategist to evaluate and implement the best option.',
+    'role-3-description' => "They play the essential role of reality evaluator and \"devil's advocate\". Their mission is to subject the Explorer’s innovative ideas and the Strategist’s structured plans to rigorous logical scrutiny in order to ensure their effectiveness and long-term sustainability. They prevent the group from giving in too much to the Explorer’s optimism or the Strategist’s procedural rigidity, ensuring instead that it acts on the basis of truth, caution, and realistic risk assessment. Their role is not to block ideas, but to strengthen them by eliminating illusions and hasty choices.",
+    'role-4-description' => 'The Sage acts as a mediator, emotional catalyst, and decision-making facilitator, ensuring that the group does not become paralyzed by the conflict between the creativity of the Explorer and Strategist and the realism of the Critic. The Sage immediately notices when something is wrong within the group and suggests discussing it, and is able to put themselves in other people’s shoes. Their intervention aims to recognize the value of every contribution and rebuild group cohesion.',
 
-    "example-title" => "Problem: You will soon have to enroll in upper secondary school, but one of your classmates still does not know what to choose. How can you help them?<br><br>Example solution",
-    "example-title-highschool" => "Problem: A female classmate is being cyberbullied. How can you help her?<br><br>Example solution",
-    "example-intro" => "(The characteristics of each role are highlighted)",
-    "example-subtitle-1" => "Classroom problems:",
-    "example-subtitle-2-highschool" => "Problems during work-based learning:",
-    "example-list" => "<li>1. A classmate has difficulty fitting into the group.</li>
+    'example-title' => 'Problem: You will soon have to enroll in upper secondary school, but one of your classmates still does not know what to choose. How can you help them?<br><br>Example solution',
+    'example-title-highschool' => 'Problem: A female classmate is being cyberbullied. How can you help her?<br><br>Example solution',
+    'example-intro' => '(The characteristics of each role are highlighted)',
+    'example-subtitle-1' => 'Classroom problems:',
+    'example-subtitle-2-highschool' => 'Problems during work-based learning:',
+    'example-list' => '<li>1. A classmate has difficulty fitting into the group.</li>
     <li>2. The school has banned the use of
-        all digital devices, including for educational activities. It is urgent to identify a \"digital
-        ambassador\" to propose to the institution.</li>
+        all digital devices, including for educational activities. It is urgent to identify a "digital
+        ambassador" to propose to the institution.</li>
     <li>3. A conflict between classmates that disrupts classroom life.</li>
     <li>4. Does artificial intelligence help or cause harm?</li>
     <li>5. The relationship with a teacher is not working.</li>
     <li>6. Study programs or ways of
         conducting lessons that are not convincing.</li>
-    <li>7. How to make the best use of the OrientFormat platform.</li>",
-    "example-list-highschool" => "<li>1. The workplace
+    <li>7. How to make the best use of the OrientFormat platform.</li>',
+    'example-list-highschool' => '<li>1. The workplace
         does not provide sufficient guarantees of safety (physical or psychological).</li>
     <li>2. The proposed activities are not consistent with the
         course of study.</li>
@@ -49,9 +49,9 @@ return [
     <li>6. The simulated theoretical/practical activities carried out at school do not seem
         sufficiently structured and effective.</li>
     <li>7. There is no interaction, or the interaction is ineffective, between guidance and
-        work-based learning.</li>",
+        work-based learning.</li>',
 
-    "example-middle-school-1" => '<p class="text-block">
+    'example-middle-school-1' => '<p class="text-block">
             Your intervention will focus on three key phases: <strong>Analysis</strong>, <strong>Planning</strong>, and
             <strong>Forecasting</strong>.
         </p>
@@ -112,7 +112,7 @@ return [
             </li>
         </ol>',
 
-    "example-middle-school-2" => '
+    'example-middle-school-2' => '
         <p class="text-block">
             Here is how you could intervene, in line with your characteristics:
         </p>
@@ -163,7 +163,7 @@ return [
             </li>
         </ol>',
 
-    "example-middle-school-3" => '<p class="text-block">
+    'example-middle-school-3' => '<p class="text-block">
             Here is how you could intervene:
         </p>
 
@@ -232,7 +232,7 @@ return [
             but instead makes decisions based on <strong>verification, realism, and awareness of risks</strong>.
         </p>',
 
-    "example-middle-school-4" => '
+    'example-middle-school-4' => '
 
         <p class="text-block">
             Your intervention will take place in three crucial phases aimed at <strong>restoring balance</strong>
@@ -297,7 +297,7 @@ return [
         <p>In this way, the Sage does not resolve the conflict through the wisdom of a solution, but through the wisdom of recognizing and balancing everyone’s contributions.</p>
         ',
 
-    "example-highschool-1" => '
+    'example-highschool-1' => '
         <p class="text-block">
             Here is how they would act, in line with their characteristics.
         </p>
@@ -374,7 +374,7 @@ return [
         <p>In short, the Strategist brings order, logic, and a <i>step-by-step</i> approach to the crisis, ensuring that the intervention
 is not emotional, but calculated to maximize the victim’s safety and achieve a definitive result.</p>',
 
-    "example-highschool-2" => "<p class=\"\"></p>
+    'example-highschool-2' => '<p class=""></p>
                 Here is how they would act, in line with their characteristics.
             </>
 
@@ -384,12 +384,12 @@ is not emotional, but calculated to maximize the victim’s safety and achieve a
                     <p>The Explorer would not limit themselves to what is immediately obvious, but would <strong>actively seek
                             &quot;new information&quot;</strong> (that is, complete information and the underlying causes) regarding the problem.</p>
                     <ul>
-                        <li><span class=\"underline\">Early identification of the problem</span>: drawing on their ability to
+                        <li><span class="underline">Early identification of the problem</span>: drawing on their ability to
                             <strong>notice the
                                 problem before
                                 others</strong>, they would make sure that the phenomenon is not ignored or minimized.
                         </li>
-                        <li><span class=\"underline\">Looking from different points of view</span>:
+                        <li><span class="underline">Looking from different points of view</span>:
                             <ul>
                                 <li><strong>From the Victim’s perspective</strong>: they would gather information about the victim’s emotions, how the
                                     bullying affects her, and
@@ -404,7 +404,7 @@ is not emotional, but calculated to maximize the victim’s safety and achieve a
                             </ul>
                         </li>
 
-                        <li><span class=\"underline\">Considers different hypotheses:</span> rather than stopping at the first idea
+                        <li><span class="underline">Considers different hypotheses:</span> rather than stopping at the first idea
                             (&quot;Let’s tell the
                             teachers&quot;), they would gather different hypotheses about the causes (e.g. problems at home, unresolved classroom
                             dynamics, improper use of specific digital tools) and possible solutions.</li>
@@ -417,7 +417,7 @@ is not emotional, but calculated to maximize the victim’s safety and achieve a
                         on creating
                         a range of original interventions that go beyond traditional school punishments.</p>
                     <ul>
-                        <li><span class=\"underline\">Technological intervention</span>: they would explore the use of digital tools to
+                        <li><span class="underline">Technological intervention</span>: they would explore the use of digital tools to
                             counter the phenomenon, for
                             example:
                             <ul>
@@ -430,12 +430,12 @@ is not emotional, but calculated to maximize the victim’s safety and achieve a
                             </ul>
                         </li>
 
-                        <li><span class=\"underline\">Empathetic approach (different points of view)</span>: they would suggest an intervention that
+                        <li><span class="underline">Empathetic approach (different points of view)</span>: they would suggest an intervention that
                             takes the victim’s emotional
                             well-being into account, perhaps by creating an anonymous peer-support system for those who are afraid to
                             speak up.</li>
 
-                        <li><span class=\"underline\">Long-term preventive solution</span>: rather than limiting themselves to resolving the
+                        <li><span class="underline">Long-term preventive solution</span>: rather than limiting themselves to resolving the
                             individual case, the Explorer
                             would propose a broader solution addressing the digital culture of the class or
                             school. For example, introducing interactive digital citizenship workshops instead of boring lectures.
@@ -443,9 +443,9 @@ is not emotional, but calculated to maximize the victim’s safety and achieve a
                     </ul>
                 </li>
             </ol>
-            <p>In short, <strong>by noticing a problem before others</strong>, they would focus on gathering relevant information and identifying unconventional intervention options.</p>",
+            <p>In short, <strong>by noticing a problem before others</strong>, they would focus on gathering relevant information and identifying unconventional intervention options.</p>',
 
-    "example-highschool-3" => '<p class="text-block">
+    'example-highschool-3' => '<p class="text-block">
             Here is how the Critic would apply their characteristics to the proposals of the other roles, focusing on the
             problem of cyberbullying.
         </p>
@@ -551,7 +551,7 @@ is not emotional, but calculated to maximize the victim’s safety and achieve a
 rigidity (the Strategist’s), but acts on the basis of truth, caution, and realistic
 risk assessment.</p>',
 
-    "example-highschool-4" => '<p class="text-block">The Sage would act as follows:
+    'example-highschool-4' => '<p class="text-block">The Sage would act as follows:
         </p>
 
         <ol>

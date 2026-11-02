@@ -9,10 +9,12 @@ use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
 use Filament\Resources\Pages\EditRecord;
 
-class EditSchoolClass extends EditRecord {
+class EditSchoolClass extends EditRecord
+{
     protected static string $resource = SchoolClassResource::class;
 
-    protected function beforeSave(): void {
+    protected function beforeSave(): void
+    {
         $currentReferentId = $this->record->referentId;
         $newReferentId = $this->data['referentId'] ?? null;
 
@@ -22,7 +24,8 @@ class EditSchoolClass extends EditRecord {
         }
     }
 
-    protected function getHeaderActions(): array {
+    protected function getHeaderActions(): array
+    {
         return [
             DeleteAction::make(),
             ForceDeleteAction::make(),

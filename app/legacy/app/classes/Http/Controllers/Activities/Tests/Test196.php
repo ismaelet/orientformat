@@ -3,11 +3,11 @@
 namespace Legacy\Http\Controllers\Activities\Tests;
 
 use Legacy\Http\Controllers\Activities\Test;
-
+use System\Traits\Singleton;
 
 /**
  * Specific test class
- * 
+ *
  * @property int $resultCount = 0 <inherited>
  * @property bool $buttonIsProgressive = false <inherited>
  * @property bool $skipEnabled = false <inherited>
@@ -15,101 +15,108 @@ use Legacy\Http\Controllers\Activities\Test;
  * @property array $parameters = [] <inherited>
  * @property array $arguments = []
  */
-class Test196 extends Test {
+class Test196 extends Test
+{
+    use Singleton;
 
-	use \System\Traits\Singleton;
+    // protected $skipEnabled = true;
+    protected $retryEnabled = true;
 
-	// protected $skipEnabled = true;
-	protected $retryEnabled = true;
-	protected $buttonIsProgressive = true;
-	protected $arguments = [];
+    protected $buttonIsProgressive = true;
 
-	/**
-	 * Initialize
-	 */
-	private function __construct() {
-		$this->arguments['text'] = "In questa città c’era una volta (e forse c’è ancora) una stradina con pochi negozi bui e odorosi{{ selector }} un magro ciabattino di tanto in tanto usciva sulla soglia della sua bottega a guardare i nuvoloni grigi che si avvolgevano e svolgevano nel cielo{{ selector }} un panciuto venditore di pane{{ selector }} latte{{ selector }} spezie e candele accorreva grassoccio e premuroso al trillo del campanello che accompagnava l’entrata dei clienti.<br> 
-		E poi c’era un giocattolaio{{ selector }} l’eroe della nostra storia. Era un ometto piccolo{{ selector }} curvato dagli anni{{ selector }} con le mani fini e inquiete{{ selector }} gli occhi stellanti.";
+    protected $arguments = [];
 
-		$this->arguments['correctAnswers'] = [
-			3,
-			4,
-			1,
-			1,
-			1,
-			1,
-			1,
-			1
-		];
-	}
+    /**
+     * Initialize
+     */
+    private function __construct()
+    {
+        $this->arguments['text'] = 'In questa città c’era una volta (e forse c’è ancora) una stradina con pochi negozi bui e odorosi{{ selector }} un magro ciabattino di tanto in tanto usciva sulla soglia della sua bottega a guardare i nuvoloni grigi che si avvolgevano e svolgevano nel cielo{{ selector }} un panciuto venditore di pane{{ selector }} latte{{ selector }} spezie e candele accorreva grassoccio e premuroso al trillo del campanello che accompagnava l’entrata dei clienti.<br> 
+		E poi c’era un giocattolaio{{ selector }} l’eroe della nostra storia. Era un ometto piccolo{{ selector }} curvato dagli anni{{ selector }} con le mani fini e inquiete{{ selector }} gli occhi stellanti.';
 
-	protected function init() {
-		$this->view();
+        $this->arguments['correctAnswers'] = [
+            3,
+            4,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+        ];
+    }
 
-		return $this;
-	}
+    protected function init()
+    {
+        $this->view();
 
-	protected function logic() {
+        return $this;
+    }
 
-		$text = $this->arguments['text'];
+    protected function logic()
+    {
 
-		function _generate_text($text, $correctAnswers) {
-			$punctuations = [
-				1 => ',',
-				2 => '.',
-				3 => ':',
-				4 => ';',
-				5 => '...',
-				6 => '!',
-				7 => '?',
-			];
+        $text = $this->arguments['text'];
 
-			// options
-			$count = substr_count($text, '{{ selector }}');
-			$selectors = [];
+        function _generate_text($text, $correctAnswers)
+        {
+            $punctuations = [
+                1 => ',',
+                2 => '.',
+                3 => ':',
+                4 => ';',
+                5 => '...',
+                6 => '!',
+                7 => '?',
+            ];
 
-			for ($i = 1; $i <= $count; $i++) {
-				// $correctAnswer = $correctAnswers[$i - 1];
-				$options = !legacy_test()->completed ? ['<option value="0" disabled selected></option>'] : [];
+            // options
+            $count = substr_count($text, '{{ selector }}');
+            $selectors = [];
 
-				foreach ($punctuations as $punctcuationKey => $punctcuation) {
-					$result = legacy_test()->rawResults[$i - 1] ?? null;
-					$selected = $result && $result == $punctcuationKey;
-					$options[] = '<option value="' . $punctcuationKey . '" ' . ($selected ? 'selected' : null) . '>' . $punctcuation . '</option>';
-				}
+            for ($i = 1; $i <= $count; $i++) {
+                // $correctAnswer = $correctAnswers[$i - 1];
+                $options = ! legacy_test()->completed ? ['<option value="0" disabled selected></option>'] : [];
 
-				$selectors[] = implode(PHP_EOL, $options);
-			}
+                foreach ($punctuations as $punctcuationKey => $punctcuation) {
+                    $result = legacy_test()->rawResults[$i - 1] ?? null;
+                    $selected = $result && $result == $punctcuationKey;
+                    $options[] = '<option value="'.$punctcuationKey.'" '.($selected ? 'selected' : null).'>'.$punctcuation.'</option>';
+                }
 
-			// sentences
-			$selectorKey = 0;
-			$textHtml = $text;
-			$placeholder = '{{ selector }}';
+                $selectors[] = implode(PHP_EOL, $options);
+            }
 
-			while (strpos($textHtml, $placeholder) !== false) {
-				$correctResult = legacy_test()->completed && (legacy_test()->rawResults[$selectorKey] ?? null) == $correctAnswers[$selectorKey];
+            // sentences
+            $selectorKey = 0;
+            $textHtml = $text;
+            $placeholder = '{{ selector }}';
 
-				$selector = $selectors[$selectorKey];
-				$selectorHtml = '<select class="js-field ' . (legacy_test()->completed ? ($correctResult ? 'right' : 'wrong') : null) . '" name="field[]" ' . (legacy_test()->completed || isSupervisor() ? 'disabled' : '') . '>' . $selector . '</select>';
-				$position = strpos($textHtml, $placeholder);
-				$textHtml = substr_replace($textHtml, $selectorHtml, $position, strlen($placeholder));
+            while (strpos($textHtml, $placeholder) !== false) {
+                $correctResult = legacy_test()->completed && (legacy_test()->rawResults[$selectorKey] ?? null) == $correctAnswers[$selectorKey];
 
-				$selectorKey++;
-			}
+                $selector = $selectors[$selectorKey];
+                $selectorHtml = '<select class="js-field '.(legacy_test()->completed ? ($correctResult ? 'right' : 'wrong') : null).'" name="field[]" '.(legacy_test()->completed || isSupervisor() ? 'disabled' : '').'>'.$selector.'</select>';
+                $position = strpos($textHtml, $placeholder);
+                $textHtml = substr_replace($textHtml, $selectorHtml, $position, strlen($placeholder));
 
-			return $textHtml;
-		}
+                $selectorKey++;
+            }
 
-		$this->parameters['text'] = _generate_text($text, $this->arguments['correctAnswers']);
-		$this->resultCount = count($this->arguments['correctAnswers']);
-	}
+            return $textHtml;
+        }
 
-	/**
-	 * Template
-	 */
-	protected function template() {
-		ob_start();
-?>
+        $this->parameters['text'] = _generate_text($text, $this->arguments['correctAnswers']);
+        $this->resultCount = count($this->arguments['correctAnswers']);
+    }
+
+    /**
+     * Template
+     */
+    protected function template()
+    {
+        ob_start();
+        ?>
 
 		<section class="grid" data-spacing="700">
 			<?php if (legacy_test()->completed) { ?>
@@ -126,27 +133,29 @@ class Test196 extends Test {
 		</section>
 
 	<?php return ob_get_clean();
-	}
+    }
 
-	/**
-	 * Scripts
-	 */
-	protected function scripts() {
-		ob_start();
-	?>
+    /**
+     * Scripts
+     */
+    protected function scripts()
+    {
+        ob_start();
+        ?>
 
 		<script defer>
 		</script>
 
 	<?php return ob_get_clean();
-	}
+    }
 
-	/**
-	 * Style
-	 */
-	protected function style() {
-		ob_start();
-	?>
+    /**
+     * Style
+     */
+    protected function style()
+    {
+        ob_start();
+        ?>
 
 		<style>
 			.text {
@@ -185,21 +194,22 @@ class Test196 extends Test {
 		</style>
 
 <?php return ob_get_clean();
-	}
+    }
 
-	/**
-	 * Post methods
-	 */
-	public function calcResult(array $results = [], int $count = null) {
-		$correctAnswerCount = 0;
-		$correctAnswers = $this->arguments['correctAnswers'];
+    /**
+     * Post methods
+     */
+    public function calcResult(array $results = [], ?int $count = null)
+    {
+        $correctAnswerCount = 0;
+        $correctAnswers = $this->arguments['correctAnswers'];
 
-		foreach ($results as $answerKey => $answer) {
-			if ($answer == $correctAnswers[$answerKey]) {
-				$correctAnswerCount++;
-			}
-		}
+        foreach ($results as $answerKey => $answer) {
+            if ($answer == $correctAnswers[$answerKey]) {
+                $correctAnswerCount++;
+            }
+        }
 
-		return percent($correctAnswerCount, $count);
-	}
+        return percent($correctAnswerCount, $count);
+    }
 }

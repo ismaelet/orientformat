@@ -28,12 +28,12 @@
 
 				<div class="grid items-center">
 					<?php if (is_array($answers)) {
-						foreach ($answers as $answerField => $answerValue) { ?>
+					    foreach ($answers as $answerField => $answerValue) { ?>
 
-							<p><?= $answerField ?> <?= !empty($answerValue) ? ': <span class="font-semibold">' . $answerValue . '</span></p>' : '' ?>
+							<p><?= $answerField ?> <?= ! empty($answerValue) ? ': <span class="font-semibold">'.$answerValue.'</span></p>' : '' ?>
 
 							<?php }
-					} else { ?>
+					    } else { ?>
 							<p class=""><?= $answers ?></p>
 						<?php } ?>
 				</div>

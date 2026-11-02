@@ -8,7 +8,8 @@ use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
 
-class Area extends Component {
+class Area extends Component
+{
     #[Locked]
     public string $areaName;
 
@@ -71,7 +72,8 @@ class Area extends Component {
         }
     }
 
-    public function previous(): void {
+    public function previous(): void
+    {
         $count = count($this->graphItems);
 
         if ($count === 0) {
@@ -82,7 +84,8 @@ class Area extends Component {
             ($this->position - 1 + $count) % $count;
     }
 
-    public function next(): void {
+    public function next(): void
+    {
         $count = count($this->graphItems);
 
         if ($count === 0) {
@@ -93,15 +96,17 @@ class Area extends Component {
             ($this->position + 1) % $count;
     }
 
-    public function select(int $position): void {
-        if (!isset($this->graphItems[$position])) {
+    public function select(int $position): void
+    {
+        if (! isset($this->graphItems[$position])) {
             return;
         }
 
         $this->position = $position;
     }
 
-    public function render(): View {
+    public function render(): View
+    {
         $currentGraphItem =
             $this->graphItems[$this->position] ?? null;
 

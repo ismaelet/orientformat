@@ -2,9 +2,10 @@
 
 namespace App\Helpers\Tests;
 
-class LeggereEspertoRaccontoEveline2Helper extends ImparareBaleneHelper {
-
-    protected function text(): string {
+class LeggereEspertoRaccontoEveline2Helper extends ImparareBaleneHelper
+{
+    protected function text(): string
+    {
         return "
 		{! La sera s'andava infittendo sul viale e il bianco delle due lettere che aveva in grembo si faceva indistinto :: marker4 !}. {! Una era per Harry, l'altra per il padre :: marker0 !}. Il suo prediletto, veramente, era stato Ernest, ma anche a Harry voleva bene. {! Aveva notato che negli ultimi tempi il padre stava invecchiando; lei gli sarebbe mancata :: marker0 !}. {! A volte sapeva essere gentile. Non molto tempo prima, un giorno che era stata a letto, malata, s'era messo a leggerle una storia di fantasmi e le aveva abbrustolito il pane sul fuoco :: marker4 !}. [...]<br>
    Il tempo passava ma {! lei rimaneva lì seduta presso la finestra, la testa appoggiata contro le tendine e l'odore polveroso della cretonne nelle narici. Giù dal viale sentiva salire il lontano suono di un organetto :: marker4 !}. Era un motivo che conosceva. Strano che venisse proprio quella sera a rammentarle {! la promessa fatta alla madre, la promessa di badare alla famiglia più a lungo che avesse potuto :: marker0 !}. Le tornò a mente l'ultima notte della malattia della madre. Si rivide nella stanza buia, chiusa, dall'altra parte dell'anticamera: da fuori giungeva una melanconica aria italiana. Ricordava il padre che rientrava pomposo nella camera dell'ammalata dicendo: «Dannati italiani! Proprio qui debbono venire!».<br>
@@ -21,7 +22,8 @@ class LeggereEspertoRaccontoEveline2Helper extends ImparareBaleneHelper {
    Lui si precipitò di là dal cancello, chiamandola perché lo seguisse. Gli gridarono di andare avanti ma lui continuava a chiamarla. {! Lei lo fissava con la faccia pallida, passiva, come un animale smarrito :: marker5 !}. I suoi occhi non gli diedero alcun segno d'amore o di addio o di riconoscimento.";
     }
 
-    protected function markerLabels(): array {
+    protected function markerLabels(): array
+    {
         return [
             'Senso di colpa',
             'Il dubbio',

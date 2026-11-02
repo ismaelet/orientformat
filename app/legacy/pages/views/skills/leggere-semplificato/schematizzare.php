@@ -11,7 +11,7 @@
 		</div>
 	</div>
 
-	<?php if ($legacyTest->completed || !$supervisorView) { ?>
+	<?php if ($legacyTest->completed || ! $supervisorView) { ?>
 
 		<h3 class="section-title center-content"><?= __('Scheme') ?></h3>
 
@@ -33,7 +33,7 @@
 
 						<p class="txt-wht txt-1rem cenY wid-100 fa-center"><?= $box['text'] ?></p>
 
-						<?php if (!$box['autofilled']) { ?>
+						<?php if (! $box['autofilled']) { ?>
 
 							<input type="hidden" class="filler-inp" name="field[]" value="0">
 
@@ -50,24 +50,26 @@
 			</div>
 		</div>
 
-	<?php } else if ($supervisorView) { ?>
+	<?php } elseif ($supervisorView) { ?>
 
 		<?= no_results() ?>
 
 	<?php } ?>
 
-	<?php if (!$legacyTest->completed && !$supervisorView) { ?>
+	<?php if (! $legacyTest->completed && ! $supervisorView) { ?>
 
 		<h3 class="section-title center-content mar-b-2">Elementi</h3>
 		<div id="causes" class="mar-b-5">
 
-			<?php foreach ($boxes as $key => $box) if (!$box['autofilled']) { ?>
+			<?php foreach ($boxes as $key => $box) {
+			    if (! $box['autofilled']) { ?>
 
 				<div id="cause<?= $key ?>" class="cause pos-rel" data-id="<?= $key ?>">
 					<p class="txt-wht txt-1rem cenY wid-100 fa-center"><?= $box['content'] ?></p>
 				</div>
 
-			<?php } ?>
+			<?php }
+			    } ?>
 
 		</div>
 

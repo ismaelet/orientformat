@@ -4,28 +4,42 @@ namespace App\Support;
 
 use RuntimeException;
 
-final class TestResultDefinitions {
+final class TestResultDefinitions
+{
     public const RESULT_MAX_NAME_VALUE = 'max_name_value';
+
     public const RESULT_AVERAGE_PERCENTAGE = 'average_percentage';
+
     public const RESULT_GENERIC = 'generic';
+
     public const RESULT_MERGED_NAMES = 'merged_names';
+
     public const RESULT_DETAILED = 'detailed';
+
     public const RESULT_COMPLETED = 'completed';
 
     public const DETAIL_ATTENTION_SELF_EVALUATION =
-    'attention_self_evaluation';
+        'attention_self_evaluation';
 
     public const DETAIL_MOTIVATION = 'motivation';
+
     public const DETAIL_ATTENTION_HYPERACTIVITY =
-    'attention_hyperactivity';
+        'attention_hyperactivity';
 
     public const DETAIL_COGNITIVE_STYLE = 'cognitive_style';
+
     public const DETAIL_TEMPERAMENT = 'temperament';
+
     public const DETAIL_ATTRIBUTION_STYLE = 'attribution_style';
+
     public const DETAIL_GENERIC = 'generic';
+
     public const DETAIL_TESTS_AVERAGE = 'tests_average';
+
     public const DETAIL_INTERESTS = 'interests';
+
     public const DETAIL_LIFE_TREE = 'life_tree';
+
     public const DETAIL_EMOTION_WHEEL = 'emotion_wheel';
 
     /**
@@ -104,12 +118,15 @@ final class TestResultDefinitions {
     ];
 
     public const DEPENDENCY_REQUIRED_TEST = 'required_test';
+
     public const DEPENDENCY_PREVIOUS_SECTION_TESTS =
-    'previous_section_tests';
+        'previous_section_tests';
+
     public const DEPENDENCY_SECTION_STEPS =
-    'section_steps';
+        'section_steps';
+
     public const DEPENDENCY_FIXED_TESTS =
-    'fixed_tests';
+        'fixed_tests';
 
     /**
      * Additional tests needed to calculate a test result.
@@ -179,21 +196,24 @@ final class TestResultDefinitions {
         ],
     ];
 
-    public static function resultType(int $testId): string {
+    public static function resultType(int $testId): string
+    {
         return self::RESULT_TYPES[$testId]
             ?? throw new RuntimeException(
                 "Unsupported condensed test result [{$testId}].",
             );
     }
 
-    public static function detailedType(int $testId): string {
+    public static function detailedType(int $testId): string
+    {
         return self::DETAILED_TYPES[$testId]
             ?? throw new RuntimeException(
                 "Unsupported detailed test result [{$testId}].",
             );
     }
 
-    public static function supportsResult(int $testId): bool {
+    public static function supportsResult(int $testId): bool
+    {
         return array_key_exists(
             $testId,
             self::RESULT_TYPES,

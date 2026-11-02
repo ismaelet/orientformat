@@ -13,9 +13,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
-class RegisterController extends Controller {
-
+class RegisterController extends Controller
+{
     /**
      * The available email domains for teacher registration
      */
@@ -50,7 +51,8 @@ class RegisterController extends Controller {
     /**
      * Handle an incoming registration request
      */
-    public function store(Request $request): RedirectResponse {
+    public function store(Request $request): RedirectResponse
+    {
         if ($request->has('email')) {
             $request->merge([
                 'email' => strtolower(trim((string) $request->input('email'))),
@@ -71,13 +73,14 @@ class RegisterController extends Controller {
     /**
      * Store a newly created student in storage
      */
-    private function storeStudent(Request $request): RedirectResponse {
+    private function storeStudent(Request $request): RedirectResponse
+    {
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'password' => 'required|string|min:8|max:30|confirmed',
             'email' => 'required|string|email|max:255|unique:users,email',
-            'birthdate' => 'required|date|before:' . now()->subYears(10)->format('Y-m-d') . '|after:' . now()->subYears(100)->format('Y-m-d'),
+            'birthdate' => 'required|date|before:'.now()->subYears(10)->format('Y-m-d').'|after:'.now()->subYears(100)->format('Y-m-d'),
             'class' => 'required|string|exists:school_classes,code',
         ]);
 
@@ -127,7 +130,8 @@ class RegisterController extends Controller {
     /**
      * Store a newly created teacher in storage
      */
-    private function storeTeacher(Request $request): RedirectResponse {
+    private function storeTeacher(Request $request): RedirectResponse
+    {
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -138,10 +142,10 @@ class RegisterController extends Controller {
         $emailDomain = explode('@', $request->email)[1] ?? '';
         $emailDomain = strtolower($emailDomain);
 
-        if (!$emailDomain || !in_array($emailDomain, self::AVAILABLE_EMAIL_DOMAINS)) {
+        if (! $emailDomain || ! in_array($emailDomain, self::AVAILABLE_EMAIL_DOMAINS)) {
             return redirect()
                 ->back()
-                ->withErrors(['email' => 'Indirizzo email non supportato. Per vedere la lista dei domini email supportati dalla piattaforma clicca <a class="font-bold" href="' . route('help', ['category' => 1, 'topic' => 11]) . '#topic11">qui</a>'])
+                ->withErrors(['email' => 'Indirizzo email non supportato. Per vedere la lista dei domini email supportati dalla piattaforma clicca <a class="font-bold" href="'.route('help', ['category' => 1, 'topic' => 11]).'#topic11">qui</a>'])
                 ->withInput();
         }
 
@@ -173,7 +177,8 @@ class RegisterController extends Controller {
         return redirect()->route('home');
     }
 
-    private function createUserSafely(array $data): User {
+    private function createUserSafely(array $data): User
+    {
         try {
             return User::create($data);
         } catch (QueryException $e) {
@@ -181,7 +186,7 @@ class RegisterController extends Controller {
             $driverCode = $e->errorInfo[1] ?? null;
 
             if ($sqlState === '23000' && $driverCode === 1062) {
-                throw \Illuminate\Validation\ValidationException::withMessages([
+                throw ValidationException::withMessages([
                     'email' => 'Esiste già un account registrato con questa email.',
                 ]);
             }

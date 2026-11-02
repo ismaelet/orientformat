@@ -1,6 +1,6 @@
 {% block form-body %}
 
-<?php if (!$done) { ?>
+<?php if (! $done) { ?>
 	<p class="py-4 txt-1rem txt-jus">
 		Inserisci qui sotto la nuova password desiderata:
 	</p>
@@ -20,7 +20,7 @@
 
 {% block form-footer %}
 
-<?php if (!$done) { ?>
+<?php if (! $done) { ?>
 	<button type="submit" name="submit" class="button">Reimposta la password</button>
 <?php } else { ?>
 	<a href="<?= route('login') ?>" class="button button--secondary">Torna al login</a>

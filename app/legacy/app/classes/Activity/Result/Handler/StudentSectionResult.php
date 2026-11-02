@@ -2,17 +2,20 @@
 
 namespace Legacy\Activity\Result\Handler;
 
-use \Legacy\Activity\Result\TestResult;
-use \Legacy\Activity\Section;
-use \Legacy\Activity\Test;
+use App\Legacy\LegacyDB;
+use App\Legacy\User;
+use App\Models\Results\User\CondensedSectionResult;
+use Illuminate\Support\Facades\Auth;
+use Legacy\Activity\Result\TestResult;
+use Legacy\Activity\Section;
+use Legacy\Activity\Test;
 use LegacyModels\Activities\Results\CondensedSectionResult as LegacyCondensedSectionResult;
 use LegacyModels\Activities\Section as SectionModel;
-use \App\Legacy\User;
-use App\Models\Results\User\CondensedSectionResult;
+use System\Traits\DynamicProperties;
 
-class StudentSectionResult {
-
-    use \System\Traits\DynamicProperties;
+class StudentSectionResult
+{
+    use DynamicProperties;
 
     private const MAIN_TEST_IDS = [
         1 => 31,
@@ -36,18 +39,22 @@ class StudentSectionResult {
     ];
 
     private $sectionId;
+
     private $studentId;
+
     private $section;
 
     private bool $ignoreStaticResult = false;
+
     private bool $persistCalculatedResult = true;
 
     /**
      * Magic methods
      */
-    function __construct(int $sectionId, $studentId = null) {
+    public function __construct(int $sectionId, $studentId = null)
+    {
         $this->sectionId = $sectionId;
-        $this->studentId = $studentId ?: \Illuminate\Support\Facades\Auth::id();
+        $this->studentId = $studentId ?: Auth::id();
         $this->section = (new Section($this->sectionId))->setStudentId($this->studentId);
     }
 
@@ -59,7 +66,8 @@ class StudentSectionResult {
         return $this;
     }
 
-    public function withoutPersistingResult(): self {
+    public function withoutPersistingResult(): self
+    {
         $this->persistCalculatedResult = false;
 
         return $this;
@@ -68,15 +76,17 @@ class StudentSectionResult {
     /**
      * Get methods
      */
-    private function getStaticResult() {
-        $row = \App\Legacy\LegacyDB::row('* FROM ' . LegacyCondensedSectionResult::table() . ' WHERE ' . LegacyCondensedSectionResult::linkedIndexName(User::class) . ' = ? AND ' . LegacyCondensedSectionResult::linkedIndexName(SectionModel::class) . ' = ?', [$this->studentId, $this->sectionId]);
+    private function getStaticResult()
+    {
+        $row = LegacyDB::row('* FROM '.LegacyCondensedSectionResult::table().' WHERE '.LegacyCondensedSectionResult::linkedIndexName(User::class).' = ? AND '.LegacyCondensedSectionResult::linkedIndexName(SectionModel::class).' = ?', [$this->studentId, $this->sectionId]);
 
         return $row ? $row : null;
     }
 
-    private function getResult() {
+    private function getResult()
+    {
         if (
-            !$this->ignoreStaticResult
+            ! $this->ignoreStaticResult
             && $this->staticResult
         ) {
             return $this->staticResult[LegacyCondensedSectionResult::resultIndex()];
@@ -145,7 +155,8 @@ class StudentSectionResult {
         }
     }
 
-    private function getDetailedResult() {
+    private function getDetailedResult()
+    {
         switch ($this->sectionId) {
             case 5:
             case 30:
@@ -233,7 +244,7 @@ class StudentSectionResult {
 
             if (
                 $legacyTest->completed
-                && !in_array(
+                && ! in_array(
                     $legacyTest->id,
                     $skipTestIds,
                     true,
@@ -258,20 +269,22 @@ class StudentSectionResult {
         return $results;
     }
 
-    private function calcAverage() {
+    private function calcAverage()
+    {
         $total = 0;
 
         foreach ($this->detailedResult as $result) {
             $total += $result['percentage'];
         }
 
-        return $this->detailedResult ? round($total / count($this->detailedResult)) . '%' : null;
+        return $this->detailedResult ? round($total / count($this->detailedResult)).'%' : null;
     }
 
     /**
      * Section specific
      */
-    private function calcStareAttenti() {
+    private function calcStareAttenti()
+    {
         if ($this->detailedResult) {
             $average = 0;
 
@@ -287,13 +300,14 @@ class StudentSectionResult {
                 $average += 100 - $this->detailedResult['Distraibilità']['percentage'];
             }
 
-            return round($average / count($this->detailedResult)) . '%';
+            return round($average / count($this->detailedResult)).'%';
         } else {
             return null;
         }
     }
 
-    private function calcDetailedStareAttenti() {
+    private function calcDetailedStareAttenti()
+    {
         $results = [];
         $selfEvalutation = (new StudentTestResult(16, $this->studentId));
         $hyper = (new StudentTestResult(21, $this->studentId));
@@ -325,7 +339,8 @@ class StudentSectionResult {
     /**
      * Speed
      */
-    public function getSpeed() {
+    public function getSpeed()
+    {
         if ($this->staticResult) {
             return $this->staticResult[LegacyCondensedSectionResult::speedIndex()];
         } else {
@@ -333,11 +348,13 @@ class StudentSectionResult {
         }
     }
 
-    private function calcSpeed() {
-        return \App\Legacy\LegacyDB::sum('speed FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ?' . ' AND ' . TestResult::TEST_INDEX . ' IN (SELECT ' . Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ?)', [$this->studentId, $this->sectionId]) ?: 0;
+    private function calcSpeed()
+    {
+        return LegacyDB::sum('speed FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ?'.' AND '.TestResult::TEST_INDEX.' IN (SELECT '.Test::INDEX.' FROM '.Test::TABLE.' WHERE '.Test::SECTION_INDEX.' = ?)', [$this->studentId, $this->sectionId]) ?: 0;
     }
 
-    public function getSpeedString() {
+    public function getSpeedString()
+    {
         $speedString = null;
 
         if ($this->speed >= 60) {
@@ -345,7 +362,7 @@ class StudentSectionResult {
 
             $speedString = $minutes;
             $speedString .= $minutes == 1 ? ' minuto' : ' minuti';
-        } else if ($this->speed) {
+        } elseif ($this->speed) {
             $seconds = $this->speed;
 
             $speedString = $seconds;

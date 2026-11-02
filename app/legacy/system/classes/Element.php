@@ -2,43 +2,62 @@
 
 namespace Legacy\System\Classes;
 
-class Element {
+class Element
+{
+    public $name;
 
-	public $name;
-	public $path = false;
-	public $setup = false;
-	public $styles = [];
-	public $scripts = [];
-	public $dependencies = [];
+    public $path = false;
 
-	//setup element
-	function __construct($name) {
+    public $setup = false;
 
-		$this->name = $name;
+    public $styles = [];
 
-		//get path
-		if (file_exists(__SERVER_ROOT__ . $path =  '/app/elements/' . $this->name)) $this->path = $path;
-		else if (file_exists(__SERVER_ROOT__ . $path = '/system/elements/' . $this->name)) $this->path = $path;
+    public $scripts = [];
 
-		//load the element only if found
-		if ($this->path) {
+    public $dependencies = [];
 
-			//get setup file
-			if (file_exists($file = __SERVER_ROOT__ . $this->path . '/setup.php')) $this->setup = $file;
+    // setup element
+    public function __construct($name)
+    {
 
-			//get styles
-			$files = glob(__SERVER_ROOT__ . $this->path . '/styles/*.css');
-			foreach ($files as $file) array_push($this->styles, $file);
+        $this->name = $name;
 
-			//get scripts
-			$files = glob(__SERVER_ROOT__ . $this->path . '/scripts/*.js');
-			foreach ($files as $file) array_push($this->scripts, $file);
+        // get path
+        if (file_exists(__SERVER_ROOT__.$path = '/app/elements/'.$this->name)) {
+            $this->path = $path;
+        } elseif (file_exists(__SERVER_ROOT__.$path = '/system/elements/'.$this->name)) {
+            $this->path = $path;
+        }
 
-			//load config file
-			if (file_exists($config = __SERVER_ROOT__ . $this->path . '/config.php')) include_once($config);
+        // load the element only if found
+        if ($this->path) {
 
-			//load dependencies
-			if (isset($elementConfig['dependencies'])) $this->dependencies = $elementConfig['dependencies'];
-		}
-	}
+            // get setup file
+            if (file_exists($file = __SERVER_ROOT__.$this->path.'/setup.php')) {
+                $this->setup = $file;
+            }
+
+            // get styles
+            $files = glob(__SERVER_ROOT__.$this->path.'/styles/*.css');
+            foreach ($files as $file) {
+                array_push($this->styles, $file);
+            }
+
+            // get scripts
+            $files = glob(__SERVER_ROOT__.$this->path.'/scripts/*.js');
+            foreach ($files as $file) {
+                array_push($this->scripts, $file);
+            }
+
+            // load config file
+            if (file_exists($config = __SERVER_ROOT__.$this->path.'/config.php')) {
+                include_once $config;
+            }
+
+            // load dependencies
+            if (isset($elementConfig['dependencies'])) {
+                $this->dependencies = $elementConfig['dependencies'];
+            }
+        }
+    }
 }

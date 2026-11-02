@@ -2,9 +2,10 @@
 
 namespace App\Helpers\Tests;
 
-class ImparareAvanzatoRaccontoBrutaliHelper extends ImparareBaleneHelper {
-
-    protected function text(): string {
+class ImparareAvanzatoRaccontoBrutaliHelper extends ImparareBaleneHelper
+{
+    protected function text(): string
+    {
         return "
 		Sono {! arrivati a cavallo :: marker4 !} {! da est :: marker0 !}. {! Alti, muscolosi, abbronzati, scuri di occhi e capelli :: marker2 !}. E senza compagne. I {! loro monili di metallo hanno colpito le donne del luogo :: marker4 !}. A essere colpiti dalle loro {! armi, fatte dello stesso materiale :: marker4 !}, sono stati invece gli uomini. Cosa sia successo dopo (siamo {! nel 3mila a.C. in Europa centrale :: marker0 !}) possiamo solo immaginarlo. Fatto sta che nel giro di poche generazioni, {! hanno osservato i genetisti, il Dna dei nuovi arrivati era già penetrato nel 50% della popolazione :: marker3 !}. {! E le sepolture, hanno notato gli archeologi, si sono riempite di cadaveri ammucchiati e crani forati. :: marker3 !}<br>
 		Così si presentarono gli Yamnaya, il terrore del Neolitico. {! Giovani guerrieri partiti in bande, a cavallo e sui carri :: marker4 !}, {! dalle steppe del Nord del Caucaso :: marker0 !} che sono la loro casa {! dal 3.300 a.C. :: marker0 !}: epoca e luogo della leggenda dell’Arca di Noè. Hanno spronato i loro cavalli sia {! in Europa verso est, sia verso la Mongolia :: marker0 !}. Le loro tombe sono eloquenti: i resti, prima dell'ultimo addio, venivano dipinti di rosso e affiancati da asce. Quando partivano, non portavano nulla con sé. Dove arrivavano, {! razziavano. Soprattutto le donne, sbarazzandosi senza troppi complimenti degli uomini :: marker4 !}.<br>
@@ -14,7 +15,8 @@ class ImparareAvanzatoRaccontoBrutaliHelper extends ImparareBaleneHelper {
 		Presto {! le donne locali iniziarono ad apprezzare gli Yamnaya più dei loro ex neolitici :: marker5 !}. In qualche modo - {! ci rivela sempre il Dna :: marker3 !} – riuscirono a convertirli alla monogamia. E a contatto con l'agricoltura, i truci razziatori impararono ad apprezzarne i frutti (con una passione speciale per la birra). {! Coltivarono, allevarono, diventarono artigiani della ceramica :: marker5 !} (attività non scontata per un popolo nomade). {! Costruirono una società definitivamente fondata sulla proprietà privata :: marker5 !}. Siamo solo nell’Età del Bronzo, ma i semi della nostra storia, nei suoi aspetti di {! civiltà e di violenza :: marker2 !}, sono stati definitivamente gettati.";
     }
 
-    protected function markerLabels(): array {
+    protected function markerLabels(): array
+    {
         return [
             'Quando e dove?',
             'Qual è	l’interrogativo?',

@@ -4,8 +4,8 @@ namespace App\Livewire\Admin\DataDownload;
 
 use Livewire\Component;
 
-class Details extends Component {
-
+class Details extends Component
+{
     /**
      * Property: School year
      */
@@ -24,11 +24,13 @@ class Details extends Component {
     /**
      * Lifecycle Hook: Render the component view
      */
-    public function render() {
+    public function render()
+    {
         return view('livewire.admin.data-download.details');
     }
 
-    public function downloadData() {
+    public function downloadData()
+    {
         return redirect()->route('admin.data-download.details', [
             'schoolYear' => $this->schoolYear,
             'schoolType' => $this->schoolType,

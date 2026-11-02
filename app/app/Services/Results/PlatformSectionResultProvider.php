@@ -3,16 +3,15 @@
 namespace App\Services\Results;
 
 use App\Models\Activities\Section;
-use App\Support\Graphs\SectionGraphDefinition;
 use App\Support\Graphs\GraphSections;
+use App\Support\Graphs\SectionGraphDefinition;
 use Illuminate\Support\Facades\Cache;
 
-class PlatformSectionResultProvider {
-
+class PlatformSectionResultProvider
+{
     public function __construct(
         private SectionGroupResultCalculator $resultCalculator,
-    ) {
-    }
+    ) {}
 
     /**
      * Get aggregated platform results for a section.
@@ -33,8 +32,7 @@ class PlatformSectionResultProvider {
         return Cache::remember(
             key: $this->cacheKeyForGraph($graph),
             ttl: now()->addMinutes(30),
-            callback: fn(): array =>
-            $this->resultCalculator
+            callback: fn (): array => $this->resultCalculator
                 ->forPlatformGraph($graph),
         );
     }

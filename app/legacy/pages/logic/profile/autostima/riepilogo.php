@@ -1,19 +1,20 @@
 <?php
 
-use \Legacy\Activity\Result\TestResult;
-use \Legacy\Activity\Test;
+use App\Legacy\LegacyDB;
+use Legacy\Activity\Result\TestResult;
+use Legacy\Activity\Test;
 
 $legacyTest = legacy_test();
 
 // calculate the total
-$tot = \App\Legacy\LegacyDB::sum('percentage FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' IN (SELECT id FROM ' . Test::TABLE . ' WHERE sectionId = ? AND id<?)', [watchedStudentId(), $legacyTest->section->id, $legacyTest->id]);
-$compN = \App\Legacy\LegacyDB::count(TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND completed = 1 AND testID IN (SELECT id FROM ' . Test::TABLE . ' WHERE sectionId = ? AND id < ?)', [watchedStudentId(), $legacyTest->section->id, $legacyTest->id]);
+$tot = LegacyDB::sum('percentage FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' IN (SELECT id FROM '.Test::TABLE.' WHERE sectionId = ? AND id<?)', [watchedStudentId(), $legacyTest->section->id, $legacyTest->id]);
+$compN = LegacyDB::count(TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND completed = 1 AND testID IN (SELECT id FROM '.Test::TABLE.' WHERE sectionId = ? AND id < ?)', [watchedStudentId(), $legacyTest->section->id, $legacyTest->id]);
 $tot = $compN ? round($tot / $compN, 0) : 0;
 
 // fetch the tests
 $legacyTests = [];
 $maxHeight = 0;
-$res = \App\Legacy\LegacyDB::select(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND step < ? ORDER BY step ASC', [$legacyTest->section->id, $legacyTest->step]);
+$res = LegacyDB::select(Test::INDEX.' FROM '.Test::TABLE.' WHERE '.Test::SECTION_INDEX.' = ? AND step < ? ORDER BY step ASC', [$legacyTest->section->id, $legacyTest->step]);
 
 while ($row = $res->fetch_assoc()) {
     $dependentTest = new Test($row[Test::INDEX]);

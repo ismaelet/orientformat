@@ -2,9 +2,11 @@
 
 namespace App\Helpers\Tests;
 
-class LeggereAvanzatoPoesiaAlbatroHelper extends ImparareBaleneHelper {
-    protected function text(): string {
-        return "Spesso, {! per divertirsi :: marker1 !}, gli {! uomini d’equipaggio :: marker0 !}<br>
+class LeggereAvanzatoPoesiaAlbatroHelper extends ImparareBaleneHelper
+{
+    protected function text(): string
+    {
+        return 'Spesso, {! per divertirsi :: marker1 !}, gli {! uomini d’equipaggio :: marker0 !}<br>
 		catturano degli {! albatri :: marker0 !}, {! grandi uccelli di mare :: marker3 !},<br>
 		che seguono, {! indolenti compagni di viaggio, :: marker3 !}<br>
 		la nave che scivola sugli abissi amari.<br><br>
@@ -22,10 +24,11 @@ class LeggereAvanzatoPoesiaAlbatroHelper extends ImparareBaleneHelper {
 		{! Il Poeta :: marker0 !} è come lui, {! principe delle nuvole :: marker3 !}<br>
 		che sfida la tempesta e se la ride dell’arciere;<br>
 		fra le grida di scherno esule in terra,<br>
-		le sue ali di {! gigante :: marker3 !} non gli permettono di camminare.";
+		le sue ali di {! gigante :: marker3 !} non gli permettono di camminare.';
     }
 
-    protected function markerLabels(): array {
+    protected function markerLabels(): array
+    {
         return [
             '<strong>Di chi</strong> si parla',
             '<strong>Perché</strong> i marinai  catturano gli albatri',

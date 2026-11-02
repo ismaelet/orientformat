@@ -31,23 +31,25 @@
 
                         <a href="<?= route('read', ['area-id' => $area['area']]) ?>" id="area<?= $area['area'] ?>" class="section inlb al-top ele4 ele3-768w ele2-480w pad-2 fa-center">
                             <div class="">
-                                <div class="img cont inlb" <?= background_image('/pages/assets/area/area' . $area['area'] . '.svg') ?>></div>
+                                <div class="img cont inlb" <?= background_image('/pages/assets/area/area'.$area['area'].'.svg') ?>></div>
                                 <p class="title txt-11rem txt-sbold mar-t-1 txt-line"><?= $area['name'] ?></p>
                             </div>
                         </a>
 
                     <?php } ?>
 
-                    <?php if (isset($area['sections'])) while ($legacySection = $area['sections']->fetch_assoc()) { ?>
+                    <?php if (isset($area['sections'])) {
+                        while ($legacySection = $area['sections']->fetch_assoc()) { ?>
 
                         <a href="<?= route('read', ['id' => $legacySection['id']]) ?>" id="section<?= $legacySection['id'] ?>" class="section inlb al-top ele4 ele3-768w ele2-480w pad-2 fa-center">
                             <div class="">
-                                <div class="img cont inlb" <?= background_image('/pages/assets/area/section' . $legacySection['id'] . '.svg') ?>></div>
+                                <div class="img cont inlb" <?= background_image('/pages/assets/area/section'.$legacySection['id'].'.svg') ?>></div>
                                 <p class="title txt-11rem txt-sbold mar-t-1 txt-line"><?= $legacySection['name'] ?></p>
                             </div>
                         </a>
 
-                    <?php } ?>
+                    <?php }
+                        } ?>
 
                 </div>
 

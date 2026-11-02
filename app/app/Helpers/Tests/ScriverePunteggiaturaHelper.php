@@ -4,8 +4,8 @@ namespace App\Helpers\Tests;
 
 use App\Interfaces\TestHelperInterface;
 
-class ScriverePunteggiaturaHelper implements TestHelperInterface {
-
+class ScriverePunteggiaturaHelper implements TestHelperInterface
+{
     /**
      * Property: the list of punctuation signs used in the test, mapped by their corresponding numbers
      */
@@ -44,10 +44,10 @@ class ScriverePunteggiaturaHelper implements TestHelperInterface {
     /**
      * Constructor: initializes the helper
      */
-    public function __construct() {
-    }
+    public function __construct() {}
 
-    public function sentences(): array {
+    public function sentences(): array
+    {
         $selectors = [];
 
         for ($i = 1; $i <= count($this->correctAnswers); $i++) {
@@ -56,7 +56,7 @@ class ScriverePunteggiaturaHelper implements TestHelperInterface {
             foreach ($this->punctuationSigns as $punctcuationKey => $punctcuation) {
                 $result = $results[$i - 1] ?? null;
                 $selected = $result && $result == $punctcuationKey;
-                $options[] = '<option value="' . $punctcuationKey . '" ' . ($selected ? 'selected' : null) . '>' . $punctcuation . '</option>';
+                $options[] = '<option value="'.$punctcuationKey.'" '.($selected ? 'selected' : null).'>'.$punctcuation.'</option>';
             }
 
             $selectors[] = implode(PHP_EOL, $options);
@@ -69,7 +69,7 @@ class ScriverePunteggiaturaHelper implements TestHelperInterface {
         foreach ($this->sentences as $sentence) {
             while (strpos($sentence, $placeholder) !== false) {
                 $selector = $selectors[$selectorKey];
-                $selectorHtml = '<select class="js-field" name="field[]">' . $selector . '</select>';
+                $selectorHtml = '<select class="js-field" name="field[]">'.$selector.'</select>';
                 $position = strpos($sentence, $placeholder);
                 $sentence = substr_replace($sentence, $selectorHtml, $position, strlen($placeholder));
 
@@ -82,7 +82,8 @@ class ScriverePunteggiaturaHelper implements TestHelperInterface {
         return $sentencesHtml;
     }
 
-    public function completedText(?array $results): array {
+    public function completedText(?array $results): array
+    {
         $sentencesHtml = [];
         $selectorKey = 0;
         $placeholder = '{{selector}}';
@@ -93,7 +94,7 @@ class ScriverePunteggiaturaHelper implements TestHelperInterface {
                 $correctResult = $answerId == $this->correctAnswers[$selectorKey];
                 $answer = $this->punctuationSigns[$answerId] ?? '-';
 
-                $selectorHtml = '<span class="answer ' . ($correctResult ? 'answer-right' : 'answer-wrong') . '">' . $answer . '</span>';
+                $selectorHtml = '<span class="answer '.($correctResult ? 'answer-right' : 'answer-wrong').'">'.$answer.'</span>';
                 $position = strpos($sentence, $placeholder);
                 $sentence = substr_replace($sentence, $selectorHtml, $position, strlen($placeholder));
 
@@ -109,7 +110,8 @@ class ScriverePunteggiaturaHelper implements TestHelperInterface {
     /**
      * Helper method: calculates the test result percentage based on the user's selections
      */
-    public function calculatePercentage(array $results): int {
+    public function calculatePercentage(array $results): int
+    {
         $correctAnswerCount = 0;
 
         foreach ($results as $answerKey => $answer) {
@@ -118,6 +120,6 @@ class ScriverePunteggiaturaHelper implements TestHelperInterface {
             }
         }
 
-        return ($correctAnswerCount / count($this->correctAnswers) * 100);
+        return $correctAnswerCount / count($this->correctAnswers) * 100;
     }
 }

@@ -3,11 +3,11 @@
 namespace Legacy\Http\Controllers\Activities\Tests;
 
 use Legacy\Http\Controllers\Activities\Test;
-
+use System\Traits\Singleton;
 
 /**
  * Specific test class
- * 
+ *
  * @property int $resultCount = 0 <inherited>
  * @property bool $buttonIsProgressive = false <inherited>
  * @property bool $skipEnabled = false <inherited>
@@ -15,78 +15,85 @@ use Legacy\Http\Controllers\Activities\Test;
  * @property array $parameters = [] <inherited>
  * @property array $arguments = []
  */
-class Test0 extends Test {
+class Test0 extends Test
+{
+    use Singleton;
 
-	use \System\Traits\Singleton;
+    // protected $skipEnabled = true;
+    // protected $retryEnabled = true;
+    // protected $buttonIsProgressive = true;
+    // protected $arguments = [];
 
-	// protected $skipEnabled = true;
-	// protected $retryEnabled = true;
-	// protected $buttonIsProgressive = true;
-	// protected $arguments = [];
+    /**
+     * Initialize
+     */
+    private function __construct()
+    {
+        // $this->arguments[''] = null;
+    }
 
-	/**
-	 * Initialize
-	 */
-	private function __construct() {
-		// $this->arguments[''] = null;
-	}
+    protected function init()
+    {
+        $this->view();
 
-	protected function init() {
-		$this->view();
+        return $this;
+    }
 
-		return $this;
-	}
+    /**
+     * Logic
+     */
+    protected function logic()
+    {
+        // $this->parameters['content'] = null;
+        // $this->resultCount = 0;
+    }
 
-	/**
-	 * Logic
-	 */
-	protected function logic() {
-		// $this->parameters['content'] = null;
-		// $this->resultCount = 0;
-	}
-
-	/**
-	 * Template
-	 */
-	protected function template() {
-		ob_start();
-?>
+    /**
+     * Template
+     */
+    protected function template()
+    {
+        ob_start();
+        ?>
 
 		<section></section>
 
 	<?php return ob_get_clean();
-	}
+    }
 
-	/**
-	 * Scripts
-	 */
-	protected function scripts() {
-		ob_start();
-	?>
+    /**
+     * Scripts
+     */
+    protected function scripts()
+    {
+        ob_start();
+        ?>
 
 		<script defer>
 		</script>
 
 	<?php return ob_get_clean();
-	}
+    }
 
-	/**
-	 * Style
-	 */
-	protected function style() {
-		ob_start();
-	?>
+    /**
+     * Style
+     */
+    protected function style()
+    {
+        ob_start();
+        ?>
 
 		<style>
 		</style>
 
 <?php return ob_get_clean();
-	}
+    }
 
-	/**
-	 * Post methods
-	 */
-	public function calcResult(array $results = [], int $count = null) {
-		return 100;
-	}
+    /**
+     * Post methods
+     */
+    public function calcResult(array $results = [], ?int $count = null)
+    {
+        return 100;
+    }
 }

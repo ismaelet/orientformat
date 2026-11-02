@@ -2,38 +2,42 @@
 
 namespace Legacy\System\Classes;
 
-class TranslationInterface {
+use System\Traits\Singleton;
 
-	use \System\Traits\Singleton;
+class TranslationInterface
+{
+    use Singleton;
 
-	private static $translations;
+    private static $translations;
 
-	/**
-	 * Magic methods
-	 */
-	private function __construct() {
-		$translations = [];
-		$language = $_SESSION['language'];
+    /**
+     * Magic methods
+     */
+    private function __construct()
+    {
+        $translations = [];
+        $language = $_SESSION['language'];
 
-		// get system translations
-		if (file_exists($file = server_path('/system/translations/' . $language . '.php'))) {
-			$translations = include_once($file);
-		}
+        // get system translations
+        if (file_exists($file = server_path('/system/translations/'.$language.'.php'))) {
+            $translations = include_once $file;
+        }
 
-		// get app translations
-		$appTranslationFiles = scan('/app/translations/' . $language, 'php');
+        // get app translations
+        $appTranslationFiles = scan('/app/translations/'.$language, 'php');
 
-		foreach ($appTranslationFiles as $appTranslationFile) {
-			$translations = array_merge($translations, include_once($appTranslationFile));
-		}
+        foreach ($appTranslationFiles as $appTranslationFile) {
+            $translations = array_merge($translations, include_once ($appTranslationFile));
+        }
 
-		self::$translations = $translations;
-	}
+        self::$translations = $translations;
+    }
 
-	/**
-	 * Misc methods
-	 */
-	public function translate(string $text = '') {
-		return self::$translations[$text] ?? $text;
-	}
+    /**
+     * Misc methods
+     */
+    public function translate(string $text = '')
+    {
+        return self::$translations[$text] ?? $text;
+    }
 }

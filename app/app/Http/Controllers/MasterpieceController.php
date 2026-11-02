@@ -8,12 +8,13 @@ use App\Models\User\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class MasterpieceController extends Controller {
-
+class MasterpieceController extends Controller
+{
     /**
      * Handle the masterpiece upload
      */
-    public function upload(Request $request) {
+    public function upload(Request $request)
+    {
         // Validate the uploaded file
         $request->validate([
             'title' => 'required|string|max:255',
@@ -47,7 +48,8 @@ class MasterpieceController extends Controller {
     /**
      * Handle the masterpiece download
      */
-    public function download(Student $student, Masterpiece $masterpiece) {
+    public function download(Student $student, Masterpiece $masterpiece)
+    {
         $title = str_replace(['/', '\\'], '-', $masterpiece->title);
 
         return FileHelper::download(

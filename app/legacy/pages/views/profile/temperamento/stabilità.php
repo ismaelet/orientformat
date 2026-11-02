@@ -1,1 +1,1 @@
-<?php include_once('temperamento.php') ?>
+<?php include_once 'temperamento.php';

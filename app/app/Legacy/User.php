@@ -4,60 +4,67 @@ namespace App\Legacy;
 
 /**
  * User class
- * 
+ *
  * @property string fullName
  * @property string invertedFullName
  * @property bool isAdmin
  * @property bool isManager
  */
-class User {
+class User
+{
+    use DatabaseObject;
 
-	use DatabaseObject;
+    public const TABLE = 'users';
 
-	public const TABLE = 'users';
-	public const INDEX = 'id';
-	public const GROUP_INDEX = 'groupId';
+    public const INDEX = 'id';
 
-	/**
-	 * Get methods
-	 */
-	private function getFullName() {
-		$fullName = [];
+    public const GROUP_INDEX = 'groupId';
 
-		if ($this->first_name) {
-			$fullName[] = $this->first_name;
-		}
+    /**
+     * Get methods
+     */
+    private function getFullName()
+    {
+        $fullName = [];
 
-		if ($this->last_name) {
-			$fullName[] = $this->last_name;
-		}
+        if ($this->first_name) {
+            $fullName[] = $this->first_name;
+        }
 
-		return implode(' ', $fullName);
-	}
+        if ($this->last_name) {
+            $fullName[] = $this->last_name;
+        }
 
-	private function getInvertedFullName() {
-		$fullName = [];
+        return implode(' ', $fullName);
+    }
 
-		if ($this->last_name) {
-			$fullName[] = $this->last_name;
-		}
+    private function getInvertedFullName()
+    {
+        $fullName = [];
 
-		if ($this->first_name) {
-			$fullName[] = $this->first_name;
-		}
+        if ($this->last_name) {
+            $fullName[] = $this->last_name;
+        }
 
-		return implode(' ', $fullName);
-	}
+        if ($this->first_name) {
+            $fullName[] = $this->first_name;
+        }
 
-	private function getIsAdmin() {
-		return (bool) $this->admin;
-	}
+        return implode(' ', $fullName);
+    }
 
-	private function getIsManager() {
-		return $this->admin == 2;
-	}
+    private function getIsAdmin()
+    {
+        return (bool) $this->admin;
+    }
 
-	private function getEmailIsUsername() {
-		return !$this->username || $this->username == $this->email;
-	}
+    private function getIsManager()
+    {
+        return $this->admin == 2;
+    }
+
+    private function getEmailIsUsername()
+    {
+        return ! $this->username || $this->username == $this->email;
+    }
 }

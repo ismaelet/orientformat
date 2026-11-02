@@ -30,7 +30,7 @@
 
 							<p class="score txt-15rem font-bold"><?= $result['score'] ?></p>
 
-							<?php if (!isSupervisor()) { ?>
+							<?php if (! isSupervisor()) { ?>
 
 								<?php if ($result['completed']) { ?>
 
@@ -44,7 +44,7 @@
 									</p>
 
 							<?php }
-							} ?>
+								} ?>
 
 						</div>
 					</div>

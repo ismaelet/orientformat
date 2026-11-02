@@ -24,7 +24,7 @@
 
             <p id="desc" class="txt-09rem mar-t-1">Qui puoi controllare i progressi dei tuoi studenti e amministrare la classe <span class="font-bold"><?= $grade->name ?></span></p>
 
-            <?php if (!$grade->ended && $grade->year == 20211) { ?>
+            <?php if (! $grade->ended && $grade->year == 20211) { ?>
                 <div class="button button--secondary br-red mar-t-2 txt-red lbox-open" data-tar="#survey-lbox">Clicca qui per attivare il questionario finale</div>
             <?php } ?>
 
@@ -40,7 +40,7 @@
                     <a href="<?= $legacySection['url'] ?>" id="section<?= $key ?>" class="section bgr-wht grid gap-o-1">
 
                         <div class="section-img">
-                            <div class="bgr cont rel pad-b-100" <?= background_image('section' . $key . '.svg') ?>></div>
+                            <div class="bgr cont rel pad-b-100" <?= background_image('section'.$key.'.svg') ?>></div>
                         </div>
 
                         <div class="section-data">

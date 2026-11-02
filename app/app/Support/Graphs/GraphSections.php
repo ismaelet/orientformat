@@ -3,11 +3,10 @@
 namespace App\Support\Graphs;
 
 use App\Models\Activities\Section;
-use App\Support\Graphs\SectionGraphDefinition;
 use RuntimeException;
 
-final class GraphSections {
-
+final class GraphSections
+{
     public const NORMALIZATION_RAW = 'raw';
 
     public const NORMALIZATION_TIER_PERCENTAGE = 'tier_percentage';
@@ -21,7 +20,7 @@ final class GraphSections {
     public const DEFAULT_GRAPH_KEY = 'default';
 
     public const DEFAULT_TIER_DESCRIPTION =
-    'Qui puoi vedere come si distribuiscono i risultati della classe in questa sezione, in base al livello raggiunto dagli studenti: basso, medio, alto e così via. Se, ad esempio, la colonna “alto” è più alta delle altre, significa che la maggior parte degli studenti ha ottenuto un buon punteggio in questa sezione. Passa il mouse sopra le colonne per vedere che percentuale degli studenti della classe è stata collocata nel livello scelto.';
+        'Qui puoi vedere come si distribuiscono i risultati della classe in questa sezione, in base al livello raggiunto dagli studenti: basso, medio, alto e così via. Se, ad esempio, la colonna “alto” è più alta delle altre, significa che la maggior parte degli studenti ha ottenuto un buon punteggio in questa sezione. Passa il mouse sopra le colonne per vedere che percentuale degli studenti della classe è stata collocata nel livello scelto.';
 
     public const CONDENSED_MAX = 'max';
 
@@ -30,13 +29,13 @@ final class GraphSections {
     public const CONDENSED_STUDENT_AVERAGE = 'student_average';
 
     public const DEFAULT_CLASS_DATASET_LABEL =
-    'Risultato della classe';
+        'Risultato della classe';
 
     public const DEFAULT_PLATFORM_DATASET_LABEL =
-    'Risultato della piattaforma';
+        'Risultato della piattaforma';
 
     public const DEFAULT_TIER_CLASS_DATASET_LABEL =
-    'Studenti della classe in questa fascia';
+        'Studenti della classe in questa fascia';
 
     public const DEFAULT_CONDENSED_LABEL = 'Risultato medio:';
 
@@ -109,68 +108,50 @@ final class GraphSections {
     private const DEFINITIONS = [
         1 => [
             'condensed_type' => self::CONDENSED_MAX,
-            'condensed_label' =>
-            'Stile prevalente nella classe:',
-            'condensed_label_plural' =>
-            'Stili prevalenti nella classe:',
+            'condensed_label' => 'Stile prevalente nella classe:',
+            'condensed_label_plural' => 'Stili prevalenti nella classe:',
         ],
         3 => [
-            'normalization' =>
-            self::NORMALIZATION_TIER_PERCENTAGE,
-            'condensed_label' =>
-            'Tasso di resilienza medio:',
+            'normalization' => self::NORMALIZATION_TIER_PERCENTAGE,
+            'condensed_label' => 'Tasso di resilienza medio:',
         ],
         4 => [
             'condensed_type' => self::CONDENSED_AVERAGE,
-            'condensed_label' =>
-            'Livello medio di autostima nella classe:',
+            'condensed_label' => 'Livello medio di autostima nella classe:',
         ],
         5 => [
-            'condensed_label' =>
-            'Risultato medio della classe:',
+            'condensed_label' => 'Risultato medio della classe:',
         ],
         6 => [
-            'condensed_label' =>
-            'Stile attributivo più marcato nella classe:',
-            'description' => "Qui puoi vedere a chi o cosa mediamente gli studenti della classe attribuiscono i propri successi e insuccessi."
+            'condensed_label' => 'Stile attributivo più marcato nella classe:',
+            'description' => 'Qui puoi vedere a chi o cosa mediamente gli studenti della classe attribuiscono i propri successi e insuccessi.',
         ],
         7 => [
-            'condensed_label' =>
-            'Area che suscita più interesse nella classe:',
+            'condensed_label' => 'Area che suscita più interesse nella classe:',
         ],
         8 => [
-            'condensed_label' =>
-            'Temperamento più pronunciato:',
+            'condensed_label' => 'Temperamento più pronunciato:',
         ],
         9 => [
-            'condensed_label' =>
-            'Risultato medio delle autovalutazioni:',
+            'condensed_label' => 'Risultato medio delle autovalutazioni:',
         ],
         10 => [
-            'normalization' =>
-            self::NORMALIZATION_TIER_PERCENTAGE,
-            'condensed_label' =>
-            'Risultato medio delle autovalutazioni e degli esercizi:',
+            'normalization' => self::NORMALIZATION_TIER_PERCENTAGE,
+            'condensed_label' => 'Risultato medio delle autovalutazioni e degli esercizi:',
         ],
         11 => [
-            'normalization' =>
-            self::NORMALIZATION_TIER_PERCENTAGE,
-            'condensed_label' =>
-            'Risultato medio delle attività:',
+            'normalization' => self::NORMALIZATION_TIER_PERCENTAGE,
+            'condensed_label' => 'Risultato medio delle attività:',
         ],
         12 => [
-            'normalization' =>
-            self::NORMALIZATION_TIER_PERCENTAGE,
-            'condensed_label' =>
-            'Risultato medio delle attività:',
+            'normalization' => self::NORMALIZATION_TIER_PERCENTAGE,
+            'condensed_label' => 'Risultato medio delle attività:',
         ],
         14 => [
-            'condensed_label' =>
-            'Risultato medio delle attività:',
+            'condensed_label' => 'Risultato medio delle attività:',
         ],
         24 => [
-            'condensed_label' =>
-            'Interesse prevalente:',
+            'condensed_label' => 'Interesse prevalente:',
         ],
         27 => [
             'condensed_label' => 'Emozione più pronunciata nella classe:',
@@ -188,29 +169,22 @@ final class GraphSections {
         ],
         29 => [
             'condensed_type' => self::CONDENSED_AVERAGE,
-            'condensed_label' =>
-            'Livello medio di autostima nella classe:',
+            'condensed_label' => 'Livello medio di autostima nella classe:',
             'description' => 'Qui puoi vedere come si distribuisce il livello di autostima della classe in aree diverse',
         ],
         30 => [
-            'condensed_label' =>
-            'Risultato medio delle attività:',
+            'condensed_label' => 'Risultato medio delle attività:',
         ],
         31 => [
-            'condensed_label' =>
-            'Risultato medio delle attività:',
+            'condensed_label' => 'Risultato medio delle attività:',
         ],
         32 => [
-            'normalization' =>
-            self::NORMALIZATION_TIER_PERCENTAGE,
-            'condensed_label' =>
-            'Risultato medio dell’autovalutazione e attività:',
+            'normalization' => self::NORMALIZATION_TIER_PERCENTAGE,
+            'condensed_label' => 'Risultato medio dell’autovalutazione e attività:',
         ],
         33 => [
-            'normalization' =>
-            self::NORMALIZATION_TIER_PERCENTAGE,
-            'condensed_label' =>
-            'Risultato medio delle attività:',
+            'normalization' => self::NORMALIZATION_TIER_PERCENTAGE,
+            'condensed_label' => 'Risultato medio delle attività:',
         ],
         34 => [
             'condensed_label' => 'Stile di scrittura più usato nella classe:',
@@ -221,34 +195,26 @@ final class GraphSections {
         ],
         36 => [
             'condensed_type' => self::CONDENSED_MAX,
-            'condensed_label' =>
-            'Stile prevalente nella classe:',
-            'condensed_label_plural' =>
-            'Stili prevalenti nella classe:',
+            'condensed_label' => 'Stile prevalente nella classe:',
+            'condensed_label_plural' => 'Stili prevalenti nella classe:',
         ],
         37 => [
             'condensed_type' => self::CONDENSED_MAX,
-            'condensed_label' =>
-            'Stile prevalente nella classe:',
-            'condensed_label_plural' =>
-            'Stili prevalenti nella classe:',
+            'condensed_label' => 'Stile prevalente nella classe:',
+            'condensed_label_plural' => 'Stili prevalenti nella classe:',
         ],
         39 => [
-            'condensed_label' =>
-            'Risultato medio delle attività:',
+            'condensed_label' => 'Risultato medio delle attività:',
         ],
         40 => [
-            'condensed_label' =>
-            'Risultato medio delle attività:',
+            'condensed_label' => 'Risultato medio delle attività:',
         ],
         41 => [
             'condensed_type' => self::CONDENSED_AVERAGE,
-            'condensed_label' =>
-            'Livello medio di autostima nella classe:',
+            'condensed_label' => 'Livello medio di autostima nella classe:',
         ],
         45 => [
-            'condensed_label' =>
-            'Interesse prevalente:',
+            'condensed_label' => 'Interesse prevalente:',
         ],
         58 => [
             'condensed_label' => 'Emozione più pronunciata nella classe:',
@@ -347,17 +313,13 @@ final class GraphSections {
                     161,
                 ],
 
-                'condensed_type' =>
-                self::CONDENSED_STUDENT_AVERAGE,
+                'condensed_type' => self::CONDENSED_STUDENT_AVERAGE,
 
-                'condensed_label' =>
-                'Risultato medio della classe:',
+                'condensed_label' => 'Risultato medio della classe:',
 
-                'description' =>
-                self::DEFAULT_TIER_DESCRIPTION,
+                'description' => self::DEFAULT_TIER_DESCRIPTION,
 
-                'school_class_dataset_label' =>
-                self::DEFAULT_TIER_CLASS_DATASET_LABEL,
+                'school_class_dataset_label' => self::DEFAULT_TIER_CLASS_DATASET_LABEL,
             ],
             [
                 'key' => self::PROBLEMI_GRUPPO_GRAPH_KEY,
@@ -366,23 +328,17 @@ final class GraphSections {
 
                 'title' => 'Risolvere problemi in gruppo',
 
-                'description' =>
-                'Qui puoi vedere quali ruoli sono più o meno adottati dagli studenti quando si trovano ad affrontare problemi in gruppo.',
+                'description' => 'Qui puoi vedere quali ruoli sono più o meno adottati dagli studenti quando si trovano ad affrontare problemi in gruppo.',
 
-                'school_class_dataset_label' =>
-                'Prevalenza del ruolo nella classe',
+                'school_class_dataset_label' => 'Prevalenza del ruolo nella classe',
 
-                'platform_dataset_label' =>
-                'Prevalenza del ruolo nella piattaforma',
+                'platform_dataset_label' => 'Prevalenza del ruolo nella piattaforma',
 
-                'condensed_type' =>
-                self::CONDENSED_MAX,
+                'condensed_type' => self::CONDENSED_MAX,
 
-                'condensed_label' =>
-                'Ruolo in cui si identificano più studenti della classe:',
+                'condensed_label' => 'Ruolo in cui si identificano più studenti della classe:',
 
-                'condensed_plural_label' =>
-                'Ruoli in cui si identificano più studenti della classe:',
+                'condensed_plural_label' => 'Ruoli in cui si identificano più studenti della classe:',
             ],
         ],
 
@@ -392,17 +348,13 @@ final class GraphSections {
                 'type' => self::TYPE_TIER,
                 'test_ids' => [3, 148, 169],
 
-                'condensed_type' =>
-                self::CONDENSED_STUDENT_AVERAGE,
+                'condensed_type' => self::CONDENSED_STUDENT_AVERAGE,
 
-                'condensed_label' =>
-                'Risultato medio della classe:',
+                'condensed_label' => 'Risultato medio della classe:',
 
-                'description' =>
-                self::DEFAULT_TIER_DESCRIPTION,
+                'description' => self::DEFAULT_TIER_DESCRIPTION,
 
-                'school_class_dataset_label' =>
-                self::DEFAULT_TIER_CLASS_DATASET_LABEL,
+                'school_class_dataset_label' => self::DEFAULT_TIER_CLASS_DATASET_LABEL,
             ],
             [
                 'key' => self::PROBLEMI_GRUPPO_GRAPH_KEY,
@@ -411,23 +363,17 @@ final class GraphSections {
 
                 'title' => 'Risolvere problemi in gruppo',
 
-                'description' =>
-                'Qui puoi vedere quali ruoli sono più o meno adottati dagli studenti quando si trovano ad affrontare problemi in gruppo.',
+                'description' => 'Qui puoi vedere quali ruoli sono più o meno adottati dagli studenti quando si trovano ad affrontare problemi in gruppo.',
 
-                'school_class_dataset_label' =>
-                'Prevalenza del ruolo nella classe',
+                'school_class_dataset_label' => 'Prevalenza del ruolo nella classe',
 
-                'platform_dataset_label' =>
-                'Prevalenza del ruolo nella piattaforma',
+                'platform_dataset_label' => 'Prevalenza del ruolo nella piattaforma',
 
-                'condensed_type' =>
-                self::CONDENSED_MAX,
+                'condensed_type' => self::CONDENSED_MAX,
 
-                'condensed_label' =>
-                'Ruolo in cui si identificano più studenti della classe:',
+                'condensed_label' => 'Ruolo in cui si identificano più studenti della classe:',
 
-                'condensed_plural_label' =>
-                'Ruoli in cui si identificano più studenti della classe:',
+                'condensed_plural_label' => 'Ruoli in cui si identificano più studenti della classe:',
             ],
         ],
 
@@ -437,17 +383,13 @@ final class GraphSections {
                 'type' => self::TYPE_TIER,
                 'test_ids' => [171],
 
-                'condensed_type' =>
-                self::CONDENSED_STUDENT_AVERAGE,
+                'condensed_type' => self::CONDENSED_STUDENT_AVERAGE,
 
-                'condensed_label' =>
-                'Risultato medio della classe:',
+                'condensed_label' => 'Risultato medio della classe:',
 
-                'description' =>
-                self::DEFAULT_TIER_DESCRIPTION,
+                'description' => self::DEFAULT_TIER_DESCRIPTION,
 
-                'school_class_dataset_label' =>
-                self::DEFAULT_TIER_CLASS_DATASET_LABEL,
+                'school_class_dataset_label' => self::DEFAULT_TIER_CLASS_DATASET_LABEL,
             ],
             [
                 'key' => 'scrivere-semplificato',
@@ -456,20 +398,15 @@ final class GraphSections {
 
                 'condensed_type' => self::CONDENSED_MAX,
 
-                'condensed_label' =>
-                'Stile di scrittura più usato nella classe:',
+                'condensed_label' => 'Stile di scrittura più usato nella classe:',
 
-                'condensed_plural_label' =>
-                'Stili di scrittura più usati nella classe:',
+                'condensed_plural_label' => 'Stili di scrittura più usati nella classe:',
 
-                'school_class_dataset_label' =>
-                'Percentuale di uso dello stile nella classe',
+                'school_class_dataset_label' => 'Percentuale di uso dello stile nella classe',
 
-                'platform_dataset_label' =>
-                'Percentuale di uso dello stile sulla piattaforma',
+                'platform_dataset_label' => 'Percentuale di uso dello stile sulla piattaforma',
 
-                'description' =>
-                'Qui puoi vedere quali stili di scrittura sono mediamente più o meno usati dagli alunni della classe.',
+                'description' => 'Qui puoi vedere quali stili di scrittura sono mediamente più o meno usati dagli alunni della classe.',
             ],
         ],
 
@@ -487,14 +424,11 @@ final class GraphSections {
                 'title' => 'Dipingere le emozioni',
                 'description' => 'Qui puoi vedere i risultati medi della classe nell\'attività “Dipingere le emozioni”, che misura la capacità di riconoscere le emozioni in base alle espressioni facciali dei pesonaggi dipinti da Caravaggio.',
 
-                'condensed_type' =>
-                self::CONDENSED_STUDENT_AVERAGE,
+                'condensed_type' => self::CONDENSED_STUDENT_AVERAGE,
 
-                'condensed_label' =>
-                'Risultato medio della classe:',
+                'condensed_label' => 'Risultato medio della classe:',
 
-                'school_class_dataset_label' =>
-                self::DEFAULT_TIER_CLASS_DATASET_LABEL,
+                'school_class_dataset_label' => self::DEFAULT_TIER_CLASS_DATASET_LABEL,
             ],
         ],
     ];
@@ -504,7 +438,8 @@ final class GraphSections {
      *
      * @return array<int>
      */
-    public static function ids(): array {
+    public static function ids(): array
+    {
         return array_values(
             array_unique(
                 array_merge(
@@ -517,7 +452,8 @@ final class GraphSections {
     /**
      * Return all section IDs for an aggregation type
      */
-    public static function idsForType(string $type): array {
+    public static function idsForType(string $type): array
+    {
         return self::SECTIONS[$type]
             ?? throw new RuntimeException(
                 "Unsupported graph aggregation type [{$type}].",
@@ -578,8 +514,7 @@ final class GraphSections {
         Section $section,
     ): array {
         return array_map(
-            static fn(array $config): SectionGraphDefinition =>
-            SectionGraphDefinition::fromArray(
+            static fn (array $config): SectionGraphDefinition => SectionGraphDefinition::fromArray(
                 section: $section,
                 config: $config,
             ),
@@ -619,7 +554,8 @@ final class GraphSections {
     /**
      * Return the aggregation type for a section ID
      */
-    public static function typeForSection(int $sectionId): string {
+    public static function typeForSection(int $sectionId): string
+    {
         foreach (self::SECTIONS as $type => $sectionIds) {
             if (in_array($sectionId, $sectionIds, true)) {
                 return $type;
@@ -634,7 +570,8 @@ final class GraphSections {
     /**
      * Check if a section is supported for graphing
      */
-    public static function supports(int $sectionId): bool {
+    public static function supports(int $sectionId): bool
+    {
         return in_array(
             $sectionId,
             self::ids(),

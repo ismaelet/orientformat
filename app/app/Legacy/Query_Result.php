@@ -2,25 +2,30 @@
 
 namespace App\Legacy;
 
-class Query_Result {
+class Query_Result
+{
+    public $res = false;
 
-	public $res = false;
-	public $num_rows = 0;
+    public $num_rows = 0;
 
-	function __construct($stmt) {
+    public function __construct($stmt)
+    {
 
-		$this->res = $stmt->res;
-		$this->num_rows = $stmt->num_rows;
-	}
+        $this->res = $stmt->res;
+        $this->num_rows = $stmt->num_rows;
+    }
 
-	//fetch rows
-	function fetch_assoc() {
+    // fetch rows
+    public function fetch_assoc()
+    {
 
-		if ($this->res) {
+        if ($this->res) {
 
-			$row = array_shift($this->res);
+            $row = array_shift($this->res);
 
-			return $row;
-		} else return false;
-	}
+            return $row;
+        } else {
+            return false;
+        }
+    }
 }

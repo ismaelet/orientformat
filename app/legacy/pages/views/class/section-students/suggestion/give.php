@@ -10,7 +10,10 @@
 	<section class="dashboard-panel">
 		<h3 class="dashboard-panel__title">Lista degli studenti</h3>
 
-		<?php if ($students->num_rows) { ?>
+		<?php
+use Legacy\UserSystem\Student;
+
+if ($students->num_rows) { ?>
 
 			<div class="dashboard-list" style="--columns: 3;">
 				<div class="dashboard-list__row dashboard-list__row--header">
@@ -20,14 +23,14 @@
 				</div>
 
 				<?php while ($student = $students->fetch_assoc()) {
-					$student = new \Legacy\UserSystem\Student($student['id']);
-				?>
+				    $student = new Student($student['id']);
+				    ?>
 
 					<form class="dashboard-list__row" id="row<?= $student->id ?>" method="POST" action="#row<?= $student->id ?>">
 						<p class="dashboard-list__field"><?= $student->InvertedfullName ?></p>
 						<p class="dashboard-list__field"><?= $student->advicesString ?: '-' ?></p>
 						<div class="dashboard-list__field dashboard-list__field--buttons">
-							<a href="<?= 'recap?studentId=' . $student->id ?>" class="dashboard-list__button">Scegli consiglio</a>
+							<a href="<?= 'recap?studentId='.$student->id ?>" class="dashboard-list__button">Scegli consiglio</a>
 						</div>
 					</form>
 

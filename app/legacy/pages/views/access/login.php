@@ -4,12 +4,12 @@
 
 	<!-- Images -->
 	<div class="images grid stack-content">
-		<div class="page-background page-background--login" <?= background_image($loginType . '-login-image') ?>>
+		<div class="page-background page-background--login" <?= background_image($loginType.'-login-image') ?>>
 			<p class="page-background__title">Login</p>
 		</div>
 
 		<!-- Register image -->
-		<div class="page-background page-background--register" <?= background_image($loginType . '-register-image') ?>>
+		<div class="page-background page-background--register" <?= background_image($loginType.'-register-image') ?>>
 			<p class="page-background__title">Registrati</p>
 		</div>
 	</div>

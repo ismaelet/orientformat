@@ -38,7 +38,7 @@
                                                     <span class=""><?= $result ?><br>
 
                                                 <?php }
-                                            }
+                                                }
                                         } else { ?>
 
                                                 <!-- Answer -->
@@ -61,7 +61,7 @@
                                                     <span class=""><?= $resultTitle ?></span>: <span class="font-bold"><?= $result ?></span><br>
 
                                                 <?php }
-                                            } else { ?>
+                                                } else { ?>
                                                 <?= $averages[$question->fullSlug] ?>
                                             <?php } ?>
                                         </p>
@@ -73,7 +73,7 @@
                     </div>
                 </div>
         <?php }
-        }
+            }
     } else { ?>
 
         <p class="txt-1rem fa-center font-bold pb-20">È possibile visualizzare i risultati di questio questionario solo per gli studenti che l'hanno completato dopo il 29/09/2022</p>

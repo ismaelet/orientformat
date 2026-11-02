@@ -1,10 +1,12 @@
 <?php
 
 use App\Helpers\Tests\RuotaHelper;
-use \Legacy\Activity\Test;
+use App\Legacy\ScriptLoader;
+use App\Legacy\StyleLoader;
+use Legacy\LogicManager\TestLogic;
 
-\App\Legacy\StyleLoader::add('profile/ruota/ruota', 'page');
-\App\Legacy\ScriptLoader::add('profile/ruota/ruota', 'page');
+StyleLoader::add('profile/ruota/ruota', 'page');
+ScriptLoader::add('profile/ruota/ruota', 'page');
 
 $legacyTest = legacy_test();
 $result = $legacyTest->completed ? $legacyTest->rawResults : null;
@@ -16,6 +18,6 @@ $stepNames = ['prima', 'seconda', 'terza'];
 
 $emotionCount = count($emotions);
 
-\Legacy\LogicManager\TestLogic::setParameterCount(1);
+TestLogic::setParameterCount(1);
 
 $results = RuotaHelper::selectedEmotions(request()->test, legacy_watched_student());

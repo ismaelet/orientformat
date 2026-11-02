@@ -1,195 +1,223 @@
 <?php
 
+use App\Legacy\LegacyDB;
+
 // Add to database
-function form_db_add($tbl, $fields) {
+function form_db_add($tbl, $fields)
+{
 
-	$inputs = [];
-	$values = [];
-	$names = $pholders = '';
+    $inputs = [];
+    $values = [];
+    $names = $pholders = '';
 
-	foreach ($fields as $field) {
-		if (isset($field[0])) {
-			foreach ($field as $input) $inputs[] = $input;
-		} else $inputs[] = $field;
-	}
+    foreach ($fields as $field) {
+        if (isset($field[0])) {
+            foreach ($field as $input) {
+                $inputs[] = $input;
+            }
+        } else {
+            $inputs[] = $field;
+        }
+    }
 
-	foreach ($inputs as $input) {
+    foreach ($inputs as $input) {
 
-		$type = $input['type'] ?? 'text';
+        $type = $input['type'] ?? 'text';
 
-		if ($type != 'file') {
+        if ($type != 'file') {
 
-			if (isset($input['name'])) {
+            if (isset($input['name'])) {
 
-				$name = $input['name'];
-				$value = isset($_POST[$name]) ? trim($_POST[$name]) : ($input['value'] ?? 0);
+                $name = $input['name'];
+                $value = isset($_POST[$name]) ? trim($_POST[$name]) : ($input['value'] ?? 0);
 
-				// parse
-				if (isset($input['parse'])) switch ($input['parse']) {
+                // parse
+                if (isset($input['parse'])) {
+                    switch ($input['parse']) {
 
-					case 'int':
-						$value = (int) $value;
-						break;
-				}
+                        case 'int':
+                            $value = (int) $value;
+                            break;
+                    }
+                }
 
-				// store values
-				$names .= $name . ', ';
-				$pholders .= '?, ';
-				$values[] = $value;
-			}
-		}
-	}
+                // store values
+                $names .= $name.', ';
+                $pholders .= '?, ';
+                $values[] = $value;
+            }
+        }
+    }
 
-	$names = rtrim($names, ', ');
-	$pholders = rtrim($pholders, ', ');
+    $names = rtrim($names, ', ');
+    $pholders = rtrim($pholders, ', ');
 
-	$query = $tbl . ' (' . $names . ') VALUES (' . $pholders . ')';
+    $query = $tbl.' ('.$names.') VALUES ('.$pholders.')';
 
-	return \App\Legacy\LegacyDB::add($query, $values);
+    return LegacyDB::add($query, $values);
 }
 
 // Edit database
-function form_db_update($tbl, $fields, $index, $indexVal) {
+function form_db_update($tbl, $fields, $index, $indexVal)
+{
 
-	$inputs = [];
-	$values = [];
-	$query = '';
+    $inputs = [];
+    $values = [];
+    $query = '';
 
-	foreach ($fields as $field) {
-		if (isset($field[0])) {
-			foreach ($field as $input) $inputs[] = $input;
-		} else $inputs[] = $field;
-	}
+    foreach ($fields as $field) {
+        if (isset($field[0])) {
+            foreach ($field as $input) {
+                $inputs[] = $input;
+            }
+        } else {
+            $inputs[] = $field;
+        }
+    }
 
-	foreach ($inputs as $input) {
+    foreach ($inputs as $input) {
 
-		if (isset($input['name'])) {
+        if (isset($input['name'])) {
 
-			$name = $input['name'];
-			$value = isset($_POST[$name]) ? trim($_POST[$name]) : ($input['value'] ?? 0);
+            $name = $input['name'];
+            $value = isset($_POST[$name]) ? trim($_POST[$name]) : ($input['value'] ?? 0);
 
-			// parse
-			if (isset($input['parse'])) switch ($input['parse']) {
+            // parse
+            if (isset($input['parse'])) {
+                switch ($input['parse']) {
 
-				case 'int':
-					$value = (int) $value;
-					break;
-			}
+                    case 'int':
+                        $value = (int) $value;
+                        break;
+                }
+            }
 
-			// store values
-			$values[] = $value;
-			$query .= $name . '=?, ';
-		}
-	}
+            // store values
+            $values[] = $value;
+            $query .= $name.'=?, ';
+        }
+    }
 
-	$query = rtrim($query, ', ');
+    $query = rtrim($query, ', ');
 
-	$query = $tbl . ' SET ' . $query . ' WHERE ' . $index . '=?';
-	$values[] = $indexVal;
+    $query = $tbl.' SET '.$query.' WHERE '.$index.'=?';
+    $values[] = $indexVal;
 
-	\App\Legacy\LegacyDB::update($query, $values);
+    LegacyDB::update($query, $values);
 }
 
 // Generate form
-function generate_form($fields, $data = false, $error = false, $done = false) {
+function generate_form($fields, $data = false, $error = false, $done = false)
+{
 
-	foreach ($fields as $field) {
+    foreach ($fields as $field) {
 
-		echo '<div class="form-field">';
+        echo '<div class="form-field">';
 
-		if (isset($field[0]))
-			foreach ($field as $input) generate_input($input, $data, $error, $done);
+        if (isset($field[0])) {
+            foreach ($field as $input) {
+                generate_input($input, $data, $error, $done);
+            }
+        } else {
+            generate_input($field, $data, $error, $done);
+        }
 
-		else
-			generate_input($field, $data, $error, $done);
-
-		echo '</div>';
-	}
+        echo '</div>';
+    }
 }
 
-function generate_input($input, $data, $error, $done) {
+function generate_input($input, $data, $error, $done)
+{
 
-	// basic data
-	$type = $input['type'] ?? 'text';
-	$name = $input['name'] ?? false;
-	$styling = $input['styling'] ?? false;
+    // basic data
+    $type = $input['type'] ?? 'text';
+    $name = $input['name'] ?? false;
+    $styling = $input['styling'] ?? false;
 
-	// calculate value
-	$value = false;
+    // calculate value
+    $value = false;
 
-	// if value is explicit
-	if (isset($input['value'])) $value = $input['value'];
+    // if value is explicit
+    if (isset($input['value'])) {
+        $value = $input['value'];
+    }
 
-	// else get from POST, if set
-	else if ($name && isset($_POST[$name])) $value = $_POST[$name];
+    // else get from POST, if set
+    elseif ($name && isset($_POST[$name])) {
+        $value = $_POST[$name];
+    }
 
-	// else get from MySQL result, if set
-	else if ($name && isset($data[$name]) && $type != 'cbx') $value = $data[$name];
+    // else get from MySQL result, if set
+    elseif ($name && isset($data[$name]) && $type != 'cbx') {
+        $value = $data[$name];
+    }
 
-	// else if it's a checkbox
-	else if ($type == 'cbx') $value = 1;
+    // else if it's a checkbox
+    elseif ($type == 'cbx') {
+        $value = 1;
+    }
 
-	// styling
-	if ($styling == 'fancy') { ?>
+    // styling
+    if ($styling == 'fancy') { ?>
 
-		<div class="fancy-input <?= isset($input['size']) ? 'fancy-input_size' . $input['size'] : '' ?>">
+		<div class="fancy-input <?= isset($input['size']) ? 'fancy-input_size'.$input['size'] : '' ?>">
 
 			<?php }
 
-		// start to generate
-		// label
-		switch ($type) {
+    // start to generate
+    // label
+    switch ($type) {
 
-			case 'lbl': ?>
+        case 'lbl': ?>
 
 				<p class="form-lbl"><?= $input['text'] ?>:</p>
 
 			<?php break;
 
-			case 'info': ?>
+        case 'info': ?>
 
 				<p class="form-text"><?= $input['text'] ?></p>
 
 				<?php break;
 
-			case 'done':
+        case 'done':
 
-				if ($type == 'done' && $done) { ?>
+            if ($type == 'done' && $done) { ?>
 
 					<p class="confirmation-message"><?= $input['text'] ?></p>
 
 				<?php }
-				break;
+            break;
 
-			case 'error':
+        case 'error':
 
-				if ($input['error'] == $error) { ?>
+            if ($input['error'] == $error) { ?>
 
 					<p class="error-warning"><?= $input['text'] ?></p>
 
 				<?php }
-				break;
+            break;
 
-			case 'file': ?>
+        case 'file': ?>
 
 				<input type="file" class="inp file" name="<?= $name ?>" <?= isset($input['multiple']) ? 'multiple' : '' ?> <?= isset($input['required']) ? 'required' : '' ?>>
 
 			<?php break;
 
-			case 'select':
+        case 'select':
 
-				if (isset($input['query'])) {
-					$selectOptions = \App\Legacy\LegacyDB::select($input['query'])->res;
-					$fieldId = $input['field-name'];
-					$fieldShow = $input['field-show'];
-				} else if (isset($input['array'])) {
-					$selectOptions = $input['array'];
-					$fieldId = 0;
-					$fieldShow = 1;
-				}
-			?>
+            if (isset($input['query'])) {
+                $selectOptions = LegacyDB::select($input['query'])->res;
+                $fieldId = $input['field-name'];
+                $fieldShow = $input['field-show'];
+            } elseif (isset($input['array'])) {
+                $selectOptions = $input['array'];
+                $fieldId = 0;
+                $fieldShow = 1;
+            }
+            ?>
 
-				<select class="sel <?= isset($input['affect']) ? 'affect' : '' ?>" <?= isset($input['affect']) ? 'data-affect="' . $input['affect'] . '"' : '' ?> name="<?= $name ?>" <?= !empty($input['disabled']) ? 'disabled' : '' ?>>
+				<select class="sel <?= isset($input['affect']) ? 'affect' : '' ?>" <?= isset($input['affect']) ? 'data-affect="'.$input['affect'].'"' : '' ?> name="<?= $name ?>" <?= ! empty($input['disabled']) ? 'disabled' : '' ?>>
 
 					<?php if (isset($input['empty'])) { ?>
 
@@ -198,7 +226,9 @@ function generate_input($input, $data, $error, $done) {
 					<?php }
 					foreach ($selectOptions as $option) { ?>
 
-						<option value="<?= $option[$fieldId] ?>" <?php if ($option[$fieldId] == $value) echo 'selected' ?>>
+						<option value="<?= $option[$fieldId] ?>" <?php if ($option[$fieldId] == $value) {
+						    echo 'selected';
+						} ?>>
 							<?= $option[$fieldShow] ?>
 						</option>
 
@@ -208,7 +238,7 @@ function generate_input($input, $data, $error, $done) {
 
 			<?php break;
 
-			case 'select-dependent': ?>
+        case 'select-dependent': ?>
 
 				<select class="sel" data-tbl="<?= $input['query-tbl'] ?>" data-filter="<?= $input['query-filter'] ?>" data-id="<?= $input['field-name'] ?>" data-show="<?= $input['field-show'] ?>" data-root="<?= CLIENT_ROOT ?>" name="<?= $name ?>" disabled>
 					<option>-</option>
@@ -216,23 +246,22 @@ function generate_input($input, $data, $error, $done) {
 
 			<?php break;
 
-			case 'textarea': ?>
+        case 'textarea': ?>
 
-				<textarea class="textarea" name="<?= $name ?>" placeholder="<?= $input['text'] ?? '' ?>" <?= isset($input['maxlength']) ? 'maxlength="' . $input['maxlength'] . '"' : '' ?>><?=
-																																															$value ?: ''
-																																															?></textarea>
+				<textarea class="textarea" name="<?= $name ?>" placeholder="<?= $input['text'] ?? '' ?>" <?= isset($input['maxlength']) ? 'maxlength="'.$input['maxlength'].'"' : '' ?>><?= $value ?: ''
+            ?></textarea>
 
 			<?php break;
 
-			case 'cbx': ?>
+        case 'cbx': ?>
 
 				<label class="
 					cbx
 					<?= $input['custom-class'] ?? '' ?>
-					<?= isset($input['size']) ? 'inp-size' . $input['size'] : '' ?>
+					<?= isset($input['size']) ? 'inp-size'.$input['size'] : '' ?>
 				">
 
-					<input type="checkbox" name="<?= $name ?>" value="<?= $value ?>" <?= !empty($input['checked']) || ($name && isset($_POST[$name])) || ($name && isset($data[$name]) && $data[$name] == $value) ? 'checked' : '' ?> <?= isset($input['required']) ? 'required' : '' ?>>
+					<input type="checkbox" name="<?= $name ?>" value="<?= $value ?>" <?= ! empty($input['checked']) || ($name && isset($_POST[$name])) || ($name && isset($data[$name]) && $data[$name] == $value) ? 'checked' : '' ?> <?= isset($input['required']) ? 'required' : '' ?>>
 
 					<div class="icon"></div>
 
@@ -242,14 +271,14 @@ function generate_input($input, $data, $error, $done) {
 
 			<?php break;
 
-			case 'radio': ?>
+        case 'radio': ?>
 
 				<label class="checkbox
 					<?= $input['custom-class'] ?? '' ?>
-					<?= isset($input['size']) ? 'inp-size' . $input['size'] : '' ?>
+					<?= isset($input['size']) ? 'inp-size'.$input['size'] : '' ?>
 				">
 
-					<input type="radio" name="<?= $name ?>" value="<?= $value ?>" <?= !empty($input['checked']) || ($name && isset($_POST[$name])) || ($name && isset($data[$name]) && $data[$name] == $value) ? 'checked' : '' ?> <?= isset($input['required']) ? 'required' : '' ?>>
+					<input type="radio" name="<?= $name ?>" value="<?= $value ?>" <?= ! empty($input['checked']) || ($name && isset($_POST[$name])) || ($name && isset($data[$name]) && $data[$name] == $value) ? 'checked' : '' ?> <?= isset($input['required']) ? 'required' : '' ?>>
 
 					<span></span>
 
@@ -259,7 +288,7 @@ function generate_input($input, $data, $error, $done) {
 
 			<?php break;
 
-			case 'btn': ?>
+        case 'btn': ?>
 
 				<button type="submit" class="<?= $input['btn-type'] ?? 'pbtn' ?> <?= isset($input['load']) ? 'file-submit' : '' ?>" name="<?= $name ?: 'submit' ?>">
 					<?= $input['text'] ?? '' ?>
@@ -275,26 +304,29 @@ function generate_input($input, $data, $error, $done) {
 
 			<?php break;
 
-			default: ?>
+        default: ?>
 
 				<input type="<?= $type ?>" class="
 					inp
 					<?= $input['custom-class'] ?? '' ?>
-					<?= isset($input['size']) ? 'inp-size' . $input['size'] : '' ?>
-				" name="<?= $name ?>" value="<?= $value ?>" placeholder="<?= $styling ? '' : ($input['text'] ?? '') ?>" <?= isset($input['minlength']) ? 'minlength="' . $input['minlength'] . '"' : '' ?> <?= isset($input['maxlength']) ? 'maxlength="' . $input['maxlength'] . '"' : '' ?> <?= isset($input['min']) ? 'min="' . $input['min'] . '"' : '' ?> <?= isset($input['max']) ? 'max="' . $input['max'] . '"' : '' ?> <?= isset($input['step']) ? 'step="' . $input['step'] . '"' : '' ?> <?= isset($input['required']) ? 'required' : '' ?> <?php
-																																																																																																																																						if (isset($input['data']))
-																																																																																																																																							foreach ($input['data'] as $dataName => $dataValue) echo 'data-' . $dataName . '="' . $dataValue . '" '
-																																																																																																																																						?>>
+					<?= isset($input['size']) ? 'inp-size'.$input['size'] : '' ?>
+				" name="<?= $name ?>" value="<?= $value ?>" placeholder="<?= $styling ? '' : ($input['text'] ?? '') ?>" <?= isset($input['minlength']) ? 'minlength="'.$input['minlength'].'"' : '' ?> <?= isset($input['maxlength']) ? 'maxlength="'.$input['maxlength'].'"' : '' ?> <?= isset($input['min']) ? 'min="'.$input['min'].'"' : '' ?> <?= isset($input['max']) ? 'max="'.$input['max'].'"' : '' ?> <?= isset($input['step']) ? 'step="'.$input['step'].'"' : '' ?> <?= isset($input['required']) ? 'required' : '' ?> <?php
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    if (isset($input['data'])) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        foreach ($input['data'] as $dataName => $dataValue) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            echo 'data-'.$dataName.'="'.$dataValue.'" ';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }
+            ?>>
 
 			<?php break;
-		}
+    }
 
-		// styling closing tag
-		if ($styling == 'fancy') { ?>
+    // styling closing tag
+    if ($styling == 'fancy') { ?>
 
 			<p class="fancy-input-lbl"><?= $input['text'] ?></p>
 
 		</div>
 
 <?php }
-	}
+    }

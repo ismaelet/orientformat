@@ -210,7 +210,7 @@
 
 					<div class="result__content">
 						<h3 class="result__title">Area d'interesse principale, indicata nella sezione <span class="italic font-normal">"Motivazione e aree di interesse"</span>:</h3>
-						<p class="answer mt-1"><span class="font-semibold"><?= $results['motivazione'] === null ? '<span class="font-normal">non ancora completata</span>' : '<span class="font-normal">Area principale:</span> ' . $results['motivazione'] ?></span></p>
+						<p class="answer mt-1"><span class="font-semibold"><?= $results['motivazione'] === null ? '<span class="font-normal">non ancora completata</span>' : '<span class="font-normal">Area principale:</span> '.$results['motivazione'] ?></span></p>
 					</div>
 				</div>
 				<div class="result">
@@ -220,7 +220,7 @@
 
 					<div class="result__content">
 						<h3 class="result__title">Area d'interesse principale, indicata nella sezione <span class="italic font-normal">"I miei interessi"</span>:</h3>
-						<p class="answer mt-1"><span class="font-semibold"><?= $results['interessi'] === null ? '<span class="font-normal">non ancora completata</span>' : '<span class="font-normal">Area principale:</span> ' . $results['interessi'] ?></span></p>
+						<p class="answer mt-1"><span class="font-semibold"><?= $results['interessi'] === null ? '<span class="font-normal">non ancora completata</span>' : '<span class="font-normal">Area principale:</span> '.$results['interessi'] ?></span></p>
 					</div>
 				</div>
 			</div>

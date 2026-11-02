@@ -2,78 +2,86 @@
 
 namespace App\Legacy;
 
-class LegacyTestController {
+class LegacyTestController
+{
+    protected $template = '';
 
-	protected $template = '';
-	protected $inlineStyles = [];
-	protected $inlineScripts = [];
-	protected $parameters = [];
+    protected $inlineStyles = [];
 
-	/**
-	 * Initilize
-	 */
-	public function index() {
-		// preload the scripts
-		foreach ($this->inlineScripts as $script) {
-			\App\Legacy\ScriptLoader::add($script, 'inline');
-		}
+    protected $inlineScripts = [];
 
-		// preload the styles
-		foreach ($this->inlineStyles as $style) {
-			\App\Legacy\StyleLoader::add($style, 'inline');
-		}
+    protected $parameters = [];
 
-		// store the parameters
-		foreach ($this->parameters as $parameter => $parameterValue) {
-			\App\Legacy\LegacyView::getInstance()->set($parameter, $parameterValue);
-		}
-	}
+    /**
+     * Initilize
+     */
+    public function index()
+    {
+        // preload the scripts
+        foreach ($this->inlineScripts as $script) {
+            ScriptLoader::add($script, 'inline');
+        }
 
-	/**
-	 * Render the template
-	 */
-	public function render() {
-		return $this->template;
-	}
+        // preload the styles
+        foreach ($this->inlineStyles as $style) {
+            StyleLoader::add($style, 'inline');
+        }
 
-	/**
-	 * Store the test template
-	 */
-	protected function storeTemplate($html) {
-		$this->template = $html;
+        // store the parameters
+        foreach ($this->parameters as $parameter => $parameterValue) {
+            LegacyView::getInstance()->set($parameter, $parameterValue);
+        }
+    }
 
-		return $this;
-	}
+    /**
+     * Render the template
+     */
+    public function render()
+    {
+        return $this->template;
+    }
 
-	/**
-	 * Store the test inline scripts
-	 */
-	protected function storeInlineScripts(array $scripts = []) {
-		foreach ($scripts as $script) {
-			array_push($this->inlineScripts, $script);
-		}
+    /**
+     * Store the test template
+     */
+    protected function storeTemplate($html)
+    {
+        $this->template = $html;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * Store the test inline styles
-	 */
-	protected function storeInlineStyles(array $styles = []) {
-		foreach ($styles as $style) {
-			array_push($this->inlineStyles, $style);
-		}
+    /**
+     * Store the test inline scripts
+     */
+    protected function storeInlineScripts(array $scripts = [])
+    {
+        foreach ($scripts as $script) {
+            array_push($this->inlineScripts, $script);
+        }
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * Store the parameters
-	 */
-	protected function storeParameters(array $parameters = []) {
-		$this->parameters = array_merge($this->parameters, $parameters);
+    /**
+     * Store the test inline styles
+     */
+    protected function storeInlineStyles(array $styles = [])
+    {
+        foreach ($styles as $style) {
+            array_push($this->inlineStyles, $style);
+        }
 
+        return $this;
+    }
 
-		return $this;
-	}
+    /**
+     * Store the parameters
+     */
+    protected function storeParameters(array $parameters = [])
+    {
+        $this->parameters = array_merge($this->parameters, $parameters);
+
+        return $this;
+    }
 }

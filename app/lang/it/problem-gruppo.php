@@ -1,42 +1,42 @@
 <?php
 
 return [
-    "completed-description" => "In evidenza c’è il ruolo (o i ruoli) per il quale sei più portato, come emerge dal questionario. Tuttavia un buon risolutore di problemi dovrebbe possedere tutte le caratteristiche dei diversi ruoli. Osservando i descrittori che registrano il punteggio più basso, scoprirai dove puoi intervenire per migliorare le tue prestazioni.",
+    'completed-description' => 'In evidenza c’è il ruolo (o i ruoli) per il quale sei più portato, come emerge dal questionario. Tuttavia un buon risolutore di problemi dovrebbe possedere tutte le caratteristiche dei diversi ruoli. Osservando i descrittori che registrano il punteggio più basso, scoprirai dove puoi intervenire per migliorare le tue prestazioni.',
 
-    "main-role-singular" => "Ruolo Principale",
-    "main-role-plural" => "Ruoli Principali",
-    "other-roles-singular" => "Ruolo Secondario",
-    "other-roles-plural" => "Ruoli Secondari",
+    'main-role-singular' => 'Ruolo Principale',
+    'main-role-plural' => 'Ruoli Principali',
+    'other-roles-singular' => 'Ruolo Secondario',
+    'other-roles-plural' => 'Ruoli Secondari',
 
-    "role-1-title" => "Stratega",
-    "role-2-title" => "Esploratore",
-    "role-3-title" => "Critico",
-    "role-4-title" => "Saggio",
-    "role-1-title-article" => "Lo Stratega",
-    "role-2-title-article" => "L'Esploratore",
-    "role-3-title-article" => "Il Critico",
-    "role-4-title-article" => "Il Saggio",
-    "role-1-description" => "Lo Stratega prende le numerose opzioni e informazioni fornite dall'Esploratore e le trasforma in un piano d'azione chiaro, strutturato e misurabile. Il suo ruolo consiste nel portare ordine, logica e un approccio graduale ai problemi, garantendo che gli interventi non siano emotivi, ma calcolati per massimizzare i possibili risultati.",
-    "role-2-description" => "Il ruolo dell'Esploratore è quello dell’apripista: si concentra sulla fase di diagnosi e ideazione del problema, raccoglie il maggior numero di informazioni, formula diverse ipotesi e propone soluzioni fresche e mirate che tengano conto di tutti gli aspetti del problema. Lascerà poi al Critico e allo Stratega il compito di valutare e attuare l'opzione migliore.",
-    "role-3-description" => "Ha il ruolo essenziale di valutatore della realtà e \"avvocato del diavolo\". La sua missione è sottoporre a un rigoroso esame logico le idee innovative dell'Esploratore e i piani strutturati dello Stratega, per garantirne l'efficacia e la sostenibilità a lungo termine. Evita che il gruppo ceda troppo all’ottimismo dell'Esploratore o alla rigidità procedurale dello Stratega, ma agisca basandosi sulla verità, sulla prudenza e sulla previsione realistica dei rischi. Il suo ruolo non è bloccare le idee, ma rafforzarle, eliminando le illusioni e le scelte affrettate.",
-    "role-4-description" => "Il Saggio agisce come mediatore e catalizzatore emotivo e mediatore decisionale, garantendo che il gruppo non si paralizzi a causa del conflitto tra la creatività dell’Esploratore e dello Stratega e il realismo del Critico. Il Saggio si accorge subito se c'è qualcosa che non va nel gruppo e propone di discuterne, e può mettersi nei panni degli altri. Il suo intervento mira a riconoscere il valore di ogni contributo e a ricostruire la coesione del gruppo.",
+    'role-1-title' => 'Stratega',
+    'role-2-title' => 'Esploratore',
+    'role-3-title' => 'Critico',
+    'role-4-title' => 'Saggio',
+    'role-1-title-article' => 'Lo Stratega',
+    'role-2-title-article' => "L'Esploratore",
+    'role-3-title-article' => 'Il Critico',
+    'role-4-title-article' => 'Il Saggio',
+    'role-1-description' => "Lo Stratega prende le numerose opzioni e informazioni fornite dall'Esploratore e le trasforma in un piano d'azione chiaro, strutturato e misurabile. Il suo ruolo consiste nel portare ordine, logica e un approccio graduale ai problemi, garantendo che gli interventi non siano emotivi, ma calcolati per massimizzare i possibili risultati.",
+    'role-2-description' => "Il ruolo dell'Esploratore è quello dell’apripista: si concentra sulla fase di diagnosi e ideazione del problema, raccoglie il maggior numero di informazioni, formula diverse ipotesi e propone soluzioni fresche e mirate che tengano conto di tutti gli aspetti del problema. Lascerà poi al Critico e allo Stratega il compito di valutare e attuare l'opzione migliore.",
+    'role-3-description' => "Ha il ruolo essenziale di valutatore della realtà e \"avvocato del diavolo\". La sua missione è sottoporre a un rigoroso esame logico le idee innovative dell'Esploratore e i piani strutturati dello Stratega, per garantirne l'efficacia e la sostenibilità a lungo termine. Evita che il gruppo ceda troppo all’ottimismo dell'Esploratore o alla rigidità procedurale dello Stratega, ma agisca basandosi sulla verità, sulla prudenza e sulla previsione realistica dei rischi. Il suo ruolo non è bloccare le idee, ma rafforzarle, eliminando le illusioni e le scelte affrettate.",
+    'role-4-description' => "Il Saggio agisce come mediatore e catalizzatore emotivo e mediatore decisionale, garantendo che il gruppo non si paralizzi a causa del conflitto tra la creatività dell’Esploratore e dello Stratega e il realismo del Critico. Il Saggio si accorge subito se c'è qualcosa che non va nel gruppo e propone di discuterne, e può mettersi nei panni degli altri. Il suo intervento mira a riconoscere il valore di ogni contributo e a ricostruire la coesione del gruppo.",
 
-    "example-title" => "Problema: A breve ci si deve iscrivere ad una scuola superiore, ma c’è un tuo compagno che non sa ancora che cosa decidere. Come aiutarlo?<br><br>Esempio di soluzione",
-    "example-title-highschool" => "Problema: Una compagna di classe è fatta oggetto di cyberbullismo. Come aiutarla?<br><br>Esempio di soluzione",
-    "example-intro" => "(In evidenza le caratteristiche di ogni ruolo)",
-    "example-subtitle-1" => "Problemi di classe:",
-    "example-subtitle-2-highschool" => "Problemi nell’alternanza scuola-lavoro:",
-    "example-list" => "<li>1. Difficoltà da parte di un compagno a inserirsi nel gruppo.</li>
+    'example-title' => 'Problema: A breve ci si deve iscrivere ad una scuola superiore, ma c’è un tuo compagno che non sa ancora che cosa decidere. Come aiutarlo?<br><br>Esempio di soluzione',
+    'example-title-highschool' => 'Problema: Una compagna di classe è fatta oggetto di cyberbullismo. Come aiutarla?<br><br>Esempio di soluzione',
+    'example-intro' => '(In evidenza le caratteristiche di ogni ruolo)',
+    'example-subtitle-1' => 'Problemi di classe:',
+    'example-subtitle-2-highschool' => 'Problemi nell’alternanza scuola-lavoro:',
+    'example-list' => '<li>1. Difficoltà da parte di un compagno a inserirsi nel gruppo.</li>
     <li>2. Nella scuola è stato vietato
-        l’uso di qualsiasi strumento digitale, anche per attività didattiche. È urgente individuare un \"ambasciatore
-        digitale\" da proporre all’istituzione.</li>
+        l’uso di qualsiasi strumento digitale, anche per attività didattiche. È urgente individuare un "ambasciatore
+        digitale" da proporre all’istituzione.</li>
     <li>3. Un conflitto tra compagni che turba la vita di classe.</li>
     <li>4. L’intelligenza artificiale aiuta o danneggia?</li>
     <li>5. Il rapporto con un insegnante non funziona.</li>
     <li>6. Programmi di studio o modi di
         condurre la lezione che non convincono.</li>
-    <li>7. Come utilizzare al meglio la piattaforma OrientFormat.</li>",
-    "example-list-highschool" => "<li>1. Il luogo di lavoro
+    <li>7. Come utilizzare al meglio la piattaforma OrientFormat.</li>',
+    'example-list-highschool' => '<li>1. Il luogo di lavoro
         non offre garanzie sufficienti di sicurezza (materiale o psicologica).</li>
     <li>2. Le attività proposte non sono coerenti col
         percorso di studi.</li>
@@ -48,9 +48,9 @@ return [
     <li>6. Le attività teoriche/pratiche simulate nell’istituto non sembrano
         sufficientemente strutturate ed efficaci.</li>
     <li>7. Non c’è o non risulta efficace l’interazione fra orientamento e
-        alternanza.</li>",
+        alternanza.</li>',
 
-    "example-middle-school-1" => '<p class="text-block">
+    'example-middle-school-1' => '<p class="text-block">
 			Il tuo intervento si concentrerà su tre fasi chiave: <strong>Analisi</strong>, <strong>Pianificazione</strong> e
 			<strong>Previsione</strong>.
 		</p>
@@ -110,7 +110,7 @@ return [
 				</p>
 			</li>
 		</ol>',
-    "example-middle-school-2" => '
+    'example-middle-school-2' => '
 		<p class="text-block">
 			Ecco come potresti intervenire, in linea con le tue caratteristiche:
 		</p>
@@ -160,7 +160,7 @@ return [
 				</p>
 			</li>
 		</ol>',
-    "example-middle-school-3" => '<p class="text-block">
+    'example-middle-school-3' => '<p class="text-block">
 			Ecco come potresti intervenire:
 		</p>
 
@@ -228,7 +228,7 @@ return [
 			nell’ottimismo dell’Esploratore né nella rigidità dello Stratega,
 			ma prenda decisioni basate su <strong>verifiche, realismo e consapevolezza dei rischi</strong>.
 		</p>',
-    "example-middle-school-4" => '
+    'example-middle-school-4' => '
 
 		<p class="text-block">
 			Il tuo intervento si svolgerà in tre fasi cruciali, volte a <strong>ripristinare l’equilibrio</strong>
@@ -293,7 +293,7 @@ return [
         <p>In questo modo, il Saggio non risolve il conflitto con la saggezza di una soluzione, ma con la saggezza di riconoscere e bilanciare i contributi di tutti.</p>
         ',
 
-    "example-highschool-1" => '
+    'example-highschool-1' => '
 		<p class="text-block">
 			Ecco come agirebbe, in linea con le sue caratteristiche.
 		</p>
@@ -369,7 +369,7 @@ return [
 		</ol>
         <p>In sintesi, lo Stratega porta ordine, logica e un approccio <i>step-by-step</i> alla crisi, garantendo che l\'intervento
 non sia emotivo, ma calcolato per massimizzare la sicurezza della vittima e ottenere un risultato definitivo.</p>',
-    "example-highschool-2" => "<p class=\"\"></p>
+    'example-highschool-2' => "<p class=\"\"></p>
                 Ecco come agirebbe, in linea con le sue caratteristiche.
             </>
 
@@ -440,7 +440,7 @@ non sia emotivo, ma calcolato per massimizzare la sicurezza della vittima e otte
             </ol>
             <p>In sintesi, <strong>accorgendosi prima degli altri quando c’è un problema</strong>, si concentrerebbe sulla raccolta di informazioni rilevanti e sull'identificazione di opzioni di intervento non convenzionali.</p>",
 
-    "example-highschool-3" => '<p class="text-block">
+    'example-highschool-3' => '<p class="text-block">
 			Ecco come il Critico eserciterebbe le sue caratteristiche contro le proposte degli altri ruoli, focalizzandosi sul
 			problema del cyberbullismo.
 		</p>
@@ -545,7 +545,7 @@ non sia emotivo, ma calcolato per massimizzare la sicurezza della vittima e otte
         <p>In sintesi, il Critico assicura che il gruppo non cada nell&#39;ottimismo cieco (dell&#39;Esploratore) né nella rigidità
 procedurale (dello Stratega), ma agisca basandosi sulla verità, sulla prudenza e sulla previsione realistica dei
 rischi.</p>',
-    "example-highschool-4" => '<p class="text-block">Il saggio agirebbe in questo modo:
+    'example-highschool-4' => '<p class="text-block">Il saggio agirebbe in questo modo:
 		</p>
 
 		<ol>

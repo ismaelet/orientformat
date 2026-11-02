@@ -8,12 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class EndReview {
-
+class EndReview
+{
     /**
      * Handle an incoming request.
      */
-    public function handle(Request $request, Closure $next): Response {
+    public function handle(Request $request, Closure $next): Response
+    {
         $reviewId = 3;
         $student = Auth::user()->student;
         $class = $student->class;
@@ -30,7 +31,7 @@ class EndReview {
 
         if (
             $class &&
-            !$hasCompletedReview &&
+            ! $hasCompletedReview &&
             $isInFinalYear &&
             $isAfterEndDate
         ) {

@@ -2,12 +2,11 @@
 
 namespace Legacy\UserSystem\Student;
 
-use DatabaseObject;
+class AdviceCategory
+{
+    use \System\Traits\DatabaseObject;
 
-class AdviceCategory {
+    public const TABLE = 'advices_categories';
 
-	use \System\Traits\DatabaseObject;
-
-	public const TABLE = 'advices_categories';
-	public const INDEX = 'id';
+    public const INDEX = 'id';
 }

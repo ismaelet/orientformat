@@ -1,16 +1,17 @@
 <?php
 
-function snippet_graph_filters($graphData, $sectionId, $divideBy = false, $filterBy = false) { ?>
+function snippet_graph_filters($graphData, $sectionId, $divideBy = false, $filterBy = false)
+{ ?>
 	<!-- Filters -->
-	<form class="search-filters <?= $divideBy || !section_config($sectionId, 'average') ? 'search-filters--default-position' : '' ?>" method="GET" action="results">
+	<form class="search-filters <?= $divideBy || ! section_config($sectionId, 'average') ? 'search-filters--default-position' : '' ?>" method="GET" action="results">
 
 		<input type="hidden" name="sectionId" value="<?= $sectionId ?>">
 
 		<?php foreach (sysDashboardGraphsConfig('search-filters') as $filter) { ?>
 
 			<div class="search-filter <?= empty($_GET[$filter['slug']]) ? '' : 'active' ?>">
-				<input type="checkbox" class="search-filter-cbx" id="search-filter-<?= $filter['slug'] . $sectionId ?>">
-				<label class="search-filter-header" for="search-filter-<?= $filter['slug'] . $sectionId ?>">
+				<input type="checkbox" class="search-filter-cbx" id="search-filter-<?= $filter['slug'].$sectionId ?>">
+				<label class="search-filter-header" for="search-filter-<?= $filter['slug'].$sectionId ?>">
 					<p class="search-filter-title"><?= $filter['title'] ?></p>
 					<div class="search-filter-icon icon-box">
 						<?= embed_icon('navigation/arrow1-down') ?>
@@ -21,7 +22,7 @@ function snippet_graph_filters($graphData, $sectionId, $divideBy = false, $filte
 
 					<?php foreach ($filter['list'] as $filterElement) {
 
-						if (isset($filterElement['list'])) { ?>
+					    if (isset($filterElement['list'])) { ?>
 							<label class="search-filter_filter pos-rel">
 								<input type="checkbox" class="search-filter-field-cbx js-search-overcbx" name="<?= $filter['slug'] ?>" value="<?= $filterElement['slug'] ?>" <?= isset($_GET[$filter['slug']]) && $_GET[$filter['slug']] == $filterElement['slug'] ? 'checked' : '' ?>>
 								<p class="search-filter-field"><?= $filterElement['title'] ?></p>
@@ -43,7 +44,7 @@ function snippet_graph_filters($graphData, $sectionId, $divideBy = false, $filte
 								<p class="search-filter-field"><?= $filterElement['title'] ?></p>
 							</label>
 					<?php }
-					} ?>
+						} ?>
 
 				</div>
 			</div>
@@ -53,7 +54,9 @@ function snippet_graph_filters($graphData, $sectionId, $divideBy = false, $filte
 		<?php } ?>
 
 		<div>
-			<?php if (!$graphData) $graphData['count'] = 0; ?>
+			<?php if (! $graphData) {
+			    $graphData['count'] = 0;
+			} ?>
 			<p class="results-count">dati di <?= $graphData['count'] ?> <?= $graphData['count'] == 1 ? 'studente' : 'studenti' ?></p>
 
 			<?php if ($divideBy || $filterBy) { ?>

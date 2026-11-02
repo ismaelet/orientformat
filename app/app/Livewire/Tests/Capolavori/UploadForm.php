@@ -3,14 +3,13 @@
 namespace App\Livewire\Tests\Capolavori;
 
 use App\Models\Masterpiece;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 
-class UploadForm extends Component {
-
+class UploadForm extends Component
+{
     use WithFileUploads;
 
     /**
@@ -77,7 +76,8 @@ class UploadForm extends Component {
     /**
      * Lifecycle method: Mount the component
      */
-    public function mount() {
+    public function mount()
+    {
         $this->settings = Masterpiece::SETTINGS;
         $this->modes = Masterpiece::MODES;
         $this->types = Masterpiece::TYPES;
@@ -88,14 +88,16 @@ class UploadForm extends Component {
     /**
      * Lifecycle method: Render the component view
      */
-    public function render() {
+    public function render()
+    {
         return view('livewire.tests.capolavori.upload-form');
     }
 
     /**
      * Action: Upload a masterpiece
      */
-    public function save() {
+    public function save()
+    {
         // // Validate the input data
         // $this->validate([
         //     'title' => 'required|string|max:255',
@@ -136,7 +138,8 @@ class UploadForm extends Component {
      * Event handler: Update masterpiece count after deletion
      */
     #[On('masterpieceDeleted')]
-    public function masterpieceDeleted() {
+    public function masterpieceDeleted()
+    {
         $this->masterpieceCount = student()->load('masterpieces')->masterpieces->count();
     }
 }

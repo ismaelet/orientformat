@@ -1,6 +1,9 @@
 {% block content %}
 
-<?php if ($students->num_rows) { ?>
+<?php
+use Legacy\UserSystem\Student;
+
+if ($students->num_rows) { ?>
 
 	<!-- List -->
 	<section class="dashboard-list">
@@ -19,8 +22,8 @@
 				</div>
 
 				<?php while ($studentData = $students->fetch_assoc()) {
-					$student = new \Legacy\UserSystem\Student($studentData['id']);
-				?>
+				    $student = new Student($studentData['id']);
+				    ?>
 
 					<form class="dashboard-row">
 						<p class="dashboard-field"><?= $student->fullName ?></p>

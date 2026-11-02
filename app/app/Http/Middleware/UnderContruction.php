@@ -7,18 +7,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-use function Laravel\Prompts\error;
+class UnderContruction
+{
+    /**
+     * Handle an incoming request.
+     */
+    public function handle(Request $request, Closure $next): Response
+    {
+        if (! (Auth::check() && in_array(Auth::user()->email, config('custom.under_construction_whitelist', [])))) {
+            abort(503);
+        }
 
-class UnderContruction {
-
-	/**
-	 * Handle an incoming request.
-	 */
-	public function handle(Request $request, Closure $next): Response {
-		if (!(Auth::check() && in_array(Auth::user()->email, config('custom.under_construction_whitelist', [])))) {
-			abort(503);
-		}
-
-		return $next($request);
-	}
+        return $next($request);
+    }
 }

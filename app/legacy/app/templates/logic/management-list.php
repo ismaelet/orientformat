@@ -1,70 +1,81 @@
 <?php
 
-//template
+use App\Legacy\LegacyDB;
+
+// template
 $this->add_logic('main', 'template');
-$this->styles->add(SERVER_ROOT . '/app/templates/styles/management-list.css');
-$this->scripts->add(SERVER_ROOT . '/app/templates/scripts/management-list.js');
+$this->styles->add(SERVER_ROOT.'/app/templates/styles/management-list.css');
+$this->scripts->add(SERVER_ROOT.'/app/templates/scripts/management-list.js');
 
-//page logic
-if (file_exists($file = SERVER_ROOT . '/pages/logic/' . $this->name . '.php')) include_once($file);
+// page logic
+if (file_exists($file = SERVER_ROOT.'/pages/logic/'.$this->name.'.php')) {
+    include_once $file;
+}
 
-//setup variables
+// setup variables
 $actions = $actions ?? false;
 $back = $back ?? false;
 $searchSQL = $searchSQL ?? ['', []];
 $search_bar = $search_bar ?? true;
 
-//fetch data
-$res = $res ?? \App\Legacy\LegacyDB::select('* FROM ' . $tbl . ' WHERE status=1 ' . $searchSQL[0] . ' ORDER BY ' . $index . ' DESC LIMIT 50', $searchSQL[1]);
+// fetch data
+$res = $res ?? LegacyDB::select('* FROM '.$tbl.' WHERE status=1 '.$searchSQL[0].' ORDER BY '.$index.' DESC LIMIT 50', $searchSQL[1]);
 
 $list = [];
 
-while ($row = $res->fetch_assoc()) $list[] = $row;
+while ($row = $res->fetch_assoc()) {
+    $list[] = $row;
+}
 
-//delete entry
+// delete entry
 if (isset($_POST['delete'])) {
 
-	\App\Legacy\LegacyDB::update($tbl . ' SET status=0 WHERE ' . $index . ' = ?', [$_POST[$index]]);
+    LegacyDB::update($tbl.' SET status=0 WHERE '.$index.' = ?', [$_POST[$index]]);
 
-	redirect_old();
+    redirect_old();
 }
 
-//download list
+// download list
 if (isset($_POST['download'])) {
 
-	$array = [];
+    $array = [];
 
-	foreach ($list as $entry) {
+    foreach ($list as $entry) {
 
-		$line = [];
+        $line = [];
 
-		foreach ($fields as $field) {
+        foreach ($fields as $field) {
 
-			$type = $field['type'] ?? 'text';
-			$switch = $field['switch'] ?? false;
-			$switch_file = $field['switch_file'] ?? $switch;
+            $type = $field['type'] ?? 'text';
+            $switch = $field['switch'] ?? false;
+            $switch_file = $field['switch_file'] ?? $switch;
 
-			if ($type == 'text') $line[$field['title']] = $field['value'] ?? $entry[$field['name']];
-			else if ($type == 'find') {
+            if ($type == 'text') {
+                $line[$field['title']] = $field['value'] ?? $entry[$field['name']];
+            } elseif ($type == 'find') {
 
-				$val = \App\Legacy\LegacyDB::find($field['find'][0], $entry[$field['find'][1]]);
+                $val = LegacyDB::find($field['find'][0], $entry[$field['find'][1]]);
 
-				if ($switch_file) $val = empty($val) ? $field['switch_file'][1] : $field['switch_file'][0];
-				if (isset($field['parse']) && $field['parse'] == 'int') $val = (int) $val;
+                if ($switch_file) {
+                    $val = empty($val) ? $field['switch_file'][1] : $field['switch_file'][0];
+                }
+                if (isset($field['parse']) && $field['parse'] == 'int') {
+                    $val = (int) $val;
+                }
 
-				$line[$field['title']] = $val;
-			}
-		}
+                $line[$field['title']] = $val;
+            }
+        }
 
-		$array[] = $line;
-	}
+        $array[] = $line;
+    }
 
-	$title_file = $title_file ?? $title;
+    $title_file = $title_file ?? $title;
 
-	download_csv($array, str_replace(' ', '_', $title_file) . '_' . date('Y-m-d'));
+    download_csv($array, str_replace(' ', '_', $title_file).'_'.date('Y-m-d'));
 }
 
-//store variables
+// store variables
 $this->set('title', $title);
 $this->set('back', $back);
 $this->set('index', $index);

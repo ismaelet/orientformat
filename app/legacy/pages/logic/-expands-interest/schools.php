@@ -23,7 +23,7 @@ return [
                         'name' => 'Fondazione Edmund Mach Istituto Agrario',
                         'location' => 'San Michele All’Adige',
                         'link' => 'http://www.fmach.it',
-                        'phone' => '0461 615213'
+                        'phone' => '0461 615213',
                     ],
                 ],
                 'Operatore agricolo (produzioni vegetali)' => [
@@ -31,7 +31,7 @@ return [
                         'name' => 'Fondazione Edmund Mach Istituto Agrario',
                         'location' => 'San Michele All’Adige',
                         'link' => 'http://www.fmach.it',
-                        'phone' => '0461 615213'
+                        'phone' => '0461 615213',
                     ],
                 ],
                 'Operatore agricolo (ortoflorovivaismo e verde)' => [
@@ -39,7 +39,7 @@ return [
                         'name' => 'Fondazione Edmund Mach Istituto Agrario',
                         'location' => 'San Michele All’Adige',
                         'link' => 'http://www.fmach.it',
-                        'phone' => '0461 615213'
+                        'phone' => '0461 615213',
                     ],
                 ],
             ],
@@ -49,7 +49,7 @@ return [
                         'name' => 'Fondazione Edmund Mach Istituto Agrario',
                         'location' => 'San Michele All’Adige',
                         'link' => 'http://www.fmach.it',
-                        'phone' => '0461 615213'
+                        'phone' => '0461 615213',
                     ],
                 ],
                 'Tecnico agricolo (ortoflorovivaismo e verde)' => [
@@ -57,7 +57,7 @@ return [
                         'name' => 'Fondazione Edmund Mach Istituto Agrario',
                         'location' => 'San Michele All’Adige',
                         'link' => 'http://www.fmach.it',
-                        'phone' => '0461 615213'
+                        'phone' => '0461 615213',
                     ],
                 ],
                 'Tecnico imprenditore agricolo (lavorazioni zootecniche)' => [
@@ -65,7 +65,7 @@ return [
                         'name' => 'Fondazione Edmund Mach Istituto Agrario',
                         'location' => 'San Michele All’Adige',
                         'link' => 'http://www.fmach.it',
-                        'phone' => '0461 615213'
+                        'phone' => '0461 615213',
                     ],
                 ],
                 'Tecnico imprenditore agricolo (ortoflorovivaismo e verde)' => [
@@ -73,7 +73,7 @@ return [
                         'name' => 'Fondazione Edmund Mach Istituto Agrario',
                         'location' => 'San Michele All’Adige',
                         'link' => 'http://www.fmach.it',
-                        'phone' => '0461 615213'
+                        'phone' => '0461 615213',
                     ],
                 ],
                 'Tecnico agricolo (produzioni vegetali)' => [
@@ -81,7 +81,7 @@ return [
                         'name' => 'Fondazione Edmund Mach Istituto Agrario',
                         'location' => 'San Michele All’Adige',
                         'link' => 'http://www.fmach.it',
-                        'phone' => '0461 615213'
+                        'phone' => '0461 615213',
                     ],
                 ],
                 'Tecnico imprenditore agricolo ((produzioni vegetali)' => [
@@ -89,7 +89,7 @@ return [
                         'name' => 'Fondazione Edmund Mach Istituto Agrario',
                         'location' => 'San Michele All’Adige',
                         'link' => 'http://www.fmach.it',
-                        'phone' => '0461 615213'
+                        'phone' => '0461 615213',
                     ],
                 ],
             ],
@@ -99,7 +99,7 @@ return [
                         'name' => 'Fondazione Edmund Mach Istituto Agrario',
                         'location' => 'San Michele All’Adige',
                         'link' => 'http://www.fmach.it',
-                        'phone' => '0461 615213'
+                        'phone' => '0461 615213',
                     ],
                 ],
                 'Operatore della trasformazione agroalimentare (lattiero casearia)' => [
@@ -107,7 +107,7 @@ return [
                         'name' => 'Fondazione Edmund Mach Istituto Agrario',
                         'location' => 'San Michele All’Adige',
                         'link' => 'http://www.fmach.it',
-                        'phone' => '0461 615213'
+                        'phone' => '0461 615213',
                     ],
                 ],
                 'Operatore della trasformazione agroalimentare (lavorazione carni)' => [
@@ -115,7 +115,7 @@ return [
                         'name' => 'Fondazione Edmund Mach Istituto Agrario',
                         'location' => 'San Michele All’Adige',
                         'link' => 'http://www.fmach.it',
-                        'phone' => '0461 615213'
+                        'phone' => '0461 615213',
                     ],
                 ],
             ],
@@ -125,7 +125,7 @@ return [
                         'name' => 'Fondazione Edmund Mach Istituto Agrario',
                         'location' => 'San Michele All’Adige',
                         'link' => 'http://www.fmach.it',
-                        'phone' => '0461 615213'
+                        'phone' => '0461 615213',
                     ],
                 ],
                 'Tecnico della trasformazione agroalimentare (lattiero casearia)' => [
@@ -133,7 +133,7 @@ return [
                         'name' => 'Fondazione Edmund Mach Istituto Agrario',
                         'location' => 'San Michele All’Adige',
                         'link' => 'http://www.fmach.it',
-                        'phone' => '0461 615213'
+                        'phone' => '0461 615213',
                     ],
                 ],
                 'Tecnico della trasformazione agroalimentare (lavorazione carni)' => [
@@ -141,7 +141,7 @@ return [
                         'name' => 'Fondazione Edmund Mach Istituto Agrario',
                         'location' => 'San Michele All’Adige',
                         'link' => 'http://www.fmach.it',
-                        'phone' => '0461 615213'
+                        'phone' => '0461 615213',
                     ],
                 ],
             ],
@@ -180,17 +180,17 @@ return [
         ],
 
         'referent' => [
-            'name' => "TECNICO SUPERIORE PER LA TRASFORMAZIONE E LO SVILUPPO DEI PRODOTTI AGROALIMENTARI TRADIZIONALI E INNOVATIVI",
+            'name' => 'TECNICO SUPERIORE PER LA TRASFORMAZIONE E LO SVILUPPO DEI PRODOTTI AGROALIMENTARI TRADIZIONALI E INNOVATIVI',
             'contacts' => [
-                "Soggetto attuatore" => 'Fondazione Edmund Mach - Centro Istruzione e Formazione',
-                "Luogo di svolgimento del percorso" => 'via E. Mach, 1 - San Michele all\'Adige (TN)',
-                "Referente" => 'Andrea Panichi',
-                "Segreteria" => 'Romina Angeli',
-                "E-mail" => '<a href="mailto:romina.angeli@fmach.it">romina.angeli@fmach.it</a>',
-                "Telefono" => '<a href="tel:+390461615658">+39 0461 615658</a>',
-                "Sito web" => '<a href="https://cif.fmach.it/I-Corsi/Corsi-Post-Diploma/TECNICO-SUPERIORE-DELLE-BEVANDE">https://cif.fmach.it/I-Corsi/Corsi-Post-Diploma/TECNICO-SUPERIORE-DELLE-BEVANDE</a>'
-            ]
-        ]
+                'Soggetto attuatore' => 'Fondazione Edmund Mach - Centro Istruzione e Formazione',
+                'Luogo di svolgimento del percorso' => 'via E. Mach, 1 - San Michele all\'Adige (TN)',
+                'Referente' => 'Andrea Panichi',
+                'Segreteria' => 'Romina Angeli',
+                'E-mail' => '<a href="mailto:romina.angeli@fmach.it">romina.angeli@fmach.it</a>',
+                'Telefono' => '<a href="tel:+390461615658">+39 0461 615658</a>',
+                'Sito web' => '<a href="https://cif.fmach.it/I-Corsi/Corsi-Post-Diploma/TECNICO-SUPERIORE-DELLE-BEVANDE">https://cif.fmach.it/I-Corsi/Corsi-Post-Diploma/TECNICO-SUPERIORE-DELLE-BEVANDE</a>',
+            ],
+        ],
     ],
 
     2 => [
@@ -220,7 +220,7 @@ return [
                         'location' => 'Trento',
                         'link' => 'http://www.cfpupt.it',
                         'phone' => '0461 239997',
-                    ]
+                    ],
                 ],
                 'Operatore ai servizi di vendita' => [
                     [
@@ -258,7 +258,7 @@ return [
                         'location' => 'Borgo Valsugana',
                         'link' => 'http://www.enaiptrentino.it',
                         'phone' => '0461 753037',
-                    ]
+                    ],
                 ],
                 'Operatore dei Sistemi e dei Servizi logistici' => [
                     [
@@ -434,7 +434,7 @@ return [
                         'location' => 'Riva Del Garda',
                         'link' => 'http://www.g-floriani.it',
                         'phone' => '0464 578511',
-                    ]
+                    ],
                 ],
             ],
         ],
@@ -442,15 +442,15 @@ return [
         'referent' => [
             'name' => "TECNICO SUPERIORE PER IL MARKETING, LA COMUNICAZIONE E L'INTERNAZIONALIZZAZIONE DELLE IMPRESE (in Amministrazione, finanza e marketing)",
             'contacts' => [
-                "Soggetto attuatore" => 'Università Popolare Trentina - Scuola delle Professioni per il Terziario',
-                "Luogo di svolgimento del percorso" => 'Passaggio Peterlongo, 8 - Trento (TN)',
-                "Referente" => 'Silvia Condini',
-                "Segreteria" => 'Sara Stocchetti',
-                "E-mail" => '<a href="mailto:altaformazione@cfp-upt.it">altaformazione@cfp-upt.it</a>',
-                "Telefono" => '<a href="tel:+390461235168">+39 0461 235168</a>',
-                "Sito web" => '<a href="http://www.mci.tn.it">www.mci.tn.it</a>'
-            ]
-        ]
+                'Soggetto attuatore' => 'Università Popolare Trentina - Scuola delle Professioni per il Terziario',
+                'Luogo di svolgimento del percorso' => 'Passaggio Peterlongo, 8 - Trento (TN)',
+                'Referente' => 'Silvia Condini',
+                'Segreteria' => 'Sara Stocchetti',
+                'E-mail' => '<a href="mailto:altaformazione@cfp-upt.it">altaformazione@cfp-upt.it</a>',
+                'Telefono' => '<a href="tel:+390461235168">+39 0461 235168</a>',
+                'Sito web' => '<a href="http://www.mci.tn.it">www.mci.tn.it</a>',
+            ],
+        ],
     ],
 
     3 => [
@@ -542,9 +542,9 @@ return [
                         'location' => 'Trento',
                         'link' => 'http://www.arcivescoviletrento.it',
                         'phone' => '0461 1731200',
-                    ]
+                    ],
                 ],
-            ]
+            ],
         ],
         'Liceo Artistico' => [
             'Indirizzo Design' => [
@@ -614,7 +614,7 @@ return [
                         'location' => '',
                         'link' => 'http://www.scuoladifassa.it',
                         'phone' => '0462 763702',
-                    ]
+                    ],
                 ],
             ],
             'Indirizzo Architettura e Ambiente' => [
@@ -624,37 +624,37 @@ return [
                         'location' => 'Trento',
                         'link' => 'https://www.istitutodellearti.tn.it',
                         'phone' => '0461 824422',
-                    ]
+                    ],
                 ],
             ],
         ],
 
         'referent' => [
             [
-                'name' => "TECNICO SUPERIORE PER IL DESIGN E LA CUSTOMIZZAZIONE DEI PRODOTTI E SERVIZI",
+                'name' => 'TECNICO SUPERIORE PER IL DESIGN E LA CUSTOMIZZAZIONE DEI PRODOTTI E SERVIZI',
                 'contacts' => [
-                    "Soggetto attuatore" => 'Polo Giuseppe Veronesi',
-                    "Luogo di svolgimento del percorso" => 'Steam Campus - Via Madonna del Monte, 6 - Rovereto (TN)',
-                    "Referente" => 'Monia Zuntini',
-                    "Segreteria" => 'Paola Degasperi',
-                    "E-mail" => '<a href="mailto:paola.degasperi@poloveronesi.it">paola.degasperi@poloveronesi.it</a>',
-                    "Telefono" => '<a href="tel:+390464875716">+39 0464 875716</a>',
-                    "Sito web" => '<a href="http://www.altaformazionedesign.com">www.altaformazionedesign.com</a>'
-                ]
+                    'Soggetto attuatore' => 'Polo Giuseppe Veronesi',
+                    'Luogo di svolgimento del percorso' => 'Steam Campus - Via Madonna del Monte, 6 - Rovereto (TN)',
+                    'Referente' => 'Monia Zuntini',
+                    'Segreteria' => 'Paola Degasperi',
+                    'E-mail' => '<a href="mailto:paola.degasperi@poloveronesi.it">paola.degasperi@poloveronesi.it</a>',
+                    'Telefono' => '<a href="tel:+390464875716">+39 0464 875716</a>',
+                    'Sito web' => '<a href="http://www.altaformazionedesign.com">www.altaformazionedesign.com</a>',
+                ],
             ],
             [
-                'name' => "TECNICO SUPERIORE DIGITAL MEDIA SPECIALIST",
+                'name' => 'TECNICO SUPERIORE DIGITAL MEDIA SPECIALIST',
                 'contacts' => [
-                    "Soggetto attuatore" => 'Istituzione formativa paritaria Istituto Pavoniano Artigianelli per le arti grafiche',
-                    "Luogo di svolgimento del percorso" => 'Piazza Fiera, 4 - Trento (TN)',
-                    "Referente" => 'Marco Franceschini',
-                    "Segreteria" => 'Chiara Stefani',
-                    "E-mail" => '<a href="mailto:tag@artigianelli.tn.it">tag@artigianelli.tn.it</a>',
-                    "Telefono" => '<a href="tel:+390461270250">+39 0461 270250</a>',
-                    "Sito web" => '<a href="http://www.tag.tn.it">www.tag.tn.it</a>'
-                ]
+                    'Soggetto attuatore' => 'Istituzione formativa paritaria Istituto Pavoniano Artigianelli per le arti grafiche',
+                    'Luogo di svolgimento del percorso' => 'Piazza Fiera, 4 - Trento (TN)',
+                    'Referente' => 'Marco Franceschini',
+                    'Segreteria' => 'Chiara Stefani',
+                    'E-mail' => '<a href="mailto:tag@artigianelli.tn.it">tag@artigianelli.tn.it</a>',
+                    'Telefono' => '<a href="tel:+390461270250">+39 0461 270250</a>',
+                    'Sito web' => '<a href="http://www.tag.tn.it">www.tag.tn.it</a>',
+                ],
             ],
-        ]
+        ],
     ],
 
     4 => [
@@ -713,7 +713,7 @@ return [
                         'name' => 'Centro Formazione Professionale Opera Armida Barelli',
                         'location' => 'Rovereto',
                         'link' => 'http://www.operaarmidabarelli.org',
-                        'phone' => '0464 433771'
+                        'phone' => '0464 433771',
                     ],
                 ],
                 'Diplomi quadriennali – Tecnico dei trattamenti estetici' => [
@@ -743,7 +743,7 @@ return [
                         'name' => 'Centro Formazione Professionale Opera Armida Barelli',
                         'location' => 'Rovereto',
                         'link' => 'http://www.operaarmidabarelli.org',
-                        'phone' => '0464 433771'
+                        'phone' => '0464 433771',
                     ],
                 ],
             ],
@@ -762,7 +762,7 @@ return [
                         'location' => 'Borgo Valsugana',
                         'link' => 'http://www.istalcidedegasperi.it',
                         'phone' => '0461 753647',
-                    ]
+                    ],
                 ],
             ],
             'Arti ausiliarie delle professioni sanitarie: Odontotecnico' => [
@@ -1234,7 +1234,7 @@ return [
                 ],
             ],
             'Articolazione Tecnologia del Legno nelle costruzioni' => [
-                '' =>  [
+                '' => [
                     [
                         'name' => 'Istituto Tecnico per il Settore Tecnologico – Istituto di Istruzione &quot;La Rosa Bianca&quot;',
                         'location' => 'Cavalese',
@@ -1276,28 +1276,28 @@ return [
             [
                 'name' => "TECNICO SUPERIORE PER L'ENERGIA SOSTENIBILE",
                 'contacts' => [
-                    "Soggetto attuatore" => 'Istituzione formativa paritaria Enaip Trentino CFP di Villazzano',
-                    "Luogo di svolgimento del percorso" => 'via Asiago, 14 - Villazzano (TN)',
-                    "Referente" => 'Claudio Mimiola',
-                    "Segreteria" => 'Samantha Coser',
-                    "E-mail" => '<a href="mailto:altaformazionevillazzano.segreteria@enaip.tn.it">altaformazionevillazzano.segreteria@enaip.tn.it</a>',
-                    "Telefono" => '<a href="tel:+3904611727873">+39 0461 1727873</a>',
-                    "Sito web" => '<a href="https://altaformazione.enaiptrentino.it/energia-e-ambiente">https://altaformazione.enaiptrentino.it/energia-e-ambiente</a>'
-                ]
+                    'Soggetto attuatore' => 'Istituzione formativa paritaria Enaip Trentino CFP di Villazzano',
+                    'Luogo di svolgimento del percorso' => 'via Asiago, 14 - Villazzano (TN)',
+                    'Referente' => 'Claudio Mimiola',
+                    'Segreteria' => 'Samantha Coser',
+                    'E-mail' => '<a href="mailto:altaformazionevillazzano.segreteria@enaip.tn.it">altaformazionevillazzano.segreteria@enaip.tn.it</a>',
+                    'Telefono' => '<a href="tel:+3904611727873">+39 0461 1727873</a>',
+                    'Sito web' => '<a href="https://altaformazione.enaiptrentino.it/energia-e-ambiente">https://altaformazione.enaiptrentino.it/energia-e-ambiente</a>',
+                ],
             ],
             [
-                'name' => "TECNICO SUPERIORE PER L’INNOVAZIONE E LA QUALITÀ DELLE ABITAZIONI (IN APPRENDISTATO DUALE) (in Edilizia e costruzioni)",
+                'name' => 'TECNICO SUPERIORE PER L’INNOVAZIONE E LA QUALITÀ DELLE ABITAZIONI (IN APPRENDISTATO DUALE) (in Edilizia e costruzioni)',
                 'contacts' => [
-                    "Soggetto attuatore" => 'Istituzione formativa paritaria Enaip Trentino CFP di Villazzano',
-                    "Luogo di svolgimento del percorso" => 'via Asiago, 14 - Villazzano (TN)',
-                    "Referente" => 'Claudio Mimiola',
-                    "Segreteria" => 'Samantha Coser',
-                    "E-mail" => 'altaformazionevillazzano.segreteria@enaip.tn.it',
-                    "Telefono" => '+39 0461 1727873',
-                    "Sito web" => 'https://altaformazione.enaiptrentino.it/edilizia-sostenibile'
-                ]
-            ]
-        ]
+                    'Soggetto attuatore' => 'Istituzione formativa paritaria Enaip Trentino CFP di Villazzano',
+                    'Luogo di svolgimento del percorso' => 'via Asiago, 14 - Villazzano (TN)',
+                    'Referente' => 'Claudio Mimiola',
+                    'Segreteria' => 'Samantha Coser',
+                    'E-mail' => 'altaformazionevillazzano.segreteria@enaip.tn.it',
+                    'Telefono' => '+39 0461 1727873',
+                    'Sito web' => 'https://altaformazione.enaiptrentino.it/edilizia-sostenibile',
+                ],
+            ],
+        ],
     ],
 
     9 => [
@@ -1421,22 +1421,22 @@ return [
                         'link' => 'http://www.curiepergine.it/',
                         'phone' => '0461 511397',
                     ],
-                ]
-            ]
+                ],
+            ],
         ],
 
         'referent' => [
-            'name' => "TECNICO SUPERIORE SVILUPPATORE SOFTWARE",
+            'name' => 'TECNICO SUPERIORE SVILUPPATORE SOFTWARE',
             'contacts' => [
-                "Soggetto attuatore" => 'Istituto Tecnico Tecnologico “G. Marconi” di Rovereto',
-                "Luogo di svolgimento del percorso" => 'Polo della Meccatronica - Via Fortunato Zeni, 8 - Rovereto (TN)',
-                "Referente" => 'Andrea Trentini',
-                "Segreteria" => 'Anna Brescia',
-                "E-mail" => '<a href="mailto:info@mat.tn.it">info@mat.tn.it</a>',
-                "Telefono" => '<a href="tel:+390464411400">+39 0464 411400</a>',
-                "Sito web" => '<a href="https://mat.tn.it">https://mat.tn.it</a>'
-            ]
-        ]
+                'Soggetto attuatore' => 'Istituto Tecnico Tecnologico “G. Marconi” di Rovereto',
+                'Luogo di svolgimento del percorso' => 'Polo della Meccatronica - Via Fortunato Zeni, 8 - Rovereto (TN)',
+                'Referente' => 'Andrea Trentini',
+                'Segreteria' => 'Anna Brescia',
+                'E-mail' => '<a href="mailto:info@mat.tn.it">info@mat.tn.it</a>',
+                'Telefono' => '<a href="tel:+390464411400">+39 0464 411400</a>',
+                'Sito web' => '<a href="https://mat.tn.it">https://mat.tn.it</a>',
+            ],
+        ],
     ],
 
     11 => [
@@ -1697,17 +1697,17 @@ return [
         ],
 
         'referent' => [
-            'name' => "TECNICO SUPERIORE PER L’AUTOMAZIONE E LA ROBOTICA INDUSTRIALE",
+            'name' => 'TECNICO SUPERIORE PER L’AUTOMAZIONE E LA ROBOTICA INDUSTRIALE',
             'contacts' => [
-                "Soggetto attuatore" => 'Istituto Tecnico Tecnologico “G. Marconi” di Rovereto',
-                "Luogo di svolgimento del percorso" => 'Polo della Meccatronica - Via Fortunato Zeni, 8 - Rovereto (TN)',
-                "Referente" => 'Giorgio Arlanch',
-                "Segreteria" => 'Anna Brescia',
-                "E-mail" => '<a href="mailto:info@mat.tn.it">info@mat.tn.it</a>',
-                "Telefono" => '<a href="tel:+390464411400">+39 0464 411400</a>',
-                "Sito web" => '<a href="https://mat.tn.it">https://mat.tn.it</a>'
-            ]
-        ]
+                'Soggetto attuatore' => 'Istituto Tecnico Tecnologico “G. Marconi” di Rovereto',
+                'Luogo di svolgimento del percorso' => 'Polo della Meccatronica - Via Fortunato Zeni, 8 - Rovereto (TN)',
+                'Referente' => 'Giorgio Arlanch',
+                'Segreteria' => 'Anna Brescia',
+                'E-mail' => '<a href="mailto:info@mat.tn.it">info@mat.tn.it</a>',
+                'Telefono' => '<a href="tel:+390464411400">+39 0464 411400</a>',
+                'Sito web' => '<a href="https://mat.tn.it">https://mat.tn.it</a>',
+            ],
+        ],
     ],
 
     14 => [
@@ -2077,7 +2077,7 @@ return [
                         'name' => 'Liceo "A. Maffei"',
                         'location' => 'Riva Del Garda',
                         'link' => 'https://e.liceomaffei.it',
-                        'phone' => '0464 552316'
+                        'phone' => '0464 552316',
                     ],
                     [
                         'name' => 'Istituto Di Istruzione "L. Guetti"',
@@ -2334,43 +2334,43 @@ return [
 
         'referent' => [
             [
-                'name' => "TECNICO SUPERIORE PER LA PROGETTAZIONE, SVILUPPO E PROMOZIONE DELL’OFFERTA DELLA FILIERA TURISTICA (IN APPRENDISTATO DUALE)",
+                'name' => 'TECNICO SUPERIORE PER LA PROGETTAZIONE, SVILUPPO E PROMOZIONE DELL’OFFERTA DELLA FILIERA TURISTICA (IN APPRENDISTATO DUALE)',
                 'contacts' => [
-                    "Soggetto attuatore" => 'Istituzione formativa paritaria Enaip Trentino CFP di Riva del Garda',
-                    "Luogo di svolgimento del percorso" => 'Rione Europa, 3 - Varone di Riva del Garda (TN)',
-                    "Referente" => 'Claudio Mimiola',
-                    "Segreteria" => 'Samantha Coser',
-                    "E-mail" => '<a href="mailto:altaformazioneriva.segreteria@enaip.tn.it">altaformazioneriva.segreteria@enaip.tn.it</a>',
-                    "Telefono" => '<a href="tel:+390464521300">+39 0464 521300</a>',
-                    "Sito web" => '<a href="https://altaformazione.enaiptrentino.it/servizi-per-il-turismo">https://altaformazione.enaiptrentino.it/servizi-per-il-turismo</a>'
-                ]
+                    'Soggetto attuatore' => 'Istituzione formativa paritaria Enaip Trentino CFP di Riva del Garda',
+                    'Luogo di svolgimento del percorso' => 'Rione Europa, 3 - Varone di Riva del Garda (TN)',
+                    'Referente' => 'Claudio Mimiola',
+                    'Segreteria' => 'Samantha Coser',
+                    'E-mail' => '<a href="mailto:altaformazioneriva.segreteria@enaip.tn.it">altaformazioneriva.segreteria@enaip.tn.it</a>',
+                    'Telefono' => '<a href="tel:+390464521300">+39 0464 521300</a>',
+                    'Sito web' => '<a href="https://altaformazione.enaiptrentino.it/servizi-per-il-turismo">https://altaformazione.enaiptrentino.it/servizi-per-il-turismo</a>',
+                ],
             ],
 
             [
                 'name' => "TECNICO SUPERIORE PER LO SVILUPPO DEI PROCESSI DI GESTIONE DELL'OFFERTA DELLE FILIERE TURISTICHE E CULTURALI",
                 'contacts' => [
-                    "Soggetto attuatore" => 'Istituto di Formazione Provinciale Alberghiero "G. Cipriani" di Levico Terme',
-                    "Luogo di svolgimento del percorso" => 'piazza A. De Giovanni, 1 - Roncegno Terme (TN)',
-                    "Referente" => 'Michele Kettmaier',
-                    "Segreteria" => 'Michele Kettmaier',
-                    "E-mail" => '<a href="mailto:segreteria.afp.mt@gmail.com">segreteria.afp.mt@gmail.com</a>',
-                    "Telefono" => '<a href="tel:+393342980588">+39 334 298 0588</a>',
-                    "Sito web" => '<a href="https://www.alberghierolevico.it">https://www.alberghierolevico.it</a>'
-                ]
+                    'Soggetto attuatore' => 'Istituto di Formazione Provinciale Alberghiero "G. Cipriani" di Levico Terme',
+                    'Luogo di svolgimento del percorso' => 'piazza A. De Giovanni, 1 - Roncegno Terme (TN)',
+                    'Referente' => 'Michele Kettmaier',
+                    'Segreteria' => 'Michele Kettmaier',
+                    'E-mail' => '<a href="mailto:segreteria.afp.mt@gmail.com">segreteria.afp.mt@gmail.com</a>',
+                    'Telefono' => '<a href="tel:+393342980588">+39 334 298 0588</a>',
+                    'Sito web' => '<a href="https://www.alberghierolevico.it">https://www.alberghierolevico.it</a>',
+                ],
             ],
 
             [
-                'name' => "TECNICO SUPERIORE PER LA GESTIONE DEI SERVIZI DI SUPPORTO AGLI OSPITI",
+                'name' => 'TECNICO SUPERIORE PER LA GESTIONE DEI SERVIZI DI SUPPORTO AGLI OSPITI',
                 'contacts' => [
-                    "Soggetto attuatore" => 'Istituzione formativa paritaria Enaip Trentino CFP di Tione',
-                    "Luogo di svolgimento del percorso" => 'Via Durone, 57 - Tione di Trento (TN)',
-                    "Referente" => 'Marco Campaner',
-                    "Segreteria" => 'Valentina Albertini',
-                    "E-mail" => '<a href="mailto:altaformazionetione.amm@enaip.tn.it">altaformazionetione.amm@enaip.tn.it</a>',
-                    "Telefono" => '<a href="tel:+390465881957">+39 0465 881957</a>',
-                    "Sito web" => '<a href="https://altaformazione.enaiptrentino.it/cucina-e-ristorazione">https://altaformazione.enaiptrentino.it/cucina-e-ristorazione</a>'
-                ]
-            ]
-        ]
+                    'Soggetto attuatore' => 'Istituzione formativa paritaria Enaip Trentino CFP di Tione',
+                    'Luogo di svolgimento del percorso' => 'Via Durone, 57 - Tione di Trento (TN)',
+                    'Referente' => 'Marco Campaner',
+                    'Segreteria' => 'Valentina Albertini',
+                    'E-mail' => '<a href="mailto:altaformazionetione.amm@enaip.tn.it">altaformazionetione.amm@enaip.tn.it</a>',
+                    'Telefono' => '<a href="tel:+390465881957">+39 0465 881957</a>',
+                    'Sito web' => '<a href="https://altaformazione.enaiptrentino.it/cucina-e-ristorazione">https://altaformazione.enaiptrentino.it/cucina-e-ristorazione</a>',
+                ],
+            ],
+        ],
     ],
 ];

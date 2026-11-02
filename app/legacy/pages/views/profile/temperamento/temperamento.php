@@ -16,10 +16,14 @@
 
                         <?php for ($i = 0; $i < 6; $i++) {
 
-                            if ($i == 0 || $i == 5) $text = '&middot;&middot;&middot;';
-                            else if ($i == 1 || $i == 4) $text = '&middot;&middot;';
-                            else if ($i == 2 || $i == 3) $text = '&middot;';
-                        ?>
+                            if ($i == 0 || $i == 5) {
+                                $text = '&middot;&middot;&middot;';
+                            } elseif ($i == 1 || $i == 4) {
+                                $text = '&middot;&middot;';
+                            } elseif ($i == 2 || $i == 3) {
+                                $text = '&middot;';
+                            }
+                            ?>
 
                             <div id="dot<?= $i ?>" class="dot inlb va-cen clickable" data-score="<?= $i ?>">
                                 <p class="cen"><?= $text ?></p>

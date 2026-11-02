@@ -2,86 +2,97 @@
 
 namespace Legacy\UserSystem;
 
-use \Legacy\SchoolSystem\SchoolClass;
-
-use \App\Legacy\User;
+use App\Legacy\LegacyDB;
+use App\Legacy\User;
+use Legacy\SchoolSystem\SchoolClass;
+use System\Traits\DatabaseObject;
 
 /**
  * Teacher class
- * 
+ *
  * @property array schoolClassIds
  * @property array schoolClasses
  */
-class Teacher {
+class Teacher
+{
+    use DatabaseObject;
 
-	use \System\Traits\DatabaseObject;
+    const TABLE = 'teachers';
 
-	const TABLE = 'teachers';
-	const INDEX = 'userId';
+    const INDEX = 'userId';
 
-	private function getId() {
-		return $this->databaseEntry[self::INDEX];
-	}
+    private function getId()
+    {
+        return $this->databaseEntry[self::INDEX];
+    }
 
-	private function getFullName() {
-		return $this->user->fullName;
-	}
+    private function getFullName()
+    {
+        return $this->user->fullName;
+    }
 
-	private function getInvertedFullName() {
-		return $this->user->fullNameInv;
-	}
+    private function getInvertedFullName()
+    {
+        return $this->user->fullNameInv;
+    }
 
-	private function getUser() {
-		return new \App\Legacy\User($this->id);
-	}
+    private function getUser()
+    {
+        return new User($this->id);
+    }
 
-	private function getStudentIdsString() {
-		return $this->studentIds ? implode(',', $this->studentIds) : false;
-	}
+    private function getStudentIdsString()
+    {
+        return $this->studentIds ? implode(',', $this->studentIds) : false;
+    }
 
-	private function getSchoolClassIds(string $type = 'all') {
-		$results = [];
+    private function getSchoolClassIds(string $type = 'all')
+    {
+        $results = [];
 
-		if ($this->id && $this->databaseEntry['classes']) {
-			switch ($type) {
-				default:
-					$schooClassesData = \App\Legacy\LegacyDB::select(SchoolClass::INDEX . ' FROM ' . SchoolClass::TABLE . ' WHERE FIND_IN_SET(' . SchoolClass::INDEX . ', "' . $this->databaseEntry['classes'] . '") ORDER BY year DESC, grade DESC');
-					$results = $schooClassesData->num_rows ? extract_subvalue($schooClassesData->res, 'id') : null;
-			}
-		}
+        if ($this->id && $this->databaseEntry['classes']) {
+            switch ($type) {
+                default:
+                    $schooClassesData = LegacyDB::select(SchoolClass::INDEX.' FROM '.SchoolClass::TABLE.' WHERE FIND_IN_SET('.SchoolClass::INDEX.', "'.$this->databaseEntry['classes'].'") ORDER BY year DESC, grade DESC');
+                    $results = $schooClassesData->num_rows ? extract_subvalue($schooClassesData->res, 'id') : null;
+            }
+        }
 
-		return $results;
-	}
+        return $results;
+    }
 
-	public function getSchoolClasses(string $type = 'all') {
-		$schoolClasses = false;
+    public function getSchoolClasses(string $type = 'all')
+    {
+        $schoolClasses = false;
 
-		if ($this->schoolClassIds) {
-			$schoolClasses = [];
+        if ($this->schoolClassIds) {
+            $schoolClasses = [];
 
-			foreach ($this->schoolClassIds as $schoolClassId) {
-				if (!empty($schoolClassId) && \App\Legacy\LegacyDB::exists(SchoolClass::TABLE . ' WHERE ' . SchoolClass::INDEX . ' = ?', $schoolClassId)) {
-					$schoolClasses[] = new SchoolClass($schoolClassId);
-				}
-			}
-		}
+            foreach ($this->schoolClassIds as $schoolClassId) {
+                if (! empty($schoolClassId) && LegacyDB::exists(SchoolClass::TABLE.' WHERE '.SchoolClass::INDEX.' = ?', $schoolClassId)) {
+                    $schoolClasses[] = new SchoolClass($schoolClassId);
+                }
+            }
+        }
 
-		return $schoolClasses;
-	}
+        return $schoolClasses;
+    }
 
-	private function getSchoolClassCount() {
-		return $this->schoolClasses ? count($this->schoolClasses) : 0;
-	}
+    private function getSchoolClassCount()
+    {
+        return $this->schoolClasses ? count($this->schoolClasses) : 0;
+    }
 
-	private function getStudentIds() {
-		$studentIds = false;
+    private function getStudentIds()
+    {
+        $studentIds = false;
 
-		if ($this->schoolClassIds) {
-			$schoolClassIdsString = implode(',', $this->schoolClassIds);
-			$res = \App\Legacy\LegacyDB::select(Student::INDEX . ' FROM ' . Student::TABLE . ' WHERE FIND_IN_SET (' . Student::SCHOOL_CLASS_INDEX . ', ?)', [$schoolClassIdsString]);
-			$studentIds = $res->num_rows ? array_column($res->res, Student::INDEX) : null;
-		}
+        if ($this->schoolClassIds) {
+            $schoolClassIdsString = implode(',', $this->schoolClassIds);
+            $res = LegacyDB::select(Student::INDEX.' FROM '.Student::TABLE.' WHERE FIND_IN_SET ('.Student::SCHOOL_CLASS_INDEX.', ?)', [$schoolClassIdsString]);
+            $studentIds = $res->num_rows ? array_column($res->res, Student::INDEX) : null;
+        }
 
-		return $studentIds;
-	}
+        return $studentIds;
+    }
 }

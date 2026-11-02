@@ -7,12 +7,13 @@ use App\Models\Results\User\SectionResult;
 use App\Models\Results\User\TestResult;
 use App\Models\Schools\SchoolClass;
 
-class SchoolClassController extends Controller {
-
+class SchoolClassController extends Controller
+{
     /**
      * Show the class dashboard
      */
-    public function show(SchoolClass $class) {
+    public function show(SchoolClass $class)
+    {
         $students = $class->students->load('user');
         $studentCount = $students?->count() ?: 0;
 
@@ -56,7 +57,7 @@ class SchoolClassController extends Controller {
                 $feedEntry = [];
 
                 $feedEntry['studentName'] = $feedEntryData->student->full_name;
-                $feedEntry['text'] = 'ha completato l\'attività "<i>' . $feedEntryData->test->title . '</i>"';
+                $feedEntry['text'] = 'ha completato l\'attività "<i>'.$feedEntryData->test->title.'</i>"';
 
                 $feed[] = $feedEntry;
             }
@@ -75,7 +76,8 @@ class SchoolClassController extends Controller {
     /**
      * Show the list of students for the results
      */
-    public function studentResultsIndex(SchoolClass $class) {
+    public function studentResultsIndex(SchoolClass $class)
+    {
         $class->load('students', 'students.user');
 
         return view('class.students.results.index', [

@@ -2,26 +2,32 @@
 
 namespace Legacy\UserSystem;
 
-class ActiveStudent {
+use App\Legacy\LegacyDB;
+use System\Traits\Singleton;
 
-	use \System\Traits\Singleton;
+class ActiveStudent
+{
+    use Singleton;
 
-	private static $id;
-	private static $student;
+    private static $id;
 
-	/**
-	 * Magic methods
-	 */
-	private function __construct() {
-		if (\App\Legacy\LegacyDB::exists(Student::TABLE . ' WHERE ' . Student::INDEX . ' = ?', [userId()])) {
-			$student = new Student(userId());
+    private static $student;
 
-			self::$id = $student->id;
-			self::$student = new Student(self::$id);
-		}
-	}
+    /**
+     * Magic methods
+     */
+    private function __construct()
+    {
+        if (LegacyDB::exists(Student::TABLE.' WHERE '.Student::INDEX.' = ?', [userId()])) {
+            $student = new Student(userId());
 
-	function __get($property) {
-		return self::$id ? self::$student->$property : null;
-	}
+            self::$id = $student->id;
+            self::$student = new Student(self::$id);
+        }
+    }
+
+    public function __get($property)
+    {
+        return self::$id ? self::$student->$property : null;
+    }
 }

@@ -4,15 +4,15 @@ namespace App\Services\Results;
 
 use App\Models\Activities\Section;
 use App\Models\Schools\SchoolClass;
-use App\Support\Graphs\SectionGraphDefinition;
 use App\Support\Graphs\GraphSections;
+use App\Support\Graphs\SectionGraphDefinition;
 use Illuminate\Support\Facades\Cache;
 
-class ClassSectionResultProvider {
+class ClassSectionResultProvider
+{
     public function __construct(
         private SectionGroupResultCalculator $resultCalculator,
-    ) {
-    }
+    ) {}
 
     /**
      * Get aggregated results for a section and school class.
@@ -39,8 +39,7 @@ class ClassSectionResultProvider {
                 schoolClass: $schoolClass,
             ),
             ttl: now()->addMinutes(30),
-            callback: fn(): array =>
-            $this->resultCalculator
+            callback: fn (): array => $this->resultCalculator
                 ->forSchoolClassGraph(
                     graph: $graph,
                     schoolClass: $schoolClass,

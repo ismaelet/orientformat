@@ -2,41 +2,49 @@
 
 namespace Legacy\Review;
 
-class Review {
+use App\Legacy\LegacyDB;
+use System\Traits\DatabaseObject;
 
-	use \System\Traits\DatabaseObject;
+class Review
+{
+    use DatabaseObject;
 
-	public const TABLE = 'reviews';
-	public const INDEX = 'id';
+    public const TABLE = 'reviews';
 
-	/**
-	 * Get methods
-	 */
-	private function getStudentId() {
-		return $this->data['studentId'] ?? userId();
-	}
+    public const INDEX = 'id';
 
-	private function getAreas() {
-		$areas = [];
-		$areaIds = explode(',', $this->data['areas']);
+    /**
+     * Get methods
+     */
+    private function getStudentId()
+    {
+        return $this->data['studentId'] ?? userId();
+    }
 
-		foreach ($areaIds as $areaId) {
-			$areas[] = new Area($areaId, $this->id);
-		}
+    private function getAreas()
+    {
+        $areas = [];
+        $areaIds = explode(',', $this->data['areas']);
 
-		return $areas;
-	}
+        foreach ($areaIds as $areaId) {
+            $areas[] = new Area($areaId, $this->id);
+        }
 
-	private function getCompleted() {
-		return \App\Legacy\LegacyDB::exists('review_results WHERE reviewId = ? AND studentId = ?', [$this->id, $this->studentId]);
-	}
+        return $areas;
+    }
 
-	/**
-	 * Set methods
-	 */
-	public function setStudentId(int $studentId) {
-		$this->data['studentId'] = $studentId;
+    private function getCompleted()
+    {
+        return LegacyDB::exists('review_results WHERE reviewId = ? AND studentId = ?', [$this->id, $this->studentId]);
+    }
 
-		return $this;
-	}
+    /**
+     * Set methods
+     */
+    public function setStudentId(int $studentId)
+    {
+        $this->data['studentId'] = $studentId;
+
+        return $this;
+    }
 }

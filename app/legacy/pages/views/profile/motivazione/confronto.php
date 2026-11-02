@@ -7,7 +7,7 @@
     <div id="content">
 
         <?php $key = -1;
-        foreach ($groups as $group) { ?>
+    foreach ($groups as $group) { ?>
 
             <div class="group pad-b-2">
 

@@ -8,7 +8,8 @@ use Illuminate\View\View;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
 
-class Advices extends Component {
+class Advices extends Component
+{
     /**
      * Property: The student ID
      */
@@ -34,7 +35,8 @@ class Advices extends Component {
     /**
      * Lifecycle hook: Initialize the component
      */
-    public function mount(Student $student, array $advices): void {
+    public function mount(Student $student, array $advices): void
+    {
         $this->studentId = $student->id;
         $this->advices = $advices;
 
@@ -55,18 +57,20 @@ class Advices extends Component {
     /**
      * Lifecycle hook: Render the component view
      */
-    public function render(): View {
+    public function render(): View
+    {
         return view('livewire.class.advices');
     }
 
     /**
      * Action: Save the selected advices
      */
-    public function save(): void {
+    public function save(): void
+    {
         $student = Student::findOrFail($this->studentId);
 
         $adviceIds = collect($this->selectedAdvices)
-            ->map(fn($adviceId): int => (int) $adviceId)
+            ->map(fn ($adviceId): int => (int) $adviceId)
             ->filter()
             ->unique()
             ->values()

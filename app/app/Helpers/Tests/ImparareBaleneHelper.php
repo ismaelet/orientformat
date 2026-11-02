@@ -4,8 +4,8 @@ namespace App\Helpers\Tests;
 
 use App\Interfaces\TestHelperInterface;
 
-class ImparareBaleneHelper implements TestHelperInterface {
-
+class ImparareBaleneHelper implements TestHelperInterface
+{
     /**
      * Property: determines whether to show the marker labels in the view or not
      */
@@ -29,7 +29,8 @@ class ImparareBaleneHelper implements TestHelperInterface {
     /**
      * Constructor: initializes the text and generates the HTML version with selectable spans
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->text = $this->text();
         $this->count = substr_count($this->text, ':: marker');
         $this->buildSolutions();
@@ -38,14 +39,16 @@ class ImparareBaleneHelper implements TestHelperInterface {
     /**
      * Helper method: get the original text
      */
-    protected function text(): string {
+    protected function text(): string
+    {
         return __('tests.149-text');
     }
 
     /**
      * Helper method: returns the labels for the markers as an array of strings
      */
-    protected function markerLabels(): array {
+    protected function markerLabels(): array
+    {
         return [
             __('tests.149-label-1'),
             __('tests.149-label-2'),
@@ -57,14 +60,15 @@ class ImparareBaleneHelper implements TestHelperInterface {
     /**
      * Helper method: returns the markers for the test
      */
-    public function markers() {
+    public function markers()
+    {
         $markers = [];
         $markerLabels = $this->markerLabels();
 
         foreach ($markerLabels as $key => $label) {
             $markers[] = [
                 'label' => $label,
-                'count' => substr_count($this->text, ' marker' . $key),
+                'count' => substr_count($this->text, ' marker'.$key),
             ];
         }
 
@@ -74,10 +78,11 @@ class ImparareBaleneHelper implements TestHelperInterface {
     /**
      * Helper method: parses the original text to extract the correct markers for each selectable part and stores them in the solutions array
      */
-    protected function buildSolutions(): void {
+    protected function buildSolutions(): void
+    {
         $this->solutions = [];
 
-        if (!preg_match_all('/\{\!\s*([\s\S]*?)\s*::\s*(marker\d+)\s*!\}/', $this->text, $matches, PREG_SET_ORDER)) {
+        if (! preg_match_all('/\{\!\s*([\s\S]*?)\s*::\s*(marker\d+)\s*!\}/', $this->text, $matches, PREG_SET_ORDER)) {
             return;
         }
 
@@ -90,7 +95,8 @@ class ImparareBaleneHelper implements TestHelperInterface {
     /**
      * Helper method: converts the text with markers into HTML with selectable spans
      */
-    public function htmlText(?array $result): string {
+    public function htmlText(?array $result): string
+    {
         $partId = 0;
         $processedText = $this->text;
 
@@ -106,12 +112,12 @@ class ImparareBaleneHelper implements TestHelperInterface {
             $markerType = $activePart[1];
 
             $activeText =
-                '<span class="selectable js-selectable ' . $resultClass . '" data-part-id="' . $partId . '" data-text-type="' . $markerType . '">' .
-                '<input type="hidden" class="js-answer" name="field[' . $partId . ']" value="">' .
-                '<span class="js-selectable-text">' . $activeText . '</span>' .
+                '<span class="selectable js-selectable '.$resultClass.'" data-part-id="'.$partId.'" data-text-type="'.$markerType.'">'.
+                '<input type="hidden" class="js-answer" name="field['.$partId.']" value="">'.
+                '<span class="js-selectable-text">'.$activeText.'</span>'.
                 '</span>';
 
-            $processedText = $previousText . $activeText . $followingText;
+            $processedText = $previousText.$activeText.$followingText;
 
             $partId++;
         }
@@ -122,9 +128,10 @@ class ImparareBaleneHelper implements TestHelperInterface {
     /**
      * Helper method: determines the CSS class to apply to a selectable part based on the user's selection
      */
-    protected function getResultClass(int $partId, ?array $result): string {
+    protected function getResultClass(int $partId, ?array $result): string
+    {
         // If the test has not been completed don't return any result class
-        if (!is_array($result)) {
+        if (! is_array($result)) {
             return '';
         }
 
@@ -132,7 +139,7 @@ class ImparareBaleneHelper implements TestHelperInterface {
         $correctType = $this->solutions[$partId] ?? null;
 
         // If the user did not select any option for this part return the unselected class
-        if (!$chosenType) {
+        if (! $chosenType) {
             return 'unselected';
         }
 
@@ -143,8 +150,9 @@ class ImparareBaleneHelper implements TestHelperInterface {
     /**
      * Helper method: calculates the test result percentage based on the user's selections
      */
-    public function calculatePercentage(array $results): int {
-        if (!is_array($results) || $this->count === 0) {
+    public function calculatePercentage(array $results): int
+    {
+        if (! is_array($results) || $this->count === 0) {
             return 0;
         }
 

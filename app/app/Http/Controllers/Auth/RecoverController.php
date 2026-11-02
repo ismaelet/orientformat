@@ -11,12 +11,13 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
-class RecoverController extends Controller {
-
+class RecoverController extends Controller
+{
     /**
      * Render the recover page
      */
-    public function index() {
+    public function index()
+    {
 
         return view('auth.recover')
             ->with('location', 'recover')
@@ -26,7 +27,8 @@ class RecoverController extends Controller {
     /**
      * Process the request
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
         // Validation
         $validated = $request->validate([
@@ -72,8 +74,8 @@ class RecoverController extends Controller {
             $content = '
 					<h2 style="text-align: center; padding-bottom: 32px; font-weight: 600;">Recupero dati</h2>
 					<p>
-						L\'indirizzo email associato al tuo account, necessario per accedere, è:<br>' . $email . '.<br><br>
-						Per resettare la tua password puoi usare questo link:<br><a href="' . $resetEndpoint . '">' . $resetEndpoint . '</a>
+						L\'indirizzo email associato al tuo account, necessario per accedere, è:<br>'.$email.'.<br><br>
+						Per resettare la tua password puoi usare questo link:<br><a href="'.$resetEndpoint.'">'.$resetEndpoint.'</a>
 					</p>';
 
             $mail = new GenericMail($subject, $content);
@@ -96,7 +98,7 @@ class RecoverController extends Controller {
                 'title' => 'Recupero accesso',
                 'submitted' => true,
                 'email' => $email,
-                'not_found' => !$user,
+                'not_found' => ! $user,
             ]);
     }
 }

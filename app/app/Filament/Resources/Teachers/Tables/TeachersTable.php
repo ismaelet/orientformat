@@ -9,8 +9,10 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class TeachersTable {
-    public static function configure(Table $table): Table {
+class TeachersTable
+{
+    public static function configure(Table $table): Table
+    {
         return $table
             ->defaultSort('id', 'desc')
             ->columns([
@@ -34,7 +36,7 @@ class TeachersTable {
                     ->sortable(),
                 TextColumn::make('school_classes.name')
                     ->label('Classi assegnate')
-                    ->state(fn($record) => $record->school_classes->map(fn($class) => $class->fullName()))
+                    ->state(fn ($record) => $record->school_classes->map(fn ($class) => $class->fullName()))
                     ->listWithLineBreaks()
                     ->default('Nessuna'),
                 TextColumn::make('created_at')

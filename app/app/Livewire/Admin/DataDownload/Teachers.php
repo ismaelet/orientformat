@@ -5,8 +5,8 @@ namespace App\Livewire\Admin\DataDownload;
 use App\Models\User\Teacher;
 use Livewire\Component;
 
-class Teachers extends Component {
-
+class Teachers extends Component
+{
     /**
      * Property: School year
      */
@@ -20,14 +20,16 @@ class Teachers extends Component {
     /**
      * Lifecycle Hook: Render the component view
      */
-    public function render() {
+    public function render()
+    {
         return view('livewire.admin.data-download.teachers');
     }
 
     /**
      * Action: Download data based on selected parameters
      */
-    public function downloadData() {
+    public function downloadData()
+    {
 
         $data = [];
 
@@ -68,11 +70,11 @@ class Teachers extends Component {
             return session()->flash('error', 'Nessun dato trovato con i parametri selezionati.');
         }
 
-        $fileName = 'Lista_Docenti_' . now()->format('Ymd_His') . '.csv';
-        $filePath = storage_path('app/' . $fileName);
+        $fileName = 'Lista_Docenti_'.now()->format('Ymd_His').'.csv';
+        $filePath = storage_path('app/'.$fileName);
         $handle = fopen($filePath, 'w');
 
-        fputcsv($handle, array_map(fn($field) => ucfirst($field), array_keys($data[0] ?? [])));
+        fputcsv($handle, array_map(fn ($field) => ucfirst($field), array_keys($data[0] ?? [])));
 
         foreach ($data as $teacher) {
             fputcsv($handle, $teacher);

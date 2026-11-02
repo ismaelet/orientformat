@@ -8,7 +8,8 @@ use App\Models\User\Student;
 use App\Models\User\Teacher;
 use Illuminate\Support\Collection;
 
-class RuotaHelper {
+class RuotaHelper
+{
     public static array $emotions = [
         1 => [
             'fear',
@@ -42,21 +43,23 @@ class RuotaHelper {
             'joy',
             'love',
             'acceptance',
-            'submission'
+            'submission',
         ],
     ];
 
     /**
      * Get the emotions for a specific test step
      */
-    public static function emotions(Test $test): array {
-        return array_map(fn($emotion) => __($emotion), self::$emotions[$test->step]);
+    public static function emotions(Test $test): array
+    {
+        return array_map(fn ($emotion) => __($emotion), self::$emotions[$test->step]);
     }
 
     /**
      * Returns the selected emotions
      */
-    public static function selectedEmotions(Test $test, Student | Teacher $user): Collection {
+    public static function selectedEmotions(Test $test, Student|Teacher $user): Collection
+    {
         $tests = Test::where('sectionId', $test->sectionId)
             ->where('step', '<=', $test->step)
             ->orderBy('step')

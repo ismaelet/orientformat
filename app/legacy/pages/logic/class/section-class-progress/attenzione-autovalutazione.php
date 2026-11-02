@@ -1,5 +1,7 @@
 <?php
 
+use Grade\TestTestResult;
+
 global $grade;
 
 // setup page
@@ -14,18 +16,18 @@ $graphData['max'] = 100;
 $graphData['columns'] = [];
 
 // results
-$gradeAverages = Grade\TestTestResult::getRawResult($grade->id, $testId)['values'];
+$gradeAverages = TestTestResult::getRawResult($grade->id, $testId)['values'];
 $gradeAverage = round(array_sum($gradeAverages) / count($gradeAverages));
 
 foreach ($gradeAverages as $resultName => $resultValue) {
-	$graphData['columns'][$resultName] = $gradeAverages[$resultName] . '%';
+    $graphData['columns'][$resultName] = $gradeAverages[$resultName].'%';
 }
 
 // legend
 $graphData['averages'] = [
-	'Media della classe' => $gradeAverage,
+    'Media della classe' => $gradeAverage,
 ];
 
 $graphData['legend'] = [
-	'Media della classe: <strong>' . $gradeAverage . '%</strong>',
+    'Media della classe: <strong>'.$gradeAverage.'%</strong>',
 ];

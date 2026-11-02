@@ -2,12 +2,13 @@
 
 namespace Legacy\Http\Controllers\Activities\Tests;
 
+use Illuminate\Foundation\Vite;
 use Legacy\Http\Controllers\Activities\Test;
-
+use System\Traits\Singleton;
 
 /**
  * Specific test class
- * 
+ *
  * @property int $resultCount = 0 <inherited>
  * @property bool $buttonIsProgressive = false <inherited>
  * @property bool $skipEnabled = false <inherited>
@@ -15,87 +16,93 @@ use Legacy\Http\Controllers\Activities\Test;
  * @property array $parameters = [] <inherited>
  * @property array $arguments = []
  */
-class ImparareMappa extends Test {
+class ImparareMappa extends Test
+{
+    use Singleton;
 
-	use \System\Traits\Singleton;
+    // protected $skipEnabled = true;
+    protected $retryEnabled = true;
 
-	// protected $skipEnabled = true;
-	protected $retryEnabled = true;
-	protected $buttonIsProgressive = true;
-	protected $arguments = [];
+    protected $buttonIsProgressive = true;
 
-	/**m ,nb
-	 * Initialize
-	 */
-	private function __construct() {
-		$this->arguments['boxes'] = [
-			1 => ['content' => __('tests.202-label-1'), 'autofilled' => 1, 'type' => 1, 'connections' => [2 => 'right,left']],
-			2 => ['content' => __('tests.202-label-2'), 'autofilled' => 0, 'type' => 2, 'connections' => [3 => 'right,left']],
-			3 => ['content' => __('tests.202-label-3'), 'autofilled' => 0, 'type' => 1, 'connections' => [4 => 'bottom,top']],
-			4 => ['content' => __('tests.202-label-4'), 'autofilled' => 0, 'type' => 2, 'connections' => [5 => 'bottom,right', 6 => 'bottom,left']],
-			5 => ['content' => __('tests.202-label-5'), 'autofilled' => 0, 'type' => 1, 'connections' => [7 => 'bottom,left', 8 => 'bottom,top', 9 => 'bottom,right']],
-			6 => ['content' => __('tests.202-label-6'), 'autofilled' => 0, 'type' => 1, 'connections' => [10 => 'bottom,top']],
-			7 => ['content' => __('tests.202-label-7'), 'autofilled' => 1, 'type' => 2, 'connections' => [11 => 'bottom,top']],
-			8 => ['content' => __('tests.202-label-8'), 'autofilled' => 0, 'type' => 2, 'connections' => [12 => 'bottom,top']],
-			9 => ['content' => __('tests.202-label-9'), 'autofilled' => 0, 'type' => 2, 'connections' => [13 => 'bottom,top']],
-			10 => ['content' => __('tests.202-label-10'), 'autofilled' => 1, 'type' => 2, 'connections' => [14 => 'bottom,top']],
-			11 => ['content' => __('tests.202-label-11'), 'autofilled' => 0, 'type' => 1, 'connections' => [15 => 'bottom,top']],
-			12 => ['content' => __('tests.202-label-12'), 'autofilled' => 0, 'type' => 1, 'connections' => [16 => 'bottom,top']],
-			13 => ['content' => __('tests.202-label-13'), 'autofilled' => 0, 'type' => 1, 'connections' => [17 => 'bottom,top']],
-			14 => ['content' => __('tests.202-label-14'), 'autofilled' => 0, 'type' => 1],
-			15 => ['content' => __('tests.202-label-15'), 'autofilled' => 0, 'type' => 2, 'connections' => [18 => 'bottom,top']],
-			16 => ['content' => __('tests.202-label-16'), 'autofilled' => 0, 'type' => 2, 'connections' => [19 => 'bottom,top']],
-			17 => ['content' => __('tests.202-label-17'), 'autofilled' => 1, 'type' => 2, 'connections' => [20 => 'bottom,top']],
-			18 => ['content' => __('tests.202-label-18'), 'autofilled' => 0, 'type' => 1, 'connections' => [21 => 'bottom,top']],
-			19 => ['content' => __('tests.202-label-19'), 'autofilled' => 1, 'type' => 1],
-			20 => ['content' => __('tests.202-label-20'), 'autofilled' => 0, 'type' => 1],
-			21 => ['content' => __('tests.202-label-21'), 'autofilled' => 0, 'type' => 2, 'connections' => [22 => 'bottom,left', 23 => 'bottom,right']],
-			22 => ['content' => __('tests.202-label-22'), 'autofilled' => 0, 'type' => 1],
-			23 => ['content' => __('tests.202-label-23'), 'autofilled' => 1, 'type' => 1],
-		];
-	}
+    protected $arguments = [];
 
-	protected function init() {
-		$this->view();
+    /**m ,nb
+     * Initialize
+     */
+    private function __construct()
+    {
+        $this->arguments['boxes'] = [
+            1 => ['content' => __('tests.202-label-1'), 'autofilled' => 1, 'type' => 1, 'connections' => [2 => 'right,left']],
+            2 => ['content' => __('tests.202-label-2'), 'autofilled' => 0, 'type' => 2, 'connections' => [3 => 'right,left']],
+            3 => ['content' => __('tests.202-label-3'), 'autofilled' => 0, 'type' => 1, 'connections' => [4 => 'bottom,top']],
+            4 => ['content' => __('tests.202-label-4'), 'autofilled' => 0, 'type' => 2, 'connections' => [5 => 'bottom,right', 6 => 'bottom,left']],
+            5 => ['content' => __('tests.202-label-5'), 'autofilled' => 0, 'type' => 1, 'connections' => [7 => 'bottom,left', 8 => 'bottom,top', 9 => 'bottom,right']],
+            6 => ['content' => __('tests.202-label-6'), 'autofilled' => 0, 'type' => 1, 'connections' => [10 => 'bottom,top']],
+            7 => ['content' => __('tests.202-label-7'), 'autofilled' => 1, 'type' => 2, 'connections' => [11 => 'bottom,top']],
+            8 => ['content' => __('tests.202-label-8'), 'autofilled' => 0, 'type' => 2, 'connections' => [12 => 'bottom,top']],
+            9 => ['content' => __('tests.202-label-9'), 'autofilled' => 0, 'type' => 2, 'connections' => [13 => 'bottom,top']],
+            10 => ['content' => __('tests.202-label-10'), 'autofilled' => 1, 'type' => 2, 'connections' => [14 => 'bottom,top']],
+            11 => ['content' => __('tests.202-label-11'), 'autofilled' => 0, 'type' => 1, 'connections' => [15 => 'bottom,top']],
+            12 => ['content' => __('tests.202-label-12'), 'autofilled' => 0, 'type' => 1, 'connections' => [16 => 'bottom,top']],
+            13 => ['content' => __('tests.202-label-13'), 'autofilled' => 0, 'type' => 1, 'connections' => [17 => 'bottom,top']],
+            14 => ['content' => __('tests.202-label-14'), 'autofilled' => 0, 'type' => 1],
+            15 => ['content' => __('tests.202-label-15'), 'autofilled' => 0, 'type' => 2, 'connections' => [18 => 'bottom,top']],
+            16 => ['content' => __('tests.202-label-16'), 'autofilled' => 0, 'type' => 2, 'connections' => [19 => 'bottom,top']],
+            17 => ['content' => __('tests.202-label-17'), 'autofilled' => 1, 'type' => 2, 'connections' => [20 => 'bottom,top']],
+            18 => ['content' => __('tests.202-label-18'), 'autofilled' => 0, 'type' => 1, 'connections' => [21 => 'bottom,top']],
+            19 => ['content' => __('tests.202-label-19'), 'autofilled' => 1, 'type' => 1],
+            20 => ['content' => __('tests.202-label-20'), 'autofilled' => 0, 'type' => 1],
+            21 => ['content' => __('tests.202-label-21'), 'autofilled' => 0, 'type' => 2, 'connections' => [22 => 'bottom,left', 23 => 'bottom,right']],
+            22 => ['content' => __('tests.202-label-22'), 'autofilled' => 0, 'type' => 1],
+            23 => ['content' => __('tests.202-label-23'), 'autofilled' => 1, 'type' => 1],
+        ];
+    }
 
-		return $this;
-	}
+    protected function init()
+    {
+        $this->view();
 
-	/**
-	 * Logic
-	 */
-	protected function logic() {
-		$boxes = $this->arguments['boxes'];
+        return $this;
+    }
 
-		$i = 0;
-		foreach ($boxes as $key => &$box) {
-			if (!$box['autofilled']) {
-				$i++;
-			}
+    /**
+     * Logic
+     */
+    protected function logic()
+    {
+        $boxes = $this->arguments['boxes'];
 
-			if (legacy_test()->completed) {
-				$box['classes'] = $box['autofilled'] || legacy_test()->rawResults[$i - 1] == $key || (isset($box['alternatives']) && in_array(legacy_test()->rawResults[$i - 1], $box['alternatives'])) ? 'right' : 'wrong';
-				$box['text'] = $box['autofilled'] ? $box['content'] : ($boxes[legacy_test()->rawResults[$i - 1]]['content'] ?? false);
-			} else {
-				$box['classes'] = $box['autofilled'] ? 'active' : 'droppable';
-				$box['text'] = $box['autofilled'] ? $box['content'] : '';
-			}
-		}
+        $i = 0;
+        foreach ($boxes as $key => &$box) {
+            if (! $box['autofilled']) {
+                $i++;
+            }
 
-		$this->resultCount = $i;
-		$this->parameters['boxes'] = $boxes;
-	}
+            if (legacy_test()->completed) {
+                $box['classes'] = $box['autofilled'] || legacy_test()->rawResults[$i - 1] == $key || (isset($box['alternatives']) && in_array(legacy_test()->rawResults[$i - 1], $box['alternatives'])) ? 'right' : 'wrong';
+                $box['text'] = $box['autofilled'] ? $box['content'] : ($boxes[legacy_test()->rawResults[$i - 1]]['content'] ?? false);
+            } else {
+                $box['classes'] = $box['autofilled'] ? 'active' : 'droppable';
+                $box['text'] = $box['autofilled'] ? $box['content'] : '';
+            }
+        }
 
-	/**
-	 * Template
-	 */
-	protected function template() {
-		ob_start();
-?>
+        $this->resultCount = $i;
+        $this->parameters['boxes'] = $boxes;
+    }
+
+    /**
+     * Template
+     */
+    protected function template()
+    {
+        ob_start();
+        ?>
 
 		<section>
 
-			<?php if (legacy_test()->completed || !isSupervisor()) { ?>
+			<?php if (legacy_test()->completed || ! isSupervisor()) { ?>
 
 				<h3 class="section-title center-content">Schema</h3>
 
@@ -109,7 +116,7 @@ class ImparareMappa extends Test {
 
 									<p class="txt-wht txt-1rem cenY wid-100 fa-center"><?= $box['text'] ?></p>
 
-									<?php if (!$box['autofilled']) { ?>
+									<?php if (! $box['autofilled']) { ?>
 
 										<input type="hidden" class="filler-inp" name="field[]" value="0">
 
@@ -126,7 +133,7 @@ class ImparareMappa extends Test {
 						</div>
 					</div>
 
-					<?php if (!legacy_test()->completed) { ?>
+					<?php if (! legacy_test()->completed) { ?>
 
 						<div class="elements">
 							<div class="elements__wrapper panel">
@@ -135,32 +142,32 @@ class ImparareMappa extends Test {
 									<div class="flex-line">
 
 										<?php
-										$keys = array_keys($this->parameters['boxes']);
-										shuffle($keys);
+                                                $keys = array_keys($this->parameters['boxes']);
+					    shuffle($keys);
 
-										foreach ($keys as $key) {
-											$box = $this->parameters['boxes'][$key];
-											if (!$box['autofilled'] && $box['type'] == 1) { ?>
+					    foreach ($keys as $key) {
+					        $box = $this->parameters['boxes'][$key];
+					        if (! $box['autofilled'] && $box['type'] == 1) { ?>
 
 												<div id="cause<?= $key ?>" class="cause cause--solid js-box--solid" data-id="<?= $key ?>">
 													<p class="txt-wht txt-1rem"><?= $box['content'] ?></p>
 												</div>
 
 										<?php }
-										} ?>
+					        } ?>
 
 									</div>
 
 									<div class="flex-line">
 										<?php foreach ($this->parameters['boxes'] as $key => $box) {
-											if (!$box['autofilled'] && $box['type'] == 2) { ?>
+										    if (! $box['autofilled'] && $box['type'] == 2) { ?>
 
 												<div id="cause<?= $key ?>" class="cause cause--dashed js-box--dashed" data-id="<?= $key ?>">
 													<p class="txt-wht txt-1rem"><?= $box['content'] ?></p>
 												</div>
 
 										<?php }
-										} ?>
+										    } ?>
 									</div>
 								</div>
 							</div>
@@ -169,7 +176,7 @@ class ImparareMappa extends Test {
 					<?php } ?>
 				</div>
 
-			<?php } else if (isSupervisor()) { ?>
+			<?php } elseif (isSupervisor()) { ?>
 
 				<?= no_results() ?>
 
@@ -179,21 +186,23 @@ class ImparareMappa extends Test {
 
 
 	<?php return ob_get_clean();
-	}
-
-	/**
-	 * Scripts
-	 */
-	protected function scripts() {
-        return (string) app(\Illuminate\Foundation\Vite::class)('resources/js/exercises/templates/mapping.js');
     }
 
-	/**
-	 * Style
-	 */
-	protected function style() {
-		ob_start();
-	?>
+    /**
+     * Scripts
+     */
+    protected function scripts()
+    {
+        return (string) app(Vite::class)('resources/js/exercises/templates/mapping.js');
+    }
+
+    /**
+     * Style
+     */
+    protected function style()
+    {
+        ob_start();
+        ?>
 
 		<style>
 			main {
@@ -459,28 +468,29 @@ class ImparareMappa extends Test {
 		</style>
 
 <?php return ob_get_clean();
-	}
+    }
 
-	/**
-	 * Post methods
-	 */
-	public function calcResult(array $results = [], int $count = null) {
-		$boxes = $this->arguments['boxes'];
+    /**
+     * Post methods
+     */
+    public function calcResult(array $results = [], ?int $count = null)
+    {
+        $boxes = $this->arguments['boxes'];
 
-		$rightN = 0;
-		$i = 0;
+        $rightN = 0;
+        $i = 0;
 
-		foreach ($boxes as $key => $box) {
-			if (!$box['autofilled']) {
-				$i++;
-				$value = $results[$i - 1];
+        foreach ($boxes as $key => $box) {
+            if (! $box['autofilled']) {
+                $i++;
+                $value = $results[$i - 1];
 
-				if ($value == $key || (isset($box['alternatives']) && in_array($value, $box['alternatives']))) {
-					$rightN++;
-				}
-			}
-		}
+                if ($value == $key || (isset($box['alternatives']) && in_array($value, $box['alternatives']))) {
+                    $rightN++;
+                }
+            }
+        }
 
-		return percent($rightN, $count);
-	}
+        return percent($rightN, $count);
+    }
 }

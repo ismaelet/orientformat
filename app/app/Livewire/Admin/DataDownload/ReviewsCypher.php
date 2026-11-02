@@ -2,30 +2,25 @@
 
 namespace App\Livewire\Admin\DataDownload;
 
-use App\Models\Activities\Test;
-use App\Models\Results\User\TestResult;
 use App\Models\Review;
 use App\Models\ReviewQuestion;
-use App\Models\ReviewResult;
-use App\Models\User\Student;
-use Illuminate\Support\Carbon;
 use Livewire\Component;
 
-class ReviewsCypher extends Component {
-
-
+class ReviewsCypher extends Component
+{
     /**
      * Lifecycle Hook: Render the component view
      */
-    public function render() {
+    public function render()
+    {
         return view('livewire.admin.data-download.reviews-cypher');
     }
 
     /**
      * Action: Download data based on selected parameters
      */
-    public function downloadData() {
-
+    public function downloadData()
+    {
 
         /**
          * Reviews list
@@ -54,24 +49,23 @@ class ReviewsCypher extends Component {
         $flatQuestions = collect();
 
         foreach ($reviews as $review) {
-            $questions = $reviewQuestions->filter(fn($q) => $q->reviews->contains('id', $review->id));
+            $questions = $reviewQuestions->filter(fn ($q) => $q->reviews->contains('id', $review->id));
 
             foreach ($questions as $question) {
                 $flatQuestions->push([
-                    'label' => $reivewNames[$review->id] . ' > ' . $question->full_slug,
+                    'label' => $reivewNames[$review->id].' > '.$question->full_slug,
                     'slug' => $question->full_slug,
                     'review_id' => $review->id,
                     'text' => $question->text,
                 ]);
 
-
                 if ($question->optionCount() > 1) {
                     for ($optionKey = 1; $optionKey <= $question->optionCount(); $optionKey++) {
-                        $questionFullSlug = $question->full_slug . '_' . $optionKey;
+                        $questionFullSlug = $question->full_slug.'_'.$optionKey;
 
                         $flatQuestions->push(
                             [
-                                'label' => $reivewNames[$review->id] . ' > ' . $questionFullSlug,
+                                'label' => $reivewNames[$review->id].' > '.$questionFullSlug,
                                 'slug' => $questionFullSlug,
                                 'review_id' => $review->id,
                                 'answer' => $question->option($optionKey - 1) ?? '.',
@@ -98,7 +92,7 @@ class ReviewsCypher extends Component {
             fputcsv($out, $baseHeader);
 
             foreach ($reviews as $review) {
-                $questions = $flatQuestions->filter(fn($q) => $q['review_id'] == $review->id);
+                $questions = $flatQuestions->filter(fn ($q) => $q['review_id'] == $review->id);
 
                 foreach ($questions as $question) {
                     $row = [

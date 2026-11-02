@@ -7,8 +7,8 @@ use App\Models\User\Teacher;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class TeacherJoinRequest extends Model {
-
+class TeacherJoinRequest extends Model
+{
     /**
      * The table associated with the models
      */
@@ -26,21 +26,24 @@ class TeacherJoinRequest extends Model {
     /**
      * Relationship: The teacher who requested to join the class
      */
-    public function requesting_teacher(): BelongsTo {
+    public function requesting_teacher(): BelongsTo
+    {
         return $this->belongsTo(Teacher::class, 'requesting_teacher_id');
     }
 
     /**
      * Relationship: The referent teacher for the join request
      */
-    public function referent_teacher(): BelongsTo {
+    public function referent_teacher(): BelongsTo
+    {
         return $this->belongsTo(Teacher::class, 'referent_id');
     }
 
     /**
      * Relationship: The class associated with the join request
      */
-    public function class(): BelongsTo {
+    public function class(): BelongsTo
+    {
         return $this->belongsTo(SchoolClass::class, 'class_id');
     }
 }

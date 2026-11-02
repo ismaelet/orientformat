@@ -1,8 +1,8 @@
 <?php
 
+use App\Legacy\LegacyView;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use LogicManager\TestLogic;
 
 $legacyTest = legacy_test();
 
@@ -11,87 +11,89 @@ $results = [];
 $questions = [];
 
 for ($i = 1; $i <= 10; $i++) {
-	$questions[] = __('tests.' . $legacyTest->id . '-question-' . $i);
+    $questions[] = __('tests.'.$legacyTest->id.'-question-'.$i);
 }
 
 $answers = $answers ?? [
-	[
-		'right' => 4
-	],
-	[
-		'right' => 2
-	],
-	[
-		'right' => 1
-	],
-	[
-		'right' => 4
-	],
-	[
-		'right' => 3
-	],
-	[
-		'right' => 1
-	],
-	[
-		'right' => 3
-	],
-	[
-		'right' => 2
-	],
-	[
-		'right' => 1
-	],
-	[
-		'right' => 2
-	],
+    [
+        'right' => 4,
+    ],
+    [
+        'right' => 2,
+    ],
+    [
+        'right' => 1,
+    ],
+    [
+        'right' => 4,
+    ],
+    [
+        'right' => 3,
+    ],
+    [
+        'right' => 1,
+    ],
+    [
+        'right' => 3,
+    ],
+    [
+        'right' => 2,
+    ],
+    [
+        'right' => 1,
+    ],
+    [
+        'right' => 2,
+    ],
 ];
 
 foreach ($answers as $key => $answer) {
-	$answers[$key]['res'] = array_filter([
-		__('tests.' . $legacyTest->id . '-answer-' . ($key + 1) . '-1'),
-		__('tests.' . $legacyTest->id . '-answer-' . ($key + 1) . '-2'),
-		__('tests.' . $legacyTest->id . '-answer-' . ($key + 1) . '-3'),
-		$legacyTest->id == 138 ? null : __('tests.' . $legacyTest->id . '-answer-' . ($key + 1) . '-4'),
-	]);
+    $answers[$key]['res'] = array_filter([
+        __('tests.'.$legacyTest->id.'-answer-'.($key + 1).'-1'),
+        __('tests.'.$legacyTest->id.'-answer-'.($key + 1).'-2'),
+        __('tests.'.$legacyTest->id.'-answer-'.($key + 1).'-3'),
+        $legacyTest->id == 138 ? null : __('tests.'.$legacyTest->id.'-answer-'.($key + 1).'-4'),
+    ]);
 }
 
 foreach ($questions as $questionKey => $question) {
-	$questionData = [];
-	$questionData['text'] = $questions[$questionKey];
+    $questionData = [];
+    $questionData['text'] = $questions[$questionKey];
 
-	foreach ($answers[$questionKey]['res'] as $answerKey => $answer) {
-		$answerData = [];
-		$answerData['text'] = $answer;
-		$answerData['checked'] = isset($legacyTest->rawResults[$questionKey]) && $legacyTest->rawResults[$questionKey] == $answerKey + 1;
+    foreach ($answers[$questionKey]['res'] as $answerKey => $answer) {
+        $answerData = [];
+        $answerData['text'] = $answer;
+        $answerData['checked'] = isset($legacyTest->rawResults[$questionKey]) && $legacyTest->rawResults[$questionKey] == $answerKey + 1;
 
-		if ($legacyTest->completed && $answerData['checked']) {
-			$answerData['class'] = $answerKey + 1 == $answers[$questionKey]['right'] ? 'right' : 'wrong';
-		} else {
-			$answerData['class'] = '';
-		}
+        if ($legacyTest->completed && $answerData['checked']) {
+            $answerData['class'] = $answerKey + 1 == $answers[$questionKey]['right'] ? 'right' : 'wrong';
+        } else {
+            $answerData['class'] = '';
+        }
 
-		$questionData['answers'][] = $answerData;
-	}
+        $questionData['answers'][] = $answerData;
+    }
 
-	$content[] = $questionData;
+    $content[] = $questionData;
 }
 
 $count = count($questions);
 
-\Legacy\LogicManager\TestLogic::setParameterCount($count)
-	->setTestSubmitFunction(function ($count) {
-		$answers = \App\Legacy\LegacyView::getInstance()->get('answers');
+Legacy\LogicManager\TestLogic::setParameterCount($count)
+    ->setTestSubmitFunction(function ($count) {
+        $answers = LegacyView::getInstance()->get('answers');
 
-		$rightN = 0;
+        $rightN = 0;
 
-		try {
-			foreach ($_POST['field'] as $key => $value) {
-				if ($value == $answers[$key]['right']) $rightN++;
-			}
-		} catch (\Exception $e) {
-			Log::error('Post results not set in "Racconto"', ['userId' => Auth::id(), 'request' => request()->all()]);
-		}
+        try {
+            foreach ($_POST['field'] as $key => $value) {
+                if ($value == $answers[$key]['right']) {
+                    $rightN++;
+                }
+            }
+        } catch (Exception $e) {
+            Log::error('Post results not set in "Racconto"', ['userId' => Auth::id(), 'request' => request()->all()]);
+        }
 
-		return round($rightN / $count * 100);
-	});
+        return round($rightN / $count * 100);
+    });

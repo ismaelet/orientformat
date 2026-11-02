@@ -1,5 +1,7 @@
 <?php
 
+use Legacy\LogicManager\TestLogic;
+
 $legacyTest = legacy_test();
 $test = $legacyTest->newTest();
 $sibling = $legacyTest->requiredTest;
@@ -25,4 +27,4 @@ $categories = [
 
 $count = count($types);
 
-\Legacy\LogicManager\TestLogic::setParameterCount($count);
+TestLogic::setParameterCount($count);

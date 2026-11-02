@@ -5,8 +5,8 @@ namespace App\Livewire\Admin\DataDownload;
 use App\Models\User\Student;
 use Livewire\Component;
 
-class Students extends Component {
-
+class Students extends Component
+{
     /**
      * Property: School year
      */
@@ -30,14 +30,16 @@ class Students extends Component {
     /**
      * Lifecycle Hook: Render the component view
      */
-    public function render() {
+    public function render()
+    {
         return view('livewire.admin.data-download.students');
     }
 
     /**
      * Action: Download data based on selected parameters
      */
-    public function downloadData() {
+    public function downloadData()
+    {
 
         $data = [];
 
@@ -61,7 +63,7 @@ class Students extends Component {
         }
 
         if ($this->schoolType !== 'all') {
-            $students = $students->whereHas('class.grade_level', fn($query) => $query->where('is_highschool', $this->schoolType === 'highschool'));
+            $students = $students->whereHas('class.grade_level', fn ($query) => $query->where('is_highschool', $this->schoolType === 'highschool'));
         }
 
         $students = $students->get();
@@ -82,7 +84,7 @@ class Students extends Component {
                 'Scuola' => $student->class->school?->name ?? '.',
                 'Scuola superiore' => $student->class?->grade_level?->is_highschool ? 'Sì' : 'No',
 
-                $this->schoolYear ? 'Anno di corso nel ' . $this->schoolYear : 'Anno di corso' => $gradeLevel?->school_relative_number ?? '.',
+                $this->schoolYear ? 'Anno di corso nel '.$this->schoolYear : 'Anno di corso' => $gradeLevel?->school_relative_number ?? '.',
 
                 'Anno di fine corso' => $student->class?->ended ? $student->class?->lastActiveYear() : '.',
 
@@ -94,12 +96,12 @@ class Students extends Component {
             return session()->flash('error', 'Nessun dato trovato con i parametri selezionati.');
         }
 
-        $fileName = 'Lista_Studenti_' . now()->format('Ymd_His') . '.csv';
+        $fileName = 'Lista_Studenti_'.now()->format('Ymd_His').'.csv';
 
-        $filePath = storage_path('app/' . $fileName);
+        $filePath = storage_path('app/'.$fileName);
         $handle = fopen($filePath, 'w');
 
-        fputcsv($handle, array_map(fn($field) => ucfirst($field), array_keys($data[0] ?? [])));
+        fputcsv($handle, array_map(fn ($field) => ucfirst($field), array_keys($data[0] ?? [])));
 
         foreach ($data as $student) {
             fputcsv($handle, $student);

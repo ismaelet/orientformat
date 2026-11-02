@@ -5,15 +5,15 @@
 <div class="main-wrap grid" data-spacing="800">
 	<section class="title__wrapper">
 
-		<?php if (!legacy_test()->completed) {
-			echo title();
+		<?php if (! legacy_test()->completed) {
+		    echo title();
 		} else {
-			echo title(null, ' ');
+		    echo title(null, ' ');
 		} ?>
 
 	</section>
 
-	<?php if (!legacy_test()->completed) { ?>
+	<?php if (! legacy_test()->completed) { ?>
 
 		<section class="pattern">
 			<p class="pattern__text"><?= $letters ?></p>

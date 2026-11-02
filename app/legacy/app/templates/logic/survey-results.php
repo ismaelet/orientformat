@@ -1,8 +1,10 @@
 <?php
 
-include_once __DIR__ . '/test.php';
+use App\Legacy\LegacyView;
 
-$fixedQuestions = \App\Legacy\LegacyView::getInstance()->get('fixedQuestions');
+include_once __DIR__.'/test.php';
+
+$fixedQuestions = LegacyView::getInstance()->get('fixedQuestions');
 $answers = null;
 $total = 0;
 
@@ -12,7 +14,7 @@ $survey = $requiredTest->survey;
 
 $questions = $survey->questions;
 $questionCount = $survey->questionCount();
-$range  = $survey->answerCount();
+$range = $survey->answerCount();
 $max = $questionCount * ($range - 1);
 
 if ($requiredTest->completed) {

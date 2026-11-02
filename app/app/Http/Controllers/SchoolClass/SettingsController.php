@@ -8,24 +8,26 @@ use App\Models\Schools\Grade;
 use App\Models\Schools\SchoolClass;
 use Illuminate\Http\Request;
 
-class SettingsController extends Controller {
-
+class SettingsController extends Controller
+{
     /**
      * Show the student list
      */
-    public function studentIndex(SchoolClass $class) {
+    public function studentIndex(SchoolClass $class)
+    {
         $students = $class->students->load('user')->sortBy('inverted_full_name');
 
         return view('class.settings.students.index', [
             'class' => $class,
-            'students' => $students
+            'students' => $students,
         ]);
     }
 
     /**
      * Show the class settings
      */
-    public function showSettings(SchoolClass $class) {
+    public function showSettings(SchoolClass $class)
+    {
         $isHighschool = $class->isHighschool();
         $isProfessional = $class->isProfessional();
 
@@ -52,11 +54,12 @@ class SettingsController extends Controller {
     /**
      * Update the class settings
      */
-    public function update(Request $request, SchoolClass $class) {
+    public function update(Request $request, SchoolClass $class)
+    {
         $request->validate([
             'grade' => 'required|exists:activities_grades,absolute_number',
             'letter' => 'required|string|max:10',
-            'professional' => 'nullable|boolean'
+            'professional' => 'nullable|boolean',
         ]);
 
         $letter = strtoupper($request->input('letter'));
@@ -78,7 +81,7 @@ class SettingsController extends Controller {
             'startingGrade' => $newStartingGrade,
             'letter' => $name,
             'name' => $name,
-            'professional' => !$class->isMiddleSchool() && $request->input('professional'),
+            'professional' => ! $class->isMiddleSchool() && $request->input('professional'),
         ]);
 
         return redirect()->back()->with('success', 'Impostazioni della classe aggiornate con successo.');
@@ -87,7 +90,8 @@ class SettingsController extends Controller {
     /**
      * Delete the class
      */
-    public function destroy(SchoolClass $class) {
+    public function destroy(SchoolClass $class)
+    {
         $class->delete();
 
         return redirect()->route('teacher.dashboard')->with('success', 'Classe eliminata con successo.');

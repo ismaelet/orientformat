@@ -4,8 +4,8 @@ namespace App\Models\Results\User;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OtherResult extends Model {
-
+class OtherResult extends Model
+{
     /**
      * The table associated with the model
      */

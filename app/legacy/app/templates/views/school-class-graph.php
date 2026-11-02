@@ -22,7 +22,7 @@
 
 <?php if ($graphData) { ?>
 	<!-- Graph -->
-	<section class="graph <?= $divideBy ? 'graph--divided' : '' ?> <?= 'graph--' . section_config($sectionId, 'type') ?> js-load" data-section-id="<?= $sectionId ?>">
+	<section class="graph <?= $divideBy ? 'graph--divided' : '' ?> <?= 'graph--'.section_config($sectionId, 'type') ?> js-load" data-section-id="<?= $sectionId ?>">
 		<?php graph_columns($graphData) ?>
 	</section>
 <?php } else { ?>

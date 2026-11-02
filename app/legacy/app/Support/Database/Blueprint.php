@@ -2,139 +2,148 @@
 
 namespace App\Support\Database;
 
-class Blueprint {
+class Blueprint
+{
+    private $currentColumn;
 
-	private $currentColumn;
-	private $columns = [];
-	private $toDrop = [];
+    private $columns = [];
 
-	function __construct() {
-	}
+    private $toDrop = [];
 
-	/**
-	 * Add the index
-	 */
-	public function id(): self {
-		$this->columns['id'] = 'id INT(11) AUTO_INCREMENT PRIMARY KEY';
+    public function __construct() {}
 
-		$this->currentColumn = 'id';
+    /**
+     * Add the index
+     */
+    public function id(): self
+    {
+        $this->columns['id'] = 'id INT(11) AUTO_INCREMENT PRIMARY KEY';
 
-		return $this;
-	}
+        $this->currentColumn = 'id';
 
-	/**
-	 * Add an integer column
-	 * 
-	 * @return object self
-	 */
-	public function int(string $column): self {
-		$this->columns[$column] = $column . ' INT(11)';
+        return $this;
+    }
 
-		$this->currentColumn = $column;
+    /**
+     * Add an integer column
+     *
+     * @return object self
+     */
+    public function int(string $column): self
+    {
+        $this->columns[$column] = $column.' INT(11)';
 
-		return $this;
-	}
+        $this->currentColumn = $column;
 
-	/**
-	 * Add an integer column
-	 * 
-	 * @return object self
-	 */
-	public function boolean(string $column): self {
-		$this->columns[$column] = $column . ' TINYINT(1) DEFAULT 0';
+        return $this;
+    }
 
-		$this->currentColumn = $column;
+    /**
+     * Add an integer column
+     *
+     * @return object self
+     */
+    public function boolean(string $column): self
+    {
+        $this->columns[$column] = $column.' TINYINT(1) DEFAULT 0';
 
-		return $this;
-	}
+        $this->currentColumn = $column;
 
-	/**
-	 * Add a string column
-	 * 
-	 * @return object self
-	 */
-	public function string(string $column): self {
-		$this->columns[$column] = $column . ' VARCHAR(255)';
+        return $this;
+    }
 
-		$this->currentColumn = $column;
+    /**
+     * Add a string column
+     *
+     * @return object self
+     */
+    public function string(string $column): self
+    {
+        $this->columns[$column] = $column.' VARCHAR(255)';
 
-		return $this;
-	}
+        $this->currentColumn = $column;
 
-	/**
-	 * Add a timestamp column
-	 * 
-	 * @return object self
-	 */
-	public function timestamp(): self {
-		$this->columns['time_added'] = 'time_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP';
+        return $this;
+    }
 
-		$this->currentColumn = 'time_added';
+    /**
+     * Add a timestamp column
+     *
+     * @return object self
+     */
+    public function timestamp(): self
+    {
+        $this->columns['time_added'] = 'time_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP';
 
-		return $this;
-	}
+        $this->currentColumn = 'time_added';
 
-	/**
-	 * Add a default value
-	 * 
-	 * @param mixed $defaultValue
-	 * @return object self
-	 */
-	public function default($defaultValue): self {
-		$sql = explode(' DEFAULT ', $this->columns[$this->currentColumn])[0];
+        return $this;
+    }
 
-		$this->columns[$this->currentColumn] = $sql . ' DEFAULT ' . $defaultValue;
+    /**
+     * Add a default value
+     *
+     * @param  mixed  $defaultValue
+     * @return object self
+     */
+    public function default($defaultValue): self
+    {
+        $sql = explode(' DEFAULT ', $this->columns[$this->currentColumn])[0];
 
-		return $this;
-	}
+        $this->columns[$this->currentColumn] = $sql.' DEFAULT '.$defaultValue;
 
-	/**
-	 * Edit the maximum length
-	 * 
-	 * @param int $length
-	 * @return object self
-	 */
-	public function length(int $length): self {
-		$pattern = '/\((\d+)\)/';
+        return $this;
+    }
 
-		preg_match($pattern, $this->columns[$this->currentColumn], $matches);
+    /**
+     * Edit the maximum length
+     *
+     * @return object self
+     */
+    public function length(int $length): self
+    {
+        $pattern = '/\((\d+)\)/';
 
-		if (!empty($matches)) {
-			$this->columns[$this->currentColumn] = preg_replace($pattern, "($length)", $this->columns[$this->currentColumn]);
-		}
+        preg_match($pattern, $this->columns[$this->currentColumn], $matches);
 
-		return $this;
-	}
+        if (! empty($matches)) {
+            $this->columns[$this->currentColumn] = preg_replace($pattern, "($length)", $this->columns[$this->currentColumn]);
+        }
 
-	/**
-	 * Add a column to the drop list
-	 * 
-	 * @param string $column
-	 * @return object self
-	 */
-	public function drop(string $column): self {
-		$this->toDrop[] = $column;
+        return $this;
+    }
 
-		$this->currentColumn = $column;
+    /**
+     * Add a column to the drop list
+     *
+     * @return object self
+     */
+    public function drop(string $column): self
+    {
+        $this->toDrop[] = $column;
 
-		return $this;
-	}
+        $this->currentColumn = $column;
 
-	/**
-	 * Return the stored columns
-	 * 
-	 * @return array the list of the columns to add as ['columnName' => 'columnSql', ...]
-	 */
-	public function columns(): array {
-		return $this->columns;
-	}
+        return $this;
+    }
 
-	/**
-	 * Return the columns to drop
-	 * 
-	 * @return array the list of the columns to drop
-	 */
-	public function toDrop(): array {
-		return $this->toDrop;
-	}
+    /**
+     * Return the stored columns
+     *
+     * @return array the list of the columns to add as ['columnName' => 'columnSql', ...]
+     */
+    public function columns(): array
+    {
+        return $this->columns;
+    }
+
+    /**
+     * Return the columns to drop
+     *
+     * @return array the list of the columns to drop
+     */
+    public function toDrop(): array
+    {
+        return $this->toDrop;
+    }
 }

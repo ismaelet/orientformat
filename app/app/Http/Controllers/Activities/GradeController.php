@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Schools\Grade;
 use Illuminate\Support\Facades\Auth;
 
-class GradeController extends Controller {
-
+class GradeController extends Controller
+{
     /**
      * Display a listing of the available grades
      */
-    function index() {
+    public function index()
+    {
         $student = Auth::user()->student;
         $class = $student->class;
 
@@ -34,7 +35,8 @@ class GradeController extends Controller {
     /**
      * Display the sections of a specific grade
      */
-    function show(Grade $grade) {
+    public function show(Grade $grade)
+    {
         $grade->load('areas', 'areas.sections', 'sections.tests', 'sections.tests.section', 'sections.active_tests', 'sections.main_section');
         $student = Auth::user()->student;
 

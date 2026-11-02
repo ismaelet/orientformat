@@ -2,15 +2,16 @@
 
 namespace System\Traits;
 
-trait Singleton {
+trait Singleton
+{
+    private static $instance;
 
-	private static $instance;
+    public static function getInstance()
+    {
+        if (! isset(self::$instance)) {
+            self::$instance = new self;
+        }
 
-	public static function getInstance() {
-		if (!isset(self::$instance)) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
-	}
+        return self::$instance;
+    }
 }

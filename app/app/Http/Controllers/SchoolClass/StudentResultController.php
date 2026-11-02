@@ -12,12 +12,13 @@ use App\View\Components\Student\Poi;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
-class StudentResultController extends Controller {
-
+class StudentResultController extends Controller
+{
     /**
      * Show the results for a specific student
      */
-    public function show(Request $request, SchoolClass $class, Student $student) {
+    public function show(Request $request, SchoolClass $class, Student $student)
+    {
         // Review results
         $reviewResults = ReviewResult::where('studentId', $student->id)
             ->orderByDesc('id')
@@ -37,14 +38,15 @@ class StudentResultController extends Controller {
             'class' => $class,
             'student' => $student,
             'reviewResults' => $reviewResults,
-            'grades' => $grades
+            'grades' => $grades,
         ]);
     }
 
     /**
      * Show the P.O.I. for a specific student
      */
-    public function showPoi(Request $request, SchoolClass $class, Student $student) {
+    public function showPoi(Request $request, SchoolClass $class, Student $student)
+    {
         return view('class.students.poi', [
             'class' => $class,
             'student' => $student,
@@ -54,7 +56,8 @@ class StudentResultController extends Controller {
     /**
      * Show the self-evaluations for a specific student
      */
-    public function showSelfEvaluations(Request $request, SchoolClass $class, Student $student) {
+    public function showSelfEvaluations(Request $request, SchoolClass $class, Student $student)
+    {
         return view('class.students.autovalutazioni', [
             'class' => $class,
             'student' => $student,
@@ -64,7 +67,8 @@ class StudentResultController extends Controller {
     /**
      * Show the masterpieces for a specific student
      */
-    public function showMasterpieces(Request $request, SchoolClass $class, Student $student) {
+    public function showMasterpieces(Request $request, SchoolClass $class, Student $student)
+    {
         return view('class.students.masterpieces', [
             'class' => $class,
             'student' => $student,
@@ -74,9 +78,10 @@ class StudentResultController extends Controller {
     /**
      * Show the results for a specific student as PDF
      */
-    public function downloadPdf(Request $request, Student $student) {
+    public function downloadPdf(Request $request, Student $student)
+    {
         $class = $student->class;
-        $title = 'Risultati di ' . $student->full_name . ' - ' . $class->name;
+        $title = 'Risultati di '.$student->full_name.' - '.$class->name;
         $grades = Grade::where('is_professional', $class->isProfessional())
             ->where('absolute_number', '>=', $class->isMiddleSchool() ? 1 : 4)
             ->where('absolute_number', '<=', $class->grade()->absolute_number)
@@ -99,9 +104,10 @@ class StudentResultController extends Controller {
     /**
      * Show the results for a specific student as PDF
      */
-    public function downloadSelfAssessmentPdf(Request $request, Student $student) {
+    public function downloadSelfAssessmentPdf(Request $request, Student $student)
+    {
         $class = $student->class;
-        $title = 'Autovalutazioni di ' . $student->full_name . ' - ' . $class->name;
+        $title = 'Autovalutazioni di '.$student->full_name.' - '.$class->name;
         $grades = Grade::where('is_professional', $class->isProfessional())
             ->where('absolute_number', '>=', $class->isMiddleSchool() ? 1 : 4)
             ->where('absolute_number', '<=', $class->grade()->absolute_number)
@@ -121,18 +127,19 @@ class StudentResultController extends Controller {
         return $pdf->download("$title.pdf");
     }
 
-    public function downloadPoi(Student $student) {
+    public function downloadPoi(Student $student)
+    {
         $poi = app(Poi::class, [
             'student' => $student,
         ]);
 
         $title = 'Profilo Orientativo Individualizzato di '
-            . $student->full_name
-            . ' - '
-            . $poi->class->name;
+            .$student->full_name
+            .' - '
+            .$poi->class->name;
 
         $sectionIds = collect($poi->structure)
-            ->flatMap(fn(array $area) => $area['sections'])
+            ->flatMap(fn (array $area) => $area['sections'])
             ->unique()
             ->values();
 

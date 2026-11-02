@@ -9,22 +9,24 @@ use App\Models\Schools\SchoolClass;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class ClassController extends Controller {
-
+class ClassController extends Controller
+{
     /**
      * Show the form for creating a new class
      */
-    public function create() {
+    public function create()
+    {
         return view(
             'classes.create',
-            ['title' => 'Aggiungi una classe',]
+            ['title' => 'Aggiungi una classe']
         );
     }
 
     /**
      * Show the form for creating a new middle school class
      */
-    public function createMiddleSchool() {
+    public function createMiddleSchool()
+    {
         $school = teacher()->school;
 
         return view(
@@ -36,7 +38,8 @@ class ClassController extends Controller {
     /**
      * Show the form for creating a new high school class
      */
-    public function createHighSchool() {
+    public function createHighSchool()
+    {
         $school = teacher()->school;
 
         return view(
@@ -48,7 +51,8 @@ class ClassController extends Controller {
     /**
      * Show the form for joining an existing class
      */
-    public function joinShow() {
+    public function joinShow()
+    {
         $school = teacher()->school;
         $teacherClasses = teacher()->school_classes;
         $class = session('class');
@@ -60,7 +64,7 @@ class ClassController extends Controller {
             ->with('referent', 'referent.user')
             ->get()
             ->mapWithKeys(function ($class) {
-                return [$class->id => $class->name . ' (' . $class->referent?->full_name . ')'];
+                return [$class->id => $class->name.' ('.$class->referent?->full_name.')'];
             });
 
         return view(
@@ -72,7 +76,8 @@ class ClassController extends Controller {
     /**
      * Store a newly created class in storage
      */
-    public function store(Request $request): RedirectResponse {
+    public function store(Request $request): RedirectResponse
+    {
         $request->validate([
             'letter' => 'required|string|max:10',
             'grade' => 'required|integer|in:1,2,3,4,5,6,7,8',
@@ -92,7 +97,8 @@ class ClassController extends Controller {
     /**
      * Store a newly created class in storage
      */
-    public function joinStore(Request $request): RedirectResponse {
+    public function joinStore(Request $request): RedirectResponse
+    {
         $request->validate([
             'class_id' => 'required|integer|exists:school_classes,id',
         ]);
@@ -103,7 +109,7 @@ class ClassController extends Controller {
             return back()->withErrors(['class_id' => 'La classe selezionata non appartiene al tuo istituto.'])->withInput();
         }
 
-        if ($class->referent && !TeacherJoinRequest::where('class_id', $class->id)
+        if ($class->referent && ! TeacherJoinRequest::where('class_id', $class->id)
             ->where('requesting_teacher_id', teacher()->id)
             ->exists()) {
 
@@ -120,12 +126,13 @@ class ClassController extends Controller {
     /**
      * Accept a request to join a class as a teacher
      */
-    public function teacherJoinAccept(Request $request, TeacherJoinRequest $joinRequest): RedirectResponse {
+    public function teacherJoinAccept(Request $request, TeacherJoinRequest $joinRequest): RedirectResponse
+    {
         if ($joinRequest->referent_id != teacher()->id) {
             return back()->withErrors(['join_request_id' => 'Non sei autorizzato ad accettare questa richiesta.']);
         }
 
-        if (!$joinRequest->requesting_teacher->school_classes->contains($joinRequest->class_id)) {
+        if (! $joinRequest->requesting_teacher->school_classes->contains($joinRequest->class_id)) {
             $joinRequest->requesting_teacher->school_classes()->attach($joinRequest->class_id);
         }
 
@@ -137,7 +144,8 @@ class ClassController extends Controller {
     /**
      * Reject a request to join a class as a teacher
      */
-    public function teacherJoinReject(Request $request, TeacherJoinRequest $joinRequest): RedirectResponse {
+    public function teacherJoinReject(Request $request, TeacherJoinRequest $joinRequest): RedirectResponse
+    {
         if ($joinRequest->referent_id != teacher()->id) {
             return back()->withErrors(['join_request_id' => 'Non sei autorizzato a rifiutare questa richiesta.']);
         }
@@ -150,7 +158,8 @@ class ClassController extends Controller {
     /**
      * Accept a request to join a class as a student
      */
-    public function studentJoinAccept(StudentJoinRequest $joinRequest): RedirectResponse {
+    public function studentJoinAccept(StudentJoinRequest $joinRequest): RedirectResponse
+    {
         $tutor = $joinRequest->tutor();
 
         if ($tutor?->id != teacher()->id) {
@@ -169,7 +178,8 @@ class ClassController extends Controller {
     /**
      * Reject a request to join a class as a student
      */
-    public function studentJoinReject(Request $request, StudentJoinRequest $joinRequest): RedirectResponse {
+    public function studentJoinReject(Request $request, StudentJoinRequest $joinRequest): RedirectResponse
+    {
         $tutor = $joinRequest->tutor();
 
         if ($tutor?->id != teacher()->id) {
@@ -184,12 +194,13 @@ class ClassController extends Controller {
     /**
      * Accept an invite request
      */
-    public function inviteAccept(Request $request, InviteRequest $inviteRequest): RedirectResponse {
+    public function inviteAccept(Request $request, InviteRequest $inviteRequest): RedirectResponse
+    {
         if ($inviteRequest->invited_teacher_id != teacher()->id) {
             return back()->withErrors(['invite_request_id' => 'Non sei autorizzato ad accettare questa richiesta.'])->withInput();
         }
 
-        if (!teacher()->school_classes->where('id', $inviteRequest->class_id)->count()) {
+        if (! teacher()->school_classes->where('id', $inviteRequest->class_id)->count()) {
             teacher()->school_classes()->attach($inviteRequest->class_id);
         }
 
@@ -201,7 +212,8 @@ class ClassController extends Controller {
     /**
      * Reject an invite request
      */
-    public function inviteReject(Request $request, InviteRequest $inviteRequest): RedirectResponse {
+    public function inviteReject(Request $request, InviteRequest $inviteRequest): RedirectResponse
+    {
         if ($inviteRequest->invited_teacher_id != teacher()->id) {
             return back()->withErrors(['invite_request_id' => 'Non sei autorizzato a rifiutare questa richiesta.'])->withInput();
         }

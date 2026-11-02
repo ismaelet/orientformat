@@ -2,7 +2,7 @@
 
 <div class="main-wrap">
 
-	<?php if (!$categoryId && !$topicId) { ?>
+	<?php if (! $categoryId && ! $topicId) { ?>
 
 		<section class="category-selector">
 			<h1 class="category-selector_title txt-sbold">Come possiamo aiutarti?</h1>
@@ -13,7 +13,7 @@
 
 					<a class="category" href="?category=<?= $category['id'] ?>">
 						<div class="category_icon icon-box">
-							<?= embed_icon('category-' . $category['slug']) ?>
+							<?= embed_icon('category-'.$category['slug']) ?>
 						</div>
 						<h3 class="category_name"><?= $category['name'] ?></h3>
 					</a>
@@ -23,12 +23,12 @@
 			</div>
 		</section>
 
-	<?php } else if ($categoryId) { ?>
+	<?php } elseif ($categoryId) { ?>
 
 		<section class="selected-category">
 			<div class="selected-category_head">
 				<div class="selected-category_icon icon-box">
-					<?= embed_icon('category-' . $categoryData['slug']) ?>
+					<?= embed_icon('category-'.$categoryData['slug']) ?>
 				</div>
 				<h1 class="category-selector_title txt-sbold"><?= $categoryData['name'] ?></h1>
 				<h3 class="selected-category_subtitle txt-med"><a href="?">

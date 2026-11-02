@@ -2,7 +2,8 @@
 
 namespace App\Support;
 
-final class SectionResultDefinitions {
+final class SectionResultDefinitions
+{
     /**
      * Main result test for sections calculated from one test.
      *
@@ -73,7 +74,8 @@ final class SectionResultDefinitions {
         31 => [],
     ];
 
-    public static function mainTestId(int $sectionId): ?int {
+    public static function mainTestId(int $sectionId): ?int
+    {
         return self::MAIN_TEST_IDS[$sectionId] ?? null;
     }
 
@@ -98,7 +100,8 @@ final class SectionResultDefinitions {
     /**
      * @return array<int>
      */
-    public static function supportedSectionIds(): array {
+    public static function supportedSectionIds(): array
+    {
         return array_values(
             array_unique([
                 ...array_keys(self::MAIN_TEST_IDS),

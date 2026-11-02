@@ -2,21 +2,22 @@
 
 namespace App\Support\Traits;
 
-trait Singleton {
+trait Singleton
+{
+    /**
+     * The instanced static class
+     */
+    private static $instance;
 
-	/**
-	 * The instanced static class
-	 */
-	private static $instance;
+    /**
+     * Return the instanced static class
+     */
+    public static function getInstance(): object
+    {
+        if (! isset(self::$instance)) {
+            self::$instance = new self;
+        }
 
-	/**
-	 * Return the instanced static class
-	 */
-	public static function getInstance(): Object {
-		if (!isset(self::$instance)) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
-	}
+        return self::$instance;
+    }
 }

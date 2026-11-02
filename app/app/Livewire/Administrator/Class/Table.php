@@ -26,11 +26,11 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Livewire\Component;
 
-class Table extends Component implements HasTable, HasActions, HasSchemas {
-
-    use InteractsWithTable;
-    use InteractsWithSchemas;
+class Table extends Component implements HasActions, HasSchemas, HasTable
+{
     use InteractsWithActions;
+    use InteractsWithSchemas;
+    use InteractsWithTable;
 
     /**
      * Property: The school being managed
@@ -40,7 +40,8 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
     /**
      * Filament method: Define the table
      */
-    public function table(FilamentTable $table): FilamentTable {
+    public function table(FilamentTable $table): FilamentTable
+    {
         return $table
             ->defaultSort('created_at', 'desc')
             ->query(SchoolClass::query()
@@ -54,7 +55,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                     ->label('Tutor'),
                 TextColumn::make('teachers.id')
                     ->formatStateUsing(
-                        fn($state, Model $record) => $record->teachers
+                        fn ($state, Model $record) => $record->teachers
                             ->load('user')
                             ->where('id', $state)
                             ->where('id', '!=', $record->referentId)
@@ -89,24 +90,24 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
             ->filters([])
             ->recordActions([
                 DeleteAction::make()
-                    ->visible(fn(SchoolClass $record): bool => $record?->students()->count() === 0),
+                    ->visible(fn (SchoolClass $record): bool => $record?->students()->count() === 0),
                 EditAction::make()
-                    ->recordTitle(fn(SchoolClass $record): string => "Classe {$record->name}")
+                    ->recordTitle(fn (SchoolClass $record): string => "Classe {$record->name}")
                     ->schema([
                         Select::make('referentId')
                             ->label('Tutor della classe')
                             ->options(
-                                fn() => $this->school->teachers()
+                                fn () => $this->school->teachers()
                                     ->whereHas('user')
                                     ->with('user')
                                     ->get()
-                                    ->mapWithKeys(fn(Teacher $teacher) => [
+                                    ->mapWithKeys(fn (Teacher $teacher) => [
                                         $teacher->id => ($teacher->inverted_full_name ?: "Docente #{$teacher->id}"),
                                     ])
                                     ->toArray()
                             )
                             ->getOptionLabelUsing(
-                                fn($value): string => optional(Teacher::with('user')->find($value))
+                                fn ($value): string => optional(Teacher::with('user')->find($value))
                                     ?->inverted_full_name
                                     ?: "Docente #{$value}"
                             )
@@ -129,15 +130,14 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                             ->multiple()
                             ->relationship(
                                 name: 'teachers',
-                                modifyQueryUsing: fn(Builder $query) => $query
+                                modifyQueryUsing: fn (Builder $query) => $query
                                     ->join('users', 'users.id', '=', 'teachers.user_id')
                                     ->where('school_id', $this->school->id)
                                     ->whereNull('users.deleted_at')
                                     ->select('teachers.*')
                             )
                             ->getOptionLabelFromRecordUsing(
-                                fn(Teacher $record): string =>
-                                $record->inverted_full_name ?: "Docente #{$record->id}"
+                                fn (Teacher $record): string => $record->inverted_full_name ?: "Docente #{$record->id}"
                             )
                             ->searchable(['users.full_name', 'users.inverted_full_name'])
                             ->preload()
@@ -150,7 +150,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                                     $set('referentId', null);
                                 }
 
-                                if (!$referentId && count($state)) {
+                                if (! $referentId && count($state)) {
                                     $set('referentId', $state[0]);
                                 }
                             })
@@ -158,10 +158,10 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                     ]),
                 Action::make('openDashboard')
                     ->label('Apri dashboard')
-                    ->url(fn(SchoolClass $record): string => route('class.show', ['class' => $record]))
+                    ->url(fn (SchoolClass $record): string => route('class.show', ['class' => $record]))
                     ->icon('heroicon-o-arrow-top-right-on-square')
                     ->color(Color::Blue)
-                    ->openUrlInNewTab()
+                    ->openUrlInNewTab(),
             ])
             ->toolbarActions([
                 Action::make('createClass')
@@ -198,30 +198,31 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                                 ->searchable()
                                 ->placeholder('Seleziona l\'anno'),
                             TextInput::make('letter')
-                                ->label(fn(): string => $this->school->has_high_school ? 'Nome' : 'Lettera identificativa')
+                                ->label(fn (): string => $this->school->has_high_school ? 'Nome' : 'Lettera identificativa')
                                 ->placeholder('Inserisci la lettera identificativa')
                                 ->autocapitalize()
                                 ->required(),
                         ])->columns(2)
-                            ->belowContent(fn(): string => $this->school->has_high_school ? 'Il nome della classe, è ad es. "3BS", "L1B" o "A4F". Nonostante il nome della classe contiene l\'anno di corso, è importante selezionare anche l\'anno, per motivi tecnici.' : 'La lettera che identifica la classe, è, per esempio, la lettera è "B", se la classe è una "3B", oppure "A" se la classe è una "2A" etc.')
+                            ->belowContent(fn (): string => $this->school->has_high_school ? 'Il nome della classe, è ad es. "3BS", "L1B" o "A4F". Nonostante il nome della classe contiene l\'anno di corso, è importante selezionare anche l\'anno, per motivi tecnici.' : 'La lettera che identifica la classe, è, per esempio, la lettera è "B", se la classe è una "3B", oppure "A" se la classe è una "2A" etc.')
                             ->label('Nominativo della classe'),
 
                         Select::make('professional')
                             ->label('Tipologia di indirizzo')
                             ->required()
-                            ->visible(fn(): bool => $this->school->has_high_school)
+                            ->visible(fn (): bool => $this->school->has_high_school)
                             ->options([
                                 0 => 'Istituto Tecnico, Professionale o Liceo',
                                 1 => 'Istituto di Istruzione e Formazione Professionale',
-                            ])
-                    ])
+                            ]),
+                    ]),
             ]);
     }
 
     /**
      * Lifecycle method: Render the component
      */
-    public function render() {
+    public function render()
+    {
         return view('livewire.administrator.class.table');
     }
 }

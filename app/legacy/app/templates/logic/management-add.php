@@ -1,46 +1,61 @@
 <?php
 
-//template
+use App\Legacy\LegacyDB;
+
+// template
 $this->add_logic('main', 'template');
-$this->styles->add(SERVER_ROOT . '/app/templates/styles/management-add.css');
+$this->styles->add(SERVER_ROOT.'/app/templates/styles/management-add.css');
 
 load_module('form');
 
-//logic
-if (file_exists($file = SERVER_ROOT . '/pages/logic/' . $this->name . '.php')) include_once($file);
+// logic
+if (file_exists($file = SERVER_ROOT.'/pages/logic/'.$this->name.'.php')) {
+    include_once $file;
+}
 
-//setup variables
+// setup variables
 $done = false;
 $error = false;
 $id = $_GET['id'] ?? false;
 
-//fetch data
-if ($id) $row = $row ?? \App\Legacy\LegacyDB::row('* FROM ' . $tbl . ' WHERE ' . $index . ' = ?', [$id]);
-else $row = false;
+// fetch data
+if ($id) {
+    $row = $row ?? LegacyDB::row('* FROM '.$tbl.' WHERE '.$index.' = ?', [$id]);
+} else {
+    $row = false;
+}
 
-//add
+// add
 if (isset($_POST['add'])) {
 
-	if (function_exists('expand_add')) $error = expand_add($tbl, $inputs);
-	else form_db_add($tbl, $inputs);
+    if (function_exists('expand_add')) {
+        $error = expand_add($tbl, $inputs);
+    } else {
+        form_db_add($tbl, $inputs);
+    }
 
-	if (!$error) {
+    if (! $error) {
 
-		$done = true;
-		unset($_POST);
-	}
+        $done = true;
+        unset($_POST);
+    }
 }
 
-//edit
+// edit
 if (isset($_POST['edit'])) {
 
-	if (function_exists('expand_edit')) $error = expand_edit($tbl, $inputs, $index, $id);
-	else form_db_update($tbl, $inputs, $index, $id);
+    if (function_exists('expand_edit')) {
+        $error = expand_edit($tbl, $inputs, $index, $id);
+    } else {
+        form_db_update($tbl, $inputs, $index, $id);
+    }
 
-	if (!$error) header('Location: list');
+    if (! $error) {
+        header('Location: list');
+    }
 }
 
-//store variables
+// store variables
 $this->set('row', $row);
 $this->set('name', $name);
 $this->set('edit', $id);

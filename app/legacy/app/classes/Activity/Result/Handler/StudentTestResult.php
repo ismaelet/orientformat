@@ -2,9 +2,8 @@
 
 namespace Legacy\Activity\Result\Handler;
 
-use \Legacy\Activity\Result\TestResult;
-use \Legacy\Activity\Test;
-use LegacyDB;
+use Legacy\Activity\Result\TestResult;
+use Legacy\Activity\Test;
 use System\Traits\DynamicProperties;
 
 /**
@@ -14,21 +13,23 @@ use System\Traits\DynamicProperties;
  * @property string result
  * @property array detailedResult
  * @property array rawResults
- * 
  * @property object test
  */
-class StudentTestResult {
-
-    use \System\Traits\DynamicProperties;
+class StudentTestResult
+{
+    use DynamicProperties;
 
     private $testId;
+
     private $legacyTest;
+
     private $studentId;
 
     /**
      * Magic methods
      */
-    function __construct(int $testId, int $studentId = null) {
+    public function __construct(int $testId, ?int $studentId = null)
+    {
         $this->testId = $testId;
         $this->studentId = $studentId ?: watchedStudentId();
         $this->test = (new Test($this->testId))->setStudentId($this->studentId);
@@ -37,15 +38,18 @@ class StudentTestResult {
     /**
      * Get methods
      */
-    private function getResultId() {
-        return \App\Legacy\LegacyDB::find(TestResult::INDEX . ' FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::TEST_INDEX . ' = ? AND ' . TestResult::USER_INDEX . ' = ?', [$this->testId, $this->studentId]);
+    private function getResultId()
+    {
+        return \App\Legacy\LegacyDB::find(TestResult::INDEX.' FROM '.TestResult::TABLE.' WHERE '.TestResult::TEST_INDEX.' = ? AND '.TestResult::USER_INDEX.' = ?', [$this->testId, $this->studentId]);
     }
 
-    private function getRawResults() {
+    private function getRawResults()
+    {
         return (new TestResult($this->resultId))->rawResults;
     }
 
-    private function getResult() {
+    private function getResult()
+    {
         switch ($this->testId) {
             case 20:
                 // motivazione e aree di interesse > mappa
@@ -100,7 +104,8 @@ class StudentTestResult {
         }
     }
 
-    private function getDetailedResult() {
+    private function getDetailedResult()
+    {
         switch ($this->testId) {
             case 15:
             case 107:
@@ -165,7 +170,8 @@ class StudentTestResult {
     /**
      * Set methods
      */
-    public function setRawResults(array $rawResults) {
+    public function setRawResults(array $rawResults)
+    {
         $this->data['rawResults'] = $rawResults;
 
         return $this;
@@ -175,23 +181,27 @@ class StudentTestResult {
      * Misc methods
      */
     // generic calculators
-    private function calcDetailedResult() {
+    private function calcDetailedResult()
+    {
         $legacyTest = $this->test->hasRequiredTest ? $this->test->requiredTest->setStudentId($this->studentId) : $this->test;
 
         return $legacyTest->completed ? $legacyTest->rawResults : null;
     }
 
-    private function calcPercentage() {
+    private function calcPercentage()
+    {
         $legacyTest = $this->test->hasRequiredTest ? $this->test->requiredTest->setStudentId($this->studentId) : $this->test;
 
         return $legacyTest->completed ? $legacyTest->percentage : null;
     }
 
-    private function calcCompleted() {
+    private function calcCompleted()
+    {
         return $this->test->completed ? 'Completato' : null;
     }
 
-    private function calcMaxNameValue() {
+    private function calcMaxNameValue()
+    {
         $mainStyle = null;
         $maximumValue = 0;
 
@@ -207,7 +217,8 @@ class StudentTestResult {
         return $mainStyle;
     }
 
-    private function calcAveragePercentage() {
+    private function calcAveragePercentage()
+    {
         $percentage = 0;
         $count = 0;
 
@@ -216,14 +227,16 @@ class StudentTestResult {
             $count++;
         }
 
-        return $count ? round($percentage / $count) . '%' : null;
+        return $count ? round($percentage / $count).'%' : null;
     }
 
-    private function checkCompleted() {
-        return \App\Legacy\LegacyDB::exists(Test::TABLE . ' WHERE ' . Test::INDEX . ' = ?', [$this->testId]) ? 'Completato' : null;
+    private function checkCompleted()
+    {
+        return \App\Legacy\LegacyDB::exists(Test::TABLE.' WHERE '.Test::INDEX.' = ?', [$this->testId]) ? 'Completato' : null;
     }
 
-    private function mergeNames() {
+    private function mergeNames()
+    {
         return $this->detailedResult ? implode(', ', extract_subvalue($this->detailedResult, 'name')) : null;
     }
 
@@ -231,7 +244,8 @@ class StudentTestResult {
      * Test specific methods
      */
     // Test 31 - Stili Cognitivi - Mappa
-    private function calcDetailedStiliCongitiviMappa() {
+    private function calcDetailedStiliCongitiviMappa()
+    {
         $results = [];
         $groups = test_config($this->testId, 'groups');
         $rawResults = ($this->test->requiredTest)
@@ -260,9 +274,10 @@ class StudentTestResult {
     }
 
     // Autostima and Creatività
-    private function calcDetailedTestsAverage() {
+    private function calcDetailedTestsAverage()
+    {
         $results = [];
-        $legacyTests = rows_to_objects(\App\Legacy\LegacyDB::select(Test::INDEX . ' FROM ' . Test::TABLE . ' WHERE ' . Test::SECTION_INDEX . ' = ? AND step < ? ORDER BY step ASC', [$this->test->sectionId, $this->test->step]), Test::class);
+        $legacyTests = rows_to_objects(\App\Legacy\LegacyDB::select(Test::INDEX.' FROM '.Test::TABLE.' WHERE '.Test::SECTION_INDEX.' = ? AND step < ? ORDER BY step ASC', [$this->test->sectionId, $this->test->step]), Test::class);
 
         foreach ($legacyTests as $legacyTest) {
             $legacyTest->setStudentId($this->studentId);
@@ -280,7 +295,8 @@ class StudentTestResult {
     }
 
     // Test 20 - Motivazione e aree di interesse - Mappa
-    private function calcDetailedMotivazioneMappa() {
+    private function calcDetailedMotivazioneMappa()
+    {
         $results = [];
         $rawResults = ($this->test->requiredTest)
             ->setStudentId($this->studentId)
@@ -310,14 +326,15 @@ class StudentTestResult {
     }
 
     // Test 21 - Attenzione - Iperattività
-    private function calcDetailedAttenzioneIperattività() {
+    private function calcDetailedAttenzioneIperattività()
+    {
         $requiredTest = $this->test->requiredTest
             ->setStudentId($this->studentId);
 
         if ($requiredTest->completed) {
             $results = [
                 'Iperattività' => 0,
-                'Distraibilità' => 0
+                'Distraibilità' => 0,
             ];
 
             if ($requiredTest->completed) {
@@ -337,19 +354,20 @@ class StudentTestResult {
     }
 
     // Test 46: Temperamento
-    private function calcTemperamento() {
+    private function calcTemperamento()
+    {
         $results = [];
         $legacySections = test_config($this->testId, 'sections');
 
         for ($i = 1; $i < 6; $i++) {
-            $requiredTestId = \App\Legacy\LegacyDB::find('id FROM ' . Test::TABLE . ' WHERE sectionId = ? AND step = ?', [$this->test->sectionId, $i]);
+            $requiredTestId = \App\Legacy\LegacyDB::find('id FROM '.Test::TABLE.' WHERE sectionId = ? AND step = ?', [$this->test->sectionId, $i]);
             $requiredTest = (new Test($requiredTestId))->setStudentId($this->studentId);
 
             if ($requiredTest->completed) {
                 $results[] = [
                     'name' => $legacySections[$i - 1],
                     'value' => round($requiredTest->percentage / 100 * 6),
-                    'percentage' => $requiredTest->percentage
+                    'percentage' => $requiredTest->percentage,
                 ];
             }
         }
@@ -358,7 +376,8 @@ class StudentTestResult {
     }
 
     // Test 48
-    private function calcStileAttributivo() {
+    private function calcStileAttributivo()
+    {
         $legacyTest = $this->test->requiredTest->setStudentId($this->studentId);
 
         if ($legacyTest->completed) {
@@ -391,7 +410,8 @@ class StudentTestResult {
     }
 
     // Test 63 - Stili di scrittura
-    private function calcDetailedScrivereStili() {
+    private function calcDetailedScrivereStili()
+    {
         $results = [];
         $max = 5;
         $legacyTest = $this->test->requiredTest->setStudentId($this->studentId);
@@ -409,24 +429,24 @@ class StudentTestResult {
     }
 
     // Test 92 - I miei interessi
-    private function calcDetailedInteressi(): ?array {
+    private function calcDetailedInteressi(): ?array
+    {
         $rawResults = $this->test
             ->requiredTest
             ->setStudentId($this->studentId)
             ->rawResults;
 
-        if (!is_array($rawResults)) {
+        if (! is_array($rawResults)) {
             return null;
         }
 
         $hasAnswers = collect($rawResults)->contains(
-            static fn(mixed $value): bool =>
-            $value !== null
+            static fn (mixed $value): bool => $value !== null
                 && $value !== ''
                 && $value !== false,
         );
 
-        if (!$hasAnswers) {
+        if (! $hasAnswers) {
             return null;
         }
 
@@ -460,7 +480,8 @@ class StudentTestResult {
     }
 
     // Test 101 - L'albero della vita
-    private function calcDetailedAlberoVita() {
+    private function calcDetailedAlberoVita()
+    {
         $characters = test_config($this->testId, 'characters');
         $characterId = $this->rawResults[0] ?? null;
 
@@ -468,7 +489,8 @@ class StudentTestResult {
     }
 
     // Test 116 - La ruota delle emozioni
-    private function calcDetailedRuotaEmozioni() {
+    private function calcDetailedRuotaEmozioni()
+    {
         $testIds = [102, 115, $this->testId];
         $emotions = [];
 
@@ -490,171 +512,172 @@ class StudentTestResult {
     }
 
     // default
-    private function calcResult() {
-        return $this->test->completed ? $this->test->percentage . '%' : null;
+    private function calcResult()
+    {
+        return $this->test->completed ? $this->test->percentage.'%' : null;
     }
 
     /*
-	* OLD
-	private function calcMotivazioneMappa() {
-		// foreach ($studentResults as $key => $CondensedTestResult) {
-		// 	if (!isset($results['values'][$key])) $results['values'][$key] = 0;
-		// 	$results['values'][$key] += $CondensedTestResult;
-		// }
-	}
+    * OLD
+    private function calcMotivazioneMappa() {
+        // foreach ($studentResults as $key => $CondensedTestResult) {
+        // 	if (!isset($results['values'][$key])) $results['values'][$key] = 0;
+        // 	$results['values'][$key] += $CondensedTestResult;
+        // }
+    }
 
-	private function calcInteressiRisultati() {
-		$results = false;
-		$maxValue = 18;
-		$groups = test_config($this->testId, 'groups');
-		$legacyTest = new Test(91);
+    private function calcInteressiRisultati() {
+        $results = false;
+        $maxValue = 18;
+        $groups = test_config($this->testId, 'groups');
+        $legacyTest = new Test(91);
 
-		if ($legacyTest->rawResults) {
-			$results = [];
+        if ($legacyTest->rawResults) {
+            $results = [];
 
-			foreach ($groups as $groupId => $group) {
-				$score = 0;
+            foreach ($groups as $groupId => $group) {
+                $score = 0;
 
-				foreach ($group['questionIds'] as $questionId) {
-					$legacyTestScore = $legacyTest->rawResults[$questionId - 1] ?? 0;
-					$score += ((int) $legacyTestScore) - 1;
-				}
+                foreach ($group['questionIds'] as $questionId) {
+                    $legacyTestScore = $legacyTest->rawResults[$questionId - 1] ?? 0;
+                    $score += ((int) $legacyTestScore) - 1;
+                }
 
-				$results[$groupId] = round($score / $maxValue * 100);
-			}
+                $results[$groupId] = round($score / $maxValue * 100);
+            }
 
-			arsort($results);
-		}
+            arsort($results);
+        }
 
-		return $results;
-	}
+        return $results;
+    }
 
-	// parse the numeric result to a string
-	/*static function getResult($gradeId, $this->testId) {
-		$result = $this->getRawResult($gradeId, $this->testId)['values'];
-		$result = $this->parseToString($testId, $result);
+    // parse the numeric result to a string
+    /*static function getResult($gradeId, $this->testId) {
+        $result = $this->getRawResult($gradeId, $this->testId)['values'];
+        $result = $this->parseToString($testId, $result);
 
-		return $result;
-	}
+        return $result;
+    }
 
-	static function parseToString($testId, $value) {
-		$result = false;
+    static function parseToString($testId, $value) {
+        $result = false;
 
-		if ($value) {
-			switch ($testId) {
-				case 17:
-					// attenzione - questionario
-					$names = ['Bassissima', 'Bassa', 'Media', 'Alta', 'Altissima'];
-					$score = round($value / 25);
-					$result = $names[$score] . ' (' . $value . '%)';
-					break;
-				default:
-					$result = $value . '%';
-			}
-		}
+        if ($value) {
+            switch ($testId) {
+                case 17:
+                    // attenzione - questionario
+                    $names = ['Bassissima', 'Bassa', 'Media', 'Alta', 'Altissima'];
+                    $score = round($value / 25);
+                    $result = $names[$score] . ' (' . $value . '%)';
+                    break;
+                default:
+                    $result = $value . '%';
+            }
+        }
 
-		return $result;
-	}
+        return $result;
+    }
 
-	// calculate the result of section of for a specific student
-	static function getRawResult(int $testId, int $this->studentId = null) {
-		switch ($testId) {
-			case 1:
-				$result = $this->calcProblemiAutovalutazione($studentId);
-				break;
-			case 16:
-				$result = $this->calcAttenzioneAutovalutazione($studentId);
-				break;
-			case 17:
-				$result = $this->calcAttenzioneQuestionario($studentId);
-				break;
-			default:
-				$result = false;
-		}
+    // calculate the result of section of for a specific student
+    static function getRawResult(int $testId, int $this->studentId = null) {
+        switch ($testId) {
+            case 1:
+                $result = $this->calcProblemiAutovalutazione($studentId);
+                break;
+            case 16:
+                $result = $this->calcAttenzioneAutovalutazione($studentId);
+                break;
+            case 17:
+                $result = $this->calcAttenzioneQuestionario($studentId);
+                break;
+            default:
+                $result = false;
+        }
 
-		return $result;
-	}
+        return $result;
+    }
 
-	static private function calcResults($studentId, $testId, $resultsNames, $max) {
-		$results = false;
-		$resultsRaw = \App\Legacy\LegacyDB::find('result FROM ' . TestResult::TABLE . ' WHERE testID = ? AND userID = ? AND completed=1', [$testId, $studentId]);
+    static private function calcResults($studentId, $testId, $resultsNames, $max) {
+        $results = false;
+        $resultsRaw = \App\Legacy\LegacyDB::find('result FROM ' . TestResult::TABLE . ' WHERE testID = ? AND userID = ? AND completed=1', [$testId, $studentId]);
 
-		if ($resultsRaw) {
-			$resultsRaw = explode(',', $resultsRaw);
+        if ($resultsRaw) {
+            $resultsRaw = explode(',', $resultsRaw);
 
-			foreach ($resultsRaw as $resultId => $resultValue) {
-				$resultName = $resultsNames[$resultId];
-				$resultValue = round($resultValue / $max * 100);
-				$results[$resultName] = $resultValue;
-			}
-		}
+            foreach ($resultsRaw as $resultId => $resultValue) {
+                $resultName = $resultsNames[$resultId];
+                $resultValue = round($resultValue / $max * 100);
+                $results[$resultName] = $resultValue;
+            }
+        }
 
-		return $results;
-	}
+        return $results;
+    }
 
-	// risolvere problemi
-	static private function calcProblemiAutovalutazione($studentId) {
-		$testId = 1;
-		$max = 5;
-		$resultsNames = [
-			'Gestione delle emozioni',
-			'Relazioni con gli altri',
-			'Studio',
-			'Ordine pratico',
-			'Gestione del tempo',
-			'Organizzazione',
-			'Impegno e perseveranza',
-			'Concentrazione',
-			'Salute',
-		];
+    // risolvere problemi
+    static private function calcProblemiAutovalutazione($studentId) {
+        $testId = 1;
+        $max = 5;
+        $resultsNames = [
+            'Gestione delle emozioni',
+            'Relazioni con gli altri',
+            'Studio',
+            'Ordine pratico',
+            'Gestione del tempo',
+            'Organizzazione',
+            'Impegno e perseveranza',
+            'Concentrazione',
+            'Salute',
+        ];
 
-		$results = $this->calcResults($studentId, $testId, $resultsNames, $max);
+        $results = $this->calcResults($studentId, $testId, $resultsNames, $max);
 
-		return $results;
-	}
+        return $results;
+    }
 
-	// attenzione
-	static private function calcAttenzioneAutovalutazione($studentId) {
-		$testId = 16;
-		$max = 4;
-		$resultsNames = [
-			'Mi accorgo quando mi distraggo',
-			'So che cosa mi distrae',
-			'Riesco a recuperare l’attenzione',
-			'So mantenere l’attenzione per il tempo necessario',
-			'Ho una mia strategia per evitare di distrarmi',
-			'Riesco a svolgere diverse attività nello stesso tempo'
-		];
+    // attenzione
+    static private function calcAttenzioneAutovalutazione($studentId) {
+        $testId = 16;
+        $max = 4;
+        $resultsNames = [
+            'Mi accorgo quando mi distraggo',
+            'So che cosa mi distrae',
+            'Riesco a recuperare l’attenzione',
+            'So mantenere l’attenzione per il tempo necessario',
+            'Ho una mia strategia per evitare di distrarmi',
+            'Riesco a svolgere diverse attività nello stesso tempo'
+        ];
 
-		$results = $this->calcResults($studentId, $testId, $resultsNames, $max);
+        $results = $this->calcResults($studentId, $testId, $resultsNames, $max);
 
-		return $results;
-	}
+        return $results;
+    }
 
-	static private function calcAttenzioneQuestionario($studentId) {
-		$max = 3 * 9;
-		$testId = 17;
-		$results = [];
-		$resultsNames = ['Perdita di attenzione', 'Iperattività'];
+    static private function calcAttenzioneQuestionario($studentId) {
+        $max = 3 * 9;
+        $testId = 17;
+        $results = [];
+        $resultsNames = ['Perdita di attenzione', 'Iperattività'];
 
-		$resultsRaw = \App\Legacy\LegacyDB::find('result FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ?', [$studentId, $testId]);
+        $resultsRaw = \App\Legacy\LegacyDB::find('result FROM ' . TestResult::TABLE . ' WHERE ' . TestResult::USER_INDEX . ' = ? AND ' . TestResult::TEST_INDEX . ' = ?', [$studentId, $testId]);
 
-		if ($resultsRaw) {
-			$resultsRaw = explode(',', $resultsRaw);
+        if ($resultsRaw) {
+            $resultsRaw = explode(',', $resultsRaw);
 
-			foreach ($resultsRaw as $resultsId => $resultsValue) {
-				$resultsName = $resultsNames[$resultsId % 2];
+            foreach ($resultsRaw as $resultsId => $resultsValue) {
+                $resultsName = $resultsNames[$resultsId % 2];
 
-				if (!isset($results[$resultsName])) $results[$resultsName] = 0;
+                if (!isset($results[$resultsName])) $results[$resultsName] = 0;
 
-				$results[$resultsName] += $resultsValue;
-			}
+                $results[$resultsName] += $resultsValue;
+            }
 
-			foreach ($results as $resultsName => $resultsValue) {
-				$results[$resultsName] = round($resultsValue / $max * 100);
-			}
-		} else $results = false;
+            foreach ($results as $resultsName => $resultsValue) {
+                $results[$resultsName] = round($resultsValue / $max * 100);
+            }
+        } else $results = false;
 
-		return $results;
-	}*/
+        return $results;
+    }*/
 }

@@ -7,14 +7,16 @@
         <!-- Title and instructions -->
         <?= title() ?>
 
-        <?php if ($legacyTest->completed || !$supervisorView) { ?>
+        <?php if ($legacyTest->completed || ! $supervisorView) { ?>
 
             <section class="page-body <?= $legacyTest->completed ? 'test-completed' : '' ?>">
                 <!-- Full shape -->
                 <div id="full-shape" class="mar-t-3" <?= background_image('shape.png'); ?>></div>
 
                 <!-- Solution -->
-                <div id="solution" class="mar-t-3 mar-b-3 grid center-content  <?php if ($legacyTest->completed) echo $legacyTest->percentage ? 'right' : 'wrong'; ?>" data-spacing="700">
+                <div id="solution" class="mar-t-3 mar-b-3 grid center-content  <?php if ($legacyTest->completed) {
+                    echo $legacyTest->percentage ? 'right' : 'wrong';
+                } ?>" data-spacing="700">
 
                     <div class="grid center-content" data-spacing="400">
                         <h3 class="subsection-title txt-c3 mar-b-05"><?= __('Solution') ?></h3>
@@ -23,19 +25,19 @@
 
                             <p id="solution-txt" class="txt-11rem font-bold <?= $legacyTest->percentage ? 'right' : 'wrong'; ?>">
 
-                                <?php if (!$supervisorView) { ?>
+                                <?php if (! $supervisorView) { ?>
 
-                                    <?= $legacyTest->percentage ? __('tests.' . '120-student-right') : __('tests.' . '120-student-wrong') ?>
+                                    <?= $legacyTest->percentage ? __('tests.'.'120-student-right') : __('tests.'.'120-student-wrong') ?>
 
                                 <?php } else { ?>
 
-                                    <?= $legacyTest->percentage ? __('tests.' . '120-supervisor-right') : __('tests.' . '120-supervisor-wrong') ?>
+                                    <?= $legacyTest->percentage ? __('tests.'.'120-supervisor-right') : __('tests.'.'120-supervisor-wrong') ?>
 
                                 <?php } ?>
 
                             </p>
 
-                            <?php if (!$legacyTest->percentage) {
+                            <?php if (! $legacyTest->percentage) {
                                 echo renderRedoButton();
                             } ?>
 
@@ -47,7 +49,7 @@
 
                         <?php for ($i = 1; $i <= $count; $i++) {
                             $val = $legacyTest->completed ? ($legacyTest->rawResults[$i - 1] ?? '') : '';
-                        ?>
+                            ?>
 
                             <input type="text" name="field[]" placeholder="" value="<?= $val; ?>" class="filler-inp mar-h-1 shape-inp txt-upp" onKeyPress="if(this.value.length>1) return false;" <?= $legacyTest->completed ? 'disabled' : ''; ?>>
 
@@ -72,7 +74,7 @@
                         <div id="shape-box<?= $i; ?>" class="shape-box">
 
                             <h1 class="shape-num txt-2rem font-bold mar-b-05"><?= $answers[$i - 1] ?>.</h1>
-                            <div class="shape" <?= background_image('shape' . $i . '.png'); ?>></div>
+                            <div class="shape" <?= background_image('shape'.$i.'.png'); ?>></div>
 
                         </div>
 
@@ -81,7 +83,7 @@
                 </div>
             </section>
 
-        <?php } else if ($supervisorView) { ?>
+        <?php } elseif ($supervisorView) { ?>
 
             <?= no_results() ?>
 

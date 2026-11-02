@@ -2,17 +2,21 @@
 
 namespace Legacy\SchoolSystem;
 
-class School {
+use System\Traits\DatabaseObject;
 
-	use \System\Traits\DatabaseObject;
+class School
+{
+    use DatabaseObject;
 
-	public const TABLE = 'schools';
-	public const INDEX = 'id';
+    public const TABLE = 'schools';
 
-	/**
-	 * Get methods
-	 */
-	private function getName() {
-		return ucwords(strtolower($this->databaseEntry['name']));
-	}
+    public const INDEX = 'id';
+
+    /**
+     * Get methods
+     */
+    private function getName()
+    {
+        return ucwords(strtolower($this->databaseEntry['name']));
+    }
 }

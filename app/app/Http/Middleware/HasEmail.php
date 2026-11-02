@@ -7,16 +7,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class HasEmail {
+class HasEmail
+{
+    /**
+     * Handle an incoming request.
+     */
+    public function handle(Request $request, Closure $next): Response
+    {
+        if (! Auth::user()->email) {
+            return redirect()->route('add-email');
+        }
 
-	/**
-	 * Handle an incoming request.
-	 */
-	public function handle(Request $request, Closure $next): Response {
-		if (!Auth::user()->email) {
-			return redirect()->route('add-email');
-		}
-
-		return $next($request);
-	}
+        return $next($request);
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-use \Legacy\Activity\Test;
+use Legacy\Activity\Test;
 
 $legacyTest = legacy_test();
 $test = legacy_test()->newTest();
@@ -17,7 +17,7 @@ foreach ($sections as $step => $section) {
         'name' => $section['name'],
         'percentage' => $result['percentage'] ?? 0,
         'test' => $test->dependent_tests()->where('step', $step)->first(),
-        'tier' => $result['value'] ?? 0
+        'tier' => $result['value'] ?? 0,
     ]);
 }
 

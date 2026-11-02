@@ -45,10 +45,10 @@ use App\Models\Schools\Grade;
                             ->where('is_professional', $schoolType['is-professional'])
                             ->first();
 
-                        if (!$grade) {
+                        if (! $grade) {
                             continue;
                         }
-                    ?>
+                        ?>
 
                         <div class="grade border p-4 sm:px-8 py-12 rounded border-neutral-400 border-dashed">
                             <h3 class="grade__title"><?= __('misc.grade-description', ['numeral' => __($grade->ordinal())]) ?></h3>
@@ -59,7 +59,7 @@ use App\Models\Schools\Grade;
                                     $sections = $grade->sectionsInArea($area)->load('tests', 'tests.section', 'main_section');
 
                                     if ($sections?->count()) {
-                                ?>
+                                        ?>
 
                                         <div class="area">
                                             <h3 class="area__title"><?= $area->name ?></h3>
@@ -90,7 +90,7 @@ use App\Models\Schools\Grade;
                                         </div>
 
                                 <?php }
-                                } ?>
+                                    } ?>
 
                             </div>
                         </div>

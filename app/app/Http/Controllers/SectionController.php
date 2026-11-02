@@ -7,9 +7,10 @@ use App\Models\Activities\Test;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Vite;
 
-class SectionController extends Controller {
-
-    public function show(Section $section): View {
+class SectionController extends Controller
+{
+    public function show(Section $section): View
+    {
         $student = student();
 
         // Back URL
@@ -27,23 +28,23 @@ class SectionController extends Controller {
         $mainSection = $section->originalSection();
 
         // Modern cover image
-        $modernImage = 'sections/recap-' . $mainSection->slug . '.webp';
+        $modernImage = 'sections/recap-'.$mainSection->slug.'.webp';
 
         // Legacy cover image
         $legacyImage = '/pages/assets/'
-            . $mainSection->area->slug
-            . '/'
-            . $mainSection->slug
-            . '/recap/background.webp';
+            .$mainSection->area->slug
+            .'/'
+            .$mainSection->slug
+            .'/recap/background.webp';
 
         // Determine which image to use
-        if (file_exists(base_path('resources/images/' . $modernImage))) {
+        if (file_exists(base_path('resources/images/'.$modernImage))) {
             $coverImage = Vite::image($modernImage);
         } elseif (file_exists(server_path($legacyImage))) {
-            $coverImage = asset('legacy' . $legacyImage);
+            $coverImage = asset('legacy'.$legacyImage);
         } else {
             $coverImage = asset(
-                'legacy' . str_replace(
+                'legacy'.str_replace(
                     'background.webp',
                     'bgr.png',
                     $legacyImage
@@ -71,7 +72,7 @@ class SectionController extends Controller {
             $results = $testResults->get($test->id, collect());
 
             $result = $results->first(
-                fn($result) => (bool) $result->completed
+                fn ($result) => (bool) $result->completed
             );
 
             $test->setAttribute(
@@ -86,7 +87,7 @@ class SectionController extends Controller {
 
             $test->setAttribute(
                 'recap_image',
-                'tests/' . $mainSection->slug . '/recap/' . $test->slug
+                'tests/'.$mainSection->slug.'/recap/'.$test->slug
             );
         });
 

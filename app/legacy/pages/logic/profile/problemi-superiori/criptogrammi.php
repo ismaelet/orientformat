@@ -1,5 +1,8 @@
 <?php
 
+use App\Legacy\LegacyView;
+use Legacy\LogicManager\TestLogic;
+
 $texts = [
     'Forse ricordi quando ti dissi un giorno <br>
 	Che certo non aspetterò più di imbarcarmi <br>
@@ -19,7 +22,7 @@ $texts = [
 	tornerà straniero il sole. <br>
 	Da noi è l\'autunno ormai. <br>
 	domani nella casa una donna sola sarà. <br>
-	Al tramonto affida, come spia ignota, i pensieri.'
+	Al tramonto affida, come spia ignota, i pensieri.',
 ];
 
 $correctResults = [
@@ -30,8 +33,8 @@ $correctResults = [
 
 $legacyTestResults = legacy_test()->completed ? _parse_results(legacy_test()->rawResults) : null;
 
-\Legacy\LogicManager\TestLogic::setTestSubmitFunction(function () {
-    $correctResults = \App\Legacy\LegacyView::getInstance()->get('correctResults');
+TestLogic::setTestSubmitFunction(function () {
+    $correctResults = LegacyView::getInstance()->get('correctResults');
     $correctResultCount = 0;
 
     $results = _parse_results($_POST['field'] ?? []);
@@ -45,7 +48,8 @@ $legacyTestResults = legacy_test()->completed ? _parse_results(legacy_test()->ra
     return round($correctResultCount / count($results) * 100);
 });
 
-function _parse_results(array $rawResults) {
+function _parse_results(array $rawResults)
+{
     $results = [
         1 => [],
         2 => [],
@@ -53,7 +57,7 @@ function _parse_results(array $rawResults) {
     ];
 
     foreach ($rawResults as $result) {
-        if (!$result) {
+        if (! $result) {
             continue;
         }
 

@@ -1,8 +1,9 @@
 <?php
 
-function sysData($field) {
+function sysData($field)
+{
 
-	global $sysConfig;
+    global $sysConfig;
 
-	return $sysConfig[$field] ?? false;
+    return $sysConfig[$field] ?? false;
 }

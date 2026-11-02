@@ -6,7 +6,7 @@
 		<?= title() ?>
 	</div>
 
-	<?php if ($legacyTest->completed || !isSupervisor()) { ?>
+	<?php if ($legacyTest->completed || ! isSupervisor()) { ?>
 
 		<h3 class="section-title center-content"><?= __('Scheme') ?></h3>
 
@@ -19,7 +19,7 @@
 
 						<p class="txt-wht txt-1rem cenY wid-100 fa-center"><?= $box['text'] ?></p>
 
-						<?php if (!$box['autofilled']) { ?>
+						<?php if (! $box['autofilled']) { ?>
 
 							<input type="hidden" class="filler-inp" name="field[]" value="0">
 
@@ -36,38 +36,38 @@
 			</div>
 		</div>
 
-	<?php } else if (isSupervisor()) { ?>
+	<?php } elseif (isSupervisor()) { ?>
 
 		<?= no_results() ?>
 
 	<?php } ?>
 
-	<?php if (!$legacyTest->completed && !isSupervisor()) { ?>
+	<?php if (! $legacyTest->completed && ! isSupervisor()) { ?>
 
 		<h3 class="section-title center-content mar-b-2">Elementi</h3>
 		<div id="causes" class="mar-b-5">
 			<div class="flex-line">
 				<?php foreach ($boxes as $key => $box) {
-					if (!$box['autofilled'] && $box['type'] == 1) { ?>
+				    if (! $box['autofilled'] && $box['type'] == 1) { ?>
 
 						<div id="cause<?= $key ?>" class="cause cause--solid js-box--solid" data-id="<?= $key ?>">
 							<p class="txt-wht txt-1rem"><?= $box['content'] ?></p>
 						</div>
 
 				<?php }
-				} ?>
+				    } ?>
 			</div>
 
 			<div class="flex-line">
 				<?php foreach ($boxes as $key => $box) {
-					if (!$box['autofilled'] && $box['type'] == 2) { ?>
+				    if (! $box['autofilled'] && $box['type'] == 2) { ?>
 
 						<div id="cause<?= $key ?>" class="cause cause--dashed js-box--dashed" data-id="<?= $key ?>">
 							<p class="txt-wht txt-1rem"><?= $box['content'] ?></p>
 						</div>
 
 				<?php }
-				} ?>
+				    } ?>
 			</div>
 
 		</div>

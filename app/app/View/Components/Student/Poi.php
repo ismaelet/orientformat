@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Student;
 
+use App\Legacy\LegacyDB;
 use App\Models\Activities\Section;
 use App\Models\Schools\SchoolClass;
 use App\Models\User\Student;
@@ -11,8 +12,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Legacy\UserSystem\Student as LegacyStudent;
 
-class Poi extends Component {
-
+class Poi extends Component
+{
     public SchoolClass $class;
 
     public $beginnerChoice;
@@ -28,7 +29,7 @@ class Poi extends Component {
     public $description = [
         'student' => 'Il <strong>POI</strong> ti fornisce un quadro complessivo e sintetico delle tue autovalutazioni relative alle competenze personali e alle competenze di base trasversali. Il quadro viene integrato e aggiornato in base alle sezioni che hai completato. Il profilo che viene così definendosi sulla base delle tue autovalutazioni è condiviso anche dai tuoi insegnanti. Se vuoi, puoi inserire il tuo POI
 nell’e-portfolio.',
-        'teacher' => 'Il <strong>POI</strong> fornisce la sintesi delle autovalutazioni dello studente sia per le competenze non (strettamente) cognitive sia per le competenze di base trasversali. Si rende in tal modo evidente il confronto tra le valutazioni dei docenti e la visione che ha di sé lo studente.'
+        'teacher' => 'Il <strong>POI</strong> fornisce la sintesi delle autovalutazioni dello studente sia per le competenze non (strettamente) cognitive sia per le competenze di base trasversali. Si rende in tal modo evidente il confronto tra le valutazioni dei docenti e la visione che ha di sé lo studente.',
     ];
 
     public array $structure;
@@ -64,25 +65,25 @@ nell’e-portfolio.',
             // 	'custom' => true,
             // ],
             [
-                'name' => "Area Motivazionale",
+                'name' => 'Area Motivazionale',
                 'subtitle' => '(Consapevolezza ed espressione culturali)',
                 'description' => 'Qui puoi trovare i risultati relativi alle fonti di motivazione principali.',
                 'sections' => [7, 24],
             ],
             [
-                'name' => "Area Personale",
+                'name' => 'Area Personale',
                 'subtitle' => '(Competenze in materia di cittadinanza)',
                 'description' => 'Qui puoi trovare le autovalutazioni relative alle competenze non (direttamente) cognitive.',
                 'sections' => [27, $stiliId, 3, $autostimaId, 6, 8],
             ],
             [
-                'name' => "Area Competenza Alfabetica Funzionale",
+                'name' => 'Area Competenza Alfabetica Funzionale',
                 'subtitle' => '(Comunicazione nella lingua italiana)',
                 'description' => 'Qui puoi trovare i risultati conseguiti nelle sezioni relative alle competenze alfabetiche funzionali.',
                 'sections' => [11, 12, 39, 14],
             ],
             [
-                'name' => "Area Imparare a imparare",
+                'name' => 'Area Imparare a imparare',
                 'subtitle' => '(Competenze di auto-osservazione e auto-regolazione)',
                 'description' => 'Qui puoi trovare i risultati conseguiti nelle sezioni relative alle abilità e strumenti inerenti alle competenze di apprendimento.',
                 'sections' => [9, 10, 5, 40],
@@ -100,7 +101,7 @@ nell’e-portfolio.',
 
         // fetch advices
         $advices = [];
-        $advicesRes = \App\Legacy\LegacyDB::select('id, advice FROM advices_list ORDER BY id ASC');
+        $advicesRes = LegacyDB::select('id, advice FROM advices_list ORDER BY id ASC');
 
         while ($advice = $advicesRes->fetch_assoc()) {
             $advices[$advice['id']] = $advice['advice'];
@@ -112,7 +113,8 @@ nell’e-portfolio.',
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): View|Closure|string {
+    public function render(): View|Closure|string
+    {
         return view('components.student.poi');
     }
 }

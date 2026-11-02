@@ -6,12 +6,14 @@ use App\Models\Schools\Grade;
 use App\Models\Schools\SchoolClass;
 use Illuminate\Console\Command;
 
-class UpdateClassesGrade extends Command {
+class UpdateClassesGrade extends Command
+{
     protected $signature = 'classes:update-grade';
 
     protected $description = 'Update the grade of school classes';
 
-    public function handle(): int {
+    public function handle(): int
+    {
         $activeClasses = SchoolClass::where('ended', false)
             ->with('grade_level')
             ->get();
@@ -41,7 +43,7 @@ class UpdateClassesGrade extends Command {
             // Make sure the new relative grade is numeric
             if (filter_var($newRelativeNumber, FILTER_VALIDATE_INT) === false) {
                 $this->warn(
-                    "Skipping class {$class->id} ({$class->name}): " .
+                    "Skipping class {$class->id} ({$class->name}): ".
                         "invalid school_relative_number '{$newRelativeNumber}' for grade level {$newGradeLevel->id}."
                 );
 
@@ -52,14 +54,14 @@ class UpdateClassesGrade extends Command {
             if (! str_contains($class->name, (string) $oldRelativeNumber)) {
                 if (preg_match('/\d/', $class->name)) {
                     $this->warn(
-                        "Skipping class {$class->id} ({$class->name}): " .
+                        "Skipping class {$class->id} ({$class->name}): ".
                             "old school_relative_number '{$oldRelativeNumber}' was not found."
                     );
 
                     continue;
                 }
 
-                $newName = $newRelativeNumber . $class->name;
+                $newName = $newRelativeNumber.$class->name;
             } else {
                 $newName = str_replace(
                     (string) $oldRelativeNumber,

@@ -2,15 +2,17 @@
 
 namespace LegacyModels\Activities\Results;
 
+use App\Legacy\User;
 use LegacyModels\Activities\Section;
 use LegacyModels\OldModel;
-use \App\Legacy\User;
 
-class CondensedSectionResult extends OldModel {
+class CondensedSectionResult extends OldModel
+{
     /**
      * Table name
      */
     protected const TABLE = 'results_sections_condensed';
+
     protected const TABLE_LINKS = [
         Section::class => 'section_id',
         User::class => 'student_id',
@@ -19,11 +21,13 @@ class CondensedSectionResult extends OldModel {
     /**
      * Get methods
      */
-    public static function resultIndex() {
+    public static function resultIndex()
+    {
         return 'result';
     }
 
-    public static function speedIndex() {
+    public static function speedIndex()
+    {
         return 'speed';
     }
 }

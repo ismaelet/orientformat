@@ -15,24 +15,24 @@
 			<?php foreach ($titles as $key => $title) { ?>
 
 				<div id="title<?= $key ?>" class="area__title-box js-load load--fade-in" data-direction="<?php switch ($key) {
-																												case 1:
-																												case 2:
-																												case 12:
-																													echo  'bottom';
-																													break;
-																												case 3:
-																												case 5:
-																												case 11:
-																													echo  'right';
-																													break;
-																												case 4:
-																												case 6:
-																												case 10:
-																													echo  'left';
-																													break;
-																												default:
-																													echo 'top';
-																											} ?>" data-delay="1">
+				    case 1:
+				    case 2:
+				    case 12:
+				        echo 'bottom';
+				        break;
+				    case 3:
+				    case 5:
+				    case 11:
+				        echo 'right';
+				        break;
+				    case 4:
+				    case 6:
+				    case 10:
+				        echo 'left';
+				        break;
+				    default:
+				        echo 'top';
+				} ?>" data-delay="1">
 					<p class="area__title fa-center txt-12rem font-bold"><?= $title[0] ?></p>
 				</div>
 
@@ -59,6 +59,8 @@
 		</div>
 </div>
 
-<?php } else echo no_results() ?>
+<?php } else {
+    echo no_results();
+} ?>
 
 {% end content %}

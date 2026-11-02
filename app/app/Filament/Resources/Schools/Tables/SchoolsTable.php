@@ -2,20 +2,20 @@
 
 namespace App\Filament\Resources\Schools\Tables;
 
-use App\Filament\Exports\SchoolExporter;
 use App\Models\Schools\School;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\ExportAction;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class SchoolsTable {
-    public static function configure(Table $table): Table {
+class SchoolsTable
+{
+    public static function configure(Table $table): Table
+    {
         return $table
             ->defaultSort('id', 'desc')
             ->columns([
@@ -73,8 +73,8 @@ class SchoolsTable {
                             ];
                         })->toArray();
 
-                        $fileName = 'scuole_export_' . now()->format('Y_m_d_H_i_s') . '.csv';
-                        $path = storage_path('app/' . $fileName);
+                        $fileName = 'scuole_export_'.now()->format('Y_m_d_H_i_s').'.csv';
+                        $path = storage_path('app/'.$fileName);
 
                         $handle = fopen($path, 'w');
                         fputcsv($handle, ['ID', 'Nome', 'Numero di Classi', 'Numero di Insegnanti', 'Numero di Studenti']);
@@ -86,7 +86,7 @@ class SchoolsTable {
                         fclose($handle);
 
                         return response()->download($path)->deleteFileAfterSend(true);
-                    })
+                    }),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

@@ -9,29 +9,29 @@ $f_comp['contacts'] = true;
 
 // links
 $f_columns = [
-	[
-		'title' => __('Explore'),
-		'links' => [
-			['Home', route('home')],
-			['Supporto', route('help')],
-		]
-	],
-	[
-		'title' => __('Legal Information'),
-		'links' => [
-			['C.F. 96023310228'],
-		]
-	],
-	[
-		'title' => __('Useful Links'),
-		'links' => [
-			['Indire', 'http://www.indire.it'],
-			['Invalsi', 'http://www.invalsi.it'],
-			['Miur', 'http://www.miur.gov.it'],
-			['Pat', 'http://www.provincia.tn.it'],
-			['Vivoscuola', 'http://www.vivoscuola.it/'],
-		]
-	],
+    [
+        'title' => __('Explore'),
+        'links' => [
+            ['Home', route('home')],
+            ['Supporto', route('help')],
+        ],
+    ],
+    [
+        'title' => __('Legal Information'),
+        'links' => [
+            ['C.F. 96023310228'],
+        ],
+    ],
+    [
+        'title' => __('Useful Links'),
+        'links' => [
+            ['Indire', 'http://www.indire.it'],
+            ['Invalsi', 'http://www.invalsi.it'],
+            ['Miur', 'http://www.miur.gov.it'],
+            ['Pat', 'http://www.provincia.tn.it'],
+            ['Vivoscuola', 'http://www.vivoscuola.it/'],
+        ],
+    ],
 ];
 
 // contacts
@@ -223,7 +223,7 @@ $f_contacts = ['inst', 'fb', 'mail'];
 
 							<?php foreach ($f_column['links'] as $f_link) {
 
-								if (isset($f_link[1])) { ?>
+							    if (isset($f_link[1])) { ?>
 
 									<p class="footer-link">
 										<a class="hover:text-primary transition-colors" href="<?= $f_link[1] ?>"><?= $f_link[0] ?></a>

@@ -16,7 +16,7 @@
 		<?php foreach ($interests as $interestId => $interest) { ?>
 
 			<a class="interest grid center-content stack-content js-load load--fade-in" data-direction="bottom" data-delay="<?= $interestId % 2 ?>" id="area<?= $interestId ?>" href="<?= route('interest', ['id' => $interestId, 'watch' => 1, 'highschool' => $legacyTestResultId == 151 ? 1 : 0]) ?>">
-				<img src="<?= client_path($legacyTestResultId != 151 ? '/pages/assets/interests/highschool/' . $interestId . '.jpg' : '/pages/assets/interests/universities/' . $interestId) ?>" alt="" class="interest_img img-fill">
+				<img src="<?= client_path($legacyTestResultId != 151 ? '/pages/assets/interests/highschool/'.$interestId.'.jpg' : '/pages/assets/interests/universities/'.$interestId) ?>" alt="" class="interest_img img-fill">
 				<div class="interest_overflow"></div>
 				<div class="interest_content">
 					<h3 class="interest_title"><?= $interest['name'] ?></h3>

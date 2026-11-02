@@ -1,5 +1,7 @@
 <?php
 
+use Legacy\LogicManager\TestLogic;
+
 $types = [
     __('tests.62-question-1'),
     __('tests.62-question-2'),
@@ -21,4 +23,4 @@ $types = [
 
 $count = count($types);
 
-\Legacy\LogicManager\TestLogic::setParameterCount($count);
+TestLogic::setParameterCount($count);

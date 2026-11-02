@@ -14,7 +14,8 @@ use Livewire\Attributes\Locked;
 use Livewire\Component;
 
 #[Lazy]
-class SectionGraph extends Component {
+class SectionGraph extends Component
+{
     #[Locked]
     public int $sectionId;
 
@@ -86,13 +87,15 @@ class SectionGraph extends Component {
             );
     }
 
-    public function render(): View {
+    public function render(): View
+    {
         return view(
             'livewire.class-graphs.section-graph',
         );
     }
 
-    public function placeholder(): View {
+    public function placeholder(): View
+    {
         return view(
             'livewire.class-graphs.section-graph-placeholder',
         );

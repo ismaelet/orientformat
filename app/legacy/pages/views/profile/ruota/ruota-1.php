@@ -1,3 +1,3 @@
 <?php
 
-include_once('ruota.php');
+include_once 'ruota.php';

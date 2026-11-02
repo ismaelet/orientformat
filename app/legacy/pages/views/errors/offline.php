@@ -2,7 +2,7 @@
 
 <!-- Body -->
 <div class="page__content grid center-content main-wrap" data-spacing="400">
-	<img class="logo" src="<?= client_path(LOGO_DIR . 'logo-full') ?>" alt="">
+	<img class="logo" src="<?= client_path(LOGO_DIR.'logo-full') ?>" alt="">
 	<h1 class="title"><?= __('Website Offline') ?></h1>
 	<p class="section-subtitle">
 		<?= __("We are updating our website.<br>We'll be back online as soon as possible.") ?>

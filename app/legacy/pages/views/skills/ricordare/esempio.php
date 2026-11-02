@@ -10,21 +10,21 @@
             <div id="graph-line1" class="graph-line">
                 <div id="box<?= $i + 1 ?>" class="box left">
                     <p class="concept"><?= $concepts[$i];
-                                        $i++; ?></p>
+    $i++; ?></p>
                 </div>
             </div>
 
             <div id="graph-line2" class="graph-line">
                 <div id="box<?= $i + 1 ?>" class="box left">
                     <p class="concept"><?= $concepts[$i];
-                                        $i++; ?></p>
+    $i++; ?></p>
                 </div>
             </div>
 
             <div id="graph-line3" class="graph-line">
                 <div id="box<?= $i + 1 ?>" class="box left">
                     <p class="concept"><?= $concepts[$i];
-                                        $i++; ?></p>
+    $i++; ?></p>
                 </div>
             </div>
 
@@ -33,14 +33,14 @@
                 <div class="graph-cell">
                     <div id="box<?= $i + 1 ?>" class="box push-center left">
                         <p class="concept"><?= $concepts[$i];
-                                            $i++; ?></p>
+    $i++; ?></p>
                     </div>
                 </div>
 
                 <div class="graph-cell">
                     <div id="box<?= $i + 1 ?>" class="box push-center right">
                         <p class="concept"><?= $concepts[$i];
-                                            $i++; ?></p>
+    $i++; ?></p>
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@
                 <div class="graph-cell">
                     <div id="box<?= $i + 1 ?>" class="box flt-r big left">
                         <p class="concept"><?= $concepts[$i];
-                                            $i++; ?></p>
+    $i++; ?></p>
                     </div>
                 </div>
 
@@ -59,13 +59,13 @@
 
                     <div id="box<?= $i + 1 ?>" class="box big right">
                         <p class="concept"><?= $concepts[$i];
-                                            $i++; ?></p>
+    $i++; ?></p>
                     </div>
 
                     <div class="ha-rig grid">
                         <div id="box<?= $i + 1 ?>" class="box inlb right">
                             <p class="concept"><?= $concepts[$i];
-                                                $i++; ?></p>
+    $i++; ?></p>
                         </div>
                     </div>
                 </div>
@@ -77,14 +77,14 @@
                 <div class="graph-cell">
                     <div id="box<?= $i + 1 ?>" class="box push-center left">
                         <p class="concept"><?= $concepts[$i];
-                                            $i++; ?></p>
+    $i++; ?></p>
                     </div>
                 </div>
 
                 <div class="graph-cell">
                     <div id="box<?= $i + 1 ?>" class="box push-center right">
                         <p class="concept"><?= $concepts[$i];
-                                            $i++; ?></p>
+    $i++; ?></p>
                     </div>
                 </div>
 
@@ -95,14 +95,14 @@
                 <div class="graph-cell">
                     <div id="box<?= $i + 1 ?>" class="box left">
                         <p class="concept"><?= $concepts[$i];
-                                            $i++; ?></p>
+    $i++; ?></p>
                     </div>
                 </div>
 
                 <div class="graph-cell ha-rig">
                     <div id="box<?= $i + 1 ?>" class="box right inlb">
                         <p class="concept"><?= $concepts[$i];
-                                            $i++; ?></p>
+    $i++; ?></p>
                     </div>
                 </div>
 
@@ -113,14 +113,14 @@
                 <div class="graph-cell">
                     <div id="box<?= $i + 1 ?>" class="box left">
                         <p class="concept"><?= $concepts[$i];
-                                            $i++; ?></p>
+    $i++; ?></p>
                     </div>
                 </div>
 
                 <div class="graph-cell ha-rig">
                     <div id="box<?= $i + 1 ?>" class="box right inlb">
                         <p class="concept"><?= $concepts[$i];
-                                            $i++; ?></p>
+    $i++; ?></p>
                     </div>
                 </div>
 

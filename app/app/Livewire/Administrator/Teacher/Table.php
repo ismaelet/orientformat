@@ -4,11 +4,9 @@ namespace App\Livewire\Administrator\Teacher;
 
 use App\Models\Schools\School;
 use App\Models\User\Teacher;
-use Dom\Text;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
-use Filament\Actions\EditAction;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Support\Icons\Heroicon;
@@ -18,11 +16,11 @@ use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table as FilamentTable;
 use Livewire\Component;
 
-class Table extends Component implements HasTable, HasActions, HasSchemas {
-
-    use InteractsWithTable;
-    use InteractsWithSchemas;
+class Table extends Component implements HasActions, HasSchemas, HasTable
+{
     use InteractsWithActions;
+    use InteractsWithSchemas;
+    use InteractsWithTable;
 
     /**
      * Property: The school being managed
@@ -32,7 +30,8 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
     /**
      * Filament method: Define the table
      */
-    public function table(FilamentTable $table): FilamentTable {
+    public function table(FilamentTable $table): FilamentTable
+    {
         return $table
             ->defaultSort('id', 'desc')
             ->query(Teacher::query()
@@ -50,7 +49,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                     ->sortable(),
                 TextColumn::make('school_classes.name')
                     ->label('Classi assegnate')
-                    ->state(fn($record) => $record->school_classes->map(fn($class) => $class->fullName()))
+                    ->state(fn ($record) => $record->school_classes->map(fn ($class) => $class->fullName()))
                     ->listWithLineBreaks()
                     ->default('Nessuna'),
                 TextColumn::make('user.created_at')
@@ -65,7 +64,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                     ->label('Rimuovi dall\'Istituto')
                     ->color('danger')
                     ->icon(Heroicon::XMark)
-                    ->action(fn(Teacher $record) => $record->update(['school_id' => null]))
+                    ->action(fn (Teacher $record) => $record->update(['school_id' => null]))
                     ->requiresConfirmation()
                     ->modalHeading('Rimuovi dall\'Istituto')
                     ->modalDescription('Questa operazione è da usare in caso il/la docente non sia più parte dell\'istituto. Non eliminerà l\'account, ma lo/a dissocerà dalla scuola.')
@@ -77,7 +76,8 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
     /**
      * Lifecycle method: Render the component
      */
-    public function render() {
+    public function render()
+    {
         return view('livewire.administrator.teacher.table');
     }
 }

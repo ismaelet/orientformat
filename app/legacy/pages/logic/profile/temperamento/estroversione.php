@@ -1,3 +1,3 @@
 <?php
 
-include_once('temperamento.php');
+include_once 'temperamento.php';

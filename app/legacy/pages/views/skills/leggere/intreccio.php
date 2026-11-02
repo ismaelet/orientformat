@@ -1,6 +1,6 @@
 <?php
 
-use \Legacy\Activity\Test;
+use Legacy\Activity\Test;
 
 ?>
 
@@ -13,7 +13,7 @@ use \Legacy\Activity\Test;
             <?= title() ?>
             <?= no_results() ?>
 
-            <?php if (!$supervisorView) { ?>
+            <?php if (! $supervisorView) { ?>
 
                 <a href="<?= (new Test(70))->clientUrl ?>">
                     <p class="txt-c5 txt-1rem br-b-1 br-c5 inlb"><?= __('Read the story again') ?></p>
@@ -22,7 +22,7 @@ use \Legacy\Activity\Test;
             <?php } ?>
         </div>
 
-        <?php if ($legacyTest->completed && !$supervisorView) { ?>
+        <?php if ($legacyTest->completed && ! $supervisorView) { ?>
             <div>
 
                 <p class="result txt-15rem mar-b-2 pad-1 br-2 br-c1 fa-center"><?= __('tests.69-result', ['percentage' => $legacyTest->percentage]) ?></p>
@@ -39,7 +39,7 @@ use \Legacy\Activity\Test;
         </div>
     </div>
 
-    <?php if ($legacyTest->completed || !$supervisorView) { ?>
+    <?php if ($legacyTest->completed || ! $supervisorView) { ?>
 
         <div id="graph-box" class="mar-t-4">
 
@@ -53,7 +53,7 @@ use \Legacy\Activity\Test;
 
                             <p class="txt-1rem fa-center"><?= $box['text'] ?></p>
 
-                            <?php if (!$box['autofilled']) { ?>
+                            <?php if (! $box['autofilled']) { ?>
 
                                 <input type="hidden" class="filler-inp" name="field[]" value="0">
 
@@ -74,18 +74,20 @@ use \Legacy\Activity\Test;
 
         </div>
 
-        <?php if (!$legacyTest->completed) { ?>
+        <?php if (! $legacyTest->completed) { ?>
 
             <h2 class="subsection-title txt-blk txt-15rem font-bold mar-t-3">Elementi:</h2>
             <div id="causes" class="mar-b-3 mar-t-2 grid3">
 
-                <?php foreach ($boxes as $key => $box) if ($box && !$box['autofilled']) { ?>
+                <?php foreach ($boxes as $key => $box) {
+                    if ($box && ! $box['autofilled']) { ?>
 
                     <div id="cause<?= $key ?>" class="cause <?= $box['reader'] ? 'reader' : '' ?>" data-id="<?= $key ?>">
                         <p class="txt-1rem fa-center"><?= $box['content'] ?></p>
                     </div>
 
-                <?php } ?>
+                <?php }
+                    } ?>
 
             </div>
 

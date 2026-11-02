@@ -28,11 +28,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
-class Table extends Component implements HasTable, HasActions, HasSchemas {
-
-    use InteractsWithTable;
-    use InteractsWithSchemas;
+class Table extends Component implements HasActions, HasSchemas, HasTable
+{
     use InteractsWithActions;
+    use InteractsWithSchemas;
+    use InteractsWithTable;
 
     /**
      * Property: The school being managed
@@ -52,7 +52,8 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
     /**
      * Lifecycle method: Initialize component
      */
-    public function mount() {
+    public function mount()
+    {
         if ($this->class) {
             $this->school = $this->class->school;
         }
@@ -63,45 +64,46 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
     /**
      * Filament method: Define the table
      */
-    public function table(FilamentTable $table): FilamentTable {
+    public function table(FilamentTable $table): FilamentTable
+    {
         return $table
             ->defaultSort('id', 'desc')
             ->defaultPaginationPageOption(25)
-            ->query(fn() => $this->class ?
+            ->query(fn () => $this->class ?
                 // Class view
                 Student::query()
-                ->where('schoolClassId', $this->class->id)
-                ->with('user', 'class', 'school_class.referent.user') :
+                    ->where('schoolClassId', $this->class->id)
+                    ->with('user', 'class', 'school_class.referent.user') :
 
                 // School view
                 Student::query()
-                ->whereHas('school_class', function ($query) {
-                    $query->where('schoolId', $this->school->id);
-                })
-                ->with('user', 'class', 'school_class.referent.user'))
+                    ->whereHas('school_class', function ($query) {
+                        $query->where('schoolId', $this->school->id);
+                    })
+                    ->with('user', 'class', 'school_class.referent.user'))
             ->columns([
                 TextColumn::make('user.last_name')
                     ->label('Cognome')
                     ->searchable()
-                    ->getStateUsing(fn(Student $record) => $this->displayPlaceholders ? 'Cognome test' : $record->user->last_name)
+                    ->getStateUsing(fn (Student $record) => $this->displayPlaceholders ? 'Cognome test' : $record->user->last_name)
                     ->sortable(),
                 TextColumn::make('user.first_name')
                     ->label('Nome')
                     ->searchable()
-                    ->getStateUsing(fn(Student $record) => $this->displayPlaceholders ? 'Nome test' : $record->user->first_name)
+                    ->getStateUsing(fn (Student $record) => $this->displayPlaceholders ? 'Nome test' : $record->user->first_name)
                     ->sortable(),
                 TextColumn::make('school_class.name')
                     ->label('Classe')
                     ->searchable()
-                    ->getStateUsing(fn(Student $record) => $this->displayPlaceholders ? 'Classe test' : $record->school_class?->name)
+                    ->getStateUsing(fn (Student $record) => $this->displayPlaceholders ? 'Classe test' : $record->school_class?->name)
                     ->sortable(),
                 TextColumn::make('school_class.referent.inverted_full_name')
                     ->label('Tutor di classe')
-                    ->visible(fn(): bool => !$this->class),
+                    ->visible(fn (): bool => ! $this->class),
                 TextColumn::make('user.email')
                     ->label('Email')
                     ->searchable()
-                    ->getStateUsing(fn(Student $record) => $this->displayPlaceholders ? 'studente.test@iprase.tn.it' : $record->user->email)
+                    ->getStateUsing(fn (Student $record) => $this->displayPlaceholders ? 'studente.test@iprase.tn.it' : $record->user->email)
                     ->sortable(),
                 TextColumn::make('user.created_at')
                     ->label('Registrato/a il')
@@ -115,7 +117,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                     EditAction::make()
                         ->label('Modifica')
                         ->color(Color::Blue)
-                        ->modalHeading(fn(Student $record): string => "Modifica: {$record->user->inverted_full_name}")
+                        ->modalHeading(fn (Student $record): string => "Modifica: {$record->user->inverted_full_name}")
                         ->schema([
                             Fieldset::make('Dati personali')
                                 ->columns(2)
@@ -133,7 +135,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                                         ->required()
                                         ->label('Email')
                                         ->maxLength(255)
-                                        ->rule(fn(User $record) => Rule::unique('users', 'email')->ignore($record->user?->id))
+                                        ->rule(fn (User $record) => Rule::unique('users', 'email')->ignore($record->user?->id))
                                         ->validationMessages([
                                             'unique' => 'Questo indirizzo email è già utilizzato da un altro utente.',
                                         ]),
@@ -144,38 +146,38 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                                 ->helperText('Puoi assegnare lo/a studente/ssa ad una classe diversa, per esempio in caso di studenti ripetenti o che hanno cambiato classe rispetto all\'anno scorso. ATTENZIONE: Cambiare la classe di uno/a studente/ssa lo/a rimuoverà dalla classe attuale.')
                                 ->relationship(
                                     name: 'school_class',
-                                    modifyQueryUsing: fn($query) => $query->where('schoolId', $this->school->id)
+                                    modifyQueryUsing: fn ($query) => $query->where('schoolId', $this->school->id)
                                         ->where('ended', false)
                                         ->with('referent.user'),
                                 )
-                                ->getOptionLabelFromRecordUsing(fn(SchoolClass $record) => "{$record->name} - {$record->referent?->inverted_full_name}")
+                                ->getOptionLabelFromRecordUsing(fn (SchoolClass $record) => "{$record->name} - {$record->referent?->inverted_full_name}")
                                 ->getOptionLabelUsing(
-                                    fn($value): ?string => optional(
+                                    fn ($value): ?string => optional(
                                         SchoolClass::with('referent.user')->find($value)
-                                    )?->name . ' - ' . optional(
+                                    )?->name.' - '.optional(
                                         SchoolClass::with('referent.user')->find($value)?->referent
                                     )?->inverted_full_name
                                 )
                                 ->searchable()
                                 ->required(),
                         ]),
-                    Action::make("view-results")
+                    Action::make('view-results')
                         ->label('Visualizza risultati')
                         ->color(Color::Cyan)
                         ->icon(Heroicon::ArrowTopRightOnSquare)
-                        ->url(fn(Student $record) => route('class.students.results.show', ['class' => $record->class, 'student' => $record]))
+                        ->url(fn (Student $record) => route('class.students.results.show', ['class' => $record->class, 'student' => $record]))
                         ->openUrlInNewTab(),
-                    Action::make("view-poi")
+                    Action::make('view-poi')
                         ->label('Visualizza POI')
                         ->color(Color::Green)
                         ->icon(Heroicon::ArrowTopRightOnSquare)
-                        ->url(fn(Student $record) => route('class.students.poi.show', ['class' => $record->class, 'student' => $record]))
+                        ->url(fn (Student $record) => route('class.students.poi.show', ['class' => $record->class, 'student' => $record]))
                         ->openUrlInNewTab(),
-                    Action::make("view-self-evaluations")
+                    Action::make('view-self-evaluations')
                         ->label('Visualizza autovalutazioni')
                         ->color(Color::Orange)
                         ->icon(Heroicon::ArrowTopRightOnSquare)
-                        ->url(fn(Student $record) => route('class.students.self-evaluations.show', ['class' => $record->class, 'student' => $record]))
+                        ->url(fn (Student $record) => route('class.students.self-evaluations.show', ['class' => $record->class, 'student' => $record]))
                         ->openUrlInNewTab(),
                     Action::make('resetPassword')
                         ->label('Reimposta password')
@@ -188,7 +190,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
 
                             Notification::make()
                                 ->title('Password generata')
-                                ->body('La nuova password per ' . $record->user->inverted_full_name . ' è (cliccala per copiarla):<br><span class="font-bold text-blue-600 js-password transition-colors block mt-2 text-lg text-center cursor-pointer underline data-[copied=true]:text-primary-400">' . $newPassword . '</span>')
+                                ->body('La nuova password per '.$record->user->inverted_full_name.' è (cliccala per copiarla):<br><span class="font-bold text-blue-600 js-password transition-colors block mt-2 text-lg text-center cursor-pointer underline data-[copied=true]:text-primary-400">'.$newPassword.'</span>')
                                 ->info()
                                 ->iconColor(Color::Blue)
                                 ->duration(20000)
@@ -208,7 +210,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
 
                             Notification::make()
                                 ->title('Studente rimosso dalla classe')
-                                ->body($record->user->inverted_full_name . ' è stato rimosso dalla classe ' . $record->school_class?->name . '.')
+                                ->body($record->user->inverted_full_name.' è stato rimosso dalla classe '.$record->school_class?->name.'.')
                                 ->info()
                                 ->iconColor(Color::Red)
                                 ->send();
@@ -216,7 +218,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                         ->requiresConfirmation()
                         ->modalHeading('Rimuovere lo/a studente/ssa dalla classe?')
                         ->modalDescription('Questa azione rimuoverà lo/a studente/ssa dalla classe attuale, ma non eliminerà il suo account né i suoi dati. Questa operazione è da eseguire in caso di studenti che hanno cambiato scuola, NON in caso di studenti ripetenti o che hanno cambiato classe all\'interno della stessa scuola (in quel caso è sufficiente modificare la classe dello/a studente/ssa).'),
-                ])
+                ]),
             ])
             ->toolbarActions([]);
     }
@@ -224,7 +226,8 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
     /**
      * Lifecycle method: Render the component
      */
-    public function render() {
+    public function render()
+    {
         return view('livewire.administrator.student.table');
     }
 }

@@ -6,7 +6,11 @@
 
 	<!-- Title -->
 	<section id="title" class="mb-4">
-		<h1 class="txt-med"><?= \App\Legacy\LegacyView::getInstance()->title ?></h1>
+		<h1 class="txt-med"><?php
+
+use App\Legacy\LegacyView;
+
+?><?= LegacyView::getInstance()->title ?></h1>
 
 		<!-- Add button -->
 		<?php if ($pageConfig['add']) { ?>
@@ -49,7 +53,7 @@
 	{% place custom-content %}
 
 	<!-- Pages -->
-	<?php include('-expands-admin-list/pages.php') ?>
+	<?php include '-expands-admin-list/pages.php'?>
 
 	<!-- List -->
 	<section class="admin-list-wrapper">
@@ -57,16 +61,16 @@
 		<div class="admin-list" style="grid-template-columns: <?= $pageConfig['grid-columns'] ?>;">
 
 			<?php
-			include_once('-expands-admin-list/head.php');
-			include_once('-expands-admin-list/body.php');
-			?>
+		            include_once '-expands-admin-list/head.php';
+		include_once '-expands-admin-list/body.php';
+		?>
 
 		</div>
 
 	</section>
 
 	<!-- Pages -->
-	<?php include('-expands-admin-list/pages.php') ?>
+	<?php include '-expands-admin-list/pages.php'?>
 
 </form>
 

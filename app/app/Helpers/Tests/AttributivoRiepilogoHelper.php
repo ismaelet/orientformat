@@ -6,16 +6,17 @@ use App\Models\Activities\Test;
 use App\Models\User\Student;
 use Illuminate\Support\Collection;
 
-class AttributivoRiepilogoHelper {
-
+class AttributivoRiepilogoHelper
+{
     /**
      * Get the results of the test for a specific student
      */
-    public static function results(Test $test, Student $student): ?Collection {
+    public static function results(Test $test, Student $student): ?Collection
+    {
         $requiredTest = $test->required_test;
         $testResult = $student->testResult($requiredTest);
 
-        if (!$testResult || !$testResult->completed()) {
+        if (! $testResult || ! $testResult->completed()) {
             return null;
         }
 
@@ -25,7 +26,7 @@ class AttributivoRiepilogoHelper {
         $max = count($styles);
 
         foreach ($styles as $styleId => $style) {
-            $value = count(array_filter($rawResults, fn($item) => $item == $styleId));
+            $value = count(array_filter($rawResults, fn ($item) => $item == $styleId));
 
             $results[] = collect([
                 'name' => $style,
@@ -40,7 +41,8 @@ class AttributivoRiepilogoHelper {
     /**
      * Get the cognitive styles
      */
-    private static function getStyles(): array {
+    private static function getStyles(): array
+    {
         return [
             1 => 'Tenacia',
             2 => 'Pregiudizio',
@@ -49,7 +51,7 @@ class AttributivoRiepilogoHelper {
             5 => 'Strategia',
             6 => 'Dipendenza',
             7 => 'Emozione',
-            8 => 'Caso'
+            8 => 'Caso',
         ];
     }
 }

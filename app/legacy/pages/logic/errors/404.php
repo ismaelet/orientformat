@@ -8,5 +8,5 @@ $src = $_SERVER['HTTP_REFERER'] ?? '';
 $appExceptions = [];
 
 if ($validEntry) {
-	//error_log('Error 404: destination: ' . $url . ' source: ' . $src);
+    // error_log('Error 404: destination: ' . $url . ' source: ' . $src);
 }

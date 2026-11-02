@@ -10,24 +10,26 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\Component;
 
-class Area extends Component {
+class Area extends Component
+{
+    public Collection $sections;
 
-	public Collection $sections;
+    /**
+     * Create a new component instance.
+     */
+    public function __construct(public ActivitiesArea $area, public Student $student, public Grade $grade)
+    {
+        $this->sections = $grade->sectionsInArea($area)
+            ->whereNotNull('evaluation_test_id')
+            ->load('main_section')
+            ->values();
+    }
 
-	/**
-	 * Create a new component instance.
-	 */
-	public function __construct(public ActivitiesArea $area, public Student $student, public Grade $grade) {
-		$this->sections = $grade->sectionsInArea($area)
-			->whereNotNull('evaluation_test_id')
-			->load('main_section')
-			->values();
-	}
-
-	/**
-	 * Get the view / contents that represent the component.
-	 */
-	public function render(): View|Closure|string {
-		return view('components.student.autovalutazioni.area');
-	}
+    /**
+     * Get the view / contents that represent the component.
+     */
+    public function render(): View|Closure|string
+    {
+        return view('components.student.autovalutazioni.area');
+    }
 }

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Activities;
 
 use App\Http\Controllers\Controller;
+use App\Legacy\Exceptions\LegacyRedirectException;
+use App\Legacy\LegacyView;
+use App\Legacy\Logic;
 use App\Models\Activities\Test;
 use App\Models\Results\User\AdditionalResult;
 use App\Models\Results\User\TestResult;
@@ -12,24 +15,22 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-
-use App\Legacy\Exceptions\LegacyRedirectException;
-use App\Legacy\Logic;
 use Legacy\Activity\Test as LegacyTest;
 use Legacy\LogicManager\TestLogic;
 
-class TestController extends Controller {
-
+class TestController extends Controller
+{
     /**
      * Display the specified resource
      */
-    function show(Test $test) {
+    public function show(Test $test)
+    {
         // Access check
         if (is_student()) {
             $availableGrades = student()->availableGrades();
             $sectionGrades = $test->section->grades;
 
-            if (!$availableGrades->pluck('id')->intersect($sectionGrades->pluck('id'))->count()) {
+            if (! $availableGrades->pluck('id')->intersect($sectionGrades->pluck('id'))->count()) {
                 return redirect()->route('activities.grades.index');
             }
         }
@@ -39,9 +40,9 @@ class TestController extends Controller {
         $template = $test->template;
         $title = $test->name;
 
-        if (!in_array($test->template, ['blade', 'survey'])) {
+        if (! in_array($test->template, ['blade', 'survey'])) {
             try {
-                return \App\Legacy\LegacyView::setPage($page)
+                return LegacyView::setPage($page)
                     ->setTemplate($template)
                     ->setTitle($title)
                     ->set('test', $test)
@@ -82,11 +83,12 @@ class TestController extends Controller {
     /**
      * Store a newly created resource in storage
      */
-    public function store(Request $request, Test $test): RedirectResponse {
+    public function store(Request $request, Test $test): RedirectResponse
+    {
         $student = student();
 
         // Handle legacy templates separately
-        if (!in_array($test->template, ['blade', 'survey'], true)) {
+        if (! in_array($test->template, ['blade', 'survey'], true)) {
             return $this->storeLegacy($request, $test);
         }
 
@@ -163,7 +165,7 @@ class TestController extends Controller {
         $legacyTest->saveResult(
             implode(',', $fields),
             $score,
-            !$request->has('skip'),
+            ! $request->has('skip'),
             $request->integer('speed', 0)
         );
 
@@ -178,7 +180,8 @@ class TestController extends Controller {
     /**
      * Reset the specified resource
      */
-    function reset(Test $test): RedirectResponse {
+    public function reset(Test $test): RedirectResponse
+    {
         $user = Auth::user();
 
         $testResult = TestResult::where('studentId', $user->id)
@@ -203,7 +206,8 @@ class TestController extends Controller {
     /**
      * Reset all the dependent tests
      */
-    function resetDependent(Test $test): RedirectResponse {
+    public function resetDependent(Test $test): RedirectResponse
+    {
         $user = Auth::user();
         $dependentTests = $test->dependent_tests()?->sortBy('step');
 
@@ -234,11 +238,11 @@ class TestController extends Controller {
         );
     }
 
-
     /**
      * Download the answers for a survey test as a PDF file
      */
-    public function downloadAnswers(Test $test): Response {
+    public function downloadAnswers(Test $test): Response
+    {
         // Only survey tests
         abort_unless($test->template === 'survey', 404);
 
@@ -292,10 +296,10 @@ class TestController extends Controller {
         ])->setPaper('a4', 'portrait');
 
         // Generate filename
-        $filename = 'Risposte_' . Str::slug(
+        $filename = 'Risposte_'.Str::slug(
             $test->name,
             '_'
-        ) . '.pdf';
+        ).'.pdf';
 
         return $pdf->download($filename);
     }

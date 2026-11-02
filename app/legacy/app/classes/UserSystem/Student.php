@@ -2,232 +2,260 @@
 
 namespace Legacy\UserSystem;
 
-use \Legacy\SchoolSystem\SchoolClass;
+use App\Legacy\LegacyDB;
+use App\Legacy\User;
+use Legacy\SchoolSystem\School;
+use Legacy\SchoolSystem\SchoolClass;
+use Legacy\UserSystem\Student\Advice;
 use LegacyModels\User\StudentProfile;
-use \Legacy\SchoolSystem\School;
-
-use \App\Legacy\User;
-use \Legacy\UserSystem\Student\Advice;
+use System\Traits\DatabaseObject;
 
 /**
  * Student class
- * 
+ *
  * @property object user
- * 
  * @property string invertedFullName
- * 
  * @property int schoolClassId
  * @property object schoolClass
  * @property object school
  * @property object grade
  * @property bool isInMiddleschool
  * @property bool isInHighschool
- * 
  * @property object profile
  */
-class Student {
+class Student
+{
+    use DatabaseObject;
 
-	use \System\Traits\DatabaseObject;
+    public const TABLE = 'students';
 
-	public const TABLE = 'students';
-	public const INDEX = 'userId';
-	public const SCHOOL_CLASS_INDEX = 'schoolClassId';
+    public const INDEX = 'userId';
 
-	/**
-	 * Get methods
-	 */
-	private function getId() {
-		return $this->{self::INDEX};
-	}
+    public const SCHOOL_CLASS_INDEX = 'schoolClassId';
 
-	private function getUser() {
-		return new \App\Legacy\User($this->userId);
-	}
+    /**
+     * Get methods
+     */
+    private function getId()
+    {
+        return $this->{self::INDEX};
+    }
 
-	private function getUsername() {
-		return $this->user->username;
-	}
+    private function getUser()
+    {
+        return new User($this->userId);
+    }
 
-	private function getfirst_name() {
-		return $this->user->first_name;
-	}
+    private function getUsername()
+    {
+        return $this->user->username;
+    }
 
-	private function getlast_name() {
-		return $this->user->last_name;
-	}
+    private function getfirst_name()
+    {
+        return $this->user->first_name;
+    }
 
-	private function getFullName() {
-		return $this->user->fullName;
-	}
+    private function getlast_name()
+    {
+        return $this->user->last_name;
+    }
 
-	private function getInvertedFullName() {
-		return $this->user->invertedFullName;
-	}
+    private function getFullName()
+    {
+        return $this->user->fullName;
+    }
 
-	private function getSchoolClass() {
-		return $this->schoolClassId ? new SchoolClass($this->schoolClassId) : null;
-	}
+    private function getInvertedFullName()
+    {
+        return $this->user->invertedFullName;
+    }
 
-	private function getSchool() {
-		return new School($this->schoolClass->schoolId);
-	}
+    private function getSchoolClass()
+    {
+        return $this->schoolClassId ? new SchoolClass($this->schoolClassId) : null;
+    }
 
-	private function getGrade() {
-		return $this->schoolClass ? $this->schoolClass->grade : null;
-	}
+    private function getSchool()
+    {
+        return new School($this->schoolClass->schoolId);
+    }
 
-	private function getIsInMiddleschool() {
-		return $this->grade && $this->grade->isMiddleSchool;
-	}
+    private function getGrade()
+    {
+        return $this->schoolClass ? $this->schoolClass->grade : null;
+    }
 
-	private function getIsInHighschool() {
-		return $this->grade && $this->grade->isHighSchool;
-	}
+    private function getIsInMiddleschool()
+    {
+        return $this->grade && $this->grade->isMiddleSchool;
+    }
 
-	private function getHasCompletedEndReview() {
-		return \App\Legacy\LegacyDB::exists('survey_end WHERE userID = ?', [$this->id]);
-	}
+    private function getIsInHighschool()
+    {
+        return $this->grade && $this->grade->isHighSchool;
+    }
 
-	private function getStartReviewId() {
-		return \App\Legacy\LegacyDB::find('id FROM review_results WHERE studentId = ? AND reviewId IN (1, 2) ORDER BY reviewId DESC', [$this->id]);
-	}
-	private function getEndReviewId() {
-		return \App\Legacy\LegacyDB::find('id FROM review_results WHERE studentId = ? AND reviewId = 3', [$this->id]);
-	}
+    private function getHasCompletedEndReview()
+    {
+        return LegacyDB::exists('survey_end WHERE userID = ?', [$this->id]);
+    }
 
-	private function getProfile() {
-		return StudentProfile::newAdd($this->id);
-	}
+    private function getStartReviewId()
+    {
+        return LegacyDB::find('id FROM review_results WHERE studentId = ? AND reviewId IN (1, 2) ORDER BY reviewId DESC', [$this->id]);
+    }
 
-	private function getAdvicesString() {
-		return $this->parseAdvices();
-	}
+    private function getEndReviewId()
+    {
+        return LegacyDB::find('id FROM review_results WHERE studentId = ? AND reviewId = 3', [$this->id]);
+    }
 
-	private function getAdvices() {
-		$advices = false;
+    private function getProfile()
+    {
+        return StudentProfile::newAdd($this->id);
+    }
 
-		$advicesData = \App\Legacy\LegacyDB::find('advices FROM advices WHERE userID=?', [$this->id]);
+    private function getAdvicesString()
+    {
+        return $this->parseAdvices();
+    }
 
-		if ($advicesData) {
-			$advices = [];
-			$advicesData = explode(',', $advicesData);
+    private function getAdvices()
+    {
+        $advices = false;
 
-			foreach ($advicesData as $adviceId) {
-				$advices[] = new Advice($adviceId);
-			}
-		}
+        $advicesData = LegacyDB::find('advices FROM advices WHERE userID=?', [$this->id]);
 
-		return $advices;
-	}
+        if ($advicesData) {
+            $advices = [];
+            $advicesData = explode(',', $advicesData);
 
-	private function parseAdvices() {
-		if ($this->advices) {
-			$advicesStr = [];
+            foreach ($advicesData as $adviceId) {
+                $advices[] = new Advice($adviceId);
+            }
+        }
 
-			foreach ($this->advices as $key => $advice) {
-				$advicesStr[] = $key + 1 . '. ' . $advice->name;
-			}
+        return $advices;
+    }
 
-			$advicesStr = implode('<br>', $advicesStr);
-		} else {
-			$advicesStr = '';
-		}
+    private function parseAdvices()
+    {
+        if ($this->advices) {
+            $advicesStr = [];
 
-		return $advicesStr;
-	}
+            foreach ($this->advices as $key => $advice) {
+                $advicesStr[] = $key + 1 .'. '.$advice->name;
+            }
 
-	private function getChoices() {
-		$choices = [];
+            $advicesStr = implode('<br>', $advicesStr);
+        } else {
+            $advicesStr = '';
+        }
 
-		$profile = $this->profile;
+        return $advicesStr;
+    }
 
-		if ($profile->id) {
+    private function getChoices()
+    {
+        $choices = [];
 
-			$surveyResults = $profile->results;
-			$genericResults = $surveyResults['s2d2'] ?? false;
+        $profile = $this->profile;
 
-			if ($genericResults) {
-				foreach ($genericResults as $surveyResultTitle => $surveyResult) {
-					$choices[$surveyResultTitle] = $surveyResult;
-				}
-			}
-		}
+        if ($profile->id) {
 
-		return $choices;
-	}
+            $surveyResults = $profile->results;
+            $genericResults = $surveyResults['s2d2'] ?? false;
 
-	private function getSpecificChoices() {
-		$choices = [];
+            if ($genericResults) {
+                foreach ($genericResults as $surveyResultTitle => $surveyResult) {
+                    $choices[$surveyResultTitle] = $surveyResult;
+                }
+            }
+        }
 
-		$answerIds = ['Liceo' => 's2d3a', 'Istituto Tecnico' => 's2d3b', 'Istruzione e Formazione Professionale' => 's2d3c', 'Istituto Professionale (Istituto “Don Milani” e Istituto “I. De Carneri” Oxford)' => 's2d3d'];
+        return $choices;
+    }
 
-		$profile = $this->profile;
+    private function getSpecificChoices()
+    {
+        $choices = [];
 
-		if ($profile->id) {
+        $answerIds = ['Liceo' => 's2d3a', 'Istituto Tecnico' => 's2d3b', 'Istruzione e Formazione Professionale' => 's2d3c', 'Istituto Professionale (Istituto “Don Milani” e Istituto “I. De Carneri” Oxford)' => 's2d3d'];
 
-			$surveyResults = $profile->results;
+        $profile = $this->profile;
 
-			foreach ($answerIds as $answerTitle => $answerSlug) {
-				$specificChoice = $surveyResults[$answerSlug] ?? null;
-				$choice = $specificChoice && $specificChoice != 'Non ci ho ancora pensato' ? $specificChoice : null;
-				if ($choice) $choices[$answerTitle] = $choice;
-			}
-		}
+        if ($profile->id) {
 
-		return $choices;
-	}
+            $surveyResults = $profile->results;
 
-	private function getCombinedChoices() {
-		$combinedChoices = [];
-		$choices = $this->getChoices();
-		$specificChoices = $this->getspecificChoices();
+            foreach ($answerIds as $answerTitle => $answerSlug) {
+                $specificChoice = $surveyResults[$answerSlug] ?? null;
+                $choice = $specificChoice && $specificChoice != 'Non ci ho ancora pensato' ? $specificChoice : null;
+                if ($choice) {
+                    $choices[$answerTitle] = $choice;
+                }
+            }
+        }
 
-		foreach ($choices as $choiceTitle => $result) {
-			$choice = $choiceTitle;
-			if (isset($specificChoices[$choiceTitle])) $choice = $specificChoices[$choiceTitle];
-			$combinedChoices[$choice] = $result;
-		}
+        return $choices;
+    }
 
-		return $combinedChoices;
-	}
+    private function getCombinedChoices()
+    {
+        $combinedChoices = [];
+        $choices = $this->getChoices();
+        $specificChoices = $this->getspecificChoices();
 
-	/**
-	 * Misc
-	 */
-	public function calcPersonalData() {
-		if (!\App\Legacy\LegacyDB::exists('students_data WHERE studentId = ?', [$this->id])) {
-			$tempData = [];
-			$tempSurveryData = [];
+        foreach ($choices as $choiceTitle => $result) {
+            $choice = $choiceTitle;
+            if (isset($specificChoices[$choiceTitle])) {
+                $choice = $specificChoices[$choiceTitle];
+            }
+            $combinedChoices[$choice] = $result;
+        }
 
-			if ($tempSurvery = \App\Legacy\LegacyDB::find('results FROM review_results WHERE studentId = ? AND FIND_IN_SET (reviewId, "1,2")', [$this->id])) {
-				foreach (explode(',', $tempSurvery) as $tempSurveryVal) {
-					$tempSurveryVal = explode('=', $tempSurveryVal);
-					$tempSurveryData[$tempSurveryVal[0]] = $tempSurveryVal[1] ?? false;
-				}
+        return $combinedChoices;
+    }
 
-				$tempData['gender'] = $tempSurveryData['s1d1'] ?? 9;
-				$tempData['decided'] = $tempSurveryData['s2d1'] ?? 0;
-				$newDegreeLevel = isset($tempSurveryData['s4d1_1']) && isset($tempSurveryData['s4d1_2']) ? max($tempSurveryData['s4d1_1'], $tempSurveryData['s4d1_2']) : 7;
+    /**
+     * Misc
+     */
+    public function calcPersonalData()
+    {
+        if (! LegacyDB::exists('students_data WHERE studentId = ?', [$this->id])) {
+            $tempData = [];
+            $tempSurveryData = [];
 
-				switch ($newDegreeLevel) {
-					case 5:
-						$oldDegreeLevel = 8;
-						break;
-					case 6:
-					case 7:
-						$oldDegreeLevel = 0;
-						break;
-					default:
-						$oldDegreeLevel = $newDegreeLevel;
-						break;
-				}
+            if ($tempSurvery = LegacyDB::find('results FROM review_results WHERE studentId = ? AND FIND_IN_SET (reviewId, "1,2")', [$this->id])) {
+                foreach (explode(',', $tempSurvery) as $tempSurveryVal) {
+                    $tempSurveryVal = explode('=', $tempSurveryVal);
+                    $tempSurveryData[$tempSurveryVal[0]] = $tempSurveryVal[1] ?? false;
+                }
 
-				$tempData['degree'] = $oldDegreeLevel;
-			}
+                $tempData['gender'] = $tempSurveryData['s1d1'] ?? 9;
+                $tempData['decided'] = $tempSurveryData['s2d1'] ?? 0;
+                $newDegreeLevel = isset($tempSurveryData['s4d1_1']) && isset($tempSurveryData['s4d1_2']) ? max($tempSurveryData['s4d1_1'], $tempSurveryData['s4d1_2']) : 7;
 
-			if (!empty($tempData)) {
-				\App\Legacy\LegacyDB::add('students_data (studentId, gender, decided, degree)', [$this->id, $tempData['gender'], $tempData['decided'], $tempData['degree']]);
-			}
-		}
-	}
+                switch ($newDegreeLevel) {
+                    case 5:
+                        $oldDegreeLevel = 8;
+                        break;
+                    case 6:
+                    case 7:
+                        $oldDegreeLevel = 0;
+                        break;
+                    default:
+                        $oldDegreeLevel = $newDegreeLevel;
+                        break;
+                }
+
+                $tempData['degree'] = $oldDegreeLevel;
+            }
+
+            if (! empty($tempData)) {
+                LegacyDB::add('students_data (studentId, gender, decided, degree)', [$this->id, $tempData['gender'], $tempData['decided'], $tempData['degree']]);
+            }
+        }
+    }
 }

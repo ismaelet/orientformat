@@ -2,9 +2,9 @@
 
 use App\Models\Results\User\TestResult;
 use Illuminate\Support\Facades\Auth;
-use \Legacy\Activity\Result\Handler\StudentTestResult;
-use \Legacy\Activity\Test;
-use \Legacy\UserSystem\Student;
+use Legacy\Activity\Result\Handler\StudentTestResult;
+use Legacy\Activity\Test;
+use Legacy\UserSystem\Student;
 
 $watch = $_GET['watch'] ?? false;
 
@@ -26,7 +26,7 @@ $survey = (new Test($surveyTestId))->setStudentId($studentId);
 $questions = [];
 
 for ($i = 1; $i <= count(test_config($surveyTestId, 'questions')); $i++) {
-    $questions[] = __('tests.' . $surveyTestId . '-question-' . $i);
+    $questions[] = __('tests.'.$surveyTestId.'-question-'.$i);
 }
 
 $questionIds = $interest['questionIds'];
@@ -34,7 +34,7 @@ $questionIds = $interest['questionIds'];
 bump($questions);
 
 // schools
-$schoolList = (include_once('-expands-interest/' . ($highschool ? 'universities' : 'schools') . '.php'))[$interestId] ?? false;
+$schoolList = (include_once '-expands-interest/'.($highschool ? 'universities' : 'schools').'.php')[$interestId] ?? false;
 
 /*
 * Form handling

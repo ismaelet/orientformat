@@ -8,13 +8,13 @@ use App\Models\Activities\Section;
 use App\Models\Activities\Test;
 use App\Models\Schools\SchoolClass;
 use App\Models\User\Student;
-use App\Support\Graphs\SectionGraphDefinition;
 use App\Support\Graphs\GraphSections;
+use App\Support\Graphs\SectionGraphDefinition;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
-class SectionGroupResultCalculator {
-
+class SectionGroupResultCalculator
+{
     private const RUOTA_SECTION_IDS = [
         27,
         58,
@@ -22,8 +22,7 @@ class SectionGroupResultCalculator {
 
     public function __construct(
         private StudentSectionResultCalculator $studentSectionResults,
-    ) {
-    }
+    ) {}
 
     /**
      * Calculate aggregated results for a school class.
@@ -80,13 +79,11 @@ class SectionGroupResultCalculator {
     ): array {
         return match ($graph->type) {
             GraphSections::TYPE_NAMED_PERCENTAGE,
-            GraphSections::TYPE_FIXED_SCORE =>
-            $this->calculatePlatformNamedPercentages(
+            GraphSections::TYPE_FIXED_SCORE => $this->calculatePlatformNamedPercentages(
                 graph: $graph,
             ),
 
-            GraphSections::TYPE_TIER =>
-            $this->calculatePlatformTierResults(
+            GraphSections::TYPE_TIER => $this->calculatePlatformTierResults(
                 graph: $graph,
             ),
 
@@ -148,7 +145,7 @@ class SectionGroupResultCalculator {
         return Student::query()
             ->whereHas(
                 'section_results',
-                fn($query) => $query
+                fn ($query) => $query
                     ->where('sectionId', $section->id)
                     ->where('completed', true),
             );
@@ -163,14 +160,12 @@ class SectionGroupResultCalculator {
     ): array {
         return match ($graph->type) {
             GraphSections::TYPE_NAMED_PERCENTAGE,
-            GraphSections::TYPE_FIXED_SCORE =>
-            $this->calculateNamedPercentages(
+            GraphSections::TYPE_FIXED_SCORE => $this->calculateNamedPercentages(
                 graph: $graph,
                 students: $students,
             ),
 
-            GraphSections::TYPE_TIER =>
-            $this->calculateTierResults(
+            GraphSections::TYPE_TIER => $this->calculateTierResults(
                 graph: $graph,
                 students: $students,
             ),
@@ -258,8 +253,7 @@ class SectionGroupResultCalculator {
 
         if ($testIds !== null) {
             $students->load([
-                'test_results' => static fn($query) =>
-                $query
+                'test_results' => static fn ($query) => $query
                     ->whereIn('testId', $testIds)
                     ->where('completed', true),
             ]);
@@ -336,7 +330,7 @@ class SectionGroupResultCalculator {
                     student: $student,
                 );
 
-            if (!$result) {
+            if (! $result) {
                 continue;
             }
 
@@ -363,7 +357,8 @@ class SectionGroupResultCalculator {
     /**
      * Calculate the aggregated result for the given students
      */
-    private function emptyTierCounts(): array {
+    private function emptyTierCounts(): array
+    {
         return [
             'Basso' => 0,
             'Medio' => 0,

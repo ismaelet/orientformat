@@ -2,8 +2,9 @@
 
 namespace Legacy\Http\Controllers\Activities\Tests;
 
+use Illuminate\Foundation\Vite;
 use Legacy\Http\Controllers\Activities\Test;
-
+use System\Traits\Singleton;
 
 /**
  * @property int $resultCount = 0 <inherited>
@@ -13,65 +14,68 @@ use Legacy\Http\Controllers\Activities\Test;
  * @property array $parameters = [] <inherited>
  * @property array $arguments = []
  */
-class Test186 extends Test {
+class Test186 extends Test
+{
+    use Singleton;
 
-	use \System\Traits\Singleton;
+    /**
+     * Test paramenters
+     */
+    // protected $skipEnabled = true;
+    // protected $retryEnabled = true;
+    // protected $arguments = [];
+    protected $buttonIsProgressive = true;
 
-	/**
-	 * Test paramenters
-	 */
-	// protected $skipEnabled = true;
-	// protected $retryEnabled = true;
-	// protected $arguments = [];
-	protected $buttonIsProgressive = true;
+    protected function init()
+    {
+        $this->view();
 
-	protected function init() {
-		$this->view();
+        return $this;
+    }
 
-		return $this;
-	}
-
-	protected function logic() {
-		$this->arguments['columns'] = [
-			['Ho chiari i miei obiettivi', 'Ci sono obiettivi a breve termine, come ottenere un buon voto, e obiettivi
+    protected function logic()
+    {
+        $this->arguments['columns'] = [
+            ['Ho chiari i miei obiettivi', 'Ci sono obiettivi a breve termine, come ottenere un buon voto, e obiettivi
 	di più lunga durata, come diventare più esperto/a in un determinato campo.'],
-			['So programmare gli impegni', 'Non basta sapere dove si vuole arrivare, ma occorre anche sapere
+            ['So programmare gli impegni', 'Non basta sapere dove si vuole arrivare, ma occorre anche sapere
 	come arrivarci, con quali mezzi, anche rinunciando a qualcosa.'],
-			['Rispetto i limiti di tempo a disposizione', 'Evitare due errori opposti: obiettivi troppo ambiziosi per
+            ['Rispetto i limiti di tempo a disposizione', 'Evitare due errori opposti: obiettivi troppo ambiziosi per
 	tempi troppo brevi e tempi troppo lunghi per obiettivi molto facili.'],
-			['So prendere appunti durante le lezioni', 'Scrivere richiede più tempo che parlare, quindi bisogna
+            ['So prendere appunti durante le lezioni', 'Scrivere richiede più tempo che parlare, quindi bisogna
 	scegliere, abbreviare e organizzare le informazioni più importanti.'],
-			['Pianifico  le ripetizioni di ciò che ho studiato', 'Per trattenere e consolidare ciò che si è appreso
+            ['Pianifico  le ripetizioni di ciò che ho studiato', 'Per trattenere e consolidare ciò che si è appreso
 	bisogna imparare a ripetere, per il tempo e il numero di volte necessari.'],
-			['Faccio collegamenti fra ciò che  studio e ciò che vivo', 'Le conoscenze che non vengono applicate
+            ['Faccio collegamenti fra ciò che  studio e ciò che vivo', 'Le conoscenze che non vengono applicate
 	sfumano rapidamente: sono saperi inerti.'],
-			['Nelle verifiche ho spesso buoni risultati', 'I risultati positivi sono una certificazione di efficacia, però
+            ['Nelle verifiche ho spesso buoni risultati', 'I risultati positivi sono una certificazione di efficacia, però
 	anche i risultati negativi servono: si cresce sugli insuccessi, se si comprende perché si è sbagliato.'],
-			['Applico  delle strategie per capire  ciò che leggo', 'Rendersi conto di non capire è il primo passo, dopo
+            ['Applico  delle strategie per capire  ciò che leggo', 'Rendersi conto di non capire è il primo passo, dopo
 	bisogna chiedersi che cosa fare per sciogliere i nodi.'],
-		];
+        ];
 
-		$this->resultCount = count($this->arguments['columns']);
-	}
+        $this->resultCount = count($this->arguments['columns']);
+    }
 
-	/**
-	 * Template
-	 */
-	protected function template() {
-		ob_start();
-?>
+    /**
+     * Template
+     */
+    protected function template()
+    {
+        ob_start();
+        ?>
 
 		<div class="grid" data-spacing="700">
 			<!-- Graphic -->
-			<?php if (!isSupervisor() || legacy_test()->completed) { ?>
+			<?php if (! isSupervisor() || legacy_test()->completed) { ?>
 
 				<section id="graphic" class="">
 					<div id="graphic-pan">
 
 						<?php foreach ($this->arguments['columns'] as $key => $column) {
-							$fieldID = $key + 1;
-							$val = legacy_test()->rawResults[$key] ?? 0;
-						?>
+						    $fieldID = $key + 1;
+						    $val = legacy_test()->rawResults[$key] ?? 0;
+						    ?>
 
 							<div id="graph-col<?= $fieldID; ?>" class="graph-col js-load load--fade-in" data-direction="top" data-id="<?= $fieldID ?>">
 								<input type="hidden" class="filler-inp" name="field[]" value="<?= $val ?>">
@@ -103,8 +107,8 @@ class Test186 extends Test {
 				<div id="desc-box" class="grid stack-content">
 
 					<?php foreach ($this->arguments['columns'] as $key => $column) {
-						$fieldID = $key + 1;
-					?>
+					    $fieldID = $key + 1;
+					    ?>
 
 						<div class="field-info grid js-field-info" data-id="<?= $fieldID ?>" data-spacing="400">
 							<h3 class="desc-title txt-blk font-bold txt-15rem"><?= $column[0] ?></h3>
@@ -118,21 +122,23 @@ class Test186 extends Test {
 		</div>
 
 	<?php return ob_get_clean();
-	}
-
-	/**
-	 * Scripts
-	 */
-	protected function scripts() {
-        return (string) app(\Illuminate\Foundation\Vite::class)('resources/js/exercises/templates/graph-scores.js');
     }
 
-	/**
-	 * Style
-	 */
-	protected function style() {
-		ob_start();
-	?>
+    /**
+     * Scripts
+     */
+    protected function scripts()
+    {
+        return (string) app(Vite::class)('resources/js/exercises/templates/graph-scores.js');
+    }
+
+    /**
+     * Style
+     */
+    protected function style()
+    {
+        ob_start();
+        ?>
 
 		<style>
 			/* Structure */
@@ -352,12 +358,13 @@ class Test186 extends Test {
 		</style>
 
 <?php return ob_get_clean();
-	}
+    }
 
-	/**
-	 * Post methods
-	 */
-	public function calcResult(array $results = [], int $count = null) {
-		return 100;
-	}
+    /**
+     * Post methods
+     */
+    public function calcResult(array $results = [], ?int $count = null)
+    {
+        return 100;
+    }
 }

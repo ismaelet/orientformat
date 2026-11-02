@@ -2,42 +2,42 @@
 <?php
 
 return [
-    "completed-description" => "Hervorgehoben ist die Rolle (oder sind die Rollen), für die du laut Fragebogen am besten geeignet bist. Ein guter Problemlöser sollte jedoch die Eigenschaften aller verschiedenen Rollen besitzen. Wenn du dir die Beschreibungen mit den niedrigsten Punktwerten ansiehst, erkennst du, in welchen Bereichen du ansetzen kannst, um deine Leistung zu verbessern.",
+    'completed-description' => 'Hervorgehoben ist die Rolle (oder sind die Rollen), für die du laut Fragebogen am besten geeignet bist. Ein guter Problemlöser sollte jedoch die Eigenschaften aller verschiedenen Rollen besitzen. Wenn du dir die Beschreibungen mit den niedrigsten Punktwerten ansiehst, erkennst du, in welchen Bereichen du ansetzen kannst, um deine Leistung zu verbessern.',
 
-    "main-role-singular" => "Hauptrolle",
-    "main-role-plural" => "Hauptrollen",
-    "other-roles-singular" => "Nebenrolle",
-    "other-roles-plural" => "Nebenrollen",
+    'main-role-singular' => 'Hauptrolle',
+    'main-role-plural' => 'Hauptrollen',
+    'other-roles-singular' => 'Nebenrolle',
+    'other-roles-plural' => 'Nebenrollen',
 
-    "role-1-title" => "Stratege",
-    "role-2-title" => "Entdecker",
-    "role-3-title" => "Kritiker",
-    "role-4-title" => "Weiser",
-    "role-1-title-article" => "Der Stratege",
-    "role-2-title-article" => "Der Entdecker",
-    "role-3-title-article" => "Der Kritiker",
-    "role-4-title-article" => "Der Weise",
-    "role-1-description" => "Der Stratege nimmt die zahlreichen Optionen und Informationen, die der Entdecker bereitstellt, und verwandelt sie in einen klaren, strukturierten und messbaren Handlungsplan. Seine Aufgabe besteht darin, Ordnung, Logik und ein schrittweises Vorgehen in die Problemlösung zu bringen und sicherzustellen, dass Maßnahmen nicht emotional, sondern wohlüberlegt sind, um die bestmöglichen Ergebnisse zu erzielen.",
-    "role-2-description" => "Die Rolle des Entdeckers ist die eines Wegbereiters: Er konzentriert sich auf die Diagnose- und Ideenfindungsphase eines Problems, sammelt möglichst viele Informationen, formuliert unterschiedliche Hypothesen und schlägt neue, zielgerichtete Lösungen vor, die alle Aspekte des Problems berücksichtigen. Anschließend überlässt er es dem Kritiker und dem Strategen, die beste Option zu bewerten und umzusetzen.",
-    "role-3-description" => "Er übernimmt die wesentliche Rolle eines Realitätsprüfers und \"Advocatus Diaboli\". Seine Aufgabe besteht darin, die innovativen Ideen des Entdeckers und die strukturierten Pläne des Strategen einer strengen logischen Prüfung zu unterziehen, um ihre Wirksamkeit und langfristige Tragfähigkeit sicherzustellen. Er verhindert, dass sich die Gruppe zu sehr vom Optimismus des Entdeckers oder von der Verfahrensstrenge des Strategen leiten lässt, und sorgt stattdessen dafür, dass sie auf Grundlage von Wahrheit, Vorsicht und realistischer Risikoeinschätzung handelt. Seine Rolle besteht nicht darin, Ideen zu blockieren, sondern sie zu stärken, indem Illusionen und vorschnelle Entscheidungen beseitigt werden.",
-    "role-4-description" => "Der Weise handelt als Vermittler, emotionaler Katalysator und Moderator bei Entscheidungen und sorgt dafür, dass die Gruppe nicht durch den Konflikt zwischen der Kreativität von Entdecker und Stratege und dem Realismus des Kritikers handlungsunfähig wird. Der Weise bemerkt schnell, wenn innerhalb der Gruppe etwas nicht stimmt, schlägt vor, darüber zu sprechen, und kann sich in andere hineinversetzen. Sein Eingreifen zielt darauf ab, den Wert jedes Beitrags anzuerkennen und den Zusammenhalt der Gruppe wiederherzustellen.",
+    'role-1-title' => 'Stratege',
+    'role-2-title' => 'Entdecker',
+    'role-3-title' => 'Kritiker',
+    'role-4-title' => 'Weiser',
+    'role-1-title-article' => 'Der Stratege',
+    'role-2-title-article' => 'Der Entdecker',
+    'role-3-title-article' => 'Der Kritiker',
+    'role-4-title-article' => 'Der Weise',
+    'role-1-description' => 'Der Stratege nimmt die zahlreichen Optionen und Informationen, die der Entdecker bereitstellt, und verwandelt sie in einen klaren, strukturierten und messbaren Handlungsplan. Seine Aufgabe besteht darin, Ordnung, Logik und ein schrittweises Vorgehen in die Problemlösung zu bringen und sicherzustellen, dass Maßnahmen nicht emotional, sondern wohlüberlegt sind, um die bestmöglichen Ergebnisse zu erzielen.',
+    'role-2-description' => 'Die Rolle des Entdeckers ist die eines Wegbereiters: Er konzentriert sich auf die Diagnose- und Ideenfindungsphase eines Problems, sammelt möglichst viele Informationen, formuliert unterschiedliche Hypothesen und schlägt neue, zielgerichtete Lösungen vor, die alle Aspekte des Problems berücksichtigen. Anschließend überlässt er es dem Kritiker und dem Strategen, die beste Option zu bewerten und umzusetzen.',
+    'role-3-description' => 'Er übernimmt die wesentliche Rolle eines Realitätsprüfers und "Advocatus Diaboli". Seine Aufgabe besteht darin, die innovativen Ideen des Entdeckers und die strukturierten Pläne des Strategen einer strengen logischen Prüfung zu unterziehen, um ihre Wirksamkeit und langfristige Tragfähigkeit sicherzustellen. Er verhindert, dass sich die Gruppe zu sehr vom Optimismus des Entdeckers oder von der Verfahrensstrenge des Strategen leiten lässt, und sorgt stattdessen dafür, dass sie auf Grundlage von Wahrheit, Vorsicht und realistischer Risikoeinschätzung handelt. Seine Rolle besteht nicht darin, Ideen zu blockieren, sondern sie zu stärken, indem Illusionen und vorschnelle Entscheidungen beseitigt werden.',
+    'role-4-description' => 'Der Weise handelt als Vermittler, emotionaler Katalysator und Moderator bei Entscheidungen und sorgt dafür, dass die Gruppe nicht durch den Konflikt zwischen der Kreativität von Entdecker und Stratege und dem Realismus des Kritikers handlungsunfähig wird. Der Weise bemerkt schnell, wenn innerhalb der Gruppe etwas nicht stimmt, schlägt vor, darüber zu sprechen, und kann sich in andere hineinversetzen. Sein Eingreifen zielt darauf ab, den Wert jedes Beitrags anzuerkennen und den Zusammenhalt der Gruppe wiederherzustellen.',
 
-    "example-title" => "Problem: Bald musst du dich an einer weiterführenden Schule anmelden, aber ein Mitschüler weiß noch nicht, wofür er sich entscheiden soll. Wie kannst du ihm helfen?<br><br>Beispiellösung",
-    "example-title-highschool" => "Problem: Eine Mitschülerin wird Opfer von Cybermobbing. Wie kannst du ihr helfen?<br><br>Beispiellösung",
-    "example-intro" => "(Die Merkmale der einzelnen Rollen sind hervorgehoben)",
-    "example-subtitle-1" => "Probleme in der Klasse:",
-    "example-subtitle-2-highschool" => "Probleme im Rahmen der schulischen Berufspraxis:",
-    "example-list" => "<li>1. Ein Mitschüler hat Schwierigkeiten, sich in die Gruppe zu integrieren.</li>
+    'example-title' => 'Problem: Bald musst du dich an einer weiterführenden Schule anmelden, aber ein Mitschüler weiß noch nicht, wofür er sich entscheiden soll. Wie kannst du ihm helfen?<br><br>Beispiellösung',
+    'example-title-highschool' => 'Problem: Eine Mitschülerin wird Opfer von Cybermobbing. Wie kannst du ihr helfen?<br><br>Beispiellösung',
+    'example-intro' => '(Die Merkmale der einzelnen Rollen sind hervorgehoben)',
+    'example-subtitle-1' => 'Probleme in der Klasse:',
+    'example-subtitle-2-highschool' => 'Probleme im Rahmen der schulischen Berufspraxis:',
+    'example-list' => '<li>1. Ein Mitschüler hat Schwierigkeiten, sich in die Gruppe zu integrieren.</li>
     <li>2. In der Schule wurde die Nutzung
-        sämtlicher digitaler Geräte untersagt, auch für Unterrichtszwecke. Es ist dringend notwendig, einen \"digitalen
-        Botschafter\" zu finden, der der Schule vorgeschlagen werden kann.</li>
+        sämtlicher digitaler Geräte untersagt, auch für Unterrichtszwecke. Es ist dringend notwendig, einen "digitalen
+        Botschafter" zu finden, der der Schule vorgeschlagen werden kann.</li>
     <li>3. Ein Konflikt zwischen Mitschülern, der das Klassenleben beeinträchtigt.</li>
     <li>4. Hilft künstliche Intelligenz oder schadet sie?</li>
     <li>5. Das Verhältnis zu einer Lehrkraft funktioniert nicht.</li>
     <li>6. Lehrpläne oder Arten,
         den Unterricht durchzuführen, die nicht überzeugen.</li>
-    <li>7. Wie lässt sich die Plattform OrientFormat bestmöglich nutzen?</li>",
-    "example-list-highschool" => "<li>1. Der Arbeitsplatz
+    <li>7. Wie lässt sich die Plattform OrientFormat bestmöglich nutzen?</li>',
+    'example-list-highschool' => '<li>1. Der Arbeitsplatz
         bietet keine ausreichenden Sicherheitsgarantien (körperlich oder psychisch).</li>
     <li>2. Die vorgeschlagenen Tätigkeiten passen nicht zum
         Ausbildungsgang.</li>
@@ -49,9 +49,9 @@ return [
     <li>6. Die simulierten theoretischen/praktischen Tätigkeiten an der Schule erscheinen
         nicht ausreichend strukturiert und wirksam.</li>
     <li>7. Es besteht keine oder keine wirksame Verbindung zwischen Berufsorientierung und
-        schulischer Berufspraxis.</li>",
+        schulischer Berufspraxis.</li>',
 
-    "example-middle-school-1" => '<p class="text-block">
+    'example-middle-school-1' => '<p class="text-block">
             Dein Vorgehen konzentriert sich auf drei zentrale Phasen: <strong>Analyse</strong>, <strong>Planung</strong> und
             <strong>Vorausschau</strong>.
         </p>
@@ -112,7 +112,7 @@ return [
             </li>
         </ol>',
 
-    "example-middle-school-2" => '
+    'example-middle-school-2' => '
         <p class="text-block">
             So könntest du entsprechend deinen Eigenschaften vorgehen:
         </p>
@@ -163,7 +163,7 @@ return [
             </li>
         </ol>',
 
-    "example-middle-school-3" => '<p class="text-block">
+    'example-middle-school-3' => '<p class="text-block">
             So könntest du vorgehen:
         </p>
 
@@ -232,7 +232,7 @@ return [
             sondern Entscheidungen auf Grundlage von <strong>Überprüfung, Realismus und Risikobewusstsein</strong> trifft.
         </p>',
 
-    "example-middle-school-4" => '
+    'example-middle-school-4' => '
 
         <p class="text-block">
             Dein Eingreifen erfolgt in drei entscheidenden Phasen mit dem Ziel, <strong>das Gleichgewicht wiederherzustellen</strong>
@@ -297,7 +297,7 @@ return [
         <p>Auf diese Weise löst der Weise den Konflikt nicht durch die Weisheit einer bestimmten Lösung, sondern durch die Weisheit, die Beiträge aller Beteiligten anzuerkennen und miteinander in Einklang zu bringen.</p>
         ',
 
-    "example-highschool-1" => '
+    'example-highschool-1' => '
         <p class="text-block">
             So würde der Stratege entsprechend seinen Eigenschaften handeln.
         </p>
@@ -374,7 +374,7 @@ return [
         <p>Zusammengefasst bringt der Stratege Ordnung, Logik und ein <i>Schritt-für-Schritt</i>-Vorgehen in die Krise und stellt sicher, dass das Eingreifen
 nicht emotional, sondern darauf ausgerichtet ist, die Sicherheit des Opfers zu maximieren und ein nachhaltiges Ergebnis zu erzielen.</p>',
 
-    "example-highschool-2" => "<p class=\"\"></p>
+    'example-highschool-2' => '<p class=""></p>
                 So würde der Entdecker entsprechend seinen Eigenschaften handeln.
             </>
 
@@ -384,12 +384,12 @@ nicht emotional, sondern darauf ausgerichtet ist, die Sicherheit des Opfers zu m
                     <p>Der Entdecker würde sich nicht auf das unmittelbar Offensichtliche beschränken, sondern <strong>aktiv nach
                             &quot;neuen Informationen&quot;</strong> suchen, also nach vollständigen Informationen und den tieferen Ursachen des Problems.</p>
                     <ul>
-                        <li><span class=\"underline\">Frühzeitige Erkennung des Problems</span>: Indem er seine Fähigkeit nutzt,
+                        <li><span class="underline">Frühzeitige Erkennung des Problems</span>: Indem er seine Fähigkeit nutzt,
                             <strong>das Problem vor
                                 anderen
                                 zu bemerken</strong>, würde er sicherstellen, dass das Phänomen weder ignoriert noch verharmlost wird.
                         </li>
-                        <li><span class=\"underline\">Betrachtung aus unterschiedlichen Perspektiven</span>:
+                        <li><span class="underline">Betrachtung aus unterschiedlichen Perspektiven</span>:
                             <ul>
                                 <li><strong>Aus Sicht des Opfers</strong>: Er würde Informationen über die Gefühle des Opfers, darüber, wie
                                     das Mobbing sie beeinflusst, und
@@ -404,7 +404,7 @@ nicht emotional, sondern darauf ausgerichtet ist, die Sicherheit des Opfers zu m
                             </ul>
                         </li>
 
-                        <li><span class=\"underline\">Berücksichtigung unterschiedlicher Hypothesen:</span> Er würde sich nicht mit der ersten Idee
+                        <li><span class="underline">Berücksichtigung unterschiedlicher Hypothesen:</span> Er würde sich nicht mit der ersten Idee
                             (&quot;Sagen wir es den
                             Lehrern&quot;) zufriedengeben, sondern verschiedene Hypothesen zu den Ursachen sammeln, etwa Probleme zu Hause, ungelöste
                             Klassendynamiken oder die unsachgemäße Nutzung bestimmter digitaler Werkzeuge, sowie unterschiedliche Lösungsansätze.</li>
@@ -417,7 +417,7 @@ nicht emotional, sondern darauf ausgerichtet ist, die Sicherheit des Opfers zu m
                         darauf konzentrieren,
                         eine Reihe origineller Maßnahmen zu entwickeln, die über klassische schulische Sanktionen hinausgehen.</p>
                     <ul>
-                        <li><span class=\"underline\">Technologische Intervention</span>: Er würde prüfen, wie digitale Werkzeuge genutzt werden können, um
+                        <li><span class="underline">Technologische Intervention</span>: Er würde prüfen, wie digitale Werkzeuge genutzt werden können, um
                             dem Phänomen entgegenzuwirken, zum
                             Beispiel:
                             <ul>
@@ -430,12 +430,12 @@ nicht emotional, sondern darauf ausgerichtet ist, die Sicherheit des Opfers zu m
                             </ul>
                         </li>
 
-                        <li><span class=\"underline\">Empathischer Ansatz (unterschiedliche Perspektiven)</span>: Er würde eine Maßnahme vorschlagen, die
+                        <li><span class="underline">Empathischer Ansatz (unterschiedliche Perspektiven)</span>: Er würde eine Maßnahme vorschlagen, die
                             das emotionale
                             Wohlbefinden des Opfers berücksichtigt, beispielsweise durch ein anonymes Peer-Support-System für Schüler, die Angst haben,
                             offen darüber zu sprechen.</li>
 
-                        <li><span class=\"underline\">Langfristige Präventionslösung</span>: Statt sich darauf zu beschränken, den
+                        <li><span class="underline">Langfristige Präventionslösung</span>: Statt sich darauf zu beschränken, den
                             einzelnen Fall zu lösen, würde der Entdecker
                             eine umfassendere Lösung vorschlagen, die sich mit der digitalen Kultur der Klasse oder
                             der Schule beschäftigt. Zum Beispiel könnten interaktive Workshops zu digitaler Bürgerschaft statt langweiliger Frontalvorträge eingeführt werden.
@@ -443,9 +443,9 @@ nicht emotional, sondern darauf ausgerichtet ist, die Sicherheit des Opfers zu m
                     </ul>
                 </li>
             </ol>
-            <p>Zusammengefasst würde er sich, <strong>indem er ein Problem vor anderen erkennt</strong>, darauf konzentrieren, relevante Informationen zu sammeln und unkonventionelle Handlungsmöglichkeiten zu ermitteln.</p>",
+            <p>Zusammengefasst würde er sich, <strong>indem er ein Problem vor anderen erkennt</strong>, darauf konzentrieren, relevante Informationen zu sammeln und unkonventionelle Handlungsmöglichkeiten zu ermitteln.</p>',
 
-    "example-highschool-3" => '<p class="text-block">
+    'example-highschool-3' => '<p class="text-block">
             So würde der Kritiker seine Eigenschaften auf die Vorschläge der anderen Rollen anwenden und sich dabei auf das
             Problem des Cybermobbings konzentrieren.
         </p>
@@ -551,7 +551,7 @@ nicht emotional, sondern darauf ausgerichtet ist, die Sicherheit des Opfers zu m
 Starrheit des Strategen verfällt, sondern auf Grundlage von Wahrheit, Vorsicht und realistischer
 Risikoeinschätzung handelt.</p>',
 
-    "example-highschool-4" => '<p class="text-block">Der Weise würde folgendermaßen handeln:
+    'example-highschool-4' => '<p class="text-block">Der Weise würde folgendermaßen handeln:
         </p>
 
         <ol>

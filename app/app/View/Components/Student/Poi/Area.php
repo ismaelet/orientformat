@@ -8,8 +8,8 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Area extends Component {
-
+class Area extends Component
+{
     public string $name;
 
     public string $subtitle;
@@ -21,7 +21,8 @@ class Area extends Component {
     /**
      * Create a new component instance.
      */
-    public function __construct(public array $area, public Student $student) {
+    public function __construct(public array $area, public Student $student)
+    {
         $this->name = $this->area['name'];
         $this->subtitle = $this->area['subtitle'];
         $this->description = $this->area['description'];
@@ -34,7 +35,8 @@ class Area extends Component {
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): View|Closure|string {
+    public function render(): View|Closure|string
+    {
         return view('components.student.poi.area');
     }
 }

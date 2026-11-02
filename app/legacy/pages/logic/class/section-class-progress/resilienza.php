@@ -1,5 +1,9 @@
 <?php
 
+use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\Auth;
+use Student\SectionTestResult;
+
 global $grade;
 
 // setup page
@@ -17,9 +21,9 @@ $graphData['max'] = 100;
 $graphData['columns'] = [];
 
 foreach ($grade->students as $student) {
-	if (\App\Legacy\LegacyDB::exists("results WHERE userID = ? AND testID=49 AND completed=1", [\Illuminate\Support\Facades\Auth::id()])) {
-		$graphData['columns'][$student->fullName] = Student\SectionTestResult::getResult(\Illuminate\Support\Facades\Auth::id(), $sectionId);
-	}
+    if (LegacyDB::exists('results WHERE userID = ? AND testID=49 AND completed=1', [Auth::id()])) {
+        $graphData['columns'][$student->fullName] = SectionTestResult::getResult(Auth::id(), $sectionId);
+    }
 }
 
 // averages
@@ -27,11 +31,11 @@ $gradeAverage = Grade\SectionTestResult::getResult($grade->id, $sectionId);
 $generalAverage = Grade\SectionTestResult::getResult(false, $sectionId);
 
 $graphData['averages'] = [
-	'Media della classe' => $gradeAverage,
-	'Media dei partecipanti' => $generalAverage,
+    'Media della classe' => $gradeAverage,
+    'Media dei partecipanti' => $generalAverage,
 ];
 
 $graphData['legend'] = [
-	'Media della classe: <strong>' . $gradeAverage . '</strong>',
-	'Media dei partecipanti: <strong>' . $generalAverage . '</strong>',
+    'Media della classe: <strong>'.$gradeAverage.'</strong>',
+    'Media dei partecipanti: <strong>'.$generalAverage.'</strong>',
 ];

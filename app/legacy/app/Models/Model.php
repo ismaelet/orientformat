@@ -2,136 +2,143 @@
 
 namespace LegacyModels;
 
-use LegacyDB;
 use Exception;
 
-abstract class Model extends Schema {
+abstract class Model extends Schema
+{
+    /**
+     * @property string the name of the table associated to the model
+     */
+    protected const TABLE = '';
 
-	/**
-	 * @property string the name of the table associated to the model
-	 */
-	protected const TABLE = '';
+    /**
+     * @property array the list of settable properties as ['propertyName' => 'propertyType', ...]
+     */
+    protected const SETTABLE = [];
 
-	/**
-	 * @property array the list of settable properties as ['propertyName' => 'propertyType', ...]
-	 */
-	protected const SETTABLE = [];
+    /**
+     * @property int the index value of the istance
+     */
+    protected $id;
 
-	/**
-	 * @property int the index value of the istance
-	 */
-	protected $id;
+    /**
+     * @property array the list of the database columns
+     */
+    protected $columns = [];
 
-	/**
-	 * @property array the list of the database columns
-	 */
-	protected $columns = [];
+    /**
+     * @property array the list of the values fetched form the database, structured as ['column_name' => value, ...]
+     */
+    protected $databaseData = [];
 
-	/**
-	 * @property array the list of the values fetched form the database, structured as ['column_name' => value, ...]
-	 */
-	protected $databaseData = [];
+    /**
+     * @property array the list of the cached values
+     */
+    protected $cache = [];
 
-	/**
-	 * @property array the list of the cached values
-	 */
-	protected $cache = [];
+    /**
+     * Initialize the istance
+     */
+    public function __construct(int $id)
+    {
+        $this->initialize($id);
+    }
 
-	/**
-	 * Initialize the istance
-	 */
-	public function __construct(int $id) {
-		$this->initialize($id);
-	}
+    protected function initialize(int $id)
+    {
+        $databaseData = \App\Legacy\LegacyDB::row('* FROM '.static::table().' WHERE id = ?', [$id]);
 
-	protected function initialize(int $id) {
-		$databaseData = \App\Legacy\LegacyDB::row('* FROM ' . static::table() . ' WHERE id = ?', [$id]);
+        if ($databaseData) {
+            $this->id = $id;
+            $this->databaseData = $databaseData;
+            $this->columns = array_keys($this->databaseData);
+        }
+    }
 
-		if ($databaseData) {
-			$this->id = $id;
-			$this->databaseData = $databaseData;
-			$this->columns = array_keys($this->databaseData);
-		}
-	}
+    /**
+     * Set magic method
+     */
+    public function __get(string $property)
+    {
+        $property = ! in_array($property, $this->columns) ? camel_case_to_snake_case($property) : $property;
 
-	/**
-	 * Set magic method
-	 */
-	function __get(string $property) {
-		$property = !in_array($property, $this->columns) ? camel_case_to_snake_case($property) : $property;
+        if (! $this->id) {
+            return null;
+        } elseif (isset($this->cache[$property])) {
+            return $this->cache[$property];
+        } elseif (isset($this->databaseData[$property])) {
+            return $this->databaseData[$property];
+        }
 
-		if (!$this->id) {
-			return null;
-		} else if (isset($this->cache[$property])) {
-			return $this->cache[$property];
-		} else if (isset($this->databaseData[$property])) {
-			return $this->databaseData[$property];
-		}
+        throw new Exception('Property '.$property.' not found in '.self::class);
+    }
 
-		throw new Exception('Property ' . $property . ' not found in ' . self::class);
-	}
+    /**
+     * Set magic method
+     */
+    public function __set(string $property, $value)
+    {
+        $this->set([$property => $value]);
+    }
 
-	/**
-	 * Set magic method
-	 */
-	function __set(string $property, $value) {
-		$this->set([$property => $value]);
-	}
+    /**
+     * Push the edits to the database
+     *
+     * @property array $properties a list of the properties to set as ['propertyName' => $value, ...]
+     *
+     * @return object self
+     */
+    public function set(array $properties): self
+    {
+        foreach ($properties as $property => $value) {
+            if (in_array($property, array_keys(static::SETTABLE))) {
+                $databaseProperty = ! in_array($property, $this->columns) ? camel_case_to_snake_case($property) : $property;
 
-	/**
-	 * Push the edits to the database
-	 * 
-	 * @property array $properties a list of the properties to set as ['propertyName' => $value, ...]
-	 * @return object self
-	 */
-	public function set(array $properties): self {
-		foreach ($properties as $property => $value) {
-			if (in_array($property, array_keys(static::SETTABLE))) {
-				$databaseProperty = !in_array($property, $this->columns) ? camel_case_to_snake_case($property) : $property;
+                // type check
+                switch (static::SETTABLE[$property]) {
+                    case 'string':
+                        if (! is_string($value)) {
+                            throw new Exception('Trying to set '.$property.' to a non-string value in '.static::class);
+                        }
+                        break;
+                }
 
-				// type check
-				switch (static::SETTABLE[$property]) {
-					case 'string':
-						if (!is_string($value)) {
-							throw new Exception('Trying to set ' . $property . ' to a non-string value in ' . static::class);
-						}
-						break;
-				}
+                // set the value
+                $this->cache[$databaseProperty] = $value;
+                $this->databaseData[$databaseProperty] = $value;
+            } else {
+                throw new Exception('Property '.$property.' of '.static::class.' is not settable');
+            }
+        }
 
-				// set the value
-				$this->cache[$databaseProperty] = $value;
-				$this->databaseData[$databaseProperty] = $value;
-			} else {
-				throw new Exception('Property ' . $property . ' of ' . static::class . ' is not settable');
-			}
-		}
+        return $this;
+    }
 
-		return $this;
-	}
+    /**
+     * Push the edits to the database
+     *
+     * @return object self
+     */
+    public function save(): self
+    {
+        $parameters = array_filter($this->cache, function ($propertyName) {
+            return in_array($propertyName, $this->columns);
+        }, ARRAY_FILTER_USE_KEY);
 
-	/**
-	 * Push the edits to the database
-	 * 
-	 * @return object self
-	 */
-	public function save(): self {
-		$parameters = array_filter($this->cache, function ($propertyName) {
-			return in_array($propertyName, $this->columns);
-		}, ARRAY_FILTER_USE_KEY);
+        $fields = self::sqlSetFields($parameters);
 
-		$fields = self::sqlSetFields($parameters);
+        array_push($parameters, $this->id);
 
-		array_push($parameters, $this->id);
+        \App\Legacy\LegacyDB::update($this->table().' SET '.$fields.' WHERE id = ?', array_values($parameters));
 
-		\App\Legacy\LegacyDB::update($this->table() . ' SET ' . $fields . ' WHERE id = ?', array_values($parameters));
+        return $this;
+    }
 
-		return $this;
-	}
-
-	/**
-	 * Delete
-	 */
-	public function delete(): void {
-		\App\Legacy\LegacyDB::delete($this->table() . ' WHERE id = ?', [$this->id]);
-	}
+    /**
+     * Delete
+     */
+    public function delete(): void
+    {
+        \App\Legacy\LegacyDB::delete($this->table().' WHERE id = ?', [$this->id]);
+    }
 }

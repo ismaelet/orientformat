@@ -2,9 +2,11 @@
 
 namespace App\Helpers\Tests;
 
-class LeggereAvanzatoPoesiaSignificatoHelper extends ImparareBaleneHelper {
-    protected function text(): string {
-        return "
+class LeggereAvanzatoPoesiaSignificatoHelper extends ImparareBaleneHelper
+{
+    protected function text(): string
+    {
+        return '
 		Spesso, per divertirsi, gli uomini d’equipaggio<br>
 		catturano degli albatri, grandi uccelli di mare,<br>
 		che {! seguono, indolenti compagni di viaggio,<br>
@@ -23,10 +25,11 @@ class LeggereAvanzatoPoesiaSignificatoHelper extends ImparareBaleneHelper {
 		Il Poeta è come lui, {! principe delle nuvole :: marker0 !}<br>
 		che {! sfida la tempesta :: marker0 !} e {! se la ride dell’arciere :: marker0 !};<br>
 		fra le grida di scherno esule in terra,<br>
-		le sue ali di gigante non gli permettono di camminare.";
+		le sue ali di gigante non gli permettono di camminare.';
     }
 
-    protected function markerLabels(): array {
+    protected function markerLabels(): array
+    {
         return [
             'Albatro in volo',
             'Albatro sul ponte',

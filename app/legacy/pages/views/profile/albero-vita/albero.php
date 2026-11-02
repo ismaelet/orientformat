@@ -24,7 +24,7 @@
 
 			<input type="hidden" class="js-info-text" value="<?= $character ?>" data-id="<?= $characterId ?>">
 			<input type="radio" class="hidden js-field" name="field[]" id="field-<?= $characterId ?>" value="<?= $characterId ?>" <?= $selectedCharacterId == $characterId ? 'checked' : '' ?>>
-			<img class="drawing__layer image-cover <?= !isSupervisor() ? 'js-layer' : '' ?>" data-id="<?= $characterId ?>" src="<?= client_path($characterId) ?>">
+			<img class="drawing__layer image-cover <?= ! isSupervisor() ? 'js-layer' : '' ?>" data-id="<?= $characterId ?>" src="<?= client_path($characterId) ?>">
 
 		<?php } ?>
 
@@ -32,7 +32,7 @@
 
 			<?php foreach ($characters as $characterId => $_looping) { ?>
 
-				<label <?= !isSupervisor() ? 'for="field-' . $characterId . '"' : null ?> class="drawing__character <?= !isSupervisor() ? 'js-character' : '' ?>" data-id="<?= $characterId ?>"></label>
+				<label <?= ! isSupervisor() ? 'for="field-'.$characterId.'"' : null ?> class="drawing__character <?= ! isSupervisor() ? 'js-character' : '' ?>" data-id="<?= $characterId ?>"></label>
 
 			<?php } ?>
 

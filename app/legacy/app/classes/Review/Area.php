@@ -2,24 +2,29 @@
 
 namespace Legacy\Review;
 
-class Area {
+use App\Legacy\LegacyDB;
+use System\Traits\DatabaseObject;
 
-	use \System\Traits\DatabaseObject;
+class Area
+{
+    use DatabaseObject;
 
-	public const TABLE = 'review_areas';
-	public const INDEX = 'id';
+    public const TABLE = 'review_areas';
 
-	public function getQuestions(int $reviewId) {
-		$questions = [];
+    public const INDEX = 'id';
 
-		if ($reviewId) {
-			$questionRows = \App\Legacy\LegacyDB::select('id FROM review_questions WHERE areaId=? AND (reviewIds="" OR FIND_IN_SET(' . $reviewId . ', reviewIds))', [$this->id]);
+    public function getQuestions(int $reviewId)
+    {
+        $questions = [];
 
-			while ($questionRow = $questionRows->fetch_assoc()) {
-				$questions[] = new Question($questionRow['id']);
-			}
-		}
+        if ($reviewId) {
+            $questionRows = LegacyDB::select('id FROM review_questions WHERE areaId=? AND (reviewIds="" OR FIND_IN_SET('.$reviewId.', reviewIds))', [$this->id]);
 
-		return $questions;
-	}
+            while ($questionRow = $questionRows->fetch_assoc()) {
+                $questions[] = new Question($questionRow['id']);
+            }
+        }
+
+        return $questions;
+    }
 }

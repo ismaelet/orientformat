@@ -24,7 +24,7 @@
 
                 <div id="image<?= $i ?>" class="image-box fa-center">
                     <p class="number txt-3rem font-bold"><?= $i ?>.</p>
-                    <img class="image push-center block" src="<?= client_path($i . '.png') ?>">
+                    <img class="image push-center block" src="<?= client_path($i.'.png') ?>">
                 </div>
 
             <?php } ?>
@@ -47,7 +47,9 @@
                 <?php for ($i = 1; $i < 7; $i++) { ?>
 
                     <div class="fa-center">
-                        <p class="solution inlb clickable <?php if ($legacyTest->completed && $legacyTest->rawResults[0] == $i) echo $legacyTest->percentage == 100 ? 'right' : 'wrong' ?>" data-val="<?= $i ?>">
+                        <p class="solution inlb clickable <?php if ($legacyTest->completed && $legacyTest->rawResults[0] == $i) {
+                            echo $legacyTest->percentage == 100 ? 'right' : 'wrong';
+                        } ?>" data-val="<?= $i ?>">
 
                             <?= $i ?>
 

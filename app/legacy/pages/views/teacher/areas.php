@@ -3,7 +3,11 @@
 <!-- Slider -->
 <section id="slider">
 
-    <div id="bgr-img" class="bgr" <?= background_image('/pages/assets/teacher/bgr.png') ?>></div>
+    <div id="bgr-img" class="bgr" <?php
+
+use App\Legacy\LegacyDB;
+
+?><?= background_image('/pages/assets/teacher/bgr.png') ?>></div>
 
 </section>
 
@@ -34,10 +38,10 @@
 
                     <form method="POST" class="row">
 
-                        <p class="field"><?= $student['last_name'] . ' ' . $student['first_name'] ?></p>
-                        <p class="field"><?= \App\Legacy\LegacyDB::exists('progress_areas WHERE progress=100 AND areaID=1 AND userID = ?', $student['id']) ? '<span class="txt-gre font-bold">Completato</span>' : '<span class="txt-red">Non completato</span>' ?></p>
-                        <p class="field"><?= \App\Legacy\LegacyDB::exists('progress_areas WHERE progress=100 AND areaID=2 AND userID = ?', $student['id']) ? '<span class="txt-gre font-bold">Completato</span>' : '<span class="txt-red">Non completato</span>' ?></p>
-                        <p class="field"><?= \App\Legacy\LegacyDB::exists('progress_areas WHERE progress=100 AND areaID=3 AND userID = ?', $student['id']) ? '<span class="txt-gre font-bold">Completato</span>' : '<span class="txt-red">Non completato</span>' ?></p>
+                        <p class="field"><?= $student['last_name'].' '.$student['first_name'] ?></p>
+                        <p class="field"><?= LegacyDB::exists('progress_areas WHERE progress=100 AND areaID=1 AND userID = ?', $student['id']) ? '<span class="txt-gre font-bold">Completato</span>' : '<span class="txt-red">Non completato</span>' ?></p>
+                        <p class="field"><?= LegacyDB::exists('progress_areas WHERE progress=100 AND areaID=2 AND userID = ?', $student['id']) ? '<span class="txt-gre font-bold">Completato</span>' : '<span class="txt-red">Non completato</span>' ?></p>
+                        <p class="field"><?= LegacyDB::exists('progress_areas WHERE progress=100 AND areaID=3 AND userID = ?', $student['id']) ? '<span class="txt-gre font-bold">Completato</span>' : '<span class="txt-red">Non completato</span>' ?></p>
 
                     </form>
 

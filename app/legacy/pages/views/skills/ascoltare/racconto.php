@@ -4,7 +4,7 @@
 
     <?= title() ?>
 
-    <?php if ($legacyTest->completed || !isSupervisor()) { ?>
+    <?php if ($legacyTest->completed || ! isSupervisor()) { ?>
 
         <div class="fa-center mar-t-4">
 
@@ -46,7 +46,7 @@
 
         </div>
 
-    <?php } else if (isSupervisor()) { ?>
+    <?php } elseif (isSupervisor()) { ?>
 
         <?= no_results() ?>
 

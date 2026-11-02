@@ -5,16 +5,17 @@ namespace App\Http\Controllers\Administrator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class StudentController extends Controller {
+class StudentController extends Controller
+{
+    /**
+     * Display a listing of the resource
+     */
+    public function index(Request $request)
+    {
+        $school = administrator()->school;
 
-	/**
-	 * Display a listing of the resource
-	 */
-	public function index(Request $request) {
-		$school = administrator()->school;
-
-		return view('administrator.students', [
-			'school' => $school,
-		]);
-	}
+        return view('administrator.students', [
+            'school' => $school,
+        ]);
+    }
 }

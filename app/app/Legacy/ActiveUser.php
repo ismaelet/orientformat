@@ -2,43 +2,47 @@
 
 namespace App\Legacy;
 
-class ActiveUser {
+class ActiveUser
+{
+    use Singleton;
 
-	use Singleton;
+    private static $id;
 
-	private static $id;
-	private static $user;
+    private static $user;
 
-	/**
-	 * Magic methods
-	 */
-	private function __construct() {
-		$userId = null;
+    /**
+     * Magic methods
+     */
+    private function __construct()
+    {
+        $userId = null;
 
-		if (LegacyConfig::getInstance()->hasDatabase) {
-			$userId = $_SESSION['userId'] ?? $userId;
-			$userToken = $_COOKIE['auth_token'] ?? null;
+        if (LegacyConfig::getInstance()->hasDatabase) {
+            $userId = $_SESSION['userId'] ?? $userId;
+            $userToken = $_COOKIE['auth_token'] ?? null;
 
-			if (!$userId && $userToken) {
-				$userId = token_login($userToken);
-			}
-		}
+            if (! $userId && $userToken) {
+                $userId = token_login($userToken);
+            }
+        }
 
-		self::$id = $userId;
-		self::$user = new User($userId);
-	}
+        self::$id = $userId;
+        self::$user = new User($userId);
+    }
 
-	function __get($property) {
-		return self::$user->$property;
-	}
+    public function __get($property)
+    {
+        return self::$user->$property;
+    }
 
-	/**
-	 * Set methods
-	 */
-	public function setId(int $id) {
-		self::$id = $id;
-		self::$user = new User($id);
+    /**
+     * Set methods
+     */
+    public function setId(int $id)
+    {
+        self::$id = $id;
+        self::$user = new User($id);
 
-		return $this;
-	}
+        return $this;
+    }
 }

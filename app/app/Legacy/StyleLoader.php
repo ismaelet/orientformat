@@ -2,96 +2,103 @@
 
 namespace App\Legacy;
 
-class StyleLoader {
+class StyleLoader
+{
+    private static $list = [];
 
-	private static $list = [];
-	private static $inlineStyles = [];
+    private static $inlineStyles = [];
 
-	public static function __constructStatic() {
-	}
+    public static function __constructStatic() {}
 
-	// add a style
-	public static function add($fileName, $type, $priority = null) {
-		$file = null;
+    // add a style
+    public static function add($fileName, $type, $priority = null)
+    {
+        $file = null;
 
+        switch ($type) {
+            case 'template':
+                if (file_exists(base_path().'/public/legacy/'.$fetchingFile = '/templates/styles/'.$fileName.'.css')) {
+                    $priority = $priority ?: 3;
+                    $file = $fetchingFile;
+                }
 
-		switch ($type) {
-			case 'template':
-				if (file_exists(base_path() . '/public/legacy/' . $fetchingFile = '/templates/styles/' . $fileName . '.css')) {
-					$priority = $priority ?: 3;
-					$file = $fetchingFile;
-				}
+                self::addAdditionalTemplateStyles($fileName);
 
-				self::addAdditionalTemplateStyles($fileName);
+                break;
 
-				break;
+            case 'page':
+                if (file_exists(base_path().'/public/legacy/'.$fetchingFile = '/pages/styles/'.$fileName.'.css')) {
+                    $priority = $priority ?: 4;
+                    $file = $fetchingFile;
+                }
 
-			case 'page':
-				if (file_exists(base_path() . '/public/legacy/' . $fetchingFile = '/pages/styles/' . $fileName . '.css')) {
-					$priority = $priority ?: 4;
-					$file = $fetchingFile;
-				}
+                break;
+            case 'inline':
+                self::$inlineStyles[] = $fileName;
 
-				break;
-			case 'inline':
-				self::$inlineStyles[] = $fileName;
+                break;
 
-				break;
+            case 'app':
+                $file = '/app/styles/'.$fileName.'.css';
 
-			case 'app':
-				$file = '/app/styles/' . $fileName . '.css';
+                break;
 
-				break;
+            default:
+                break;
+        }
 
-			default:
-				break;
-		}
+        // store the file URL in the list
+        if ($file) {
+            $file .= '?v='.filemtime(base_path().'/public/legacy/'.$file);
+            self::$list[] = [$priority, $file];
+        }
+    }
 
-		// store the file URL in the list
-		if ($file) {
-			$file .= '?v=' . filemtime(base_path() . '/public/legacy/' . $file);
-			self::$list[] = [$priority, $file];
-		}
-	}
+    // add template style
+    private static function addAdditionalTemplateStyles($templateName)
+    {
+        $additionalSystemStyles = glob(base_path().'/public/legacy/'.'/templates/styles/-expands-'.$templateName.'/*.css');
 
-	// add template style
-	private static function addAdditionalTemplateStyles($templateName) {
-		$additionalSystemStyles = glob(base_path() . '/public/legacy/' . '/templates/styles/-expands-' . $templateName . '/*.css');
+        foreach ($additionalSystemStyles as $additionalStyle) {
+            self::add($additionalStyle, 'template-expansion', 2);
+        }
+    }
 
-		foreach ($additionalSystemStyles as $additionalStyle) {
-			self::add($additionalStyle, 'template-expansion', 2);
-		}
-	}
+    // add the page style
+    public static function addPageStyles($pageName)
+    {
+        $additionalStyles = glob(base_path().'/public/legacy/'.'/pages/styles/-expands-'.$pageName.'/*.css');
 
-	// add the page style
-	public static function addPageStyles($pageName) {
-		$additionalStyles = glob(base_path() . '/public/legacy/' . '/pages/styles/-expands-' . $pageName . '/*.css');
+        self::add($pageName, 'page');
 
-		self::add($pageName, 'page');
+        foreach ($additionalStyles as $additionalStyle) {
+            self::add('-expands-'.$pageName.'/'.self::getFileName($additionalStyle), 'page', 5);
+        }
+    }
 
-		foreach ($additionalStyles as $additionalStyle) {
-			self::add('-expands-' . $pageName . '/' . self::getFileName($additionalStyle), 'page', 5);
-		}
-	}
+    // load all the styles
+    public static function load()
+    {
+        $list = [];
 
-	// load all the styles
-	public static function load() {
-		$list = [];
+        sort_subvalue(self::$list, 0);
 
-		sort_subvalue(self::$list, 0);
+        foreach (self::$list as $style) {
+            $list[] = '<link href="'.asset('legacy'.$style[1]).'" rel="stylesheet" type="text/css">';
+        }
 
-		foreach (self::$list as $style) $list[] = '<link href="' . asset('legacy' . $style[1]) . '" rel="stylesheet" type="text/css">';
+        return implode(PHP_EOL, $list);
+    }
 
-		return implode(PHP_EOL, $list);
-	}
+    // load the inline script to be placed at the end of the body
+    public static function loadInline()
+    {
+        return implode(self::$inlineStyles);
+    }
 
-	// load the inline script to be placed at the end of the body
-	public static function loadInline() {
-		return implode(self::$inlineStyles);
-	}
-
-	// get the file name
-	private static function getFileName($fileUrl) {
-		return explode('.css', legacy_explode_last('/', $fileUrl))[0];
-	}
+    // get the file name
+    private static function getFileName($fileUrl)
+    {
+        return explode('.css', legacy_explode_last('/', $fileUrl))[0];
+    }
 }

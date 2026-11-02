@@ -13,7 +13,7 @@ $sets = _SETS;
 
     <div id="body">
         <!-- Content -->
-        <?php if ($legacyTest->completed || !$supervisorView) { ?>
+        <?php if ($legacyTest->completed || ! $supervisorView) { ?>
 
             <section id="num-pan" data-count="<?= count($sets) ?>" class="<?= $legacyTest->completed ? 'completed' : 'uncompleted' ?>">
 
@@ -23,13 +23,18 @@ $sets = _SETS;
                     $numbers = explode(',', $set[0]);
                     $max = count($numbers);
 
-                    if ($legacyTest->completed) $right = $legacyTest->rawResults[$key] == $set[1];
+                    if ($legacyTest->completed) {
+                        $right = $legacyTest->rawResults[$key] == $set[1];
+                    }
 
                     $val = $legacyTest->completed ? $legacyTest->rawResults[$key] : '';
-                ?>
+                    ?>
 
-                    <div class="num-row mar-t-2 px-8 py-4 <?php if ($legacyTest->completed) echo $right ? 'right' : 'wrong';
-                                                            else echo 'clickable' ?>" onclick="this.querySelector('.num-emp')?.focus();">
+                    <div class="num-row mar-t-2 px-8 py-4 <?php if ($legacyTest->completed) {
+                        echo $right ? 'right' : 'wrong';
+                    } else {
+                        echo 'clickable';
+                    } ?>" onclick="this.querySelector('.num-emp')?.focus();">
 
                         <?php foreach ($numbers as $i => $number) {
 
@@ -50,17 +55,17 @@ $sets = _SETS;
                                     </div>
 
                                 <?php }
-                            } else { ?>
+                                } else { ?>
 
                                 <h1 class="num num<?= $i + 1 ?> txt-blk inlb va-cen no-mob"><?= $number ?></h1>
 
                             <?php }
 
-                            // separator
+                                // separator
                             if ($i + 1 < $max) { ?>
                                 <h1 class="num dots maro2 txt-blk inlb">:</h1>
                         <?php }
-                        } ?>
+                            } ?>
                     </div>
 
                     <?php if ($legacyTest->completed) { ?>
@@ -75,7 +80,7 @@ $sets = _SETS;
 
             </section>
 
-        <?php } else if ($supervisorView) { ?>
+        <?php } elseif ($supervisorView) { ?>
 
             <?= no_results() ?>
 

@@ -18,59 +18,64 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use UnitEnum;
 
-class SectionResource extends Resource {
+class SectionResource extends Resource
+{
+    /**
+     * Property: The model class to be used for the resource
+     */
+    protected static ?string $model = Section::class;
 
-	/**
-	 * Property: The model class to be used for the resource
-	 */
-	protected static ?string $model = Section::class;
+    /**
+     * Property: The icon to be used for the navigation item
+     */
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-	/**
-	 * Property: The icon to be used for the navigation item
-	 */
-	protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    /**
+     * Property: The label of a singular resource
+     */
+    protected static ?string $label = 'Sezione';
 
-	/**
-	 * Property: The label of a singular resource
-	 */
-	protected static ?string $label = 'Sezione';
+    /**
+     * Property: The label of a plural resource
+     */
+    protected static ?string $pluralLabel = 'Sezioni';
 
-	/**
-	 * Property: The label of a plural resource
-	 */
-	protected static ?string $pluralLabel = 'Sezioni';
+    /**
+     * Property: The group the resource should be displayed in the navigation
+     */
+    protected static string|UnitEnum|null $navigationGroup = 'Attività';
 
-	/**
-	 * Property: The group the resource should be displayed in the navigation
-	 */
-	protected static string|UnitEnum|null $navigationGroup = 'Attività';
+    public static function form(Schema $schema): Schema
+    {
+        return SectionForm::configure($schema);
+    }
 
-	public static function form(Schema $schema): Schema {
-		return SectionForm::configure($schema);
-	}
+    public static function table(Table $table): Table
+    {
+        return SectionsTable::configure($table);
+    }
 
-	public static function table(Table $table): Table {
-		return SectionsTable::configure($table);
-	}
+    public static function getRelations(): array
+    {
+        return [
+            GradesRelationManager::class,
+        ];
+    }
 
-	public static function getRelations(): array {
-		return [
-			GradesRelationManager::class,
-		];
-	}
+    public static function getPages(): array
+    {
+        return [
+            'index' => ListSections::route('/'),
+            'create' => CreateSection::route('/create'),
+            'edit' => EditSection::route('/{record}/edit'),
+        ];
+    }
 
-	public static function getPages(): array {
-		return [
-			'index' => ListSections::route('/'),
-			'create' => CreateSection::route('/create'),
-			'edit' => EditSection::route('/{record}/edit'),
-		];
-	}
-
-	public static function getRecordRouteBindingEloquentQuery(): Builder {
-		return parent::getRecordRouteBindingEloquentQuery()
-			->withoutGlobalScopes([
-				SoftDeletingScope::class,
-			]);
-	}
+    public static function getRecordRouteBindingEloquentQuery(): Builder
+    {
+        return parent::getRecordRouteBindingEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
+    }
 }

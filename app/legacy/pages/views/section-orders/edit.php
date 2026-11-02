@@ -79,17 +79,17 @@
 				<div class="text-icon" <?= icon_svg('correct') ?>></div>
 				Ripristina l'ordine
 			</button>
-		<?php } else if ($cart->status == 1) { ?>
+		<?php } elseif ($cart->status == 1) { ?>
 			<button type="submit" class="cart-action cart-action_accept pbtn btn-with-icons" name="change-status" value="confirmed">
 				<div class="text-icon" <?= icon_svg('correct') ?>></div>
 				Pagamento ricevuto
 			</button>
-		<?php } else if ($cart->status == 2) { ?>
+		<?php } elseif ($cart->status == 2) { ?>
 			<button type="submit" class="cart-action cart-action_send pbtn btn-with-icons" name="change-status" value="shipped">
 				<div class="text-icon" <?= icon_svg('correct') ?>></div>
 				Spedito
 			</button>
-		<?php } else if ($cart->status == 3) { ?>
+		<?php } elseif ($cart->status == 3) { ?>
 			<button type="submit" class="cart-action cart-action_delivered pbtn btn-with-icons" name="change-status" value="delivered">
 				<div class="text-icon" <?= icon_svg('correct') ?>></div>
 				Consegnato

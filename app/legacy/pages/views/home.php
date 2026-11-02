@@ -9,8 +9,8 @@
     </div>
 
     <div class="page__images grid center-content stack-content">
-        <div class="page__background fill-all" <?= background_image(($student->isMiddleSchoolStudent() ? 'middleschool' : 'highschool') . '-background.webp') ?>></div>
-        <img class="page__image load--fade-in js-load" data-direction='right' data-delay="3" src="<?= client_path(($student->isMiddleSchoolStudent() ? 'middleschool' : 'highschool') . '-image.webp') ?>" alt="">
+        <div class="page__background fill-all" <?= background_image(($student->isMiddleSchoolStudent() ? 'middleschool' : 'highschool').'-background.webp') ?>></div>
+        <img class="page__image load--fade-in js-load" data-direction='right' data-delay="3" src="<?= client_path(($student->isMiddleSchoolStudent() ? 'middleschool' : 'highschool').'-image.webp') ?>" alt="">
     </div>
 </div>
 

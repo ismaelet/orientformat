@@ -2,23 +2,24 @@
 
 namespace Legacy\UserSystem\Student;
 
-use DatabaseObject;
+class Advice
+{
+    use \System\Traits\DatabaseObject;
 
-class Advice {
+    public const TABLE = 'advices_list';
 
-	use \System\Traits\DatabaseObject;
+    public const INDEX = 'id';
 
-	public const TABLE = 'advices_list';
-	public const INDEX = 'id';
+    /**
+     * Get methods
+     */
+    private function getName()
+    {
+        return $this->advice;
+    }
 
-	/**
-	 * Get methods
-	 */
-	private function getName() {
-		return $this->advice;
-	}
-
-	private function getCategory() {
-		return new AdviceCategory($this->categoryId);
-	}
+    private function getCategory()
+    {
+        return new AdviceCategory($this->categoryId);
+    }
 }

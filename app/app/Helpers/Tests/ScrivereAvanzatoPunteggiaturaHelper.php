@@ -4,8 +4,8 @@ namespace App\Helpers\Tests;
 
 use App\Interfaces\TestHelperInterface;
 
-class ScrivereAvanzatoPunteggiaturaHelper implements TestHelperInterface {
-
+class ScrivereAvanzatoPunteggiaturaHelper implements TestHelperInterface
+{
     /**
      * Property: The punctuation marks used in the test, where the keys correspond to the punctuation mark keys used in the correct answers, and the values correspond to the actual punctuation characters
      */
@@ -41,7 +41,7 @@ class ScrivereAvanzatoPunteggiaturaHelper implements TestHelperInterface {
         8,
         1,
         1,
-        9
+        9,
     ];
 
     /**
@@ -58,7 +58,8 @@ class ScrivereAvanzatoPunteggiaturaHelper implements TestHelperInterface {
      * Helper method: return the array of correct answers for the test
      * The keys of the array correspond to the question numbers, and the values correspond to the correct punctuation mark keys
      */
-    protected function correctAnswers(): array {
+    protected function correctAnswers(): array
+    {
         return self::CORRECT_ANSWERS;
     }
 
@@ -66,27 +67,30 @@ class ScrivereAvanzatoPunteggiaturaHelper implements TestHelperInterface {
      * Helper method: return the array of punctuation marks used in the test
      * The keys of the array correspond to the punctuation mark keys used in the correct answers, and the values correspond to the actual punctuation characters
      */
-    protected function punctuations(): array {
+    protected function punctuations(): array
+    {
         return self::PUNCTUATIONS;
     }
 
     /**
      * Helper method: get the total number of questions in the test
      */
-    protected function count(): int {
+    protected function count(): int
+    {
         return count(self::CORRECT_ANSWERS);
     }
 
     /**
      * Helper method: build the options for each selector based on the punctuation marks and the student's previous answers (if any)
      */
-    protected function buildSelectors(): array {
+    protected function buildSelectors(): array
+    {
         $selectors = [];
 
         for ($i = 1; $i <= $this->count(); $i++) {
             $options = [];
 
-            if (!legacy_test()->completed) {
+            if (! legacy_test()->completed) {
                 $options[] = '<option value="0" disabled selected>-</option>';
             }
 
@@ -111,7 +115,8 @@ class ScrivereAvanzatoPunteggiaturaHelper implements TestHelperInterface {
     /**
      * Helper method: build the HTML for a single selector, applying the appropriate classes and disabled state based on whether the test is completed and whether the answer is correct
      */
-    protected function buildSelectorHtml(int $selectorKey, string $options): string {
+    protected function buildSelectorHtml(int $selectorKey, string $options): string
+    {
         $completed = legacy_test()->completed;
         $rawResult = legacy_test()->rawResults[$selectorKey] ?? null;
         $correctAnswer = self::CORRECT_ANSWERS[$selectorKey];
@@ -135,7 +140,8 @@ class ScrivereAvanzatoPunteggiaturaHelper implements TestHelperInterface {
     /**
      * Helper method: generate the HTML for the test text with embedded selectors
      */
-    public function htmlText(): string {
+    public function htmlText(): string
+    {
         $textHtml = self::TEXT;
         $selectors = $this->buildSelectors();
         $placeholder = '{{selector}}';
@@ -160,7 +166,8 @@ class ScrivereAvanzatoPunteggiaturaHelper implements TestHelperInterface {
     /**
      * Calculate the percentage score based on the submitted answers and the correct answers
      */
-    public function calculatePercentage(array $submittedAnswers): int {
+    public function calculatePercentage(array $submittedAnswers): int
+    {
         $correctAnswers = $this->correctAnswers();
         $total = count($correctAnswers);
         $correctCount = 0;

@@ -6,7 +6,7 @@
 		<?= submit(true) ?>
 	</div>
 
-	<?php if ($legacyTest->completed || !$supervisorView) { ?>
+	<?php if ($legacyTest->completed || ! $supervisorView) { ?>
 
 		<div id="content" class="wrap aspect-square">
 
@@ -20,8 +20,8 @@
 						<div class="hexagon__background fill-all"></div>
 
 						<?php for ($j = 1; $j < 7; $j++) {
-							$active = $legacyTest->completed ? $legacyTest->rawResults[$j - 1] == 5 - $i : false;
-						?>
+						    $active = $legacyTest->completed ? $legacyTest->rawResults[$j - 1] == 5 - $i : false;
+						    ?>
 
 							<div class="number-box number-box<?= $j ?>">
 								<p class="number txt-12rem font-bold clickable <?= $active ? 'active' : '' ?>" data-question="<?= $j ?>" data-val="<?= 5 - $i ?>">
@@ -45,7 +45,7 @@
 			</div>
 		</div>
 
-	<?php } else if ($supervisorView) { ?>
+	<?php } elseif ($supervisorView) { ?>
 
 		<?= no_results() ?>
 

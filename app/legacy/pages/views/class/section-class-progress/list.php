@@ -10,12 +10,12 @@
 	<p class="maintenance-warning">Questa pagina al momento è in manutenzione e potrebbe non mostrare tutti i dati previsti. Il normale funzionamento verrà ripristinato al più presto.</p>
 
 	<?php /*
-	<!-- Title -->
-	<!-- <div class="title-box mar-t-1">
-		<h2 class="title txt-15rem txt-med">Sicurezza media nella scelta della scuola superiore: <span class="font-bold"><?= $choicePercentage ?>%</span></h2>
-		<p class="stitle txt-1rem mt-2">Calcolata in base alle risposte date nel questionario iniziale o (se presente) finale.</p>
-	</div> -->
-	*/ ?>
+    <!-- Title -->
+    <!-- <div class="title-box mar-t-1">
+        <h2 class="title txt-15rem txt-med">Sicurezza media nella scelta della scuola superiore: <span class="font-bold"><?= $choicePercentage ?>%</span></h2>
+        <p class="stitle txt-1rem mt-2">Calcolata in base alle risposte date nel questionario iniziale o (se presente) finale.</p>
+    </div> -->
+    */ ?>
 
 	<div class="areas mar-t-4">
 
@@ -44,7 +44,7 @@
 									<div class="dashboard-panel-body">
 										<h3 class="dashboard-panel-title"><?= $legacySection->title ?></h3>
 										<div class="dashboard-panel-icon icon-box load slide-bottom ld-<?= $key + 2 ?>">
-											<?= embed_icon(APP_ICONS_DIR . 'sections/section-' . $legacySection->id) ?>
+											<?= embed_icon(APP_ICONS_DIR.'sections/section-'.$legacySection->id) ?>
 										</div>
 									</div>
 

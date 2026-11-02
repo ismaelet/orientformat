@@ -8,9 +8,10 @@ use App\Models\User\Student;
 use App\Models\User\Teacher;
 use Illuminate\Support\Collection;
 
-class TemperamentoRiepilogoHelper {
-
-    public static function results(Test $test, Student|Teacher $student): ?Collection {
+class TemperamentoRiepilogoHelper
+{
+    public static function results(Test $test, Student|Teacher $student): ?Collection
+    {
         $results = [];
         $dependentTests = $test->dependent_tests();
 
@@ -23,7 +24,7 @@ class TemperamentoRiepilogoHelper {
                 $results[] = collect([
                     'name' => self::getSections()[$dependentTest->step]['name'] ?? $dependentTest->name,
                     'value' => max(ceil($percentage / 100 * 5), 1),
-                    'percentage' => $percentage
+                    'percentage' => $percentage,
                 ]);
             }
         }
@@ -34,14 +35,16 @@ class TemperamentoRiepilogoHelper {
     /**
      * Get the result record for a given student and test
      */
-    public static function resultRecord(Test $test, Student|Teacher $student): ?TestResult {
+    public static function resultRecord(Test $test, Student|Teacher $student): ?TestResult
+    {
         return $student->testResult($test);
     }
 
     /**
      * Get the names of the sections of the test
      */
-    public static function getSections(): Collection {
+    public static function getSections(): Collection
+    {
         return collect([
             1 => [
                 'name' => __('tests.46-section-1'),

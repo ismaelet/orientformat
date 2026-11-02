@@ -6,37 +6,41 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-class FileHelper {
-
+class FileHelper
+{
     /**
      * Get the versioned path of a file in the public storage directory
      */
-    public static function publicAsset(string $file): string {
-        $storagePath = public_path('storage/' . $file);
+    public static function publicAsset(string $file): string
+    {
+        $storagePath = public_path('storage/'.$file);
         $version = file_exists($storagePath) ? filemtime($storagePath) : time();
 
-        return asset('storage/' . $file) . '?v=' . $version;
+        return asset('storage/'.$file).'?v='.$version;
     }
 
     /**
      * Check if a file exists in the storage
      */
-    public static function exists(string $path): bool {
+    public static function exists(string $path): bool
+    {
         return Storage::disk('public')->exists($path);
     }
 
     /**
      * Delete a file from the storage
      */
-    public static function delete(string $path): bool {
+    public static function delete(string $path): bool
+    {
         return Storage::disk('public')->delete($path);
     }
 
     /**
      * Download a file from the public storage directory
      */
-    public static function download(string $path, ?string $name = null): BinaryFileResponse {
-        if (!self::exists($path)) {
+    public static function download(string $path, ?string $name = null): BinaryFileResponse
+    {
+        if (! self::exists($path)) {
             abort(404, 'File not found');
         }
 
@@ -48,7 +52,8 @@ class FileHelper {
     /**
      * Move a file to the public storage directory
      */
-    public static function upload(UploadedFile $file, string $filePath): bool {
+    public static function upload(UploadedFile $file, string $filePath): bool
+    {
         $fileDirectory = ArrayHelper::explodeLast('/', $filePath)[0];
         $fileName = ArrayHelper::explodeLast('/', $filePath)[1];
 

@@ -1,5 +1,9 @@
 <?php
 
+use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\Auth;
+use Student\SectionTestResult;
+
 global $grade;
 
 // setup page
@@ -13,27 +17,27 @@ $graphData['max'] = 100;
 $graphData['columns'] = [];
 
 $groups = [
-	1 => ['Visivo', "apprende e ricorda attraverso immagini"],
-	5 => ['Uditivo', "è a suo agio quando può ascoltare"],
-	2 => ['Collaborativo', "lavora meglio in gruppo, mentre da solo si annoia"],
-	6 => ['Autonomo', "preferisce lavorare da solo, è a disagio nei lavori di gruppo"],
-	3 => ['Globale', "ricerca l’insieme, la totalità, trascurando i dettagli"],
-	7 => ['Analitico', "si concentra sui particolari, perdendo di vista l’insieme"],
-	8 => ['Sistematico', "predilige la precisione e la completezza, a costo di risultare dispersivo"],
-	4 => ['Intuitivo', "vuole arrivare subito alla conclusione, rischiando soluzioni avventate"],
+    1 => ['Visivo', 'apprende e ricorda attraverso immagini'],
+    5 => ['Uditivo', 'è a suo agio quando può ascoltare'],
+    2 => ['Collaborativo', 'lavora meglio in gruppo, mentre da solo si annoia'],
+    6 => ['Autonomo', 'preferisce lavorare da solo, è a disagio nei lavori di gruppo'],
+    3 => ['Globale', 'ricerca l’insieme, la totalità, trascurando i dettagli'],
+    7 => ['Analitico', 'si concentra sui particolari, perdendo di vista l’insieme'],
+    8 => ['Sistematico', 'predilige la precisione e la completezza, a costo di risultare dispersivo'],
+    4 => ['Intuitivo', 'vuole arrivare subito alla conclusione, rischiando soluzioni avventate'],
 ];
 
 foreach ($grade->students as $student) {
-	if (\App\Legacy\LegacyDB::exists("results WHERE userID = ? AND testID IN ('30') AND completed=1", [\Illuminate\Support\Facades\Auth::id()])) {
+    if (LegacyDB::exists("results WHERE userID = ? AND testID IN ('30') AND completed=1", [Auth::id()])) {
 
-		$columnData = [];
-		$columnData['subcolumns'] = [];
-		$CondensedTestResult = Student\SectionTestResult::getRawResult(\Illuminate\Support\Facades\Auth::id(), $sectionId);
+        $columnData = [];
+        $columnData['subcolumns'] = [];
+        $CondensedTestResult = SectionTestResult::getRawResult(Auth::id(), $sectionId);
 
-		foreach ($groups as $styleId => $styleName) {
-			$columnData['subcolumns'][$styleName[0]] = $CondensedTestResult[$styleId] . '%';
-		}
+        foreach ($groups as $styleId => $styleName) {
+            $columnData['subcolumns'][$styleName[0]] = $CondensedTestResult[$styleId].'%';
+        }
 
-		$graphData['columns'][$student->fullName] = $columnData;
-	}
+        $graphData['columns'][$student->fullName] = $columnData;
+    }
 }

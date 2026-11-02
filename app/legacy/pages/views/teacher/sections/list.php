@@ -30,7 +30,7 @@
                     <?php while ($legacySection = $area['sections']->fetch_assoc()) { ?>
 
                         <a href="<?= route('section', ['section' => $legacySection['id']]) ?>" id="section<?= $legacySection['id'] ?>" class="section panel pad-2 fa-center">
-                            <div class="img cont inlb" <?= background_image('/pages/assets/area/section' . $legacySection['id'] . '.svg') ?>></div>
+                            <div class="img cont inlb" <?= background_image('/pages/assets/area/section'.$legacySection['id'].'.svg') ?>></div>
                             <p class="title txt-11rem txt-sbold mar-t-1"><?= $legacySection['name'] ?></p>
                         </a>
 

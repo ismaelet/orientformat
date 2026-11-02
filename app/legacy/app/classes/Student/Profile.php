@@ -2,26 +2,25 @@
 
 namespace Student;
 
-use DatabaseObject;
-use LegacyDB;
+class Profile
+{
+    use \System\Traits\DatabaseObject;
 
-class Profile {
+    public const TABLE = 'students_data';
 
-	use \System\Traits\DatabaseObject;
+    public const INDEX = 'studentId';
 
-	public const TABLE = 'students_data';
-	public const INDEX = 'studentId';
+    /**
+     * Get methods
+     */
 
-	/**
-	 * Get methods
-	 */
+    /**
+     * Istance methods
+     */
+    public static function new(int $id)
+    {
+        \App\Legacy\LegacyDB::add(self::TABLE.' ('.self::INDEX.')', [$id]);
 
-	/**
-	 * Istance methods
-	 */
-	public static function new(int $id) {
-		\App\Legacy\LegacyDB::add(self::TABLE . ' (' . self::INDEX . ')', [$id]);
-
-		return new self($id);
-	}
+        return new self($id);
+    }
 }

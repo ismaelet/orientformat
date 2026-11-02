@@ -8,12 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class StartReview {
-
+class StartReview
+{
     /**
      * Handle an incoming request.
      */
-    public function handle(Request $request, Closure $next): Response {
+    public function handle(Request $request, Closure $next): Response
+    {
         $student = Auth::user()->student;
         $class = $student->class;
 
@@ -47,8 +48,8 @@ class StartReview {
             $class &&
             $reviewId &&
             ReviewResult::where('studentId', Auth::id())
-            ->where('reviewId', $reviewId)
-            ->doesntExist()
+                ->where('reviewId', $reviewId)
+                ->doesntExist()
         ) {
             return redirect()->route('review.show', ['review' => $reviewId]);
         }

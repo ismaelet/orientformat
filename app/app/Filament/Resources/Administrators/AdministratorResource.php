@@ -14,8 +14,8 @@ use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use UnitEnum;
 
-class AdministratorResource extends Resource {
-
+class AdministratorResource extends Resource
+{
     /**
      * Property: The model class to be used for the resource
      */
@@ -51,21 +51,25 @@ class AdministratorResource extends Resource {
      */
     protected static ?int $navigationSort = 4;
 
-    public static function form(Schema $schema): Schema {
+    public static function form(Schema $schema): Schema
+    {
         return AdministratorForm::configure($schema);
     }
 
-    public static function table(Table $table): Table {
+    public static function table(Table $table): Table
+    {
         return AdministratorsTable::configure($table);
     }
 
-    public static function getRelations(): array {
+    public static function getRelations(): array
+    {
         return [
             //
         ];
     }
 
-    public static function getPages(): array {
+    public static function getPages(): array
+    {
         return [
             'index' => ListAdministrators::route('/'),
             'create' => CreateAdministrator::route('/create'),

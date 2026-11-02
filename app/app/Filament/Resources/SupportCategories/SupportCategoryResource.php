@@ -15,57 +15,61 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
 
-class SupportCategoryResource extends Resource {
+class SupportCategoryResource extends Resource
+{
+    /**
+     * Property: The model class to be used for the resource
+     */
+    protected static ?string $model = SupportCategory::class;
 
-	/**
-	 * Property: The model class to be used for the resource
-	 */
-	protected static ?string $model = SupportCategory::class;
+    /**
+     * Property: The icon to be used for the navigation item
+     */
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedInformationCircle;
 
-	/**
-	 * Property: The icon to be used for the navigation item
-	 */
-	protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedInformationCircle;
+    /**
+     * Property: The label of a singular resource
+     */
+    protected static ?string $label = 'Categoria';
 
-	/**
-	 * Property: The label of a singular resource
-	 */
-	protected static ?string $label = 'Categoria';
+    /**
+     * Property: The label of a plural resource
+     */
+    protected static ?string $pluralLabel = 'Categorie';
 
-	/**
-	 * Property: The label of a plural resource
-	 */
-	protected static ?string $pluralLabel = 'Categorie';
+    /**
+     * Property: The title attribute of a record
+     */
+    protected static ?string $recordTitleAttribute = 'name';
 
-	/**
-	 * Property: The title attribute of a record
-	 */
-	protected static ?string $recordTitleAttribute = 'name';
+    /**
+     * Property: The group the resource should be displayed in the navigation
+     */
+    protected static string|UnitEnum|null $navigationGroup = 'Supporto';
 
-	/**
-	 * Property: The group the resource should be displayed in the navigation
-	 */
-	protected static string|UnitEnum|null $navigationGroup = 'Supporto';
+    public static function form(Schema $schema): Schema
+    {
+        return SupportCategoryForm::configure($schema);
+    }
 
-	public static function form(Schema $schema): Schema {
-		return SupportCategoryForm::configure($schema);
-	}
+    public static function table(Table $table): Table
+    {
+        return SupportCategoriesTable::configure($table);
+    }
 
-	public static function table(Table $table): Table {
-		return SupportCategoriesTable::configure($table);
-	}
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
 
-	public static function getRelations(): array {
-		return [
-			//
-		];
-	}
-
-	public static function getPages(): array {
-		return [
-			'index' => ListSupportCategories::route('/'),
-			'create' => CreateSupportCategory::route('/create'),
-			'edit' => EditSupportCategory::route('/{record}/edit'),
-		];
-	}
+    public static function getPages(): array
+    {
+        return [
+            'index' => ListSupportCategories::route('/'),
+            'create' => CreateSupportCategory::route('/create'),
+            'edit' => EditSupportCategory::route('/{record}/edit'),
+        ];
+    }
 }

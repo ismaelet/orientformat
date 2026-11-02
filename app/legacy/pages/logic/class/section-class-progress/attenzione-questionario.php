@@ -1,5 +1,9 @@
 <?php
 
+use Activity\Result\CondensedTestResult;
+use Grade\TestTestResult;
+use Illuminate\Support\Facades\Auth;
+
 global $grade;
 
 // setup page
@@ -17,29 +21,29 @@ $graphData['columns'] = [];
 $graphData['columns'] = [];
 
 foreach ($grade->students as $student) {
-	$result = Activity\Result\CondensedTestResult::getRawResult(\Illuminate\Support\Facades\Auth::id(), $testId);
+    $result = CondensedTestResult::getRawResult(Auth::id(), $testId);
 
-	if ($result) {
-		foreach ($result as $resultName => $resultValue) {
-			$studentResults[$resultName] = Activity\Result\CondensedTestResult::parseToString($testId, $resultValue);
-		}
+    if ($result) {
+        foreach ($result as $resultName => $resultValue) {
+            $studentResults[$resultName] = CondensedTestResult::parseToString($testId, $resultValue);
+        }
 
-		$columnData['subcolumns'] = $studentResults;
-		$graphData['columns'][$student->fullName] = $columnData;
-	}
+        $columnData['subcolumns'] = $studentResults;
+        $graphData['columns'][$student->fullName] = $columnData;
+    }
 }
 
 // averages
-$averages = Grade\TestTestResult::getRawResult($grade->id, $testId);
-$attenzioneAverage = Activity\Result\CondensedTestResult::parseToString($testId, $averages['values']['Perdita di attenzione']);
-$iperattivitaAverage = Activity\Result\CondensedTestResult::parseToString($testId, $averages['values']['Iperattività']);
+$averages = TestTestResult::getRawResult($grade->id, $testId);
+$attenzioneAverage = CondensedTestResult::parseToString($testId, $averages['values']['Perdita di attenzione']);
+$iperattivitaAverage = CondensedTestResult::parseToString($testId, $averages['values']['Iperattività']);
 
 $graphData['averages'] = [
-	'Media della difficoltà a mantenere l\'attenzione: ' => $attenzioneAverage,
-	'Media dell\'iperattivià' => $iperattivitaAverage,
+    'Media della difficoltà a mantenere l\'attenzione: ' => $attenzioneAverage,
+    'Media dell\'iperattivià' => $iperattivitaAverage,
 ];
 
 $graphData['legend'] = [
-	'Media della difficoltà a mantenere l\'attenzione: <strong>' . $attenzioneAverage . '</strong>',
-	'Media dell\'iperattivià: <strong>' . $iperattivitaAverage . '</strong>',
+    'Media della difficoltà a mantenere l\'attenzione: <strong>'.$attenzioneAverage.'</strong>',
+    'Media dell\'iperattivià: <strong>'.$iperattivitaAverage.'</strong>',
 ];

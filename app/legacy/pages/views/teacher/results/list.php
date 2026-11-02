@@ -3,7 +3,11 @@
 <!-- Slider -->
 <section id="slider">
 
-    <div id="bgr-img" class="bgr" <?= background_image('/pages/assets/teacher/bgr.png') ?>></div>
+    <div id="bgr-img" class="bgr" <?php
+
+use App\Legacy\LegacyDB;
+
+?><?= background_image('/pages/assets/teacher/bgr.png') ?>></div>
 
 </section>
 
@@ -42,7 +46,7 @@
 
                     $advices_str = false;
 
-                    $advices = \App\Legacy\LegacyDB::find('advices FROM advices WHERE userID = ? AND advices<>""', $student['id']);
+                    $advices = LegacyDB::find('advices FROM advices WHERE userID = ? AND advices<>""', $student['id']);
 
                     if ($advices) {
 
@@ -50,12 +54,14 @@
 
                         $advices = explode(',', $advices);
 
-                        foreach ($advices as $advice) $advices_str[] = $choices[$advice];
+                        foreach ($advices as $advice) {
+                            $advices_str[] = $choices[$advice];
+                        }
 
                         $advices_str = implode('<br>', $advices_str);
                     }
 
-                ?>
+                    ?>
 
                     <!-- Rows -->
                     <form method="POST" action="#row<?= $student['id'] ?>" id="row<?= $student['id'] ?>" class="row">
@@ -64,7 +70,7 @@
 
                         <p class="field"><?= $advices_str ?: '-' ?></p>
 
-                        <p class="field"><?= \App\Legacy\LegacyDB::exists('survey_end WHERE userID = ?', [$student['id']]) ? 'SI' : '<span class="txt-red">NO</span>' ?></p>
+                        <p class="field"><?= LegacyDB::exists('survey_end WHERE userID = ?', [$student['id']]) ? 'SI' : '<span class="txt-red">NO</span>' ?></p>
 
                         <div class="field btn-box">
                             <div class="btn blu inlb lbox-open" data-tar="#advice<?= $student['id'] ?>">Scegli consiglio</div>

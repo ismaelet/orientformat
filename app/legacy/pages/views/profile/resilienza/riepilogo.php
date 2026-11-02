@@ -12,7 +12,7 @@
 
 		<?php for ($i = 1; $i < 6; $i++) { ?>
 
-			<img id="image<?= $i ?>" class="image" src="<?= client_path(legacy_watched_student()->isInMiddleSchool ? 'middleschool-img' . $i : 'middleschool-img' . $i) ?>">
+			<img id="image<?= $i ?>" class="image" src="<?= client_path(legacy_watched_student()->isInMiddleSchool ? 'middleschool-img'.$i : 'middleschool-img'.$i) ?>">
 
 		<?php } ?>
 

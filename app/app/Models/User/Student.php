@@ -26,8 +26,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 
-class Student extends Model {
-
+class Student extends Model
+{
     use HasFactory, SoftDeletes;
 
     /**
@@ -43,45 +43,50 @@ class Student extends Model {
     /**
      * Get the student's username
      */
-    public function username(): Attribute {
+    public function username(): Attribute
+    {
         return new Attribute(
-            get: fn(): string => $this->user?->username ?: '-',
+            get: fn (): string => $this->user?->username ?: '-',
         );
     }
 
     /**
      * Get the student's first name
      */
-    public function firstName(): Attribute {
+    public function firstName(): Attribute
+    {
         return new Attribute(
-            get: fn() => $this->user->first_name,
+            get: fn () => $this->user->first_name,
         );
     }
 
     /**
      * Get the student's last name
      */
-    public function lastName(): Attribute {
+    public function lastName(): Attribute
+    {
         return new Attribute(
-            get: fn() => $this->user->last_name,
+            get: fn () => $this->user->last_name,
         );
     }
 
     /**
      * Get the student's inverted full name
      */
-    public function fullName(): Attribute {
+    public function fullName(): Attribute
+    {
         return new Attribute(
-            get: fn(): string => $this->user?->full_name ?: '-',
+            get: fn (): string => $this->user?->full_name ?: '-',
         );
     }
 
     /**
      * Get the student's inverted full name
      */
-    public function invertedFullName(): Attribute {
+    public function invertedFullName(): Attribute
+    {
         return new Attribute(
-            get: fn() => $this->user?->inverted_full_name
+            get: fn () => $this->user?->inverted_full_name
                 ?: '-',
         );
     }
@@ -89,102 +94,116 @@ class Student extends Model {
     /**
      * Get the student's registration date
      */
-    public function createdAtDate(): Attribute {
+    public function createdAtDate(): Attribute
+    {
         return new Attribute(
-            get: fn(): string => $this->user?->created_at->format('d/m/Y') ?: '-',
+            get: fn (): string => $this->user?->created_at->format('d/m/Y') ?: '-',
         );
     }
 
     /**
      * The user linked to the student
      */
-    public function user(): BelongsTo {
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class, 'userId');
     }
 
     /**
      * The class the student is in
      */
-    public function class(): BelongsTo {
+    public function class(): BelongsTo
+    {
         return $this->belongsTo(SchoolClass::class, 'schoolClassId');
     }
 
     /**
      * The class the student is in
-     * 
+     *
      * ! Legacy
      */
-    public function school_class(): BelongsTo {
+    public function school_class(): BelongsTo
+    {
         return $this->belongsTo(SchoolClass::class, 'schoolClassId');
     }
 
     /**
      * Get the student's given advice
      */
-    public function advice(): HasOne {
+    public function advice(): HasOne
+    {
         return $this->hasOne(Advice::class, 'userID', 'userId');
     }
 
     /**
      * Relationship: The test results of the student
      */
-    public function test_results(): HasMany {
+    public function test_results(): HasMany
+    {
         return $this->hasMany(TestResult::class, 'studentId');
     }
 
     /**
      * Relationship: The section results of the student
      */
-    public function section_results(): HasMany {
+    public function section_results(): HasMany
+    {
         return $this->hasMany(SectionResult::class, 'studentId');
     }
 
     /**
      * The condensed section results of the student
      */
-    public function condensed_section_results(): HasMany {
+    public function condensed_section_results(): HasMany
+    {
         return $this->hasMany(CondensedSectionResult::class, 'student_id');
     }
 
     /**
      * The grade results of the student
      */
-    public function grade_results(): HasMany {
+    public function grade_results(): HasMany
+    {
         return $this->hasMany(GradeResult::class, 'studentId');
     }
 
     /**
      * The test additional results of the student
      */
-    public function additional_results(): HasMany {
+    public function additional_results(): HasMany
+    {
         return $this->hasMany(AdditionalResult::class, 'studentId');
     }
 
     /**
      * The test other results of the student
      */
-    public function other_results(): HasMany {
+    public function other_results(): HasMany
+    {
         return $this->hasMany(OtherResult::class, 'userID');
     }
 
     /**
      * The test permanent results of the student
      */
-    public function permanent_results(): HasMany {
+    public function permanent_results(): HasMany
+    {
         return $this->hasMany(PermanentResult::class, 'studentId');
     }
 
     /**
      * The review results of the student
      */
-    public function review_results(): HasMany {
+    public function review_results(): HasMany
+    {
         return $this->hasMany(ReviewResult::class, 'studentId');
     }
 
     /**
      * The masterpieces of the student
      */
-    public function masterpieces(): HasMany {
+    public function masterpieces(): HasMany
+    {
         return $this->hasMany(Masterpiece::class);
     }
 
@@ -192,35 +211,40 @@ class Student extends Model {
      * Grade
      * !TO FIX: Grade isn't a real model
      */
-    public function grade(): Grade {
+    public function grade(): Grade
+    {
         return $this->school_class->grade();
     }
 
     /**
      * Get the available grades for the student
      */
-    public function availableGrades(): Collection {
+    public function availableGrades(): Collection
+    {
         return $this->school_class->availableGrades();
     }
 
     /**
      * Check if the student is in middle school
      */
-    public function isMiddleSchoolStudent(): bool {
+    public function isMiddleSchoolStudent(): bool
+    {
         return $this->school_class?->isMiddleSchool() ?? true;
     }
 
     /**
      * Check if the student is in high school
      */
-    public function isHighSchoolStudent(): bool {
+    public function isHighSchoolStudent(): bool
+    {
         return $this->school_class?->isHighschool() ?? false;
     }
 
     /**
      * Get the student's grade number at a specific date
      */
-    public function gradeWhen(string $date): ?int {
+    public function gradeWhen(string $date): ?int
+    {
         $grade = $this->school_class?->gradeWhen($date);
 
         if ($grade) {
@@ -233,21 +257,24 @@ class Student extends Model {
     /**
      * Check if a student has completed a specific section
      */
-    public function hasCompletedSection(Section $section): bool {
+    public function hasCompletedSection(Section $section): bool
+    {
         return $this->section_results->where('sectionId', $section->id)->where('completed', true)->count();
     }
 
     /**
      * Check if a student has completed a specific test
      */
-    public function hasCompletedTest(Test $test): bool {
+    public function hasCompletedTest(Test $test): bool
+    {
         return $this->test_results->where('testId', $test->id)->where('completed', true)->count();
     }
 
     /**
      * Get the number of completed tests in a specific section
      */
-    public function testsCompletedInSection(Section $section): int {
+    public function testsCompletedInSection(Section $section): int
+    {
         return $this->test_results
             ->whereIn('testId', $section->tests->pluck('id'))
             ->where('completed', true)
@@ -258,7 +285,8 @@ class Student extends Model {
     /**
      * Get the percentage of completed tests in a specific section
      */
-    public function percentageTestsCompletedInSection(Section $section): int {
+    public function percentageTestsCompletedInSection(Section $section): int
+    {
         $totalTests = $section->tests->count();
         $completedTests = $this->testsCompletedInSection($section);
 
@@ -272,7 +300,8 @@ class Student extends Model {
     /**
      * Get the number of completed sections in a specific grade
      */
-    public function sectionsCompletedInGrade(Grade $grade): int {
+    public function sectionsCompletedInGrade(Grade $grade): int
+    {
         return $this->section_results
             ->whereIn('sectionId', $grade->completable_sections->pluck('id'))
             ->where('completed', true)
@@ -282,7 +311,8 @@ class Student extends Model {
     /**
      * Get the percentage of completed sections in a specific grade
      */
-    public function percentageSectionsCompletedInGrade(Grade $grade): int {
+    public function percentageSectionsCompletedInGrade(Grade $grade): int
+    {
         $totalSections = $grade->completable_sections->count();
         $completedSections = $this->sectionsCompletedInGrade($grade);
 
@@ -296,14 +326,16 @@ class Student extends Model {
     /**
      * Get the test result for a specific test
      */
-    public function testResult(Test $test): ?TestResult {
+    public function testResult(Test $test): ?TestResult
+    {
         return $this->test_results->where('testId', $test->id)->first();
     }
 
     /**
      * Get the section result for a specific section
      */
-    public function sectionResult(Section $section): ?SectionResult {
+    public function sectionResult(Section $section): ?SectionResult
+    {
         return $this->section_results->where('sectionId', $section->id)->first();
     }
 }

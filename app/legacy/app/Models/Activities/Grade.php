@@ -2,62 +2,75 @@
 
 namespace LegacyModels\Activities;
 
+use App\Legacy\LegacyDB;
+use App\Legacy\User;
+use Illuminate\Support\Facades\Auth;
 use LegacyModels\Activities\Results\TestResult;
 use LegacyModels\OldModel;
-use \App\Legacy\User;
 
-class Grade extends OldModel {
-	/**
-	 * Table name
-	 */
-	protected const TABLE = 'activities_grades';
+class Grade extends OldModel
+{
+    /**
+     * Table name
+     */
+    protected const TABLE = 'activities_grades';
 
-	private $testIds;
-	private $completedTestIds;
+    private $testIds;
 
-	/**
-	 * Get methods
-	 */
-	public function testIds(): array {
-		if ($this->testIds) return $this->testIds;
+    private $completedTestIds;
 
-		$legacyTestTable = Test::table();
-		$legacyTestIndex = Test::indexName();
-		$legacySectionTable = Section::table();
-		$legacySectionIndex = Section::indexName();
-		$legacySectionLinkedIndex = Test::linkedIndexName(Section::class);
+    /**
+     * Get methods
+     */
+    public function testIds(): array
+    {
+        if ($this->testIds) {
+            return $this->testIds;
+        }
 
-		return $this->testIds = (\App\Legacy\LegacyDB::execute(
-			"SELECT $legacyTestTable.$legacyTestIndex
+        $legacyTestTable = Test::table();
+        $legacyTestIndex = Test::indexName();
+        $legacySectionTable = Section::table();
+        $legacySectionIndex = Section::indexName();
+        $legacySectionLinkedIndex = Test::linkedIndexName(Section::class);
+
+        return $this->testIds = (LegacyDB::execute(
+            "SELECT $legacyTestTable.$legacyTestIndex
 				FROM $legacyTestTable 
 				INNER JOIN $legacySectionTable
 				ON $legacyTestTable.$legacySectionLinkedIndex = $legacySectionTable.$legacySectionIndex
 				WHERE FIND_IN_SET(?, grades) AND $legacyTestTable.active = 1 AND $legacySectionTable.active = 1",
-			[$this->id()]
-		))->extractResults() ?: [];
-	}
+            [$this->id()]
+        ))->extractResults() ?: [];
+    }
 
-	public function testCount() {
-		return count($this->testIds());
-	}
+    public function testCount()
+    {
+        return count($this->testIds());
+    }
 
-	public function completedTestIds(): array {
-		if ($this->completedTestIds) return $this->completedTestIds;
+    public function completedTestIds(): array
+    {
+        if ($this->completedTestIds) {
+            return $this->completedTestIds;
+        }
 
-		$legacyTestResultIndex = TestResult::indexName();
-		$legacyTestResultTable = TestResult::table();
-		$legacyTestResultUserIndex = TestResult::linkedIndexName(User::class);
-		$legacyTestResultTestIndex = TestResult::linkedIndexName(Test::class);
-		$gradeTestIds = implode(',', $this->testIds());
+        $legacyTestResultIndex = TestResult::indexName();
+        $legacyTestResultTable = TestResult::table();
+        $legacyTestResultUserIndex = TestResult::linkedIndexName(User::class);
+        $legacyTestResultTestIndex = TestResult::linkedIndexName(Test::class);
+        $gradeTestIds = implode(',', $this->testIds());
 
-		return $this->completedTestIds = \App\Legacy\LegacyDB::execute("SELECT $legacyTestResultIndex FROM $legacyTestResultTable WHERE $legacyTestResultUserIndex = ? AND FIND_IN_SET($legacyTestResultTestIndex, '$gradeTestIds')", [\Illuminate\Support\Facades\Auth::id()])->extractResults() ?: [];
-	}
+        return $this->completedTestIds = LegacyDB::execute("SELECT $legacyTestResultIndex FROM $legacyTestResultTable WHERE $legacyTestResultUserIndex = ? AND FIND_IN_SET($legacyTestResultTestIndex, '$gradeTestIds')", [Auth::id()])->extractResults() ?: [];
+    }
 
-	public function completedTestCount() {
-		return count($this->completedTestIds());
-	}
+    public function completedTestCount()
+    {
+        return count($this->completedTestIds());
+    }
 
-	public function completedPercentage() {
-		return percent($this->completedTestCount(), $this->testCount());
-	}
+    public function completedPercentage()
+    {
+        return percent($this->completedTestCount(), $this->testCount());
+    }
 }

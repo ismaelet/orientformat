@@ -12,7 +12,7 @@
 
     <?php for ($i = 1; $i < 6; $i++) { ?>
 
-        <div id="section<?= $i ?>" class="section bgr-fit" <?= background_image('section' . $i . '.png') ?>></div>
+        <div id="section<?= $i ?>" class="section bgr-fit" <?= background_image('section'.$i.'.png') ?>></div>
 
     <?php } ?>
 
@@ -32,9 +32,9 @@
 
             <div id="result<?= $i ?>" class="result">
                 <div class="title-box fa-center">
-                    <p class="title inlb"><?= $result['name'] ?> <?= $result['percentage'] !== null ? '<span class="percentage">(' . $result['percentage'] . '%)</span>' : '' ?></p><br>
+                    <p class="title inlb"><?= $result['name'] ?> <?= $result['percentage'] !== null ? '<span class="percentage">('.$result['percentage'].'%)</span>' : '' ?></p><br>
 
-                    <?php if (!isSupervisor()) { ?>
+                    <?php if (! isSupervisor()) { ?>
 
                         <p class="reset hide responsive clickable" data-id="<?= $i ?>" onclick="this.nextElementSibling.click()"><?= __('Restart') ?></p>
                         <button type="submit" name="reset-test" class="hidden" value="<?= $result['test']->id ?>"></button>

@@ -15,12 +15,13 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
-class SchoolClassesTable {
-    public static function configure(Table $table): Table {
+class SchoolClassesTable
+{
+    public static function configure(Table $table): Table
+    {
         return $table
             ->modifyQueryUsing(
-                fn($query) =>
-                $query->with(['school', 'referent.user', 'teachers.user'])
+                fn ($query) => $query->with(['school', 'referent.user', 'teachers.user'])
             )
             ->defaultSort('id', 'desc')
             ->columns([
@@ -43,7 +44,7 @@ class SchoolClassesTable {
                 TextColumn::make('teachers.full_name')
                     ->label('Docenti')
                     ->listWithLineBreaks()
-                    ->state(fn($record) => $record->teachers->map(fn($teacher) => $teacher->full_name)),
+                    ->state(fn ($record) => $record->teachers->map(fn ($teacher) => $teacher->full_name)),
                 IconColumn::make('ended')
                     ->label('Percorso terminato')
                     ->boolean(),
@@ -59,7 +60,7 @@ class SchoolClassesTable {
             ->headerActions([
                 ExportAction::make()
                     ->exporter(SchoolClassExporter::class)
-                    ->columnMappingColumns(2)
+                    ->columnMappingColumns(2),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

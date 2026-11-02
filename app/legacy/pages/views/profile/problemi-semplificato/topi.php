@@ -1,3 +1,3 @@
 <?php
 
-include_once('quadrati.php');
+include_once 'quadrati.php';

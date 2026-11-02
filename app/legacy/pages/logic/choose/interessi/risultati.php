@@ -1,6 +1,6 @@
 <?php
 
-use \Legacy\Activity\Result\Handler\StudentTestResult;
+use Legacy\Activity\Result\Handler\StudentTestResult;
 
 $legacyTest = legacy_test();
 $isMiddleSchool = testId() == 92;

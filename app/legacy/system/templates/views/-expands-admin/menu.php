@@ -24,7 +24,7 @@
 				<div class="menu__group">
 
 					<!-- Home link -->
-					<div class="menu-item <?= !$currentSection ? 'active' : '' ?>">
+					<div class="menu-item <?= ! $currentSection ? 'active' : '' ?>">
 						<a class="menu-item__header" href="<?= route('home') ?>">
 							<?= embed_icon('home') ?>
 							<p class="menu-item__title">Home</p>
@@ -39,7 +39,7 @@
 
 							<!-- Item header -->
 							<div class="menu-item__header js-open-menu-category">
-								<?= embed_icon(APP_ICONS_DIR . 'navigation/' . $category['slug']) ?>
+								<?= embed_icon(APP_ICONS_DIR.'navigation/'.$category['slug']) ?>
 								<p class="menu-item__title"><?= $category['name'] ?></p>
 							</div>
 

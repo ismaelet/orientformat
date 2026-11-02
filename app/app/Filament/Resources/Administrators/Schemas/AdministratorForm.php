@@ -9,8 +9,10 @@ use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Schema;
 use Illuminate\Database\Eloquent\Builder;
 
-class AdministratorForm {
-    public static function configure(Schema $schema): Schema {
+class AdministratorForm
+{
+    public static function configure(Schema $schema): Schema
+    {
         return $schema
             ->components([
                 Fieldset::make('user')
@@ -75,7 +77,7 @@ class AdministratorForm {
                                     })
                                     ->limit(20)
                                     ->get()
-                                    ->mapWithKeys(fn(User $user) => [
+                                    ->mapWithKeys(fn (User $user) => [
                                         $user->id => "{$user->last_name} {$user->first_name} ({$user->email})",
                                     ])
                                     ->all();
@@ -97,7 +99,7 @@ class AdministratorForm {
                             ->placeholder('Seleziona una scuola')
                             ->suffixIcon('heroicon-o-academic-cap')
                             ->columnSpanFull(),
-                    ])
+                    ]),
             ]);
     }
 }

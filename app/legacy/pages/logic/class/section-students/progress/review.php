@@ -7,7 +7,7 @@ $reviewResult = ReviewResult::find((int) $reviewResultId);
 $student = $reviewResult->legacy_student();
 
 if ($student->schoolClassId != schoolClassId()) {
-	redirect_old('/class/students/progress/list');
+    redirect_old('/class/students/progress/list');
 }
 
 $parsedResults = $reviewResult->parseResults();

@@ -12,14 +12,14 @@
 
     <!-- Title -->
     <div class="title-box mar-t-4 fa-center">
-        <h1 class="title txt-25rem fw-light">Risultati<br><span class="txt-sbold"><?= $student['last_name'] . ' ' . $student['first_name'] ?></span></h1>
+        <h1 class="title txt-25rem fw-light">Risultati<br><span class="txt-sbold"><?= $student['last_name'].' '.$student['first_name'] ?></span></h1>
         <a href="<?= route('class.students.results.index', ['class' => schoolClassId()]) ?>" class="button button--secondary back">Torna agli studenti</a>
     </div>
 
     <div id="areas" class="mar-t-3">
 
         <?php $i = 0;
-        foreach ($areas as $key => $area) { ?>
+    foreach ($areas as $key => $area) { ?>
 
             <div id="area<?= $key ?>" class="area mar-b-3">
 
@@ -34,7 +34,7 @@
                             <div id="section<?= $legacySection['id'] ?>" class="section panel grid">
 
                                 <div class="icon-box bgr-f6 pad-2">
-                                    <div class="icon" <?= icon_svg('section' . $legacySection['id']) ?>></div>
+                                    <div class="icon" <?= icon_svg('section'.$legacySection['id']) ?>></div>
                                 </div>
 
                                 <div class="result py-4 px-8">

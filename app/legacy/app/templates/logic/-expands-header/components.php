@@ -1,20 +1,22 @@
 <?php
 
+use App\Legacy\LegacyView;
+
 /*
 * Desktop navigation bar
 */
 $headerComponent['desktop-navigation'] = function () {
-	global $header;
-?>
+    global $header;
+    ?>
 
 	<nav class="h-nav">
 
 		<?php foreach ((array) $header['links'] as $link) {
-			if (empty($link['mobile'])) { ?>
+		    if (empty($link['mobile'])) { ?>
 
-				<div class="h-link <?= !isset($link['url']) ? 'h-link--inactive' : '' ?>">
-					<a <?= isset($link['url']) ? 'href="' . $link['url'] . '"' : '' ?> <?= isset($link['megamenu']) ? 'data-function="open-megamenu" data-target="' . $link['megamenu'] . '"' : false ?>>
-						<h3 class="h-link-title <?= \App\Legacy\LegacyView::$location == $link['loc'] ? 'active' : false ?>">
+				<div class="h-link <?= ! isset($link['url']) ? 'h-link--inactive' : '' ?>">
+					<a <?= isset($link['url']) ? 'href="'.$link['url'].'"' : '' ?> <?= isset($link['megamenu']) ? 'data-function="open-megamenu" data-target="'.$link['megamenu'].'"' : false ?>>
+						<h3 class="h-link-title <?= LegacyView::$location == $link['loc'] ? 'active' : false ?>">
 							<?= $link['title'] ?>
 							<?= isset($link['drop']) ? '<span class="h-ddown-icon">&#x25BC;</span>' : false ?>
 						</h3>
@@ -34,7 +36,7 @@ $headerComponent['desktop-navigation'] = function () {
 
 				</div>
 		<?php }
-		} ?>
+		    } ?>
 
 	</nav>
 <?php };
@@ -60,8 +62,8 @@ $headerComponent['mobile-icon'] = function () { ?>
 * Mobile menu
 */
 $headerComponent['mobile-menu'] = function () {
-	global $header;
-?>
+    global $header;
+    ?>
 
 	<div class="h-mob-menu">
 		<div class="h-mob-bgr" data-function="mobile-menu-close"></div>
@@ -74,13 +76,13 @@ $headerComponent['mobile-menu'] = function () {
 			<div class="h-mob-links">
 
 				<?php foreach ((array) $header['links'] as $link) {
-					if (!isset($link['mobile']) || $link['mobile']) { ?>
+				    if (! isset($link['mobile']) || $link['mobile']) { ?>
 
 						<!-- Link -->
 						<label class="link">
 							<input type="checkbox" class="hidden">
 
-							<a class="hm-link_header flex-line" <?= !isset($link['drop']) && !isset($link['megamenu']) ? 'href="' . $link['url'] . '"' : '' ?>>
+							<a class="hm-link_header flex-line" <?= ! isset($link['drop']) && ! isset($link['megamenu']) ? 'href="'.$link['url'].'"' : '' ?>>
 								<h3 class="h-mob-link-title">
 									<?= $link['title'] ?>
 								</h3>
@@ -111,15 +113,15 @@ $headerComponent['mobile-menu'] = function () {
 							<?php } ?>
 
 							<?php if (isset($link['megamenu'])) {
-								$megamenuData = (array) $header['megamenus'][$link['megamenu']];
-							?>
+							    $megamenuData = (array) $header['megamenus'][$link['megamenu']];
+							    ?>
 
 								<!-- Megamenu menu -->
 								<div class="hm-ddown">
 
 									<?php
-									if (isset($megamenuData['type']) && $megamenuData['type'] == 'free') {
-										foreach ($megamenuData['links'] as $ddownLink) { ?>
+							            if (isset($megamenuData['type']) && $megamenuData['type'] == 'free') {
+							                foreach ($megamenuData['links'] as $ddownLink) { ?>
 
 											<p class="hm-ddown_link">
 												<a href="<?= $ddownLink[1] ?>">
@@ -128,8 +130,8 @@ $headerComponent['mobile-menu'] = function () {
 											</p>
 
 										<?php }
-									} else {
-										foreach ($megamenuData as $ddownLinkGroup) { ?>
+							                } else {
+							                    foreach ($megamenuData as $ddownLinkGroup) { ?>
 
 											<p class="hm-ddown_link">
 												<a href="<?= $ddownLinkGroup['url'] ?>">
@@ -138,7 +140,7 @@ $headerComponent['mobile-menu'] = function () {
 											</p>
 
 									<?php }
-									} ?>
+							                    } ?>
 								</div>
 
 							<?php } ?>
@@ -146,7 +148,7 @@ $headerComponent['mobile-menu'] = function () {
 						</label>
 
 				<?php }
-				} ?>
+				    } ?>
 
 			</div>
 		</div>
@@ -158,7 +160,7 @@ $headerComponent['mobile-menu'] = function () {
 */
 $headerComponent['logo'] = function () { ?>
 	<a class="h-logo" href="<?= html_link('') ?>">
-		<img class="img-fit" src="<?= file_url(__LOGO__ . 'logo.svg') ?>">
+		<img class="img-fit" src="<?= file_url(__LOGO__.'logo.svg') ?>">
 	</a>
 <?php };
 
@@ -167,12 +169,12 @@ $headerComponent['logo'] = function () { ?>
 */
 $headerComponent['name'] = '
 	<div class="name-box">
-		<a href="' . html_link() . '">
-			<h3 class="name desk1024">' . $header['name'] . '</h3>
+		<a href="'.html_link().'">
+			<h3 class="name desk1024">'.$header['name'].'</h3>
 		</a>
 
-		<a href="' . html_link() . '">
-			<h3 class="name mob1024">' . $header['name-mob'] . '</h3>
+		<a href="'.html_link().'">
+			<h3 class="name mob1024">'.$header['name-mob'].'</h3>
 		</a>
 	</div>
 ';
@@ -199,12 +201,12 @@ $headerComponent['search-icon'] = function () { ?>
 <?php };
 
 $headerComponent['search-simple'] = '
-	<form class="h-search h-search_simple" action="' . html_link('shop#shop') . '" method="GET" autocomplete="off">
+	<form class="h-search h-search_simple" action="'.html_link('shop#shop').'" method="GET" autocomplete="off">
 		<div class="h-search-icon icon-box">
-			' . embed_icon('search') . '
+			'.embed_icon('search').'
 		</div>
 		
-		<input type="text" class="h-search-inp" name="search" placeholder="' . __('Search') . '">
+		<input type="text" class="h-search-inp" name="search" placeholder="'.__('Search').'">
 	</form>
 ';
 
@@ -212,15 +214,15 @@ $headerComponent['search-simple'] = '
 * Theme switch
 */
 /*$headerComponent['theme-switch'] = '
-					<!-- Theme switch -->
-					<div class="h-theme-switch h-nav-icon">
-						<div class="light-icon icon-box" data-theme="light">
-							<?= embed_icon('sun') ?>
-						</div>
-						<div class="dark-icon icon-box" data-theme="dark">
-							<?= embed_icon('moon') ?>
-						</div>
-					</div>
+                    <!-- Theme switch -->
+                    <div class="h-theme-switch h-nav-icon">
+                        <div class="light-icon icon-box" data-theme="light">
+                            <?= embed_icon('sun') ?>
+                        </div>
+                        <div class="dark-icon icon-box" data-theme="dark">
+                            <?= embed_icon('moon') ?>
+                        </div>
+                    </div>
 
 */
 
@@ -228,12 +230,12 @@ $headerComponent['search-simple'] = '
 * Profile icon
 */
 $headerComponent['profile'] = '
-	<a class="h-profile h-nav-icon" href="' . html_link('profile') . '">
+	<a class="h-profile h-nav-icon" href="'.html_link('profile').'">
 		<div class="icon-box">
-			' . embed_icon('profile-circle') . '
+			'.embed_icon('profile-circle').'
 		</div>
 
-		<p>' . ($user->first_name ?: 'Profilo') . '</p>
+		<p>'.($user->first_name ?: 'Profilo').'</p>
 	</a>
 ';
 
@@ -241,8 +243,8 @@ $headerComponent['profile'] = '
 * Megamenus
 */
 $headerComponent['megamenus'] = function () {
-	global $header;
-?>
+    global $header;
+    ?>
 
 	<section class="megamenus">
 
@@ -250,24 +252,24 @@ $headerComponent['megamenus'] = function () {
 
 		<?php foreach ((array) $header['megamenus'] as $megamenuName => $megamenu) { ?>
 
-			<div class="megamenu <?= isset($megamenu['type']) ? 'megamenu--' . $megamenu['type'] : '' ?>" id="megamenu-<?= $megamenuName ?>">
+			<div class="megamenu <?= isset($megamenu['type']) ? 'megamenu--'.$megamenu['type'] : '' ?>" id="megamenu-<?= $megamenuName ?>">
 				<div class="megamenu-content main-wrap pt-8 pad-b-2">
 
 					<?php if (isset($megamenu['type']) && $megamenu['type'] == 'free') {
-						foreach ($megamenu['links'] as $megamenulink) {
+					    foreach ($megamenu['links'] as $megamenulink) {
 
-							if (!isset($megamenuSection['mobile']) || !$megamenuSection['mobile']) { ?>
+					        if (! isset($megamenuSection['mobile']) || ! $megamenuSection['mobile']) { ?>
 
 								<p class="megamenu_link">
 									<a href="<?= $megamenulink[1] ?>"><?= $megamenulink[0] ?></a>
 								</p>
 
 							<?php }
-						}
+					        }
 					} else {
-						foreach ($megamenu as $megamenuSection) {
+					    foreach ($megamenu as $megamenuSection) {
 
-							if (!isset($megamenuSection['mobile']) || !$megamenuSection['mobile']) { ?>
+					        if (! isset($megamenuSection['mobile']) || ! $megamenuSection['mobile']) { ?>
 
 								<div class="megamenu-group grid gap-4">
 									<?php if ($megamenuSection['title']) { ?>
@@ -285,7 +287,7 @@ $headerComponent['megamenus'] = function () {
 									</div>
 								</div>
 					<?php }
-						}
+					        }
 					} ?>
 
 				</div>

@@ -3,11 +3,11 @@
 namespace Legacy\Http\Controllers\Activities\Tests;
 
 use Legacy\Http\Controllers\Activities\Test;
-
+use System\Traits\Singleton;
 
 /**
  * Specific test class
- * 
+ *
  * @property int $resultCount = 0 <inherited>
  * @property bool $buttonIsProgressive = false <inherited>
  * @property bool $skipEnabled = false <inherited>
@@ -15,68 +15,74 @@ use Legacy\Http\Controllers\Activities\Test;
  * @property array $parameters = [] <inherited>
  * @property array $arguments = []
  */
-class RuotaAvanzatoCaravaggio extends Test {
+class RuotaAvanzatoCaravaggio extends Test
+{
+    use Singleton;
 
-	use \System\Traits\Singleton;
+    protected $skipEnabled = true;
 
-	protected $skipEnabled = true;
-	protected $retryEnabled = true;
-	protected $buttonIsProgressive = true;
-	// protected $arguments = [];
+    protected $retryEnabled = true;
 
-	/**
-	 * Initialize
-	 */
-	private function __construct() {
-		$this->arguments['emotions'] = [];
+    protected $buttonIsProgressive = true;
+    // protected $arguments = [];
 
-		for ($i = 1; $i <= 12; $i++) {
-			$this->arguments['emotions'][] = __('tests.205-emotion-' . $i);
-		}
+    /**
+     * Initialize
+     */
+    private function __construct()
+    {
+        $this->arguments['emotions'] = [];
 
-		$this->arguments['correctResults'] = [
-			9,
-			8,
-			3,
-			6,
-			7,
-			1,
-			12,
-			10,
-			4,
-			11,
-			5,
-			2
-		];
+        for ($i = 1; $i <= 12; $i++) {
+            $this->arguments['emotions'][] = __('tests.205-emotion-'.$i);
+        }
 
-		$this->resultCount = count($this->arguments['correctResults']);
-	}
+        $this->arguments['correctResults'] = [
+            9,
+            8,
+            3,
+            6,
+            7,
+            1,
+            12,
+            10,
+            4,
+            11,
+            5,
+            2,
+        ];
 
-	protected function init() {
-		$this->view();
+        $this->resultCount = count($this->arguments['correctResults']);
+    }
 
-		return $this;
-	}
+    protected function init()
+    {
+        $this->view();
 
-	/**
-	 * Logic
-	 */
-	protected function logic() {
-		// $this->parameters['content'] = null;
-		// $this->resultCount = 0;
-	}
+        return $this;
+    }
 
-	/**
-	 * Template
-	 */
-	protected function template() {
-		ob_start();
-?>
+    /**
+     * Logic
+     */
+    protected function logic()
+    {
+        // $this->parameters['content'] = null;
+        // $this->resultCount = 0;
+    }
+
+    /**
+     * Template
+     */
+    protected function template()
+    {
+        ob_start();
+        ?>
 
 		<section>
-			<?php if (isSupervisor() && !legacy_test()->completed) { ?>
+			<?php if (isSupervisor() && ! legacy_test()->completed) { ?>
 				<?= no_results() ?>
-			<?php  } else { ?>
+			<?php } else { ?>
 
 				<?php if (legacy_test()->completed) { ?>
 
@@ -87,20 +93,20 @@ class RuotaAvanzatoCaravaggio extends Test {
 				<div class="paintings grid grid-column gap-8 columns-15rem">
 
 					<?php foreach ($this->arguments['correctResults'] as $paintingKey => $paintingResult) {
-						$correctAnswer = legacy_test()->completed && legacy_test()->rawResults[$paintingKey] == $this->arguments['correctResults'][$paintingKey];
-					?>
+					    $correctAnswer = legacy_test()->completed && legacy_test()->rawResults[$paintingKey] == $this->arguments['correctResults'][$paintingKey];
+					    ?>
 
 						<div class="painting grid gap-4 js-painting <?= legacy_test()->completed ? ($correctAnswer ? 'painting__correct' : 'painting__wrong') : '' ?>" data-id="<?= $paintingKey + 1 ?>">
-							<img class="painting__image rounded shadow-focused img-fill" src="<?= client_path('painting-' . ($paintingKey + 1)) ?>" alt="">
+							<img class="painting__image rounded shadow-focused img-fill" src="<?= client_path('painting-'.($paintingKey + 1)) ?>" alt="">
 							<select class="painting__select js-field" name="field[]" required data-value="0" <?= legacy_test()->completed ? 'disabled' : '' ?>>
 
 								<!-- Option -->
-								<option value="0" disabled <?= !legacy_test()->completed ? 'selected' : '' ?>>Seleziona un'opzione</option>
+								<option value="0" disabled <?= ! legacy_test()->completed ? 'selected' : '' ?>>Seleziona un'opzione</option>
 
 								<?php foreach ($this->arguments['emotions'] as $emotionKey => $emotion) {
-									$emotionValue = $emotionKey + 1;
-									$selectedOption = legacy_test()->completed && legacy_test()->rawResults[$paintingKey] == $emotionValue;
-								?>
+								    $emotionValue = $emotionKey + 1;
+								    $selectedOption = legacy_test()->completed && legacy_test()->rawResults[$paintingKey] == $emotionValue;
+								    ?>
 
 									<option value="<?= $emotionValue ?>" <?= $selectedOption ? 'selected' : '' ?>><?= $emotion ?></option>
 
@@ -118,14 +124,15 @@ class RuotaAvanzatoCaravaggio extends Test {
 		</section>
 
 	<?php return ob_get_clean();
-	}
+    }
 
-	/**
-	 * Scripts
-	 */
-	protected function scripts() {
-		ob_start();
-	?>
+    /**
+     * Scripts
+     */
+    protected function scripts()
+    {
+        ob_start();
+        ?>
 
 		<script defer>
 			document.addEventListener('DOMContentLoaded', function() {
@@ -150,14 +157,15 @@ class RuotaAvanzatoCaravaggio extends Test {
 		</script>
 
 	<?php return ob_get_clean();
-	}
+    }
 
-	/**
-	 * Style
-	 */
-	protected function style() {
-		ob_start();
-	?>
+    /**
+     * Style
+     */
+    protected function style()
+    {
+        ob_start();
+        ?>
 
 		<style>
 			.painting__image {
@@ -197,20 +205,22 @@ class RuotaAvanzatoCaravaggio extends Test {
 		</style>
 
 <?php return ob_get_clean();
-	}
+    }
 
-	/**
-	 * Post methods
-	 */
-	public function calcResult(array $results = [], int $count = null) {
-		$correctResults = $this->arguments['correctResults'];
-		$rightAnswers = 0;
+    /**
+     * Post methods
+     */
+    public function calcResult(array $results = [], ?int $count = null)
+    {
+        $correctResults = $this->arguments['correctResults'];
+        $rightAnswers = 0;
 
-		foreach ($results as $key => $result) {
-			if ($result == $correctResults[$key]) {
-				$rightAnswers++;
-			}
-		}
-		return percent($rightAnswers, $count);
-	}
+        foreach ($results as $key => $result) {
+            if ($result == $correctResults[$key]) {
+                $rightAnswers++;
+            }
+        }
+
+        return percent($rightAnswers, $count);
+    }
 }

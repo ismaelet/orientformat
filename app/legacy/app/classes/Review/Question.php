@@ -2,126 +2,142 @@
 
 namespace Legacy\Review;
 
-class Question {
+use App\Legacy\LegacyDB;
+use System\Traits\DynamicProperties;
 
-	use \System\Traits\DynamicProperties;
+class Question
+{
+    use DynamicProperties;
 
-	private $areaId;
-	private $dbdata;
+    private $areaId;
 
-	public $id;
-	public $text;
-	public $type;
-	public $slug;
-	public $multiple;
-	public $optional;
-	public $grouppedBy;
+    private $dbdata;
 
-	function __construct($id) {
-		if ($data = \App\Legacy\LegacyDB::row('* FROM review_questions WHERE id=?', [$id])) {
-			$this->id = $id;
-			$this->dbdata = $data;
-			$this->areaId = $this->dbdata['areaId'];
-			$this->slug = $this->dbdata['slug'];
-			$this->text = $this->dbdata['text'];
-			$this->type = $this->dbdata['type'];
-			$this->multiple = $this->dbdata['multiple'];
-			$this->optional = $this->dbdata['optional'];
-			$this->grouppedBy = $this->dbdata['grouppedBy'];
-		}
-	}
+    public $id;
 
-	private function getFullSlug() {
-		return 's' . $this->areaId . 'd' . $this->slug;
-	}
+    public $text;
 
-	private function getHasLegend() {
-		return (bool) $this->dbdata['rows'];
-	}
+    public $type;
 
-	private function getGridHeader() {
-		$header = explode(',', $this->dbdata['gridHeader']);
+    public $slug;
 
-		return $header;
-	}
+    public $multiple;
 
-	private function getRows() {
-		$rows = [];
+    public $optional;
 
-		switch ($this->type) {
-			case 'list':
-				// list
-				$rowTitles = explode(',', $this->dbdata['rows']);
+    public $grouppedBy;
 
-				foreach ($rowTitles as $rowKey => $rowTitle) {
-					$row = [];
-					$row['title'] = $rowTitle;
-					$row['value'] = $this->multiple ? 1 : $rowKey + 1;
-					$row['name'] = $this->multiple ? $this->fullSlug . '_' . ($rowKey + 1) : $this->fullSlug;
+    public function __construct($id)
+    {
+        if ($data = LegacyDB::row('* FROM review_questions WHERE id=?', [$id])) {
+            $this->id = $id;
+            $this->dbdata = $data;
+            $this->areaId = $this->dbdata['areaId'];
+            $this->slug = $this->dbdata['slug'];
+            $this->text = $this->dbdata['text'];
+            $this->type = $this->dbdata['type'];
+            $this->multiple = $this->dbdata['multiple'];
+            $this->optional = $this->dbdata['optional'];
+            $this->grouppedBy = $this->dbdata['grouppedBy'];
+        }
+    }
 
-					$rows[] = $row;
-				}
+    private function getFullSlug()
+    {
+        return 's'.$this->areaId.'d'.$this->slug;
+    }
 
-				break;
+    private function getHasLegend()
+    {
+        return (bool) $this->dbdata['rows'];
+    }
 
-			case 'grid':
-				if ($this->dbdata['rows']) {
-					// multiple rows with legend
-					$rowTitles = explode(',', $this->dbdata['rows']);
+    private function getGridHeader()
+    {
+        $header = explode(',', $this->dbdata['gridHeader']);
 
-					foreach ($rowTitles as $rowKey => $rowTitle) {
-						$row = [];
-						$row['title'] = $rowTitle;
-						$row['content'] = [];
+        return $header;
+    }
 
-						foreach ($this->gridHeader as $headerKey => $_looping) {
-							$row['content'][] = [
-								'value' => $this->grouppedBy == 'rows' ? $headerKey + 1 : $rowKey + 1,
-								'name' => $this->grouppedBy == 'rows' ? $this->fullSlug . '_' . ($rowKey + 1) :  $this->fullSlug . '_' . ($headerKey + 1)
-							];
-						}
+    private function getRows()
+    {
+        $rows = [];
 
-						$rows[] = $row;
-					}
-				} else {
-					// single row
-					$row['content'] = [];
+        switch ($this->type) {
+            case 'list':
+                // list
+                $rowTitles = explode(',', $this->dbdata['rows']);
 
-					foreach ($this->gridHeader as $key => $_looping) {
-						$row['content'][] = [
-							'value' => $key + 1,
-							'name' => $this->fullSlug
-						];
-					}
+                foreach ($rowTitles as $rowKey => $rowTitle) {
+                    $row = [];
+                    $row['title'] = $rowTitle;
+                    $row['value'] = $this->multiple ? 1 : $rowKey + 1;
+                    $row['name'] = $this->multiple ? $this->fullSlug.'_'.($rowKey + 1) : $this->fullSlug;
 
-					$rows[] = $row;
-				}
+                    $rows[] = $row;
+                }
 
-				break;
-		}
+                break;
 
-		return $rows;
-	}
+            case 'grid':
+                if ($this->dbdata['rows']) {
+                    // multiple rows with legend
+                    $rowTitles = explode(',', $this->dbdata['rows']);
 
-	private function getAnswers() {
-		$answers = [];
+                    foreach ($rowTitles as $rowKey => $rowTitle) {
+                        $row = [];
+                        $row['title'] = $rowTitle;
+                        $row['content'] = [];
 
-		if ($this->type == 'grid' && $this->grouppedBy == 'rows') {
-			// answers for grids groupped by rows
-			$rawAnswers = $this->rows[0]['content'];
+                        foreach ($this->gridHeader as $headerKey => $_looping) {
+                            $row['content'][] = [
+                                'value' => $this->grouppedBy == 'rows' ? $headerKey + 1 : $rowKey + 1,
+                                'name' => $this->grouppedBy == 'rows' ? $this->fullSlug.'_'.($rowKey + 1) : $this->fullSlug.'_'.($headerKey + 1),
+                            ];
+                        }
 
-			foreach ($rawAnswers as $answerId => $_looping) {
-				$answers[] = $this->gridHeader[$answerId];
-			}
-		} else {
-			// answers for lists or grids groupped by columns
-			$rawAnswers = $this->rows;
+                        $rows[] = $row;
+                    }
+                } else {
+                    // single row
+                    $row['content'] = [];
 
-			foreach ($rawAnswers as $answer) {
-				$answers[] = $answer['title'];
-			}
-		}
+                    foreach ($this->gridHeader as $key => $_looping) {
+                        $row['content'][] = [
+                            'value' => $key + 1,
+                            'name' => $this->fullSlug,
+                        ];
+                    }
 
-		return $answers;
-	}
+                    $rows[] = $row;
+                }
+
+                break;
+        }
+
+        return $rows;
+    }
+
+    private function getAnswers()
+    {
+        $answers = [];
+
+        if ($this->type == 'grid' && $this->grouppedBy == 'rows') {
+            // answers for grids groupped by rows
+            $rawAnswers = $this->rows[0]['content'];
+
+            foreach ($rawAnswers as $answerId => $_looping) {
+                $answers[] = $this->gridHeader[$answerId];
+            }
+        } else {
+            // answers for lists or grids groupped by columns
+            $rawAnswers = $this->rows;
+
+            foreach ($rawAnswers as $answer) {
+                $answers[] = $answer['title'];
+            }
+        }
+
+        return $answers;
+    }
 }

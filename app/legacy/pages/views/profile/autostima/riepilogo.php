@@ -20,30 +20,30 @@
 
                 <?php foreach ($legacyTests as $key => $dependentTest) {
                     $height = $dependentTest->result && $dependentTest->result->completed ? 1 + ($dependentTest->result->percentage / $maxHeight * 23) : 0;
-                ?>
+                    ?>
 
                     <div id="sec-box<?= $dependentTest->id ?>" class="sec-box grid-ele al-top" data-test="<?= $dependentTest->slug ?>">
                         <input type="hidden" name="testId" value="<?= $dependentTest->id ?>">
                         <div class="test-res js-load" style="height: <?= $height ?>rem;"></div>
                         <div class="ele-cont fa-center">
-                            <div class="test-ico inlb" <?= background_image('/pages/assets/profile/autostima/riepilogo/test-' . $dependentTest->slug . '.png') ?>></div>
+                            <div class="test-ico inlb" <?= background_image('/pages/assets/profile/autostima/riepilogo/test-'.$dependentTest->slug.'.png') ?>></div>
                             <div class="test-data txt-lef js-load load--fade-in" data-direction="top">
                                 <div class="test-line"></div>
                                 <div class="test-dot"></div>
 
                                 <h3 class="test-title txt-15rem txt-upp"><?= $dependentTest->title ?></h3>
 
-                                <h3 class="score mar-t-10px <?= $dependentTest->completed ? 'completed txt-2rem' : 'uncompleted txt-11rem' ?>"><?= $dependentTest->completed ? $dependentTest->percentage . '%' : __('to complete') ?></h3>
+                                <h3 class="score mar-t-10px <?= $dependentTest->completed ? 'completed txt-2rem' : 'uncompleted txt-11rem' ?>"><?= $dependentTest->completed ? $dependentTest->percentage.'%' : __('to complete') ?></h3>
 
                                 <p class="test-desc">
                                     <?= $dependentTest->completed ? __('You have completed this self-assessment. Click below to repeat it:') : __('You have not completed this self-assessment yet. Click below to start it:') ?>
                                 </p>
 
-                                <?php if ($dependentTest->completed && !isSupervisor()) { ?>
+                                <?php if ($dependentTest->completed && ! isSupervisor()) { ?>
 
                                     <button type="submit" name="reset-test" class="test-btn txt-c3 mar-t-1" value="<?= $dependentTest->id ?>" onclick="return confirm('<?= __('Are you sure you want to repeat the assessment?') ?>')"><?= __('Restart') ?></button>
 
-                                <?php } else if (!isSupervisor()) { ?>
+                                <?php } elseif (! isSupervisor()) { ?>
 
                                     <a href="<?= $dependentTest->clientUrl ?>" class="test-btn txt-c4 mar-t-1 font-bold"><?= __('Start') ?></a>
 

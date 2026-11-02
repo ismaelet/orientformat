@@ -5,315 +5,357 @@ namespace App\Legacy;
 use Legacy\Review\Area;
 use Review\Question;
 
-class Questionnaire {
-	const TABLE = 'review_results';
+class Questionnaire
+{
+    const TABLE = 'review_results';
 
-	private static $platformResults = [];
+    private static $platformResults = [];
 
-	private $data = [];
-	private $row;
+    private $data = [];
 
-	public $id = null;
-	public $reviewId;
+    private $row;
 
-	function __construct($id) {
-		if ($row = \App\Legacy\LegacyDB::row('* FROM ' . self::TABLE . ' WHERE id = ?', [$id])) {
-			$this->id = $id;
-			$this->row = $row['results'];
-			$this->reviewId = $row['reviewId'];
-		}
-	}
+    public $id = null;
 
-	function __get($name) {
-		switch ($name) {
-			case 'areas':
-				return $this->data['areas'] = $this->getAreas();
-			case 'results':
-				return $this->data['results'] = $this->getResults();
-			case 'numericResults':
-				return $this->data['numericResults'] = $this->getNumericResults();
-			case 'rawResults':
-				return $this->data['rawResults'] = $this->getRawResults();
-			case 'choice':
-				return $this->data['choice'] = $this->getChoice();
-			case 'platformResults':
-				return $this->data['platformResults'] = self::getPlatformResults();
-		}
-	}
+    public $reviewId;
 
-	/*
-	* GET properties
-	*/
-	// get the student choice
-	private function getChoice() {
-		$choiceRawResults = [];
-		$compactChoice = [];
-		$allRawResults = $this->rawResults ?? null;
-		$results = $this->results['s2d2'] ?? null;
+    public function __construct($id)
+    {
+        if ($row = LegacyDB::row('* FROM '.self::TABLE.' WHERE id = ?', [$id])) {
+            $this->id = $id;
+            $this->row = $row['results'];
+            $this->reviewId = $row['reviewId'];
+        }
+    }
 
-		if ($results) {
-			for ($i = 1; $i <= 4; $i++) {
-				$choiceRawResults[] = $allRawResults['s2d2_' . $i] ?? null;
-			}
+    public function __get($name)
+    {
+        switch ($name) {
+            case 'areas':
+                return $this->data['areas'] = $this->getAreas();
+            case 'results':
+                return $this->data['results'] = $this->getResults();
+            case 'numericResults':
+                return $this->data['numericResults'] = $this->getNumericResults();
+            case 'rawResults':
+                return $this->data['rawResults'] = $this->getRawResults();
+            case 'choice':
+                return $this->data['choice'] = $this->getChoice();
+            case 'platformResults':
+                return $this->data['platformResults'] = self::getPlatformResults();
+        }
+    }
 
-			$preferredChoices = array_keys($choiceRawResults, max($choiceRawResults));
+    /*
+    * GET properties
+    */
+    // get the student choice
+    private function getChoice()
+    {
+        $choiceRawResults = [];
+        $compactChoice = [];
+        $allRawResults = $this->rawResults ?? null;
+        $results = $this->results['s2d2'] ?? null;
 
-			foreach ($preferredChoices as $preferredChoiceKey) {
-				$compactChoice = array_merge($compactChoice, array_slice($results, $preferredChoiceKey, 1));
-			}
-		}
+        if ($results) {
+            for ($i = 1; $i <= 4; $i++) {
+                $choiceRawResults[] = $allRawResults['s2d2_'.$i] ?? null;
+            }
 
-		return $compactChoice;
-	}
+            $preferredChoices = array_keys($choiceRawResults, max($choiceRawResults));
 
-	/*
-	* Structure raw results
-	*/
-	private function getRawResults() {
-		$results = [];
-		$rawResults = $this->row;
-		$rawResults = explode(',', $rawResults);
+            foreach ($preferredChoices as $preferredChoiceKey) {
+                $compactChoice = array_merge($compactChoice, array_slice($results, $preferredChoiceKey, 1));
+            }
+        }
 
-		foreach ($rawResults as $result) {
-			$result = explode('=', $result);
-			$results[$result[0]] = $result[1] ?? false;
-		}
+        return $compactChoice;
+    }
 
-		return $results;
-	}
+    /*
+    * Structure raw results
+    */
+    private function getRawResults()
+    {
+        $results = [];
+        $rawResults = $this->row;
+        $rawResults = explode(',', $rawResults);
 
-	/*
-	* Get the review areas
-	*/
-	private function getAreas() {
-		$areas = [];
-		$areaIds = explode(',', \App\Legacy\LegacyDB::find('areas FROM reviews WHERE id=?', [$this->reviewId]));
+        foreach ($rawResults as $result) {
+            $result = explode('=', $result);
+            $results[$result[0]] = $result[1] ?? false;
+        }
 
-		foreach ($areaIds as $areaId) {
-			$areas[] = new Area($areaId, $this->reviewId);
-		}
+        return $results;
+    }
 
-		return $areas;
-	}
+    /*
+    * Get the review areas
+    */
+    private function getAreas()
+    {
+        $areas = [];
+        $areaIds = explode(',', LegacyDB::find('areas FROM reviews WHERE id=?', [$this->reviewId]));
 
-	/*
-	* Results of a specific question
-	*/
-	private function getQuestionResults($question) {
-		$result = null;
+        foreach ($areaIds as $areaId) {
+            $areas[] = new Area($areaId, $this->reviewId);
+        }
 
-		if ($question->type == 'grid' && count($question->rows) == 1) {
-			// grid with a single row
-			$resultValue = $this->rawResults[$question->fullSlug] ?? null;
-			if ($resultValue) $result = $question->answers[$resultValue - 1];
-		} else if ($question->type == 'grid' && $question->grouppedBy == 'rows') {
-			// grid with multiple rows, results groupped by rows
-			$result = [];
-			foreach ($question->rows as $resultId => $_looping) {
-				$resultValue = $this->rawResults[$question->fullSlug . '_' . ($resultId + 1)] ?? null;
-				if ($resultValue) $result[$question->rows[$resultId]['title']] = $question->answers[$resultValue - 1];
-			}
-		} else if ($question->type == 'grid') {
-			// grid with results groupped by columns
-			$result = [];
-			foreach ($question->gridHeader as $resultId => $_looping) {
-				$resultValue = $this->rawResults[$question->fullSlug . '_' . ($resultId + 1)] ?? null;
-				if ($resultValue) $result[$question->gridHeader[$resultId]] = $question->answers[$resultValue - 1];
-			}
-		} else if ($question->type == 'list' && !$question->multiple) {
-			// list with only one result
-			$resultValue = $this->rawResults[$question->fullSlug] ?? null;
-			if ($resultValue) $result = $question->answers[$resultValue - 1];
-		} else if ($question->type == 'list') {
-			// list with multiple possible results
-			$result = [];
-			foreach ($question->rows as $resultId => $_looping) {
-				$question->fullSlug . '<br>';
-				$resultValue = $this->rawResults[$question->fullSlug . '_' . ($resultId + 1)] ?? null;
-				if ($resultValue) $result[] = $question->answers[$resultValue - 1];
-			}
-		}
+        return $areas;
+    }
 
-		return $result;
-	}
+    /*
+    * Results of a specific question
+    */
+    private function getQuestionResults($question)
+    {
+        $result = null;
 
-	/*
-	* Numeric results of a specific question
-	*/
-	private function getNumericQuestionResults($question) {
-		$result = null;
+        if ($question->type == 'grid' && count($question->rows) == 1) {
+            // grid with a single row
+            $resultValue = $this->rawResults[$question->fullSlug] ?? null;
+            if ($resultValue) {
+                $result = $question->answers[$resultValue - 1];
+            }
+        } elseif ($question->type == 'grid' && $question->grouppedBy == 'rows') {
+            // grid with multiple rows, results groupped by rows
+            $result = [];
+            foreach ($question->rows as $resultId => $_looping) {
+                $resultValue = $this->rawResults[$question->fullSlug.'_'.($resultId + 1)] ?? null;
+                if ($resultValue) {
+                    $result[$question->rows[$resultId]['title']] = $question->answers[$resultValue - 1];
+                }
+            }
+        } elseif ($question->type == 'grid') {
+            // grid with results groupped by columns
+            $result = [];
+            foreach ($question->gridHeader as $resultId => $_looping) {
+                $resultValue = $this->rawResults[$question->fullSlug.'_'.($resultId + 1)] ?? null;
+                if ($resultValue) {
+                    $result[$question->gridHeader[$resultId]] = $question->answers[$resultValue - 1];
+                }
+            }
+        } elseif ($question->type == 'list' && ! $question->multiple) {
+            // list with only one result
+            $resultValue = $this->rawResults[$question->fullSlug] ?? null;
+            if ($resultValue) {
+                $result = $question->answers[$resultValue - 1];
+            }
+        } elseif ($question->type == 'list') {
+            // list with multiple possible results
+            $result = [];
+            foreach ($question->rows as $resultId => $_looping) {
+                $question->fullSlug.'<br>';
+                $resultValue = $this->rawResults[$question->fullSlug.'_'.($resultId + 1)] ?? null;
+                if ($resultValue) {
+                    $result[] = $question->answers[$resultValue - 1];
+                }
+            }
+        }
 
-		if ($question->type == 'grid' && count($question->rows) == 1) {
-			// grid with a single row
-			$resultValue = $this->rawResults[$question->fullSlug] ?? null;
-			if ($resultValue) $result = $question->answers[$resultValue - 1];
-		} else if ($question->type == 'grid' && $question->grouppedBy == 'rows') {
-			// grid with multiple rows, results groupped by rows
-			$result = [];
-			foreach ($question->rows as $resultId => $_looping) {
-				$resultValue = $this->rawResults[$question->fullSlug . '_' . ($resultId + 1)] ?? null;
-				if ($resultValue) $result[$resultId + 1] = $resultValue;
-			}
-		} else if ($question->type == 'grid') {
-			// grid with results groupped by columns
-			$result = [];
-			foreach ($question->gridHeader as $resultId => $_looping) {
-				$resultValue = $this->rawResults[$question->fullSlug . '_' . ($resultId + 1)] ?? null;
-				if ($resultValue) $result[$resultId + 1] = $resultValue;
-			}
-		} else if ($question->type == 'list' && !$question->multiple) {
-			// list with only one result
-			$resultValue = $this->rawResults[$question->fullSlug] ?? null;
-			if ($resultValue) $result = $resultValue;
-		} else if ($question->type == 'list') {
-			// list with multiple possible results
-			$result = [];
-			foreach ($question->rows as $resultId => $_looping) {
-				$question->fullSlug . '<br>';
-				$resultValue = $this->rawResults[$question->fullSlug . '_' . ($resultId + 1)] ?? null;
-				if ($resultValue) $result[] = $question->answers[$resultValue - 1];
-			}
-		}
+        return $result;
+    }
 
-		return $result;
-	}
+    /*
+    * Numeric results of a specific question
+    */
+    private function getNumericQuestionResults($question)
+    {
+        $result = null;
 
-	/*
-	* All the results
-	*/
-	public function getResults() {
-		$results = [];
+        if ($question->type == 'grid' && count($question->rows) == 1) {
+            // grid with a single row
+            $resultValue = $this->rawResults[$question->fullSlug] ?? null;
+            if ($resultValue) {
+                $result = $question->answers[$resultValue - 1];
+            }
+        } elseif ($question->type == 'grid' && $question->grouppedBy == 'rows') {
+            // grid with multiple rows, results groupped by rows
+            $result = [];
+            foreach ($question->rows as $resultId => $_looping) {
+                $resultValue = $this->rawResults[$question->fullSlug.'_'.($resultId + 1)] ?? null;
+                if ($resultValue) {
+                    $result[$resultId + 1] = $resultValue;
+                }
+            }
+        } elseif ($question->type == 'grid') {
+            // grid with results groupped by columns
+            $result = [];
+            foreach ($question->gridHeader as $resultId => $_looping) {
+                $resultValue = $this->rawResults[$question->fullSlug.'_'.($resultId + 1)] ?? null;
+                if ($resultValue) {
+                    $result[$resultId + 1] = $resultValue;
+                }
+            }
+        } elseif ($question->type == 'list' && ! $question->multiple) {
+            // list with only one result
+            $resultValue = $this->rawResults[$question->fullSlug] ?? null;
+            if ($resultValue) {
+                $result = $resultValue;
+            }
+        } elseif ($question->type == 'list') {
+            // list with multiple possible results
+            $result = [];
+            foreach ($question->rows as $resultId => $_looping) {
+                $question->fullSlug.'<br>';
+                $resultValue = $this->rawResults[$question->fullSlug.'_'.($resultId + 1)] ?? null;
+                if ($resultValue) {
+                    $result[] = $question->answers[$resultValue - 1];
+                }
+            }
+        }
 
+        return $result;
+    }
 
-		foreach ($this->areas as $area) {
-			foreach ($area->questions as $question) {
-				$questionResult = $this->getQuestionResults($question);
+    /*
+    * All the results
+    */
+    public function getResults()
+    {
+        $results = [];
 
-				if (!empty($questionResult)) $results[$question->fullSlug] = $questionResult;
-			}
-		}
+        foreach ($this->areas as $area) {
+            foreach ($area->questions as $question) {
+                $questionResult = $this->getQuestionResults($question);
 
-		return $results;
-	}
+                if (! empty($questionResult)) {
+                    $results[$question->fullSlug] = $questionResult;
+                }
+            }
+        }
 
-	/*
-	* All the numeric results
-	*/
-	public function getNumericResults() {
-		$results = [];
+        return $results;
+    }
 
-		foreach ($this->areas as $area) {
-			foreach ($area->questions as $question) {
-				$questionResult = $this->getNumericQuestionResults($question);
+    /*
+    * All the numeric results
+    */
+    public function getNumericResults()
+    {
+        $results = [];
 
-				if (is_array($questionResult)) {
-					foreach ($questionResult as $subQuestionId => $questionSubResult) {
-						$results[$question->fullSlug . '_' . $subQuestionId] = $questionSubResult ?: 0;
-					}
-				} else {
-					$results[$question->fullSlug] = $questionResult ?: 0;
-				}
-			}
-		}
+        foreach ($this->areas as $area) {
+            foreach ($area->questions as $question) {
+                $questionResult = $this->getNumericQuestionResults($question);
 
-		return $results;
-	}
+                if (is_array($questionResult)) {
+                    foreach ($questionResult as $subQuestionId => $questionSubResult) {
+                        $results[$question->fullSlug.'_'.$subQuestionId] = $questionSubResult ?: 0;
+                    }
+                } else {
+                    $results[$question->fullSlug] = $questionResult ?: 0;
+                }
+            }
+        }
 
-	/*
-	* Averages
-	*/
-	static private function getPlatformResults() {
-		$results = [];
+        return $results;
+    }
 
-		// prepare all the results
-		$resultRows = \App\Legacy\LegacyDB::select('id FROM review_results');
+    /*
+    * Averages
+    */
+    private static function getPlatformResults()
+    {
+        $results = [];
 
-		while ($resultRow = $resultRows->fetch_assoc()) {
-			$profile = new self($resultRow['id']);
-			$results[] = $profile->results;
-		}
+        // prepare all the results
+        $resultRows = LegacyDB::select('id FROM review_results');
 
-		return self::$platformResults = $results;
-	}
+        while ($resultRow = $resultRows->fetch_assoc()) {
+            $profile = new self($resultRow['id']);
+            $results[] = $profile->results;
+        }
 
-	static public function getAverages() {
-		$averages = [];
+        return self::$platformResults = $results;
+    }
 
-		// calculate the average for each question
-		$questions = \App\Legacy\LegacyDB::select('id FROM review_questions WHERE average=1');
+    public static function getAverages()
+    {
+        $averages = [];
 
-		while ($questionRow = $questions->fetch_assoc()) {
-			$averageValues = null;
-			$average = 0;
-			$question = new Question($questionRow['id']);
-			$average = \App\Legacy\LegacyDB::find('results FROM averages_surveys WHERE questionId=? AND time > NOW() - INTERVAL 1 WEEK', [$question->id]);
+        // calculate the average for each question
+        $questions = LegacyDB::select('id FROM review_questions WHERE average=1');
 
-			// when the result is an array
-			if (strpos($average, ',')) {
-				$averagesRaw = explode(',', $average);
-				$average = [];
+        while ($questionRow = $questions->fetch_assoc()) {
+            $averageValues = null;
+            $average = 0;
+            $question = new Question($questionRow['id']);
+            $average = LegacyDB::find('results FROM averages_surveys WHERE questionId=? AND time > NOW() - INTERVAL 1 WEEK', [$question->id]);
 
-				foreach ($averagesRaw as $averageRaw) {
-					$averageRaw = explode('=', $averageRaw);
-					$average[$averageRaw[0]] = $averageRaw[1];
-				}
-			}
+            // when the result is an array
+            if (strpos($average, ',')) {
+                $averagesRaw = explode(',', $average);
+                $average = [];
 
-			// when it isn't present the precalculated result
-			if (!$average) {
-				$resultCount = 0;
-				$platformResults = self::$platformResults ?: self::getPlatformResults();
+                foreach ($averagesRaw as $averageRaw) {
+                    $averageRaw = explode('=', $averageRaw);
+                    $average[$averageRaw[0]] = $averageRaw[1];
+                }
+            }
 
-				foreach ($platformResults as $result) {
-					$resultValues = $result[$question->fullSlug] ?? false;
+            // when it isn't present the precalculated result
+            if (! $average) {
+                $resultCount = 0;
+                $platformResults = self::$platformResults ?: self::getPlatformResults();
 
-					if ($resultValues !== false) {
-						$resultCount++;
+                foreach ($platformResults as $result) {
+                    $resultValues = $result[$question->fullSlug] ?? false;
 
-						if (is_array($resultValues)) {
-							if ($averageValues === null) $averageValues = [];
+                    if ($resultValues !== false) {
+                        $resultCount++;
 
-							foreach ($resultValues as $resultTitle => $resultValue) {
-								if (!isset($averageValues[$resultTitle])) $averageValues[$resultTitle] = 0;
-								$averageValues[$resultTitle] += $resultValue;
-							}
-						} else {
-							if ($averageValues === null) $averageValues = 0;
-							$averageValues += $resultValues;
-						}
-					}
-				}
+                        if (is_array($resultValues)) {
+                            if ($averageValues === null) {
+                                $averageValues = [];
+                            }
 
-				if (is_array($averageValues)) {
-					$average = [];
-					$averageSql = [];
+                            foreach ($resultValues as $resultTitle => $resultValue) {
+                                if (! isset($averageValues[$resultTitle])) {
+                                    $averageValues[$resultTitle] = 0;
+                                }
+                                $averageValues[$resultTitle] += $resultValue;
+                            }
+                        } else {
+                            if ($averageValues === null) {
+                                $averageValues = 0;
+                            }
+                            $averageValues += $resultValues;
+                        }
+                    }
+                }
 
-					foreach ($averageValues as $resultTitle => $resultValue) {
-						$average[$resultTitle] = format($resultValue / $resultCount);
-						$averageSql[] = $resultTitle . '=' . format($resultValue / $resultCount);
-					}
+                if (is_array($averageValues)) {
+                    $average = [];
+                    $averageSql = [];
 
-					$averageSql = implode(',', $averageSql);
-				} else {
-					$average = $averageSql = format($averageValues / $resultCount);
-				}
+                    foreach ($averageValues as $resultTitle => $resultValue) {
+                        $average[$resultTitle] = format($resultValue / $resultCount);
+                        $averageSql[] = $resultTitle.'='.format($resultValue / $resultCount);
+                    }
 
-				\App\Legacy\LegacyDB::delete('averages_surveys WHERE questionId=?', [$question->id]);
-				\App\Legacy\LegacyDB::add('averages_surveys (questionId, results)', [$question->id, $averageSql]);
-			}
+                    $averageSql = implode(',', $averageSql);
+                } else {
+                    $average = $averageSql = format($averageValues / $resultCount);
+                }
 
-			$averages[$question->fullSlug] = $average;
-		}
+                LegacyDB::delete('averages_surveys WHERE questionId=?', [$question->id]);
+                LegacyDB::add('averages_surveys (questionId, results)', [$question->id, $averageSql]);
+            }
 
-		return $averages;
-	}
+            $averages[$question->fullSlug] = $average;
+        }
 
-	/*
-	* Entry management
-	*/
-	public static function generateLastCompleted(int $studentId) {
-		$questionnaireId = \App\Legacy\LegacyDB::find('id FROM ' . self::TABLE . ' WHERE studentId = ? ORDER BY reviewId DESC', [$studentId]);
+        return $averages;
+    }
 
-		return new self($questionnaireId);
-	}
+    /*
+    * Entry management
+    */
+    public static function generateLastCompleted(int $studentId)
+    {
+        $questionnaireId = LegacyDB::find('id FROM '.self::TABLE.' WHERE studentId = ? ORDER BY reviewId DESC', [$studentId]);
+
+        return new self($questionnaireId);
+    }
 }

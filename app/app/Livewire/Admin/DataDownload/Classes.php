@@ -3,12 +3,10 @@
 namespace App\Livewire\Admin\DataDownload;
 
 use App\Models\Schools\SchoolClass;
-use App\Models\User\Student;
-use Illuminate\Support\Carbon;
 use Livewire\Component;
 
-class Classes extends Component {
-
+class Classes extends Component
+{
     /**
      * Property: School year
      */
@@ -27,14 +25,16 @@ class Classes extends Component {
     /**
      * Lifecycle Hook: Render the component view
      */
-    public function render() {
+    public function render()
+    {
         return view('livewire.admin.data-download.classes');
     }
 
     /**
      * Action: Download data based on selected parameters
      */
-    public function downloadData() {
+    public function downloadData()
+    {
 
         $data = [];
 
@@ -49,7 +49,7 @@ class Classes extends Component {
 
             if ($this->activeClasses) {
                 // Filter by active classes within the school year
-                $classes = $classes->filter(fn($class) => $class->wasActiveInYear($this->schoolYear));
+                $classes = $classes->filter(fn ($class) => $class->wasActiveInYear($this->schoolYear));
             } else {
                 // Filter by registration date within the school year
                 $classes = $classes->whereBetween('created_at', [$startDate, $endDate]);
@@ -60,8 +60,7 @@ class Classes extends Component {
             $expected = $this->schoolType === 'highschool';
 
             $classes = $classes->filter(
-                fn($class) =>
-                $class->grade_level->is_highschool == $expected
+                fn ($class) => $class->grade_level->is_highschool == $expected
             );
         }
 
@@ -71,7 +70,7 @@ class Classes extends Component {
             $data[] = [
                 'ID' => $class->id,
                 'Nome' => $class->name,
-                $this->schoolYear ? 'Anno di corso nel ' . $this->schoolYear : 'Anno di corso' => $gradeLevel?->school_relative_number ?? '.',
+                $this->schoolYear ? 'Anno di corso nel '.$this->schoolYear : 'Anno di corso' => $gradeLevel?->school_relative_number ?? '.',
                 'Scuola' => $class->school?->name ?? '.',
                 'Scuola superiore' => $class->grade_level->is_highschool ? 'Sì' : 'No',
                 'Ha terminato il percorso' => $class->ended ? 'Sì' : 'No',
@@ -83,12 +82,12 @@ class Classes extends Component {
             return session()->flash('error', 'Nessun dato trovato con i parametri selezionati.');
         }
 
-        $fileName = 'Lista_Classi_' . now()->format('Ymd_His') . '.csv';
+        $fileName = 'Lista_Classi_'.now()->format('Ymd_His').'.csv';
 
-        $filePath = storage_path('app/' . $fileName);
+        $filePath = storage_path('app/'.$fileName);
         $handle = fopen($filePath, 'w');
 
-        fputcsv($handle, array_map(fn($field) => ucfirst($field), array_keys($data[0] ?? [])));
+        fputcsv($handle, array_map(fn ($field) => ucfirst($field), array_keys($data[0] ?? [])));
 
         foreach ($data as $student) {
             fputcsv($handle, $student);

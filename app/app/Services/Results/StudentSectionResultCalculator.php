@@ -9,13 +9,14 @@ use App\Models\Activities\Section;
 use App\Models\Activities\Test;
 use App\Models\Results\User\TestResult;
 use App\Models\User\Student;
-use App\Support\Graphs\SectionGraphDefinition;
 use App\Support\Graphs\GraphSections;
+use App\Support\Graphs\SectionGraphDefinition;
 use App\Support\SectionResultDefinitions;
 use Illuminate\Support\Collection;
 use RuntimeException;
 
-class StudentSectionResultCalculator {
+class StudentSectionResultCalculator
+{
     /**
      * Sections whose condensed result is the average
      * of their detailed result percentages.
@@ -57,13 +58,12 @@ class StudentSectionResultCalculator {
 
     public function __construct(
         private StudentTestResultCalculator $studentTestResults,
-    ) {
-    }
+    ) {}
 
     /**
      * Preload the test results needed to calculate a section.
      *
-     * @param iterable<int, Student> $students
+     * @param  iterable<int, Student>  $students
      */
     public function preloadResults(
         Section $section,
@@ -82,7 +82,8 @@ class StudentSectionResultCalculator {
         );
     }
 
-    public function clearPreloadedResults(): void {
+    public function clearPreloadedResults(): void
+    {
         $this->studentTestResults
             ->clearCompletedResultCache();
     }
@@ -116,7 +117,7 @@ class StudentSectionResultCalculator {
                 ->where('sectionId', $section->id)
                 ->whereNotIn('id', $skipTestIds)
                 ->where(
-                    fn($query) => $query
+                    fn ($query) => $query
                         ->whereNull('template')
                         ->orWhere(
                             'template',
@@ -126,7 +127,7 @@ class StudentSectionResultCalculator {
                 )
                 ->pluck('id')
                 ->map(
-                    fn($id): int => (int) $id,
+                    fn ($id): int => (int) $id,
                 )
                 ->all();
         }
@@ -249,7 +250,7 @@ class StudentSectionResultCalculator {
             }
 
             if (
-                !$this->studentTestResults->isCompleted(
+                ! $this->studentTestResults->isCompleted(
                     testId: $test->id,
                     student: $student,
                 )
@@ -299,7 +300,7 @@ class StudentSectionResultCalculator {
 
         return round(
             $total / count($results),
-        ) . '%';
+        ).'%';
     }
 
     private function mainTestResult(
@@ -380,7 +381,7 @@ class StudentSectionResultCalculator {
     }
 
     /**
-     * @param array<int> $testIds
+     * @param  array<int>  $testIds
      */
     private function detailedResultForTestIds(
         array $testIds,
@@ -390,7 +391,7 @@ class StudentSectionResultCalculator {
 
         foreach ($testIds as $testId) {
             if (
-                !$this->studentTestResults->isCompleted(
+                ! $this->studentTestResults->isCompleted(
                     testId: $testId,
                     student: $student,
                 )
@@ -457,7 +458,7 @@ class StudentSectionResultCalculator {
     /**
      * Calculate the average percentage for a specific set of tests.
      *
-     * @param array<int> $testIds
+     * @param  array<int>  $testIds
      */
     private function averageResultForTestIds(
         array $testIds,
@@ -467,7 +468,7 @@ class StudentSectionResultCalculator {
 
         foreach ($testIds as $testId) {
             if (
-                !$this->studentTestResults->isCompleted(
+                ! $this->studentTestResults->isCompleted(
                     testId: $testId,
                     student: $student,
                 )
@@ -498,7 +499,7 @@ class StudentSectionResultCalculator {
 
         return round(
             array_sum($values) / count($values),
-        ) . '%';
+        ).'%';
     }
 
     public function preloadResultsForGraph(
@@ -557,7 +558,7 @@ class StudentSectionResultCalculator {
 
         return round(
             $total / count($detailedResult),
-        ) . '%';
+        ).'%';
     }
 
     private function attentionDetailedResult(
@@ -626,13 +627,12 @@ class StudentSectionResultCalculator {
             ->where('completed', true)
             ->first();
 
-        if (!$testResult?->result) {
+        if (! $testResult?->result) {
             return null;
         }
 
         $values = array_map(
-            static fn(string $value): int =>
-            (int) trim($value),
+            static fn (string $value): int => (int) trim($value),
             explode(',', $testResult->result),
         );
 
@@ -655,13 +655,12 @@ class StudentSectionResultCalculator {
 
         return collect($types)
             ->map(
-                fn(
+                fn (
                     string $type,
                     int $index,
                 ): array => [
                     'name' => $type,
-                    'percentage' =>
-                    $this->scrivereSemplificatoPercentage(
+                    'percentage' => $this->scrivereSemplificatoPercentage(
                         $values[$index],
                     ),
                 ],
@@ -725,7 +724,7 @@ class StudentSectionResultCalculator {
         }
 
         if (
-            !$this->studentTestResults->isCompleted(
+            ! $this->studentTestResults->isCompleted(
                 testId: $testId,
                 student: $student,
             )
@@ -747,10 +746,9 @@ class StudentSectionResultCalculator {
 
         return $results
             ->map(
-                static fn(Collection $result): array => [
+                static fn (Collection $result): array => [
                     'name' => (string) $result->get('name'),
-                    'percentage' =>
-                    (float) $result->get('percentage'),
+                    'percentage' => (float) $result->get('percentage'),
                 ],
             )
             ->values()
@@ -774,7 +772,7 @@ class StudentSectionResultCalculator {
 
         return collect($percentages)
             ->map(
-                static fn(
+                static fn (
                     int|float $percentage,
                     string $name,
                 ): array => [

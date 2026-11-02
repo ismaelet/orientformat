@@ -1,3 +1,5 @@
 <?php
 
-if (!logged()) redirect_old('/login');
+if (! logged()) {
+    redirect_old('/login');
+}

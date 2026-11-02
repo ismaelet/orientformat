@@ -2,5 +2,4 @@
 
 namespace App\Helpers\Tests;
 
-class RicordareSemplificatoCifreHelper extends RicordareCifreHelper {
-}
+class RicordareSemplificatoCifreHelper extends RicordareCifreHelper {}

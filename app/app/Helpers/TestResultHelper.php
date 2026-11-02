@@ -4,8 +4,8 @@ namespace App\Helpers;
 
 use App\Models\Results\User\TestResult;
 
-class TestResultHelper {
-
+class TestResultHelper
+{
     public static function getResult(
         int $studentId,
         int $testId,
@@ -86,7 +86,7 @@ class TestResultHelper {
         foreach ($testIds as $testId) {
             $result = $latestResults->get($testId);
 
-            if (!$result) {
+            if (! $result) {
                 continue;
             }
 

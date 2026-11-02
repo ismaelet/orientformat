@@ -4,47 +4,48 @@
 * Requires:
 * 	- columns (key => value)
 */
-function graph_columns($graphData) {
+function graph_columns($graphData)
+{
 
-	$renderData = [];
-	$max = $graphData['max'];
+    $renderData = [];
+    $max = $graphData['max'];
 
-	foreach ($graphData['columns'] as $columnName => $columnData) {
-		$renderColumn = [];
-		$renderColumn['name'] = $columnName;
-		$renderColumn['count'] = $columnData['count'] ?? null;
+    foreach ($graphData['columns'] as $columnName => $columnData) {
+        $renderColumn = [];
+        $renderColumn['name'] = $columnName;
+        $renderColumn['count'] = $columnData['count'] ?? null;
 
-		if (isset($columnData['subcolumns'])) {
-			// multiple columns
-			$intColumnData = [];
-			$renderColumn['subcolumns'] = [];
+        if (isset($columnData['subcolumns'])) {
+            // multiple columns
+            $intColumnData = [];
+            $renderColumn['subcolumns'] = [];
 
-			// store sub-columns data
-			foreach ($columnData['subcolumns'] as $subName => $subValue) {
-				$value = strip_letters($subValue);
-				$subData = [];
-				$subData['name'] = $subName;
-				$subData['valueStr'] = $subValue;
-				$subData['value'] = round($value / $max * 100);
-				$renderColumn['subcolumns'][] = $subData;
-			}
+            // store sub-columns data
+            foreach ($columnData['subcolumns'] as $subName => $subValue) {
+                $value = strip_letters($subValue);
+                $subData = [];
+                $subData['name'] = $subName;
+                $subData['valueStr'] = $subValue;
+                $subData['value'] = round($value / $max * 100);
+                $renderColumn['subcolumns'][] = $subData;
+            }
 
-			foreach ($columnData['subcolumns'] as $subValue) {
-				$intColumnData[] = strip_letters($subValue);
-			}
+            foreach ($columnData['subcolumns'] as $subValue) {
+                $intColumnData[] = strip_letters($subValue);
+            }
 
-			$renderColumn['average'] = round(array_sum($intColumnData) / (count($intColumnData) * $max) * 100);
-		} else {
-			// single column
-			$value = strip_letters($columnData);
-			$renderColumn['valueStr'] = $columnData;
-			$renderColumn['value'] = round($value / $max * 100);
-		}
+            $renderColumn['average'] = round(array_sum($intColumnData) / (count($intColumnData) * $max) * 100);
+        } else {
+            // single column
+            $value = strip_letters($columnData);
+            $renderColumn['valueStr'] = $columnData;
+            $renderColumn['value'] = round($value / $max * 100);
+        }
 
-		// store column data
-		$renderData[] = $renderColumn;
-	}
-?>
+        // store column data
+        $renderData[] = $renderColumn;
+    }
+    ?>
 
 	<section class="column-graph <?= isset($graphData['legend']) ? 'column-graph--has-legend' : '' ?>" style="--_total-columns: <?= count($graphData['columns']) ?>;">
 
@@ -52,7 +53,7 @@ function graph_columns($graphData) {
 
 			<!-- Legend -->
 			<div class="flex ha-rig">
-				<div class="graph-legend <?= 'graph-legend--' . ($graphData['legend-style'] ?? 'line') ?>">
+				<div class="graph-legend <?= 'graph-legend--'.($graphData['legend-style'] ?? 'line') ?>">
 
 					<?php foreach ($graphData['legend'] as $legendEntry) { ?>
 
@@ -72,7 +73,7 @@ function graph_columns($graphData) {
 
 			<!-- Columns -->
 			<?php foreach ($renderData as $columnKey => $columnData) {
-				if (isset($columnData['subcolumns'])) { ?>
+			    if (isset($columnData['subcolumns'])) { ?>
 
 					<!-- Multiple columns -->
 					<div class="graph-column graph-column_multiple" style="--_count: <?= $columnKey + 1 ?>; --_average: <?= $columnData['average'] ?>">
@@ -133,18 +134,18 @@ function graph_columns($graphData) {
 						</div>
 					</div>
 			<?php }
-			} ?>
+				} ?>
 
 			<!-- Average lines -->
 			<?php if (isset($graphData['averages'])) {
-				foreach ($graphData['averages'] as $averageName => $average) { ?>
+			    foreach ($graphData['averages'] as $averageName => $average) { ?>
 					<div class="graph-box-average" style="--_value: <?= strip_letters($average) ?>;">
 						<div class="graph-box-average_info">
-							<p><?= $averageName . ': <span class="txt-sbold">' . $average . '</span>' ?></p>
+							<p><?= $averageName.': <span class="txt-sbold">'.$average.'</span>' ?></p>
 						</div>
 					</div>
 			<?php }
-			} ?>
+			    } ?>
 
 		</div>
 

@@ -8,10 +8,12 @@ use Filament\Actions\Exports\Exporter;
 use Filament\Actions\Exports\Models\Export;
 use Illuminate\Support\Number;
 
-class SchoolExporter extends Exporter {
+class SchoolExporter extends Exporter
+{
     protected static ?string $model = School::class;
 
-    public static function getColumns(): array {
+    public static function getColumns(): array
+    {
         return [
             ExportColumn::make('id')->label('ID Scuola'),
             ExportColumn::make('name')->label('Nome Scuola'),
@@ -21,11 +23,12 @@ class SchoolExporter extends Exporter {
         ];
     }
 
-    public static function getCompletedNotificationBody(Export $export): string {
-        $body = 'Your school export has completed and ' . Number::format($export->successful_rows) . ' ' . str('row')->plural($export->successful_rows) . ' exported.';
+    public static function getCompletedNotificationBody(Export $export): string
+    {
+        $body = 'Your school export has completed and '.Number::format($export->successful_rows).' '.str('row')->plural($export->successful_rows).' exported.';
 
         if ($failedRowsCount = $export->getFailedRowsCount()) {
-            $body .= ' ' . Number::format($failedRowsCount) . ' ' . str('row')->plural($failedRowsCount) . ' failed to export.';
+            $body .= ' '.Number::format($failedRowsCount).' '.str('row')->plural($failedRowsCount).' failed to export.';
         }
 
         return $body;

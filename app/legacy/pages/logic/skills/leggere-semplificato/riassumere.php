@@ -1,6 +1,6 @@
 <?php
 
-use LogicManager\TestLogic;
+use App\Legacy\LegacyView;
 
 $legacyTest = legacy_test();
 
@@ -14,7 +14,7 @@ for ($i = 1; $i <= 7; $i++) {
 $options = [];
 
 for ($i = 1; $i <= 14; $i++) {
-    $options[] = ['id' => $i, 'text' => __('tests.39-missing-word-' . $i), 'correct' => true];
+    $options[] = ['id' => $i, 'text' => __('tests.39-missing-word-'.$i), 'correct' => true];
 }
 
 shuffle($options);
@@ -35,24 +35,24 @@ foreach ($text as $key => &$part) {
             $inp = '<span class="font-bold underline ';
             $inp .= $result == $correctAnswers[$inputId] ? 'text-success-400' : 'text-error-400';
             $inp .= '">';
-            $inp .= __('tests.' . $legacyTest->id . '-missing-word-' . $result);
+            $inp .= __('tests.'.$legacyTest->id.'-missing-word-'.$result);
             $inp .= '</span>';
         } else {
             $value = legacy_test()->rawResults[$key - 1] ?? '';
             $inp = '
-			<label class="droppable"><span class="option"></span><input type="hidden" class="js-field" name="field[]" value="' . $value . '" readonly></label>';
+			<label class="droppable"><span class="option"></span><input type="hidden" class="js-field" name="field[]" value="'.$value.'" readonly></label>';
         }
 
-        $part = $inp . '<span>' . $part . '</span>';
+        $part = $inp.'<span>'.$part.'</span>';
     }
 }
 
 $text = implode('', $text);
 
-\Legacy\LogicManager\TestLogic::setParameterCount($count)
+Legacy\LogicManager\TestLogic::setParameterCount($count)
     ->setTestSubmitFunction(
         function ($count) {
-            $correctAnswers = \App\Legacy\LegacyView::getInstance()->get('correctAnswers');
+            $correctAnswers = LegacyView::getInstance()->get('correctAnswers');
             $rightN = 0;
 
             foreach ($_POST['field'] as $key => $result) {

@@ -48,7 +48,7 @@
 
     <?= title() ?>
 
-    <?php if ($legacyTest->completed || !isSupervisor()) { ?>
+    <?php if ($legacyTest->completed || ! isSupervisor()) { ?>
 
         <div id="text-box" class="section grid grid-cols-1 gap-8">
 
@@ -58,7 +58,7 @@
             <div class="summary-text"><?= $text ?></div>
 
             <!-- Draggable options -->
-            <?php if (!legacy_test()->completed) { ?>
+            <?php if (! legacy_test()->completed) { ?>
                 <div class="flex gap-4 wrap justify-center <?= isSupervisor() ? 'pointer-events-none' : '' ?>">
                     <?php foreach ($options as $key => $option) { ?>
                         <p id="draggable-<?= $key ?>" class="border px-2 rounded-sm draggable-option draggable" draggable="true" data-id="<?= $option['id'] ?>"><?= $option['text'] ?></p>

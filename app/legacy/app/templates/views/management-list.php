@@ -5,7 +5,11 @@
 <!-- Slider -->
 <section id="slider">
 
-	<div id="bgr-img" class="bgr" <?= background_image('/pages/assets/management/bgr.png') ?>></div>
+	<div id="bgr-img" class="bgr" <?php
+
+use App\Legacy\LegacyDB;
+
+?><?= background_image('/pages/assets/management/bgr.png') ?>></div>
 
 </section>
 
@@ -45,11 +49,13 @@
 
 				<div class="head">
 					
-					<?php foreach ($fields as $field) if (isset($field['size'])) { ?>
+					<?php foreach ($fields as $field) {
+					    if (isset($field['size'])) { ?>
 
 						<p class="field field-<?= $field['size'] ?>"><?= $field['title'] ?? '' ?></p>
 
-					<?php } ?>
+					<?php }
+					    } ?>
 
 				</div>
 
@@ -60,36 +66,42 @@
 						<!-- Fields -->
 						<?php foreach ($fields as $field) {
 
-							$type = $field['type'] ?? 'text';
-							$name = $field['name'] ?? false;
+						    $type = $field['type'] ?? 'text';
+						    $name = $field['name'] ?? false;
 
-							if ($type == 'text') {
+						    if ($type == 'text') {
 
-								$val = $field['value'] ?? $entry[$name];
-								if (isset($field['switch'])) $val = empty($val) ? $field['switch'][1] : $field['switch'][0];
+						        $val = $field['value'] ?? $entry[$name];
+						        if (isset($field['switch'])) {
+						            $val = empty($val) ? $field['switch'][1] : $field['switch'][0];
+						        }
 
-								?>
+						        ?>
 
 								<!-- Normal fields -->
 								<p class="field"><?= $val ?></p>
 
-							<?php } else if ($type == 'find') {
+							<?php } elseif ($type == 'find') {
 
-								$val = \App\Legacy\LegacyDB::find($field['find'][0], $entry[$field['find'][1]]);
-								if (isset($field['switch'])) $val = empty($val) ? $field['switch'][1] : $field['switch'][0];
-								if (isset($field['parse']) && $field['parse'] == 'int') $val = (int) $val;
+							    $val = LegacyDB::find($field['find'][0], $entry[$field['find'][1]]);
+							    if (isset($field['switch'])) {
+							        $val = empty($val) ? $field['switch'][1] : $field['switch'][0];
+							    }
+							    if (isset($field['parse']) && $field['parse'] == 'int') {
+							        $val = (int) $val;
+							    }
 
-								?>
+							    ?>
 
 								<!-- Find fields -->
 								<p class="field"><?= $val ?></p>
 
-							<?php } else if ($type == 'hidden') { ?>
+							<?php } elseif ($type == 'hidden') { ?>
 
 								<!-- Hidden fields -->
 								<input type="hidden" name="<?= $field['name'] ?>" value="<?= $entry[$field['name']] ?>">
 
-							<?php } else if ($type == 'btn') { ?>
+							<?php } elseif ($type == 'btn') { ?>
 
 								<!-- Buttons -->
 								<div class="field btn-box">
@@ -111,15 +123,15 @@
 
 											</button>
 
-										<?php } else if ($action['type'] == 'edit') { ?>
+										<?php } elseif ($action['type'] == 'edit') { ?>
 
 											<a href="add?id=<?= $entry[$index] ?>" class="btn c3">Modifica</a>
 
-										<?php } else if ($action['type'] == 'delete') { ?>
+										<?php } elseif ($action['type'] == 'delete') { ?>
 
 											<button type="submit" name="delete" class="btn red" onclick="return confirm('Sei sicuro/a di voler l\'elemento? Una volta eliminato non potrà essere recuperato')">Elimina</button>
 
-										<?php } else if ($action['type'] == 'link') { ?>
+										<?php } elseif ($action['type'] == 'link') { ?>
 
 											<a href="<?= $action['link'].'?id='.$entry[$index] ?>" class="btn gre"><?= $action['title'] ?></a>
 

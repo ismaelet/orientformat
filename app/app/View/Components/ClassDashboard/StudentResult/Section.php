@@ -13,8 +13,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\Component;
 
-class Section extends Component {
-
+class Section extends Component
+{
     /**
      * Property: The result of the section
      */
@@ -58,8 +58,9 @@ class Section extends Component {
     /**
      * Create a new component instance.
      */
-    public function __construct(public ActivitiesSection $section, public Area $area, public Student $student) {
-        $infoKey = 'section-infos.' . $section->originalSection()->id;
+    public function __construct(public ActivitiesSection $section, public Area $area, public Student $student)
+    {
+        $infoKey = 'section-infos.'.$section->originalSection()->id;
 
         $info = __($infoKey);
 
@@ -100,17 +101,19 @@ class Section extends Component {
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): View|Closure|string {
+    public function render(): View|Closure|string
+    {
         return view('components.class-dashboard.student-result.section');
     }
 
     /**
      * Get the number of attempts made to complete the self evaluation test for the section
      */
-    private function getEvaluationTestAttempts(array $attemptsByTest): ?int {
+    private function getEvaluationTestAttempts(array $attemptsByTest): ?int
+    {
         $evaluationTest = $this->section->evaluation_test;
 
-        if (!$evaluationTest) {
+        if (! $evaluationTest) {
             return null;
         }
 

@@ -2,13 +2,14 @@
 
 namespace Legacy\Http;
 
+use System\Traits\Singleton;
 
+class Request
+{
+    use Singleton;
 
-class Request {
-
-	use \System\Traits\Singleton;
-
-	public static function method() {
-		return $_SERVER['REQUEST_METHOD'] ?: 'GET';
-	}
+    public static function method()
+    {
+        return $_SERVER['REQUEST_METHOD'] ?: 'GET';
+    }
 }

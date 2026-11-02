@@ -5,7 +5,7 @@
 		<div class="title__wrapper">
 			<?= title() ?>
 
-			<?php if (!$legacyTest->completed || $legacyTest->percentage == 100) { ?>
+			<?php if (! $legacyTest->completed || $legacyTest->percentage == 100) { ?>
 
 				<p id="end" class="fa-center txt-c5 font-bold txt-25rem"><?= __('tests.36-right') ?></p>
 
@@ -18,7 +18,7 @@
 			<div>
 				<?= submit(true) ?>
 
-				<?php if (!$legacyTest->completed) { ?>
+				<?php if (! $legacyTest->completed) { ?>
 
 					<label>
 						<p class="txt-c3 clickable inlb"><?= __('tests.36-skip') ?></p>

@@ -17,8 +17,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Teacher extends Model {
-
+class Teacher extends Model
+{
     use HasFactory, SoftDeletes;
 
     /**
@@ -33,98 +33,110 @@ class Teacher extends Model {
     /**
      * Attribute: Get the teacher's first name
      */
-    public function firstName(): Attribute {
+    public function firstName(): Attribute
+    {
         return new Attribute(
-            get: fn() => $this->user?->first_name,
+            get: fn () => $this->user?->first_name,
         );
     }
 
     /**
      * Attribute: Get the teacher's last name
      */
-    public function lastName(): Attribute {
+    public function lastName(): Attribute
+    {
         return new Attribute(
-            get: fn() => $this->user?->last_name,
+            get: fn () => $this->user?->last_name,
         );
     }
 
     /**
      * Attribute: Get the teacher's full name
      */
-    public function fullName(): Attribute {
+    public function fullName(): Attribute
+    {
         return new Attribute(
-            get: fn() => $this->user?->full_name,
+            get: fn () => $this->user?->full_name,
         );
     }
 
     /**
      * Attribute: Get the teacher's full name (inverted)
      */
-    public function invertedFullName(): Attribute {
+    public function invertedFullName(): Attribute
+    {
         return new Attribute(
-            get: fn() => $this->user?->inverted_full_name,
+            get: fn () => $this->user?->inverted_full_name,
         );
     }
 
     /**
      * Relationship: The user associated with this teacher
      */
-    public function user(): BelongsTo {
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 
     /**
      * Relationship: The school where this teacher currently works
      */
-    public function school(): BelongsTo {
+    public function school(): BelongsTo
+    {
         return $this->belongsTo(School::class);
     }
 
     /**
      * Relationship: The classes this teacher is assigned to
      */
-    public function classes(): BelongsToMany {
+    public function classes(): BelongsToMany
+    {
         return $this->belongsToMany(SchoolClass::class);
     }
 
     /**
      * Relationship: The classes this teacher is assigned to
-     * 
+     *
      * ! Legacy
      */
-    public function school_classes(): BelongsToMany {
+    public function school_classes(): BelongsToMany
+    {
         return $this->belongsToMany(SchoolClass::class);
     }
 
     /**
      * Relationship: The test results of the teacher
      */
-    public function test_results(): HasMany {
+    public function test_results(): HasMany
+    {
         return $this->hasMany(TestResult::class, 'studentId')->orderBy('created_at', 'desc');
     }
 
     /**
      * Relationship: The section results of the teacher
      */
-    public function section_results(): HasMany {
+    public function section_results(): HasMany
+    {
         return $this->hasMany(SectionResult::class, 'studentId');
     }
 
     /**
      * Check if the teacher has access to a specific class
      */
-    public function hasAccessToClass(SchoolClass $class): bool {
+    public function hasAccessToClass(SchoolClass $class): bool
+    {
         return $this->school_classes->pluck('id')->contains($class->id);
     }
 
     /**
      * Get the IDs of all students in the classes taught by this teacher
      */
-    public function studentIds(): array {
+    public function studentIds(): array
+    {
         return $this->classes()
             ->with('students')
             ->get()
-            ->flatMap(fn($class) => $class->students->pluck('id'))
+            ->flatMap(fn ($class) => $class->students->pluck('id'))
             ->unique()
             ->values()
             ->all();
@@ -133,28 +145,32 @@ class Teacher extends Model {
     /**
      * Check if a teacher has completed a specific section
      */
-    public function hasCompletedSection(Section $section): bool {
+    public function hasCompletedSection(Section $section): bool
+    {
         return $this->section_results->where('sectionId', $section->id)->where('completed', true)->count();
     }
 
     /**
      * Check if a teacher has completed a specific test
      */
-    public function hasCompletedTest(Test $test): bool {
+    public function hasCompletedTest(Test $test): bool
+    {
         return $this->test_results->where('testId', $test->id)->where('completed', true)->count();
     }
 
     /**
      * Get the test result for a specific test
      */
-    public function testResult(Test $test): ?TestResult {
+    public function testResult(Test $test): ?TestResult
+    {
         return $this->test_results->where('testId', $test->id)->first();
     }
 
     /**
      * Get the section result for a specific section
      */
-    public function sectionResult(Section $section): ?SectionResult {
+    public function sectionResult(Section $section): ?SectionResult
+    {
         return $this->section_results->where('sectionId', $section->id)->first();
     }
 }

@@ -11,16 +11,18 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class RuotaIVoltiParlanoHelper implements TestHelperInterface {
-
+class RuotaIVoltiParlanoHelper implements TestHelperInterface
+{
     public const int FACE_COUNT = 8;
+
     public const int MOUTH_COUNT = 8;
 
     /**
      * This is a creative exercise, so every completed
      * submission receives 100%.
      */
-    public function calculatePercentage(array $fields): int {
+    public function calculatePercentage(array $fields): int
+    {
         return 100;
     }
 
@@ -117,8 +119,8 @@ class RuotaIVoltiParlanoHelper implements TestHelperInterface {
 
             $wasCompleted = (bool) $result?->completed;
 
-            if (!$result) {
-                $result = new TestResult();
+            if (! $result) {
+                $result = new TestResult;
                 $result->studentId = $student->id;
                 $result->testId = $test->id;
             }
@@ -133,7 +135,7 @@ class RuotaIVoltiParlanoHelper implements TestHelperInterface {
             $result->completed = true;
             $result->save();
 
-            if (!$wasCompleted) {
+            if (! $wasCompleted) {
                 $test->section->updateProgress($student);
             }
         });

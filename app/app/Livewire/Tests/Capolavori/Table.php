@@ -4,29 +4,26 @@ namespace App\Livewire\Tests\Capolavori;
 
 use App\Helpers\FileHelper;
 use App\Models\Masterpiece;
-use Faker\Core\File;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\Select;
-use Filament\Schemas\Components\Icon;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table as FilamentTable;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-class Table extends Component implements HasTable, HasActions, HasSchemas {
-
-    use InteractsWithTable;
-    use InteractsWithSchemas;
+class Table extends Component implements HasActions, HasSchemas, HasTable
+{
     use InteractsWithActions;
+    use InteractsWithSchemas;
+    use InteractsWithTable;
 
     /**
      * Property: Count of masterpieces
@@ -36,22 +33,25 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
     /**
      * Lifecycle hook: Mount the component
      */
-    public function mount() {
+    public function mount()
+    {
         $this->masterpieceCount = student()->masterpieces()->count();
     }
 
     /**
      * Lifecycle hook: Render the component view
      */
-    public function render() {
+    public function render()
+    {
         return view('livewire.tests.capolavori.table');
     }
 
-    public function table(FilamentTable $table): FilamentTable {
+    public function table(FilamentTable $table): FilamentTable
+    {
         return $table
             ->defaultSort('id', 'asc')
             ->paginated(false)
-            ->query(fn() => student()->masterpieces())
+            ->query(fn () => student()->masterpieces())
             ->columns([
                 TextColumn::make('title')
                     ->label('Titolo')
@@ -65,7 +65,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
             ->recordActions([
                 EditAction::make()
                     ->label('Modifica')
-                    ->modalHeading(fn($record) => "Modifica il capolavoro: {$record->title}")
+                    ->modalHeading(fn ($record) => "Modifica il capolavoro: {$record->title}")
                     ->color('info')
                     ->schema([
                         Select::make('setting')
@@ -83,7 +83,7 @@ class Table extends Component implements HasTable, HasActions, HasSchemas {
                     ]),
                 DeleteAction::make()
                     ->label('Elimina')
-                    ->modalHeading(fn(Masterpiece $record): string => "Elimina il capolavoro: {$record->title}")
+                    ->modalHeading(fn (Masterpiece $record): string => "Elimina il capolavoro: {$record->title}")
                     ->color('danger')
                     ->after(function (Masterpiece $record) {
                         FileHelper::delete($record->storageFilePath());

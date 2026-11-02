@@ -2,53 +2,60 @@
 
 namespace App\Legacy;
 
-class Query {
+class Query
+{
+    public $stmt = false;
 
-	public $stmt = false;
-	public $res = false;
-	public $num_rows = 0;
+    public $res = false;
 
-	function __construct($stmt) {
+    public $num_rows = 0;
 
-		$this->stmt = $stmt;
+    public function __construct($stmt)
+    {
 
-		if ($this->stmt->num_rows) {
+        $this->stmt = $stmt;
 
-			$this->num_rows = $this->stmt->num_rows;
+        if ($this->stmt->num_rows) {
 
-			$res = [];
-			$row = [];
-			$params = [];
+            $this->num_rows = $this->stmt->num_rows;
 
-			$fields = $this->stmt->result_metadata();
+            $res = [];
+            $row = [];
+            $params = [];
 
-			while ($field = $fields->fetch_field()) $params[] = &$row[$field->name];
+            $fields = $this->stmt->result_metadata();
 
-			$this->stmt->bind_result(...$params);
+            while ($field = $fields->fetch_field()) {
+                $params[] = &$row[$field->name];
+            }
 
-			$i = 0;
-			while ($this->stmt->fetch()) {
+            $this->stmt->bind_result(...$params);
 
-				$j = 0;
-				foreach ($row as $value) {
-					$res[$i][array_keys($row)[$j]] = $value;
-					$j++;
-				}
+            $i = 0;
+            while ($this->stmt->fetch()) {
 
-				$i++;
-			}
+                $j = 0;
+                foreach ($row as $value) {
+                    $res[$i][array_keys($row)[$j]] = $value;
+                    $j++;
+                }
 
-			$this->res = $res;
-		}
-	}
+                $i++;
+            }
 
-	//get result
-	function get_result() {
-		return new Query_Result($this);
-	}
+            $this->res = $res;
+        }
+    }
 
-	// return the response
-	public function extractResults() {
-		return $this->num_rows ? array_column($this->res, key($this->res[0])) : null;
-	}
+    // get result
+    public function get_result()
+    {
+        return new Query_Result($this);
+    }
+
+    // return the response
+    public function extractResults()
+    {
+        return $this->num_rows ? array_column($this->res, key($this->res[0])) : null;
+    }
 }

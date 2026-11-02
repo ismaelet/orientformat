@@ -7,12 +7,13 @@ use App\Helpers\Tests\RuotaHelper;
 use App\Helpers\Tests\ScrivereSemplificatoMappaHelper;
 use App\Models\Activities\Section;
 use App\Models\Activities\Test;
-use App\Support\Graphs\SectionGraphDefinition;
 use App\Support\Graphs\GraphSections;
+use App\Support\Graphs\SectionGraphDefinition;
 
-class SectionGraphData {
-
+class SectionGraphData
+{
     private const RUOTA_SECTION_IDS = [27, 58];
+
     private const SCRIVERE_SEMPLIFICATO_SECTION_ID = 34;
 
     /**
@@ -74,8 +75,7 @@ class SectionGraphData {
 
             'data' => $graphValues,
 
-            'condensed_label' =>
-            $this->condensedLabelForGraph(
+            'condensed_label' => $this->condensedLabelForGraph(
                 graph: $graph,
                 valueCount: $condensed['count'],
             ),
@@ -85,8 +85,7 @@ class SectionGraphData {
                 value: $condensed['value'],
             ),
 
-            'description' =>
-            $graph->description
+            'description' => $graph->description
                 ?? GraphSections::descriptionForSection(
                     $section->id,
                 ),
@@ -164,8 +163,7 @@ class SectionGraphData {
         $graphData = [
             'key' => $graph->key,
 
-            'description' =>
-            $graph->description
+            'description' => $graph->description
                 ?? GraphSections::descriptionForSection(
                     $section->id,
                 ),
@@ -176,15 +174,12 @@ class SectionGraphData {
             ),
 
             'datasets' => [
-                'school_class' =>
-                $schoolClassGraphValues,
+                'school_class' => $schoolClassGraphValues,
 
-                'platform' =>
-                $platformGraphValues,
+                'platform' => $platformGraphValues,
             ],
 
-            'condensed_label' =>
-            $this->condensedLabelForGraph(
+            'condensed_label' => $this->condensedLabelForGraph(
                 graph: $graph,
                 valueCount: $condensed['count'],
             ),
@@ -195,12 +190,10 @@ class SectionGraphData {
             ),
 
             'dataset_labels' => [
-                'school_class' =>
-                $graph->schoolClassDatasetLabel
+                'school_class' => $graph->schoolClassDatasetLabel
                     ?? 'Risultato della classe',
 
-                'platform' =>
-                $graph->platformDatasetLabel
+                'platform' => $graph->platformDatasetLabel
                     ?? 'Risultato della piattaforma',
             ],
         ];
@@ -246,7 +239,7 @@ class SectionGraphData {
         }
 
         return array_map(
-            fn($value) => round(
+            fn ($value) => round(
                 $value / $total * 100,
             ),
             array_values($values),
@@ -296,12 +289,11 @@ class SectionGraphData {
             GraphSections::CONDENSED_STUDENT_AVERAGE => [
                 'value' => $studentAverage === null
                     ? null
-                    : round($studentAverage) . '%',
+                    : round($studentAverage).'%',
                 'count' => 1,
             ],
 
-            GraphSections::CONDENSED_MAX =>
-            $this->maxLabelsResult(
+            GraphSections::CONDENSED_MAX => $this->maxLabelsResult(
                 $rawValues,
             ),
         };
@@ -405,7 +397,7 @@ class SectionGraphData {
         return percent(
             array_sum($values),
             count($values) * 100,
-        ) . '%';
+        ).'%';
     }
 
     /**
@@ -475,13 +467,12 @@ class SectionGraphData {
         Section $section,
         array $labels,
     ): array {
-        if (!in_array($section->id, self::RUOTA_SECTION_IDS, true)) {
+        if (! in_array($section->id, self::RUOTA_SECTION_IDS, true)) {
             return $labels;
         }
 
         return array_map(
-            static fn(string $label): string =>
-            ucfirst($label),
+            static fn (string $label): string => ucfirst($label),
             $labels,
         );
     }
@@ -494,14 +485,14 @@ class SectionGraphData {
         string|int|float|null $value,
     ): string|int|float|null {
         if (
-            !in_array($section->id, self::RUOTA_SECTION_IDS, true)
-            || !is_string($value)
+            ! in_array($section->id, self::RUOTA_SECTION_IDS, true)
+            || ! is_string($value)
         ) {
             return $value;
         }
 
         return mb_strtoupper(
             mb_substr($value, 0, 1),
-        ) . mb_substr($value, 1);
+        ).mb_substr($value, 1);
     }
 }

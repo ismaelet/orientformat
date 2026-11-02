@@ -17,23 +17,24 @@ if ($categoryId) {
     $topics = $categoryData ? $categoryData->topics()->orderBy('sort', 'asc')->get() : collect();
 }
 
-function _fill_text($text, $topicId) {
+function _fill_text($text, $topicId)
+{
     // place counters
     $counterId = 0;
 
     while (strpos($text, $needle = '{{ counter }}') !== false) {
         $counterId++;
 
-        $text = preg_replace('/' . $needle . '/', '<br><strong>' . $counterId . '.</strong> ', $text, 1);
+        $text = preg_replace('/'.$needle.'/', '<br><strong>'.$counterId.'.</strong> ', $text, 1);
     }
 
     // place quotes
     while (strpos($text, $needle = '{q ') !== false) {
-        $text = preg_replace('/' . $needle . '/', '"<strong>', $text, 1);
+        $text = preg_replace('/'.$needle.'/', '"<strong>', $text, 1);
     }
 
     while (strpos($text, $needle = ' q}') !== false) {
-        $text = preg_replace('/' . $needle . '/', '</strong>"', $text, 1);
+        $text = preg_replace('/'.$needle.'/', '</strong>"', $text, 1);
     }
 
     // place images
@@ -42,13 +43,13 @@ function _fill_text($text, $topicId) {
     while (strpos($text, $needle = '{{ img }}') !== false) {
         $imgId++;
 
-        if (file_exists(resource_path('images/support/' . $topicId . '-' . $imgId . '.webp'))) {
-            $imagePath = Vite::image('support/' . $topicId . '-' . $imgId . '.webp');
+        if (file_exists(resource_path('images/support/'.$topicId.'-'.$imgId.'.webp'))) {
+            $imagePath = Vite::image('support/'.$topicId.'-'.$imgId.'.webp');
         } else {
-            $imagePath = asset('legacy/pages/assets/support/' . $topicId . '-' . $imgId . '.jpg');
+            $imagePath = asset('legacy/pages/assets/support/'.$topicId.'-'.$imgId.'.jpg');
         }
 
-        $text = preg_replace('/' . $needle . '/', '<br><br><img class="topic_img js-open-modal" src="' . $imagePath . '" loading="lazy" data-target="img-modal"><br>', $text, 1);
+        $text = preg_replace('/'.$needle.'/', '<br><br><img class="topic_img js-open-modal" src="'.$imagePath.'" loading="lazy" data-target="img-modal"><br>', $text, 1);
     }
 
     $text = trim(nl2br($text));

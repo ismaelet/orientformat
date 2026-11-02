@@ -2,67 +2,68 @@
 
 namespace App\Legacy;
 
-use Illuminate\Support\Facades\Auth;
+class MiddlewareLoader
+{
+    use Singleton;
 
-class MiddlewareLoader {
+    private static $middlewares = [];
 
-	use Singleton;
+    private function __construct()
+    {
+        $defaultMiddlewareLoader = [
+            'public' => function () {
+                // dd('public');
+                $public = ! LegacyConfig::getInstance()->hasDatabase ?: LegacyDB::find('value FROM config WHERE name = ?', ['public']);
 
-	private static $middlewares = [];
+                if (! $public) {
+                    redirect_old('/offline');
+                }
+            },
 
-	private function __construct() {
-		$defaultMiddlewareLoader = [
-			'public' => function () {
-				// dd('public');
-				$public = !\App\Legacy\LegacyConfig::getInstance()->hasDatabase ?: \App\Legacy\LegacyDB::find('value FROM config WHERE name = ?', ['public']);
+            'not-public' => function () {
+                // dd('not-public');
+                $public = ! LegacyConfig::getInstance()->hasDatabase ?: LegacyDB::find('value FROM config WHERE name = ?', ['public']);
 
-				if (!$public) {
-					redirect_old('/offline');
-				}
-			},
+                if ($public) {
+                    redirect_old('/');
+                }
+            },
 
-			'not-public' => function () {
-				// dd('not-public');
-				$public = !\App\Legacy\LegacyConfig::getInstance()->hasDatabase ?: \App\Legacy\LegacyDB::find('value FROM config WHERE name = ?', ['public']);
+            'logged' => function () {
+                if (! logged()) {
+                    redirect_old('/login');
+                }
+            },
 
-				if ($public) {
-					redirect_old('/');
-				}
-			},
+            'not-logged' => function () {
+                $config = LegacyConfig::getInstance();
 
-			'logged' => function () {
-				if (!logged()) {
-					redirect_old('/login');
-				}
-			},
+                if (! $config->hasDatabase || logged()) {
+                    redirect_old('/');
+                }
+            },
+        ];
 
-			'not-logged' => function () {
-				$config = \App\Legacy\LegacyConfig::getInstance();
+        foreach ($defaultMiddlewareLoader as $middlewareName => $middlewareFunction) {
+            self::add($middlewareName, $middlewareFunction);
+        }
+    }
 
-				if (!$config->hasDatabase || logged()) {
-					redirect_old('/');
-				}
-			},
-		];
+    public function add($middlewareName, $middlewareFunction)
+    {
+        self::$middlewares[$middlewareName] = $middlewareFunction;
 
-		foreach ($defaultMiddlewareLoader as $middlewareName => $middlewareFunction) {
-			self::add($middlewareName, $middlewareFunction);
-		}
-	}
+        return $this;
+    }
 
-	public function add($middlewareName, $middlewareFunction) {
-		self::$middlewares[$middlewareName] = $middlewareFunction;
+    public function run($middlewareName)
+    {
+        $middlewareFunction = self::$middlewares[$middlewareName] ?? null;
 
-		return $this;
-	}
-
-	public function run($middlewareName) {
-		$middlewareFunction = self::$middlewares[$middlewareName] ?? null;
-
-		if ($middlewareFunction) {
-			$middlewareFunction();
-		} else {
-			exit('Access denied: ' . $middlewareName);
-		}
-	}
+        if ($middlewareFunction) {
+            $middlewareFunction();
+        } else {
+            exit('Access denied: '.$middlewareName);
+        }
+    }
 }

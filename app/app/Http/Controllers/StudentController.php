@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Schools\School;
-use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
-class StudentController extends Controller {
-
+class StudentController extends Controller
+{
     /**
      * Show the student settings page
      */
-    public function settingsIndex(): View {
+    public function settingsIndex(): View
+    {
         $student = Auth::user()->student;
 
         return view('student.settings', [
@@ -26,14 +25,15 @@ class StudentController extends Controller {
     /**
      * Update the student's data
      */
-    public function settingsUpdate(Request $request): RedirectResponse {
+    public function settingsUpdate(Request $request): RedirectResponse
+    {
         $student = student();
         $user = $student->user;
 
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'email' => 'required|email|max:255|unique:users,email,'.$user->id,
             'school_id' => 'nullable|exists:schools,id',
         ]);
 
@@ -55,7 +55,8 @@ class StudentController extends Controller {
     /**
      * Update the student's password
      */
-    public function passwordUpdate(Request $request): RedirectResponse {
+    public function passwordUpdate(Request $request): RedirectResponse
+    {
         $student = student();
         $user = $student->user;
 
@@ -64,7 +65,7 @@ class StudentController extends Controller {
             'new_password' => 'required|string|min:8|confirmed',
         ]);
 
-        if (!password_verify($request->input('current_password'), $user->password)) {
+        if (! password_verify($request->input('current_password'), $user->password)) {
             return redirect()
                 ->route('student.settings')
                 ->withErrors(['current_password' => 'La password attuale non è corretta.'])

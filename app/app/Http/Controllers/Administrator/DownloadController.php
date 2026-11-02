@@ -5,18 +5,18 @@ namespace App\Http\Controllers\Administrator;
 use App\Exports\ArrayExport;
 use App\Helpers\SectionResultHelper;
 use App\Http\Controllers\Controller;
-use App\Models\Activities\Section;
 use App\Models\Schools\Grade;
 use App\Models\Schools\School;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-class DownloadController extends Controller {
-
+class DownloadController extends Controller
+{
     /**
      * Display the download options page.
      */
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $school = administrator()->school;
         $datasets = [
             [
@@ -46,7 +46,8 @@ class DownloadController extends Controller {
     /**
      * Download student results
      */
-    public function downloadResults(Request $request, School $school) {
+    public function downloadResults(Request $request, School $school)
+    {
         $data = $this->fetchResultsData($school);
 
         $filename = 'Risultati_studenti';
@@ -57,7 +58,8 @@ class DownloadController extends Controller {
     /**
      * Download active students
      */
-    public function downloadStudents(Request $request, School $school) {
+    public function downloadStudents(Request $request, School $school)
+    {
         $data = $this->fetchStudentsData($school);
 
         $filename = 'Elenco_studenti_attivi';
@@ -68,7 +70,8 @@ class DownloadController extends Controller {
     /**
      * Download teachers
      */
-    public function downloadTeachers(Request $request, School $school) {
+    public function downloadTeachers(Request $request, School $school)
+    {
         $data = $this->fetchTeachersData($school);
 
         $filename = 'Elenco_docenti';
@@ -79,7 +82,8 @@ class DownloadController extends Controller {
     /**
      * Download classes
      */
-    public function downloadClasses(Request $request, School $school) {
+    public function downloadClasses(Request $request, School $school)
+    {
         $data = $this->fetchClassesData($school);
 
         $filename = 'Elenco_classi';
@@ -90,15 +94,16 @@ class DownloadController extends Controller {
     /**
      * Download the requested data in the specified format
      */
-    private function downloadData(array $data, string $filename, Request $request) {
+    private function downloadData(array $data, string $filename, Request $request)
+    {
         $format = $request->input('format', 'csv');
 
         if ($format === 'csv') {
-            return $this->downloadCsv($data, $filename . '.csv');
+            return $this->downloadCsv($data, $filename.'.csv');
         }
 
         if ($format === 'xlsx') {
-            return $this->downloadXlsx($data, $filename . '.xlsx');
+            return $this->downloadXlsx($data, $filename.'.xlsx');
         }
 
         abort(400, 'Formato non supportato');
@@ -107,7 +112,8 @@ class DownloadController extends Controller {
     /**
      * Download data as CSV file
      */
-    public function downloadCsv(array $data, string $filename) {
+    public function downloadCsv(array $data, string $filename)
+    {
         $headers = [
             'Content-Type' => 'text/csv',
             'Content-Disposition' => "attachment; filename=\"$filename\"",
@@ -115,7 +121,7 @@ class DownloadController extends Controller {
 
         $callback = function () use ($data) {
             $file = fopen('php://output', 'w');
-            if (!empty($data)) {
+            if (! empty($data)) {
                 fputcsv($file, array_keys($data[0]));
                 foreach ($data as $row) {
                     fputcsv($file, $row);
@@ -130,14 +136,16 @@ class DownloadController extends Controller {
     /**
      * Download data as XLSX file
      */
-    public function downloadXlsx(array $data, string $filename) {
+    public function downloadXlsx(array $data, string $filename)
+    {
         return Excel::download(new ArrayExport($data), $filename);
     }
 
     /**
      * Fetch results data for download
      */
-    private function fetchResultsData(School $school): array {
+    private function fetchResultsData(School $school): array
+    {
         $students = $school
             ->students()
             ->join('users', 'users.id', '=', 'students.userId')
@@ -166,7 +174,7 @@ class DownloadController extends Controller {
             $results = [];
 
             foreach ($sections as $section) {
-                $results[$section->area->name . ' - ' . $section->name] = ($section->result_label ?: 'Risultato dell\'autovalutazione') . ': ' . (str_replace([',', ';'], ' -', SectionResultHelper::label($student, $section)) ?: 'Non svolto');
+                $results[$section->area->name.' - '.$section->name] = ($section->result_label ?: 'Risultato dell\'autovalutazione').': '.(str_replace([',', ';'], ' -', SectionResultHelper::label($student, $section)) ?: 'Non svolto');
             }
 
             $data[] = [
@@ -182,7 +190,8 @@ class DownloadController extends Controller {
     /**
      * Fetch students data for download
      */
-    private function fetchStudentsData(School $school): array {
+    private function fetchStudentsData(School $school): array
+    {
         $students = $school
             ->students()
             ->join('users', 'users.id', '=', 'students.userId')
@@ -215,7 +224,8 @@ class DownloadController extends Controller {
     /**
      * Fetch teachers data for download
      */
-    private function fetchTeachersData(School $school): array {
+    private function fetchTeachersData(School $school): array
+    {
         $teachers = $school
             ->teachers()
             ->join('users', 'users.id', '=', 'teachers.user_id')
@@ -242,7 +252,8 @@ class DownloadController extends Controller {
     /**
      * Fetch classes data for download
      */
-    private function fetchClassesData(School $school): array {
+    private function fetchClassesData(School $school): array
+    {
         $classes = $school
             ->classes()
             ->with(['tutor', 'tutor.user'])

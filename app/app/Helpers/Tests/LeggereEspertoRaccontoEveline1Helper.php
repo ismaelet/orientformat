@@ -2,9 +2,10 @@
 
 namespace App\Helpers\Tests;
 
-class LeggereEspertoRaccontoEveline1Helper extends ImparareBaleneHelper {
-
-    protected function text(): string {
+class LeggereEspertoRaccontoEveline1Helper extends ImparareBaleneHelper
+{
+    protected function text(): string
+    {
         return "
 		Seduta alla finestra guardava la sera invadere il viale. Teneva la testa appoggiata contro le tendine e sentiva nelle narici l'odore della cretonne polverosa. Era stanca.<br>
     Poca gente per strada. Passò l'inquilino della casa di fondo che rientrava. Lei ne sentì i passi risuonare sul marciapiede di cemento, poi scricchiolare sul sentiero di cenere dinanzi alle nuove case di color rosso. In passato c'era un campo laggiù dove loro giocavano ogni sera con gli altri ragazzi del quartiere. Poi l'aveva comprato un tale di Belfast e ci aveva costruito delle case; non piccole case nere come le loro, ma vivaci case in mattoni, dal tetto lucente. Tutti i ragazzi del viale avevano giocato in quel campo: i Bevine, i Water, i Dunn, il piccolo Keogh lo zoppo e lei coi fratelli e le sorelle. Ernest però non giocava mai: era troppo grande. Spesso veniva il padre a scacciarli dal campo col suo bastone di pruno, ma di solito il piccolo Keogh stava di guardia e dava l'allarme non appena lo vedeva arrivare. {! Eppure le pareva che, a quei tempi, fossero stati abbastanza felici :: marker4 !}. Il padre non era ancora così cattivo e inoltre era viva la mamma. Cose di tanto tempo addietro; poi lei e i suoi fratelli e sorelle s'erano fatti grandi e la mamma era morta. Anche Tizzie Dunn era morto e i Water erano tornati in Inghilterra. Tutto cambia. Adesso lei stava per andarsene via come gli altri, lasciare la casa.<br>
@@ -19,7 +20,8 @@ class LeggereEspertoRaccontoEveline1Helper extends ImparareBaleneHelper {
 Un giorno avevano litigato, Frank e il padre, dopo di che loro avevano dovuto vedersi di nascosto.";
     }
 
-    protected function markerLabels(): array {
+    protected function markerLabels(): array
+    {
         return [
             'Senso di colpa',
             'Il dubbio',

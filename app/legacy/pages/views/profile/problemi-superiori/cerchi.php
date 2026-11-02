@@ -15,7 +15,7 @@
 
     <div class="test-content grid center-content" data-spacing="800">
 
-        <?php if (!legacy_test()->completed) { ?>
+        <?php if (! legacy_test()->completed) { ?>
 
             <div class="flex center-content" data-spacing="800">
                 <div class="test-group test-group--linear js-load">

@@ -6,8 +6,8 @@ use App\Models\User\Student;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Masterpiece extends Model {
-
+class Masterpiece extends Model
+{
     /**
      * Property: The attributes that are mass assignable
      */
@@ -43,21 +43,24 @@ class Masterpiece extends Model {
     /**
      * Relationship: The student who created the masterpiece
      */
-    public function student(): BelongsTo {
+    public function student(): BelongsTo
+    {
         return $this->belongsTo(Student::class);
     }
 
     /**
      * Get the public URL for the masterpiece PDF
      */
-    public function url(): string {
+    public function url(): string
+    {
         return route('masterpieces.download', ['student' => $this->student, 'masterpiece' => $this]);
     }
 
     /**
      * Get the storage file path for the masterpiece PDF
      */
-    public function storageFilePath(): string {
-        return 'masterpieces/' . $this->student_id . '-' . $this->id . '.pdf';
+    public function storageFilePath(): string
+    {
+        return 'masterpieces/'.$this->student_id.'-'.$this->id.'.pdf';
     }
 }

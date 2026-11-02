@@ -1,8 +1,14 @@
 <!doctype html>
-<html data-theme="<?= $_SESSION['theme-color'] ?>" data-client-root="<?= CLIENT_ROOT ?>">
+<html data-theme="<?php
+
+use App\Legacy\LegacyConfig;
+use App\Legacy\LegacyView;
+use App\Legacy\ScriptLoader;
+
+?><?= $_SESSION['theme-color'] ?>" data-client-root="<?= CLIENT_ROOT ?>">
 
 <head>
-	<?= PHP_EOL . \App\Legacy\LegacyView::getInstance()->renderHeadContent() . PHP_EOL . PHP_EOL ?>
+	<?= PHP_EOL.LegacyView::getInstance()->renderHeadContent().PHP_EOL.PHP_EOL ?>
 
 
 	<!-- Google tag (gtag.js) -->
@@ -22,7 +28,7 @@
 <body>
 	{% place body %}
 
-	<?php if (\App\Legacy\LegacyConfig::getInstance()->cookiesWarning && !isset($_COOKIE['cookies-warning'])) { ?>
+	<?php if (LegacyConfig::getInstance()->cookiesWarning && ! isset($_COOKIE['cookies-warning'])) { ?>
 
 		<div class="cookies-warning">
 			<h3 class="cookies-warning_title">Avviso cookies</h3>
@@ -41,6 +47,6 @@
 </body>
 
 <!-- Foot scripts -->
-<?= \App\Legacy\ScriptLoader::loadFootInline() ?>
+<?= ScriptLoader::loadFootInline() ?>
 
 </html>

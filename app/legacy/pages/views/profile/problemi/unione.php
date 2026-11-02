@@ -16,18 +16,22 @@
 					<input type="hidden" name="field[]" id="field" class="tracking-inp field" value="<?= $val = $legacyTest->completed ? implode(',', $legacyTest->rawResults) : 0; ?>">
 
 					<?php
-					$row = sqrt($count) + 2;
-					$max = pow($row, 2);
+                    $row = sqrt($count) + 2;
+				$max = pow($row, 2);
 
-					for ($i = 1; $i <= $max; $i++) {
-						$tar = (!($i % $row) || $i % $row == 1 || $i < $row || $i > ($max - $row)) ? false : true;
-					?>
+				for ($i = 1; $i <= $max; $i++) {
+				    $tar = (! ($i % $row) || $i % $row == 1 || $i < $row || $i > ($max - $row)) ? false : true;
+				    ?>
 
 						<div id="dot-space<?= $i; ?>" class="dot-space">
 
-							<input type="hidden" class="tracking-inp <?php if ($tar) echo 'filler-inp'; ?>" value="0">
+							<input type="hidden" class="tracking-inp <?php if ($tar) {
+							    echo 'filler-inp';
+							} ?>" value="0">
 
-							<div class="dot <?php if ($tar) echo 'tar'; ?> js-load" data-active="0" data-id="<?= $i; ?>" data-x="<?= ($i - 1) % $row ?>" data-y="<?= floor(($max - $i) / $row); ?>"></div>
+							<div class="dot <?php if ($tar) {
+							    echo 'tar';
+							} ?> js-load" data-active="0" data-id="<?= $i; ?>" data-x="<?= ($i - 1) % $row ?>" data-y="<?= floor(($max - $i) / $row); ?>"></div>
 
 						</div>
 

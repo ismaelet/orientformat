@@ -2,7 +2,8 @@
 
 namespace System\Traits;
 
-trait DatabaseObject {
-	use ConstructFromDatabase;
-	use DynamicProperties;
+trait DatabaseObject
+{
+    use ConstructFromDatabase;
+    use DynamicProperties;
 }
