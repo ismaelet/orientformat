@@ -18,15 +18,24 @@ export function initReview() {
   const form = document.querySelector<HTMLFormElement>("[data-review-form]");
   if (!form) return;
   const questions = [...form.querySelectorAll<HTMLElement>(".js-question")];
+
   const complete = (question: HTMLElement) => {
     const done = reviewQuestionCompleted(question);
+
     question.dataset.completed = done ? "1" : "0";
     question.classList.toggle("question--completed", done);
-    if (done)
-      question
-        .querySelector<HTMLElement>(".js-error-warning")
-        ?.style.setProperty("display", "none");
+
+    if (done) {
+      question.classList.remove("question--error");
+
+      const warning = question.querySelector<HTMLElement>(".js-error-warning");
+
+      if (warning) {
+        warning.style.display = "none";
+      }
+    }
   };
+
   const dependent = (id: string, visible: boolean) => {
     const question = document.getElementById(`question-${id}`);
     if (!question) return;
@@ -84,20 +93,36 @@ export function initReview() {
     const question = event.target.closest<HTMLElement>(".js-question");
     if (question) complete(question);
   });
+
   form.querySelector(".js-attempt-submit")?.addEventListener("click", () => {
     questions.forEach(complete);
-    const missing = questions.find(
+
+    const missing = questions.filter(
       (question) => question.dataset.completed !== "1" && question.dataset.optional !== "1",
     );
-    if (missing) {
-      missing
-        .querySelector<HTMLElement>(".js-error-warning")
-        ?.style.setProperty("display", "block");
-      missing.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      form.querySelector<HTMLButtonElement>(".js-submit")?.click();
+
+    if (missing.length > 0) {
+      missing.forEach((question) => {
+        question.classList.add("question--error");
+
+        const warning = question.querySelector<HTMLElement>(".js-error-warning");
+
+        if (warning) {
+          warning.style.display = "block";
+        }
+      });
+
+      missing[0].scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+
+      return;
     }
+
+    form.querySelector<HTMLButtonElement>(".js-submit")?.click();
   });
+
   questions.forEach(complete);
   form.querySelectorAll<HTMLInputElement>(".js-cbx:checked").forEach(dependencies);
 }
