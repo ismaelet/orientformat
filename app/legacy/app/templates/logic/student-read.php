@@ -1,12 +1,12 @@
 <?php
 
-use App\Legacy\LegacyView;
 use Legacy\Activity\Area;
 use Legacy\Activity\Section;
 
-$sectionId = LegacyView::getInstance()->get('sectionId');
-$areaId = LegacyView::getInstance()->get('sectionId');
-$page = LegacyView::getInstance()->get('page');
+$viewData = legacy_view_data();
+$sectionId = $viewData['sectionId'] ?? null;
+$areaId = $viewData['areaId'] ?? null;
+$page = $viewData['page'] ?? null;
 
 $legacySection = new Section($sectionId);
 $area = new Area($areaId);

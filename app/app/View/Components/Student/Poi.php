@@ -2,13 +2,13 @@
 
 namespace App\View\Components\Student;
 
-use App\Legacy\LegacyDB;
 use App\Models\Activities\Section;
 use App\Models\Schools\SchoolClass;
 use App\Models\User\Student;
 use App\Services\Results\StudentSectionResultCalculator;
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\Component;
 use Legacy\UserSystem\Student as LegacyStudent;
 
@@ -101,10 +101,8 @@ nell’e-portfolio.',
 
         // fetch advices
         $advices = [];
-        $advicesRes = LegacyDB::select('id, advice FROM advices_list ORDER BY id ASC');
-
-        while ($advice = $advicesRes->fetch_assoc()) {
-            $advices[$advice['id']] = $advice['advice'];
+        foreach (DB::table('advices_list')->orderBy('id')->get(['id', 'advice']) as $advice) {
+            $advices[$advice->id] = $advice->advice;
         }
 
         $this->advices = $advices;

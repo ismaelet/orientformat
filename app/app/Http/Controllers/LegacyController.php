@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Legacy\Exceptions\LegacyRedirectException;
 use App\Legacy\LegacyRoute;
-use App\Legacy\LegacyView;
 use App\Models\Activities\Area;
 use App\Models\Activities\Section;
+use App\Services\LegacyPageRenderer;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -32,10 +32,11 @@ class LegacyController extends Controller
                 return redirect()->route('home');
             }
 
-            return LegacyView::setPage('access/wait')
-                ->setMiddlewares(['public', 'logged'])
-                ->setTitle('Attendi')
-                ->show();
+            return app(LegacyPageRenderer::class)->render(
+                page: 'access/wait',
+                title: 'Attendi',
+                middlewares: ['public', 'logged'],
+            );
         });
     }
 
@@ -46,19 +47,21 @@ class LegacyController extends Controller
                 return redirect()->route('home');
             }
 
-            return LegacyView::setPage('access/add-email')
-                ->setTemplate('form')
-                ->setMiddlewares(['public', 'logged'])
-                ->setTitle('Aggiungi il tuo indirizzo e-mail')
-                ->show();
+            return app(LegacyPageRenderer::class)->render(
+                page: 'access/add-email',
+                template: 'form',
+                title: 'Aggiungi il tuo indirizzo e-mail',
+                middlewares: ['public', 'logged'],
+            );
         });
     }
 
     public function tutorial(): SymfonyResponse
     {
-        return $this->execute(fn () => LegacyView::setPage('support')
-            ->setTitle('Supporto')
-            ->show());
+        return $this->execute(fn () => app(LegacyPageRenderer::class)->render(
+            page: 'support',
+            title: 'Supporto',
+        ));
     }
 
     public function interest(): SymfonyResponse
@@ -66,9 +69,10 @@ class LegacyController extends Controller
         return $this->execute(function () {
             add_grade_style();
 
-            return LegacyView::setPage('interest')
-                ->setMiddlewares(['logged'])
-                ->show();
+            return app(LegacyPageRenderer::class)->render(
+                page: 'interest',
+                middlewares: ['logged'],
+            );
         });
     }
 
@@ -77,26 +81,29 @@ class LegacyController extends Controller
         return $this->execute(function () {
             add_grade_style();
 
-            return LegacyView::setPage('review')
-                ->setMiddlewares(['public', 'student', 'logged', 'active', 'required-email'])
-                ->show();
+            return app(LegacyPageRenderer::class)->render(
+                page: 'review',
+                middlewares: ['public', 'student', 'logged', 'active', 'required-email'],
+            );
         });
     }
 
     public function knowMore(): SymfonyResponse
     {
-        return $this->execute(fn () => LegacyView::setPage('teacher/know-more')
-            ->setMiddlewares(['public', 'teacherOrAdministrator'])
-            ->setTitle('Saperne di più')
-            ->show());
+        return $this->execute(fn () => app(LegacyPageRenderer::class)->render(
+            page: 'teacher/know-more',
+            title: 'Saperne di più',
+            middlewares: ['public', 'teacherOrAdministrator'],
+        ));
     }
 
     public function paths(): SymfonyResponse
     {
-        return $this->execute(fn () => LegacyView::setPage('teacher/paths')
-            ->setMiddlewares(['public', 'teacherOrAdministrator'])
-            ->setTitle('Percorsi')
-            ->show());
+        return $this->execute(fn () => app(LegacyPageRenderer::class)->render(
+            page: 'teacher/paths',
+            title: 'Percorsi',
+            middlewares: ['public', 'teacherOrAdministrator'],
+        ));
     }
 
     public function read(Request $request): SymfonyResponse
@@ -114,9 +121,10 @@ class LegacyController extends Controller
 
             $page = $sectionId ? $slug : 'area-'.$slug;
 
-            return LegacyView::setPage('read/'.$page)
-                ->setTemplate('read')
-                ->show();
+            return app(LegacyPageRenderer::class)->render(
+                page: 'read/'.$page,
+                template: 'read',
+            );
         });
     }
 

@@ -2,10 +2,10 @@
 
 namespace Legacy\Activity\Result\Handler;
 
-use App\Legacy\LegacyDB;
 use App\Legacy\User;
 use App\Models\Results\User\CondensedSectionResult;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Legacy\Activity\Result\TestResult;
 use Legacy\Activity\Section;
 use Legacy\Activity\Test;
@@ -78,9 +78,12 @@ class StudentSectionResult
      */
     private function getStaticResult()
     {
-        $row = LegacyDB::row('* FROM '.LegacyCondensedSectionResult::table().' WHERE '.LegacyCondensedSectionResult::linkedIndexName(User::class).' = ? AND '.LegacyCondensedSectionResult::linkedIndexName(SectionModel::class).' = ?', [$this->studentId, $this->sectionId]);
+        $row = (array) DB::table(LegacyCondensedSectionResult::table())
+            ->where(LegacyCondensedSectionResult::linkedIndexName(User::class), $this->studentId)
+            ->where(LegacyCondensedSectionResult::linkedIndexName(SectionModel::class), $this->sectionId)
+            ->first();
 
-        return $row ? $row : null;
+        return $row ?: null;
     }
 
     private function getResult()
@@ -350,7 +353,10 @@ class StudentSectionResult
 
     private function calcSpeed()
     {
-        return LegacyDB::sum('speed FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ?'.' AND '.TestResult::TEST_INDEX.' IN (SELECT '.Test::INDEX.' FROM '.Test::TABLE.' WHERE '.Test::SECTION_INDEX.' = ?)', [$this->studentId, $this->sectionId]) ?: 0;
+        return DB::table(TestResult::TABLE)
+            ->where(TestResult::USER_INDEX, $this->studentId)
+            ->whereIn(TestResult::TEST_INDEX, DB::table(Test::TABLE)->select(Test::INDEX)->where(Test::SECTION_INDEX, $this->sectionId))
+            ->sum('speed') ?: 0;
     }
 
     public function getSpeedString()

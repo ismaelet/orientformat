@@ -2,6 +2,8 @@
 
 namespace App\Legacy;
 
+use Illuminate\Support\Facades\DB;
+
 class MiddlewareLoader
 {
     use Singleton;
@@ -13,7 +15,7 @@ class MiddlewareLoader
         $defaultMiddlewareLoader = [
             'public' => function () {
                 // dd('public');
-                $public = ! LegacyConfig::getInstance()->hasDatabase ?: LegacyDB::find('value FROM config WHERE name = ?', ['public']);
+                $public = ! LegacyConfig::getInstance()->hasDatabase ?: DB::table('config')->where('name', 'public')->value('value');
 
                 if (! $public) {
                     redirect_old('/offline');
@@ -22,7 +24,7 @@ class MiddlewareLoader
 
             'not-public' => function () {
                 // dd('not-public');
-                $public = ! LegacyConfig::getInstance()->hasDatabase ?: LegacyDB::find('value FROM config WHERE name = ?', ['public']);
+                $public = ! LegacyConfig::getInstance()->hasDatabase ?: DB::table('config')->where('name', 'public')->value('value');
 
                 if ($public) {
                     redirect_old('/');

@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
 // fetch class
 $teacher = new Teacher(($this->get('user'))->id);
@@ -8,13 +8,13 @@ $teacher = new Teacher(($this->get('user'))->id);
 $grade = new Grade($teacher->classID);
 
 // fetch sudents data
-$studentsN = LegacyDB::count('users WHERE level=0 AND class = ?', [$grade->id]);
-$activeN = LegacyDB::count('users WHERE level=0 AND status=1 AND class = ?', [$grade->id]);
+$studentsN = DB::scalar('SELECT COUNT(*) FROM '.('users WHERE level=0 AND class = ?'), (array) ([$grade->id]));
+$activeN = DB::scalar('SELECT COUNT(*) FROM '.('users WHERE level=0 AND status=1 AND class = ?'), (array) ([$grade->id]));
 
-$areasTot = LegacyDB::count('progress_areas WHERE progress=100 AND userID IN (SELECT id FROM users WHERE class = ? AND level=0 AND status=1)', [$grade->id]);
+$areasTot = DB::scalar('SELECT COUNT(*) FROM '.('progress_areas WHERE progress=100 AND userID IN (SELECT id FROM users WHERE class = ? AND level=0 AND status=1)'), (array) ([$grade->id]));
 $areasPercent = $activeN ? round($areasTot / ($activeN * 3) * 100) : 0;
 
-$legacySectionsTot = LegacyDB::count(TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' IN (SELECT id FROM users WHERE class = ? AND level=0 AND status=1)', [$grade->id]);
+$legacySectionsTot = DB::scalar('SELECT COUNT(*) FROM '.(TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' IN (SELECT id FROM users WHERE class = ? AND level=0 AND status=1)'), (array) ([$grade->id]));
 
 // setup sections
 $legacySections = [
@@ -67,7 +67,7 @@ bump($legacySections);
 // set class as ended
 if (isset($_POST['activate-survey'])) {
 
-    LegacyDB::update('classes SET ended=1 WHERE id = ?', [$grade->id]);
+    DB::update('UPDATE '.('classes SET ended=1 WHERE id = ?'), (array) ([$grade->id]));
 
     redirect_old();
 }

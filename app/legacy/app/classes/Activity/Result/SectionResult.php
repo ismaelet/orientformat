@@ -2,8 +2,8 @@
 
 namespace Legacy\Activity\Result;
 
-use App\Legacy\LegacyDB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Legacy\Activity\Result\Handler\StudentSectionResult;
 use Legacy\Activity\Test;
 use System\Traits\DatabaseObject;
@@ -35,7 +35,10 @@ class SectionResult
 
     private function getSpeed()
     {
-        return LegacyDB::sum('speed FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ?'.' AND '.TestResult::TEST_INDEX.' IN (SELECT '.Test::INDEX.' FROM '.Test::TABLE.' WHERE '.Test::SECTION_INDEX.' = ?)', [$this->studentId, $this->sectionId]);
+        return DB::table(TestResult::TABLE)
+            ->where(TestResult::USER_INDEX, $this->studentId)
+            ->whereIn(TestResult::TEST_INDEX, DB::table(Test::TABLE)->select(Test::INDEX)->where(Test::SECTION_INDEX, $this->sectionId))
+            ->sum('speed');
     }
 
     private function getSpeedString()
@@ -62,7 +65,7 @@ class SectionResult
      */
     public function updateCompleted(bool $completed)
     {
-        LegacyDB::update(self::TABLE.' SET completed = ? WHERE '.self::INDEX.' = ?', [$completed ? 1 : 0, $this->id]);
+        DB::table(self::TABLE)->where(self::INDEX, $this->id)->update(['completed' => $completed ? 1 : 0]);
 
         $this->data['completed'] = $completed;
 
@@ -74,7 +77,7 @@ class SectionResult
      */
     public static function new($sectionId)
     {
-        $id = LegacyDB::add(self::TABLE.' ('.self::USER_INDEX.', '.self::SECTION_INDEX.')', [Auth::id(), $sectionId]);
+        $id = DB::table(self::TABLE)->insertGetId([self::USER_INDEX => Auth::id(), self::SECTION_INDEX => $sectionId]);
 
         return new self($id);
     }

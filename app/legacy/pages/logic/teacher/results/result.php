@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
 // theme
 $this->styles->add(SERVER_ROOT.'/pages/styles/teacher/teacher.css');
@@ -10,10 +10,10 @@ $this->scripts->add(SERVER_ROOT.'/pages/scripts/teacher/teacher.js');
 $id = $_GET['id'] ?? false;
 
 // fetch class
-$grade = LegacyDB::find('class FROM users WHERE id = ?', [$user->id]);
+$grade = DB::scalar('SELECT '.('class FROM users WHERE id = ?').' LIMIT 1', (array) ([$user->id])) ?? false;
 
 // fetch student data
-$student = LegacyDB::row('* FROM users WHERE level=0 AND status=1 AND id = ? AND class = ?', [$id, $grade]);
+$student = (array) DB::selectOne('SELECT '.('* FROM users WHERE level=0 AND status=1 AND id = ? AND class = ?').' LIMIT 1', (array) ([$id, $grade])) ?: null;
 
 if (! $student) {
     redirect_old('/teacher/results');
@@ -22,11 +22,11 @@ if (! $student) {
 // fetch areas and sections
 $areas = [];
 
-$res = LegacyDB::select('id, name FROM areas WHERE id<4 ORDER BY id ASC');
+$res = array_map(static fn ($row) => (array) $row, DB::select('SELECT '.('id, name FROM areas WHERE id<4 ORDER BY id ASC'), (array) ([])));
 
-while ($row = $res->fetch_assoc()) {
+while ($row = array_shift($res)) {
 
-    $legacySections = LegacyDB::select('* FROM sections WHERE active=1 AND locked=0 AND id NOT IN (6, 18) AND area = ? ORDER BY id ASC', [$row['id']]);
+    $legacySections = array_map(static fn ($row) => (array) $row, DB::select('SELECT '.('* FROM sections WHERE active=1 AND locked=0 AND id NOT IN (6, 18) AND area = ? ORDER BY id ASC'), (array) ([$row['id']])));
 
     $area['name'] = $row['name'];
     $area['sections'] = $legacySections;
@@ -40,7 +40,7 @@ bump($areas);
 $results = [];
 
 // Stili cognitivi
-$res = LegacyDB::find('result FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' = ?', [$id, 30]);
+$res = DB::scalar('SELECT '.('result FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' = ?').' LIMIT 1', (array) ([$id, 30])) ?? false;
 
 if ($res) {
 
@@ -107,7 +107,7 @@ if ($res) {
 }
 
 // Resilienza
-$res = LegacyDB::find('percentage FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' = ?', [$id, 49]);
+$res = DB::scalar('SELECT '.('percentage FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' = ?').' LIMIT 1', (array) ([$id, 49])) ?? false;
 
 if ($res) {
 
@@ -125,18 +125,18 @@ if ($res) {
 // Autostima
 $completed = true;
 
-$legacyTests = LegacyDB::select('id FROM '.Test::TABLE.' WHERE sectionId = ? AND static=0 AND template<>"recap"', [4]);
+$legacyTests = array_map(static fn ($row) => (array) $row, DB::select('SELECT '.('id FROM '.Test::TABLE.' WHERE sectionId = ? AND static=0 AND template<>"recap"'), (array) ([4])));
 
-while ($legacyTest = $legacyTests->fetch_assoc()) {
-    if (! LegacyDB::exists(TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' = ?', [$id, $legacyTest['id']])) {
+while ($legacyTest = array_shift($legacyTests)) {
+    if (DB::selectOne('SELECT 1 FROM '.(TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' = ?').' LIMIT 1', (array) ([$id, $legacyTest['id']])) === null) {
         $completed = false;
     }
 }
 
 if ($completed) {
 
-    $tot = LegacyDB::sum('percentage FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' IN (SELECT id FROM '.Test::TABLE.' WHERE sectionId = ? AND id<?)', [$id, 4, 15]);
-    $compN = LegacyDB::count(TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND completed=1 AND testID IN (SELECT id FROM '.Test::TABLE.' WHERE sectionId = ? AND id<?)', [$id, 4, 15]);
+    $tot = DB::scalar('SELECT SUM(percentage) FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' IN (SELECT id FROM '.Test::TABLE.' WHERE sectionId = ? AND id<?)', [$id, 4, 15]);
+    $compN = DB::scalar('SELECT COUNT(*) FROM '.(TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND completed=1 AND testID IN (SELECT id FROM '.Test::TABLE.' WHERE sectionId = ? AND id<?)'), (array) ([$id, 4, 15]));
 
     $tot = round($tot / $compN, 0);
 
@@ -146,12 +146,12 @@ if ($completed) {
 }
 
 // Risolvere i problemi
-$res = LegacyDB::exists(TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' = ?', [$id, 13]);
+$res = DB::selectOne('SELECT 1 FROM '.(TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' = ?').' LIMIT 1', (array) ([$id, 13])) !== null;
 
 if ($res) {
 
-    $tot = LegacyDB::sum('percentage FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND completed=1 AND testID IN (SELECT id FROM '.Test::TABLE.' WHERE sectionId = ? AND template<>"recap" AND active=1 AND id<>1)', [$id, 5]);
-    $compN = LegacyDB::count('tests WHERE sectionID=5 AND template<>"recap" AND active=1 AND id<>1');
+    $tot = DB::scalar('SELECT SUM(percentage) FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND completed=1 AND testID IN (SELECT id FROM '.Test::TABLE.' WHERE sectionId = ? AND template<>"recap" AND active=1 AND id<>1)', [$id, 5]);
+    $compN = DB::scalar('SELECT COUNT(*) FROM '.('tests WHERE sectionID=5 AND template<>"recap" AND active=1 AND id<>1'), (array) ([]));
 
     $tot = round($tot / $compN, 0);
 
@@ -163,17 +163,17 @@ if ($res) {
 // Motivazione
 $completed = true;
 
-$legacyTests = LegacyDB::select('id FROM '.Test::TABLE.' WHERE sectionId = ? AND static=0 AND template<>"recap"', [7]);
+$legacyTests = array_map(static fn ($row) => (array) $row, DB::select('SELECT '.('id FROM '.Test::TABLE.' WHERE sectionId = ? AND static=0 AND template<>"recap"'), (array) ([7])));
 
-while ($legacyTest = $legacyTests->fetch_assoc()) {
-    if (! LegacyDB::exists(TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' = ?', [$id, $legacyTest['id']])) {
+while ($legacyTest = array_shift($legacyTests)) {
+    if (DB::selectOne('SELECT 1 FROM '.(TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' = ?').' LIMIT 1', (array) ([$id, $legacyTest['id']])) === null) {
         $completed = false;
     }
 }
 
 if ($completed) {
 
-    $res = LegacyDB::find('result FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' = ?', [$id, 19]);
+    $res = DB::scalar('SELECT '.('result FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' = ?').' LIMIT 1', (array) ([$id, 19])) ?? false;
 
     $res = explode(',', $res);
 
@@ -252,10 +252,10 @@ if ($completed) {
 // Temperamento
 $completed = true;
 
-$legacyTests = LegacyDB::select('id FROM '.Test::TABLE.' WHERE sectionId = ? AND static=0 AND template<>"recap"', [8]);
+$legacyTests = array_map(static fn ($row) => (array) $row, DB::select('SELECT '.('id FROM '.Test::TABLE.' WHERE sectionId = ? AND static=0 AND template<>"recap"'), (array) ([8])));
 
-while ($legacyTest = $legacyTests->fetch_assoc()) {
-    if (! LegacyDB::exists(TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' = ?', [$id, $legacyTest['id']])) {
+while ($legacyTest = array_shift($legacyTests)) {
+    if (DB::selectOne('SELECT 1 FROM '.(TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' = ?').' LIMIT 1', (array) ([$id, $legacyTest['id']])) === null) {
         $completed = false;
     }
 }
@@ -268,7 +268,7 @@ if ($completed) {
 
     for ($i = 1; $i < 6; $i++) {
 
-        $val = (int) LegacyDB::find('percentage FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' IN (SELECT id FROM '.Test::TABLE.' WHERE sectionID=8 AND step = ?)', [$id, $i]);
+        $val = (int) DB::scalar('SELECT '.('percentage FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' IN (SELECT id FROM '.Test::TABLE.' WHERE sectionID=8 AND step = ?)').' LIMIT 1', (array) ([$id, $i])) ?? false;
 
         $result[] = round($val / 100 * 6);
     }
@@ -285,16 +285,16 @@ for ($i = 9; $i < 18; $i++) {
 
     if ($i != 16) {
 
-        $res = LegacyDB::exists(TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' IN (SELECT id FROM '.Test::TABLE.' WHERE sectionId = ?)', [$id, $i]);
+        $res = DB::selectOne('SELECT 1 FROM '.(TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' IN (SELECT id FROM '.Test::TABLE.' WHERE sectionId = ?)').' LIMIT 1', (array) ([$id, $i])) !== null;
 
         if ($res) {
 
             $score = 0;
-            $legacyTests = LegacyDB::select('id FROM '.Test::TABLE.' WHERE sectionId = ? AND static=0 AND template<>"recap"', [$i]);
-            $total = LegacyDB::count('tests WHERE sectionId = ? AND static=0 AND template<>"recap"', [$i]);
+            $legacyTests = array_map(static fn ($row) => (array) $row, DB::select('SELECT '.('id FROM '.Test::TABLE.' WHERE sectionId = ? AND static=0 AND template<>"recap"'), (array) ([$i])));
+            $total = DB::scalar('SELECT COUNT(*) FROM '.('tests WHERE sectionId = ? AND static=0 AND template<>"recap"'), (array) ([$i]));
 
-            while ($legacyTest = $legacyTests->fetch_assoc()) {
-                $score += LegacyDB::find('percentage FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' = ? ORDER BY time DESC', [$id, $legacyTest['id']]) ?: 0;
+            while ($legacyTest = array_shift($legacyTests)) {
+                $score += DB::scalar('SELECT '.('percentage FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' = ? ORDER BY time DESC').' LIMIT 1', (array) ([$id, $legacyTest['id']])) ?? false ?: 0;
             }
 
             $percent = round($score / $total, 0);

@@ -33,6 +33,11 @@ class Logic
         'test-next' => 'test',
     ];
 
+    public static function reset(): void
+    {
+        self::$files = [];
+    }
+
     // add a file
     public static function add($fileName, $type, $priority = false)
     {
@@ -102,10 +107,10 @@ class Logic
         foreach ($variables as $key => $value) {
             if (! in_array($key, ['__file'])) {
                 if (! is_array($value) || array_is_list($value)) {
-                    LegacyView::set($key, $value);
+                    legacy_set_view_data($key, $value);
                 } else {
                     foreach ($value as $arrayKey => $arrayValue) {
-                        LegacyView::set($key, $arrayValue, $arrayKey);
+                        legacy_set_view_data($key, $arrayValue, $arrayKey);
                     }
                 }
             }

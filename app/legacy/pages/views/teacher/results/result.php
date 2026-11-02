@@ -27,7 +27,7 @@
 
                 <div class="grid gap2">
 
-                    <?php while ($legacySection = $area['sections']->fetch_assoc()) {
+                    <?php while ($legacySection = array_shift($area['sections'])) {
                         $i++; ?>
 
                         <div>

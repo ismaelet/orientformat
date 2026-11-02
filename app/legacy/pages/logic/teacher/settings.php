@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
 $error = $_GET['error'] ?? false;
 $done = $_GET['done'] ?? false;
@@ -39,9 +39,9 @@ $passwordInputs = [
 if (isset($_POST['edit-data'])) {
     $mail = $_POST['email'];
 
-    if (LegacyDB::exists('users WHERE email = ? AND id <> ?', [$mail, userId()])) {
+    if (DB::selectOne('SELECT 1 FROM '.('users WHERE email = ? AND id <> ?').' LIMIT 1', (array) ([$mail, userId()])) !== null) {
         $error = 'existing-mail';
-    } elseif (LegacyDB::exists('users WHERE username = ? AND id <> ?', [$_POST['username'], userId()])) {
+    } elseif (DB::selectOne('SELECT 1 FROM '.('users WHERE username = ? AND id <> ?').' LIMIT 1', (array) ([$_POST['username'], userId()])) !== null) {
         $error = 'existing-username';
     } else {
         form_db_update('users', $dataInputs, 'id', userId());
@@ -52,7 +52,7 @@ if (isset($_POST['edit-data'])) {
 }
 
 if (isset($_POST['edit-password'])) {
-    $dbPassword = LegacyDB::find('password FROM users WHERE id = ?', [userId()]);
+    $dbPassword = DB::scalar('SELECT '.('password FROM users WHERE id = ?').' LIMIT 1', (array) ([userId()])) ?? false;
     $oldPassword = $_POST['old-password'];
     $newPassword = $_POST['new-password'];
     $passwordConfirmation = $_POST['password-confirmation'];
@@ -65,7 +65,7 @@ if (isset($_POST['edit-password'])) {
         $error = 'password-not-matching';
     } else {
         $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-        LegacyDB::update('users SET password = ? WHERE id = ?', [$newPassword, userId()]);
+        DB::update('UPDATE '.('users SET password = ? WHERE id = ?'), (array) ([$newPassword, userId()]));
         redirect_old('?done=1#user-data');
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
 $userId = $_GET['id'];
 $error = false;
@@ -13,8 +13,8 @@ if (isset($_POST['submit'])) {
     if ($password != $passwordConfirmation) {
         $error = 'no-match';
     } else {
-        LegacyDB::delete('user_resets WHERE userId = ?', [$userId]);
-        LegacyDB::update('users SET password = ? WHERE id = ?', [$password, $userId]);
+        DB::delete('DELETE FROM '.('user_resets WHERE userId = ?'), (array) ([$userId]));
+        DB::update('UPDATE '.('users SET password = ? WHERE id = ?'), (array) ([$password, $userId]));
 
         $done = true;
     }

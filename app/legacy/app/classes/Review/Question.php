@@ -2,7 +2,7 @@
 
 namespace Legacy\Review;
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 use System\Traits\DynamicProperties;
 
 class Question
@@ -29,7 +29,7 @@ class Question
 
     public function __construct($id)
     {
-        if ($data = LegacyDB::row('* FROM review_questions WHERE id=?', [$id])) {
+        if ($data = (array) DB::table('review_questions')->where('id', $id)->first()) {
             $this->id = $id;
             $this->dbdata = $data;
             $this->areaId = $this->dbdata['areaId'];

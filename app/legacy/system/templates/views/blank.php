@@ -1,15 +1,19 @@
 <!doctype html>
 <html data-theme="<?php
 
-use App\Legacy\LegacyConfig;
-use App\Legacy\LegacyView;
 use App\Legacy\ScriptLoader;
+use App\Legacy\StyleLoader;
 
 ?><?= $_SESSION['theme-color'] ?>" data-client-root="<?= CLIENT_ROOT ?>">
 
 <head>
-	<?= PHP_EOL.LegacyView::getInstance()->renderHeadContent().PHP_EOL.PHP_EOL ?>
-
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="<?= legacy_page_description() ?>">
+	<title><?= legacy_page_title() ?></title>
+	<link rel="icon" href="<?= asset('favicon.ico') ?>">
+	<?= StyleLoader::load() ?>
+	<?= ScriptLoader::load() ?>
 
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-8WZ7THPZ57"></script>

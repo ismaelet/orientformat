@@ -1,7 +1,6 @@
 <!doctype html>
 <html data-theme="light" data-client-root="/<?php
 
-use App\Legacy\LegacyView;
 use App\Legacy\ScriptLoader;
 use App\Legacy\StyleLoader;
 use Illuminate\Foundation\Vite;
@@ -11,9 +10,9 @@ use Illuminate\Foundation\Vite;
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
-    <meta name="description" content="<?= LegacyView::getDescription() ?>">
-    <title><?= LegacyView::getTabTitle() ?></title>
-    <meta property="og:description" content="<?= LegacyView::getDescription() ?>">
+    <meta name="description" content="<?= legacy_page_description() ?>">
+    <title><?= legacy_page_title() ?></title>
+    <meta property="og:description" content="<?= legacy_page_description() ?>">
     <link rel="icon" href="<?= asset('favicon.ico') ?>">
 
     <!-- Styles -->

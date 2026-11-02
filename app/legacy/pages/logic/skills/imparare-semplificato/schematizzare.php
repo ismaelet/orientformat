@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyView;
+use Legacy\LogicManager\TestLogic;
 
 $legacyTest = legacy_test();
 
@@ -43,9 +43,9 @@ foreach ($boxes as $key => &$box) {
 
 $count = $i;
 
-Legacy\LogicManager\TestLogic::setParameterCount($count)
+TestLogic::setParameterCount($count)
     ->setTestSubmitFunction(function ($count) {
-        $boxes = LegacyView::getInstance()->get('boxes');
+        $boxes = legacy_view_data()['boxes'] ?? null;
 
         $rightN = 0;
         $i = 0;

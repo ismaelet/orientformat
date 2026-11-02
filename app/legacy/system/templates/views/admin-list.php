@@ -8,9 +8,7 @@
 	<section id="title" class="mb-4">
 		<h1 class="txt-med"><?php
 
-use App\Legacy\LegacyView;
-
-?><?= LegacyView::getInstance()->title ?></h1>
+		?><?= request()->attributes->get('legacy.title') ?></h1>
 
 		<!-- Add button -->
 		<?php if ($pageConfig['add']) { ?>
@@ -61,7 +59,7 @@ use App\Legacy\LegacyView;
 		<div class="admin-list" style="grid-template-columns: <?= $pageConfig['grid-columns'] ?>;">
 
 			<?php
-		            include_once '-expands-admin-list/head.php';
+		                    include_once '-expands-admin-list/head.php';
 		include_once '-expands-admin-list/body.php';
 		?>
 

@@ -1,23 +1,23 @@
 <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
 // theme
 $this->styles->add(SERVER_ROOT.'/pages/styles/teacher/teacher.css');
 $this->scripts->add(SERVER_ROOT.'/pages/scripts/teacher/teacher.js');
 
 // fetch class
-$grade = LegacyDB::find('class FROM users WHERE id = ?', [$user->id]);
+$grade = DB::scalar('SELECT '.('class FROM users WHERE id = ?').' LIMIT 1', (array) ([$user->id])) ?? false;
 
 // fetch students
-$students = LegacyDB::select('* FROM users WHERE class = ? AND level=0 ORDER BY last_name ASC, first_name ASC, id ASC', [$grade]);
+$students = array_map(static fn ($row) => (array) $row, DB::select('SELECT '.('* FROM users WHERE class = ? AND level=0 ORDER BY last_name ASC, first_name ASC, id ASC'), (array) ([$grade])));
 
 // activate a student
 if (isset($_POST['activate'])) {
 
     $id = $_POST['id'];
 
-    LegacyDB::update('users SET status=1 WHERE id = ?', $id);
+    DB::update('UPDATE '.('users SET status=1 WHERE id = ?'), (array) ($id));
 
     redirect_old();
 }
@@ -26,7 +26,7 @@ if (isset($_POST['deactivate'])) {
 
     $id = $_POST['id'];
 
-    LegacyDB::update('users SET status=0 WHERE id = ?', $id);
+    DB::update('UPDATE '.('users SET status=0 WHERE id = ?'), (array) ($id));
 
     redirect_old();
 }

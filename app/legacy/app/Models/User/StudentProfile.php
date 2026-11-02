@@ -2,6 +2,7 @@
 
 namespace LegacyModels\User;
 
+use Illuminate\Support\Facades\DB;
 use LegacyModels\OldModel;
 
 class StudentProfile extends OldModel
@@ -23,14 +24,14 @@ class StudentProfile extends OldModel
         $mappedChoiches = [];
         $relevantKeys = ['s2d2_1', 's2d2_2', 's2d2_3', 's2d2_4'];
         $intensities = ['Lo esclude', 'Lo sta valutando', 'Ne è quasi sicuro/a', 'Ne è sicuro/a'];
-        $choices = explode(',', \App\Legacy\LegacyDB::find('`rows` FROM review_questions WHERE id = 2'));
+        $choices = explode(',', DB::table('review_questions')->where('id', 2)->value('rows'));
 
         if (is_array($questionnaireId)) {
-            $answers = \App\Legacy\LegacyDB::find('results FROM review_results WHERE studentId = ? AND reviewId IN ('.(implode(',', $questionnaireId)).') ORDER BY reviewId DESC', [$this->id]);
+            $answers = DB::table('review_results')->where('studentId', $this->id)->whereIn('reviewId', $questionnaireId)->orderByDesc('reviewId')->value('results');
         } elseif (is_numeric($questionnaireId)) {
-            $answers = \App\Legacy\LegacyDB::find('results FROM review_results WHERE studentId = ? AND reviewId = ? ORDER BY reviewId DESC', [$this->id, $questionnaireId]);
+            $answers = DB::table('review_results')->where('studentId', $this->id)->where('reviewId', $questionnaireId)->orderByDesc('reviewId')->value('results');
         } else {
-            $answers = \App\Legacy\LegacyDB::find('results FROM review_results WHERE studentId = ? ORDER BY reviewId DESC', [$this->id]);
+            $answers = DB::table('review_results')->where('studentId', $this->id)->orderByDesc('reviewId')->value('results');
         }
 
         if ($answers) {

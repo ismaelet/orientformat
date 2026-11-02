@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
 $error = false;
 
@@ -22,10 +22,10 @@ if (isset($_POST['submit'])) {
 
     if ($email != $confirmationEmail) {
         $error = 'not-matching-email';
-    } elseif (LegacyDB::exists('users WHERE email = ?', [$email])) {
+    } elseif (DB::selectOne('SELECT 1 FROM '.('users WHERE email = ?').' LIMIT 1', (array) ([$email])) !== null) {
         $error = 'existent-email';
     } else {
-        LegacyDB::update('users SET email = ? WHERE id = ?', [$email, user()->id]);
+        DB::update('UPDATE '.('users SET email = ? WHERE id = ?'), (array) ([$email, user()->id]));
     }
 
     redirect_old('/');

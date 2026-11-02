@@ -2,8 +2,7 @@
 
 namespace System\Traits;
 
-use App\Legacy\ConnectionInterface;
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
 trait ConstructFromDatabase
 {
@@ -12,15 +11,18 @@ trait ConstructFromDatabase
     public function __construct(?int $id = null)
     {
         $index = self::INDEX ?? 'id';
-        $data = LegacyDB::row('* FROM '.self::TABLE.' WHERE '.$index.' = ?', [$id]);
+        $data = (array) DB::table(self::TABLE)->where($index, $id)->first();
 
         if ($data) {
             $this->databaseEntry = $data;
         } else {
-            $columns = LegacyDB::select('COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ?', [ConnectionInterface::getInstance()->database, self::TABLE]);
+            $columns = DB::table('INFORMATION_SCHEMA.COLUMNS')
+                ->where('TABLE_SCHEMA', DB::getDatabaseName())
+                ->where('TABLE_NAME', self::TABLE)
+                ->pluck('COLUMN_NAME');
 
-            while ($column = $columns->fetch_assoc()) {
-                $this->databaseEntry[$column['COLUMN_NAME']] = null;
+            foreach ($columns as $column) {
+                $this->databaseEntry[$column] = null;
             }
         }
     }

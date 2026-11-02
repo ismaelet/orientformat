@@ -1,7 +1,7 @@
 <?php
 
-use App\Legacy\LegacyDB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Student\SectionTestResult;
 
 global $grade;
@@ -28,7 +28,7 @@ $groups = [
 ];
 
 foreach ($grade->students as $student) {
-    if (LegacyDB::exists("results WHERE userID = ? AND testID IN ('30') AND completed=1", [Auth::id()])) {
+    if (DB::selectOne('SELECT 1 FROM '.("results WHERE userID = ? AND testID IN ('30') AND completed=1").' LIMIT 1', (array) ([Auth::id()])) !== null) {
 
         $columnData = [];
         $columnData['subcolumns'] = [];

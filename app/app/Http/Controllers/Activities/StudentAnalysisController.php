@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Activities;
 
 use App\Http\Controllers\Controller;
-use App\Legacy\LegacyView;
 use App\Models\Activities\Area;
 use App\Models\Activities\Section;
+use App\Services\LegacyPageRenderer;
 
 class StudentAnalysisController extends Controller
 {
     /**
      * Display the specified resource.
      */
-    public function show(?Area $area, ?Section $section)
+    public function show(?Area $area, ?Section $section, LegacyPageRenderer $renderer)
     {
         $type = $area ? 'area' : 'section';
 
@@ -28,13 +28,16 @@ class StudentAnalysisController extends Controller
             return redirect()->back();
         }
 
-        return LegacyView::setPage('student-read/'.$page)
-            ->setTitle('Saperne di più')
-            ->setTemplate('student-read')
-            ->set('sectionId', $section->id)
-            ->set('areaId', $area->id)
-            ->set('page', $page)
-            ->set('type', $type)
-            ->show();
+        return $renderer->render(
+            page: 'student-read/'.$page,
+            template: 'student-read',
+            title: 'Saperne di più',
+            data: [
+                'sectionId' => $section->id,
+                'areaId' => $area->id,
+                'page' => $page,
+                'type' => $type,
+            ],
+        );
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Legacy\UserSystem;
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 use System\Traits\Singleton;
 
 class ActiveStudent
@@ -18,7 +18,7 @@ class ActiveStudent
      */
     private function __construct()
     {
-        if (LegacyDB::exists(Student::TABLE.' WHERE '.Student::INDEX.' = ?', [userId()])) {
+        if (DB::table(Student::TABLE)->where(Student::INDEX, userId())->exists()) {
             $student = new Student(userId());
 
             self::$id = $student->id;

@@ -7,7 +7,7 @@
 	<?= csrf_field() ?>
 
 	<div class="form-head">
-		<h1 class="form-title"><?= $title ?? \App\Legacy\LegacyView::getInstance()->title ?></h1>
+		<h1 class="form-title"><?= $title ?? request()->attributes->get('legacy.title') ?></h1>
 	</div>
 
 	<div class="form-body">

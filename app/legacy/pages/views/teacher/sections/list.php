@@ -27,7 +27,7 @@
 
                 <div class="grid4 grid3-1024w grid2-768w grid1-480w gap2 al-top">
 
-                    <?php while ($legacySection = $area['sections']->fetch_assoc()) { ?>
+                    <?php while ($legacySection = array_shift($area['sections'])) { ?>
 
                         <a href="<?= route('section', ['section' => $legacySection['id']]) ?>" id="section<?= $legacySection['id'] ?>" class="section panel pad-2 fa-center">
                             <div class="img cont inlb" <?= background_image('/pages/assets/area/section'.$legacySection['id'].'.svg') ?>></div>

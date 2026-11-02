@@ -5,9 +5,9 @@
 
     <div id="bgr-img" class="bgr" <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
-?><?= background_image('/pages/assets/teacher/bgr.png') ?>></div>
+    ?><?= background_image('/pages/assets/teacher/bgr.png') ?>></div>
 
 </section>
 
@@ -21,7 +21,7 @@ use App\Legacy\LegacyDB;
         <a href="<?= route('teacher.dashboard') ?>" class="button button--secondary back">Torna alla gestione</a>
     </div>
 
-    <?php if ($students->num_rows) { ?>
+    <?php if (count($students)) { ?>
 
         <!-- List -->
         <div id="list" class="panel mar-t-3">
@@ -34,14 +34,14 @@ use App\Legacy\LegacyDB;
                     <p class="field field-m">Saperi</p>
                 </div>
 
-                <?php while ($student = $students->fetch_assoc()) { ?>
+                <?php while ($student = array_shift($students)) { ?>
 
                     <form method="POST" class="row">
 
                         <p class="field"><?= $student['last_name'].' '.$student['first_name'] ?></p>
-                        <p class="field"><?= LegacyDB::exists('progress_areas WHERE progress=100 AND areaID=1 AND userID = ?', $student['id']) ? '<span class="txt-gre font-bold">Completato</span>' : '<span class="txt-red">Non completato</span>' ?></p>
-                        <p class="field"><?= LegacyDB::exists('progress_areas WHERE progress=100 AND areaID=2 AND userID = ?', $student['id']) ? '<span class="txt-gre font-bold">Completato</span>' : '<span class="txt-red">Non completato</span>' ?></p>
-                        <p class="field"><?= LegacyDB::exists('progress_areas WHERE progress=100 AND areaID=3 AND userID = ?', $student['id']) ? '<span class="txt-gre font-bold">Completato</span>' : '<span class="txt-red">Non completato</span>' ?></p>
+                        <p class="field"><?= DB::selectOne('SELECT 1 FROM '.('progress_areas WHERE progress=100 AND areaID=1 AND userID = ?').' LIMIT 1', (array) ($student['id'])) !== null ? '<span class="txt-gre font-bold">Completato</span>' : '<span class="txt-red">Non completato</span>' ?></p>
+                        <p class="field"><?= DB::selectOne('SELECT 1 FROM '.('progress_areas WHERE progress=100 AND areaID=2 AND userID = ?').' LIMIT 1', (array) ($student['id'])) !== null ? '<span class="txt-gre font-bold">Completato</span>' : '<span class="txt-red">Non completato</span>' ?></p>
+                        <p class="field"><?= DB::selectOne('SELECT 1 FROM '.('progress_areas WHERE progress=100 AND areaID=3 AND userID = ?').' LIMIT 1', (array) ($student['id'])) !== null ? '<span class="txt-gre font-bold">Completato</span>' : '<span class="txt-red">Non completato</span>' ?></p>
 
                     </form>
 

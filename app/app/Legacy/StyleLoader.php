@@ -10,6 +10,12 @@ class StyleLoader
 
     public static function __constructStatic() {}
 
+    public static function reset(): void
+    {
+        self::$list = [];
+        self::$inlineStyles = [];
+    }
+
     // add a style
     public static function add($fileName, $type, $priority = null)
     {

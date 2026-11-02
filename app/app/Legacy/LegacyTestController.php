@@ -29,7 +29,7 @@ class LegacyTestController
 
         // store the parameters
         foreach ($this->parameters as $parameter => $parameterValue) {
-            LegacyView::getInstance()->set($parameter, $parameterValue);
+            legacy_set_view_data($parameter, $parameterValue);
         }
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyView;
+use Legacy\LogicManager\TestLogic;
 
 $legacyTest = legacy_test();
 
@@ -49,10 +49,10 @@ foreach ($text as $key => &$part) {
 
 $text = implode('', $text);
 
-Legacy\LogicManager\TestLogic::setParameterCount($count)
+TestLogic::setParameterCount($count)
     ->setTestSubmitFunction(
         function ($count) {
-            $correctAnswers = LegacyView::getInstance()->get('correctAnswers');
+            $correctAnswers = legacy_view_data()['correctAnswers'] ?? null;
             $rightN = 0;
 
             foreach ($_POST['field'] as $key => $result) {

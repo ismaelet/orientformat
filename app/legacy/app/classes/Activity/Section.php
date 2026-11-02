@@ -2,10 +2,10 @@
 
 namespace Legacy\Activity;
 
-use App\Legacy\LegacyDB;
 use App\Legacy\User;
 use App\Models\Activities\Section as ActivitiesSection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Legacy\Activity\Result\SectionResult;
 use Legacy\Activity\Result\TestResult;
 use LegacyModels\Activities\Results\CondensedSectionResult;
@@ -93,7 +93,7 @@ class Section
 
     private function getTests()
     {
-        return rows_to_objects(LegacyDB::select(Test::INDEX.' FROM '.Test::TABLE.' WHERE '.Test::SECTION_INDEX.' = ? AND active = 1', [$this->id]), Test::class);
+        return rows_to_objects(DB::table(Test::TABLE)->select(Test::INDEX)->where(Test::SECTION_INDEX, $this->id)->where('active', 1)->get(), Test::class);
     }
 
     private function getTestCount()
@@ -103,7 +103,7 @@ class Section
 
     private function getLastStep()
     {
-        return LegacyDB::row('MAX(step) as maxStep FROM '.Test::TABLE.' WHERE '.Test::SECTION_INDEX.' = ? AND active = 1', [$this->id])['maxStep'];
+        return DB::table(Test::TABLE)->where(Test::SECTION_INDEX, $this->id)->where('active', 1)->max('step');
     }
 
     private function getLastCompletedStep()
@@ -113,7 +113,7 @@ class Section
 
     private function getResultId()
     {
-        $resultId = LegacyDB::find(SectionResult::INDEX.' FROM '.SectionResult::TABLE.' WHERE sectionId = ?  AND studentId = ?', [$this->id, $this->studentId]);
+        $resultId = DB::table(SectionResult::TABLE)->where('sectionId', $this->id)->where('studentId', $this->studentId)->value(SectionResult::INDEX);
 
         return $resultId ?: (SectionResult::new($this->id))->id;
     }
@@ -125,7 +125,9 @@ class Section
 
     private function getCheckpointId()
     {
-        return LegacyDB::find(Test::INDEX.' FROM '.Test::TABLE.' WHERE active = 1 AND '.Test::SECTION_INDEX.' = ? AND '.Test::INDEX.' NOT IN (SELECT '.TestResult::TEST_INDEX.' FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ?) ORDER BY step ASC', [$this->id, $this->studentId]);
+        return DB::table(Test::TABLE)->where('active', 1)->where(Test::SECTION_INDEX, $this->id)
+            ->whereNotIn(Test::INDEX, DB::table(TestResult::TABLE)->select(TestResult::TEST_INDEX)->where(TestResult::USER_INDEX, $this->studentId))
+            ->orderBy('step')->value(Test::INDEX);
     }
 
     private function getCheckpoint()
@@ -141,7 +143,7 @@ class Section
     public function getProgressPercentage()
     {
         if ($this->isStandard) {
-            return (int) LegacyDB::find('progressPercentage FROM results_sections WHERE studentId = ? AND sectionId = ?', [Auth::id(), $this->id]);
+            return (int) DB::table('results_sections')->where('studentId', Auth::id())->where('sectionId', $this->id)->value('progressPercentage');
         } else {
             return 100;
         }
@@ -150,7 +152,7 @@ class Section
     public function getCompleted()
     {
         if ($this->isStandard) {
-            return LegacyDB::exists('results_sections WHERE studentId = ? AND sectionId = ? AND completed = 1', [$this->studentId, $this->id]);
+            return DB::table('results_sections')->where('studentId', $this->studentId)->where('sectionId', $this->id)->where('completed', 1)->exists();
         } else {
             return true;
         }
@@ -196,15 +198,14 @@ class Section
         $percentage = round($completedTestCount / $this->testCount * 100);
         $completed = $lastCompletedStep >= $this->lastStep ? 1 : 0;
 
-        LegacyDB::update(
-            SectionResult::TABLE.
-                ' SET completedTestCount = ?, lastCompletedStep = ?, progressPercentage = ?, completed = ? 
-				WHERE studentId = ? AND sectionId = ?',
+        DB::table(SectionResult::TABLE)->where('studentId', Auth::id())->where('sectionId', $this->id)->update([
+            'completedTestCount' => $completedTestCount,
+            'lastCompletedStep' => $lastCompletedStep,
+            'progressPercentage' => $percentage,
+            'completed' => $completed,
+        ]);
 
-            [$completedTestCount, $lastCompletedStep, $percentage, $completed, Auth::id(), $this->id]
-        );
-
-        LegacyDB::delete(CondensedSectionResult::table().' WHERE '.CondensedSectionResult::linkedIndexName(User::class).' = ? AND '.CondensedSectionResult::linkedIndexName(SectionModel::class).' = ?', [Auth::id(), $this->id]);
+        DB::table(CondensedSectionResult::table())->where(CondensedSectionResult::linkedIndexName(User::class), Auth::id())->where(CondensedSectionResult::linkedIndexName(SectionModel::class), $this->id)->delete();
 
         // update grade progress
         if (! is_teacher_or_administrator()) {
@@ -222,27 +223,22 @@ class Section
      */
     private function calcCompletedTestCount()
     {
-        return LegacyDB::count(
-            TestResult::TABLE.
-                ' INNER JOIN '.Test::TABLE.
-                ' ON '.TestResult::TABLE.'.'.TestResult::TEST_INDEX.' = '.Test::TABLE.'.'.Test::INDEX.'
-			WHERE '.Test::SECTION_INDEX.' = ? AND active = 1 AND '.TestResult::USER_INDEX.' = ?',
-
-            [$this->id, Auth::id()]
-        );
+        return DB::table(TestResult::TABLE)
+            ->join(Test::TABLE, TestResult::TABLE.'.'.TestResult::TEST_INDEX, '=', Test::TABLE.'.'.Test::INDEX)
+            ->where(Test::TABLE.'.'.Test::SECTION_INDEX, $this->id)
+            ->where(Test::TABLE.'.active', 1)
+            ->where(TestResult::TABLE.'.'.TestResult::USER_INDEX, Auth::id())
+            ->count();
     }
 
     private function calcLastCompletedStep()
     {
-        return LegacyDB::row(
-            'MAX(step) as maxStep FROM '.
-                TestResult::TABLE.
-                ' INNER JOIN '.Test::TABLE.
-                ' ON '.TestResult::TABLE.'.'.TestResult::TEST_INDEX.' = '.Test::TABLE.'.'.Test::INDEX.'
-			WHERE '.Test::SECTION_INDEX.' = ? AND active = 1 AND '.TestResult::USER_INDEX.' = ?',
-
-            [$this->id, Auth::id()]
-        )['maxStep'];
+        return DB::table(TestResult::TABLE)
+            ->join(Test::TABLE, TestResult::TABLE.'.'.TestResult::TEST_INDEX, '=', Test::TABLE.'.'.Test::INDEX)
+            ->where(Test::TABLE.'.'.Test::SECTION_INDEX, $this->id)
+            ->where(Test::TABLE.'.active', 1)
+            ->where(TestResult::TABLE.'.'.TestResult::USER_INDEX, Auth::id())
+            ->max('step');
     }
 
     public function newSection(): ?ActivitiesSection

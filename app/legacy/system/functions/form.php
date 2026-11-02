@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
 // Add to database
 function form_db_add($tbl, $fields)
@@ -8,7 +8,6 @@ function form_db_add($tbl, $fields)
 
     $inputs = [];
     $values = [];
-    $names = $pholders = '';
 
     foreach ($fields as $field) {
         if (isset($field[0])) {
@@ -42,19 +41,12 @@ function form_db_add($tbl, $fields)
                 }
 
                 // store values
-                $names .= $name.', ';
-                $pholders .= '?, ';
-                $values[] = $value;
+                $values[$name] = $value;
             }
         }
     }
 
-    $names = rtrim($names, ', ');
-    $pholders = rtrim($pholders, ', ');
-
-    $query = $tbl.' ('.$names.') VALUES ('.$pholders.')';
-
-    return LegacyDB::add($query, $values);
+    return DB::table($tbl)->insertGetId($values);
 }
 
 // Edit database
@@ -63,7 +55,6 @@ function form_db_update($tbl, $fields, $index, $indexVal)
 
     $inputs = [];
     $values = [];
-    $query = '';
 
     foreach ($fields as $field) {
         if (isset($field[0])) {
@@ -93,17 +84,11 @@ function form_db_update($tbl, $fields, $index, $indexVal)
             }
 
             // store values
-            $values[] = $value;
-            $query .= $name.'=?, ';
+            $values[$name] = $value;
         }
     }
 
-    $query = rtrim($query, ', ');
-
-    $query = $tbl.' SET '.$query.' WHERE '.$index.'=?';
-    $values[] = $indexVal;
-
-    LegacyDB::update($query, $values);
+    DB::table($tbl)->where($index, $indexVal)->update($values);
 }
 
 // Generate form
@@ -207,7 +192,7 @@ function generate_input($input, $data, $error, $done)
         case 'select':
 
             if (isset($input['query'])) {
-                $selectOptions = LegacyDB::select($input['query'])->res;
+                $selectOptions = array_map(static fn ($row) => (array) $row, DB::select('SELECT '.$input['query']));
                 $fieldId = $input['field-name'];
                 $fieldShow = $input['field-show'];
             } elseif (isset($input['array'])) {

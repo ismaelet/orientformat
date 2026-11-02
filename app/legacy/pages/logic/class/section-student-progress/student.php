@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 use Legacy\UserSystem\Student;
 
 // get user
@@ -16,16 +16,16 @@ if ($student->schoolClass->id != $grade->id) {
 // fetch areas and sections
 $areas = [];
 
-$res = LegacyDB::select('id, name FROM areas WHERE id<4 ORDER BY id ASC');
+$res = array_map(static fn ($row) => (array) $row, DB::select('SELECT '.('id, name FROM areas WHERE id<4 ORDER BY id ASC'), (array) ([])));
 
-while ($row = $res->fetch_assoc()) {
+while ($row = array_shift($res)) {
 
     $area['name'] = $row['name'];
     $area['sections'] = [];
 
-    $legacySections = LegacyDB::select('* FROM sections WHERE active=1 AND area = ? ORDER BY id ASC', [$row['id']]);
+    $legacySections = array_map(static fn ($row) => (array) $row, DB::select('SELECT '.('* FROM sections WHERE active=1 AND area = ? ORDER BY id ASC'), (array) ([$row['id']])));
 
-    while ($legacySection = $legacySections->fetch_assoc()) {
+    while ($legacySection = array_shift($legacySections)) {
         switch ($legacySection['id']) {
             case 1:
                 $legacySection['resultName'] = 'Stile prevalente';

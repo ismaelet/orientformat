@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
 // setup variables
 $id = $_GET['id'] ?? false;
@@ -12,7 +12,7 @@ if (isset($_SESSION['password_reset'])) {
     $valid = true;
 }
 
-if (! $valid || ! LegacyDB::exists('users WHERE id = ? AND level=0', [$id])) {
+if (! $valid || DB::selectOne('SELECT 1 FROM '.('users WHERE id = ? AND level=0').' LIMIT 1', (array) ([$id])) === null) {
     redirect_old('/teacher/students');
 }
 
@@ -21,7 +21,7 @@ $password = bin2hex(random_bytes(5));
 
 $db_password = password_hash($password, PASSWORD_DEFAULT);
 
-LegacyDB::update('users SET password = ? WHERE id = ?', [$db_password, $id]);
+DB::update('UPDATE '.('users SET password = ? WHERE id = ?'), (array) ([$db_password, $id]));
 
 // store variables
 $this->set('password', $password);

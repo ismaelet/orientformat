@@ -2,8 +2,8 @@
 
 namespace Legacy\UserSystem;
 
-use App\Legacy\LegacyDB;
 use App\Legacy\User;
+use Illuminate\Support\Facades\DB;
 use Legacy\SchoolSystem\School;
 use Legacy\SchoolSystem\SchoolClass;
 use Legacy\UserSystem\Student\Advice;
@@ -98,17 +98,17 @@ class Student
 
     private function getHasCompletedEndReview()
     {
-        return LegacyDB::exists('survey_end WHERE userID = ?', [$this->id]);
+        return DB::table('survey_end')->where('userID', $this->id)->exists();
     }
 
     private function getStartReviewId()
     {
-        return LegacyDB::find('id FROM review_results WHERE studentId = ? AND reviewId IN (1, 2) ORDER BY reviewId DESC', [$this->id]);
+        return DB::table('review_results')->where('studentId', $this->id)->whereIn('reviewId', [1, 2])->orderByDesc('reviewId')->value('id');
     }
 
     private function getEndReviewId()
     {
-        return LegacyDB::find('id FROM review_results WHERE studentId = ? AND reviewId = 3', [$this->id]);
+        return DB::table('review_results')->where('studentId', $this->id)->where('reviewId', 3)->value('id');
     }
 
     private function getProfile()
@@ -125,7 +125,7 @@ class Student
     {
         $advices = false;
 
-        $advicesData = LegacyDB::find('advices FROM advices WHERE userID=?', [$this->id]);
+        $advicesData = DB::table('advices')->where('userID', $this->id)->value('advices');
 
         if ($advicesData) {
             $advices = [];
@@ -223,11 +223,11 @@ class Student
      */
     public function calcPersonalData()
     {
-        if (! LegacyDB::exists('students_data WHERE studentId = ?', [$this->id])) {
+        if (! DB::table('students_data')->where('studentId', $this->id)->exists()) {
             $tempData = [];
             $tempSurveryData = [];
 
-            if ($tempSurvery = LegacyDB::find('results FROM review_results WHERE studentId = ? AND FIND_IN_SET (reviewId, "1,2")', [$this->id])) {
+            if ($tempSurvery = DB::table('review_results')->where('studentId', $this->id)->whereRaw('FIND_IN_SET(reviewId, ?)', ['1,2'])->value('results')) {
                 foreach (explode(',', $tempSurvery) as $tempSurveryVal) {
                     $tempSurveryVal = explode('=', $tempSurveryVal);
                     $tempSurveryData[$tempSurveryVal[0]] = $tempSurveryVal[1] ?? false;
@@ -254,7 +254,12 @@ class Student
             }
 
             if (! empty($tempData)) {
-                LegacyDB::add('students_data (studentId, gender, decided, degree)', [$this->id, $tempData['gender'], $tempData['decided'], $tempData['degree']]);
+                DB::table('students_data')->insert([
+                    'studentId' => $this->id,
+                    'gender' => $tempData['gender'],
+                    'decided' => $tempData['decided'],
+                    'degree' => $tempData['degree'],
+                ]);
             }
         }
     }

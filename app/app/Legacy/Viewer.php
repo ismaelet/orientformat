@@ -33,10 +33,12 @@ class Viewer
         self::$appTemplates = server_root().'/app/templates';
         self::$viewsPath = server_root().'/pages/views';
 
-        $view = LegacyView::getInstance();
+        self::$viewFile = false;
+        self::$blocks = [];
+
         // fetch the view files
-        self::$templateFile = self::getTemplateFile($view->template);
-        if (file_exists($file = self::$viewsPath.'/'.$view->name.'.php')) {
+        self::$templateFile = self::getTemplateFile(request()->attributes->get('legacy.template', 'main'));
+        if (file_exists($file = self::$viewsPath.'/'.request()->attributes->get('legacy.page').'.php')) {
             self::$viewFile = $file;
         }
 
@@ -65,10 +67,13 @@ class Viewer
     {
         $parentName = false;
 
-        // access variables
-        foreach (LegacyView::getInstance()->variables as $var => $value) {
+        // Make request-scoped page data available to legacy PHP templates.
+        foreach (legacy_view_data() as $var => $value) {
             ${$var} = $value;
         }
+
+        $legacyTitle = legacy_page_title();
+        $legacyLocation = request()->attributes->get('legacy.location');
 
         // render the file content
         ob_start();

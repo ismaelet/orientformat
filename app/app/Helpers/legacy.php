@@ -2,8 +2,6 @@
 
 use App\Legacy\ActiveUser;
 use App\Legacy\Exceptions\LegacyRedirectException;
-use App\Legacy\LegacyView;
-use App\Legacy\Query_Result;
 use App\Models\Activities\Section;
 use App\Models\Activities\Test;
 use App\Models\User\Administrator;
@@ -21,6 +19,47 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 function legacy_student()
 {
     return is_teacher() ? teacher() : ActiveStudent::getInstance();
+}
+
+function legacy_view_data(): array
+{
+    return request()->attributes->get('legacy.data', []);
+}
+
+function legacy_set_view_data(string $var, $value, $arrayKey = null): void
+{
+    $data = legacy_view_data();
+
+    if ($arrayKey === null) {
+        $data[$var] = $value;
+    } else {
+        if (! isset($data[$var]) || ! is_array($data[$var])) {
+            $data[$var] = [];
+        }
+
+        $data[$var][$arrayKey] = $value;
+    }
+
+    request()->attributes->set('legacy.data', $data);
+}
+
+function legacy_page_title(): string
+{
+    $title = request()->attributes->get('legacy.title');
+
+    if ($title) {
+        return $title.' | '.config('app.name');
+    }
+
+    $title = config('app.name');
+    $shortDescription = config('custom.meta_data.short_description');
+
+    return $shortDescription ? $title.' | '.$shortDescription : $title;
+}
+
+function legacy_page_description(): string
+{
+    return __(config('custom.meta_data.description'));
 }
 
 function administrator()
@@ -99,12 +138,14 @@ function percent($currentVal, $maxVal)
     return $maxVal ? round($currentVal / $maxVal * 100) : 0;
 }
 
-function rows_to_objects(?Query_Result $rows, string $className)
+function rows_to_objects(?iterable $rows, string $className): array
 {
     $objects = [];
 
-    while ($row = $rows->fetch_assoc()) {
-        $objects[] = new $className($row[$className::INDEX]);
+    foreach ($rows ?? [] as $row) {
+        $indexName = $className::INDEX;
+        $index = is_array($row) ? $row[$indexName] : $row->{$indexName};
+        $objects[] = new $className($index);
     }
 
     return $objects;
@@ -159,7 +200,8 @@ function generate_base_url(?string $file = '')
     if ($file[0] == '/') {
         $url = $file;
     } else {
-        $url = assets_directory(LegacyView::getInstance()->url).$file;
+        $pageUrl = server_root().'/pages/views/'.request()->attributes->get('legacy.page').'.php';
+        $url = assets_directory($pageUrl).$file;
     }
 
     return '/legacy'.$url;

@@ -1,20 +1,20 @@
 <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
 // theme
 $this->styles->add(SERVER_ROOT.'/pages/styles/teacher/teacher.css');
 $this->scripts->add(SERVER_ROOT.'/pages/scripts/teacher/teacher.js');
 
 // fetch class
-$grade = LegacyDB::find('class FROM users WHERE id = ?', [$user->id]);
+$grade = DB::scalar('SELECT '.('class FROM users WHERE id = ?').' LIMIT 1', (array) ([$user->id])) ?? false;
 
 // fetch data
-$students = LegacyDB::select('*, CONCAT(last_name," ",first_name) as name FROM users WHERE class = ? AND level=0 AND status=1 ORDER BY last_name ASC, first_name ASC, id ASC', [$grade]);
+$students = array_map(static fn ($row) => (array) $row, DB::select('SELECT '.('*, CONCAT(last_name," ",first_name) as name FROM users WHERE class = ? AND level=0 AND status=1 ORDER BY last_name ASC, first_name ASC, id ASC'), (array) ([$grade])));
 
-$res = LegacyDB::select('id, advice FROM advices_list ORDER BY id ASC');
+$res = array_map(static fn ($row) => (array) $row, DB::select('SELECT '.('id, advice FROM advices_list ORDER BY id ASC'), (array) ([])));
 
-while ($choice = $res->fetch_assoc()) {
+while ($choice = array_shift($res)) {
     $choices[$choice['id']] = $choice['advice'];
 }
 
@@ -32,10 +32,10 @@ if (isset($_POST['add-advice'])) {
     $advices = implode(',', $advices);
 
     if (empty($advices)) {
-        LegacyDB::delete('advices WHERE userID = ?', $_POST['id']);
-    } elseif (LegacyDB::exists('advices WHERE userID = ?', $_POST['id'])) {
-        LegacyDB::update('advices SET advices = ? WHERE userID = ?', [$advices, $_POST['id']]);
+        DB::delete('DELETE FROM '.('advices WHERE userID = ?'), (array) ($_POST['id']));
+    } elseif (DB::selectOne('SELECT 1 FROM '.('advices WHERE userID = ?').' LIMIT 1', (array) ($_POST['id'])) !== null) {
+        DB::update('UPDATE '.('advices SET advices = ? WHERE userID = ?'), (array) ([$advices, $_POST['id']]));
     } else {
-        LegacyDB::add('advices (userID, advices) VALUES (?, ?)', [$_POST['id'], $advices]);
+        DB::insert('INSERT INTO '.('advices (userID, advices) VALUES (?, ?)'), (array) ([$_POST['id'], $advices]));
     }
 }

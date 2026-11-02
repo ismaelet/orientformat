@@ -1,12 +1,12 @@
 <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
 $returnUrl = $_GET['return'] ?? false;
 $areas = [];
-$areaRows = LegacyDB::select('id FROM areas ORDER BY id ASC');
+$areaRows = array_map(static fn ($row) => (array) $row, DB::select('SELECT '.('id FROM areas ORDER BY id ASC'), (array) ([])));
 
-while ($areaRow = $areaRows->fetch_assoc()) {
+while ($areaRow = array_shift($areaRows)) {
     $area = new Area($areaRow['id']);
     $areas[$area->slug] = $area->name;
 }

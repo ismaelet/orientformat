@@ -1,8 +1,8 @@
 <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
-$public = sysData('static') ?: LegacyDB::find('value FROM variables WHERE name=?', ['public']);
+$public = sysData('static') ?: DB::scalar('SELECT '.('value FROM variables WHERE name=?').' LIMIT 1', (array) (['public'])) ?? false;
 
 if (! $public && ! $user->admin) {
     redirect_old('/offline');

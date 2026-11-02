@@ -2,7 +2,7 @@
 
 namespace Legacy\SchoolSystem;
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Legacy\Activity\Area;
 use Legacy\Activity\Section;
@@ -55,22 +55,22 @@ class SchoolClass
 
     private function getStudentCount()
     {
-        return LegacyDB::count(Student::TABLE.' WHERE '.Student::SCHOOL_CLASS_INDEX.' = ?', [$this->id]);
+        return DB::table(Student::TABLE)->where(Student::SCHOOL_CLASS_INDEX, $this->id)->count();
     }
 
     private function getActiveStudentCount()
     {
-        return LegacyDB::count(Student::TABLE.' WHERE '.Student::SCHOOL_CLASS_INDEX.' = ? AND status = 1', [$this->id]);
+        return DB::table(Student::TABLE)->where(Student::SCHOOL_CLASS_INDEX, $this->id)->where('status', 1)->count();
     }
 
     private function getStudents()
     {
-        return rows_to_objects(LegacyDB::select(Student::INDEX.' FROM '.Student::TABLE.' WHERE '.Student::SCHOOL_CLASS_INDEX.' = ?', [$this->id]), Student::class);
+        return rows_to_objects(DB::table(Student::TABLE)->select(Student::INDEX)->where(Student::SCHOOL_CLASS_INDEX, $this->id)->get(), Student::class);
     }
 
     private function getActiveStudents()
     {
-        return rows_to_objects(LegacyDB::select(Student::INDEX.' FROM '.Student::TABLE.' WHERE '.Student::SCHOOL_CLASS_INDEX.' = ? AND status = 1', [$this->id]), Student::class);
+        return rows_to_objects(DB::table(Student::TABLE)->select(Student::INDEX)->where(Student::SCHOOL_CLASS_INDEX, $this->id)->where('status', 1)->get(), Student::class);
     }
 
     private function getStudentIds()
@@ -182,7 +182,12 @@ class SchoolClass
 
     private function getDoableAreas()
     {
-        return rows_to_objects(LegacyDB::select(Area::INDEX.' FROM '.Area::TABLE.' WHERE '.Area::INDEX.' IN (SELECT '.Section::AREA_INDEX.' FROM sections WHERE FIND_IN_SET(id, "'.$this->doableSectionIdsString.'"))', []), Area::class);
+        return rows_to_objects(DB::table(Area::TABLE)
+            ->select(Area::INDEX)
+            ->whereIn(Area::INDEX, DB::table('sections')
+                ->select(Section::AREA_INDEX)
+                ->whereRaw('FIND_IN_SET(id, ?)', [$this->doableSectionIdsString]))
+            ->get(), Area::class);
     }
 
     private function getReferent()

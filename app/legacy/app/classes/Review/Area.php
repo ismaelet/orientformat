@@ -2,7 +2,7 @@
 
 namespace Legacy\Review;
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 use System\Traits\DatabaseObject;
 
 class Area
@@ -18,10 +18,16 @@ class Area
         $questions = [];
 
         if ($reviewId) {
-            $questionRows = LegacyDB::select('id FROM review_questions WHERE areaId=? AND (reviewIds="" OR FIND_IN_SET('.$reviewId.', reviewIds))', [$this->id]);
+            $questionRows = DB::table('review_questions')
+                ->select('id')
+                ->where('areaId', $this->id)
+                ->where(function ($query) use ($reviewId) {
+                    $query->where('reviewIds', '')->orWhereRaw('FIND_IN_SET(?, reviewIds)', [$reviewId]);
+                })
+                ->get();
 
-            while ($questionRow = $questionRows->fetch_assoc()) {
-                $questions[] = new Question($questionRow['id']);
+            foreach ($questionRows as $questionRow) {
+                $questions[] = new Question($questionRow->id);
             }
         }
 

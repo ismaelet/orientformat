@@ -1,10 +1,8 @@
 <?php
 
-use App\Legacy\LegacyView;
-
 include_once __DIR__.'/test.php';
 
-$fixedQuestions = LegacyView::getInstance()->get('fixedQuestions');
+$fixedQuestions = legacy_view_data()['fixedQuestions'] ?? null;
 $answers = null;
 $total = 0;
 

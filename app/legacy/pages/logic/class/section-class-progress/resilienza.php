@@ -1,7 +1,7 @@
 <?php
 
-use App\Legacy\LegacyDB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Student\SectionTestResult;
 
 global $grade;
@@ -21,7 +21,7 @@ $graphData['max'] = 100;
 $graphData['columns'] = [];
 
 foreach ($grade->students as $student) {
-    if (LegacyDB::exists('results WHERE userID = ? AND testID=49 AND completed=1', [Auth::id()])) {
+    if (DB::selectOne('SELECT 1 FROM '.('results WHERE userID = ? AND testID=49 AND completed=1').' LIMIT 1', (array) ([Auth::id()])) !== null) {
         $graphData['columns'][$student->fullName] = SectionTestResult::getResult(Auth::id(), $sectionId);
     }
 }

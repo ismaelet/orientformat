@@ -2,9 +2,9 @@
 
 namespace LegacyModels\Activities;
 
-use App\Legacy\LegacyDB;
 use App\Legacy\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use LegacyModels\Activities\Results\TestResult;
 use LegacyModels\OldModel;
 
@@ -34,14 +34,13 @@ class Grade extends OldModel
         $legacySectionIndex = Section::indexName();
         $legacySectionLinkedIndex = Test::linkedIndexName(Section::class);
 
-        return $this->testIds = (LegacyDB::execute(
-            "SELECT $legacyTestTable.$legacyTestIndex
-				FROM $legacyTestTable 
-				INNER JOIN $legacySectionTable
-				ON $legacyTestTable.$legacySectionLinkedIndex = $legacySectionTable.$legacySectionIndex
-				WHERE FIND_IN_SET(?, grades) AND $legacyTestTable.active = 1 AND $legacySectionTable.active = 1",
-            [$this->id()]
-        ))->extractResults() ?: [];
+        return $this->testIds = DB::table($legacyTestTable)
+            ->join($legacySectionTable, "$legacyTestTable.$legacySectionLinkedIndex", '=', "$legacySectionTable.$legacySectionIndex")
+            ->whereRaw('FIND_IN_SET(?, grades)', [$this->id()])
+            ->where("$legacyTestTable.active", 1)
+            ->where("$legacySectionTable.active", 1)
+            ->pluck("$legacyTestTable.$legacyTestIndex")
+            ->all();
     }
 
     public function testCount()
@@ -55,13 +54,15 @@ class Grade extends OldModel
             return $this->completedTestIds;
         }
 
-        $legacyTestResultIndex = TestResult::indexName();
         $legacyTestResultTable = TestResult::table();
         $legacyTestResultUserIndex = TestResult::linkedIndexName(User::class);
         $legacyTestResultTestIndex = TestResult::linkedIndexName(Test::class);
-        $gradeTestIds = implode(',', $this->testIds());
 
-        return $this->completedTestIds = LegacyDB::execute("SELECT $legacyTestResultIndex FROM $legacyTestResultTable WHERE $legacyTestResultUserIndex = ? AND FIND_IN_SET($legacyTestResultTestIndex, '$gradeTestIds')", [Auth::id()])->extractResults() ?: [];
+        return $this->completedTestIds = DB::table($legacyTestResultTable)
+            ->where($legacyTestResultUserIndex, Auth::id())
+            ->whereIn($legacyTestResultTestIndex, $this->testIds())
+            ->pluck(TestResult::indexName())
+            ->all();
     }
 
     public function completedTestCount()

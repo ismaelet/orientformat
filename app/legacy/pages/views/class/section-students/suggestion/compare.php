@@ -10,11 +10,11 @@
 	<?php
 use Legacy\UserSystem\Student;
 
-if ($students->num_rows) { ?>
+	if (count($students)) { ?>
 
 		<div class="students grid gap-4">
 
-			<?php while ($student = $students->fetch_assoc()) {
+			<?php while ($student = array_shift($students)) {
 			    $student = new Student($student['id']);
 			    ?>
 

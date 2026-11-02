@@ -2,6 +2,8 @@
 
 namespace App\Legacy;
 
+use App\Services\LegacyPageRenderer;
+
 class LegacyRoute
 {
     private static $routes = [];
@@ -37,10 +39,11 @@ class LegacyRoute
         }
 
         // Error 404
-        return LegacyView::setPage('errors/404')
-            ->setTitle(__('Error 404'))
-            ->setTemplate('void')
-            ->setMiddlewares([])
-            ->show();
+        return app(LegacyPageRenderer::class)->render(
+            page: 'errors/404',
+            template: 'void',
+            title: __('Error 404'),
+            middlewares: [],
+        );
     }
 }

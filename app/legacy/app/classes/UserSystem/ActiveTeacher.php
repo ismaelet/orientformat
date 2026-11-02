@@ -2,6 +2,7 @@
 
 namespace Legacy\UserSystem;
 
+use Illuminate\Support\Facades\DB;
 use System\Traits\Singleton;
 
 class ActiveTeacher
@@ -17,7 +18,7 @@ class ActiveTeacher
      */
     private function __construct()
     {
-        if (\App\Legacy\LegacyDB::exists(Teacher::TABLE.' WHERE '.Teacher::INDEX.' = ?', [userId()])) {
+        if (DB::table(Teacher::TABLE)->where(Teacher::INDEX, userId())->exists()) {
             $teacher = new Teacher(userId());
 
             self::$id = $teacher->id;

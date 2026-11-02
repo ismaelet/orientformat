@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Legacy\LegacyView;
 use App\Models\Class\InviteRequest;
 use App\Models\Class\StudentJoinRequest;
 use App\Models\Class\TeacherJoinRequest;
@@ -10,6 +9,7 @@ use App\Models\Notification;
 use App\Models\Schools\School;
 use App\Models\Schools\SchoolClass;
 use App\Models\User;
+use App\Services\LegacyPageRenderer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -251,10 +251,9 @@ completate sia di quelle non ancora completate.',
     /**
      * Display the simulation index
      */
-    public function simulationIndex(): Response
+    public function simulationIndex(LegacyPageRenderer $renderer): Response
     {
-        return LegacyView::setPage('teacher/simulation')
-            ->show();
+        return $renderer->render(page: 'teacher/simulation');
     }
 
     /**

@@ -39,7 +39,7 @@
                     <?php } ?>
 
                     <?php if (isset($area['sections'])) {
-                        while ($legacySection = $area['sections']->fetch_assoc()) { ?>
+                        while ($legacySection = array_shift($area['sections'])) { ?>
 
                         <a href="<?= route('read', ['id' => $legacySection['id']]) ?>" id="section<?= $legacySection['id'] ?>" class="section inlb al-top ele4 ele3-768w ele2-480w pad-2 fa-center">
                             <div class="">

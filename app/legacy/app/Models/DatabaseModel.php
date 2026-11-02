@@ -2,6 +2,9 @@
 
 namespace LegacyModels;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+
 /**
  * Methods that return table structure
  *
@@ -46,7 +49,9 @@ abstract class DatabaseModel
 
     public static function indexName()
     {
-        return \App\Legacy\LegacyDB::execute('SHOW columns FROM '.static::table().' WHERE `Key` = "PRI"')->res[0]['Field'];
+        $columns = DB::select('SHOW columns FROM '.static::table().' WHERE `Key` = "PRI"');
+
+        return $columns[0]->Field;
     }
 
     public static function linkedIndexName(string $modelName)
@@ -56,12 +61,12 @@ abstract class DatabaseModel
 
     public static function hasTable()
     {
-        return \App\Legacy\LegacyDB::table(static::table());
+        return Schema::hasTable(static::table());
     }
 
     public static function hasColumn(string $column)
     {
-        return \App\Legacy\LegacyDB::execute('SHOW COLUMNS FROM '.static::table().' LIKE "'.$column.'"')->num_rows;
+        return Schema::hasColumn(static::table(), $column);
     }
 
     /**
@@ -71,13 +76,13 @@ abstract class DatabaseModel
     {
         $columnsQuery = implode(',', $columnsData);
 
-        \App\Legacy\LegacyDB::execute('CREATE TABLE IF NOT EXISTS '.static::table().' ('.$columnsQuery.')');
+        DB::statement('CREATE TABLE IF NOT EXISTS '.static::table().' ('.$columnsQuery.')');
     }
 
     public static function dropTable()
     {
         if (static::hasTable()) {
-            \App\Legacy\LegacyDB::execute('DROP TABLE '.static::table());
+            Schema::drop(static::table());
         }
     }
 
@@ -90,7 +95,7 @@ abstract class DatabaseModel
                 $previousColumns = $columnData[1] ?? null;
 
                 if (! static::hasColumn($column)) {
-                    \App\Legacy\LegacyDB::execute('ALTER TABLE '.static::table().' ADD COLUMN '.$columnQuery.($previousColumns ? ' AFTER '.$previousColumns : ''));
+                    DB::statement('ALTER TABLE '.static::table().' ADD COLUMN '.$columnQuery.($previousColumns ? ' AFTER '.$previousColumns : ''));
                 }
             }
         }
@@ -100,14 +105,16 @@ abstract class DatabaseModel
     {
         foreach ($columns as $column) {
             if (static::hasColumn($column)) {
-                \App\Legacy\LegacyDB::execute('ALTER TABLE '.static::table().' DROP COLUMN '.$column);
+                Schema::table(static::table(), function ($table) use ($column) {
+                    $table->dropColumn($column);
+                });
             }
         }
     }
 
     public static function transferColumnData($sourceColumn, $destinationColumn)
     {
-        \App\Legacy\LegacyDB::update(static::table().' set '.$destinationColumn.' = '.$sourceColumn);
+        DB::table(static::table())->update([$destinationColumn => DB::raw($sourceColumn)]);
     }
 
     /**
@@ -117,18 +124,12 @@ abstract class DatabaseModel
     {
         $columnName = $columnName ?: self::indexName();
 
-        return \App\Legacy\LegacyDB::exists(static::table().' WHERE '.$columnName.' = ?', [$value]);
+        return DB::table(static::table())->where($columnName, $value)->exists();
     }
 
     public static function newWhere(array $parameters)
     {
-        $columnQuery = implode(' AND ', array_map(function ($column) {
-            return $column.' = ?';
-        }, array_keys($parameters)));
-
-        $values = array_values($parameters);
-
-        $id = \App\Legacy\LegacyDB::find(static::indexName().' FROM '.static::table().' WHERE '.$columnQuery, $values);
+        $id = DB::table(static::table())->where($parameters)->value(static::indexName());
 
         return $id ? new static($id) : null;
     }
@@ -137,10 +138,10 @@ abstract class DatabaseModel
     {
         $sortIndex = $sortIndex ? $sortIndex : static::indexName();
 
-        $rows = \App\Legacy\LegacyDB::select(static::indexName().' FROM '.static::table().' ORDER BY '.$sortIndex.' '.$sortDirection.' LIMIT ?', [$countLimit]);
+        $rows = DB::table(static::table())->select(static::indexName())->orderBy($sortIndex, $sortDirection)->limit($countLimit)->get();
 
-        while ($row = $rows->fetch_assoc()) {
-            $objects[] = new static($row[static::indexName()]);
+        foreach ($rows as $row) {
+            $objects[] = new static($row->{static::indexName()});
         }
 
         return $objects;
@@ -149,9 +150,9 @@ abstract class DatabaseModel
     public static function list(?string $columnName = null)
     {
         $columnName = $columnName ?: self::indexName();
-        $entries = \App\Legacy\LegacyDB::execute('SELECT '.$columnName.' FROM '.static::table());
+        $entries = DB::table(static::table())->pluck($columnName);
 
-        return $entries->num_rows ? $entries->extractResults() : null;
+        return $entries->isNotEmpty() ? $entries->all() : null;
     }
 
     /**
@@ -159,10 +160,7 @@ abstract class DatabaseModel
      */
     public static function add(array $parameters = [])
     {
-        $columnNames = implode(',', array_keys($parameters));
-        $values = array_values($parameters);
-
-        return \App\Legacy\LegacyDB::add(static::table().' ('.$columnNames.')', $values);
+        return DB::table(static::table())->insertGetId($parameters, static::indexName());
     }
 
     public static function newAdd(int $id)
@@ -178,28 +176,22 @@ abstract class DatabaseModel
 
     public static function updateAllInSet($find, $replace, string $column)
     {
-        \App\Legacy\LegacyDB::update(static::table().' SET '.$column." = TRIM(BOTH ',' FROM REPLACE(CONCAT(',',".$column.",','), ',".$find.",', ',".$replace.",'))");
+        $quotedFind = DB::connection()->getPdo()->quote(','.$find.',');
+        $quotedReplace = DB::connection()->getPdo()->quote(','.$replace.',');
+        DB::table(static::table())->update([
+            $column => DB::raw("TRIM(BOTH ',' FROM REPLACE(CONCAT(',', {$column}, ','), {$quotedFind}, {$quotedReplace}))"),
+        ]);
     }
 
     public static function duplicateEntry(int $id, array $changedParameters = [])
     {
-        if (! empty($changedParameters)) {
-            $columnQuery = ','.implode(',', array_map(function ($column) {
-                return $column.' = ?';
-            }, array_keys($changedParameters)));
-        } else {
-            $columnQuery = '';
-        }
+        DB::statement('CREATE TEMPORARY TABLE duplication_table SELECT * FROM '.static::table().' WHERE '.static::indexName().' = ?', [$id]);
+        DB::table('duplication_table')->update(array_merge([static::indexName() => null], $changedParameters));
+        DB::statement('INSERT INTO '.static::table().' SELECT * FROM duplication_table');
 
-        $values = array_values($changedParameters);
+        $id = (int) DB::getPdo()->lastInsertId();
 
-        \App\Legacy\LegacyDB::execute('CREATE TEMPORARY TABLE duplication_table SELECT * FROM '.static::table().' WHERE '.static::indexName().' = ?', [$id]);
-        \App\Legacy\LegacyDB::execute('UPDATE duplication_table SET '.static::indexName().' = NULL '.$columnQuery, $values);
-        \App\Legacy\LegacyDB::execute('INSERT INTO '.static::table().' SELECT * FROM duplication_table');
-
-        $id = (\App\Legacy\ConnectionInterface::getInstance()->connection)->insert_id;
-
-        \App\Legacy\LegacyDB::execute('DROP TEMPORARY TABLE IF EXISTS duplication_table');
+        DB::statement('DROP TEMPORARY TABLE IF EXISTS duplication_table');
 
         return $id;
     }

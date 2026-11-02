@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyView;
+use Legacy\LogicManager\TestLogic;
 
 $sentences = [
     [
@@ -39,8 +39,8 @@ $sentences = [
 
 $correctAnswers = [3, 2, 3, 2];
 
-Legacy\LogicManager\TestLogic::setParameterCount(count($sentences))::setTestSubmitFunction(function ($count) {
-    $correctAnswers = LegacyView::get('correctAnswers');
+TestLogic::setParameterCount(count($sentences))::setTestSubmitFunction(function ($count) {
+    $correctAnswers = legacy_view_data()['correctAnswers'] ?? null;
     $correctAnswerCount = 0;
 
     foreach ($correctAnswers as $answerKey => $correctAnswer) {

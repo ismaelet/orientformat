@@ -1,9 +1,10 @@
 <?php
 
-use App\Legacy\LegacyDB;
 use App\Legacy\ScriptLoader;
 use App\Legacy\StyleLoader;
+use Illuminate\Support\Facades\DB;
 use Legacy\Activity\Test;
+use Legacy\LogicManager\TestLogic;
 
 StyleLoader::add('profile/ruota/ruota', 'page');
 ScriptLoader::add('profile/ruota/ruota', 'page');
@@ -23,10 +24,10 @@ if ($legacyTest->completed) {
 
 $emotionCount = count($emotions);
 
-Legacy\LogicManager\TestLogic::setParameterCount(1);
+TestLogic::setParameterCount(1);
 
 for ($i = 1; $i < $step; $i++) {
-    $relatedTestId = LegacyDB::find(Test::INDEX.' FROM '.Test::TABLE.' WHERE '.Test::SECTION_INDEX.' = ? AND step = ?', [$legacyTest->sectionId, $i]);
+    $relatedTestId = DB::scalar('SELECT '.(Test::INDEX.' FROM '.Test::TABLE.' WHERE '.Test::SECTION_INDEX.' = ? AND step = ?').' LIMIT 1', (array) ([$legacyTest->sectionId, $i])) ?? false;
     $relatedTest = new Test($relatedTestId);
 
     if ($relatedTest->completed) {

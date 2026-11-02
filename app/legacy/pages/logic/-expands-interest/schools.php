@@ -171,6 +171,7 @@ return [
                 '' => [
                     [
                         'name' => 'Fondazione Edmund Mach Istituto Agrario',
+                        'details' => 'Questo istituto offre anche un percorso quadriennale (GAT 4)',
                         'location' => 'San Michele All’Adige',
                         'link' => 'http://www.fmach.it',
                         'phone' => '0461 615213',
@@ -269,7 +270,7 @@ return [
                     ],
                 ],
             ],
-            'Indirizzo Amministrativo e commerciale – Diplomi quadriennali' => [
+            'Indirizzo Amministrativo e commerciale – Diplomi quadriennali: percorso quadriennale unico (2+2)' => [
                 'Tecnico commerciale alle vendite' => [
                     [
                         'name' => 'Centro Formazione Professionale UPT',
@@ -416,6 +417,7 @@ return [
                     [
                         'name' => 'Istituto Tecnico Economico "A.Tambosi"',
                         'location' => 'Trento',
+                        'details' => 'Questo istituto offre anche un percorso quadriennale RIM 4 con indirizzo linguistico aziendale',
                         'link' => 'http://tambosi.tn.it',
                         'phone' => '0461 239955',
                     ],
@@ -491,6 +493,7 @@ return [
                 'Tecnico dell’abbigliamento e del prodotto moda' => [
                     [
                         'name' => 'Centro Formazione Professionale "Centromoda Canossa"',
+                        'details' => 'Percorso quadriennale unico (2+2)',
                         'location' => 'Trento',
                         'link' => 'http://www.centromoda.tn.it',
                         'phone' => '0461 260454',
@@ -549,6 +552,14 @@ return [
         'Liceo Artistico' => [
             'Indirizzo Design' => [
                 '' => [
+                    [
+                        'name' => 'Liceo Quadriennale delle Arti (“Vittoria – Bonporti –
+Depero” a Trento e Rovereto), con il percorso IDEA
+(Interactivity Digital Experience Art) ad indirizzo STEM',
+                        'location' => '',
+                        'link' => '',
+                        'phone' => '',
+                    ],
                     [
                         'name' => 'Liceo Vittoria Bonporti Depero',
                         'location' => 'Rovereto',
@@ -719,6 +730,7 @@ return [
                 'Diplomi quadriennali – Tecnico dei trattamenti estetici' => [
                     [
                         'name' => 'Istituto Formazione Professionale Servizi alla Persona e Legno "S. Pertini"',
+                        'details' => 'Nuovo percorso quadriennale unico (2+2) per Tecnico dell’acconciatura, trattamenti estetici o legno',
                         'location' => 'Trento',
                         'link' => 'https://ifpsandropertinitrento.it',
                         'phone' => '0461 933147',
@@ -741,7 +753,8 @@ return [
                 'Tecnico Operatore Socio Sanitario' => [
                     [
                         'name' => 'Centro Formazione Professionale Opera Armida Barelli',
-                        'location' => 'Rovereto',
+                        'location' => 'Rovereto e Levico Terme',
+                        'details' => 'Percorso quadriennale unico (2+2)',
                         'link' => 'http://www.operaarmidabarelli.org',
                         'phone' => '0464 433771',
                     ],
@@ -1145,6 +1158,7 @@ return [
                 'Tecnico edile' => [
                     [
                         'name' => 'Centro Formazione Professionale ENAIP',
+                        'details' => 'Nuovo percorso quadriennale unico (2+2)',
                         'location' => 'Villazzano',
                         'link' => 'http://www.enaiptrentino.it',
                         'phone' => '0461 920386',
@@ -1248,6 +1262,7 @@ return [
                     ],
                     [
                         'name' => 'Istituto Tecnico per il Settore Tecnologico - Istituto Tecnico Economico e Tecnologico &quot;F.e G.Fontana&quot;',
+                        'details' => 'Questo istituto offre anche un percorso quadriennale CAT 4.0 - Costruzione Ambiente Territorio – Indirizzo STEM',
                         'location' => 'Rovereto',
                         'link' => 'http://www.fgfontana.eu',
                         'phone' => '+39 0464 436100',
@@ -1401,6 +1416,7 @@ return [
                     ],
                     [
                         'name' => 'Istituto Tecnico Tecnologico "G. Marconi"',
+                        'details' => 'Questo istituto offre anche un percorso quadriennale STREAM - Green Engineering Technology',
                         'location' => 'Rovereto',
                         'link' => 'http://www.marconirovereto.it',
                         'phone' => '0464 411400',
@@ -1590,6 +1606,7 @@ return [
                     ],
                     [
                         'name' => 'Centro Formazione Professionale ENAIP',
+                        'details' => 'Nuovo percorso quadriennale unico (2+2) per Tecnico per la conduzione e manutenzione di impianti automatizzati',
                         'location' => 'Arco',
                         'link' => 'http://www.enaiptrentino.it',
                         'phone' => '0464 516465',
@@ -1602,6 +1619,7 @@ return [
                     ],
                     [
                         'name' => 'Centro Formazione Professionale ENAIP',
+                        'details' => 'Nuovo percorso quadriennale unico (2+2) per Tecnico per la conduzione e manutenzione di impianti automatizzati',
                         'location' => 'Villazzano',
                         'link' => 'http://www.enaiptrentino.it',
                         'phone' => '0461 920386',
@@ -1792,6 +1810,14 @@ return [
                         'location' => 'Rovereto',
                         'link' => 'http://www.alberghierorovereto.it',
                         'phone' => '0464 439164',
+                    ],
+                    [
+                        'name' => 'Istituto Formazione Professionale Alberghiero "G. Cipriani"',
+                        'location' => 'Levico Terme',
+                    ],
+                    [
+                        'name' => 'Istituto Formazione Professionale Alberghiero "G. Cipriani"',
+                        'location' => 'Rovereto',
                     ],
                     [
                         'name' => 'Centro Formazione Professionale ENAIP',
@@ -2317,6 +2343,7 @@ return [
                     ],
                     [
                         'name' => 'Istituto "I. De Carneri"',
+                        'details' => 'Questo istituto offre anche un percorso quadriennale TUR 4 - indirizzo tecnico turistico',
                         'location' => 'Civezzano',
                         'link' => 'http://www.istitutodecarneri.it',
                         'phone' => '0461 857003',

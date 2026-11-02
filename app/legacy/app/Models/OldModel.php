@@ -2,8 +2,8 @@
 
 namespace LegacyModels;
 
-use App\Legacy\LegacyDB;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 abstract class OldModel extends DatabaseModel
 {
@@ -30,7 +30,7 @@ abstract class OldModel extends DatabaseModel
     public function __construct(int $id)
     {
         $this->id = $id;
-        $this->databaseData = LegacyDB::row('* FROM '.static::TABLE.' WHERE '.self::indexName().' = ?', [$id]) ?: [];
+        $this->databaseData = (array) DB::table(static::TABLE)->where(self::indexName(), $id)->first();
     }
 
     public function __call($methodName, $arguments)
@@ -87,25 +87,11 @@ abstract class OldModel extends DatabaseModel
 
     public function post()
     {
-        if (empty($column)) {
+        if (empty($this->preparedData)) {
             return;
         }
 
-        // columns
-        $columnQuery = array_map(function ($column) {
-            return $column.' = ?';
-        }, array_keys($this->preparedData));
-
-        $columnQuery = implode(',', $columnQuery);
-
-        // values
-        $values = array_values($this->preparedData);
-        array_push($values, $this->id);
-
-        $query = static::TABLE.' SET '.$columnQuery.' WHERE '.self::indexName().' = ?';
-
-        // execute
-        LegacyDB::update($query.' = ?', $values);
+        DB::table(static::TABLE)->where(self::indexName(), $this->id)->update($this->preparedData);
     }
 
     /**
@@ -113,6 +99,6 @@ abstract class OldModel extends DatabaseModel
      */
     public function delete()
     {
-        LegacyDB::delete(static::table().' WHERE '.static::indexName().' = ?', [$this->id]);
+        DB::table(static::table())->where(static::indexName(), $this->id)->delete();
     }
 }

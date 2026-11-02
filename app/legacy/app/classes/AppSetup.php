@@ -2,10 +2,10 @@
 
 namespace Legacy;
 
-use App\Legacy\LegacyDB;
 use App\Legacy\Logic;
 use App\Legacy\MiddlewareLoader;
 use App\Models\Schools\SchoolClass;
+use Illuminate\Support\Facades\DB;
 use Legacy\UserSystem\Teacher;
 
 class AppSetup
@@ -96,7 +96,7 @@ class AppSetup
             }
 
             if (is_teacher()) {
-                if (! $schoolClassId || ! LegacyDB::exists(Teacher::TABLE.' WHERE '.Teacher::INDEX.' = ? AND FIND_IN_SET (?, classes)', [teacherId(), $schoolClassId])) {
+                if (! $schoolClassId || ! DB::table(Teacher::TABLE)->where(Teacher::INDEX, teacherId())->whereRaw('FIND_IN_SET(?, classes)', [$schoolClassId])->exists()) {
                     redirect_old('/teacher');
                 }
             }

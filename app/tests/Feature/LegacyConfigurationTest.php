@@ -1,7 +1,6 @@
 <?php
 
 use App\Legacy\LegacyConfig;
-use App\Legacy\LegacyView;
 
 beforeEach(function (): void {
     config([
@@ -40,17 +39,36 @@ test('legacy helpers read laravel configuration without stale values', function 
 
 test('legacy page metadata uses laravel configuration', function (): void {
     try {
-        LegacyView::setTitle('');
-        expect(LegacyView::getTabTitle())->toBe('Test application | Short description');
-        expect(LegacyView::getDescription())->toBe('Application description');
+        request()->attributes->set('legacy.title', null);
+        expect(legacy_page_title())->toBe('Test application | Short description');
+        expect(legacy_page_description())->toBe('Application description');
 
-        LegacyView::setTitle('Page title');
-        expect(LegacyView::getTabTitle())->toBe('Page title | Test application');
+        request()->attributes->set('legacy.title', 'Page title');
+        expect(legacy_page_title())->toBe('Page title | Test application');
 
         config(['custom.meta_data.short_description' => '']);
-        LegacyView::setTitle('');
-        expect(LegacyView::getTabTitle())->toBe('Test application');
+        request()->attributes->set('legacy.title', null);
+        expect(legacy_page_title())->toBe('Test application');
     } finally {
-        LegacyView::setTitle('');
+        request()->attributes->remove('legacy.title');
     }
+});
+
+test('legacy page data is stored in the current request', function (): void {
+    legacy_set_view_data('answers', ['first']);
+    legacy_set_view_data('answers', 'second', 1);
+
+    expect(legacy_view_data())->toBe([
+        'answers' => ['first', 'second'],
+    ]);
+
+    request()->attributes->remove('legacy.data');
+
+    expect(legacy_view_data())->toBe([]);
+});
+
+test('support page renders with request-scoped page metadata', function (): void {
+    $this->get(route('help'))
+        ->assertOk()
+        ->assertSee('<title>Supporto | '.config('app.name').'</title>', false);
 });

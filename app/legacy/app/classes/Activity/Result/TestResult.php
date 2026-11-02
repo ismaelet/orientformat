@@ -2,8 +2,8 @@
 
 namespace Legacy\Activity\Result;
 
-use App\Legacy\LegacyDB;
 use App\Models\Results\User\TestResult as UserTestResult;
+use Illuminate\Support\Facades\DB;
 use System\Traits\DatabaseObject;
 
 /**
@@ -49,16 +49,19 @@ class TestResult
         ]);
 
         // permanent record
-        if (! LegacyDB::exists('results_permanent WHERE studentId = ? AND testId = ?', [$data['studentId'], $data['testId']])) {
+        if (! DB::table('results_permanent')->where('studentId', $data['studentId'])->where('testId', $data['testId'])->exists()) {
             self::saveToPermanentRecord($data);
         }
     }
 
     private static function saveToPermanentRecord(array $data)
     {
-        LegacyDB::add(
-            'results_permanent (studentId, testId, result, percentage, speed)',
-            [$data['studentId'], $data['testId'], $data['results'], $data['percentage'], $data['speed']]
-        );
+        DB::table('results_permanent')->insert([
+            'studentId' => $data['studentId'],
+            'testId' => $data['testId'],
+            'result' => $data['results'],
+            'percentage' => $data['percentage'],
+            'speed' => $data['speed'],
+        ]);
     }
 }

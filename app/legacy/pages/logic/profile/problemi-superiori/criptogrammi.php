@@ -1,6 +1,5 @@
 <?php
 
-use App\Legacy\LegacyView;
 use Legacy\LogicManager\TestLogic;
 
 $texts = [
@@ -34,7 +33,7 @@ $correctResults = [
 $legacyTestResults = legacy_test()->completed ? _parse_results(legacy_test()->rawResults) : null;
 
 TestLogic::setTestSubmitFunction(function () {
-    $correctResults = LegacyView::getInstance()->get('correctResults');
+    $correctResults = legacy_view_data()['correctResults'] ?? null;
     $correctResultCount = 0;
 
     $results = _parse_results($_POST['field'] ?? []);

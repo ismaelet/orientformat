@@ -1,7 +1,8 @@
 <?php
 
-use App\Legacy\LegacyDB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Legacy\LogicManager\TestLogic;
 
 $legacyTest = legacy_test();
 
@@ -13,18 +14,18 @@ for ($i = 1; $i <= 4; $i++) {
     $groups[] = __('tests.24-group-'.$i);
 }
 
-$results = LegacyDB::find('result FROM results_others WHERE userID = ? AND testID = ?', [watchedStudentId(), $legacyTest->id]);
+$results = DB::scalar('SELECT '.('result FROM results_others WHERE userID = ? AND testID = ?').' LIMIT 1', (array) ([watchedStudentId(), $legacyTest->id])) ?? false;
 
 if ($results) {
     $results = explode(',', $results);
 }
 
-Legacy\LogicManager\TestLogic::setParameterCount($count)
+TestLogic::setParameterCount($count)
     ->setTestSubmitFunction(function () {
         $results = implode(',', $_POST['field_other']);
 
-        LegacyDB::delete('results_others WHERE userID = ? AND testID = ?', [Auth::id(), testId()]);
-        LegacyDB::add('results_others (userID, testID, result)', [Auth::id(), testId(), $results]);
+        DB::delete('DELETE FROM '.('results_others WHERE userID = ? AND testID = ?'), (array) ([Auth::id(), testId()]));
+        DB::insert('INSERT INTO '.(('results_others (userID, testID, result)'.' VALUES (?, ?, ?)')), (array) ([Auth::id(), testId(), $results]));
 
         return 100;
     });

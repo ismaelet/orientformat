@@ -2,9 +2,12 @@
 
 namespace Student;
 
+use Illuminate\Support\Facades\DB;
+use System\Traits\DatabaseObject;
+
 class Profile
 {
-    use \System\Traits\DatabaseObject;
+    use DatabaseObject;
 
     public const TABLE = 'students_data';
 
@@ -19,7 +22,7 @@ class Profile
      */
     public static function new(int $id)
     {
-        \App\Legacy\LegacyDB::add(self::TABLE.' ('.self::INDEX.')', [$id]);
+        DB::table(self::TABLE)->insert([self::INDEX => $id]);
 
         return new self($id);
     }

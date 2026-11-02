@@ -2,12 +2,12 @@
 
 namespace Legacy\Activity;
 
-use App\Legacy\LegacyDB;
 use App\Models\Activities\Survey;
 use App\Models\Activities\Test as ModernTest;
 use App\Models\User\Student;
 use App\Models\User\Teacher;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Legacy\Activity\Result\AdditionalTestResult;
 use Legacy\Activity\Result\Handler\StudentTestResult;
 use Legacy\Activity\Result\TestResult;
@@ -105,7 +105,7 @@ class Test
 
     private function getResultId()
     {
-        return LegacyDB::find(TestResult::INDEX.' FROM '.TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND '.TestResult::TEST_INDEX.' = ? order by id DESC', [$this->studentId, $this->id]);
+        return DB::table(TestResult::TABLE)->where(TestResult::USER_INDEX, $this->studentId)->where(TestResult::TEST_INDEX, $this->id)->orderByDesc('id')->value(TestResult::INDEX);
     }
 
     private function getResult()
@@ -136,7 +136,7 @@ class Test
 
     private function getEverCompleted()
     {
-        return LegacyDB::exists('results_permanent WHERE studentId = ? AND testId = ? ', [Auth::id(), $this->id]);
+        return DB::table('results_permanent')->where('studentId', Auth::id())->where('testId', $this->id)->exists();
     }
 
     private function getPercentage()
@@ -146,7 +146,7 @@ class Test
 
     private function getAdditionalResultId()
     {
-        return LegacyDB::find(AdditionalTestResult::INDEX.' FROM '.AdditionalTestResult::TABLE.' WHERE '.AdditionalTestResult::USER_INDEX.' = ? AND '.AdditionalTestResult::TEST_INDEX.' = ?', [Auth::id(), $this->id]);
+        return DB::table(AdditionalTestResult::TABLE)->where(AdditionalTestResult::USER_INDEX, Auth::id())->where(AdditionalTestResult::TEST_INDEX, $this->id)->value(AdditionalTestResult::INDEX);
     }
 
     private function getAdditionalResult()
@@ -176,7 +176,7 @@ class Test
 
     private function getNextTestId()
     {
-        return LegacyDB::find(self::INDEX.' FROM '.self::TABLE.' WHERE '.self::SECTION_INDEX.' = ? AND step > ? AND active = 1 ORDER BY step ASC', [$this->sectionId, $this->step]);
+        return DB::table(self::TABLE)->where(self::SECTION_INDEX, $this->sectionId)->where('step', '>', $this->step)->where('active', 1)->orderBy('step')->value(self::INDEX);
     }
 
     private function getNextTest()
@@ -201,7 +201,7 @@ class Test
 
     private function getFollowUpTestId()
     {
-        return $this->databaseEntry['followUpTestId'] ?: LegacyDB::find(self::INDEX.' FROM '.self::TABLE.' WHERE requiredTestId = ?', [$this->id]);
+        return $this->databaseEntry['followUpTestId'] ?: DB::table(self::TABLE)->where('requiredTestId', $this->id)->value(self::INDEX);
     }
 
     private function getFollowUpTest()
@@ -274,24 +274,11 @@ class Test
 
     public function redo(): void
     {
-        LegacyDB::delete(
-            TestResult::TABLE.' WHERE '.
-                TestResult::USER_INDEX.' = ? AND '.
-                TestResult::TEST_INDEX.' = ?',
-            [Auth::id(), $this->id]
-        );
+        DB::table(TestResult::TABLE)->where(TestResult::USER_INDEX, Auth::id())->where(TestResult::TEST_INDEX, $this->id)->delete();
 
-        LegacyDB::delete(
-            AdditionalTestResult::TABLE.' WHERE '.
-                AdditionalTestResult::USER_INDEX.' = ? AND '.
-                AdditionalTestResult::TEST_INDEX.' = ?',
-            [Auth::id(), $this->id]
-        );
+        DB::table(AdditionalTestResult::TABLE)->where(AdditionalTestResult::USER_INDEX, Auth::id())->where(AdditionalTestResult::TEST_INDEX, $this->id)->delete();
 
-        LegacyDB::delete(
-            'results_others WHERE userID = ? AND testID = ?',
-            [userId(), $this->id]
-        );
+        DB::table('results_others')->where('userID', userId())->where('testID', $this->id)->delete();
 
         $this->section->updateProgress();
     }

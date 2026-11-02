@@ -1,9 +1,7 @@
 <?php
 
-use App\Legacy\LegacyView;
-
 // setup page
-LegacyView::setTitle('Approfondisci');
+request()->attributes->set('legacy.title', 'Approfondisci');
 
 // setup variables
 $glossary = [

@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyView;
+use Legacy\LogicManager\TestLogic;
 
 $patterns = [
     [3, 1, 2],
@@ -11,8 +11,8 @@ $patterns = [
 
 $correctSolution = 3;
 
-Legacy\LogicManager\TestLogic::setParameterCount(1)::setTestSubmitFunction(function () {
-    $correctSolution = LegacyView::getInstance()->get('correctSolution');
+TestLogic::setParameterCount(1)::setTestSubmitFunction(function () {
+    $correctSolution = legacy_view_data()['correctSolution'] ?? null;
 
     return $_POST['field'][0] == $correctSolution ? 100 : 0;
 });

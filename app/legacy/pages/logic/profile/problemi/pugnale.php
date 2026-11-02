@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyView;
+use Legacy\LogicManager\TestLogic;
 
 $characters = [
     [
@@ -23,10 +23,10 @@ $characters = [
 
 $correctResults = [4, 3, 1, 2];
 
-Legacy\LogicManager\TestLogic::setParameterCount(count($characters))
+TestLogic::setParameterCount(count($characters))
     ->setTestSubmitFunction(function ($count) {
         $correctCount = 0;
-        $correctResults = LegacyView::get('correctResults');
+        $correctResults = legacy_view_data()['correctResults'] ?? null;
 
         foreach ($correctResults as $resultKey => $correctResult) {
             if (isset($_POST['field'][$resultKey]) && $_POST['field'][$resultKey] == $correctResult) {

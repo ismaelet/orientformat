@@ -9,12 +9,10 @@
 		<a href="list" class="title-arrow border border-radius">
 			<?php
 
-use App\Legacy\LegacyView;
-
-?><?= embed_icon('navigation/arrow1-left') ?>
+			?><?= embed_icon('navigation/arrow1-left') ?>
 		</a>
 
-		<h1 class="panel__title"><?= LegacyView::$title ?></h1>
+		<h1 class="panel__title"><?= request()->attributes->get('legacy.title') ?></h1>
 	</div>
 
 	<?php if ($added) { ?>
@@ -39,7 +37,7 @@ use App\Legacy\LegacyView;
 		<!-- Footer -->
 		<section class="page-footer">
 
-			<?php if (LegacyView::get('id') && $pageConfig['delete']) { ?>
+			<?php if (! empty(legacy_view_data()['id']) && $pageConfig['delete']) { ?>
 
 				<!-- Delete -->
 				<button type="submit" class="button button--secondary button--auto-width button--bad" name="delete" onclick="return confirm('Confermi di voler eliminare questo elemento? Non potrà essere ripristinato.')">
@@ -61,8 +59,8 @@ use App\Legacy\LegacyView;
 
 			<!-- Save -->
 			<button type="submit" class="button" name="submit">
-				<?= LegacyView::get('id') ? 'Salva' : 'Aggiungi' ?>
-				<?= embed_icon(LegacyView::get('id') ? 'save' : 'add') ?>
+				<?= ! empty(legacy_view_data()['id']) ? 'Salva' : 'Aggiungi' ?>
+				<?= embed_icon(! empty(legacy_view_data()['id']) ? 'save' : 'add') ?>
 			</button>
 		</section>
 

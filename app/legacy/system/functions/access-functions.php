@@ -2,24 +2,13 @@
 
 use App\Legacy\ActiveUser;
 use App\Legacy\LegacyConfig;
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
 function login(int $userId, bool $remember = true)
 {
     // remove old accesses
-    // \App\Legacy\LegacyDB::delete('auth_tokens WHERE expiration < NOW() AND userID = ?', [$userId]);
 
     // remember me
-    /*
-    if ($remember) {
-        $selector = bin2hex(random_bytes(6));
-        $validator = bin2hex(random_bytes(12));
-        $validatorHash = hash('sha256', $validator);
-
-        \App\Legacy\LegacyDB::add('auth_tokens (selector, validator, userID, expiration) VALUES (?, ?, ?, (NOW() + INTERVAL 1 MONTH))', [$selector, $validatorHash, $userId]);
-
-        setcookie('auth_token', $selector . '_' . $validator, time() + 60 * 60 * 24 * 30);
-    }*/
 
     // login
     ActiveUser::getInstance()->setId($userId);
@@ -42,18 +31,21 @@ function standard_login(string $username, string $password, ?string $url = null,
     $url = $url ?: LegacyConfig::getInstance()->loggedRedirectUrl;
 
     // fetch user data
-    $userData = LegacyDB::row('id, password FROM users WHERE (lower(username) = ? OR lower(email) = ?)', [$username, $username]);
+    $userData = DB::table('users')
+        ->select('id', 'password')
+        ->whereRaw('(LOWER(username) = ? OR LOWER(email) = ?)', [$username, $username])
+        ->first();
 
     if ($userData) {
         // successful login
-        $userId = $userData['id'];
-        $dbPassword = $userData['password'];
+        $userId = $userData->id;
+        $dbPassword = $userData->password;
 
         // update old password
         if ($dbPassword[0] != '$' && ($password == $dbPassword || md5($password) == $dbPassword)) {
             $dbPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            LegacyDB::update('users SET password = ? WHERE id = ?', [$dbPassword, $userId]);
+            DB::table('users')->where('id', $userId)->update(['password' => $dbPassword]);
         }
 
         if (password_verify($password, $dbPassword)) {
@@ -84,18 +76,6 @@ function token_login(string $token)
     $validToken = false;
     $token = explode('_', $token);
     $selector = $token[0];
-    /*$userData = \App\Legacy\LegacyDB::row('userId, validator FROM auth_tokens WHERE selector=? AND expiration>NOW()', [$selector]);
-
-    if (isset($token[1]) && $userData) {
-        $validator = $token[1];
-        $validatorHash = hash('sha256', $validator);
-
-        if (hash_equals($validatorHash, $userData['validator'])) {
-            $userId = $userData['userId'];
-            login($userId);
-        }
-    }*/
-
     if (! $validToken) {
         setcookie('auth_token', '', -1, '/');
     }
@@ -106,8 +86,6 @@ function token_login(string $token)
 function logout(string $url = '/')
 {
     // setcookie('auth_token', '', -1);
-
-    // \App\Legacy\LegacyDB::delete('auth_tokens WHERE userID = ?', userId());
 
     session_destroy();
 

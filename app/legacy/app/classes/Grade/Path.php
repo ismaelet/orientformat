@@ -2,6 +2,8 @@
 
 namespace Grade;
 
+use Illuminate\Support\Facades\DB;
+
 class Path
 {
     public $id = null;
@@ -14,7 +16,7 @@ class Path
 
     public function __construct($id)
     {
-        if ($row = \App\Legacy\LegacyDB::row('* FROM paths WHERE id=?', [$id])) {
+        if ($row = (array) DB::table('paths')->where('id', $id)->first()) {
             $this->id = $id;
             $this->name = $row['name'];
             $this->sectionIdsStr = $row['sectionIds'];

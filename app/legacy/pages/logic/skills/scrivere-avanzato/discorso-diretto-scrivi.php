@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyView;
+use Legacy\LogicManager\TestLogic;
 
 $sentences = [
     ['Jonathan pensò che quelli erano davvero dei grandi amici.', 'Jonathan pensò'],
@@ -18,9 +18,9 @@ $correctAnswers = [
     'Per questa sera la radio prevede nebbia',
 ];
 
-Legacy\LogicManager\TestLogic::setParameterCount(count($correctAnswers))::setTestSubmitFunction(function ($count) {
+TestLogic::setParameterCount(count($correctAnswers))::setTestSubmitFunction(function ($count) {
     $correctCount = 0;
-    $correctAnswers = LegacyView::get('correctAnswers');
+    $correctAnswers = legacy_view_data()['correctAnswers'] ?? null;
 
     foreach ($_POST['field'] as $answerKey => $answer) {
         if (strtolower($answer) == strtolower($correctAnswers[$answerKey])) {

@@ -14,6 +14,13 @@ class ScriptLoader
 
     public static function __constructStatic() {}
 
+    public static function reset(): void
+    {
+        self::$list = [];
+        self::$headInlineScripts = [];
+        self::$footInlineScripts = [];
+    }
+
     // load a script
     public static function add($fileName, $type, $priority = false)
     {

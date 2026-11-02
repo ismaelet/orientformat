@@ -10,7 +10,7 @@
 
 use Illuminate\Support\Facades\Auth;
 
-?><?= client_path(! $highschool ? '/pages/assets/interests/highschool/'.$interestId.'.jpg' : '/pages/assets/interests/universities/'.$interestId) ?>" alt="" class="interest_img img-fill">
+                ?><?= client_path(! $highschool ? '/pages/assets/interests/highschool/'.$interestId.'.jpg' : '/pages/assets/interests/universities/'.$interestId) ?>" alt="" class="interest_img img-fill">
                 <div class="interest_content grid" data-spacing="400">
                     <h1 class="interest_title"><?= $interest['name'] ?></h1>
 
@@ -254,6 +254,9 @@ use Illuminate\Support\Facades\Auth;
                                                                     <!-- School -->
                                                                     <li class="school">
                                                                         <h3 class="school_title txt-med">&middot; <?= $school['name'] ?><?= ! empty($school['location']) ? ' - '.$school['location'] : '' ?></h3>
+                                                                        <?php if (! empty($school['details'])) { ?>
+                                                                            <p class=" text-sm fc-primary-h"><?= $school['details'] ?></p>
+                                                                        <?php } ?>
                                                                         <?php if (! empty($school['link'])) { ?>
                                                                             <p class="txt-sbold"><a class="fc-primary-h" href="<?= $school['link'] ?>">Sito web</a></p>
                                                                         <?php } ?>

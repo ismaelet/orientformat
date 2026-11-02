@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 use Legacy\UserSystem\Student;
 
 $parseAnswer = [
@@ -18,13 +18,13 @@ $parseIcons = [
 ];
 
 // fetch students
-$students = LegacyDB::select('id FROM students INNER JOIN users on students.userId = users.id WHERE '.Student::SCHOOL_CLASS_INDEX.' = ? AND users.status = 1 AND id IN (SELECT userID FROM advices) ORDER BY last_name ASC, first_name ASC, id ASC', schoolClassId());
+$students = array_map(static fn ($row) => (array) $row, DB::select('SELECT '.('id FROM students INNER JOIN users on students.userId = users.id WHERE '.Student::SCHOOL_CLASS_INDEX.' = ? AND users.status = 1 AND id IN (SELECT userID FROM advices) ORDER BY last_name ASC, first_name ASC, id ASC'), (array) (schoolClassId())));
 
 // fetch choices
 $choices = [];
-$choicesRes = LegacyDB::select('id, advice FROM advices_list ORDER BY id ASC');
+$choicesRes = array_map(static fn ($row) => (array) $row, DB::select('SELECT '.('id, advice FROM advices_list ORDER BY id ASC'), (array) ([])));
 
-while ($choice = $choicesRes->fetch_assoc()) {
+while ($choice = array_shift($choicesRes)) {
     $choices[$choice['id']] = $choice['advice'];
 }
 

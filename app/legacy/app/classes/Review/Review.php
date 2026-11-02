@@ -2,7 +2,7 @@
 
 namespace Legacy\Review;
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 use System\Traits\DatabaseObject;
 
 class Review
@@ -35,7 +35,7 @@ class Review
 
     private function getCompleted()
     {
-        return LegacyDB::exists('review_results WHERE reviewId = ? AND studentId = ?', [$this->id, $this->studentId]);
+        return DB::table('review_results')->where('reviewId', $this->id)->where('studentId', $this->studentId)->exists();
     }
 
     /**

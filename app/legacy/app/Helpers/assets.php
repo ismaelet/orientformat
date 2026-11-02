@@ -1,7 +1,5 @@
 <?php
 
-use App\Legacy\LegacyView;
-
 /**
  * Get all the files in a folder
  */
@@ -15,7 +13,7 @@ function scan(string $path, string $extension = '*', string $filter = '*'): arra
  */
 function image_url(string $fileName): string
 {
-    return client_path('/src/assets/images/'.LegacyView::name().'/'.$fileName);
+    return client_path('/src/assets/images/'.request()->attributes->get('legacy.page').'/'.$fileName);
 }
 
 /**

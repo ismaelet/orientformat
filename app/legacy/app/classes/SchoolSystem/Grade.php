@@ -2,8 +2,8 @@
 
 namespace Legacy\SchoolSystem;
 
-use App\Legacy\LegacyDB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Legacy\Activity\Area;
 use Legacy\Activity\Result\GradeResult;
 use Legacy\Activity\Result\TestResult;
@@ -97,17 +97,20 @@ class Grade
 
     private function getAreas()
     {
-        return rows_to_objects(LegacyDB::select(Area::INDEX.' FROM '.Area::TABLE.' WHERE id IN (SELECT '.Section::AREA_INDEX.' FROM sections WHERE FIND_IN_SET(?, years))', [$this->fullId]), Area::class);
+        return rows_to_objects(DB::table(Area::TABLE)
+            ->select(Area::INDEX)
+            ->whereIn('id', DB::table('sections')->select(Section::AREA_INDEX)->whereRaw('FIND_IN_SET(?, years)', [$this->fullId]))
+            ->get(), Area::class);
     }
 
     private function getSections()
     {
-        return rows_to_objects(LegacyDB::select(Section::INDEX.' FROM sections WHERE FIND_IN_SET(?, years) AND active = 1', [$this->fullId]), Section::class);
+        return rows_to_objects(DB::table('sections')->select(Section::INDEX)->whereRaw('FIND_IN_SET(?, years)', [$this->fullId])->where('active', 1)->get(), Section::class);
     }
 
     private function getDoableSections()
     {
-        return rows_to_objects(LegacyDB::select(Section::INDEX.' FROM sections WHERE FIND_IN_SET(?, years) AND active = 1 AND isStandard = 1', [$this->fullId]), Section::class);
+        return rows_to_objects(DB::table('sections')->select(Section::INDEX)->whereRaw('FIND_IN_SET(?, years)', [$this->fullId])->where('active', 1)->where('isStandard', 1)->get(), Section::class);
     }
 
     private function getDoableSectionIds()
@@ -133,7 +136,7 @@ class Grade
 
     private function getResultId()
     {
-        $resultId = LegacyDB::find(GradeResult::INDEX.' FROM '.GradeResult::TABLE.' WHERE '.GradeResult::GRADE_INDEX.' = ?  AND '.GradeResult::USER_INDEX.' = ?', [$this->id, Auth::id()]);
+        $resultId = DB::table(GradeResult::TABLE)->where(GradeResult::GRADE_INDEX, $this->id)->where(GradeResult::USER_INDEX, Auth::id())->value(GradeResult::INDEX);
 
         if (! $resultId) {
             $resultId = GradeResult::new($this->id);
@@ -155,16 +158,14 @@ class Grade
 
     private function getStandardTestIds()
     {
-        $res = LegacyDB::select(
-            Test::TABLE.'.'.Test::INDEX.' FROM '.Test::TABLE.' INNER JOIN '.
-                Section::TABLE.' ON '.Test::TABLE.'.'.Test::SECTION_INDEX.' = sections.id
-				WHERE isStandard = 1 AND '.Test::TABLE.'.active = 1 AND sections.active = 1 AND FIND_IN_SET(?, years)',
-            [$this->fullId]
-        );
-
-        $testIds = extract_subvalue($res->res, 'id');
-
-        return $testIds;
+        return DB::table(Test::TABLE)
+            ->join(Section::TABLE, Test::TABLE.'.'.Test::SECTION_INDEX, '=', Section::TABLE.'.'.Section::INDEX)
+            ->where('isStandard', 1)
+            ->where(Test::TABLE.'.active', 1)
+            ->where(Section::TABLE.'.active', 1)
+            ->whereRaw('FIND_IN_SET(?, years)', [$this->fullId])
+            ->pluck(Test::TABLE.'.'.Test::INDEX)
+            ->all();
     }
 
     private function getStandardTestCount()
@@ -191,7 +192,7 @@ class Grade
     {
         $progressPercentage = $this->calcProgress();
 
-        LegacyDB::update(GradeResult::TABLE.' SET progressPercentage = ? WHERE '.GradeResult::GRADE_INDEX.' = ? AND '.GradeResult::USER_INDEX.' = ?', [$progressPercentage, $this->id, Auth::id()]);
+        DB::table(GradeResult::TABLE)->where(GradeResult::GRADE_INDEX, $this->id)->where(GradeResult::USER_INDEX, Auth::id())->update(['progressPercentage' => $progressPercentage]);
     }
 
     /**
@@ -201,10 +202,11 @@ class Grade
     {
         $legacyTestCount = $this->standardTestCount;
 
-        $completedTestCount = LegacyDB::count(
-            TestResult::TABLE.' WHERE '.TestResult::USER_INDEX.' = ? AND completed = 1 AND FIND_IN_SET('.TestResult::TEST_INDEX.', "'.implode(',', $this->standardTestIds).'")',
-            [Auth::id()]
-        );
+        $completedTestCount = DB::table(TestResult::TABLE)
+            ->where(TestResult::USER_INDEX, Auth::id())
+            ->where('completed', 1)
+            ->whereIn(TestResult::TEST_INDEX, $this->standardTestIds)
+            ->count();
 
         return round($completedTestCount / $legacyTestCount * 100);
     }

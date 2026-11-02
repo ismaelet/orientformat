@@ -134,8 +134,8 @@ $header['survey-end'] = false;
 if (
     $logged &&
     ! $userGroupId &&
-    LegacyView::getInstance()->location != 'review' &&
-    ! LegacyDB::exists('review_results WHERE studentId = ? AND (reviewId = 3 OR reviewId = 6)', [$userId])
+    request()->attributes->get('legacy.location') != 'review' &&
+    ! DB::table('review_results')->where('studentId', $userId)->whereIn('reviewId', [3, 6])->exists()
 ) {
     $h_grade = (new Student($userId))->schoolClass;
     $header['survey-end'] = $h_grade && $h_grade->ended;
@@ -714,9 +714,8 @@ $localeEnabled = in_array('App\Http\Middleware\Locale', Route::current()->gather
 
                 <?php
 
-                use App\Legacy\LegacyDB;
-use App\Legacy\LegacyView;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 
 if ($h_comp['logo']) { ?>
 
@@ -763,7 +762,7 @@ if ($h_comp['logo']) { ?>
                             if (! isset($h_link['mobile']) || ! $h_link['mobile']) { ?>
 
                                 <div class="h-link relative">
-                                    <p class="h-link-txt <?php if (LegacyView::getInstance()->location == $h_link['loc']) {
+                                    <p class="h-link-txt <?php if (request()->attributes->get('legacy.location') == $h_link['loc']) {
                                         echo 'active';
                                     } ?>">
                                         <a href="<?= $h_link['url']; ?>">

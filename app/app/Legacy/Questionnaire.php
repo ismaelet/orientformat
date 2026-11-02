@@ -2,6 +2,7 @@
 
 namespace App\Legacy;
 
+use Illuminate\Support\Facades\DB;
 use Legacy\Review\Area;
 use Review\Question;
 
@@ -21,10 +22,10 @@ class Questionnaire
 
     public function __construct($id)
     {
-        if ($row = LegacyDB::row('* FROM '.self::TABLE.' WHERE id = ?', [$id])) {
+        if ($row = DB::table(self::TABLE)->where('id', $id)->first()) {
             $this->id = $id;
-            $this->row = $row['results'];
-            $this->reviewId = $row['reviewId'];
+            $this->row = $row->results;
+            $this->reviewId = $row->reviewId;
         }
     }
 
@@ -95,7 +96,7 @@ class Questionnaire
     private function getAreas()
     {
         $areas = [];
-        $areaIds = explode(',', LegacyDB::find('areas FROM reviews WHERE id=?', [$this->reviewId]));
+        $areaIds = explode(',', DB::table('reviews')->where('id', $this->reviewId)->value('areas'));
 
         foreach ($areaIds as $areaId) {
             $areas[] = new Area($areaId, $this->reviewId);
@@ -260,10 +261,8 @@ class Questionnaire
         $results = [];
 
         // prepare all the results
-        $resultRows = LegacyDB::select('id FROM review_results');
-
-        while ($resultRow = $resultRows->fetch_assoc()) {
-            $profile = new self($resultRow['id']);
+        foreach (DB::table('review_results')->select('id')->get() as $resultRow) {
+            $profile = new self($resultRow->id);
             $results[] = $profile->results;
         }
 
@@ -275,13 +274,16 @@ class Questionnaire
         $averages = [];
 
         // calculate the average for each question
-        $questions = LegacyDB::select('id FROM review_questions WHERE average=1');
+        $questions = DB::table('review_questions')->select('id')->where('average', 1)->get();
 
-        while ($questionRow = $questions->fetch_assoc()) {
+        foreach ($questions as $questionRow) {
             $averageValues = null;
             $average = 0;
-            $question = new Question($questionRow['id']);
-            $average = LegacyDB::find('results FROM averages_surveys WHERE questionId=? AND time > NOW() - INTERVAL 1 WEEK', [$question->id]);
+            $question = new Question($questionRow->id);
+            $average = DB::table('averages_surveys')
+                ->where('questionId', $question->id)
+                ->whereRaw('time > NOW() - INTERVAL 1 WEEK')
+                ->value('results');
 
             // when the result is an array
             if (strpos($average, ',')) {
@@ -339,8 +341,11 @@ class Questionnaire
                     $average = $averageSql = format($averageValues / $resultCount);
                 }
 
-                LegacyDB::delete('averages_surveys WHERE questionId=?', [$question->id]);
-                LegacyDB::add('averages_surveys (questionId, results)', [$question->id, $averageSql]);
+                DB::table('averages_surveys')->where('questionId', $question->id)->delete();
+                DB::table('averages_surveys')->insert([
+                    'questionId' => $question->id,
+                    'results' => $averageSql,
+                ]);
             }
 
             $averages[$question->fullSlug] = $average;
@@ -354,7 +359,10 @@ class Questionnaire
     */
     public static function generateLastCompleted(int $studentId)
     {
-        $questionnaireId = LegacyDB::find('id FROM '.self::TABLE.' WHERE studentId = ? ORDER BY reviewId DESC', [$studentId]);
+        $questionnaireId = DB::table(self::TABLE)
+            ->where('studentId', $studentId)
+            ->orderByDesc('reviewId')
+            ->value('id');
 
         return new self($questionnaireId);
     }

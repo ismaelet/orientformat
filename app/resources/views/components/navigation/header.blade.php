@@ -129,7 +129,10 @@
     if (
         auth()->check() &&
         ! $userGroupId &&
-        ! \App\Legacy\LegacyDB::exists('review_results WHERE studentId = ? AND reviewId = 3', [$userId])
+        ! \Illuminate\Support\Facades\DB::table('review_results')
+            ->where('studentId', $userId)
+            ->where('reviewId', 3)
+            ->exists()
     ) {
         $h_grade = new Student($userId)->schoolClass;
         $header['survey-end'] = $h_grade && $h_grade->ended;

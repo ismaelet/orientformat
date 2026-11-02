@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
 /* TEMP */
 foreach (schoolClass()->students as $student) {
@@ -9,7 +9,7 @@ foreach (schoolClass()->students as $student) {
 /* END TEMP */
 
 $sectionId = $_GET['sectionId'];
-$pageTitle = LegacyDB::find('name FROM sections WHERE id = ?', [$sectionId]);
+$pageTitle = DB::table('sections')->where('id', $sectionId)->value('name');
 
 $breadcrumbs = [
     schoolClass()->name => route('class.show', ['class' => schoolClassId()]),

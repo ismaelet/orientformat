@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 use Legacy\Activity\Test;
 
 $legacyTest = legacy_test();
@@ -10,7 +10,7 @@ $results = [];
 
 for ($i = 1; $i < $legacyTest->step; $i++) {
 
-    $requiredTestId = LegacyDB::find('id FROM '.Test::TABLE.' WHERE sectionId = ? AND step = ?', [$legacyTest->sectionId, $i]);
+    $requiredTestId = DB::scalar('SELECT '.('id FROM '.Test::TABLE.' WHERE sectionId = ? AND step = ?').' LIMIT 1', (array) ([$legacyTest->sectionId, $i])) ?? false;
 
     $requiredTest = new Test($requiredTestId);
     $results[$i]['id'] = $requiredTest->id;

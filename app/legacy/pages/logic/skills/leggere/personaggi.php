@@ -1,8 +1,8 @@
 <?php
 
-use App\Legacy\LegacyDB;
-use App\Legacy\LegacyView;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Legacy\LogicManager\TestLogic;
 
 $legacyTest = legacy_test();
 
@@ -44,22 +44,23 @@ $answers_emotions = [
     [2, 3],
 ];
 
-$results_emotions = explode(',', LegacyDB::find('result FROM results_others WHERE userID = ? AND testID = ?', [Auth::id(), $legacyTest->id]));
+$results_emotions = explode(',', DB::scalar('SELECT '.('result FROM results_others WHERE userID = ? AND testID = ?').' LIMIT 1', (array) ([Auth::id(), $legacyTest->id])) ?? false);
 
 $count = count($questions) * 2;
 
 bump($questions);
 
-Legacy\LogicManager\TestLogic::setParameterCount($count)
+TestLogic::setParameterCount($count)
     ->setTestSubmitFunction(function ($count) {
         $rightN = 0;
-        $answers = LegacyView::getInstance()->get('answers');
-        $answers_emotions = LegacyView::getInstance()->get('answers_emotions');
+        $viewData = legacy_view_data();
+        $answers = $viewData['answers'] ?? null;
+        $answers_emotions = $viewData['answers_emotions'] ?? null;
 
         $results = implode(',', $_POST['field_other']);
 
-        LegacyDB::delete('results_others WHERE userID = ? AND testID = ?', [Auth::id(), testId()]);
-        LegacyDB::add('results_others (userID, testID, result) VALUES (?, ?, ?)', [Auth::id(), testId(), $results]);
+        DB::delete('DELETE FROM '.('results_others WHERE userID = ? AND testID = ?'), (array) ([Auth::id(), testId()]));
+        DB::insert('INSERT INTO '.('results_others (userID, testID, result) VALUES (?, ?, ?)'), (array) ([Auth::id(), testId(), $results]));
 
         if (! empty($_POST['field'])) {
             foreach ($_POST['field'] as $key => $field) {

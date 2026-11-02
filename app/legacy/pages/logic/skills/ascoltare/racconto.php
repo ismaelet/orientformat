@@ -1,8 +1,8 @@
 <?php
 
-use App\Legacy\LegacyView;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Legacy\LogicManager\TestLogic;
 
 $legacyTest = legacy_test();
 
@@ -79,9 +79,9 @@ foreach ($questions as $questionKey => $question) {
 
 $count = count($questions);
 
-Legacy\LogicManager\TestLogic::setParameterCount($count)
+TestLogic::setParameterCount($count)
     ->setTestSubmitFunction(function ($count) {
-        $answers = LegacyView::getInstance()->get('answers');
+        $answers = legacy_view_data()['answers'] ?? null;
 
         $rightN = 0;
 

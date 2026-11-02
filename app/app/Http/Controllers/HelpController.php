@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Legacy\LegacyView;
 use App\Mail\ContactMail;
+use App\Services\LegacyPageRenderer;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -14,11 +14,9 @@ class HelpController extends Controller
     /**
      * Display the support page
      */
-    public function index(): Response
+    public function index(LegacyPageRenderer $renderer): Response
     {
-        return LegacyView::setPage('support')
-            ->setTitle('Supporto')
-            ->show();
+        return $renderer->render(page: 'support', title: 'Supporto');
     }
 
     /**

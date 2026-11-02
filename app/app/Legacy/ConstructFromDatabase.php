@@ -2,6 +2,9 @@
 
 namespace App\Legacy;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+
 trait ConstructFromDatabase
 {
     private $databaseEntry = [];
@@ -9,15 +12,13 @@ trait ConstructFromDatabase
     public function __construct(?int $id = null)
     {
         $index = self::INDEX ?? 'id';
-        $data = LegacyDB::row('* FROM '.self::TABLE.' WHERE '.$index.' = ?', [$id]);
+        $data = DB::table(self::TABLE)->where($index, $id)->first();
 
         if ($data) {
-            $this->databaseEntry = $data;
+            $this->databaseEntry = (array) $data;
         } else {
-            $columns = LegacyDB::select('COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = ? AND TABLE_NAME = ?', [ConnectionInterface::getInstance()->database, self::TABLE]);
-
-            while ($column = $columns->fetch_assoc()) {
-                $this->databaseEntry[$column['COLUMN_NAME']] = null;
+            foreach (Schema::getColumnListing(self::TABLE) as $column) {
+                $this->databaseEntry[$column] = null;
             }
         }
     }

@@ -3,7 +3,7 @@
 <?php
 use Legacy\UserSystem\Student;
 
-if ($students->num_rows) { ?>
+if (count($students)) { ?>
 
 	<!-- List -->
 	<section class="dashboard-list">
@@ -21,7 +21,7 @@ if ($students->num_rows) { ?>
 					<p class="dashboard-field dashboard-field_head"></p>
 				</div>
 
-				<?php while ($studentData = $students->fetch_assoc()) {
+				<?php while ($studentData = array_shift($students)) {
 				    $student = new Student($studentData['id']);
 				    ?>
 

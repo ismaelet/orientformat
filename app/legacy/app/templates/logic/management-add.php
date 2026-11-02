@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
 // template
 $this->add_logic('main', 'template');
@@ -20,7 +20,7 @@ $id = $_GET['id'] ?? false;
 
 // fetch data
 if ($id) {
-    $row = $row ?? LegacyDB::row('* FROM '.$tbl.' WHERE '.$index.' = ?', [$id]);
+    $row = $row ?? (array) DB::table($tbl)->where($index, $id)->first();
 } else {
     $row = false;
 }

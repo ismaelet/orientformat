@@ -1,12 +1,11 @@
 <?php
 
-use App\Legacy\LegacyView;
 use App\Models\Activities\Area;
 use App\Models\Activities\Section;
 use App\Models\Activities\Test;
 use Illuminate\Support\Facades\Vite;
 
-$legacySection = LegacyView::getInstance()->get('section');
+$legacySection = legacy_view_data()['section'] ?? null;
 $legacyArea = $legacySection->area;
 $section = Section::find($legacySection->id);
 $area = Area::find($legacyArea->id);

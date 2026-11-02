@@ -1,7 +1,5 @@
 <?php
 
-use App\Legacy\LegacyView;
-
 /*
 * Desktop navigation bar
 */
@@ -16,7 +14,7 @@ $headerComponent['desktop-navigation'] = function () {
 
 				<div class="h-link <?= ! isset($link['url']) ? 'h-link--inactive' : '' ?>">
 					<a <?= isset($link['url']) ? 'href="'.$link['url'].'"' : '' ?> <?= isset($link['megamenu']) ? 'data-function="open-megamenu" data-target="'.$link['megamenu'].'"' : false ?>>
-						<h3 class="h-link-title <?= LegacyView::$location == $link['loc'] ? 'active' : false ?>">
+						<h3 class="h-link-title <?= request()->attributes->get('legacy.location') == $link['loc'] ? 'active' : false ?>">
 							<?= $link['title'] ?>
 							<?= isset($link['drop']) ? '<span class="h-ddown-icon">&#x25BC;</span>' : false ?>
 						</h3>

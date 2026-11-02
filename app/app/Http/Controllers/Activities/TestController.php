@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Activities;
 
 use App\Http\Controllers\Controller;
 use App\Legacy\Exceptions\LegacyRedirectException;
-use App\Legacy\LegacyView;
 use App\Legacy\Logic;
 use App\Models\Activities\Test;
 use App\Models\Results\User\AdditionalResult;
 use App\Models\Results\User\TestResult;
+use App\Services\LegacyPageRenderer;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,7 +23,7 @@ class TestController extends Controller
     /**
      * Display the specified resource
      */
-    public function show(Test $test)
+    public function show(Test $test, LegacyPageRenderer $renderer)
     {
         // Access check
         if (is_student()) {
@@ -42,11 +42,12 @@ class TestController extends Controller
 
         if (! in_array($test->template, ['blade', 'survey'])) {
             try {
-                return LegacyView::setPage($page)
-                    ->setTemplate($template)
-                    ->setTitle($title)
-                    ->set('test', $test)
-                    ->show();
+                return $renderer->render(
+                    page: $page,
+                    template: $template,
+                    title: $title,
+                    data: ['test' => $test],
+                );
             } catch (LegacyRedirectException $e) {
                 return redirect()->to($e->url);
             }

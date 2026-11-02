@@ -2,8 +2,8 @@
 
 namespace Legacy\UserSystem;
 
-use App\Legacy\LegacyDB;
 use App\Legacy\User;
+use Illuminate\Support\Facades\DB;
 use Legacy\SchoolSystem\SchoolClass;
 use System\Traits\DatabaseObject;
 
@@ -53,8 +53,12 @@ class Teacher
         if ($this->id && $this->databaseEntry['classes']) {
             switch ($type) {
                 default:
-                    $schooClassesData = LegacyDB::select(SchoolClass::INDEX.' FROM '.SchoolClass::TABLE.' WHERE FIND_IN_SET('.SchoolClass::INDEX.', "'.$this->databaseEntry['classes'].'") ORDER BY year DESC, grade DESC');
-                    $results = $schooClassesData->num_rows ? extract_subvalue($schooClassesData->res, 'id') : null;
+                    $results = DB::table(SchoolClass::TABLE)
+                        ->whereRaw('FIND_IN_SET('.SchoolClass::INDEX.', ?)', [$this->databaseEntry['classes']])
+                        ->orderByDesc('year')
+                        ->orderByDesc('grade')
+                        ->pluck(SchoolClass::INDEX)
+                        ->all() ?: null;
             }
         }
 
@@ -69,7 +73,7 @@ class Teacher
             $schoolClasses = [];
 
             foreach ($this->schoolClassIds as $schoolClassId) {
-                if (! empty($schoolClassId) && LegacyDB::exists(SchoolClass::TABLE.' WHERE '.SchoolClass::INDEX.' = ?', $schoolClassId)) {
+                if (! empty($schoolClassId) && DB::table(SchoolClass::TABLE)->where(SchoolClass::INDEX, $schoolClassId)->exists()) {
                     $schoolClasses[] = new SchoolClass($schoolClassId);
                 }
             }
@@ -89,8 +93,10 @@ class Teacher
 
         if ($this->schoolClassIds) {
             $schoolClassIdsString = implode(',', $this->schoolClassIds);
-            $res = LegacyDB::select(Student::INDEX.' FROM '.Student::TABLE.' WHERE FIND_IN_SET ('.Student::SCHOOL_CLASS_INDEX.', ?)', [$schoolClassIdsString]);
-            $studentIds = $res->num_rows ? array_column($res->res, Student::INDEX) : null;
+            $studentIds = DB::table(Student::TABLE)
+                ->whereRaw('FIND_IN_SET('.Student::SCHOOL_CLASS_INDEX.', ?)', [$schoolClassIdsString])
+                ->pluck(Student::INDEX)
+                ->all() ?: null;
         }
 
         return $studentIds;

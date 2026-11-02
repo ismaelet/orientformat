@@ -3,13 +3,15 @@
 namespace Legacy\Activity\Result;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use System\Traits\DatabaseObject;
 
 /**
  * GradeResult class
  */
 class GradeResult
 {
-    use \System\Traits\DatabaseObject;
+    use DatabaseObject;
 
     public const TABLE = 'results_grades';
 
@@ -32,6 +34,6 @@ class GradeResult
      */
     public static function new(int $gradeId)
     {
-        return \App\Legacy\LegacyDB::add(self::TABLE.' ('.self::USER_INDEX.', '.self::GRADE_INDEX.')', [Auth::id(), $gradeId]);
+        return DB::table(self::TABLE)->insertGetId([self::USER_INDEX => Auth::id(), self::GRADE_INDEX => $gradeId]);
     }
 }

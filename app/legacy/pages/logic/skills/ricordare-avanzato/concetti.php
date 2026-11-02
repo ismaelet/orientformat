@@ -16,8 +16,9 @@ define('_CONCEPTS', [
     __('tests.55-concept-13'),
 ]);
 
-use App\Legacy\LegacyDB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Legacy\LogicManager\TestLogic;
 
 $legacyTest = legacy_test();
 
@@ -26,7 +27,7 @@ $time_str = '';
 $count = count(_CONCEPTS);
 
 // fetch previous results
-$results = LegacyDB::find('result FROM results_others WHERE userID = ? AND testID = ?', [watchedStudentId(), $legacyTest->id]);
+$results = DB::scalar('SELECT '.('result FROM results_others WHERE userID = ? AND testID = ?').' LIMIT 1', (array) ([watchedStudentId(), $legacyTest->id])) ?? false;
 
 if ($results) {
     $results = explode(',', $results);
@@ -44,7 +45,7 @@ if ($minutes) {
 $time_str .= $seconds == 1 ? '1 secondo' : $seconds.' secondi';
 
 // process result
-Legacy\LogicManager\TestLogic::setParameterCount($count)
+TestLogic::setParameterCount($count)
     ->setTestSubmitFunction(
         function ($count) {
             $rightN = 0;
@@ -64,8 +65,8 @@ Legacy\LogicManager\TestLogic::setParameterCount($count)
 
             $results = implode(',', $results);
 
-            LegacyDB::delete('results_others WHERE userID = ? AND testID = ?', [Auth::id(), $legacyTest->id]);
-            LegacyDB::add('results_others (userID, testID, result) VALUES (?, ?, ?)', [Auth::id(), $legacyTest->id, $results]);
+            DB::delete('DELETE FROM '.('results_others WHERE userID = ? AND testID = ?'), (array) ([Auth::id(), $legacyTest->id]));
+            DB::insert('INSERT INTO '.('results_others (userID, testID, result) VALUES (?, ?, ?)'), (array) ([Auth::id(), $legacyTest->id, $results]));
 
             return round($rightN / $count * 100);
         }

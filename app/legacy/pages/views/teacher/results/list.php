@@ -5,9 +5,9 @@
 
     <div id="bgr-img" class="bgr" <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
-?><?= background_image('/pages/assets/teacher/bgr.png') ?>></div>
+    ?><?= background_image('/pages/assets/teacher/bgr.png') ?>></div>
 
 </section>
 
@@ -29,7 +29,7 @@ use App\Legacy\LegacyDB;
 
     </div>
 
-    <?php if ($students->num_rows) { ?>
+    <?php if (count($students)) { ?>
 
         <!-- List -->
         <div id="list" class="panel mar-t-3">
@@ -42,11 +42,11 @@ use App\Legacy\LegacyDB;
                     <p class="field field-btn"></p>
                 </div>
 
-                <?php while ($student = $students->fetch_assoc()) {
+                <?php while ($student = array_shift($students)) {
 
                     $advices_str = false;
 
-                    $advices = LegacyDB::find('advices FROM advices WHERE userID = ? AND advices<>""', $student['id']);
+                    $advices = DB::scalar('SELECT '.('advices FROM advices WHERE userID = ? AND advices<>""').' LIMIT 1', (array) ($student['id'])) ?? false;
 
                     if ($advices) {
 
@@ -70,7 +70,7 @@ use App\Legacy\LegacyDB;
 
                         <p class="field"><?= $advices_str ?: '-' ?></p>
 
-                        <p class="field"><?= LegacyDB::exists('survey_end WHERE userID = ?', [$student['id']]) ? 'SI' : '<span class="txt-red">NO</span>' ?></p>
+                        <p class="field"><?= DB::selectOne('SELECT 1 FROM '.('survey_end WHERE userID = ?').' LIMIT 1', (array) ([$student['id']])) !== null ? 'SI' : '<span class="txt-red">NO</span>' ?></p>
 
                         <div class="field btn-box">
                             <div class="btn blu inlb lbox-open" data-tar="#advice<?= $student['id'] ?>">Scegli consiglio</div>

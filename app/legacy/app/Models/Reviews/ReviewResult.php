@@ -2,7 +2,7 @@
 
 namespace LegacyModels\Reviews;
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 use LegacyModels\Model;
 use LegacyModels\User\Student;
 
@@ -45,7 +45,12 @@ class ReviewResult extends Model
         $structuredResults = $this->structuredResults();
 
         foreach ($structuredResults as $questionKey => $answers) {
-            $questionId = LegacyDB::find('id FROM '.ReviewQuestion::table()." WHERE full_slug = ? AND (reviewIds = '' OR FIND_IN_SET(?, reviewIds))", [$questionKey, $this->reviewId]);
+            $questionId = DB::table(ReviewQuestion::table())
+                ->where('full_slug', $questionKey)
+                ->where(function ($query) {
+                    $query->where('reviewIds', '')->orWhereRaw('FIND_IN_SET(?, reviewIds)', [$this->reviewId]);
+                })
+                ->value('id');
 
             if ($questionId) {
                 $question = ReviewQuestion::find($questionId);

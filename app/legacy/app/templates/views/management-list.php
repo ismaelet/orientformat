@@ -7,9 +7,9 @@
 
 	<div id="bgr-img" class="bgr" <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
-?><?= background_image('/pages/assets/management/bgr.png') ?>></div>
+	?><?= background_image('/pages/assets/management/bgr.png') ?>></div>
 
 </section>
 
@@ -83,7 +83,11 @@ use App\Legacy\LegacyDB;
 
 							<?php } elseif ($type == 'find') {
 
-							    $val = LegacyDB::find($field['find'][0], $entry[$field['find'][1]]);
+							    [$column, $tableAndWhere] = explode(' FROM ', $field['find'][0], 2);
+							    [$findTable, $where] = preg_split('/\s+WHERE\s+/i', $tableAndWhere, 2);
+							    $val = DB::table(trim($findTable))
+							        ->whereRaw($where, array_values((array) $entry[$field['find'][1]]))
+							        ->value(trim($column, '`'));
 							    if (isset($field['switch'])) {
 							        $val = empty($val) ? $field['switch'][1] : $field['switch'][0];
 							    }

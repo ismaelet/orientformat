@@ -1,6 +1,6 @@
 <?php
 
-use App\Legacy\LegacyDB;
+use Illuminate\Support\Facades\DB;
 
 // template
 $this->add_logic('main', 'template');
@@ -19,18 +19,24 @@ $searchSQL = $searchSQL ?? ['', []];
 $search_bar = $search_bar ?? true;
 
 // fetch data
-$res = $res ?? LegacyDB::select('* FROM '.$tbl.' WHERE status=1 '.$searchSQL[0].' ORDER BY '.$index.' DESC LIMIT 50', $searchSQL[1]);
+$res = $res ?? tap(DB::table($tbl)->where('status', 1), function ($query) use ($searchSQL) {
+    $search = preg_replace('/^\s*(AND|OR)\s+/i', '', trim($searchSQL[0]));
+
+    if ($search !== '') {
+        $query->whereRaw($search, $searchSQL[1]);
+    }
+})->orderByDesc($index)->limit(50)->get();
 
 $list = [];
 
-while ($row = $res->fetch_assoc()) {
-    $list[] = $row;
+foreach ($res as $row) {
+    $list[] = (array) $row;
 }
 
 // delete entry
 if (isset($_POST['delete'])) {
 
-    LegacyDB::update($tbl.' SET status=0 WHERE '.$index.' = ?', [$_POST[$index]]);
+    DB::table($tbl)->where($index, $_POST[$index])->update(['status' => 0]);
 
     redirect_old();
 }
@@ -54,7 +60,11 @@ if (isset($_POST['download'])) {
                 $line[$field['title']] = $field['value'] ?? $entry[$field['name']];
             } elseif ($type == 'find') {
 
-                $val = LegacyDB::find($field['find'][0], $entry[$field['find'][1]]);
+                [$column, $tableAndWhere] = explode(' FROM ', $field['find'][0], 2);
+                [$findTable, $where] = preg_split('/\s+WHERE\s+/i', $tableAndWhere, 2);
+                $val = DB::table(trim($findTable))
+                    ->whereRaw($where, array_values((array) $entry[$field['find'][1]]))
+                    ->value(trim($column, '`'));
 
                 if ($switch_file) {
                     $val = empty($val) ? $field['switch_file'][1] : $field['switch_file'][0];

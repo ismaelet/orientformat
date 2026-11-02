@@ -4,6 +4,8 @@ namespace LegacyModels;
 
 use App\Support\Database\Blueprint;
 use Closure;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema as LaravelSchema;
 
 class Schema
 {
@@ -25,7 +27,7 @@ class Schema
      */
     public static function tableExists(): bool
     {
-        return \App\Legacy\LegacyDB::table(static::table());
+        return LaravelSchema::hasTable(static::table());
     }
 
     /**
@@ -39,7 +41,7 @@ class Schema
 
         $columnsQuery = implode(',', $blueprint->columns());
 
-        \App\Legacy\LegacyDB::execute('CREATE TABLE IF NOT EXISTS '.static::table().' ('.$columnsQuery.')');
+        DB::statement('CREATE TABLE IF NOT EXISTS '.static::table().' ('.$columnsQuery.')');
     }
 
     /**
@@ -47,9 +49,7 @@ class Schema
      */
     public static function max(string $column): int
     {
-        $response = \App\Legacy\LegacyDB::row('MAX('.$column.') as maxId FROM '.static::table());
-
-        return $response['maxId'] ?: 0;
+        return DB::table(static::table())->max($column) ?: 0;
     }
 
     /**
@@ -61,9 +61,9 @@ class Schema
      */
     public static function findWhere(array $parameters)
     {
-        $id = \App\Legacy\LegacyDB::find('id FROM '.static::table().' WHERE '.self::sqlWherelFields($parameters), array_values($parameters));
+        $id = DB::table(static::table())->where($parameters)->value('id');
 
-        return $id ? $instances[] = new static($id) : null;
+        return $id ? new static($id) : null;
     }
 
     /**
@@ -75,15 +75,10 @@ class Schema
      */
     public static function where(array $parameters)
     {
-        $instances = [];
-        $rows = \App\Legacy\LegacyDB::select('id FROM '.static::table().' WHERE '.self::sqlWherelFields($parameters), array_values($parameters));
+        $rows = DB::table(static::table())->where($parameters)->pluck('id');
 
-        if ($rows->num_rows) {
-            while ($row = $rows->fetch_assoc()) {
-                $instances[] = new static($row['id']);
-            }
-
-            return $instances;
+        if ($rows->isNotEmpty()) {
+            return $rows->map(fn ($id) => new static($id))->all();
         }
 
         return null;
@@ -97,10 +92,7 @@ class Schema
      */
     public static function add(array $parameters): int
     {
-        $columns = implode(',', array_keys($parameters));
-        $placeHolders = implode(',', array_fill(0, count($parameters), '?'));
-
-        return \App\Legacy\LegacyDB::add(static::table().' ('.$columns.') VALUES ('.$placeHolders.')', array_values($parameters));
+        return DB::table(static::table())->insertGetId($parameters);
     }
 
     /**
@@ -108,7 +100,7 @@ class Schema
      */
     public static function deleteWhere(array $parameters)
     {
-        return \App\Legacy\LegacyDB::delete(static::table().' WHERE '.self::sqlWherelFields($parameters), array_values($parameters));
+        return DB::table(static::table())->where($parameters)->delete();
     }
 
     private static function sqlWherelFields(array $parameters)
@@ -151,7 +143,7 @@ class Schema
 
     public static function columnExists(string $column): bool
     {
-        return \App\Legacy\LegacyDB::execute('SHOW COLUMNS FROM '.static::table()." LIKE '".$column."'")->num_rows;
+        return LaravelSchema::hasColumn(static::table(), $column);
     }
 
     /**
@@ -185,7 +177,7 @@ class Schema
 
         $columnsQuery = (implode(', ', array_filter(condense_array($addColumns, $dropColumns))));
 
-        \App\Legacy\LegacyDB::execute('ALTER TABLE '.static::table().' '.$columnsQuery);
+        DB::statement('ALTER TABLE '.static::table().' '.$columnsQuery);
     }
 
     /**
@@ -195,7 +187,7 @@ class Schema
      */
     public static function find(int $id)
     {
-        if (\App\Legacy\LegacyDB::exists(static::table().' WHERE id = ?', [$id])) {
+        if (DB::table(static::table())->where('id', $id)->exists()) {
             return new static($id);
         }
 
@@ -211,8 +203,6 @@ class Schema
      * @return object
      * @return array | bool returns all the matching rows or false if no match was found
 
-    public static function allWhere(string $column, $value) {
-        return \App\Legacy\LegacyDB::getInstance()->execute('SELECT * FROM ' . static::table() . ' WHERE ' . $column . ' = ?', [$value]);
      * @return void
     private static function cleanup(): void {
         self::$where = [];

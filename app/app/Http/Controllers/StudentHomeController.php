@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Legacy\LegacyView;
+use App\Services\LegacyPageRenderer;
 use Illuminate\Http\Response;
 
 class StudentHomeController extends Controller
 {
-    public function index(): Response
+    public function index(LegacyPageRenderer $renderer): Response
     {
-        return LegacyView::setPage('home')
-            ->show();
+        return $renderer->render(page: 'home');
     }
 }
