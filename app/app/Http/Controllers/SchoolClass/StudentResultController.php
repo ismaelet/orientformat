@@ -11,6 +11,7 @@ use App\Models\User\Student;
 use App\View\Components\Student\Poi;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class StudentResultController extends Controller
 {
@@ -98,7 +99,7 @@ class StudentResultController extends Controller
             ]);
 
         // Download
-        return $pdf->download("$title.pdf");
+        return $pdf->download($this->pdfFilename($title));
     }
 
     /**
@@ -124,7 +125,7 @@ class StudentResultController extends Controller
             ]);
 
         // Download
-        return $pdf->download("$title.pdf");
+        return $pdf->download($this->pdfFilename($title));
     }
 
     public function downloadPoi(Student $student)
@@ -165,6 +166,11 @@ class StudentResultController extends Controller
                 'isFontSubsettingEnabled' => true,
             ]);
 
-        return $pdf->download("$title.pdf");
+        return $pdf->download($this->pdfFilename($title));
+    }
+
+    private function pdfFilename(string $title): string
+    {
+        return Str::slug($title).'.pdf';
     }
 }
