@@ -5,10 +5,15 @@ use App\Models\Schools\SchoolClass;
 use App\Models\User;
 use App\Models\User\Teacher;
 use App\Services\Results\SectionGroupResultCalculator;
+use Tests\Support\ResultsFixture;
+
+beforeEach(function (): void {
+    $this->fixture = ResultsFixture::seed();
+});
 
 test('class named percentage result has expected shape', function (): void {
     $section = Section::findOrFail(8);
-    $class = SchoolClass::query()->firstOrFail();
+    $class = $this->fixture['class'];
 
     $result = app(
         SectionGroupResultCalculator::class,
@@ -25,7 +30,7 @@ test('class named percentage result has expected shape', function (): void {
 
 test('class tier result has expected shape', function (): void {
     $section = Section::findOrFail(9);
-    $class = SchoolClass::query()->firstOrFail();
+    $class = $this->fixture['class'];
 
     $result = app(
         SectionGroupResultCalculator::class,
@@ -68,7 +73,7 @@ test('unsupported section throws exception', function (): void {
 test('temperament class result is calculated correctly', function (): void {
     $result = app(SectionGroupResultCalculator::class)->forSchoolClass(
         Section::findOrFail(8),
-        SchoolClass::findOrFail(123),
+        $this->fixture['class'],
     );
 
     expect($result)

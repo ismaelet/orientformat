@@ -308,6 +308,10 @@
                                         />
                                         @break
                                 @endswitch
+
+                                <x-alerts.input-warning class="js-error-warning mar-t-1">
+                                    Risposta obbligatoria
+                                </x-alerts.input-warning>
                             </div>
                         @endforeach
                     </section>

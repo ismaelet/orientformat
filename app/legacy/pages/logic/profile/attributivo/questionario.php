@@ -1,5 +1,7 @@
 <?php
 
+use Legacy\LogicManager\TestLogic;
+
 $colors = ['c4', 'c1', 'c5', 'c2'];
 
 $questions = [];
@@ -15,7 +17,7 @@ for ($i = 1; $i <= 8; $i++) {
 
 $count = count($questions);
 
-Legacy\LogicManager\TestLogic::setParameterCount($count);
+TestLogic::setParameterCount($count);
 
 bump($questions);
 bump($answers);

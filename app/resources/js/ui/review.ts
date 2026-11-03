@@ -58,20 +58,6 @@ export function initReview() {
     complete(question);
   };
 
-  const dependencies = (input: HTMLInputElement) => {
-    const value = input.checked ? input.value : "0";
-    if (input.closest("#question-s2d2")) {
-      const suffix = ["3a", "3b", "3c", "3d"][Number(input.name.split("_")[1]) - 1];
-      if (suffix) dependent(`s2d${suffix}`, Number(value) > 1);
-    }
-    if (input.closest("#question-s6d2")) dependent("s6d3", Number(value) > 1);
-    if (input.closest("#question-s7d2")) {
-      dependent("s7d3", value === "1");
-      dependent("s7d4", value === "2");
-      dependent("s7d5", value === "2");
-    }
-  };
-
   const syncDependencies = () => {
     const checkedValue = (selector: string): string | undefined =>
       form.querySelector<HTMLInputElement>(`${selector} .js-cbx:checked`)?.value;

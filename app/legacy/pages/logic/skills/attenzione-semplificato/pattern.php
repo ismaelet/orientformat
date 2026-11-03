@@ -1,5 +1,7 @@
 <?php
 
+use Legacy\LogicManager\TestLogic;
+
 $pattern = 'FZB';
 
 $letters = 'VFZOHNIKLFZDSFEJSFZBGAVQCBFWQRFZBTEJZSPXDZTAFZBEWUDGLFZBFPFZFZBKGLRFZKMBXIOWFZBHYJFZBPCYFATSAFZWVIFEHOXQDFZGLSCAGNHNGSOCFZYLFJDBFZBZHBVFZWFEIJSWEQUFZBXUFWRSDVLFZBRPBTRVAFZMKTYFZBAQXSXCGUVNFZBCIKFZVFOTPDFZBFUDFZYLSHGPHFZBUHOFZJLIRFQZTNAIGMKGYJGSKYFZBOBSOSEWXNSKFZBPQPCQIBCVFZFTWMJAFDHFZBOFZOUXDEWFZBP';
@@ -7,7 +9,7 @@ $letters = 'VFZOHNIKLFZDSFEJSFZBGAVQCBFWQRFZBTEJZSPXDZTAFZBEWUDGLFZBFPFZFZBKGLRF
 $count = substr_count($letters, $pattern);
 $letters = str_replace($pattern, '<span class="is-pattern js-pattern">FZ<span>B</span></span>', $letters);
 
-Legacy\LogicManager\TestLogic::setParameterCount($count)
+TestLogic::setParameterCount($count)
     ->setTestSubmitFunction(function ($count) {
         $score = $_POST['field'][0];
 

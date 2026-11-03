@@ -2,6 +2,8 @@
 
 namespace Legacy\Activity\Result;
 
+use System\Traits\DatabaseObject;
+
 /**
  * Additional results
  *
@@ -10,7 +12,7 @@ namespace Legacy\Activity\Result;
  */
 class AdditionalTestResult
 {
-    use \System\Traits\DatabaseObject;
+    use DatabaseObject;
 
     public const TABLE = 'results_additional';
 

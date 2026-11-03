@@ -6,6 +6,7 @@ use App\Http\Responses\LogoutResponse;
 use Filament\Auth\Http\Responses\Contracts\LogoutResponse as ContractsLogoutResponse;
 use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
@@ -38,6 +39,13 @@ class AppServiceProvider extends ServiceProvider
 
         // Prevent lazy loading in non-production environments
         Model::preventLazyLoading(! app()->isProduction());
+
+        // migrate:fresh, db:wipe and similar commands only run in the testing environment
+        // against the dedicated test database.
+        $connection = config('database.default');
+        $approvedTestDatabase = app()->environment('testing')
+            && config("database.connections.{$connection}.database") === 'orientformat_test';
+        DB::prohibitDestructiveCommands(! $approvedTestDatabase);
 
         // Force base URL
         URL::forceRootUrl(config('app.url'));

@@ -1,5 +1,7 @@
 <?php
 
+use Legacy\LogicManager\TestLogic;
+
 $legacyTest = legacy_test();
 
 // setup variables
@@ -13,4 +15,4 @@ bump($questions);
 
 $count = count($questions);
 
-Legacy\LogicManager\TestLogic::setParameterCount($count);
+TestLogic::setParameterCount($count);

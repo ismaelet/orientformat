@@ -1,5 +1,7 @@
 <?php
 
+use Legacy\LogicManager\TestLogic;
+
 // questions
 
 $questions = [
@@ -19,7 +21,7 @@ $titles = [
 
 $count = count($questions);
 
-Legacy\LogicManager\TestLogic::setParameterCount($count)
+TestLogic::setParameterCount($count)
     ->setTestSubmitFunction(function () {
         if (isset($_POST['skip-cbx'])) {
             return 0;

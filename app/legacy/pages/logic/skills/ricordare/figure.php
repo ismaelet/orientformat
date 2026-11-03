@@ -1,10 +1,12 @@
 <?php
 
+use Legacy\LogicManager\TestLogic;
+
 define('_RIGHT_COUNT', 5);
 
 $legacyTestCount = 1;
 
-Legacy\LogicManager\TestLogic::setParameterCount($legacyTestCount)
+TestLogic::setParameterCount($legacyTestCount)
     ->setTestSubmitFunction(function () {
         $right = _RIGHT_COUNT;
 

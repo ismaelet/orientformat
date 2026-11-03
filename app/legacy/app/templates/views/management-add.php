@@ -9,7 +9,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-?><?= background_image('/pages/assets/management/bgr.png') ?>></div>
+    ?><?= background_image('/pages/assets/management/bgr.png') ?>></div>
 
 </section>
 
@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
         <h1 class="title txt-25rem txt-sbold"><?= $edit ? 'Modifica' : $title ?></h1>
         <p class="stitle txt-1rem mar-t-1"><?= $edit ? $stitle_edit.' <strong>'.$row[$name].'</strong>' : $stitle_add ?></p>
         <?php
-                $listRoute = $edit ? 'filament.admin.resources.'.basename(dirname($view->name)).'.index' : null;
+                    $listRoute = $edit ? 'filament.admin.resources.'.basename(dirname($view->name)).'.index' : null;
     $backRoute = $edit && Route::has($listRoute)
         ? $listRoute
         : 'filament.admin.pages.dashboard';

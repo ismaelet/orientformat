@@ -4,6 +4,11 @@ use App\Models\Activities\Section;
 use App\Models\User\Student;
 use App\Services\Results\StudentSectionResultCalculator;
 use App\Services\Results\StudentTestResultCalculator;
+use Tests\Support\ResultsFixture;
+
+beforeEach(function (): void {
+    ResultsFixture::seed();
+});
 
 test('it calculates graph section results', function (int $sectionId): void {
     $student = Student::query()

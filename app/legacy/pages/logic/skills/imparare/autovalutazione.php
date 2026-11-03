@@ -1,5 +1,7 @@
 <?php
 
+use Legacy\LogicManager\TestLogic;
+
 $legacyTest = legacy_test();
 
 $graph_data = [];
@@ -13,4 +15,4 @@ for ($i = 1; $i <= 8; $i++) {
 
 $count = count($graph_data);
 
-Legacy\LogicManager\TestLogic::setParameterCount($count);
+TestLogic::setParameterCount($count);

@@ -4,16 +4,20 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
+    "lint": "oxlint",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
-    "lint": "oxlint",
-    "test": "vitest run"
+    "test:e2e": "vite build && playwright test",
+    "test:pest": "bash scripts/test-pest.sh",
+    "test:vitest": "vitest run",
+    "test:db:setup": "bash scripts/test-db-setup.sh"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^26.6.6",
     "concurrently": "^9.2.5",
+    "jsdom": "^30.1.3",
     "laravel-vite-plugin": "^2.1.0",
     "oxfmt": "^0.75.0",
     "oxlint": "^1.90.0",

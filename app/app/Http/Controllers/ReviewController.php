@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreReviewRequest;
 use App\Models\Review;
 use App\Models\ReviewResult;
 use Illuminate\Http\RedirectResponse;
@@ -25,23 +26,21 @@ class ReviewController extends Controller
     /**
      * Store a newly created resource in storage
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreReviewRequest $request): RedirectResponse
     {
-        $answers = array_filter($request->except(['_token']));
-        $results = [];
+        $results = collect($request->answers())
+            ->map(fn (string $value, string $slug) => $slug.'='.$value)
+            ->implode(',');
 
-        foreach ($answers as $questionSlug => $questionValue) {
-            $results[] = $questionSlug.'='.str_replace(['=', "'"], '', $questionValue);
-        }
-
-        $results = implode(',', $results);
-
-        ReviewResult::updateOrCreate([
+        $result = ReviewResult::firstOrCreate([
             'studentId' => Auth::id(),
-            'reviewId' => $request->input('review_id'),
+            'reviewId' => $request->review()->id,
         ], [
             'results' => $results,
         ]);
+
+        // A concurrent submission already completed the questionnaire
+        abort_unless($result->wasRecentlyCreated, 409);
 
         return redirect()->back()->with('success', true);
     }

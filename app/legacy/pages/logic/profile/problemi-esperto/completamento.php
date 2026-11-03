@@ -1,5 +1,7 @@
 <?php
 
+use Legacy\LogicManager\TestLogic;
+
 define('_SETS', [
     ['1,3,5,e,9', 7],
     ['10,e,6,4,2', 8],
@@ -15,7 +17,7 @@ define('_SETS', [
 
 $count = count(_SETS);
 
-Legacy\LogicManager\TestLogic::setParameterCount($count)
+TestLogic::setParameterCount($count)
     ->setTestSubmitFunction(function () {
         $sets = _SETS;
         $correctResultCount = 0;
@@ -26,5 +28,5 @@ Legacy\LogicManager\TestLogic::setParameterCount($count)
             }
         }
 
-        return round($correctResultCount / Legacy\LogicManager\TestLogic::$parameterCount * 100);
+        return round($correctResultCount / TestLogic::$parameterCount * 100);
     });

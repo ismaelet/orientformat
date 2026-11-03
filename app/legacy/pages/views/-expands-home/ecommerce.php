@@ -12,7 +12,7 @@
 
 use Ecommerce\Cart;
 
-?><?= embed_icon(__APP_ICONS__.'navigation/items') ?>
+					?><?= embed_icon(__APP_ICONS__.'navigation/items') ?>
 				</div>
 				<h1 class="title">Prodotti</h1>
 			</div>

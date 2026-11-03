@@ -18,7 +18,7 @@ test("review completion requires every answer group and tracks cleared numeric i
   question.dataset.multiple = "1";
   expect(reviewQuestionCompleted(question)).toBe(true);
   choices.length = 0;
-  inputs.push({ value: "" });
+  inputs.push({ value: "", checkValidity: () => true });
   expect(reviewQuestionCompleted(question)).toBe(false);
   inputs[0].value = "42";
   expect(reviewQuestionCompleted(question)).toBe(true);

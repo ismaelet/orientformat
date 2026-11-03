@@ -1,8 +1,10 @@
 <?php
 
+use Legacy\LogicManager\TestLogic;
+
 $count = 9;
 
-Legacy\LogicManager\TestLogic::setParameterCount($count)
+TestLogic::setParameterCount($count)
     ->setTestSubmitFunction(function () {
         return isset($_POST['skip-cbx']) ? 0 : 100;
     });

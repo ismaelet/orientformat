@@ -29,11 +29,11 @@
 						} ?> data-max="<?= $count; ?>">
 
 							<?php
-                            foreach ($questions as $key => $question) {
+						    foreach ($questions as $key => $question) {
 
-                                $fieldID = $count - $key;
+						        $fieldID = $count - $key;
 
-                                $val = $legacyTest->completed ? $legacyTest->rawResults[$key] : 0; ?>
+						        $val = $legacyTest->completed ? $legacyTest->rawResults[$key] : 0; ?>
 
 								<div id="quiz<?= $fieldID; ?>" class="quiz no-trans" data-pos="<?= $fieldID; ?>">
 
@@ -62,7 +62,7 @@
 									</div>
 								</div>
 							<?php }
-                            ?>
+						    ?>
 						</div>
 					</div>
 				</div>
