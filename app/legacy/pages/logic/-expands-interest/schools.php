@@ -730,7 +730,7 @@ Depero” a Trento e Rovereto), con il percorso IDEA
                 'Diplomi quadriennali – Tecnico dei trattamenti estetici' => [
                     [
                         'name' => 'Istituto Formazione Professionale Servizi alla Persona e Legno "S. Pertini"',
-                        'details' => 'Nuovo percorso quadriennale unico (2+2) per Tecnico dell’acconciatura, trattamenti estetici o legno',
+                        'details' => 'Nuovo percorso quadriennale unico (2+2) per Tecnico dell’acconciatura, trattamenti estetici o legno a partire dall’a.s. 2027-2028',
                         'location' => 'Trento',
                         'link' => 'https://ifpsandropertinitrento.it',
                         'phone' => '0461 933147',
@@ -1817,6 +1817,7 @@ Depero” a Trento e Rovereto), con il percorso IDEA
                     ],
                     [
                         'name' => 'Istituto Formazione Professionale Alberghiero "G. Cipriani"',
+                        'details' => 'Nuovo percorso quadriennale unico (2+2) per Tecnico della ristorazione',
                         'location' => 'Rovereto',
                     ],
                     [
