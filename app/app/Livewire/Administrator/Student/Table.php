@@ -25,7 +25,6 @@ use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table as FilamentTable;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class Table extends Component implements HasActions, HasSchemas, HasTable
@@ -133,9 +132,14 @@ class Table extends Component implements HasActions, HasSchemas, HasTable
                                         ->maxLength(255),
                                     TextInput::make('email')
                                         ->required()
+                                        ->email()
                                         ->label('Email')
                                         ->maxLength(255)
-                                        ->rule(fn (User $record) => Rule::unique('users', 'email')->ignore($record->user?->id))
+                                        ->unique(
+                                            table: User::class,
+                                            column: 'email',
+                                            ignoreRecord: true,
+                                        )
                                         ->validationMessages([
                                             'unique' => 'Questo indirizzo email è già utilizzato da un altro utente.',
                                         ]),
@@ -146,9 +150,11 @@ class Table extends Component implements HasActions, HasSchemas, HasTable
                                 ->helperText('Puoi assegnare lo/a studente/ssa ad una classe diversa, per esempio in caso di studenti ripetenti o che hanno cambiato classe rispetto all\'anno scorso. ATTENZIONE: Cambiare la classe di uno/a studente/ssa lo/a rimuoverà dalla classe attuale.')
                                 ->relationship(
                                     name: 'school_class',
-                                    modifyQueryUsing: fn ($query) => $query->where('schoolId', $this->school->id)
+                                    modifyQueryUsing: fn ($query) => $query
+                                        ->where('schoolId', $this->school->id)
                                         ->where('ended', false)
-                                        ->with('referent.user'),
+                                        ->with('referent.user')
+                                        ->orderBy('name'),
                                 )
                                 ->getOptionLabelFromRecordUsing(fn (SchoolClass $record) => "{$record->name} - {$record->referent?->inverted_full_name}")
                                 ->getOptionLabelUsing(
