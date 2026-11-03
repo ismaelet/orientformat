@@ -161,7 +161,13 @@
 @endpushOnce
 
 <x-layouts.legacy-main>
-    <form data-review-form class="page-content main-wrap" method="POST" action="{{ route('review.store', $review) }}">
+    <form
+        data-review-form
+        class="page-content main-wrap"
+        method="POST"
+        action="{{ route('review.store', $review) }}"
+        novalidate
+    >
         @csrf
 
         <input type="hidden" name="review_id" value="{{ $review->id }}" />
@@ -308,7 +314,6 @@
                 @endforeach
 
                 <div class="fa-center mar-t-3">
-                    <button type="submit" id="submit" class="js-submit hidden"></button>
                     <x-button type="button" class="js-attempt-submit">Invia</x-button>
                 </div>
             </div>
