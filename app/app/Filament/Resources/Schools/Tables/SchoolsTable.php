@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Schools\Tables;
 use App\Models\Schools\School;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Support\Icons\Heroicon;
@@ -49,6 +50,7 @@ class SchoolsTable
             ])
             ->recordActions([
                 EditAction::make(),
+                DeleteAction::make(),
             ])
             ->headerActions([
                 Action::make('download')
