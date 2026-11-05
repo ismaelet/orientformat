@@ -1,8 +1,8 @@
 <?php
 
-namespace Legacy\Http\Controllers\Activities\Tests;
+namespace App\Http\Controllers\Activities\Tests;
 
-use Legacy\Http\Controllers\Activities\Test;
+use App\Http\Controllers\Activities\TestNextController;
 use System\Traits\Singleton;
 
 /**
@@ -15,7 +15,7 @@ use System\Traits\Singleton;
  * @property array $parameters = [] <inherited>
  * @property array $arguments = []
  */
-class RuotaCaravaggio extends Test
+class RuotaCaravaggio extends TestNextController
 {
     use Singleton;
 

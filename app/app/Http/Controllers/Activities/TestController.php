@@ -144,9 +144,11 @@ class TestController extends Controller
             return redirect()->to($e->url);
         }
 
-        // No normal submission handling for test-next templates
+        // test-next templates save the result themselves while the logic loads
         if ($test->template === 'test-next') {
-            return redirect()->to($test->url());
+            return redirect()->to(
+                $request->has('review') ? $test->url() : $test->nextUrl($student)
+            );
         }
 
         // A completed test should advance without saving again

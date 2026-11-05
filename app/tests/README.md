@@ -2,18 +2,18 @@
 
 Three layers, each with its own runner. All commands run from `app/` unless noted.
 
-| Layer                 | Tool       | Location         | Command          |
-| --------------------- | ---------- | ---------------- | ---------------- |
-| Frontend unit (jsdom) | Vitest     | `tests/Vitest/`  | `pnpm test`      |
-| Backend feature       | Pest       | `tests/Feature/` | `pnpm test:pest` |
-| Browser regression    | Playwright | `e2e/review/`    | `pnpm test:e2e`  |
+| Layer                 | Tool       | Location            | Command          |
+| --------------------- | ---------- | ------------------- | ---------------- |
+| Frontend unit (jsdom) | Vitest     | `tests/Vitest/`     | `pnpm test`      |
+| Backend feature       | Pest       | `tests/Feature/`    | `pnpm test:pest` |
+| Browser regression    | Playwright | `tests/e2e/review/` | `pnpm test:e2e`  |
 
 ## Database safety
 
 The development database (`project_database`) is never used by tests.
 
 - Tests use the dedicated MySQL database `orientformat_test` with user `orientformat_test`
-  (credentials pinned in `phpunit.xml`, `scripts/test-pest.sh` and `e2e/support/env.ts`).
+  (credentials pinned in `phpunit.xml`, `scripts/test-pest.sh` and `tests/e2e/support/env.ts`).
 - `Tests\Support\TestDatabaseGuard` runs when the Pest application boots, in the Playwright
   fixture script and in the Playwright server front controller. Anything other than
   `APP_ENV=testing` + `orientformat_test` + `orientformat_test` aborts with an exception.
@@ -43,7 +43,7 @@ pnpm test                 # Vitest (jsdom unit tests)
 pnpm test:pest            # all Pest tests in Docker against orientformat_test
 pnpm test:pest --filter=ReviewQuestionnaire
 pnpm test:e2e             # builds assets, starts an isolated PHP server, runs Playwright
-pnpm exec playwright test e2e/review/dependencies.spec.ts   # a single spec (needs a prior build)
+pnpm exec playwright test tests/e2e/review/dependencies.spec.ts   # a single spec (needs a prior build)
 ```
 
 The Playwright server mirrors `public/` without the Vite `hot` file, so it always serves built

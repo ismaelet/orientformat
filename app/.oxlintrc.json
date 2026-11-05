@@ -1,3 +1,0 @@
-{
-  "ignorePatterns": ["public/**", "vendor/**", "node_modules/**", "storage/**", "legacy/**"]
-}

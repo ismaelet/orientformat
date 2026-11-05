@@ -28,12 +28,11 @@ orientformat/
 │   ├── app/                      # Application code
 │   ├── config/                   # Laravel configuration
 │   ├── database/                 # Migrations, factories, seeders
-│   ├── e2e/                      # End-to-end tests
 │   ├── legacy/                   # Legacy compatibility components
 │   ├── public/                   # Public assets and entry point
 │   ├── resources/                # Views, styles and scripts
 │   ├── routes/                    # Route files by functional area
-│   ├── tests/                     # PHP and frontend tests
+│   ├── tests/                     # PHP, frontend and end-to-end (tests/e2e) tests
 │   ├── composer.json
 │   └── package.json
 ├── docker/app/                   # Application container definition

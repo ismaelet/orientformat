@@ -1,10 +1,10 @@
 import { defineConfig, devices } from "@playwright/test";
-import { E2E_URL, phpEnv } from "./e2e/support/env";
+import { E2E_URL, phpEnv } from "./tests/e2e/support/env";
 
 export default defineConfig({
-  testDir: "./e2e",
+  testDir: "./tests/e2e",
   testIgnore: "example.spec.ts",
-  globalSetup: "./e2e/support/global-setup.ts",
+  globalSetup: "./tests/e2e/support/global-setup.ts",
   // Specs share one isolated test database, so they run serially.
   fullyParallel: false,
   workers: 1,

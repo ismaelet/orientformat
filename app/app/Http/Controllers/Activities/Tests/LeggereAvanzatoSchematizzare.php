@@ -1,6 +1,6 @@
 <?php
 
-namespace Legacy\Http\Controllers\Activities\Tests;
+namespace App\Http\Controllers\Activities\Tests;
 
 use System\Traits\Singleton;
 

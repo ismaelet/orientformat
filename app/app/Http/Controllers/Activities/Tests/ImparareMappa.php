@@ -1,9 +1,9 @@
 <?php
 
-namespace Legacy\Http\Controllers\Activities\Tests;
+namespace App\Http\Controllers\Activities\Tests;
 
+use App\Http\Controllers\Activities\TestNextController;
 use Illuminate\Foundation\Vite;
-use Legacy\Http\Controllers\Activities\Test;
 use System\Traits\Singleton;
 
 /**
@@ -16,7 +16,7 @@ use System\Traits\Singleton;
  * @property array $parameters = [] <inherited>
  * @property array $arguments = []
  */
-class ImparareMappa extends Test
+class ImparareMappa extends TestNextController
 {
     use Singleton;
 

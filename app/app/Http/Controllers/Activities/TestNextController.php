@@ -1,11 +1,11 @@
 <?php
 
-namespace Legacy\Http\Controllers\Activities;
+namespace App\Http\Controllers\Activities;
 
 use App\Legacy\LegacyTestController;
-use LegacyModels\Activities\Test as TestModel;
+use App\Models\Activities\Test;
 
-class Test extends LegacyTestController
+class TestNextController extends LegacyTestController
 {
     protected $resultCount = 0;
 
@@ -44,7 +44,6 @@ class Test extends LegacyTestController
 
         // save result
         legacy_test()->saveResult($result, $score, $completed, $speed);
-        legacy_test()->advance(isset($_POST['review']));
     }
 
     /**
@@ -94,16 +93,16 @@ class Test extends LegacyTestController
      */
     private static function specificTest(int $id)
     {
-        $legacyTest = new TestModel($id);
-        $namespace = 'Legacy\Http\Controllers\Activities\Tests';
-        $legacyTestController = 'Test'.$legacyTest->id();
+        $test = Test::with('section')->findOrFail($id);
+        $namespace = 'App\\Http\\Controllers\\Activities\\Tests';
+        $controller = 'Test'.$test->id;
 
-        if (! file_exists(__DIR__.'/Tests/'.$legacyTestController.'.php')) {
-            $legacyTestController = hypens_to_camel_case($legacyTest->section()->slug(), true).hypens_to_camel_case($legacyTest->slug(), true);
+        if (! file_exists(__DIR__.'/Tests/'.$controller.'.php')) {
+            $controller = hypens_to_camel_case($test->section->slug, true).hypens_to_camel_case($test->slug, true);
         }
 
-        $fullTestController = $namespace.'\\'.$legacyTestController;
+        $fullController = $namespace.'\\'.$controller;
 
-        return $fullTestController::getInstance();
+        return $fullController::getInstance();
     }
 }

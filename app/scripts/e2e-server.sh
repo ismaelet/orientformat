@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Starts the application for Playwright against the isolated test database.
-# Expects APP_ENV=testing and the DB_* variables from e2e/support/env.ts.
+# Expects APP_ENV=testing and the DB_* variables from tests/e2e/support/env.ts.
 set -euo pipefail
 
 cd "$(dirname "$0")/.."

@@ -1,8 +1,7 @@
 <?php
 
-namespace Legacy\Http\Controllers\Activities\Tests;
+namespace App\Http\Controllers\Activities\Tests;
 
-use Legacy\Http\Controllers\Activities\Test;
 use System\Traits\Singleton;
 
 /**
