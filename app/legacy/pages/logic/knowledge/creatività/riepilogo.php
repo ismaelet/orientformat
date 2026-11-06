@@ -19,10 +19,3 @@ for ($i = 1; $i < $legacyTest->step; $i++) {
     $results[$i]['url'] = $requiredTest->clientUrl;
     $results[$i]['score'] = $requiredTest->completed ? ((int) $requiredTest->percentage).'%' : 'Da fare';
 }
-
-/*
-* Form handling
-*/
-if (isset($_POST['reset-test'])) {
-    (new Test($_POST['reset-test']))->redo();
-}

@@ -6,6 +6,16 @@
       "type": "shell",
       "command": "ssh -t orientamentoformativo2@10.15.160.194 'cd /products/software/docker/orientamentoformativo && /usr/bin/docker-compose-wrapper.sh -f production-compose.yml up -d --build'",
       "problemMatcher": []
+    },
+    {
+      "label": "Test: All",
+      "dependsOn": ["Test: Pest", "Test: Vitest", "Test: Playwright"],
+      "dependsOrder": "sequence",
+      "problemMatcher": [],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
     }
   ]
 }

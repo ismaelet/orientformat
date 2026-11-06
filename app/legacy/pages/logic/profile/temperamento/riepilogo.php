@@ -1,7 +1,5 @@
 <?php
 
-use Legacy\Activity\Test;
-
 $legacyTest = legacy_test();
 $test = legacy_test()->newTest();
 $student = legacy_watched_student();
@@ -24,8 +22,3 @@ foreach ($sections as $step => $section) {
 $results = collect($results);
 
 // dd($results);
-
-// Reset test
-if (isset($_POST['reset-test'])) {
-    (new Test($_POST['reset-test']))->redo();
-}

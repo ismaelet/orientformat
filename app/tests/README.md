@@ -81,3 +81,16 @@ and the database is `orientformat_test`.
 
 `.oxfmtrc.json` and `.oxlintrc.json` ignore `public/`, `vendor/`, `legacy/`, `storage/` and `tests/schema/`, so
 `pnpm format` never touches vendored assets such as `public/js/filament`.
+
+## Temperament activities
+
+Run `pnpm test:e2e tests/e2e/temperamento/completion.spec.ts` to complete activities 41–45
+through the real login, Blade forms and Laravel submission endpoints on desktop, mobile
+and with reduced motion. The tests check answer selection (including zero), confirmation
+visibility, horizontal circle layout, stable positions after transitions, navigation,
+persisted answers/scores and completed-page reloads.
+
+`TemperamentoFixture` uses a separate student and class (id 9200), a dedicated section
+(id 9200), and the real activity ids/slugs in the isolated `orientformat_test` database.
+It resets only that student's temperament results and progress before each scenario.
+The fixture CLI refuses to run outside the test database via `TestDatabaseGuard`.

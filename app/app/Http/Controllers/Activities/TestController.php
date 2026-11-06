@@ -7,6 +7,7 @@ use App\Legacy\Exceptions\LegacyRedirectException;
 use App\Legacy\Logic;
 use App\Models\Activities\Test;
 use App\Models\Results\User\AdditionalResult;
+use App\Models\Results\User\OtherResult;
 use App\Models\Results\User\TestResult;
 use App\Services\LegacyPageRenderer;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -219,6 +220,9 @@ class TestController extends Controller
                 TestResult::archiveCurrent($participant->id, $test->id);
                 AdditionalResult::where('studentId', $participant->id)
                     ->where('testId', $test->id)
+                    ->delete();
+                OtherResult::where('userID', $participant->id)
+                    ->where('testID', $test->id)
                     ->delete();
             }
 

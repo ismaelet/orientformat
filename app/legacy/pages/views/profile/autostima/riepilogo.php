@@ -41,7 +41,7 @@
 
                                 <?php if ($dependentTest->completed && ! isSupervisor()) { ?>
 
-                                    <button type="submit" name="reset-test" class="test-btn txt-c3 mar-t-1" value="<?= $dependentTest->id ?>" onclick="return confirm('<?= __('Are you sure you want to repeat the assessment?') ?>')"><?= __('Restart') ?></button>
+                                    <button type="submit" class="test-btn txt-c3 mar-t-1" formaction="<?= route('test.reset', $dependentTest->id) ?>" onclick="return confirm('<?= __('Are you sure you want to repeat the assessment?') ?>')"><?= __('Restart') ?></button>
 
                                 <?php } elseif (! isSupervisor()) { ?>
 

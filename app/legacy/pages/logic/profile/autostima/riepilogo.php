@@ -27,8 +27,3 @@ while ($row = array_shift($res)) {
 }
 
 $maxHeight = $maxHeight ?: 100;
-
-// reset a section
-if (isset($_POST['reset-test'])) {
-    (new Test($_POST['reset-test']))->redo();
-}
