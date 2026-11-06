@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Deploy OrientFormat",
+      "type": "shell",
+      "command": "ssh -t orientamentoformativo2@10.15.160.194 'cd /products/software/docker/orientamentoformativo && /usr/bin/docker-compose-wrapper.sh -f production-compose.yml up -d --build'",
+      "problemMatcher": []
+    }
+  ]
+}
