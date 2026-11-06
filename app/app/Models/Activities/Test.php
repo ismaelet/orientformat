@@ -36,6 +36,7 @@ class Test extends Model
         'template',
         'reviewable',
         'reviewResult',
+        'recapTestId',
     ];
 
     protected $casts = [
@@ -152,6 +153,11 @@ class Test extends Model
     public function required_tests(): HasMany
     {
         return $this->hasMany(Test::class, 'recapTestId');
+    }
+
+    public function recap_test(): BelongsTo
+    {
+        return $this->belongsTo(Test::class, 'recapTestId');
     }
 
     /**
@@ -319,18 +325,27 @@ class Test extends Model
      */
     public function nextUrl(Student|Teacher $student): string
     {
-        return match (true) {
-            // If the test requires review, reload the same test
-            $this->reviewResult => $this->url(),
+        if ($this->reviewResult) {
+            return $this->url();
+        }
 
+        $nextTest = $this->nextTest();
+
+        if ($this->recap_test) {
+            if (($nextTest && $student->hasCompletedTest($nextTest)) || $student->hasCompletedTest($this->recap_test)) {
+                return $this->recap_test->url();
+            }
+        }
+
+        return match (true) {
             // If the test is a survey, go to the next test
-            $this->template === 'survey' => $this->nextTest()?->url(),
+            $this->template === 'survey' => $nextTest?->url(),
 
             // If the student has completed the section, go to the section URL
             $student->hasCompletedSection($this->section) => $this->section->url(),
 
             // Default: go to the next test or section URL
-            default => $this->nextTest()?->url() ?? $this->section->url(),
+            default => $nextTest?->url() ?? $this->section->url(),
         };
     }
 
