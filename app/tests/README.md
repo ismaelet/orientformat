@@ -64,6 +64,12 @@ the transaction) provides the `public` config, sections and tests; `ResultsFixtu
 results; `ReviewFixture` provides the questionnaire. Everything runs on a freshly initialised `orientformat_test`
 (`bash scripts/test-db-setup.sh`, schema from `tests/schema/mysql-schema.sql`).
 
+Test attempts use `results_tests` for the single current result per student and test;
+`results_tests_archive` retains superseded and reset results. Resets remove the current
+result from completion and reporting without deleting its history. Completed-attempt
+counts include both tables. The migration keeps the highest result ID as current for
+each existing pair and archives the rest.
+
 ## CI / portability
 
 `DB_HOST`/`DB_PORT` (Pest) and `E2E_DB_HOST`/`E2E_DB_PORT`/`E2E_DB_PASSWORD` (Playwright) are overridable; the

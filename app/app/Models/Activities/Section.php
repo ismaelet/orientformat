@@ -2,6 +2,7 @@
 
 namespace App\Models\Activities;
 
+use App\Models\Results\User\CondensedSectionResult;
 use App\Models\Results\User\SectionResult;
 use App\Models\Results\User\TestResult;
 use App\Models\Schools\Grade;
@@ -179,9 +180,11 @@ class Section extends Model
     public function updateProgress(Student|Teacher $student): void
     {
         $completedTestCount = $this->calcCompletedTestCount($student);
-        $lastCompletedStep = $this->getLastCompletedStep();
-        $percentage = round($completedTestCount / $this->testCount() * 100);
-        $completed = $lastCompletedStep >= $this->active_tests->last()->step;
+        $lastCompletedStep = $this->getLastCompletedStep($student);
+        $testCount = $this->testCount();
+        $percentage = $testCount ? round($completedTestCount / $testCount * 100) : 0;
+        $lastStep = $this->active_tests->max('step');
+        $completed = $lastStep !== null && $lastCompletedStep >= $lastStep;
 
         SectionResult::updateOrCreate([
             'studentId' => $student->id,
@@ -192,6 +195,11 @@ class Section extends Model
             'progressPercentage' => $percentage,
             'completed' => $completed,
         ]);
+
+        CondensedSectionResult::where('student_id', $student->id)
+            ->where('section_id', $this->id)
+            ->delete();
+        $student->unsetRelation('section_results');
 
         // Update grade progress
         if (! is_teacher_or_administrator()) {
@@ -212,11 +220,11 @@ class Section extends Model
     /**
      * Get the last completed step for the section
      */
-    private function getLastCompletedStep(): int
+    private function getLastCompletedStep(Student|Teacher $student): int
     {
         return TestResult::join('tests', 'results_tests.testId', '=', 'tests.id')
             ->whereIn('results_tests.testId', $this->active_tests->pluck('id'))
-            ->where('results_tests.studentId', Auth::id())
+            ->where('results_tests.studentId', $student->id)
             ->max('tests.step') ?? 0;
     }
 

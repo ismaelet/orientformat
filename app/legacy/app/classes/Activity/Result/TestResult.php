@@ -37,11 +37,9 @@ class TestResult
      */
     public static function new(array $data)
     {
-        // Save or update user test result
-        UserTestResult::updateOrCreate([
+        UserTestResult::replaceCurrent([
             'studentId' => $data['studentId'],
             'testId' => $data['testId'],
-        ], [
             'result' => $data['results'],
             'percentage' => $data['percentage'],
             'completed' => (bool) $data['completed'],

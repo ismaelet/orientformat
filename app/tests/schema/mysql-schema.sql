@@ -842,10 +842,26 @@ CREATE TABLE `results_tests` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `results_tests_student_test_unique` (`studentId`,`testId`),
   KEY `studentId_testId_index` (`studentId`,`testId`),
   KEY `testId_studentId_index` (`testId`,`studentId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
+CREATE TABLE `results_tests_archive` (
+  `archive_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
+  `studentId` int(11) NOT NULL,
+  `testId` int(11) NOT NULL,
+  `completed` tinyint(1) NOT NULL DEFAULT '0',
+  `result` varchar(2500) NOT NULL,
+  `percentage` int(11) NOT NULL,
+  `speed` int(11) NOT NULL DEFAULT '0',
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`archive_id`),
+  KEY `results_tests_archive_studentid_testid_index` (`studentId`,`testId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `review_areas` (
@@ -1177,4 +1193,3 @@ CREATE TABLE `users` (
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-

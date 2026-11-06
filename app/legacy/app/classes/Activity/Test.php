@@ -4,6 +4,7 @@ namespace Legacy\Activity;
 
 use App\Models\Activities\Survey;
 use App\Models\Activities\Test as ModernTest;
+use App\Models\Results\User\TestResult as UserTestResult;
 use App\Models\User\Student;
 use App\Models\User\Teacher;
 use Illuminate\Support\Facades\Auth;
@@ -245,17 +246,19 @@ class Test
     // save the test result
     public function saveResult($results, $percentage, $completed, $speed)
     {
-        TestResult::new([
-            'studentId' => Auth::id(),
-            'testId' => $this->id,
-            'results' => $results,
-            'percentage' => $percentage,
-            'completed' => $completed,
-            'speed' => $speed,
-        ]);
+        DB::transaction(function () use ($results, $percentage, $completed, $speed) {
+            TestResult::new([
+                'studentId' => Auth::id(),
+                'testId' => $this->id,
+                'results' => $results,
+                'percentage' => $percentage,
+                'completed' => $completed,
+                'speed' => $speed,
+            ]);
 
-        // update section progress
-        $this->section->updateProgress();
+            // update section progress
+            $this->section->updateProgress();
+        });
     }
 
     // advance to the next test
@@ -274,13 +277,16 @@ class Test
 
     public function redo(): void
     {
-        DB::table(TestResult::TABLE)->where(TestResult::USER_INDEX, Auth::id())->where(TestResult::TEST_INDEX, $this->id)->delete();
+        DB::transaction(function () {
+            UserTestResult::lockParticipant(Auth::id());
+            UserTestResult::archiveCurrent(Auth::id(), $this->id);
 
-        DB::table(AdditionalTestResult::TABLE)->where(AdditionalTestResult::USER_INDEX, Auth::id())->where(AdditionalTestResult::TEST_INDEX, $this->id)->delete();
+            DB::table(AdditionalTestResult::TABLE)->where(AdditionalTestResult::USER_INDEX, Auth::id())->where(AdditionalTestResult::TEST_INDEX, $this->id)->delete();
 
-        DB::table('results_others')->where('userID', userId())->where('testID', $this->id)->delete();
+            DB::table('results_others')->where('userID', userId())->where('testID', $this->id)->delete();
 
-        $this->section->updateProgress();
+            $this->section->updateProgress();
+        });
     }
 
     public function newTest(): ModernTest

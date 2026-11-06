@@ -126,10 +126,7 @@ class RicordareCifreHelper implements TestHelperInterface
             // Serialize submissions for this student.
             // Locking the student row also protects the first submission,
             // before a TestResult record exists.
-            $student::query()
-                ->whereKey($student->getKey())
-                ->lockForUpdate()
-                ->firstOrFail();
+            TestResult::lockParticipant($student->id);
 
             // Retrieve the latest attempt, including incomplete results.
             $result = TestResult::query()

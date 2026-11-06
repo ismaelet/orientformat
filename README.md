@@ -133,6 +133,11 @@ To format source code, use `vendor/bin/pint` for PHP and `pnpm format` for front
 
 Before deploying, confirm the application image, database access, persistent volumes, backups, asset build, and required Laravel configuration. Database changes should be planned and backed up independently of application deployment.
 
+The test-result history migration moves older results into `results_tests_archive`
+and keeps the highest result ID for each student and test in `results_tests`. Pause
+test-result writes while deploying both the migration and matching application code.
+On rollback, archived rows are restored to `results_tests` with new result IDs.
+
 ## Security and repository hygiene
 
 - Never commit `.env` files, database exports, secret keys, or credential-bearing configuration.

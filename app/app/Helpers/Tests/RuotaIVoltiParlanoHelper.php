@@ -105,10 +105,7 @@ class RuotaIVoltiParlanoHelper implements TestHelperInterface
             $fields
         ) {
             // Serialize submissions from the same participant.
-            $student::query()
-                ->whereKey($student->getKey())
-                ->lockForUpdate()
-                ->firstOrFail();
+            TestResult::lockParticipant($student->id);
 
             $result = TestResult::query()
                 ->where('studentId', $student->id)

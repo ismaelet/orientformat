@@ -13,7 +13,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Legacy\Activity\Test as LegacyTest;
 use Legacy\LogicManager\TestLogic;
@@ -185,23 +186,7 @@ class TestController extends Controller
      */
     public function reset(Test $test): RedirectResponse
     {
-        $user = Auth::user();
-
-        $testResult = TestResult::where('studentId', $user->id)
-            ->where('testId', $test->id)
-            ->first();
-
-        if ($testResult) {
-            $testResult->delete();
-        }
-
-        $additionalResult = AdditionalResult::where('studentId', $user->id)
-            ->where('testId', $test->id)
-            ->first();
-
-        if ($additionalResult) {
-            $additionalResult->delete();
-        }
+        $this->resetTests(collect([$test]));
 
         return redirect()->to($test->url());
     }
@@ -211,34 +196,39 @@ class TestController extends Controller
      */
     public function resetDependent(Test $test): RedirectResponse
     {
-        $user = Auth::user();
         $dependentTests = $test->dependent_tests()?->sortBy('step');
 
-        // Delete dependent test results
-        $dependentTests->each(function (Test $dependentTest) use ($user) {
-            $testResult = TestResult::where('studentId', $user->id)
-                ->where('testId', $dependentTest->id)
-                ->first();
-
-            if ($testResult) {
-                $testResult->delete();
-            }
-        });
-
-        // Delete main test result
-        $testResult = TestResult::where('studentId', $user->id)
-            ->where('testId', $test->id)
-            ->first();
-
-        if ($testResult) {
-            $testResult->delete();
-        }
+        $this->resetTests($dependentTests->push($test)->unique('id'));
 
         $firstDependentTest = $dependentTests?->first();
 
         return redirect()->to(
             $firstDependentTest?->url() ?? $test->url()
         );
+    }
+
+    private function resetTests(Collection $tests): void
+    {
+        $participant = student();
+        abort_unless($participant, 403);
+
+        DB::transaction(function () use ($tests, $participant) {
+            TestResult::lockParticipant($participant->id);
+
+            foreach ($tests as $test) {
+                TestResult::archiveCurrent($participant->id, $test->id);
+                AdditionalResult::where('studentId', $participant->id)
+                    ->where('testId', $test->id)
+                    ->delete();
+            }
+
+            $participant->unsetRelation('test_results');
+            $participant->unsetRelation('section_results');
+
+            foreach ($tests->unique('sectionId') as $test) {
+                $test->section->updateProgress($participant);
+            }
+        });
     }
 
     /**

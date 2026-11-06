@@ -2,6 +2,7 @@
 
 use App\Models\Results\User\TestResult;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Legacy\Activity\Result\Handler\StudentTestResult;
 use Legacy\Activity\Test;
 use Legacy\UserSystem\Student;
@@ -40,23 +41,18 @@ $schoolList = (include_once '-expands-interest/'.($highschool ? 'universities' :
 * Form handling
 */
 if (isset($_POST['edit'])) {
-    $results = $survey->rawResults;
-
-    foreach ($_POST['field'] as $resultId => $resultValue) {
-        $results[$resultId] = $resultValue;
-    }
-
-    $results = implode(',', $results);
-
-    TestResult::updateOrCreate(
-        [
-            'testId' => $surveyTestId,
-            'studentId' => Auth::id(),
-        ],
-        [
-            'result' => $results,
-        ]
-    );
+    DB::transaction(function () use ($surveyTestId) {
+        TestResult::lockParticipant(Auth::id());
+        $result = TestResult::where('testId', $surveyTestId)
+            ->where('studentId', Auth::id())
+            ->lockForUpdate()
+            ->firstOrFail();
+        $results = $result->results();
+        foreach ($_POST['field'] as $resultId => $resultValue) {
+            $results[$resultId] = $resultValue;
+        }
+        $result->update(['result' => implode(',', $results)]);
+    });
 
     redirect_old();
 }

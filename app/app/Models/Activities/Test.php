@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Test extends Model
 {
@@ -255,20 +256,24 @@ class Test extends Model
      */
     public function storeResult(Student|Teacher $student, array $fields, int $timePassed, Request $request): void
     {
-        TestResult::create([
-            'studentId' => $student->id,
-            'testId' => $this->id,
-            'result' => implode(',', $fields),
-            'percentage' => $this->calcPercentage($fields),
-            'completed' => true,
-            'speed' => $timePassed,
-        ]);
+        DB::transaction(function () use ($student, $fields, $timePassed, $request) {
+            TestResult::replaceCurrent([
+                'studentId' => $student->id,
+                'testId' => $this->id,
+                'result' => implode(',', $fields),
+                'percentage' => $this->calcPercentage($fields),
+                'completed' => true,
+                'speed' => $timePassed,
+            ]);
 
-        // Store additional result if the helper defines it
-        $this->storeAdditionalResult($request);
+            $student->unsetRelation('test_results');
 
-        // Update section progress
-        $this->section->updateProgress($student);
+            // Store additional result if the helper defines it
+            $this->storeAdditionalResult($request);
+
+            // Update section progress
+            $this->section->updateProgress($student);
+        });
     }
 
     /**
@@ -356,10 +361,7 @@ class Test extends Model
     {
         $studentId = $student instanceof Student ? $student->id : $student;
 
-        return TestResult::where('studentId', $studentId)
-            ->where('testId', $this->id)
-            ->where('completed', true)
-            ->count();
+        return TestResult::completedAttemptsByTestFor($studentId, [$this->id])[$this->id] ?? 0;
     }
 
     /**
