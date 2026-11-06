@@ -73,6 +73,61 @@
             }
         }
 
+        .temperamento-questions {
+            display: grid;
+        }
+
+        .temperamento-question {
+            grid-area: 1 / 1;
+            min-width: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .temperamento-question-active {
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .temperamento-question-leaving {
+            pointer-events: none;
+            animation: temperamento-question-exit 300ms ease-in both;
+        }
+
+        .temperamento-question-entering {
+            pointer-events: none;
+            animation: temperamento-question-enter 400ms ease-out both;
+        }
+
+        @keyframes temperamento-question-exit {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-4rem);
+            }
+        }
+
+        @keyframes temperamento-question-enter {
+            from {
+                opacity: 0;
+                transform: translateY(4rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .temperamento-question-leaving,
+            .temperamento-question-entering {
+                animation-duration: 1ms;
+            }
+        }
+
         .confirm-button {
             animation: confirm-button-entrance 0.2s ease-in-out;
         }
@@ -100,7 +155,10 @@
                 <x-button :href="$test->nextUrl($student)">{{ __('Continue') }}</x-button>
             </div>
         @else
-            <div x-data="{ current: 0, answers: @js($answers) }" class="grid gap-8 py-10">
+            <div
+                x-data="{ current: 0, leaving: false, entering: false, answers: @js($answers) }"
+                class="grid gap-8 py-10"
+            >
                 @if ($errors->any())
                     <div role="alert" class="text-error-500">
                         @foreach ($errors->all() as $message)
@@ -109,8 +167,27 @@
                     </div>
                 @endif
 
+                <div class="temperamento-questions">
                 @foreach ($questions as $index => $question)
-                    <fieldset x-show="current === {{ $index }}" @if ($index !== 0) x-cloak @endif>
+                    <fieldset
+                        class="temperamento-question"
+                        x-bind:inert="current !== {{ $index }} || leaving || entering"
+                        x-bind:class="{
+                            'temperamento-question-active': current === {{ $index }},
+                            'temperamento-question-leaving': current === {{ $index }} && leaving,
+                            'temperamento-question-entering': current === {{ $index }} && entering
+                        }"
+                        x-bind:disabled="leaving || entering"
+                        x-on:animationend.self="
+                            if ($event.animationName === 'temperamento-question-exit') {
+                                current++;
+                                leaving = false;
+                                entering = true;
+                            } else if ($event.animationName === 'temperamento-question-enter') {
+                                entering = false;
+                            }
+                        "
+                    >
                         <div class="temperamento-scale">
                             <p id="temperamento-negative-{{ $index }}" class="temperamento-description">
                                 {{ $question[0] }}
@@ -143,14 +220,15 @@
                         </div>
                     </fieldset>
                 @endforeach
+                </div>
 
                 <div class="flex h-20 items-center justify-center">
                     <x-button
                         class="confirm-button"
                         x-cloak
-                        x-show="current < {{ count($questions) - 1 }} && answers[current] != null"
+                        x-show="current < {{ count($questions) - 1 }} && answers[current] != null && ! leaving && ! entering"
                         x-bind:disabled="answers[current] === null || answers[current] === undefined"
-                        x-on:click="if (answers[current] != null) current++;"
+                        x-on:click="if (answers[current] != null && ! leaving && ! entering) leaving = true;"
                     >{{ __('Confirm') }}</x-button>
 
                     <x-button
@@ -159,7 +237,7 @@
                         value="1"
                         class="confirm-button"
                         x-cloak
-                        x-show="current === {{ count($questions) - 1 }} && answers[current] != null"
+                        x-show="current === {{ count($questions) - 1 }} && answers[current] != null && ! leaving && ! entering"
                         x-bind:disabled="answers.some((answer) => answer === null || answer === undefined)"
                     >{{ __('Confirm') }}</x-button>
                 </div>
