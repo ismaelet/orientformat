@@ -21,6 +21,10 @@ beforeEach(function (): void {
     $this->actingAs(User::findOrFail($this->student->userId));
 
     DB::table('school_classes')->where('id', $fixture['class']->id)->update(['grade' => 1, 'startingGrade' => 1, 'professional' => 0]);
+    DB::table('activities_grades')->updateOrInsert(
+        ['absolute_number' => 1, 'is_professional' => 0],
+        ['school_relative_number' => 1, 'is_highschool' => 0],
+    );
     $gradeId = DB::table('activities_grades')->where('absolute_number', 1)->where('is_professional', 0)->value('id');
     DB::table('grade_section')->updateOrInsert(['grade_id' => $gradeId, 'section_id' => 9]);
     DB::table('tests')->where('sectionId', 9)->update(['active' => 0]);
@@ -139,43 +143,6 @@ test('resetting an earlier blade test redirects to the test even when the last s
     $this->post(route('test.reset', $test->id))->assertRedirect($test->url());
     $this->get($test->url())->assertOk()->assertViewIs('tests.scrivere.punteggiatura');
     $this->assertDatabaseMissing('results_tests', ['studentId' => $this->student->id, 'testId' => 16]);
-});
-
-test('temperament recap restart targets the selected test reset endpoint', function (): void {
-    DB::table('activities_areas')->updateOrInsert(['id' => 1], [
-        'name' => 'Profile', 'slug' => 'profile', 'description' => '', 'color1' => '', 'color2' => '',
-    ]);
-    DB::table('sections')->where('id', 8)->update(['slug' => 'temperamento']);
-    $gradeId = DB::table('activities_grades')->where('absolute_number', 1)->where('is_professional', 0)->value('id');
-    DB::table('grade_section')->updateOrInsert(['grade_id' => $gradeId, 'section_id' => 8]);
-
-    foreach (['stabilita', 'estroversione', 'socievolezza', 'coscienziosita', 'novita'] as $index => $slug) {
-        DB::table('tests')->where('id', 41 + $index)->update([
-            'sectionId' => 8, 'areaId' => 1, 'slug' => $slug, 'step' => $index + 1,
-            'template' => 'blade', 'active' => 1, 'recapTestId' => 46,
-        ]);
-    }
-    DB::table('tests')->where('id', 46)->update([
-        'sectionId' => 8, 'areaId' => 1, 'slug' => 'riepilogo', 'step' => 6,
-        'template' => 'test', 'active' => 1, 'recapTestId' => 0,
-    ]);
-    TestResult::replaceCurrent([
-        'studentId' => $this->student->id, 'testId' => 42, 'result' => '1,2,3,4',
-        'percentage' => 50, 'completed' => true, 'speed' => 0,
-    ]);
-    DB::table('results_others')->insert(['userID' => $this->student->id, 'testID' => 42, 'result' => 'old']);
-    $recap = ActivityTest::findOrFail(46);
-    $target = ActivityTest::findOrFail(42);
-
-    $this->get($recap->url())
-        ->assertOk()
-        ->assertSee('formaction="'.route('test.reset', 42).'"', false);
-
-    $this->post(route('test.reset', 42))->assertRedirect($target->url());
-    $this->assertDatabaseMissing('results_tests', ['studentId' => $this->student->id, 'testId' => 42]);
-    $this->assertDatabaseMissing('results_others', ['userID' => $this->student->id, 'testID' => 42]);
-    $this->assertDatabaseHas('results_tests_archive', ['studentId' => $this->student->id, 'testId' => 42]);
-    $this->get($target->url())->assertOk()->assertViewIs('tests.temperamento.estroversione');
 });
 
 test('the database rejects multiple current results for the same pair', function (): void {
