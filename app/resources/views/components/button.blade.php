@@ -185,7 +185,7 @@
 @if ($href)
 	<a
 		href="{{ $href }}"
-		{{ $attributes->class($classes) }}"
+		{{ $attributes->class($classes) }}
 		data-variant="{{ $variant }}"
 		data-size="{{ $size }}"
 		data-color="{{ $color }}"
@@ -193,7 +193,7 @@
 @else
 	<button
 		type="{{ $type }}"
-		{{ $attributes->class($classes) }}"
+		{{ $attributes->class($classes) }}
 		data-variant="{{ $variant }}"
 		data-size="{{ $size }}"
 		data-color="{{ $color }}"
