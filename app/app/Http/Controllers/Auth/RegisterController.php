@@ -27,6 +27,7 @@ class RegisterController extends Controller
         'centromoda.tn.it',
         'cfp-upt.it',
         'cfpgveronesi.it',
+        'docenti.operaarmidabarelli.org',
         'enaip.tn.it',
         'fmach.it',
         'gardascuola.it',
@@ -36,7 +37,6 @@ class RegisterController extends Controller
         'istitutosacrocuore.it',
         'liceodellearti.tn.it',
         'mileschool.it',
-        'operaarmidabarelli.org',
         'pavoniani.tn.it',
         'provincia.tn.it',
         'sacrafamigliatrento.it',
@@ -145,7 +145,7 @@ class RegisterController extends Controller
         if (! $emailDomain || ! in_array($emailDomain, self::AVAILABLE_EMAIL_DOMAINS)) {
             return redirect()
                 ->back()
-                ->withErrors(['email' => 'Indirizzo email non supportato. Per vedere la lista dei domini email supportati dalla piattaforma clicca <a class="font-bold" href="'.route('help', ['category' => 1, 'topic' => 11]).'#topic11">qui</a>'])
+                ->withErrors(['email' => 'Indirizzo email non supportato. Per vedere la lista dei domini email supportati dalla piattaforma clicca <a class="font-bold" href="'.route('help', ['category' => 2, 'topic' => 11]).'#topic11">qui</a>'])
                 ->withInput();
         }
 
