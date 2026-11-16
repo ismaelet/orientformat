@@ -4,7 +4,7 @@
     {
       "label": "Deploy OrientFormat",
       "type": "shell",
-      "command": "ssh -t orientamentoformativo2@10.15.160.194 'cd /products/software/docker/orientamentoformativo && /usr/bin/docker-compose-wrapper.sh -f production-compose.yml up -d --build'",
+      "command": "sshpass -f ~/.ssh/orientformat-password ssh -t orientformat 'cd /products/software/docker/orientamentoformativo && /usr/bin/docker-compose-wrapper.sh -f production-compose.yml up -d --build'",
       "problemMatcher": []
     },
     {
