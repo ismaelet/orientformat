@@ -55,6 +55,7 @@ return [
     'autovalutazioni' => 'Autovalutazioni',
     'capolavori' => 'I miei capolavori',
     'eportfolio' => 'E-Portfolio e Esame di Stato',
+    'formazione-medie' => 'Formazione Post-Diploma',
 
     'description-stili' => 'Il mio modo di pensare',
     'description-resilienza' => 'Come resistere nelle difficoltà',
@@ -110,4 +111,5 @@ return [
     'description-autovalutazioni' => 'Qui puoi trovare tutte le autovalutazioni relative alle diverse aree che costituiscono il Profilo Orientativo Individualizzato (POI)',
     'description-capolavori' => 'Puoi inserire uno o più capolavori, che nel corso dell’anno potrai anche sostituire o modificare.',
     'description-eportfolio' => 'Qui potrai raccogliere i Capolavori e le autovalutazioni che meglio descrivono l’acquisizione delle tue competenze',
+    'description-formazione-medie' => 'Quale percorso scegliere dopo le medie?',
 ];

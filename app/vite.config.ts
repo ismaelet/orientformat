@@ -18,6 +18,8 @@ export default defineConfig(({ command }) => ({
       input: [
         "resources/css/app.css",
         "resources/js/app.ts",
+        "resources/js/tests/formazione-post-diploma.js",
+        "resources/js/tests/formazione-medie.js",
         ...exerciseScripts("resources/js/exercises/pages"),
         ...exerciseScripts("resources/js/exercises/templates"),
       ],

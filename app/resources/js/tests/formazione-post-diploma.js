@@ -1,4 +1,11 @@
-document.addEventListener("DOMContentLoaded", function () {
+import leaderLineUrl from "leader-line/leader-line.min.js?url";
+
+// LeaderLine declares a global constructor and must run as a classic script.
+const script = document.createElement("script");
+script.src = leaderLineUrl;
+script.addEventListener("load", async () => {
+  await document.fonts.ready;
+  const LeaderLine = window.LeaderLine;
   const schoolTypeSelector = ".school-type";
   const colorPrimary200 = getComputedStyle(document.documentElement).getPropertyValue(
     "--color-primary-200",
@@ -83,3 +90,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
   new LeaderLine(start, end, parameters);
 });
+document.head.append(script);

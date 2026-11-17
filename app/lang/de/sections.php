@@ -55,6 +55,7 @@ return [
     'autovalutazioni' => 'Autovalutierungen',
     'capolavori' => 'Meine Meisterwerke',
     'eportfolio' => 'E-Portfolio und Abschlussprüfung',
+    'formazione-medie' => 'Ausbildung nach dem Schulabschluss',
 
     'description-stili' => 'Meine Denkweise',
     'description-resilienza' => 'Wie man in schwierigen Situationen widersteht',
@@ -110,4 +111,5 @@ return [
     'description-autovalutazioni' => 'Hier kannst du alle Selbsteinschätzungen finden, die sich auf die verschiedenen Bereiche beziehen, die das Individuelle Orientierungsprofil (POI) ausmachen',
     'description-capolavori' => 'Du kannst ein oder mehrere Meisterwerke hochladen, die du im Laufe des Jahres auch ersetzen oder ändern kannst.',
     'description-eportfolio' => 'Hier kannst du die Meisterwerke, deine POIs und die Selbsteinschätzungen sammeln, die den Erwerb deiner Kompetenzen am besten beschreiben',
+    'description-formazione-medie' => 'Welchen Weg soll man nach der Mittelstufe wählen?',
 ];

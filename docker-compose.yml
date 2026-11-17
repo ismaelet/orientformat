@@ -56,13 +56,11 @@ services:
       context: .
       dockerfile: docker/app/Dockerfile
       target: deps
+    working_dir: /var/www/html
+    user: "${UID:-1000}:${GID:-1000}"
     volumes:
       - ./app:/var/www/html
-      - node_modules:/var/www/html/node_modules
-      - pnpm_store:/pnpm/store
-    environment:
-      PNPM_STORE_DIR: /pnpm/store
-    command: /bin/bash -c "pnpm install --frozen-lockfile && pnpm run dev -- --host 0.0.0.0"
+    command: pnpm run dev --host 0.0.0.0
     ports:
       - 5173:5173
 
