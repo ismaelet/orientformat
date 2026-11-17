@@ -132,6 +132,34 @@ test('modern submissions replace the current result and preserve section progres
     ]);
 });
 
+test('section progress atomically creates and updates a single result', function (): void {
+    $section = $this->test->section;
+    $results = fn () => DB::table('results_sections')
+        ->where('studentId', $this->student->id)->where('sectionId', $section->id);
+    $results()->delete();
+
+    $this->travelTo(now()->startOfSecond());
+    $section->updateProgress($this->student);
+    $original = $results()->first();
+    expect($original->completedTestCount)->toBe(2)
+        ->and($original->progressPercentage)->toBe(100)
+        ->and($original->completed)->toBe(1);
+
+    DB::table('results_tests')->where('studentId', $this->student->id)->where('testId', 22)->delete();
+    $this->travel(1)->minutes();
+    $section->updateProgress($this->student);
+
+    $updated = $results()->first();
+    expect($results()->count())->toBe(1)
+        ->and($updated->id)->toBe($original->id)
+        ->and($updated->created_at)->toBe($original->created_at)
+        ->and($updated->updated_at)->not->toBe($original->updated_at)
+        ->and($updated->completedTestCount)->toBe(1)
+        ->and($updated->lastCompletedStep)->toBe(1)
+        ->and($updated->progressPercentage)->toBe(50)
+        ->and($updated->completed)->toBe(0);
+});
+
 test('resetting an earlier blade test redirects to the test even when the last step remains complete', function (): void {
     DB::table('activities_areas')->updateOrInsert(['id' => 2], [
         'name' => 'Skills', 'slug' => 'skills', 'description' => '', 'color1' => '', 'color2' => '',

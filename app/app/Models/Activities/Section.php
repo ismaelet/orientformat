@@ -186,14 +186,19 @@ class Section extends Model
         $lastStep = $this->active_tests->max('step');
         $completed = $lastStep !== null && $lastCompletedStep >= $lastStep;
 
-        SectionResult::updateOrCreate([
+        // Let the unique index resolve concurrent first submissions atomically.
+        SectionResult::upsert([[
             'studentId' => $student->id,
             'sectionId' => $this->id,
-        ], [
             'completedTestCount' => $completedTestCount,
             'lastCompletedStep' => $lastCompletedStep,
             'progressPercentage' => $percentage,
             'completed' => $completed,
+        ]], ['studentId', 'sectionId'], [
+            'completedTestCount',
+            'lastCompletedStep',
+            'progressPercentage',
+            'completed',
         ]);
 
         CondensedSectionResult::where('student_id', $student->id)
