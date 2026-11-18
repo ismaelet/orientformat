@@ -84,6 +84,23 @@
             color: var(--color-tertiary-300);
         }
 
+        .medie-pathways__connections > path {
+            stroke-dasharray: 8 4;
+            animation: medie-arrow-dash 1s linear infinite;
+        }
+
+        @keyframes medie-arrow-dash {
+            to {
+                stroke-dashoffset: -12;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .medie-pathways__connections > path {
+                animation: none;
+            }
+        }
+
         .medie-info {
             display: grid;
             gap: 1.5rem;
@@ -166,7 +183,7 @@
                 prevedono il <strong>passaggio</strong> progressivo al <strong>modello 2+2</strong>, quindi un
                 <strong>percorso quadriennale</strong> al termine del quale si consegue il Diploma professionale di
                 Tecnico. Dopo il percorso quadriennale e il conseguimento del diploma, si può frequentare il quinto anno
-                CAPES (Corso Annuale per l’Esame di Stato); il Diploma di maturità professionale dà diritto di accesso
+                CAPES (Corso Annuale Per l’Esame di Stato); il Diploma di maturità professionale dà diritto di accesso
                 all’università e agli ITS Academy.
             </p>
         </div>

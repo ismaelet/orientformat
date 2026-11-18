@@ -45,7 +45,17 @@ if (diagram) {
       const to = end.getBoundingClientRect();
       const x1 = from.left + from.width / 2 - bounds.left;
       const y1 = from.bottom - bounds.top;
-      const x2 = to.left + to.width / 2 - bounds.left;
+      let arrivalFraction = 1 / 2;
+      if (end.classList.contains("medie-pathway--destination")) {
+        const incoming = connections
+          .filter((connection) => connection.end === end)
+          .sort(
+            (a, b) => a.start.getBoundingClientRect().left - b.start.getBoundingClientRect().left,
+          );
+        const index = incoming.findIndex((connection) => connection.path === path);
+        arrivalFraction = (index + 1) / (incoming.length + 1);
+      }
+      const x2 = to.left + to.width * arrivalFraction - bounds.left;
       const y2 = to.top - bounds.top;
       const middle = (y1 + y2) / 2;
       gradient.setAttribute("x1", x1);
