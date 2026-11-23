@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\User\Administrator;
 use App\Models\User\Student;
 use App\Models\User\Teacher;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Vite;
 
 beforeEach(fn () => Cache::flush());
 
@@ -78,6 +80,32 @@ test('password recovery has the same response for known and unknown email addres
         ->assertRedirectToRoute('auth.recover')
         ->assertSessionHas('submitted', true)
         ->assertSessionMissing('not_found');
+});
+
+test('password recovery email is in Italian and uses the contact email branding', function (): void {
+    Notification::fake();
+    config(['auth.passwords.users.expire' => 45]);
+    $user = User::factory()->create();
+
+    $this->post(route('auth.recover'), ['email' => $user->email])
+        ->assertSessionHas('submitted', true);
+
+    Notification::assertSentTo($user, ResetPassword::class, function ($notification) use ($user): bool {
+        $mail = $notification->toMail($user);
+        $html = view($mail->view, $mail->viewData)->render();
+        $resetUrl = route('password.reset', [
+            'token' => $notification->token,
+            'email' => $user->email,
+        ]);
+
+        expect($mail->subject)->toBe('Reimposta la tua password');
+        expect($html)
+            ->toContain('lang="it"', e(Vite::image('logo/logo_blue.png')), 'Reimposta password', 'Il link scade tra 45 minuti.', e($resetUrl))
+            ->toContain('puoi ignorare questa email')
+            ->not->toContain('Reset Password', 'Hello!');
+
+        return true;
+    });
 });
 
 test('password reset tokens are hashed expiring and single use', function (): void {

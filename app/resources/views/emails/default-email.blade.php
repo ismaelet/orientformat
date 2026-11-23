@@ -89,9 +89,13 @@
 									</tr>
 									<tr>
 										<td style="">
+											@hasSection('email-content')
+												@yield('email-content')
+											@else
 											<p>
 												{!! $content !!}
 											</p>
+											@endif
 										</td>
 									</tr>
 								</table>

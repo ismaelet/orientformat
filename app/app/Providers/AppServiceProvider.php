@@ -6,7 +6,9 @@ use App\Http\Responses\LogoutResponse;
 use App\Models\User;
 use Filament\Auth\Http\Responses\Contracts\LogoutResponse as ContractsLogoutResponse;
 use Filament\Facades\Filament;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
@@ -35,6 +37,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        ResetPassword::toMailUsing(function (User $user, string $token): MailMessage {
+            return (new MailMessage)
+                ->subject('Reimposta la tua password')
+                ->view('emails.reset-password', [
+                    'resetUrl' => route('password.reset', [
+                        'token' => $token,
+                        'email' => $user->getEmailForPasswordReset(),
+                    ]),
+                    'expiresInMinutes' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire'),
+                ]);
+        });
+
         Gate::before(function (User $user, string $ability): ?bool {
             if (
                 Filament::getCurrentPanel()?->getId() === 'admin'
