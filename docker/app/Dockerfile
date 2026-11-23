@@ -32,6 +32,10 @@ WORKDIR /var/www/html
 
 COPY ./app /var/www/html
 
+ENV COMPOSER_ALLOW_SUPERUSER=1 \
+    COMPOSER_MAX_PARALLEL_HTTP=2 \
+    COMPOSER_DISABLE_HTTP2=1
+
 RUN composer install \
     --no-dev \
     --no-interaction \
