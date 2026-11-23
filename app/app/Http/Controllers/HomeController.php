@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -11,8 +12,16 @@ class HomeController extends Controller
      */
     public function index(): RedirectResponse
     {
-        if (is_admin()) {
+        if (Auth::user()->requiresEmailVerification()) {
+            return redirect()->route('verification.notice');
+        }
+
+        if (Auth::user()->isSuperadmin()) {
             return redirect('/admin');
+        }
+
+        if (is_administrator()) {
+            return redirect()->route('administrator.dashboard');
         }
 
         if (is_teacher()) {

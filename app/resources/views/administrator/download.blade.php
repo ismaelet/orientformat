@@ -50,7 +50,7 @@
 				<div class="dashboard-cell">
 					<a
 						class="hover:text-primary-400 text-primary-600 contents transition-colors"
-						href="{{ route($dataset['route'], ['school' => $school, 'format' => 'xlsx']) }}"
+						href="{{ route($dataset['route'], ['format' => 'xlsx']) }}"
 					>
 						<x-icon-download class="h-4 w-4" />
 						<p class="font-semibold">Scarica in formato XLSX</p>
@@ -60,7 +60,7 @@
 				<div class="dashboard-cell">
 					<a
 						class="hover:text-secondary-200 text-secondary-600 contents transition-colors"
-						href="{{ route($dataset['route'], ['school' => $school, 'format' => 'csv']) }}"
+						href="{{ route($dataset['route'], ['format' => 'csv']) }}"
 					>
 						<x-icon-download class="h-4 w-4" />
 						<p class="font-semibold">Scarica in formato CSV</p>

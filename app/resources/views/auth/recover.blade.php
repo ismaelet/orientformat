@@ -6,7 +6,7 @@
 
 	<x-slot name="body">
 
-		@if (!session('submitted') || session('not_found'))
+		@if (!session('submitted'))
 
 			{{-- Show instructions to recover the account --}}
 			<p class="text-justify">
@@ -38,24 +38,10 @@
 				</x-alerts.error>
 			@endif
 
-			@if (session('mail_error'))
-				<x-alerts.error class="mt-4">
-					{{ session('mail_error') }}
-				</x-alerts.error>
-			@endif
-
-			{{-- If the form hasn't been submitted or the email is not found --}}
-			@if (session('not_found'))
-				{{-- Show error message if email is not found --}}
-				<x-alerts.error class="mt-4">
-					Non abbiamo trovato nessun account associato all'indirizzo email indicato
-				</x-alerts.error>
-			@endif
 		@else
-			{{-- If the email is found --}}
-			<p class="text-justify">Abbiamo mandato un'email con le istruzioni per resettare la password
-				all'indirizzo qui sotto. Se non dovessi ricevere l'email entro qualche minuto, controlla la cartella di
-				spam.
+			<p class="text-justify">
+				Se esiste un account associato all'indirizzo indicato, riceverai un'email con le istruzioni per resettare
+				la password. Se non la ricevi entro qualche minuto, controlla la cartella spam.
 			</p>
 
 			<p class="text-center text-lg font-bold">{{ session('email') }}</p>
@@ -65,8 +51,7 @@
 
 	<x-slot name="footer">
 
-		@if (!session('submitted') || session('not_found'))
-			{{-- If the form hasn't been submitted or the email is not found --}}
+		@if (!session('submitted'))
 			<x-button type="submit">Recupera i dati</x-button>
 		@endif
 

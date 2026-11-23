@@ -13,8 +13,12 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if ($request->user()?->requiresEmailVerification()) {
+            return redirect()->route('verification.notice');
+        }
+
         // Check if the user is authenticated and is an admin
-        if (! auth()->check() || ! is_admin()) {
+        if (! auth()->check() || ! auth()->user()->isSuperadmin()) {
             return redirect()->route('login')->with('error', 'Unauthorized access.');
         }
 

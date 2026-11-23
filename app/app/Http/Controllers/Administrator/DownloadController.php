@@ -46,9 +46,9 @@ class DownloadController extends Controller
     /**
      * Download student results
      */
-    public function downloadResults(Request $request, School $school)
+    public function downloadResults(Request $request)
     {
-        $data = $this->fetchResultsData($school);
+        $data = $this->fetchResultsData($this->school());
 
         $filename = 'Risultati_studenti';
 
@@ -58,9 +58,9 @@ class DownloadController extends Controller
     /**
      * Download active students
      */
-    public function downloadStudents(Request $request, School $school)
+    public function downloadStudents(Request $request)
     {
-        $data = $this->fetchStudentsData($school);
+        $data = $this->fetchStudentsData($this->school());
 
         $filename = 'Elenco_studenti_attivi';
 
@@ -70,9 +70,9 @@ class DownloadController extends Controller
     /**
      * Download teachers
      */
-    public function downloadTeachers(Request $request, School $school)
+    public function downloadTeachers(Request $request)
     {
-        $data = $this->fetchTeachersData($school);
+        $data = $this->fetchTeachersData($this->school());
 
         $filename = 'Elenco_docenti';
 
@@ -82,9 +82,9 @@ class DownloadController extends Controller
     /**
      * Download classes
      */
-    public function downloadClasses(Request $request, School $school)
+    public function downloadClasses(Request $request)
     {
-        $data = $this->fetchClassesData($school);
+        $data = $this->fetchClassesData($this->school());
 
         $filename = 'Elenco_classi';
 
@@ -97,6 +97,7 @@ class DownloadController extends Controller
     private function downloadData(array $data, string $filename, Request $request)
     {
         $format = $request->input('format', 'csv');
+        $data = $this->neutralizeSpreadsheetValues($data);
 
         if ($format === 'csv') {
             return $this->downloadCsv($data, $filename.'.csv');
@@ -107,6 +108,25 @@ class DownloadController extends Controller
         }
 
         abort(400, 'Formato non supportato');
+    }
+
+    private function school(): School
+    {
+        return administrator()->school;
+    }
+
+    private function neutralizeSpreadsheetValues(array $data): array
+    {
+        return array_map(
+            fn (array $row): array => array_map(function (mixed $value): mixed {
+                if (! is_string($value) || ! preg_match('/^(?:\s*[=+\-@]|[\t\r\n])/u', $value)) {
+                    return $value;
+                }
+
+                return "'".$value;
+            }, $row),
+            $data
+        );
     }
 
     /**
@@ -146,6 +166,8 @@ class DownloadController extends Controller
      */
     private function fetchResultsData(School $school): array
     {
+        $data = [];
+
         $students = $school
             ->students()
             ->join('users', 'users.id', '=', 'students.userId')

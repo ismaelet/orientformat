@@ -16,7 +16,9 @@ Route::get('', [HomeController::class, 'index'])->middleware(['auth', Locale::cl
 Route::get('help', [HelpController::class, 'index'])->name('help');
 
 Route::get('help/ticket/open', [HelpController::class, 'openTicket'])->name('help.ticket.open');
-Route::post('help/ticket/store', [HelpController::class, 'storeTicket'])->name('help.ticket.store');
+Route::post('help/ticket/store', [HelpController::class, 'storeTicket'])
+    ->middleware('throttle:6,1')
+    ->name('help.ticket.store');
 
 include __DIR__.'/web-legacy.php';
 

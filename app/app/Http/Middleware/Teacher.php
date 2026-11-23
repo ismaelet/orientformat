@@ -13,6 +13,10 @@ class Teacher
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if ($request->user()?->requiresEmailVerification()) {
+            return redirect()->route('verification.notice');
+        }
+
         if (! is_teacher()) {
             return redirect()->route('home');
         }

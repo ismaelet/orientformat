@@ -8,6 +8,7 @@ use App\Models\User\Teacher;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasName;
 use Filament\Panel;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -15,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable implements FilamentUser, HasName
+class User extends Authenticatable implements FilamentUser, HasName, MustVerifyEmail
 {
     use HasFactory, Notifiable, SoftDeletes;
 
@@ -87,7 +88,7 @@ class User extends Authenticatable implements FilamentUser, HasName
     public function isAdmin(): Attribute
     {
         return new Attribute(
-            get: fn () => (bool) $this->admin_level,
+            get: fn () => $this->isSuperadmin(),
         );
     }
 
@@ -120,7 +121,12 @@ class User extends Authenticatable implements FilamentUser, HasName
      */
     public function isSuperadmin(): bool
     {
-        return (bool) $this->admin_level == 2;
+        return (int) $this->admin_level === 2;
+    }
+
+    public function requiresEmailVerification(): bool
+    {
+        return ! $this->student()->exists() && ! $this->hasVerifiedEmail();
     }
 
     /**
@@ -147,12 +153,23 @@ class User extends Authenticatable implements FilamentUser, HasName
         return (bool) $this->teacher;
     }
 
+    public function categoryLabel(): string
+    {
+        return match (true) {
+            $this->isSuperadmin() => 'Admin',
+            (bool) $this->administrator => 'Referente',
+            (bool) $this->teacher => 'Docente',
+            (bool) $this->student => 'Studente',
+            default => 'Utente',
+        };
+    }
+
     /**
      * Check if the user can access the Filament panel
      */
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->is_admin;
+        return $this->isSuperadmin() && ! $this->requiresEmailVerification();
     }
 
     /**

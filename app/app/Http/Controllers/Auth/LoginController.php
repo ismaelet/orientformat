@@ -50,6 +50,12 @@ class LoginController extends Controller
                 ->withErrors(['email' => 'Le credenziali inserite non sono corrette']);
         }
 
+        $request->session()->regenerate();
+
+        if ($request->user()->requiresEmailVerification()) {
+            return redirect()->route('verification.notice');
+        }
+
         // Redirect
         return redirect()->route('home');
     }

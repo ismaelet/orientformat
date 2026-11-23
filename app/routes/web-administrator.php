@@ -24,11 +24,11 @@ Route::middleware(Administrator::class)->prefix('administrator')->name('administ
     // Download data
     Route::get('download', [DownloadController::class, 'index'])->name('download.index');
 
-    Route::get('download/{school}/results', [DownloadController::class, 'downloadResults'])->name('download.results');
+    Route::get('download/results', [DownloadController::class, 'downloadResults'])->name('download.results');
 
-    Route::get('download/{school}/students', [DownloadController::class, 'downloadStudents'])->name('download.students');
+    Route::get('download/students', [DownloadController::class, 'downloadStudents'])->name('download.students');
 
-    Route::get('download/{school}/teachers', [DownloadController::class, 'downloadTeachers'])->name('download.teachers');
+    Route::get('download/teachers', [DownloadController::class, 'downloadTeachers'])->name('download.teachers');
 
-    Route::get('download/{school}/classes', [DownloadController::class, 'downloadClasses'])->name('download.classes');
+    Route::get('download/classes', [DownloadController::class, 'downloadClasses'])->name('download.classes');
 });

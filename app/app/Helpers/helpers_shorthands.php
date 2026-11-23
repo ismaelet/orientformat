@@ -51,7 +51,7 @@ function is_administrator(): bool
  */
 function is_admin(): bool
 {
-    return Auth::user()?->is_admin;
+    return Auth::user()?->isSuperadmin() ?? false;
 }
 
 /**

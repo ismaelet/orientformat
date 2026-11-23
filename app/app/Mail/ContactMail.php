@@ -26,9 +26,11 @@ class ContactMail extends Mailable
         public string $position,
         public ?array $parameters = null
     ) {
-        $this->content = 'Richiesta informazioni dal/dalla '.$this->position.' <strong>'.$this->name.'</strong> ('.$this->email.')';
+        $this->name = preg_replace('/[\r\n]+/', ' ', $this->name);
+        $this->message = trim($this->message);
+        $this->content = 'Richiesta informazioni dal/dalla '.e($this->position).' <strong>'.e($this->name).'</strong> ('.e($this->email).')';
 
-        $this->content .= ':<br><br>"'.$this->message.'"';
+        $this->content .= ':<br><br>"'.nl2br(e($this->message)).'"';
     }
 
     /**

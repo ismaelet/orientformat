@@ -15,8 +15,13 @@ class HasStudentAccess
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if ($request->user()?->requiresEmailVerification()) {
+            return redirect()->route('verification.notice');
+        }
+
         $student = $request->route('student');
         $student = is_string($student) ? Student::find($student) : $student;
+        abort_unless($student, 404);
         $studentClass = $student->class;
 
         if ($student->userId == Auth::id()) {

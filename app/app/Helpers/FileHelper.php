@@ -36,6 +36,14 @@ class FileHelper
     }
 
     /**
+     * Delete a file from private storage
+     */
+    public static function deletePrivate(string $path): bool
+    {
+        return Storage::disk('local')->delete($path);
+    }
+
+    /**
      * Download a file from the public storage directory
      */
     public static function download(string $path, ?string $name = null): BinaryFileResponse
@@ -47,6 +55,18 @@ class FileHelper
         $fullPath = Storage::disk('public')->path($path);
 
         return response()->download($fullPath, $name);
+    }
+
+    /**
+     * Download a file from private storage
+     */
+    public static function downloadPrivate(string $path, ?string $name = null): BinaryFileResponse
+    {
+        if (! Storage::disk('local')->exists($path)) {
+            abort(404, 'File not found');
+        }
+
+        return response()->download(Storage::disk('local')->path($path), $name);
     }
 
     /**

@@ -37,6 +37,18 @@ class HelpController extends Controller
      */
     public function storeTicket(Request $request)
     {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'email:rfc', 'max:255'],
+            'message' => ['required', 'string', 'max:500'],
+        ]);
+
+        $user = Auth::user();
+        if ($user) {
+            $validated['name'] = $user->full_name;
+            $validated['email'] = $user->email;
+        }
+
         $isAdministrator = is_administrator();
         $isTeacher = is_teacher();
         $isStudent = is_student();
@@ -50,9 +62,9 @@ class HelpController extends Controller
 
         Mail::to('ismaele.tuffanelli@gmail.com')
             ->send(new ContactMail(
-                email: $request->email,
-                name: $request->name,
-                message: $request->message,
+                email: $validated['email'],
+                name: $validated['name'],
+                message: $validated['message'],
                 position: $position,
             ));
 

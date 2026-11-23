@@ -25,6 +25,7 @@ use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table as FilamentTable;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class Table extends Component implements HasActions, HasSchemas, HasTable
@@ -190,9 +191,11 @@ class Table extends Component implements HasActions, HasSchemas, HasTable
                         ->color(Color::Purple)
                         ->icon('icon-key_vertical')
                         ->action(function (Student $record) {
-                            $newPassword = strtolower(str()->random(8));
-                            $record->user->password = Hash::make($newPassword);
-                            $record->user->save();
+                            $newPassword = Str::password(20);
+                            $record->user->forceFill([
+                                'password' => Hash::make($newPassword),
+                                'remember_token' => Str::random(60),
+                            ])->save();
 
                             Notification::make()
                                 ->title('Password generata')

@@ -74,7 +74,29 @@ cd app && pnpm build
 - Avoid repeated file reads, commands, repository-wide searches, and unrelated audits.
 - Never generate images.
 
+## Git workflow and commits
+
+- After completing a task, do not automatically create a commit.
+- At the end of the task, ask the user whether to commit the changes.
+- Never push changes unless explicitly requested.
+- Follow the European Commission Git Commit Guidelines:
+  https://ec.europa.eu/component-library/v1.14.2/ec/docs/conventions/git/
+- Use the commit message format: `<type>(<scope>): <subject>`.
+- The scope is optional.
+- Allowed types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`.
+- Write subjects in the imperative, present tense, starting with a lowercase letter and without a trailing period.
+- Keep every commit message line within 100 characters.
+- Include a body when useful to explain the motivation and changes.
+- Use `BREAKING CHANGE:` in the footer when applicable.
+- Before committing, inspect `git status` and the diff.
+- Stage only files relevant to the completed task. Do not include unrelated changes.
+- Never commit secrets, credentials, environment files, or generated artifacts that should remain untracked.
+- If the user approves, create the commit using the proposed message.
+- After committing, report the commit hash and message.
+
 ## Communication
 
 - Be concise, technical, and action-oriented.
 - After changes, briefly summarize what changed, validation performed, and any remaining issues.
+- Update README.md when the changes affect its correctness.
+- At the end of tasks involving file changes, propose an appropriate Git commit message and commit the changes, if the task is completed and doens't require further input from the user.

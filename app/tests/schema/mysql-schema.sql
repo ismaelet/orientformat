@@ -978,6 +978,7 @@ CREATE TABLE `schools` (
   `has_high_school` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1162,6 +1163,7 @@ CREATE TABLE `users` (
   `username` varchar(50) DEFAULT NULL,
   `password` varchar(128) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
   `first_name` varchar(50) DEFAULT NULL,
   `last_name` varchar(50) DEFAULT NULL,
   `birthdate` varchar(255) DEFAULT NULL,

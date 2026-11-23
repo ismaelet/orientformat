@@ -18,6 +18,10 @@ class StudentOrTeacher
             return redirect()->route('login');
         }
 
+        if (Auth::user()->requiresEmailVerification()) {
+            return redirect()->route('verification.notice');
+        }
+
         if (! is_student() && ! is_teacher()) {
             return redirect()->route('home');
         }

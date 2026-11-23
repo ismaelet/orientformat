@@ -40,7 +40,7 @@ class MasterpieceController extends Controller
 
         // Store the file
         $filePath = $masterpiece->storageFilePath();
-        Storage::disk('public')->putFileAs('', $file, $filePath);
+        Storage::disk('local')->putFileAs('', $file, $filePath);
 
         return redirect()->back()->with('success', 'Capolavoro caricato con successo!');
     }
@@ -50,9 +50,11 @@ class MasterpieceController extends Controller
      */
     public function download(Student $student, Masterpiece $masterpiece)
     {
+        abort_unless($masterpiece->student_id === $student->id, 404);
+
         $title = str_replace(['/', '\\'], '-', $masterpiece->title);
 
-        return FileHelper::download(
+        return FileHelper::downloadPrivate(
             $masterpiece->storageFilePath(),
             "{$title}.pdf"
         );

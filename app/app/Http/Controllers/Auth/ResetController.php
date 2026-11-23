@@ -4,26 +4,24 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\User\PasswordResetToken;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
 
 class ResetController extends Controller
 {
     /**
      * Render the reset page
      */
-    public function index()
+    public function index(Request $request, ?string $token = null)
     {
-
-        $email = $_GET['email'] ?? null;
-        $token = $_GET['token'] ?? null;
-
         return view('auth.reset')
             ->with([
                 'title' => 'Reset accesso',
-                'email' => $email,
-                'token' => $token,
+                'email' => $request->query('email'),
+                'token' => $token ?? $request->query('token'),
             ]);
     }
 
@@ -35,28 +33,23 @@ class ResetController extends Controller
 
         // Validation
         $this->validate($request, [
-            'email' => ['required'],
-            'token' => ['required'],
-            'password' => ['required', 'confirmed'],
+            'email' => ['required', 'email', 'max:255'],
+            'token' => ['required', 'string'],
+            'password' => ['required', 'string', 'min:8', 'max:30', 'confirmed'],
         ]);
 
-        // Get the reset data
-        $email = $request->email;
-        $token = $request->token;
-        $user = User::where('email', $email)->first();
-        $passwordReset = PasswordResetToken::where('email', $email)->first();
-        $error = ! $user || ! $passwordReset || $user->email != $email || $token != $passwordReset->token;
+        $credentials = $request->only('email', 'password', 'password_confirmation', 'token');
+        $status = Password::broker()->reset($credentials, function (User $user, string $password) {
+            $user->forceFill([
+                'password' => Hash::make($password),
+                'remember_token' => Str::random(60),
+            ])->save();
 
-        if ($error) {
-            return back()->with('error', 'Il link di rest non è valido o è scaduto');
-        }
+            event(new PasswordReset($user));
+        });
 
-        $passwordReset->delete();
-
-        $user->update([
-            'password' => Hash::make($request->password),
-        ]);
-
-        return back()->with('submitted', true);
+        return $status === Password::PASSWORD_RESET
+            ? back()->with('submitted', true)
+            : back()->with('error', 'Il link di reset non è valido o è scaduto');
     }
 }

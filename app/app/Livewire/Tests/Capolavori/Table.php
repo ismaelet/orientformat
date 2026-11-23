@@ -86,7 +86,7 @@ class Table extends Component implements HasActions, HasSchemas, HasTable
                     ->modalHeading(fn (Masterpiece $record): string => "Elimina il capolavoro: {$record->title}")
                     ->color('danger')
                     ->after(function (Masterpiece $record) {
-                        FileHelper::delete($record->storageFilePath());
+                        FileHelper::deletePrivate($record->storageFilePath());
 
                         $this->masterpieceCount = student()->masterpieces()->count();
 
@@ -97,7 +97,7 @@ class Table extends Component implements HasActions, HasSchemas, HasTable
                     ->action(function (Masterpiece $record): BinaryFileResponse {
                         $title = str_replace(['/', '\\'], '-', $record->title);
 
-                        return FileHelper::download($record->storageFilePath(), "{$title}.pdf");
+                        return FileHelper::downloadPrivate($record->storageFilePath(), "{$title}.pdf");
                     })
                     ->color('success')
                     ->icon('heroicon-o-arrow-down-tray'),

@@ -7,6 +7,7 @@ use App\Models\Schools\SchoolClass;
 use App\Models\User;
 use App\Models\User\Student;
 use App\Models\User\Teacher;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -122,6 +123,7 @@ class RegisterController extends Controller
 
         // Sign in the user
         Auth::login($user);
+        $request->session()->regenerate();
 
         // Redirect
         return redirect()->route('home');
@@ -170,11 +172,14 @@ class RegisterController extends Controller
             return $user;
         });
 
+        event(new Registered($user));
+
         // Sign in the user
         Auth::login($user);
+        $request->session()->regenerate();
 
         // Redirect
-        return redirect()->route('home');
+        return redirect()->route('verification.notice');
     }
 
     private function createUserSafely(array $data): User

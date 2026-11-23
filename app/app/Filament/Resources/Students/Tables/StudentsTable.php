@@ -2,18 +2,14 @@
 
 namespace App\Filament\Resources\Students\Tables;
 
-use App\Models\User\Student;
-use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\Auth;
 
 class StudentsTable
 {
@@ -59,16 +55,6 @@ class StudentsTable
             ->recordActions([
                 // EditAction::make(),
                 DeleteAction::make(),
-                Action::make('login')
-                    ->icon(Heroicon::OutlinedArrowRightEndOnRectangle)
-                    ->color('warning')
-                    ->action(function (Student $record) {
-                        $user = $record->user;
-
-                        Auth::login($user);
-
-                        return redirect()->route('home');
-                    }),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
