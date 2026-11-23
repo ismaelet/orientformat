@@ -16,7 +16,7 @@ class HomeController extends Controller
             return redirect()->route('verification.notice');
         }
 
-        if (Auth::user()->isSuperadmin()) {
+        if (Auth::user()->isPlatformAdmin()) {
             return redirect('/admin');
         }
 

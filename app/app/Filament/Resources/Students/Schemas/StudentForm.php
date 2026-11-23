@@ -50,6 +50,7 @@ class StudentForm
                             ->required(),
                         TextInput::make('email')
                             ->label('Email')
+                            ->disabled(fn (string $operation): bool => $operation === 'edit' && ! is_admin())
                             ->email()
                             ->required(),
                     ]),

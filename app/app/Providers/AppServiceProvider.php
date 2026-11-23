@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Http\Responses\LogoutResponse;
+use App\Models\User;
 use Filament\Auth\Http\Responses\Contracts\LogoutResponse as ContractsLogoutResponse;
 use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
@@ -33,6 +35,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::before(function (User $user, string $ability): ?bool {
+            if (
+                Filament::getCurrentPanel()?->getId() === 'admin'
+                && in_array($ability, ['delete', 'deleteAny', 'forceDelete', 'forceDeleteAny'], true)
+                && ! $user->isSuperadmin()
+            ) {
+                return false;
+            }
+
+            return null;
+        });
+
         // Register Vite image helper
         Vite::macro('image', fn (string $asset) => Vite::asset("resources/images/{$asset}"));
 

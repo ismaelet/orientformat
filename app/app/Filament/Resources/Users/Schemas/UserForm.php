@@ -13,6 +13,7 @@ class UserForm
             ->components([
                 TextInput::make('email')
                     ->label('Email')
+                    ->disabled(fn (string $operation): bool => $operation === 'edit' && ! is_admin())
                     ->required()
                     ->suffixIcon('heroicon-o-envelope')
                     ->maxLength(255),

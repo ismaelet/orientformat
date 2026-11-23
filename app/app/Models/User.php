@@ -124,6 +124,11 @@ class User extends Authenticatable implements FilamentUser, HasName, MustVerifyE
         return (int) $this->admin_level === 2;
     }
 
+    public function isPlatformAdmin(): bool
+    {
+        return in_array((int) $this->admin_level, [1, 2], true);
+    }
+
     public function requiresEmailVerification(): bool
     {
         return ! $this->student()->exists() && ! $this->hasVerifiedEmail();
@@ -156,7 +161,7 @@ class User extends Authenticatable implements FilamentUser, HasName, MustVerifyE
     public function categoryLabel(): string
     {
         return match (true) {
-            $this->isSuperadmin() => 'Admin',
+            $this->isPlatformAdmin() => 'Admin',
             (bool) $this->administrator => 'Referente',
             (bool) $this->teacher => 'Docente',
             (bool) $this->student => 'Studente',
@@ -169,7 +174,7 @@ class User extends Authenticatable implements FilamentUser, HasName, MustVerifyE
      */
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->isSuperadmin() && ! $this->requiresEmailVerification();
+        return $this->isPlatformAdmin() && ! $this->requiresEmailVerification();
     }
 
     /**

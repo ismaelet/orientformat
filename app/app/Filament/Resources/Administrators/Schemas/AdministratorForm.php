@@ -33,6 +33,7 @@ class AdministratorForm
                             ->maxLength(255),
                         TextInput::make('email')
                             ->label('Email')
+                            ->disabled(fn (): bool => ! is_admin())
                             ->required()
                             ->suffixIcon('heroicon-o-envelope')
                             ->maxLength(255)
