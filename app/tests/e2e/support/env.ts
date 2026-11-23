@@ -24,7 +24,7 @@ export const phpEnv: Record<string, string> = {
   DB_URL: "",
   DATABASE_URL: "",
   SESSION_DRIVER: "cookie",
-  CACHE_STORE: "array",
+  CACHE_DRIVER: "array",
   QUEUE_CONNECTION: "sync",
   LOG_CHANNEL: "stderr",
   DEBUGBAR_ENABLED: "false",

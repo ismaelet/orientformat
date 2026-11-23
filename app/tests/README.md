@@ -47,8 +47,9 @@ pnpm exec playwright test tests/e2e/review/dependencies.spec.ts   # a single spe
 ```
 
 The Playwright server mirrors `public/` without the Vite `hot` file, so it always serves built
-assets and never depends on the Vite dev server. It uses a cookie session, array cache and
-stderr logging, so it does not write to `storage/`.
+assets and never depends on the Vite dev server. It also serves built assets under the production
+`/orientamento/build/` prefix. It uses a cookie session, array cache and stderr logging, so it does
+not write to `storage/`.
 
 ## Backend validation
 

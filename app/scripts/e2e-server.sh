@@ -20,4 +20,7 @@ for entry in public/*; do
   [ "$name" = "hot" ] || [ "$name" = "index.php" ] || ln -sfn "$(pwd)/$entry" "$PUBLIC_DIR/$name"
 done
 
+mkdir -p "$PUBLIC_DIR/orientamento"
+ln -sfn "$(pwd)/public/build" "$PUBLIC_DIR/orientamento/build"
+
 exec php -S "127.0.0.1:$E2E_PORT" -t "$PUBLIC_DIR" tests/Support/e2e-router.php
