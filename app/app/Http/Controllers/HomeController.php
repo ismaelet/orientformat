@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,11 +13,14 @@ class HomeController extends Controller
      */
     public function index(): RedirectResponse
     {
-        if (Auth::user()->requiresEmailVerification()) {
+        /** @var User $user */
+        $user = Auth::user();
+
+        if ($user->requiresEmailVerification()) {
             return redirect()->route('verification.notice');
         }
 
-        if (Auth::user()->isPlatformAdmin()) {
+        if ($user->isPlatformAdmin()) {
             return redirect('/admin');
         }
 
