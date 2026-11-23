@@ -6,10 +6,12 @@ use App\Models\User;
 use App\Models\User\Student;
 use App\Models\User\Teacher;
 use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Vite;
 
 beforeEach(fn () => Cache::flush());
 
@@ -134,7 +136,21 @@ test('teacher registration', function (): void {
     // Check that the user is authenticated
     $this->assertAuthenticatedAs($user);
     expect(is_teacher())->toBeTrue();
-    Notification::assertSentTo($user, VerifyEmail::class);
+    Notification::assertSentTo($user, VerifyEmail::class, function (VerifyEmail $notification) use ($user): bool {
+        $mail = $notification->toMail($user);
+        $html = view($mail->view, $mail->viewData)->render();
+        $verificationUrl = $mail->viewData['verificationUrl'];
+
+        expect($mail->subject)->toBe('Conferma il tuo indirizzo email');
+        expect($html)
+            ->toContain('lang="it"', e(Vite::image('logo/logo_blue.png')))
+            ->toContain('Conferma indirizzo email', 'Il link scade tra 60 minuti.', e($verificationUrl))
+            ->toContain('Se non hai creato un account, puoi ignorare questa email.')
+            ->not->toContain('Verify Email Address', 'Hello!');
+        expect(URL::hasValidSignature(Request::create($verificationUrl)))->toBeTrue();
+
+        return true;
+    });
 
     $this->get(route('teacher.school.show'))
         ->assertRedirectToRoute('verification.notice');

@@ -7,6 +7,7 @@ use App\Models\User;
 use Filament\Auth\Http\Responses\Contracts\LogoutResponse as ContractsLogoutResponse;
 use Filament\Facades\Filament;
 use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Gate;
@@ -37,6 +38,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        VerifyEmail::toMailUsing(function (User $user, string $verificationUrl): MailMessage {
+            return (new MailMessage)
+                ->subject('Conferma il tuo indirizzo email')
+                ->view('emails.verify-email', [
+                    'verificationUrl' => $verificationUrl,
+                    'expiresInMinutes' => config('auth.verification.expire', 60),
+                ]);
+        });
+
         ResetPassword::toMailUsing(function (User $user, string $token): MailMessage {
             return (new MailMessage)
                 ->subject('Reimposta la tua password')
