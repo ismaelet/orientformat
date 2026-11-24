@@ -98,6 +98,40 @@ test('only superadmins can change an existing user email in filament', function 
     expect($target->fresh()->email)->toBe('changed@example.test');
 });
 
+test('only superadmins can edit passwords in the user form', function (): void {
+    $admin = User::factory()->create(['admin_level' => 1]);
+    $superadmin = User::factory()->create(['admin_level' => 2]);
+    $target = User::factory()->create();
+    $oldPassword = $target->password;
+
+    $this->actingAs($admin);
+    Livewire::test(EditUser::class, ['record' => $target->getRouteKey()])
+        ->assertFormFieldIsHidden('password')
+        ->fillForm(['password' => 'ChangedPassword123!'])
+        ->call('save')
+        ->assertHasNoFormErrors();
+    expect($target->fresh()->password)->toBe($oldPassword);
+
+    $this->actingAs($superadmin);
+    $form = Livewire::test(EditUser::class, ['record' => $target->getRouteKey()])
+        ->assertFormFieldIsVisible('password')
+        ->assertFormSet(['password' => null])
+        ->fillForm(['password' => ''])
+        ->call('save')
+        ->assertHasNoFormErrors();
+    expect($target->fresh()->password)->toBe($oldPassword);
+
+    $form->fillForm(['password' => 'short'])
+        ->call('save')
+        ->assertHasFormErrors(['password' => 'min']);
+    expect($target->fresh()->password)->toBe($oldPassword);
+
+    $form->fillForm(['password' => 'ChangedPassword123!'])
+        ->call('save')
+        ->assertHasNoFormErrors();
+    expect(Hash::check('ChangedPassword123!', $target->fresh()->password))->toBeTrue();
+});
+
 test('level one admins cannot change emails through related user forms', function (): void {
     $admin = User::factory()->create(['admin_level' => 1]);
     $superadmin = User::factory()->create(['admin_level' => 2]);
