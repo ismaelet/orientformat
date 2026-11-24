@@ -200,7 +200,10 @@ test('only superadmins can reset passwords from the users table', function (): v
     preg_match('/<strong>(.*?)<\/strong>/', $body, $matches);
     $newPassword = html_entity_decode($matches[1], ENT_QUOTES | ENT_HTML5);
 
-    expect($target->password)->not->toBe($oldPassword)
+    expect($newPassword)->toMatch('/\A[a-z0-9]{12}\z/')
+        ->toMatch('/[a-z]/')
+        ->toMatch('/[0-9]/')
+        ->and($target->password)->not->toBe($oldPassword)
         ->and(Hash::check($newPassword, $target->password))->toBeTrue()
         ->and($target->remember_token)->not->toBe($oldRememberToken)
         ->and(Password::broker()->tokenExists($target, $token))->toBeFalse();

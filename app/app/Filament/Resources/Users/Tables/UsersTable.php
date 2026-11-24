@@ -78,7 +78,7 @@ class UsersTable
                     ->modalHeading('Reimpostare la password?')
                     ->modalDescription('La nuova password verrà mostrata una sola volta, assicurati di annotarla.')
                     ->action(function (User $record): void {
-                        $newPassword = Str::password(20);
+                        $newPassword = Str::lower(Str::password(12, symbols: false));
                         DB::transaction(function () use ($record, $newPassword): void {
                             $record->forceFill([
                                 'password' => Hash::make($newPassword),
