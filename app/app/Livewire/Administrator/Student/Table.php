@@ -191,7 +191,7 @@ class Table extends Component implements HasActions, HasSchemas, HasTable
                         ->color(Color::Purple)
                         ->icon('icon-key_vertical')
                         ->action(function (Student $record) {
-                            $newPassword = Str::password(20);
+                            $newPassword = Str::lower(Str::password(12, symbols: false));
                             $record->user->forceFill([
                                 'password' => Hash::make($newPassword),
                                 'remember_token' => Str::random(60),
