@@ -15,6 +15,24 @@ use Illuminate\Support\Str;
 
 class StudentResultController extends Controller
 {
+    public function showReview(Request $request, SchoolClass $class)
+    {
+        $id = $request->query('id');
+        abort_unless(is_string($id) && ctype_digit($id), 404);
+
+        $reviewResult = ReviewResult::with('student', 'review')->findOrFail($id);
+        $student = $reviewResult->student;
+
+        abort_unless($student && $student->schoolClassId == $class->id && $reviewResult->review, 404);
+
+        return view('class.students.results.review', [
+            'class' => $class,
+            'student' => $student,
+            'reviewResult' => $reviewResult,
+            'answers' => $reviewResult->teacherAnswers(),
+        ]);
+    }
+
     /**
      * Show the results for a specific student
      */

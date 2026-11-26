@@ -134,6 +134,9 @@ Route::prefix('/class')->middleware([Teacher::class, HasClassAccess::class])->na
     Route::get('{class}/students/results', [SchoolClassController::class, 'studentResultsIndex'])
         ->name('students.results.index');
 
+    Route::get('{class}/students/results/review', [StudentResultController::class, 'showReview'])
+        ->name('students.results.review');
+
     Route::get('{class}/students/results/{student}', [StudentResultController::class, 'show'])
         ->middleware(StudentBelongsToClass::class)
         ->name('students.results.show');

@@ -279,7 +279,7 @@
 
 								@foreach ($reviewResults as $key => $reviewResult)
 									<a
-										href="review?id={{ $reviewResult->id }}"
+										href="{{ route('class.students.results.review', ['class' => $student->schoolClassId, 'id' => $reviewResult->id]) }}"
 										class="section section-color section-color--area-reviews"
 										style="--i: {{ $key + 1 }}"
 									>
