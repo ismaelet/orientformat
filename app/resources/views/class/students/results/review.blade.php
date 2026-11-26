@@ -70,7 +70,7 @@
 
 	<section class="review-results" aria-labelledby="review-title">
 		<header class="review-results__header">
-			<div class="review-results__actions flex flex-wrap gap-3" x-data>
+			<div class="review-results__actions flex flex-wrap gap-3 justify-center" x-data>
 				<x-button
 					href="{{ route('class.students.results.show', ['class' => $class, 'student' => $student]) }}"
 					variant="secondary"
@@ -84,7 +84,6 @@
 				<p class="review-results__context text-sm">Risposte al questionario</p>
 				<x-heading.main id="review-title">{{ $reviewResult->review->title }}</x-heading.main>
 				<p class="text-lg font-semibold">{{ $student->full_name }}</p>
-				<p class="review-results__context">{{ $class->name }}</p>
 			</div>
 		</header>
 
