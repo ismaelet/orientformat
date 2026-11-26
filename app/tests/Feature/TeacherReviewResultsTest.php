@@ -32,7 +32,10 @@ beforeEach(function (): void {
 test('teachers can open the restored review result URL', function (): void {
     $this->get($this->url)->assertOk()
         ->assertViewIs('class.students.results.review')
-        ->assertSee('Review di test')->assertSee('Teacher question');
+        ->assertSee('Review di test')->assertSee('Teacher question')
+        ->assertSee($this->student->full_name)
+        ->assertSee('Torna ai risultati')->assertSee('Stampa risposte')
+        ->assertDontSee('s6d1')->assertDontSee('s6d2');
 });
 
 test('review answers respect teacher visibility and decode saved choices', function (): void {
