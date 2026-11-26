@@ -2,6 +2,18 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "OrientFormat: Access server",
+      "type": "shell",
+      "command": "sshpass -f ~/.ssh/orientformat-password ssh -t orientformat 'cd /products/software/docker/orientamentoformativo && exec bash -l'",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "close": false
+      }
+    },
+    {
       "label": "OrientFormat: Deploy in production",
       "type": "shell",
       "command": "sshpass -f ~/.ssh/orientformat-password ssh -t orientformat 'cd /products/software/docker/orientamentoformativo && /usr/bin/docker-compose-wrapper.sh -f production-compose.yml up -d --build'",
