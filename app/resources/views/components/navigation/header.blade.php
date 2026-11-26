@@ -152,7 +152,7 @@
 @pushOnce('styles')
     <style>
         /*Containers*/
-        header {
+        .site-header {
         	position: relative;
         	top: 0;
         	left: 0;
@@ -690,7 +690,7 @@
 
 
 
-<header class="<?= $header['color'] ?> <?= $header['floating'] ? 'floating' : '' ?>">
+<header class="site-header <?= $header['color'] ?> <?= $header['floating'] ? 'floating' : '' ?>">
     <div id="h-pan">
         <div id="h-bgr" class="bgr bg-secondary"></div>
 
